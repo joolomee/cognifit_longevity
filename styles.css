@@ -1071,7 +1071,7 @@ footer{background:#000;padding:clamp(16px,3vw,22px) clamp(16px,4vw,32px);display
   .press-logo-img{max-height:16px}
   .press-logo-wsj{max-height:12px}
   .press-logo-cbs{max-height:20px}
-  .press-logo-abc,.press-logo-nbc{max-height:28px}
+  .press-logo-abc,.press-logo-nbc{max-height:38px;filter:none}
   .press-logo-cnn,.press-logo-lifetime{max-height:14px}
   .press-logo-nyt{max-height:12px}
   .trust-headline{gap:6px}
