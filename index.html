@@ -74,22 +74,53 @@
     .val-btn { font-size: 13px; padding: 10px 18px; }
   }
 
-  /* ── PRO STACK: 7 cards responsive ── */
+  /* ── PRO STACK: 7 cards ── */
   .pro-stack {
     grid-template-columns: repeat(4, 1fr) !important;
     max-width: 100% !important;
   }
-  @media (min-width: 1280px) {
+
+  /* 7 por linha acima de 1200px: cards compactos */
+  @media (min-width: 1200px) {
     .pro-stack {
       grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+      gap: 10px !important;
+    }
+    .pro-card { min-height: 0 !important; }
+    .pro-photo { flex: 0 0 100px !important; }
+    .pro-text { padding: 12px 10px !important; }
+    .pro-text h3 { font-size: 12px !important; margin-bottom: 4px !important; }
+    .pro-desc { font-size: 11px !important; line-height: 1.5 !important; }
+    .pro-metrics { gap: 2px 6px !important; padding: 6px 0 8px !important; }
+    .pm-num { font-size: 12px !important; }
+    .pm-lbl { font-size: 9px !important; }
+    .pro-cta {
+      font-size: 10px !important;
+      padding: 8px 12px !important;
+      min-width: 0 !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      transform: none !important;
     }
   }
+
+  /* 4 colunas entre 900–1200px */
+  @media (max-width: 1199px) and (min-width: 901px) {
+    .pro-stack {
+      grid-template-columns: repeat(4, 1fr) !important;
+      max-width: 100% !important;
+    }
+  }
+
+  /* 2 colunas em tablet */
   @media (max-width: 900px) {
     .pro-stack {
       grid-template-columns: repeat(2, 1fr) !important;
       max-width: 100% !important;
     }
   }
+
+  /* 1 coluna em mobile */
   @media (max-width: 640px) {
     .pro-stack {
       grid-template-columns: 1fr !important;
