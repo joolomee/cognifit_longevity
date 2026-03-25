@@ -751,66 +751,77 @@
     </div>
     <p style="color:#444;font-size:clamp(12px,2vw,13px);margin-top:clamp(24px,5vw,48px);margin-bottom:clamp(12px,2vw,18px)" class="r">Press around the world is talking about our mental training programs and assessments.</p>
         <div class="press-strip r d1">
-      <div class="press-logo-card">
-        <svg class="press-logo-img press-logo-wsj" style="height:16px;width:auto" viewBox="0 0 340 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="0" y="17" font-family="Georgia,'Times New Roman',serif" font-size="14" font-weight="700" fill="white" letter-spacing="1.5">THE WALL STREET JOURNAL.</text>
+
+      <!-- WSJ -->
+      <div class="press-logo-card press-card-wsj">
+        <svg class="press-logo-img" viewBox="0 0 420 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="2" y="23" font-family="Georgia,'Times New Roman',serif" font-size="19" font-weight="700" fill="white" letter-spacing="2">THE WALL STREET JOURNAL.</text>
         </svg>
       </div>
-      <div class="press-logo-card">
-        <svg class="press-logo-img press-logo-cbs" style="height:34px;width:auto" viewBox="0 0 130 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- CBS Eye icon -->
-          <circle cx="22" cy="22" r="20" fill="white"/>
-          <!-- Outer ring cutout -->
-          <circle cx="22" cy="22" r="17" fill="#111"/>
-          <!-- Eye shape: top lid -->
-          <path d="M6 22 C6 22 12 10 22 10 C32 10 38 22 38 22 C38 22 32 34 22 34 C12 34 6 22 6 22 Z" fill="white"/>
+
+      <!-- CBS -->
+      <div class="press-logo-card press-card-cbs">
+        <svg class="press-logo-img" viewBox="0 0 148 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Eye outer ring -->
+          <circle cx="26" cy="26" r="24" fill="none" stroke="white" stroke-width="3"/>
+          <!-- Eye lens shape -->
+          <path d="M4 26 C4 26 12 8 26 8 C40 8 48 26 48 26 C48 26 40 44 26 44 C12 44 4 26 4 26 Z" fill="white"/>
           <!-- Pupil -->
-          <circle cx="22" cy="22" r="7" fill="#111"/>
-          <circle cx="22" cy="22" r="4.5" fill="white"/>
+          <circle cx="26" cy="26" r="10" fill="#0a0f1e"/>
+          <circle cx="26" cy="26" r="6" fill="white"/>
           <!-- CBS text -->
-          <text x="48" y="30" font-family="'Arial Black',Arial,sans-serif" font-size="26" font-weight="900" fill="white">CBS</text>
+          <text x="56" y="37" font-family="'Arial Black',Arial,sans-serif" font-size="34" font-weight="900" fill="white">CBS</text>
         </svg>
       </div>
-      <div class="press-logo-card">
-        <svg class="press-logo-img press-logo-abc" style="height:40px;width:40px" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="40" cy="40" r="40" fill="white"/>
-          <text x="40" y="53" text-anchor="middle" font-family="'Arial Black',Arial,sans-serif" font-size="28" font-weight="900" fill="#000">abc</text>
+
+      <!-- ABC -->
+      <div class="press-logo-card press-card-abc">
+        <svg class="press-logo-img" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="30" cy="30" r="30" fill="white"/>
+          <text x="30" y="42" text-anchor="middle" font-family="'Arial Black',Arial,sans-serif" font-size="22" font-weight="900" fill="#000">abc</text>
         </svg>
       </div>
-      <div class="press-logo-card">
-        <svg class="press-logo-img press-logo-nbc" style="height:40px;width:auto" viewBox="0 0 118 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- NBC Peacock — 6 feathers pivot at (22,32), fanning upward -->
-          <g transform="translate(22,32)">
-            <!-- Each feather: ellipse displaced so pivot is at tip -->
-            <!-- cy=-14 moves feather center up so bottom tip = origin -->
-            <ellipse cx="0" cy="-13" rx="5" ry="13" transform="rotate(-75)" fill="white" opacity="0.55"/>
-            <ellipse cx="0" cy="-13" rx="5" ry="13" transform="rotate(-45)" fill="white" opacity="0.70"/>
-            <ellipse cx="0" cy="-13" rx="5" ry="13" transform="rotate(-15)" fill="white" opacity="0.85"/>
-            <ellipse cx="0" cy="-13" rx="5" ry="13" transform="rotate(15)"  fill="white" opacity="0.85"/>
-            <ellipse cx="0" cy="-13" rx="5" ry="13" transform="rotate(45)"  fill="white" opacity="0.70"/>
-            <ellipse cx="0" cy="-13" rx="5" ry="13" transform="rotate(75)"  fill="white" opacity="0.55"/>
-            <!-- Hub dot -->
-            <circle r="4" fill="white"/>
+
+      <!-- NBC -->
+      <div class="press-logo-card press-card-nbc">
+        <svg class="press-logo-img" viewBox="0 0 120 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- NBC Peacock: 6 feathers fan from centre, pointing up-outward -->
+          <!-- Pivot at (28, 34). Feathers: 6 ellipses, each offset upward and rotated -->
+          <g transform="translate(28,34)">
+            <ellipse cx="0" cy="-14" rx="5.5" ry="15" transform="rotate(-80)" fill="white" opacity="0.50"/>
+            <ellipse cx="0" cy="-14" rx="5.5" ry="15" transform="rotate(-48)" fill="white" opacity="0.65"/>
+            <ellipse cx="0" cy="-14" rx="5.5" ry="15" transform="rotate(-16)" fill="white" opacity="0.82"/>
+            <ellipse cx="0" cy="-14" rx="5.5" ry="15" transform="rotate(16)"  fill="white" opacity="0.82"/>
+            <ellipse cx="0" cy="-14" rx="5.5" ry="15" transform="rotate(48)"  fill="white" opacity="0.65"/>
+            <ellipse cx="0" cy="-14" rx="5.5" ry="15" transform="rotate(80)"  fill="white" opacity="0.50"/>
+            <circle r="4.5" fill="white"/>
           </g>
           <!-- NBC text -->
-          <text x="43" y="48" font-family="'Arial Black',Arial,sans-serif" font-size="21" font-weight="900" fill="white" letter-spacing="1.5">NBC</text>
+          <text x="58" y="50" font-family="'Arial Black',Arial,sans-serif" font-size="23" font-weight="900" fill="white" letter-spacing="1">NBC</text>
         </svg>
       </div>
-      <div class="press-logo-card">
-        <svg class="press-logo-img press-logo-cnn" style="height:28px;width:auto" viewBox="0 0 90 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="0" y="26" font-family="'Arial Black',Impact,Arial,sans-serif" font-size="28" font-weight="900" fill="white" letter-spacing="-0.5">CNN</text>
+
+      <!-- CNN -->
+      <div class="press-logo-card press-card-cnn">
+        <svg class="press-logo-img" viewBox="0 0 108 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="2" y="36" font-family="'Arial Black',Impact,Arial,sans-serif" font-size="40" font-weight="900" fill="white" letter-spacing="-1">CNN</text>
         </svg>
       </div>
-      <div class="press-logo-card">
-        <svg class="press-logo-img press-logo-nyt" style="height:20px;width:auto" viewBox="0 0 258 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="0" y="20" font-family="'Times New Roman',Times,Georgia,serif" font-size="19" font-weight="700" fill="white" letter-spacing="0.2" font-style="normal">The New York Times</text>
+
+      <!-- NYT -->
+      <div class="press-logo-card press-card-nyt">
+        <svg class="press-logo-img" viewBox="0 0 290 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="2" y="24" font-family="'Times New Roman',Times,Georgia,serif" font-size="22" font-weight="700" fill="white" letter-spacing="0.3">The New York Times</text>
         </svg>
       </div>
-      <div class="press-logo-card">
-        <svg class="press-logo-img press-logo-lifetime" style="height:24px;width:auto" viewBox="0 0 145 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="0" y="23" font-family="'Arial Black',Arial,sans-serif" font-size="22" font-weight="900" fill="white" letter-spacing="1" font-style="italic">Lifetime</text>
+
+      <!-- Lifetime -->
+      <div class="press-logo-card press-card-lifetime">
+        <svg class="press-logo-img" viewBox="0 0 172 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="2" y="28" font-family="'Arial Black',Arial,sans-serif" font-size="28" font-weight="900" fill="white" letter-spacing="0.5" font-style="italic">Lifetime</text>
         </svg>
       </div>
+
     </div>
     <div class="reviews-grid">
       <div class="rev-card r"><div class="rev-date">16 March 2026</div><div class="rev-stars">★★★★★</div><div class="rev-rec">👍 I recommend this product</div><div class="rev-title">Life-changing at 58</div><div class="rev-body">Real improvements in focus and memory within weeks. The personalized training adapts to exactly where I need it most.</div><div class="rev-author">Michael R. 🇺🇸 United States</div></div>
