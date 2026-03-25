@@ -982,8 +982,8 @@ h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
   pointer-events:none;
 }
 .press-logo-img{position:relative;z-index:1;opacity:1;max-height:26px;width:auto;transition:opacity .3s ease}
-.press-logo-wsj{max-height:21px}
-.press-logo-cbs{max-height:50px}
+.press-logo-wsj{max-height:20px}
+.press-logo-cbs{max-height:40px}
 .press-logo-cnn,.press-logo-lifetime{max-height:26px}
 .press-logo-nyt{max-height:24px}
 .press-logo-abc{
