@@ -46,38 +46,31 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.7;
+    opacity: 0.75;
     transition: opacity .2s ease, transform .2s ease;
-    padding: 6px 10px;
+    padding: 8px 12px;
     border-radius: 8px;
-    background: rgba(0,0,0,0.04);
-    border: 1px solid rgba(0,0,0,0.08);
-    min-height: 48px;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    min-height: 44px;
   }
-  .val-logo-item:hover { opacity: 1; transform: scale(1.04); background: rgba(0,0,0,0.07); }
-  .val-logo-item img {
-    max-height: 34px;
-    width: auto;
-    max-width: 96px;
-    object-fit: contain;
-    filter: grayscale(1);
-    transition: filter .2s ease;
-    display: block;
-  }
-  .val-logo-item:hover img { filter: grayscale(0.2); }
-  /* When image fails, show alt text styled */
-  .val-logo-item img[alt] {
+  .val-logo-item:hover { opacity: 1; transform: scale(1.04); box-shadow: 0 3px 10px rgba(0,0,0,0.12); }
+  .val-txt {
     font-size: 10px;
     font-weight: 700;
-    color: #444;
+    color: #333;
     text-align: center;
+    line-height: 1.35;
+    max-width: 88px;
+    display: block;
+    letter-spacing: .01em;
   }
   @media (max-width: 1100px) {
     .val-logos { grid-template-columns: repeat(8, 1fr); gap: 18px 20px; }
   }
   @media (max-width: 768px) {
     .val-logos { grid-template-columns: repeat(5, 1fr); gap: 16px; }
-    .val-logo-item img { max-height: 28px; max-width: 80px; }
   }
   @media (max-width: 480px) {
     .val-logos { grid-template-columns: repeat(3, 1fr); gap: 14px; }
@@ -1126,43 +1119,65 @@
         </div>
         <div class="pro-photo" style="background:linear-gradient(135deg,#120026,#080014)"><svg viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;position:absolute;inset:0">
 <defs>
-  <radialGradient id="athl-glow" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="rgba(160,80,255,0.35)"/>
-    <stop offset="100%" stop-color="rgba(160,80,255,0)"/>
+  <radialGradient id="athl-bg" cx="50%" cy="60%" r="55%">
+    <stop offset="0%" stop-color="rgba(140,60,255,0.3)"/>
+    <stop offset="100%" stop-color="rgba(80,0,160,0)"/>
   </radialGradient>
 </defs>
-<!-- Background glow -->
-<ellipse cx="100" cy="95" rx="68" ry="55" fill="url(#athl-glow)"><animate attributeName="rx" values="68;74;68" dur="3s" repeatCount="indefinite"/></ellipse>
-<!-- Target rings (focus/precision) -->
-<circle cx="100" cy="92" r="46" fill="none" stroke="rgba(160,80,255,0.18)" stroke-width="1.2"/>
-<circle cx="100" cy="92" r="34" fill="none" stroke="rgba(180,100,255,0.24)" stroke-width="1.2"/>
-<circle cx="100" cy="92" r="22" fill="none" stroke="rgba(200,120,255,0.32)" stroke-width="1.5"/>
-<circle cx="100" cy="92" r="11" fill="rgba(200,120,255,0.2)" stroke="rgba(220,150,255,0.6)" stroke-width="1.5"/>
-<!-- Bullseye pulse -->
-<circle cx="100" cy="92" r="5" fill="rgba(230,180,255,0.9)"><animate attributeName="r" values="5;7;5" dur="1.4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.9;0.6;0.9" dur="1.4s" repeatCount="indefinite"/></circle>
-<!-- Crosshair lines -->
-<line x1="100" y1="42" x2="100" y2="62" stroke="rgba(200,140,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
-<line x1="100" y1="122" x2="100" y2="142" stroke="rgba(200,140,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
-<line x1="50" y1="92" x2="70" y2="92" stroke="rgba(200,140,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
-<line x1="130" y1="92" x2="150" y2="92" stroke="rgba(200,140,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
-<!-- Brain icon (top left) -->
-<g transform="translate(42,38)" opacity="0.85">
-  <path d="M16 4 C10 4 6 8 6 13 C6 16 7 18 9 20 C9 22 10 24 12 24 L20 24 C22 24 23 22 23 20 C25 18 26 16 26 13 C26 8 22 4 16 4Z" fill="rgba(180,100,255,0.45)" stroke="rgba(220,160,255,0.7)" stroke-width="1.2" stroke-linejoin="round"/>
-  <path d="M16 8 C16 8 13 10 13 13 M16 8 C16 8 19 10 19 13" fill="none" stroke="rgba(240,200,255,0.6)" stroke-width="1" stroke-linecap="round"/>
-  <circle cx="16" cy="20" r="1.5" fill="rgba(240,200,255,0.8)"/>
+<ellipse cx="105" cy="105" rx="70" ry="58" fill="url(#athl-bg)">
+  <animate attributeName="rx" values="70;76;70" dur="3s" repeatCount="indefinite"/>
+</ellipse>
+<!-- Ground shadow -->
+<ellipse cx="105" cy="148" rx="32" ry="5" fill="rgba(120,40,220,0.25)">
+  <animate attributeName="rx" values="32;26;32" dur="0.55s" repeatCount="indefinite"/>
+</ellipse>
+<!-- Running figure: proper silhouette using filled paths -->
+<!-- The figure is mid-stride leaning forward -->
+<g>
+  <animate attributeName="transform" values="translate(0,0);translate(0,-4);translate(0,0)" dur="0.55s" repeatCount="indefinite"/>
+  <!-- Head -->
+  <circle cx="118" cy="42" r="11" fill="rgba(210,160,255,0.92)"/>
+  <!-- Torso: leaning forward -->
+  <path d="M112 53 C110 64 108 74 106 82" stroke="rgba(190,130,255,0.95)" stroke-width="8" stroke-linecap="round" fill="none"/>
+  <!-- Left arm back (behind body) -->
+  <path d="M111 58 C104 64 97 72 94 80" stroke="rgba(170,110,255,0.75)" stroke-width="5" stroke-linecap="round" fill="none">
+    <animate attributeName="d" values="M111 58 C104 64 97 72 94 80;M111 58 C118 65 122 72 122 80;M111 58 C104 64 97 72 94 80" dur="0.55s" repeatCount="indefinite"/>
+  </path>
+  <!-- Right arm forward -->
+  <path d="M109 58 C116 65 122 70 124 78" stroke="rgba(190,140,255,0.9)" stroke-width="5" stroke-linecap="round" fill="none">
+    <animate attributeName="d" values="M109 58 C116 65 122 70 124 78;M109 58 C102 64 96 70 94 78;M109 58 C116 65 122 70 124 78" dur="0.55s" repeatCount="indefinite"/>
+  </path>
+  <!-- Hip area -->
+  <ellipse cx="107" cy="84" rx="8" ry="6" fill="rgba(190,130,255,0.88)"/>
+  <!-- Left leg forward (stride) -->
+  <path d="M104 88 C100 102 98 114 100 126 C100 132 104 138 108 142" stroke="rgba(180,120,255,0.92)" stroke-width="7" stroke-linecap="round" fill="none">
+    <animate attributeName="d" values="M104 88 C100 102 98 114 100 126 C100 132 104 138 108 142;M104 88 C108 100 114 112 118 124 C120 130 118 136 114 140;M104 88 C100 102 98 114 100 126 C100 132 104 138 108 142" dur="0.55s" repeatCount="indefinite"/>
+  </path>
+  <!-- Right leg back (push-off) -->
+  <path d="M110 88 C114 100 118 112 116 124 C116 130 112 136 108 140" stroke="rgba(160,100,255,0.85)" stroke-width="7" stroke-linecap="round" fill="none">
+    <animate attributeName="d" values="M110 88 C114 100 118 112 116 124 C116 130 112 136 108 140;M110 88 C106 102 102 114 104 126 C104 132 108 138 112 142;M110 88 C114 100 118 112 116 124 C116 130 112 136 108 140" dur="0.55s" repeatCount="indefinite"/>
+  </path>
 </g>
-<!-- Lightning bolt (top right) -->
-<g transform="translate(140,34)"><animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite"/>
-  <polygon points="12,2 6,14 11,14 8,26 18,10 12,10" fill="rgba(255,220,80,0.9)"/>
+<!-- Speed lines -->
+<line x1="46" y1="72" x2="74" y2="72" stroke="rgba(180,100,255,0.55)" stroke-width="2" stroke-linecap="round">
+  <animate attributeName="x1" values="46;56;46" dur="0.4s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values="0.55;0.9;0.55" dur="0.4s" repeatCount="indefinite"/>
+</line>
+<line x1="40" y1="82" x2="68" y2="82" stroke="rgba(160,80,255,0.4)" stroke-width="1.5" stroke-linecap="round">
+  <animate attributeName="x1" values="40;52;40" dur="0.5s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values="0.4;0.8;0.4" dur="0.5s" repeatCount="indefinite"/>
+</line>
+<line x1="50" y1="92" x2="72" y2="92" stroke="rgba(150,70,255,0.3)" stroke-width="1" stroke-linecap="round">
+  <animate attributeName="x1" values="50;58;50" dur="0.45s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values="0.3;0.65;0.3" dur="0.45s" repeatCount="indefinite"/>
+</line>
+<!-- Lightning bolt: reaction time -->
+<g transform="translate(148,28)">
+  <animate attributeName="opacity" values="0.5;1;0.5" dur="1.2s" repeatCount="indefinite"/>
+  <polygon points="9,0 4,12 8,12 5,24 14,8 9,8" fill="rgba(255,220,80,0.95)"/>
 </g>
-<!-- EKG pulse line at bottom -->
-<polyline fill="none" stroke="rgba(180,100,255,0.6)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" points="48,148 62,148 68,148 72,136 76,158 80,130 84,162 88,148 152,148">
-  <animate attributeName="points" 
-    values="48,148 62,148 68,148 72,136 76,158 80,130 84,162 88,148 152,148;
-            48,148 62,148 72,148 76,138 80,156 84,132 88,160 92,148 152,148;
-            48,148 62,148 68,148 72,136 76,158 80,130 84,162 88,148 152,148"
-    dur="1.6s" repeatCount="indefinite"/>
-</polyline>
+<!-- Ground line -->
+<line x1="55" y1="150" x2="160" y2="150" stroke="rgba(160,80,255,0.25)" stroke-width="1.5" stroke-linecap="round"/>
 </svg></div>
       </div>
     </div>
@@ -1179,44 +1194,44 @@
       <a href="https://www.cognifit.com/scientific-advisory-board" target="_blank" rel="noopener noreferrer" class="val-btn">Scientific Advisory Board</a>
     </div>
     <div class="val-logos r d3">
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/fep.png" alt="FSP" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/cognitive-research-tool" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/powerbrainrx.png" alt="PowerBrain Rx" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/neurogenesis.png" alt="NCP Neurogenesis" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/opticards.png" alt="OPTI Cards" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/psy-counsellors.png" alt="Psychologists & Counsellors" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/revive.png" alt="Revive" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/shining.png" alt="Shining" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/neuro-visio.png" alt="Neuro Visio" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/educational-technology" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/stanford.png" alt="Stanford University" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/dementia-connection.png" alt="Dementia Connection Institute" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/nerea-lopez.png" alt="Equipo Nerea López" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/rizvi-brain.png" alt="Rizvi Brain Institute" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/optimumedge.png" alt="OptimumEdge" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/psycholoog-be.png" alt="Psycholoog.be" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/sofos.png" alt="Sofos Associates" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/francesca-sinteri.png" alt="Francesca Sinteri Psychologist" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/educational-technology" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/pontificia.png" alt="Pontificia Universidad Católica de Chile" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/enable.png" alt="Enable Speech Pathology" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/evexia.png" alt="Evexia" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/win.png" alt="WIN Wellness Institute of Neurodevelopment" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/adn-rhone.png" alt="ADN Rhône-Alpes" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/envision.png" alt="Envision ADHD Clinic" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/rehabilitation-specialists.png" alt="The Rehabilitation Specialists" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/synapse.png" alt="Synapse Human Performance Centers" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/jaime-orbacho.png" alt="Jaime Orbacho" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/brain-rehab.png" alt="brain.rehab" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/educational-technology" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/ucatolica.png" alt="Universidad Católica de la Asunción" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/youtopia.png" alt="Youtopia Precision Nourishment" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/paloma.png" alt="Paloma Medical Group" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/matrix.png" alt="Matrix Neurological" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/neuro-performance.png" alt="Neuro Performance" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/advanced-optimal.png" alt="Advanced Optimal Healthcare" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/compass.png" alt="Compass" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/vectorium.png" alt="Vectorium" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/mj-surgical.png" alt="MJ Surgical Clinic" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/educational-technology" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/unifesp.png" alt="UNIFESP" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/david-shoup.png" alt="David Shoup Ph.D." loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
-      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><img src="logos/vb.png" alt="VB" loading="lazy" onerror="this.style.display='none';var s=document.createElement('span');s.textContent=this.alt;s.style.cssText='font-size:10px;font-weight:700;color:#333;text-align:center;line-height:1.3;max-width:90px;display:block';this.parentElement.appendChild(s)"></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">FSP</span></a>
+      <a href="https://www.cognifit.com/cognitive-research-tool" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">PowerBrain Rx</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">NCP Neurogenesis</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">OPTI Cards</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">Psychologists & Counsellors</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">Revive</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">Shining</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">Neuro Visio</span></a>
+      <a href="https://www.cognifit.com/educational-technology" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">Stanford University</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">Dementia Connection Institute</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">Equipo Nerea López</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">Rizvi Brain Institute</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">OptimumEdge</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">Psycholoog.be</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">Sofos Associates</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">Francesca Sinteri Psychologist</span></a>
+      <a href="https://www.cognifit.com/educational-technology" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">Pontificia Universidad Católica de Chile</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">Enable Speech Pathology</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">Evexia</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">WIN Wellness Institute of Neurodevelopment</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">ADN Rhône-Alpes</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">Envision ADHD Clinic</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">The Rehabilitation Specialists</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">Synapse Human Performance Centers</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">Jaime Orbacho</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">brain.rehab</span></a>
+      <a href="https://www.cognifit.com/educational-technology" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">Universidad Católica de la Asunción</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">Youtopia Precision Nourishment</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">Paloma Medical Group</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">Matrix Neurological</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">Neuro Performance</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">Advanced Optimal Healthcare</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">Compass</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">Vectorium</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">MJ Surgical Clinic</span></a>
+      <a href="https://www.cognifit.com/educational-technology" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">UNIFESP</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">David Shoup Ph.D.</span></a>
+      <a href="https://www.cognifit.com/medical-platform" target="_blank" rel="noopener noreferrer" class="val-logo-item"><span class="val-txt">VB</span></a>
     </div>
     <p class="r d4" style="margin-top:24px;color:#999;font-size:13px">and thousands more worldwide</p>
   </div>
