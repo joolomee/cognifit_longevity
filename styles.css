@@ -968,6 +968,8 @@ h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
   .press-logo-abc,.press-logo-nbc{max-height:38px}
   .press-logo-cnn,.press-logo-lifetime{max-height:20px}
   .press-logo-nyt{max-height:18px}
+  .press-logo-abc { filter: invert(1) !important; }
+  .press-logo-nbc { filter: brightness(0) invert(1) !important; }
   .t-badge:active{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));transform:none}
 
 .trust-badges{display:flex;flex-direction:row;flex-wrap:wrap;gap:10px;margin-top:32px;justify-content:center}
