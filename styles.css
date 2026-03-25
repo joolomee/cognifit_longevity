@@ -172,15 +172,6 @@ nav.nav-light .btn-login{
   .btn-login:hover{border-color:rgba(255,255,255,.7)}
 }
 
-
-@media(max-width:640px){
-  .telegram-auth-modal{padding:16px}
-  .telegram-auth-card{padding:22px 18px 18px;border-radius:20px}
-  .telegram-auth-title{font-size:24px}
-  .telegram-auth-copy,.telegram-auth-note{font-size:13px}
-  .telegram-auth-preview{align-items:flex-start}
-}
-
 /* ── BUTTONS ── */
 .btn-primary{
   display:inline-flex;align-items:center;justify-content:center;
@@ -963,22 +954,23 @@ h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
 .trust-headline-top{display:block}
 .trust-headline-number{display:block;color:#2f8cff;text-shadow:0 0 28px rgba(47,140,255,.28)}
 .trust-headline-users{display:block}
-.press-strip{gap:8px;justify-content:center}
+.press-strip{display:flex;flex-direction:row;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center}
   .press-logo-card{
-    min-height:68px;
-    padding:12px 14px;
+    min-height:52px;
+    padding:10px 18px;
     border-radius:14px;
-    flex:0 1 calc(50% - 8px);
+    flex:0 1 auto;
+    display:flex;align-items:center;justify-content:center;
   }
-  .press-logo-img{max-height:20px}
-  .press-logo-wsj{max-height:40px}
-  .press-logo-cbs{max-height:22px}
-  .press-logo-abc,.press-logo-nbc{max-height:70px}
-  .press-logo-cnn,.press-logo-lifetime{max-height:21px}
+  .press-logo-img{max-height:22px;width:auto;filter:brightness(0) invert(1) contrast(1.6);object-fit:contain}
+  .press-logo-wsj{max-height:18px}
+  .press-logo-cbs{max-height:28px}
+  .press-logo-abc,.press-logo-nbc{max-height:38px}
+  .press-logo-cnn,.press-logo-lifetime{max-height:20px}
   .press-logo-nyt{max-height:18px}
   .t-badge:active{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));transform:none}
 
-.trust-badges{gap:10px;margin-top:32px;justify-content:center}
+.trust-badges{display:flex;flex-direction:row;flex-wrap:wrap;gap:10px;margin-top:32px;justify-content:center}
   .t-badge{
     padding:11px 18px;
     font-size:12px;
@@ -988,6 +980,9 @@ h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
     border-radius:20px;
     transition:all .25s ease;
     cursor:default;
+    width:auto;
+    flex:0 1 auto;
+    white-space:nowrap;
   }
 @media (hover:hover) and (pointer:fine){
   .t-badge:hover{
@@ -1065,8 +1060,18 @@ footer{background:#000;padding:clamp(16px,3vw,22px) clamp(16px,4vw,32px);display
   .pro-stack{max-width:calc(100% - 80px);grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
   .pro-card{min-height:238px}
   .press-strip{gap:10px}
-  .press-logo-card{min-height:64px;padding:12px 16px}
-  .press-logo-img{max-height:56px}
+  .press-logo-card{
+    min-height:44px;
+    padding:8px 8px;
+    border-radius:12px;
+    flex:0 1 calc(33.333% - 8px);
+  }
+  .press-logo-img{max-height:16px}
+  .press-logo-wsj{max-height:12px}
+  .press-logo-cbs{max-height:20px}
+  .press-logo-abc,.press-logo-nbc{max-height:28px}
+  .press-logo-cnn,.press-logo-lifetime{max-height:14px}
+  .press-logo-nyt{max-height:12px}
   .trust-headline{gap:6px}
   .pill-wrap{justify-content:flex-start}
   .out-pill{font-size:13px}
