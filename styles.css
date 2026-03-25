@@ -29,8 +29,8 @@ img{max-width:100%;display:block}
       width: 100% !important;
       box-sizing: border-box !important;
 
-      /* O fundo vai até cima, mas o conteúdo desce para não ficar na notch */
-      padding-top: 50px !important; /* Ajusta se a notch precisar de mais/menos espaço */
+      
+      padding-top: 50px !important; 
       padding-bottom: 40px !important;
       padding-left: 24px !important;
       padding-right: 24px !important;
@@ -39,8 +39,7 @@ img{max-width:100%;display:block}
       align-items: center !important;
       justify-content: space-between !important;
 
-      /* Se a barra estiver transparente e quiseres um fundo sólido, descomenta a linha abaixo: */
-      /* background-color: #0b0f19 !important; */
+      
     }
 
     /* 2. ALINHAMENTO DO BLOCO DIREITO (LOGIN + EN) */
