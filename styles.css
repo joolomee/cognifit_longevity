@@ -963,19 +963,7 @@ h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
 .trust-headline-top{display:block}
 .trust-headline-number{display:block;color:#2f8cff;text-shadow:0 0 28px rgba(47,140,255,.28)}
 .trust-headline-users{display:block}
-.press-strip{
-  display:flex;
-  justify-content:center;
-  align-items:stretch;
-  gap:12px;
-  flex-wrap:wrap;
-  opacity:1;
-  margin-top:24px;
-  max-width:1100px;
-  margin-left:auto;
-  margin-right:auto;
-}
-  .press-strip{gap:8px;justify-content:center}
+.press-strip{gap:8px;justify-content:center}
   .press-logo-card{
     min-height:68px;
     padding:12px 14px;
@@ -989,16 +977,6 @@ h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
   .press-logo-cnn,.press-logo-lifetime{max-height:21px}
   .press-logo-nyt{max-height:18px}
   .t-badge:active{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));transform:none}
-/* Per-card widths — match reference layout */
-.press-card-wsj { min-width:280px; }
-.press-card-cbs { min-width:160px; }
-.press-card-abc { min-width:100px; }
-.press-card-nbc { min-width:140px; }
-.press-card-cnn { min-width:120px; }
-.press-card-nyt { min-width:260px; }
-.press-card-lifetime { min-width:160px; }
-/* ABC: no extra background */
-.press-card-abc { background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.035)) !important; }
 
 .trust-badges{display:flex;justify-content:center;gap:clamp(8px,2vw,12px);flex-wrap:wrap;margin-top:36px}
 .t-badge{
