@@ -981,7 +981,7 @@ h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
   background:radial-gradient(circle at 50% 50%,rgba(47,140,255,.08),transparent 72%);
   pointer-events:none;
 }
-.press-logo-img{position:relative;z-index:1;opacity:.98;filter:brightness(0) invert(1) contrast(1.75);max-height:26px;width:auto}
+.press-logo-img{position:relative;z-index:1;opacity:1;max-height:26px;width:auto;transition:opacity .3s ease}
 .press-logo-wsj{max-height:21px}
 .press-logo-cbs{max-height:50px}
 .press-logo-cnn,.press-logo-lifetime{max-height:26px}
@@ -992,7 +992,7 @@ h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
   border-radius:999px;
   background:radial-gradient(circle,rgba(255,255,255,.12),rgba(255,255,255,.04));
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
-  filter:invert(1) contrast(1.1);
+  /* filter removed: ABC already white circle with black text */
 }
 .press-logo-nbc{
   max-height:100px;
@@ -1000,7 +1000,7 @@ h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
   border-radius:14px;
   background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.03));
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
-  filter:grayscale(1) invert(1) brightness(1.15) contrast(1.1);
+  /* filter removed: NBC paths already fill=white */
 }
 .trust-badges{display:flex;justify-content:center;gap:clamp(8px,2vw,12px);flex-wrap:wrap;margin-top:36px}
 .t-badge{
