@@ -964,12 +964,26 @@ h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
 .trust-headline-top{display:block}
 .trust-headline-number{display:block;color:#2f8cff;text-shadow:0 0 28px rgba(47,140,255,.28)}
 .trust-headline-users{display:block}
-.press-strip{display:flex;justify-content:center;align-items:stretch;gap:10px;flex-wrap:nowrap;opacity:1;margin-top:20px}
-.pl{display:block;flex-shrink:0;height:auto;max-height:30px}
+.press-strip{
+  display:flex;
+  justify-content:center;
+  align-items:stretch;
+  gap:12px;
+  flex-wrap:wrap;
+  opacity:1;
+  margin-top:24px;
+  max-width:1100px;
+  margin-left:auto;
+  margin-right:auto;
+}
 .press-logo-card{
   position:relative;
-  display:flex;align-items:center;justify-content:center;
-  min-height:72px;padding:14px 18px;border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:88px;
+  padding:18px 24px;
+  border-radius:16px;
   background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.035));
   border:1px solid rgba(255,255,255,.12);
   box-shadow:0 10px 24px rgba(0,0,0,.18);
@@ -981,27 +995,26 @@ h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
   background:radial-gradient(circle at 50% 50%,rgba(47,140,255,.08),transparent 72%);
   pointer-events:none;
 }
-.press-logo-img{position:relative;z-index:1;opacity:1;max-height:26px;width:auto;transition:opacity .3s ease}
-.press-logo-wsj{max-height:20px}
-.press-logo-cbs{max-height:40px}
-.press-logo-cnn,.press-logo-lifetime{max-height:26px}
-.press-logo-nyt{max-height:24px}
-.press-logo-abc{
-  max-height:100px;
-  padding:10px;
-  border-radius:999px;
-  background:radial-gradient(circle,rgba(255,255,255,.12),rgba(255,255,255,.04));
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
-  /* filter removed: ABC already white circle with black text */
+.press-logo-img{
+  position:relative;
+  z-index:1;
+  opacity:1;
+  width:auto;
+  height:auto;
+  max-height:56px;
+  display:block;
 }
-.press-logo-nbc{
-  max-height:100px;
-  padding:8px 10px;
-  border-radius:14px;
-  background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.03));
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
-  /* filter removed: NBC paths already fill=white */
-}
+/* Per-card widths — match reference layout */
+.press-card-wsj { min-width:280px; }
+.press-card-cbs { min-width:160px; }
+.press-card-abc { min-width:100px; }
+.press-card-nbc { min-width:140px; }
+.press-card-cnn { min-width:120px; }
+.press-card-nyt { min-width:260px; }
+.press-card-lifetime { min-width:160px; }
+/* ABC: no extra background */
+.press-card-abc { background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.035)) !important; }
+
 .trust-badges{display:flex;justify-content:center;gap:clamp(8px,2vw,12px);flex-wrap:wrap;margin-top:36px}
 .t-badge{
   display:flex;align-items:center;justify-content:center;gap:9px;
@@ -1092,7 +1105,7 @@ footer{background:#000;padding:clamp(16px,3vw,22px) clamp(16px,4vw,32px);display
   .pro-card{min-height:238px}
   .press-strip{gap:10px}
   .press-logo-card{min-height:64px;padding:12px 16px}
-  .press-logo-img{max-height:21px}
+  .press-logo-img{max-height:56px}
   .trust-headline{gap:6px}
   .pill-wrap{justify-content:flex-start}
   .out-pill{font-size:13px}
@@ -1428,12 +1441,12 @@ footer{background:#000;padding:clamp(16px,3vw,22px) clamp(16px,4vw,32px);display
     border-radius:12px;
     flex:0 1 calc(33.333% - 8px);
   }
-  .press-logo-img{max-height:20px}
-  .press-logo-wsj{max-height:40px}
-  .press-logo-cbs{max-height:22px}
-  .press-logo-abc,.press-logo-nbc{max-height:70px}
-  .press-logo-cnn,.press-logo-lifetime{max-height:21px}
-  .press-logo-nyt{max-height:18px}
+  .press-logo-img{max-height:56px}
+  /* wsj */
+  /* cbs */
+  /* abc nbc */
+  /* cnn lifetime */
+  /* nyt */
   .t-badge:active{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));transform:none}
   
   .reviews-grid{grid-template-columns:1fr;gap:14px;max-width:100%;margin:36px auto 0}
