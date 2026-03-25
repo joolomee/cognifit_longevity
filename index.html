@@ -10,9 +10,78 @@
 <link rel="stylesheet" href="styles.css">
 
 <style>
-  /* AJUSTES PARA TELEMÓVEL (Ecrãs até 768px) */
+  /* ── TRUST BADGES: manter compactos em todas as resoluções ── */
+  .trust-badges {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: clamp(8px, 2vw, 12px) !important;
+  }
+  .t-badge {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: auto !important;
+    flex: 0 1 auto !important;
+    padding: 10px 20px !important;
+    border-radius: 100px !important;
+    white-space: nowrap !important;
+  }
 
+  /* ── PRESS LOGOS: horizontal em web + tablet ── */
+  .press-strip {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 10px !important;
+  }
+  .press-logo-card {
+    flex: 0 1 auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 80px !important;
+    padding: 10px 18px !important;
+  }
+  .press-logo-img {
+    max-height: 26px !important;
+    width: auto !important;
+    filter: brightness(0) invert(1) contrast(1.6) !important;
+    object-fit: contain !important;
+  }
+  .press-logo-wsj  { max-height: 20px !important; }
+  .press-logo-cbs  { max-height: 36px !important; }
+  .press-logo-nyt  { max-height: 20px !important; }
+  .press-logo-cnn  { max-height: 22px !important; }
+  .press-logo-lifetime { max-height: 22px !important; }
+  .press-logo-abc  { max-height: 44px !important; }
+  .press-logo-nbc  { max-height: 44px !important; }
 
+  /* ── MOBILE: badges em linha + 3 logos por linha ── */
+  @media (max-width: 640px) {
+    .trust-badges { gap: 8px !important; }
+    .t-badge {
+      padding: 9px 16px !important;
+      font-size: 12px !important;
+    }
+    .press-strip { gap: 6px !important; }
+    .press-logo-card {
+      flex: 0 1 calc(33.333% - 6px) !important;
+      min-width: 0 !important;
+      padding: 8px 6px !important;
+    }
+    .press-logo-img    { max-height: 16px !important; }
+    .press-logo-wsj    { max-height: 12px !important; }
+    .press-logo-cbs    { max-height: 24px !important; }
+    .press-logo-abc,
+    .press-logo-nbc    { max-height: 30px !important; }
+    .press-logo-cnn,
+    .press-logo-lifetime,
+    .press-logo-nyt    { max-height: 14px !important; }
+  }
 </style>
 
 
