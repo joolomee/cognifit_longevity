@@ -22,6 +22,13 @@ const heroBadge = document.querySelector('.hero-badge');
     if (heroBadge) {
       heroBadge.style.setProperty('margin-bottom', '12px', 'important');
     }
+
+    const shimmer = document.querySelector('.hero-shimmer-soft');
+    if (shimmer) {
+      shimmer.style.setProperty('animation', 'none', 'important');
+      shimmer.style.setProperty('-webkit-text-fill-color', 'rgba(255,255,255,.7)', 'important');
+      shimmer.style.setProperty('background', 'none', 'important');
+    }
     
   // Create device mockup section
   const reviewSection = document.querySelectorAll('section.s-black');
