@@ -11,6 +11,159 @@ if (window.self !== window.top) {
   };
 
   document.addEventListener('DOMContentLoaded', () => {
+  // Move triad triangle ABOVE sci-grid
+  const sciSection = document.querySelector('.sci-grid');
+  const triadWrap = document.querySelector('.triad-wrap');
+  if (sciSection && triadWrap && sciSection.parentElement) {
+    sciSection.parentElement.insertBefore(triadWrap, sciSection);
+  }
+
+  // Create device mockup section
+  const reviewSection = document.querySelector('section.s-black');
+  if (reviewSection) {
+    const devicesSection = document.createElement('section');
+    devicesSection.className = 'devices-section';
+
+    const container = document.createElement('div');
+    container.className = 'devices-container';
+
+    const heading = document.createElement('h2');
+    heading.className = 'devices-heading';
+    heading.textContent = 'Available on all your devices';
+    container.appendChild(heading);
+
+    const mockups = document.createElement('div');
+    mockups.className = 'devices-mockups';
+
+    // MacBook mockup
+    const macbookDiv = document.createElement('div');
+    macbookDiv.className = 'device-frame';
+    const macbookFrame = document.createElement('div');
+    macbookFrame.className = 'macbook-frame';
+    const macbookScreen = document.createElement('div');
+    macbookScreen.className = 'device-screen';
+    macbookFrame.appendChild(macbookScreen);
+    macbookDiv.appendChild(macbookFrame);
+    mockups.appendChild(macbookDiv);
+
+    // iPad mockup
+    const ipadDiv = document.createElement('div');
+    ipadDiv.className = 'device-frame';
+    const ipadFrame = document.createElement('div');
+    ipadFrame.className = 'ipad-frame';
+    const ipadScreen = document.createElement('div');
+    ipadScreen.className = 'device-screen';
+    ipadFrame.appendChild(ipadScreen);
+    ipadDiv.appendChild(ipadFrame);
+    mockups.appendChild(ipadDiv);
+
+    // iPhone mockup
+    const iphoneDiv = document.createElement('div');
+    iphoneDiv.className = 'device-frame';
+    const iphoneFrame = document.createElement('div');
+    iphoneFrame.className = 'iphone-frame';
+    const iphoneScreen = document.createElement('div');
+    iphoneScreen.className = 'device-screen';
+    iphoneFrame.appendChild(iphoneScreen);
+    iphoneDiv.appendChild(iphoneFrame);
+    mockups.appendChild(iphoneDiv);
+
+    container.appendChild(mockups);
+
+    // App badges
+    const badges = document.createElement('div');
+    badges.className = 'app-badges';
+
+    const appStore = document.createElement('a');
+    appStore.className = 'app-badge';
+    appStore.href = 'https://apps.apple.com/app/cognifit/id674368496';
+    appStore.target = '_blank';
+    appStore.rel = 'noopener noreferrer';
+    appStore.innerHTML = '<span class="badge-icon">🍎</span><span>App Store</span>';
+    badges.appendChild(appStore);
+
+    const playStore = document.createElement('a');
+    playStore.className = 'app-badge';
+    playStore.href = 'https://play.google.com/store/apps/details?id=com.cognifit.app';
+    playStore.target = '_blank';
+    playStore.rel = 'noopener noreferrer';
+    playStore.innerHTML = '<span class="badge-icon">▶</span><span>Google Play</span>';
+    badges.appendChild(playStore);
+
+    container.appendChild(badges);
+    devicesSection.appendChild(container);
+
+    // Insert before review section
+    reviewSection.parentElement.insertBefore(devicesSection, reviewSection);
+  }
+
+  // Login button: open in new tab on mobile
+  const loginBtn = document.querySelector('.btn-login');
+  if (loginBtn && window.innerWidth <= 768) {
+    loginBtn.setAttribute('target', '_blank');
+    loginBtn.setAttribute('rel', 'noopener noreferrer');
+  }
+
+  // Replace Athletes card icon with professional sports SVG
+  const proCards = document.querySelectorAll('.pro-card');
+  proCards.forEach(card => {
+    const h3 = card.querySelector('h3');
+    if (h3 && h3.textContent.trim() === 'Athletes') {
+      const photo = card.querySelector('.pro-photo');
+      if (photo) {
+        photo.innerHTML = '<svg viewBox="0 0 200 180" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="130" cy="30" r="16" fill="rgba(255,255,255,0.9)"/><path d="M115 55 L100 100 L80 140" stroke="rgba(255,255,255,0.85)" stroke-width="5" stroke-linecap="round"/><path d="M115 55 L140 95 L165 135" stroke="rgba(255,255,255,0.85)" stroke-width="5" stroke-linecap="round"/><path d="M115 55 L95 75" stroke="rgba(255,255,255,0.85)" stroke-width="5" stroke-linecap="round"/><path d="M115 55 L145 65 L160 50" stroke="rgba(255,255,255,0.85)" stroke-width="5" stroke-linecap="round"/><path d="M115 55 L115 95" stroke="rgba(255,255,255,0.85)" stroke-width="5" stroke-linecap="round"/><circle cx="50" cy="90" r="28" stroke="rgba(26,115,232,0.5)" stroke-width="2" fill="none"/><path d="M50 62 L50 118 M22 90 L78 90" stroke="rgba(26,115,232,0.4)" stroke-width="1.5"/></svg>';
+      }
+    }
+  });
+
+
+  // Add new colored press logos via SVG
+  const pressStrip = document.querySelector('.press-strip');
+  if (pressStrip) {
+    const newLogos = [
+      { id: 'forbes', name: 'Forbes', color: '#B00000' },
+      { id: 'techcrunch', name: 'TechCrunch', color: '#0A9952' },
+      { id: 'huffpost', name: 'Huffington Post', color: '#0DBE5D' },
+      { id: 'washpost', name: 'Washington Post', color: '#000000' },
+      { id: 'usatoday', name: 'USA Today', color: '#009BFF' },
+      { id: 'businessinsider', name: 'Business Insider', color: '#0070D1' },
+      { id: 'psychtoday', name: 'Psychology Today', color: '#00A3E0' },
+      { id: 'cnet', name: 'CNET', color: '#D40000' }
+    ];
+
+    newLogos.forEach(logo => {
+      const card = document.createElement('div');
+      card.className = 'press-logo-card';
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('viewBox', '0 0 120 40');
+      svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+      svg.className = `press-logo-img press-logo-${logo.id}`;
+
+      const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      text.setAttribute('x', '60');
+      text.setAttribute('y', '26');
+      text.setAttribute('text-anchor', 'middle');
+      text.setAttribute('font-size', '16');
+      text.setAttribute('font-weight', '700');
+      text.setAttribute('font-family', 'Arial, sans-serif');
+      text.setAttribute('fill', logo.color);
+      text.textContent = logo.name;
+
+      svg.appendChild(text);
+      card.appendChild(svg);
+      pressStrip.appendChild(card);
+    });
+
+    // Now setup marquee with all logos
+    const logos = Array.from(pressStrip.children);
+    const inner = document.createElement('div');
+    inner.className = 'press-strip-inner';
+    logos.forEach(l => inner.appendChild(l));
+    // Duplicate for seamless loop
+    logos.forEach(l => inner.appendChild(l.cloneNode(true)));
+    pressStrip.appendChild(inner);
+  }
+
     // Navbar: sticky instead of fixed (fixed breaks in iframes)
     const nav = document.getElementById('nav');
     if (nav) nav.style.position = 'sticky';
@@ -36,6 +189,165 @@ if (window.self !== window.top) {
     }, 1200);
   });
 }
+
+// Non-iframe version: run same DOM manipulations
+(function(){
+  if (window.self === window.top) {
+    document.addEventListener('DOMContentLoaded', () => {
+      // Move triad triangle ABOVE sci-grid
+      const sciSection = document.querySelector('.sci-grid');
+      const triadWrap = document.querySelector('.triad-wrap');
+      if (sciSection && triadWrap && sciSection.parentElement) {
+        sciSection.parentElement.insertBefore(triadWrap, sciSection);
+      }
+
+      // Create device mockup section
+      const reviewSection = document.querySelector('section.s-black');
+      if (reviewSection) {
+        const devicesSection = document.createElement('section');
+        devicesSection.className = 'devices-section';
+
+        const container = document.createElement('div');
+        container.className = 'devices-container';
+
+        const heading = document.createElement('h2');
+        heading.className = 'devices-heading';
+        heading.textContent = 'Available on all your devices';
+        container.appendChild(heading);
+
+        const mockups = document.createElement('div');
+        mockups.className = 'devices-mockups';
+
+        // MacBook mockup
+        const macbookDiv = document.createElement('div');
+        macbookDiv.className = 'device-frame';
+        const macbookFrame = document.createElement('div');
+        macbookFrame.className = 'macbook-frame';
+        const macbookScreen = document.createElement('div');
+        macbookScreen.className = 'device-screen';
+        macbookFrame.appendChild(macbookScreen);
+        macbookDiv.appendChild(macbookFrame);
+        mockups.appendChild(macbookDiv);
+
+        // iPad mockup
+        const ipadDiv = document.createElement('div');
+        ipadDiv.className = 'device-frame';
+        const ipadFrame = document.createElement('div');
+        ipadFrame.className = 'ipad-frame';
+        const ipadScreen = document.createElement('div');
+        ipadScreen.className = 'device-screen';
+        ipadFrame.appendChild(ipadScreen);
+        ipadDiv.appendChild(ipadFrame);
+        mockups.appendChild(ipadDiv);
+
+        // iPhone mockup
+        const iphoneDiv = document.createElement('div');
+        iphoneDiv.className = 'device-frame';
+        const iphoneFrame = document.createElement('div');
+        iphoneFrame.className = 'iphone-frame';
+        const iphoneScreen = document.createElement('div');
+        iphoneScreen.className = 'device-screen';
+        iphoneFrame.appendChild(iphoneScreen);
+        iphoneDiv.appendChild(iphoneFrame);
+        mockups.appendChild(iphoneDiv);
+
+        container.appendChild(mockups);
+
+        // App badges
+        const badges = document.createElement('div');
+        badges.className = 'app-badges';
+
+        const appStore = document.createElement('a');
+        appStore.className = 'app-badge';
+        appStore.href = 'https://apps.apple.com/app/cognifit/id674368496';
+        appStore.target = '_blank';
+        appStore.rel = 'noopener noreferrer';
+        appStore.innerHTML = '<span class="badge-icon">🍎</span><span>App Store</span>';
+        badges.appendChild(appStore);
+
+        const playStore = document.createElement('a');
+        playStore.className = 'app-badge';
+        playStore.href = 'https://play.google.com/store/apps/details?id=com.cognifit.app';
+        playStore.target = '_blank';
+        playStore.rel = 'noopener noreferrer';
+        playStore.innerHTML = '<span class="badge-icon">▶</span><span>Google Play</span>';
+        badges.appendChild(playStore);
+
+        container.appendChild(badges);
+        devicesSection.appendChild(container);
+
+        // Insert before review section
+        reviewSection.parentElement.insertBefore(devicesSection, reviewSection);
+      }
+
+      // Login button: open in new tab on mobile
+      const loginBtn = document.querySelector('.btn-login');
+      if (loginBtn && window.innerWidth <= 768) {
+        loginBtn.setAttribute('target', '_blank');
+        loginBtn.setAttribute('rel', 'noopener noreferrer');
+      }
+
+      // Add new colored press logos via SVG
+      const pressStrip = document.querySelector('.press-strip');
+      if (pressStrip) {
+        const newLogos = [
+          { id: 'forbes', name: 'Forbes', color: '#B00000' },
+          { id: 'techcrunch', name: 'TechCrunch', color: '#0A9952' },
+          { id: 'huffpost', name: 'Huffington Post', color: '#0DBE5D' },
+          { id: 'washpost', name: 'Washington Post', color: '#000000' },
+          { id: 'usatoday', name: 'USA Today', color: '#009BFF' },
+          { id: 'businessinsider', name: 'Business Insider', color: '#0070D1' },
+          { id: 'psychtoday', name: 'Psychology Today', color: '#00A3E0' },
+          { id: 'cnet', name: 'CNET', color: '#D40000' }
+        ];
+
+        newLogos.forEach(logo => {
+          const card = document.createElement('div');
+          card.className = 'press-logo-card';
+          const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+          svg.setAttribute('viewBox', '0 0 120 40');
+          svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+          svg.className = `press-logo-img press-logo-${logo.id}`;
+
+          const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          text.setAttribute('x', '60');
+          text.setAttribute('y', '26');
+          text.setAttribute('text-anchor', 'middle');
+          text.setAttribute('font-size', '16');
+          text.setAttribute('font-weight', '700');
+          text.setAttribute('font-family', 'Arial, sans-serif');
+          text.setAttribute('fill', logo.color);
+          text.textContent = logo.name;
+
+          svg.appendChild(text);
+          card.appendChild(svg);
+          pressStrip.appendChild(card);
+        });
+
+        // Now setup marquee with all logos
+        const logos = Array.from(pressStrip.children);
+        const inner = document.createElement('div');
+        inner.className = 'press-strip-inner';
+        logos.forEach(l => inner.appendChild(l));
+        // Duplicate for seamless loop
+        logos.forEach(l => inner.appendChild(l.cloneNode(true)));
+        pressStrip.appendChild(inner);
+      }
+
+      // Replace Athletes card icon with professional sports SVG
+      const proCards = document.querySelectorAll('.pro-card');
+      proCards.forEach(card => {
+        const h3 = card.querySelector('h3');
+        if (h3 && h3.textContent.trim() === 'Athletes') {
+          const photo = card.querySelector('.pro-photo');
+          if (photo) {
+            photo.innerHTML = '<svg viewBox="0 0 200 180" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="130" cy="30" r="16" fill="rgba(255,255,255,0.9)"/><path d="M115 55 L100 100 L80 140" stroke="rgba(255,255,255,0.85)" stroke-width="5" stroke-linecap="round"/><path d="M115 55 L140 95 L165 135" stroke="rgba(255,255,255,0.85)" stroke-width="5" stroke-linecap="round"/><path d="M115 55 L95 75" stroke="rgba(255,255,255,0.85)" stroke-width="5" stroke-linecap="round"/><path d="M115 55 L145 65 L160 50" stroke="rgba(255,255,255,0.85)" stroke-width="5" stroke-linecap="round"/><path d="M115 55 L115 95" stroke="rgba(255,255,255,0.85)" stroke-width="5" stroke-linecap="round"/><circle cx="50" cy="90" r="28" stroke="rgba(26,115,232,0.5)" stroke-width="2" fill="none"/><path d="M50 62 L50 118 M22 90 L78 90" stroke="rgba(26,115,232,0.4)" stroke-width="1.5"/></svg>';
+          }
+        }
+      });
+    });
+  }
+})();
 
 /* ── NEURON CANVAS — flowing streams, subtle somas ── */
 (function(){
@@ -605,66 +917,82 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
   }
 })();
 
-/* ── SCI-CARD CASCADE INTERACTION ── */
+/* ── SCI-CARD CASCADE INTERACTION (toggle system) ── */
 (function(){
   const cards = document.querySelectorAll('.sci-card');
   const status = document.getElementById('sci-status');
   const resetHint = document.getElementById('sci-reset');
-  if(!cards.length || !status) return;
+  if(!cards.length) return;
 
   const NAMES = {
     executive: 'Executive Function',
-    memory:    'Working Memory',
+    memory: 'Working Memory',
     attention: 'Attention'
   };
-  let broken = false;
+  
+  // Track which cards are disabled
+  const disabled = new Set();
 
-  function breakAll(triggeredSystem) {
-    broken = true;
-    cards.forEach(card => {
-      card.classList.add('sci-broken');
-      card.classList.remove('sci-dim');
-    });
-    status.textContent = NAMES[triggeredSystem] + ' weakened — the entire network is compromised. All three systems depend on each other.';
-    status.classList.remove('hidden');
-    resetHint.classList.remove('hidden');
-    if(window.triadBreakFrom) window.triadBreakFrom(triggeredSystem);
-    setTimeout(() => {
-      cards.forEach(card => {
-        if(card.dataset.system !== triggeredSystem) card.classList.add('sci-dim');
-      });
-    }, 400);
+  // Move instruction text above sci-grid
+  const sciGrid = document.querySelector('.sci-grid');
+  if (sciGrid && status) {
+    const instructionEl = document.createElement('p');
+    instructionEl.className = 'sci-instruction';
+    instructionEl.textContent = 'Tap any ability to see what happens when it fails';
+    instructionEl.style.cssText = 'text-align:center;font-size:clamp(12px,2vw,14px);color:rgba(0,0,0,0.5);margin-bottom:16px;font-weight:600;letter-spacing:0.03em;';
+    sciGrid.parentNode.insertBefore(instructionEl, sciGrid);
   }
 
-  function resetAll() {
-    broken = false;
+  function updateState() {
+    const anyDisabled = disabled.size > 0;
+    
     cards.forEach(card => {
-      card.classList.remove('sci-broken', 'sci-dim');
+      const sys = card.dataset.system;
+      if (disabled.has(sys)) {
+        card.classList.add('sci-broken');
+        card.classList.remove('sci-dim');
+      } else if (anyDisabled) {
+        card.classList.add('sci-broken', 'sci-dim');
+      } else {
+        card.classList.remove('sci-broken', 'sci-dim');
+      }
     });
-    status.textContent = '';
-    status.classList.add('hidden');
-    resetHint.classList.add('hidden');
-    if(window.triadSetBroken) window.triadSetBroken(false);
+
+    if (anyDisabled) {
+      const names = Array.from(disabled).map(s => NAMES[s]).join(' & ');
+      status.textContent = names + ' weakened — the entire cognitive network is compromised. All three systems depend on each other.';
+      status.classList.remove('hidden');
+      if (resetHint) {
+        resetHint.textContent = 'Tap disabled abilities to restore them';
+        resetHint.classList.remove('hidden');
+      }
+      if (window.triadSetBroken) window.triadSetBroken(true);
+      const firstDisabled = Array.from(disabled)[0];
+      if (window.triadBreakFrom) window.triadBreakFrom(firstDisabled);
+    } else {
+      status.textContent = '';
+      status.classList.add('hidden');
+      if (resetHint) resetHint.classList.add('hidden');
+      if (window.triadSetBroken) window.triadSetBroken(false);
+    }
   }
 
   cards.forEach(card => {
+    card.style.cursor = 'pointer';
     card.addEventListener('click', e => {
       e.stopPropagation();
-      if(broken) { resetAll(); return; }
-      breakAll(card.dataset.system);
+      const sys = card.dataset.system;
+      if (disabled.has(sys)) {
+        disabled.delete(sys);
+      } else {
+        disabled.add(sys);
+      }
+      updateState();
     });
   });
-  document.addEventListener('click', () => { if(broken) resetAll(); });
 })();
 
-/* ── STEP-CARD MOUSE SPOTLIGHT ── */
-document.querySelectorAll('.step-card').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const r = card.getBoundingClientRect();
-    card.style.setProperty('--sx', ((e.clientX - r.left) / r.width * 100) + '%');
-    card.style.setProperty('--sy', ((e.clientY - r.top)  / r.height * 100) + '%');
-  });
-});
+
 
 /* ── TRIAD SVG — staggered cascade break ── */
 const _SYS_NODE = { executive: '0', memory: '1', attention: '2' };
