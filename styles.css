@@ -63,7 +63,7 @@ img{max-width:100%;display:block}
 
     /* 4. COMPENSAÇÃO NO HERO (para não ficar atrás da navbar mais alta) */
     .hero-content {
-      padding-top: 120px !important;
+      padding-top: 140px !important;
       padding-left: 24px !important;
       padding-right: 24px !important;
     }
