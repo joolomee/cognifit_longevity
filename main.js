@@ -18,6 +18,11 @@ if (window.self !== window.top) {
     sciSection.parentElement.insertBefore(triadWrap, sciSection);
   }
 
+const heroBadge = document.querySelector('.hero-badge');
+    if (heroBadge) {
+      heroBadge.style.setProperty('margin-bottom', '12px', 'important');
+    }
+    
   // Create device mockup section
   const reviewSection = document.querySelectorAll('section.s-black');
   if (reviewSection) {
