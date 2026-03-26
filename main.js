@@ -103,7 +103,6 @@ if (window.self !== window.top) {
     loginBtn.setAttribute('target', '_blank');
     loginBtn.setAttribute('rel', 'noopener noreferrer');
   }
-
   // Replace Athletes card icon with professional sports SVG
   const proCards = document.querySelectorAll('.pro-card');
   proCards.forEach(card => {
@@ -111,10 +110,7 @@ if (window.self !== window.top) {
     if (h3 && h3.textContent.trim() === 'Athletes') {
       const photo = card.querySelector('.pro-photo');
       if (photo) {
-        photo.innerHTML = '<svg viewBox="0 0 200 180" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="108" cy="24" r="14" stroke="rgba(255,255,255,.92)" stroke-width="4.5" fill="none"/><path d="M104 38L96 80" stroke="rgba(255,255,255,.88)" stroke-width="4.5" stroke-linecap="round"/><path d="M96 80L68 120L58 148" stroke="rgba(255,255,255,.88)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M96 80L120 112L142 140" stroke="rgba(255,255,255,.88)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M102 50L74 42L56 50" stroke="rgba(255,255,255,.88)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M102 50L130 58L148 48" stroke="rgba(255,255,255,.88)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="30" y1="158" x2="170" y2="158" stroke="rgba(255,255,255,.25)" stroke-width="2" stroke-linecap="round"/></svg>';;
-      }
-    }
-  });
+        photo.innerHTML = '<svg viewBox="0 0 200 180" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="108" cy="24" r="14" stroke="rgba(255,255,255,.92)" stroke-width="4.5" fill="none"/><path d="M104 38L96 80" stroke="rgba(255,255,255,.88)" stroke-width="4.5" stroke-linecap="round"/><path d="M96 80L68 120L58 148" stroke="rgba(255,255,255,.88)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M96 80L120 112L142 140" stroke="rgba(255,255,255,.88)" stroke-width
 
 
   // Add new colored press logos via SVG
