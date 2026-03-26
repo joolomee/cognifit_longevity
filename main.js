@@ -1,6 +1,5 @@
 // ── IFRAME MODE: adapt to Wix container ──
 if (window.self !== window.top) {
-
   // Override IntersectionObserver so all sections render
   window.IntersectionObserver = class {
     constructor(cb) { this.cb = cb; }
@@ -32,7 +31,11 @@ if (window.self !== window.top) {
       });
 
       // Tell Wix the real content height
-      const
+      const h = document.documentElement.scrollHeight;
+      window.parent.postMessage(JSON.stringify({ type: 'setHeight', h: h }), '*');
+    }, 1200);
+  });
+}
 
 /* ── NEURON CANVAS — flowing streams, subtle somas ── */
 (function(){
@@ -241,7 +244,6 @@ if (window.self !== window.top) {
     mouse.x=e.touches[0].clientX-r.left;mouse.y=e.touches[0].clientY-r.top;
   },{passive:false});
   window.addEventListener('resize',resize);
-
   resize();
   neurons=Array.from({length:CFG.count},()=>new Neuron(80+Math.random()*(W-160),80+Math.random()*(H-160)));
   buildConnections();
@@ -252,10 +254,6 @@ if (window.self !== window.top) {
 })();
 
 /* Scroll reveal */
-
-
-
-
 document.querySelectorAll('.r').forEach(el => el.classList.add('on'));
 
 /* Nav — adaptive: transparent on dark, light bg on s-white/s-off */
@@ -287,15 +285,9 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
 
 /* ══════════════════════════════════════════════════════════
    PARALLAX ENGINE
-   - Hero bg canvas drifts slower than scroll (depth feel)
-   - Section eyebrow/h2 float upward on entry (stagger)
-   - Pro cards tilt/float on mouse proximity
-   - Stats numbers count up on viewport enter
-   - Floating depth layers on scroll sections
 ══════════════════════════════════════════════════════════ */
 (function(){
-
-  /* ── 1. HERO CANVAS PARALLAX (canvas scrolls at 30% of page) ── */
+  /* ── 1. HERO CANVAS PARALLAX ── */
   const heroCanvas = document.getElementById('neural-canvas');
   if(heroCanvas){
     window.addEventListener('scroll', () => {
@@ -305,7 +297,6 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
   }
 
   /* ── 2. SECTION BACKGROUND PARALLAX ── */
-  // Sections get a subtle background-position shift as you scroll past them
   const parallaxSections = document.querySelectorAll('.s-black, .s-dark, .s-blue, .closing');
   function updateSectionParallax() {
     const scrollY = window.scrollY;
@@ -334,7 +325,7 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
     });
   });
 
-  /* ── 3b. SITEWIDE CARD TILT (sci, step, who, rev) ── */
+  /* ── 3b. SITEWIDE CARD TILT ── */
   document.querySelectorAll('.sci-card, .step-card, .who-card, .rev-card').forEach(card => {
     card.addEventListener('mousemove', e => {
       const r = card.getBoundingClientRect();
@@ -364,11 +355,7 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
     });
   });
 
-  /* ── 3c. SECTION HEADING MOUSE-FOLLOW — removed per user request ── */
-
   /* ── 4. STATS COUNT-UP ANIMATION ── */
-  // Stats use: <div class="stat-n">6.2<em>M+</em></div>
-  // We animate only the text node, preserving the <em> child for styling.
   function animateCount(textNode, target, isDecimal, duration) {
     const start = performance.now();
     function step(now) {
@@ -390,7 +377,6 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
       if(!raw) return;
       const target = parseFloat(raw);
       const isDecimal = raw.includes('.');
-      // Find or create the leading text node
       let textNode = Array.from(el.childNodes).find(n => n.nodeType === 3);
       if(!textNode) return;
       animateCount(textNode, target, isDecimal, 1800);
@@ -399,7 +385,6 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
   }, {threshold: 0.5});
 
   document.querySelectorAll('.stat-n').forEach(el => {
-    // Get leading text node (before the <em>)
     const textNode = Array.from(el.childNodes).find(n => n.nodeType === 3);
     if(!textNode) return;
     const raw = textNode.nodeValue.trim();
@@ -410,8 +395,7 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
     statObserver.observe(el);
   });
 
-  /* ── 5. FLOATING DEPTH LAYERS on scroll (sections with parallax-depth class) ── */
-  // Eyebrow labels float up slightly faster than the page
+  /* ── 5. FLOATING DEPTH LAYERS ── */
   const floaters = document.querySelectorAll('.eyebrow, .display');
   function updateFloaters() {
     const scrollY = window.scrollY;
@@ -422,11 +406,11 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
       const shift = distFromCenter * 0.04;
       el.style.transform = el.classList.contains('on')
         ? `translateY(${shift}px)`
-        : el.style.transform; // don't interfere with reveal animation
+        : el.style.transform;
     });
   }
 
-  /* ── 6. HERO TEXT LAYERS PARALLAX (hero text floats slower) ── */
+  /* ── 6. HERO TEXT LAYERS PARALLAX ── */
   const heroText = document.querySelector('.hero-text');
   if(heroText){
     window.addEventListener('scroll', () => {
@@ -463,17 +447,13 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
     updateSectionParallax();
   }
   window.addEventListener('scroll', onScroll, {passive: true});
-  onScroll(); // run once on load
-
+  onScroll();
 })();
 
 /* ═══════════════════════════════════════════════════
    COGNI:WAVE DYNAMIC LAYER
-   Cursor glow · Magnetic buttons · Wave dividers ·
-   Ambient orbs · Animated waveform bars
 ═══════════════════════════════════════════════════ */
 (function(){
-
   /* ── 1. CURSOR GLOW ── */
   const glow = document.createElement('div');
   glow.className = 'cursor-glow';
@@ -531,50 +511,39 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
     sec.parentNode.insertBefore(div, sec);
   });
 
-  /* Hero content 3D tilt removed — no JS on titles */
-
   /* ── 4. AMBIENT ORBS — all sections ── */
-  // Dark sections: vivid orbs. Light sections: very subtle tinted orbs.
   const ORB_CONFIGS = [
-    // ── Hero (black) ──
     { selector: '.hero', orbs: [
       { w:750, h:750, left:'70%', top:'28%', color:'rgba(26,115,232,0.14)', cls:'a' },
       { w:500, h:500, left:'6%',  top:'58%', color:'rgba(110,50,230,0.09)', cls:'b' },
       { w:340, h:340, left:'42%', top:'78%', color:'rgba(0,200,210,0.07)',  cls:'c' },
     ]},
-    // ── s-dark (all) ──
     { selector: '.s-dark', orbs: [
       { w:560, h:560, left:'88%', top:'22%', color:'rgba(26,115,232,0.10)', cls:'b' },
       { w:400, h:400, left:'4%',  top:'68%', color:'rgba(120,40,220,0.08)', cls:'a' },
       { w:260, h:260, left:'50%', top:'50%', color:'rgba(0,180,200,0.05)',  cls:'c' },
     ]},
-    // ── s-black ──
     { selector: '.s-black', orbs: [
       { w:600, h:600, left:'15%', top:'35%', color:'rgba(26,115,232,0.09)', cls:'c' },
       { w:380, h:380, left:'82%', top:'65%', color:'rgba(100,40,200,0.07)', cls:'b' },
     ]},
-    // ── s-white (subtle — blue/lavender tints on white bg) ──
     { selector: '.s-white', orbs: [
       { w:700, h:700, left:'80%', top:'20%', color:'rgba(26,115,232,0.04)', cls:'b' },
       { w:500, h:500, left:'5%',  top:'75%', color:'rgba(100,60,220,0.03)', cls:'a' },
     ]},
-    // ── s-off ──
     { selector: '.s-off', orbs: [
       { w:600, h:600, left:'78%', top:'30%', color:'rgba(26,115,232,0.04)', cls:'a' },
       { w:400, h:400, left:'8%',  top:'60%', color:'rgba(80,40,180,0.03)',  cls:'c' },
     ]},
-    // ── s-blue ──
     { selector: '.s-blue', orbs: [
       { w:520, h:520, left:'82%', top:'38%', color:'rgba(255,255,255,0.07)', cls:'b' },
       { w:320, h:320, left:'12%', top:'68%', color:'rgba(255,255,255,0.05)', cls:'c' },
     ]},
-    // ── closing ──
     { selector: '.closing', orbs: [
       { w:650, h:650, left:'50%', top:'50%', color:'rgba(26,115,232,0.09)', cls:'a' },
       { w:350, h:350, left:'85%', top:'25%', color:'rgba(100,40,200,0.06)', cls:'c' },
     ]},
   ];
-
   ORB_CONFIGS.forEach(({ selector, orbs }) => {
     document.querySelectorAll(selector).forEach(sec => {
       orbs.forEach(cfg => {
@@ -592,7 +561,7 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
     });
   });
 
-  /* ── 5. SECTION ENTRANCE: subtle scale from below ── */
+  /* ── 5. SECTION ENTRANCE ── */
   const sectionObserver = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if(!e.isIntersecting) return;
@@ -621,7 +590,7 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
     });
   });
 
-  /* ── 7. GLOW RING — soft laggy halo (cursor is now CSS arrow) ── */
+  /* ── 7. GLOW RING ── */
   const ccr = document.getElementById('ccr');
   if(ccr && window.matchMedia('(hover:hover)').matches) {
     document.addEventListener('mousemove', e => {
@@ -634,7 +603,6 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
       el.addEventListener('mouseleave', () => ccr.classList.remove('hover'));
     });
   }
-
 })();
 
 /* ── SCI-CARD CASCADE INTERACTION ── */
@@ -649,7 +617,6 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
     memory:    'Working Memory',
     attention: 'Attention'
   };
-
   let broken = false;
 
   function breakAll(triggeredSystem) {
@@ -687,11 +654,10 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
       breakAll(card.dataset.system);
     });
   });
-
   document.addEventListener('click', () => { if(broken) resetAll(); });
 })();
 
-/* ── STEP-CARD MOUSE SPOTLIGHT (--sx/--sy) ── */
+/* ── STEP-CARD MOUSE SPOTLIGHT ── */
 document.querySelectorAll('.step-card').forEach(card => {
   card.addEventListener('mousemove', e => {
     const r = card.getBoundingClientRect();
@@ -702,19 +668,15 @@ document.querySelectorAll('.step-card').forEach(card => {
 
 /* ── TRIAD SVG — staggered cascade break ── */
 const _SYS_NODE = { executive: '0', memory: '1', attention: '2' };
-
 window.triadBreakFrom = function(sysName) {
   const svg = document.getElementById('triad-svg');
   if (!svg) return;
-  // Step 1: particles leaving the broken node turn red immediately
   svg.setAttribute('data-breaking', _SYS_NODE[sysName] || '0');
-  // Step 2: ~1.4s later the full network breaks (particles carry infection)
   setTimeout(() => {
     svg.classList.add('triad-broken');
     svg.removeAttribute('data-breaking');
   }, 1400);
 };
-
 window.triadSetBroken = function(state) {
   const svg = document.getElementById('triad-svg');
   if (!svg) return;
@@ -722,5 +684,4 @@ window.triadSetBroken = function(state) {
     svg.classList.remove('triad-broken');
     svg.removeAttribute('data-breaking');
   }
-
 };
