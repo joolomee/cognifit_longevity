@@ -63,7 +63,7 @@ img{max-width:100%;display:block}
 
     /* 4. COMPENSAÇÃO NO HERO (para não ficar atrás da navbar mais alta) */
     .hero-content {
-      padding-top: 120px !important;
+      padding-top: 140px !important;
       padding-left: 24px !important;
       padding-right: 24px !important;
     }
@@ -955,7 +955,7 @@ h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
 .trust-headline-top{display:block}
 .trust-headline-number{display:block;color:#2f8cff;text-shadow:0 0 28px rgba(47,140,255,.28)}
 .trust-headline-users{display:block}
-.press-strip{display:flex;flex-direction:row;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center}
+.press-strip{display:flex;flex-direction:row;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;overflow:hidden;position:relative;width:100%;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
   .press-logo-card{
     min-height:52px;
     padding:10px 18px;
@@ -963,15 +963,16 @@ h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
     flex:0 1 auto;
     display:flex;align-items:center;justify-content:center;
   }
-  .press-logo-img{max-height:22px;width:auto;filter:brightness(0) invert(1) contrast(1.6);object-fit:contain}
+  .press-logo-img{max-height:22px;width:auto;object-fit:contain}
   .press-logo-wsj{max-height:18px}
   .press-logo-cbs{max-height:28px}
   .press-logo-abc,.press-logo-nbc{max-height:38px}
   .press-logo-cnn,.press-logo-lifetime{max-height:20px}
   .press-logo-nyt{max-height:18px}
-  .press-logo-abc { filter: invert(1) !important; }
-  .press-logo-nbc { filter: brightness(0) invert(1) !important; }
   .t-badge:active{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));transform:none}
+
+.press-strip-inner{display:flex;gap:40px;align-items:center;animation:marquee-scroll 30s linear infinite;width:max-content}
+@keyframes marquee-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 .trust-badges{display:flex;flex-direction:row;flex-wrap:wrap;gap:10px;margin-top:32px;justify-content:center}
   .t-badge{
@@ -1347,7 +1348,7 @@ footer{background:#000;padding:clamp(16px,3vw,22px) clamp(16px,4vw,32px);display
   .pro-text{padding:18px 16px}
   .pro-text h3{font-size:20px;margin-bottom:4px;font-weight:900}
   .pro-stats{font-size:8px;font-weight:600}
-  .pro-desc{font-size:15px;line-height:1.5}
+  .pro-desc,.pro-metrics{display:none}
   .pro-metrics{width:100%;gap:10px 12px}
   .pro-cta{
     align-self:center;
@@ -2532,10 +2533,10 @@ a, button, .btn-primary, .btn-secondary, .btn-white, .btn-login, .pro-cta, [oncl
 @media (max-width: 768px) {
     .wrap { /* Lembre-se de verificar se .wrap é a classe correta para este contentor */
         /* O primeiro valor (40px) é para Cima e Baixo. O segundo (24px) é para Esquerda e Direita */
-        padding: 40px 24px !important; 
+        padding: 40px 24px !important;
+    }
 
-    
- .hero-content {
+    .hero-content {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important; /* Centra horizontalmente */
@@ -2627,6 +2628,33 @@ a, button, .btn-primary, .btn-secondary, .btn-white, .btn-login, .pro-cta, [oncl
   .triad-wrap{max-width:1000px;margin:120px auto 0;opacity:1}
   .triad-svg{max-width:1000px}
   .td-lbl{font-size:15px}
+}
+
+/* ── DEVICE MOCKUP SECTION ── */
+.devices-section{background:#f8f9fa;padding:clamp(48px,8vw,96px) 0;color:#000;overflow:hidden}
+.devices-container{max-width:var(--max);margin:0 auto;padding:0 24px;display:flex;flex-direction:column;align-items:center;gap:clamp(16px,3vw,28px)}
+.devices-heading{font-size:clamp(24px,5vw,44px);font-weight:900;text-align:center;margin:0;line-height:1.15;letter-spacing:-.03em;color:#111}
+.devices-sub{font-size:clamp(14px,2vw,17px);color:#555;text-align:center;max-width:420px;margin:0 auto}
+.devices-mockups{display:flex;align-items:flex-end;justify-content:center;gap:clamp(12px,3vw,32px);padding:clamp(20px,4vw,48px) 0}
+.device-frame{position:relative}
+.device-macbook .device-bezel{width:clamp(240px,36vw,380px);height:clamp(150px,22vw,240px);background:#222;border-radius:10px 10px 0 0;padding:8px;border:2px solid #444}
+.macbook-base{width:clamp(270px,40vw,420px);height:10px;background:linear-gradient(180deg,#666,#444);border-radius:0 0 8px 8px;margin:-1px auto 0}
+.device-ipad .device-bezel{width:clamp(140px,18vw,220px);height:clamp(190px,24vw,300px);background:#222;border-radius:14px;padding:10px;border:2px solid #444}
+.device-iphone .device-bezel{width:clamp(80px,10vw,140px);height:clamp(160px,20vw,280px);background:#111;border-radius:22px;padding:6px;border:2px solid #333;position:relative}
+.device-notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:60%;height:16px;background:#111;border-radius:0 0 12px 12px;z-index:2}
+.device-screen{width:100%;height:100%;background:linear-gradient(135deg,#1A73E8 0%,#0D47A1 60%,#0a2a5e 100%);border-radius:inherit;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.device-screen::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='38' r='18' fill='rgba(255,255,255,0.12)'/%3E%3Cpath d='M30 62 Q50 50 70 62 Q80 70 70 80 Q50 90 30 80 Q20 70 30 62' fill='rgba(255,255,255,0.08)'/%3E%3C/svg%3E") center/60% no-repeat}
+.device-macbook{animation:dev-float 4s ease-in-out infinite;z-index:2}
+.device-ipad{animation:dev-float 4s ease-in-out infinite -.8s;z-index:1}
+.device-iphone{animation:dev-float 4s ease-in-out infinite -1.6s;z-index:3}
+@keyframes dev-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.app-badges{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+.app-badge{display:inline-flex;align-items:center;gap:10px;padding:10px 18px;background:#111;border-radius:10px;text-decoration:none;color:#fff;font-size:13px;transition:all .25s ease;border:1px solid rgba(255,255,255,.1)}
+.app-badge:hover{background:#1A73E8;border-color:#1A73E8;transform:translateY(-2px);box-shadow:0 8px 20px rgba(26,115,232,.3)}
+@media(max-width:640px){
+  .devices-mockups{gap:8px}
+  .device-notch{height:10px}
+  .app-badge{padding:8px 14px;font-size:12px}
 }
 
 /* Hide scrollbar when embedded in iframe */
