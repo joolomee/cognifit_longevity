@@ -61,9 +61,11 @@
   /* Base: reset pro-card to be flex column (photo top, text bottom) */
   .pro-stack {
     grid-template-columns: repeat(4, 1fr) !important;
-    max-width: 100% !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin-left: calc(-50vw + 50%) !important;
     gap: 14px !important;
-    padding: 0 clamp(20px, 4vw, 60px) !important;
+    padding: 0 clamp(16px, 3vw, 40px) !important;
   }
   /* Override row layout → column so photo sits on top */
   .pro-card {
@@ -118,10 +120,10 @@
 
   /* 7 colunas ≥ 1200px */
   @media (min-width: 1200px) {
-    .pro-stack { grid-template-columns: repeat(7, minmax(0, 1fr)) !important; gap: 10px !important; }
-    .pro-photo { flex: 0 0 90px !important; min-height: 90px !important; max-height: 90px !important; }
-    .pro-text h3 { font-size: 11px !important; }
-    .pro-desc { font-size: 10px !important; }
+    .pro-stack { grid-template-columns: repeat(7, minmax(0, 1fr)) !important; gap: 14px !important; }
+    .pro-photo { flex: 0 0 100px !important; min-height: 100px !important; max-height: 100px !important; }
+    .pro-text h3 { font-size: 12px !important; }
+    .pro-desc { font-size: 10.5px !important; }
   }
 
   /* 4 colunas 900–1199px */
@@ -202,6 +204,8 @@
   .press-logo-nbc      { max-height: 52px !important; width: auto !important; filter: none !important; object-fit: contain !important; }
   .press-logo-cnn      { max-height: 22px !important; filter: none !important; }
   .press-logo-lifetime { max-height: 22px !important; filter: none !important; }
+  .press-logo-mnt      { max-height: 22px !important; }
+  .press-logo-smartmoney { max-height: 40px !important; }
 
   /* ── TRIAD: reduzir espaço abaixo da animação ── */
   .triad-wrap {
@@ -313,6 +317,8 @@
     .press-logo-cnn,
     .press-logo-lifetime,
     .press-logo-nyt    { max-height: 14px !important; }
+    .press-logo-mnt       { max-height: 14px !important; }
+    .press-logo-smartmoney { max-height: 28px !important; }
   }
 </style>
 
@@ -1202,8 +1208,8 @@
       <div class="t-badge">🎓 Education</div>
       <div class="t-badge">✅ Clinically Validated</div>
     </div>
-    <p style="color:#444;font-size:clamp(12px,2vw,13px);margin-top:clamp(24px,5vw,48px);margin-bottom:clamp(12px,2vw,18px)" class="r">Press around the world is talking about our mental training programs and assessments.</p>
-    <div class="press-strip r d1">
+    <p style="color:rgba(255,255,255,0.55);font-size:clamp(12px,2vw,13px);margin-top:clamp(24px,5vw,48px);margin-bottom:clamp(12px,2vw,18px)">Press around the world is talking about our mental training programs and assessments.</p>
+    <div class="press-strip">
       <div class="press-logo-card"><img class="pl press-logo-img press-logo-wsj" src="WSJ_Logo.svg.png" alt="The Wall Street Journal"></div>
       <div class="press-logo-card"><img class="pl press-logo-img press-logo-cbs" src="CBS_logo.svg.png" alt="CBS"></div>
       <div class="press-logo-card"><img class="pl press-logo-img press-logo-abc" src="American_Broadcasting_Company_Logo.svg.png" alt="ABC"></div>
@@ -1211,6 +1217,8 @@
       <div class="press-logo-card"><img class="pl press-logo-img press-logo-cnn" src="CNN.svg.png" alt="CNN"></div>
       <div class="press-logo-card"><img class="pl press-logo-img press-logo-nyt" src="NewYorkTimes.svg.png" alt="The New York Times"></div>
       <div class="press-logo-card"><img class="pl press-logo-img press-logo-lifetime" src="Logo_Lifetime_2020.svg.png" alt="Lifetime"></div>
+      <div class="press-logo-card"><img class="pl press-logo-img press-logo-mnt" src="medicalnewstoday.png" alt="Medical News Today"></div>
+      <div class="press-logo-card"><img class="pl press-logo-img press-logo-smartmoney" src="smart-money-logo-svg-vector.svg" alt="Smart Money"></div>
     </div>
     <div class="reviews-grid">
       <div class="rev-card r"><div class="rev-date">16 March 2026</div><div class="rev-stars">★★★★★</div><div class="rev-rec">👍 I recommend this product</div><div class="rev-title">Life-changing at 58</div><div class="rev-body">Real improvements in focus and memory within weeks. The personalized training adapts to exactly where I need it most.</div><div class="rev-author">Michael R. 🇺🇸 United States</div></div>

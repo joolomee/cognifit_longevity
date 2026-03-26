@@ -37,83 +37,20 @@ const heroBadge = document.querySelector('.hero-badge');
       shimmer.style.setProperty('background', 'none', 'important');
     }
     
-  // Create device mockup section
-  const reviewSection = document.querySelectorAll('section.s-black');
-  if (reviewSection) {
-    const devicesSection = document.createElement('section');
-    devicesSection.className = 'devices-section';
-
-    const container = document.createElement('div');
-    container.className = 'devices-container';
-
-    const heading = document.createElement('h2');
-    heading.className = 'devices-heading';
-    heading.textContent = 'Available on all your devices';
-    container.appendChild(heading);
-
-    const mockups = document.createElement('div');
-    mockups.className = 'devices-mockups';
-
-    // MacBook mockup
-    const macbookDiv = document.createElement('div');
-    macbookDiv.className = 'device-frame';
-    const macbookFrame = document.createElement('div');
-    macbookFrame.className = 'macbook-frame';
-    const macbookScreen = document.createElement('div');
-    macbookScreen.className = 'device-screen';
-    macbookFrame.appendChild(macbookScreen);
-    macbookDiv.appendChild(macbookFrame);
-    mockups.appendChild(macbookDiv);
-
-    // iPad mockup
-    const ipadDiv = document.createElement('div');
-    ipadDiv.className = 'device-frame';
-    const ipadFrame = document.createElement('div');
-    ipadFrame.className = 'ipad-frame';
-    const ipadScreen = document.createElement('div');
-    ipadScreen.className = 'device-screen';
-    ipadFrame.appendChild(ipadScreen);
-    ipadDiv.appendChild(ipadFrame);
-    mockups.appendChild(ipadDiv);
-
-    // iPhone mockup
-    const iphoneDiv = document.createElement('div');
-    iphoneDiv.className = 'device-frame';
-    const iphoneFrame = document.createElement('div');
-    iphoneFrame.className = 'iphone-frame';
-    const iphoneScreen = document.createElement('div');
-    iphoneScreen.className = 'device-screen';
-    iphoneFrame.appendChild(iphoneScreen);
-    iphoneDiv.appendChild(iphoneFrame);
-    mockups.appendChild(iphoneDiv);
-
-    container.appendChild(mockups);
-
-    // App badges
-    const badges = document.createElement('div');
-    badges.className = 'app-badges';
-
-    const appStore = document.createElement('a');
-    appStore.className = 'app-badge';
-    appStore.href = 'https://apps.apple.com/app/cognifit/id674368496';
-    appStore.target = '_blank';
-    appStore.rel = 'noopener noreferrer';
-    appStore.innerHTML = '<span class="badge-icon">🍎</span><span>App Store</span>';
-    badges.appendChild(appStore);
-
-    const playStore = document.createElement('a');
-    playStore.className = 'app-badge';
-    playStore.href = 'https://play.google.com/store/apps/details?id=com.cognifit.app';
-    playStore.target = '_blank';
-    playStore.rel = 'noopener noreferrer';
-    playStore.innerHTML = '<span class="badge-icon">▶</span><span>Google Play</span>';
-    badges.appendChild(playStore);
-
-    container.appendChild(badges);
-    devicesSection.appendChild(container);
-
-    // Insert before review section
-    reviewSection.parentElement.insertBefore(devicesSection, reviewSection);
+  // Device section: use real image + real badge PNGs
+  var iframeReviewSection = document.querySelectorAll('section.s-black')[1];
+  if (iframeReviewSection) {
+    var ds = document.createElement('section');
+    ds.className = 'devices-section';
+    ds.innerHTML = '<div class="devices-container">' +
+      '<h2 class="devices-heading">Available on all your devices</h2>' +
+      '<div class="devices-mockups"><img src="alldevices_cognifit.png" alt="CogniFit on all devices" class="devices-img"></div>' +
+      '<div class="app-badges">' +
+        '<a href="https://apps.apple.com/app/cognifit/id674368496" target="_blank" rel="noopener noreferrer" class="app-badge-img"><img src="appstore_badge_en.png" alt="Download on the App Store"></a>' +
+        '<a href="https://play.google.com/store/apps/details?id=com.cognifit.app" target="_blank" rel="noopener noreferrer" class="app-badge-img"><img src="playstore_badge_en.png" alt="Get it on Google Play"></a>' +
+      '</div>' +
+    '</div>';
+    iframeReviewSection.parentElement.insertBefore(ds, iframeReviewSection);
   }
 
   // Login button: open in new tab on mobile
@@ -136,55 +73,26 @@ const heroBadge = document.querySelector('.hero-badge');
   });
 
 
-  // Press logos: remove filters, bigger, static, fill width
-    const pressStrip = document.querySelector('.press-strip');
-    if (pressStrip) {
-      pressStrip.style.setProperty('justify-content', 'space-evenly', 'important');
-      pressStrip.style.setProperty('gap', '0', 'important');
-      pressStrip.style.setProperty('animation', 'none', 'important');
-
-      // Add new colored press logos via SVG
-      const newLogos = [
-        { id: 'forbes', name: 'Forbes', color: '#B00000' },
-        { id: 'techcrunch', name: 'TechCrunch', color: '#0A9952' },
-        { id: 'huffpost', name: 'Huffington Post', color: '#0DBE5D' },
-        { id: 'washpost', name: 'Washington Post', color: '#000000' },
-        { id: 'usatoday', name: 'USA Today', color: '#009BFF' },
-        { id: 'businessinsider', name: 'Business Insider', color: '#0070D1' },
-        { id: 'psychtoday', name: 'Psychology Today', color: '#00A3E0' },
-        { id: 'cnet', name: 'CNET', color: '#D40000' }
-      ];
-      newLogos.forEach(logo => {
-        const card = document.createElement('div');
-        card.className = 'press-logo-card';
-        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        svg.setAttribute('viewBox', '0 0 120 40');
-        svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-        svg.classList.add('press-logo-img', 'press-logo-' + logo.id);
-        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        text.setAttribute('x', '60');
-        text.setAttribute('y', '26');
-        text.setAttribute('text-anchor', 'middle');
-        text.setAttribute('font-size', '16');
-        text.setAttribute('font-weight', '700');
-        text.setAttribute('font-family', 'Arial, sans-serif');
-        text.setAttribute('fill', logo.color);
-        text.textContent = logo.name;
-        svg.appendChild(text);
-        card.appendChild(svg);
-        pressStrip.appendChild(card);
-      });
-    }
-    document.querySelectorAll('.press-strip-inner').forEach(el => {
-      el.style.setProperty('animation', 'none', 'important');
-    });
-    document.querySelectorAll('.press-logo-card').forEach(card => {
-      card.style.setProperty('flex', '1 1 0', 'important');
-    });
-    document.querySelectorAll('.press-logo-img').forEach(img => {
-      img.style.setProperty('max-height', '32px', 'important');
-      img.style.setProperty('filter', 'none', 'important');
-    });
+  // Press logos: static, bigger, fill width, NO marquee
+  var iframePressStrip = document.querySelector('.press-strip');
+  if (iframePressStrip) {
+    iframePressStrip.style.setProperty('justify-content', 'space-evenly', 'important');
+    iframePressStrip.style.setProperty('gap', '0', 'important');
+    iframePressStrip.style.setProperty('animation', 'none', 'important');
+  }
+  document.querySelectorAll('.press-strip-inner').forEach(function(el) {
+    el.style.setProperty('animation', 'none', 'important');
+    el.style.setProperty('display', 'flex', 'important');
+    el.style.setProperty('justify-content', 'space-evenly', 'important');
+    el.style.setProperty('width', '100%', 'important');
+  });
+  document.querySelectorAll('.press-logo-card').forEach(function(card) {
+    card.style.setProperty('flex', '1 1 0', 'important');
+  });
+  document.querySelectorAll('.press-logo-img').forEach(function(img) {
+    img.style.setProperty('max-height', 'clamp(18px, 3vw, 36px)', 'important');
+    img.style.setProperty('filter', 'none', 'important');
+  });
 
     
     // Navbar: sticky instead of fixed (fixed breaks in iframes)
@@ -198,18 +106,15 @@ const heroBadge = document.querySelector('.hero-badge');
     // Force all reveal animations
     document.querySelectorAll('.r').forEach(el => el.classList.add('on'));
 
-    setTimeout(() => {
-      document.querySelectorAll('*').forEach(el => {
-        if (getComputedStyle(el).opacity === '0') {
-          el.style.opacity = '1';
-          el.style.transform = 'none';
-        }
+    setTimeout(function() {
+      document.querySelectorAll('.r:not(.on)').forEach(function(el) {
+        el.classList.add('on');
+        el.style.opacity = '1';
+        el.style.transform = 'none';
       });
-
-      // Tell Wix the real content height
-      const h = document.documentElement.scrollHeight;
+      var h = document.documentElement.scrollHeight;
       window.parent.postMessage(JSON.stringify({ type: 'setHeight', h: h }), '*');
-    }, 1200);
+    }, 0);
   });
 }
 
@@ -217,157 +122,115 @@ const heroBadge = document.querySelector('.hero-badge');
 (function(){
   if (window.self === window.top) {
     document.addEventListener('DOMContentLoaded', () => {
-      // Move triad triangle ABOVE sci-grid
-      const sciSection = document.querySelector('.sci-grid');
+
+      // 1. Hero: auto height, no massive min-height
+      const hero = document.querySelector('.hero');
+      if (hero) {
+        hero.style.setProperty('height', 'auto', 'important');
+        hero.style.setProperty('min-height', '600px', 'important');
+        hero.style.setProperty('padding-bottom', '40px', 'important');
+      }
+
+      // 2. Hero badge closer to headline
+      const heroBadge = document.querySelector('.hero-badge');
+      if (heroBadge) {
+        heroBadge.style.setProperty('margin-bottom', '12px', 'important');
+      }
+
+      // 3. Stop shimmer animation on "Stay Independent"
+      const shimmer = document.querySelector('.hero-shimmer-soft');
+      if (shimmer) {
+        shimmer.style.setProperty('animation', 'none', 'important');
+        shimmer.style.setProperty('-webkit-text-fill-color', 'rgba(255,255,255,.7)', 'important');
+        shimmer.style.setProperty('background', 'none', 'important');
+      }
+
+      // 4. Scroll hint: show only before first scroll, then hide
+      const scrollHint = document.querySelector('.hero-scroll-hint');
+      if (scrollHint) {
+        scrollHint.style.cssText = 'opacity:1;transition:opacity .5s ease';
+        window.addEventListener('scroll', function onScroll() {
+          scrollHint.style.opacity = '0';
+          setTimeout(function(){ scrollHint.style.display = 'none'; }, 500);
+          window.removeEventListener('scroll', onScroll);
+        }, { passive: true });
+      }
+
+      // 5. Move triad triangle ABOVE sci-grid
+      const sciGrid = document.querySelector('.sci-grid');
       const triadWrap = document.querySelector('.triad-wrap');
-      if (sciSection && triadWrap && sciSection.parentElement) {
-        sciSection.parentElement.insertBefore(triadWrap, sciSection);
+      if (sciGrid && triadWrap && sciGrid.parentElement) {
+        sciGrid.parentElement.insertBefore(triadWrap, sciGrid);
       }
 
-      // Create device mockup section
-      const reviewSection = document.querySelector('section.s-black');
+      // 6. Make triad circles clickable (toggle same system as sci-cards)
+      document.querySelectorAll('.td-node').forEach(function(node) {
+        node.style.cursor = 'pointer';
+        node.addEventListener('click', function() {
+          var id = node.id;
+          var sysMap = { 'td-n0': 'executive', 'td-n1': 'memory', 'td-n2': 'attention' };
+          var sys = sysMap[id];
+          if (!sys) return;
+          var card = document.querySelector('.sci-card[data-system="' + sys + '"]');
+          if (card) card.click();
+        });
+      });
+
+      // 7. Device section: use real image + real badge PNGs
+      var reviewSection = document.querySelectorAll('section.s-black')[1];
       if (reviewSection) {
-        const devicesSection = document.createElement('section');
-        devicesSection.className = 'devices-section';
-
-        const container = document.createElement('div');
-        container.className = 'devices-container';
-
-        const heading = document.createElement('h2');
-        heading.className = 'devices-heading';
-        heading.textContent = 'Available on all your devices';
-        container.appendChild(heading);
-
-        const mockups = document.createElement('div');
-        mockups.className = 'devices-mockups';
-
-        // MacBook mockup
-        const macbookDiv = document.createElement('div');
-        macbookDiv.className = 'device-frame';
-        const macbookFrame = document.createElement('div');
-        macbookFrame.className = 'macbook-frame';
-        const macbookScreen = document.createElement('div');
-        macbookScreen.className = 'device-screen';
-        macbookFrame.appendChild(macbookScreen);
-        macbookDiv.appendChild(macbookFrame);
-        mockups.appendChild(macbookDiv);
-
-        // iPad mockup
-        const ipadDiv = document.createElement('div');
-        ipadDiv.className = 'device-frame';
-        const ipadFrame = document.createElement('div');
-        ipadFrame.className = 'ipad-frame';
-        const ipadScreen = document.createElement('div');
-        ipadScreen.className = 'device-screen';
-        ipadFrame.appendChild(ipadScreen);
-        ipadDiv.appendChild(ipadFrame);
-        mockups.appendChild(ipadDiv);
-
-        // iPhone mockup
-        const iphoneDiv = document.createElement('div');
-        iphoneDiv.className = 'device-frame';
-        const iphoneFrame = document.createElement('div');
-        iphoneFrame.className = 'iphone-frame';
-        const iphoneScreen = document.createElement('div');
-        iphoneScreen.className = 'device-screen';
-        iphoneFrame.appendChild(iphoneScreen);
-        iphoneDiv.appendChild(iphoneFrame);
-        mockups.appendChild(iphoneDiv);
-
-        container.appendChild(mockups);
-
-        // App badges
-        const badges = document.createElement('div');
-        badges.className = 'app-badges';
-
-        const appStore = document.createElement('a');
-        appStore.className = 'app-badge';
-        appStore.href = 'https://apps.apple.com/app/cognifit/id674368496';
-        appStore.target = '_blank';
-        appStore.rel = 'noopener noreferrer';
-        appStore.innerHTML = '<span class="badge-icon">🍎</span><span>App Store</span>';
-        badges.appendChild(appStore);
-
-        const playStore = document.createElement('a');
-        playStore.className = 'app-badge';
-        playStore.href = 'https://play.google.com/store/apps/details?id=com.cognifit.app';
-        playStore.target = '_blank';
-        playStore.rel = 'noopener noreferrer';
-        playStore.innerHTML = '<span class="badge-icon">▶</span><span>Google Play</span>';
-        badges.appendChild(playStore);
-
-        container.appendChild(badges);
-        devicesSection.appendChild(container);
-
-        // Insert before review section
-        reviewSection.parentElement.insertBefore(devicesSection, reviewSection);
+        var ds = document.createElement('section');
+        ds.className = 'devices-section';
+        ds.innerHTML = '<div class="devices-container">' +
+          '<h2 class="devices-heading">Available on all your devices</h2>' +
+          '<div class="devices-mockups"><img src="alldevices_cognifit.png" alt="CogniFit on all devices" class="devices-img"></div>' +
+          '<div class="app-badges">' +
+            '<a href="https://apps.apple.com/app/cognifit/id674368496" target="_blank" rel="noopener noreferrer" class="app-badge-img"><img src="appstore_badge_en.png" alt="Download on the App Store"></a>' +
+            '<a href="https://play.google.com/store/apps/details?id=com.cognifit.app" target="_blank" rel="noopener noreferrer" class="app-badge-img"><img src="playstore_badge_en.png" alt="Get it on Google Play"></a>' +
+          '</div>' +
+        '</div>';
+        reviewSection.parentElement.insertBefore(ds, reviewSection);
       }
 
-      // Login button: open in new tab on mobile
-      const loginBtn = document.querySelector('.btn-login');
+      // 8. Login button: open in new tab on mobile
+      var loginBtn = document.querySelector('.btn-login');
       if (loginBtn && window.innerWidth <= 768) {
         loginBtn.setAttribute('target', '_blank');
         loginBtn.setAttribute('rel', 'noopener noreferrer');
       }
 
-      // Add new colored press logos via SVG
-      const pressStrip = document.querySelector('.press-strip');
+      // 9. Press logos: static, bigger, fill width, NO marquee, NO new SVG logos
+      var pressStrip = document.querySelector('.press-strip');
       if (pressStrip) {
-        const newLogos = [
-          { id: 'forbes', name: 'Forbes', color: '#B00000' },
-          { id: 'techcrunch', name: 'TechCrunch', color: '#0A9952' },
-          { id: 'huffpost', name: 'Huffington Post', color: '#0DBE5D' },
-          { id: 'washpost', name: 'Washington Post', color: '#000000' },
-          { id: 'usatoday', name: 'USA Today', color: '#009BFF' },
-          { id: 'businessinsider', name: 'Business Insider', color: '#0070D1' },
-          { id: 'psychtoday', name: 'Psychology Today', color: '#00A3E0' },
-          { id: 'cnet', name: 'CNET', color: '#D40000' }
-        ];
-
-        newLogos.forEach(logo => {
-          const card = document.createElement('div');
-          card.className = 'press-logo-card';
-          const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-          svg.setAttribute('viewBox', '0 0 120 40');
-          svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-          svg.className = `press-logo-img press-logo-${logo.id}`;
-
-          const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-          text.setAttribute('x', '60');
-          text.setAttribute('y', '26');
-          text.setAttribute('text-anchor', 'middle');
-          text.setAttribute('font-size', '16');
-          text.setAttribute('font-weight', '700');
-          text.setAttribute('font-family', 'Arial, sans-serif');
-          text.setAttribute('fill', logo.color);
-          text.textContent = logo.name;
-
-          svg.appendChild(text);
-          card.appendChild(svg);
-          pressStrip.appendChild(card);
-        });
-
-        // Now setup marquee with all logos
-        const logos = Array.from(pressStrip.children);
-        const inner = document.createElement('div');
-        inner.className = 'press-strip-inner';
-        logos.forEach(l => inner.appendChild(l));
-        // Duplicate for seamless loop
-        logos.forEach(l => inner.appendChild(l.cloneNode(true)));
-        pressStrip.appendChild(inner);
+        pressStrip.style.setProperty('justify-content', 'space-evenly', 'important');
+        pressStrip.style.setProperty('gap', '0', 'important');
+        pressStrip.style.setProperty('animation', 'none', 'important');
       }
+      document.querySelectorAll('.press-strip-inner').forEach(function(el) {
+        el.style.setProperty('animation', 'none', 'important');
+        el.style.setProperty('display', 'flex', 'important');
+        el.style.setProperty('justify-content', 'space-evenly', 'important');
+        el.style.setProperty('width', '100%', 'important');
+      });
+      document.querySelectorAll('.press-logo-card').forEach(function(card) {
+        card.style.setProperty('flex', '1 1 0', 'important');
+      });
+      document.querySelectorAll('.press-logo-img').forEach(function(img) {
+        img.style.setProperty('max-height', 'clamp(18px, 3vw, 36px)', 'important');
+        img.style.setProperty('filter', 'none', 'important');
+      });
 
-      // Replace Athletes card icon with professional sports SVG
-      const proCards = document.querySelectorAll('.pro-card');
-      proCards.forEach(card => {
-        const h3 = card.querySelector('h3');
+      // 10. Replace Athletes card icon
+      document.querySelectorAll('.pro-card').forEach(function(card) {
+        var h3 = card.querySelector('h3');
         if (h3 && h3.textContent.trim() === 'Athletes') {
-          const photo = card.querySelector('.pro-photo');
+          var photo = card.querySelector('.pro-photo');
           if (photo) {
-            photo.innerHTML = '<svg viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;position:absolute;inset:0"><defs><radialGradient id="ath-glow" cx="50%" cy="55%" r="50%"><stop offset="0%" stop-color="rgba(140,60,255,0.35)"/><stop offset="100%" stop-color="rgba(80,0,160,0)"/></radialGradient></defs><ellipse cx="100" cy="100" rx="65" ry="55" fill="url(#ath-glow)"><animate attributeName="rx" values="65;72;65" dur="3s" repeatCount="indefinite"/></ellipse><ellipse cx="100" cy="150" rx="28" ry="4" fill="rgba(140,60,255,0.2)"><animate attributeName="rx" values="28;22;28" dur="0.6s" repeatCount="indefinite"/></ellipse><g><animate attributeName="transform" values="translate(0,0);translate(0,-5);translate(0,0)" dur="0.6s" repeatCount="indefinite"/><circle cx="112" cy="38" r="10" fill="rgba(200,150,255,0.9)"/><path d="M108 48C106 58 104 68 102 76" stroke="rgba(180,120,255,0.9)" stroke-width="7" stroke-linecap="round" fill="none"/><path d="M107 54C100 60 92 68 88 76" stroke="rgba(160,100,255,0.8)" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M107 54C116 58 126 56 132 48" stroke="rgba(160,100,255,0.8)" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M102 76C92 92 80 108 72 124" stroke="rgba(180,120,255,0.85)" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M102 76C112 94 124 110 134 126" stroke="rgba(180,120,255,0.85)" stroke-width="6" stroke-linecap="round" fill="none"/></g></svg>';
+            photo.innerHTML = '<svg viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;position:absolute;inset:0"><defs><radialGradient id="ath-glow2" cx="50%" cy="55%" r="50%"><stop offset="0%" stop-color="rgba(140,60,255,0.35)"/><stop offset="100%" stop-color="rgba(80,0,160,0)"/></radialGradient></defs><ellipse cx="100" cy="100" rx="65" ry="55" fill="url(#ath-glow2)"><animate attributeName="rx" values="65;72;65" dur="3s" repeatCount="indefinite"/></ellipse><ellipse cx="100" cy="150" rx="28" ry="4" fill="rgba(140,60,255,0.2)"><animate attributeName="rx" values="28;22;28" dur="0.6s" repeatCount="indefinite"/></ellipse><g><animate attributeName="transform" values="translate(0,0);translate(0,-5);translate(0,0)" dur="0.6s" repeatCount="indefinite"/><circle cx="112" cy="38" r="10" fill="rgba(200,150,255,0.9)"/><path d="M108 48C106 58 104 68 102 76" stroke="rgba(180,120,255,0.9)" stroke-width="7" stroke-linecap="round" fill="none"/><path d="M107 54C100 60 92 68 88 76" stroke="rgba(160,100,255,0.8)" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M107 54C116 58 126 56 132 48" stroke="rgba(160,100,255,0.8)" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M102 76C92 92 80 108 72 124" stroke="rgba(180,120,255,0.85)" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M102 76C112 94 124 110 134 126" stroke="rgba(180,120,255,0.85)" stroke-width="6" stroke-linecap="round" fill="none"/></g></svg>';
           }
         }
       });
+
     });
   }
 })();
@@ -955,6 +818,16 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
   
   // Track which cards are disabled
   const disabled = new Set();
+  let autoResetTimer = null;
+
+  function clearAutoReset() {
+    if (autoResetTimer) { clearTimeout(autoResetTimer); autoResetTimer = null; }
+  }
+
+  function scheduleAutoReset() {
+    clearAutoReset();
+    autoResetTimer = setTimeout(() => { disabled.clear(); updateState(); }, 5000);
+  }
 
   // Move instruction text above sci-grid
   const sciGrid = document.querySelector('.sci-grid');
@@ -974,10 +847,16 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
       if (disabled.has(sys)) {
         card.classList.add('sci-broken');
         card.classList.remove('sci-dim');
+        card.style.setProperty('background', 'rgba(239,68,68,.13)', 'important');
+        card.style.setProperty('opacity', '1', 'important');
       } else if (anyDisabled) {
-        card.classList.add('sci-broken', 'sci-dim');
+        card.classList.remove('sci-broken', 'sci-dim');
+        card.style.setProperty('background', 'rgba(239,68,68,.07)', 'important');
+        card.style.setProperty('opacity', '1', 'important');
       } else {
         card.classList.remove('sci-broken', 'sci-dim');
+        card.style.removeProperty('background');
+        card.style.removeProperty('opacity');
       }
     });
 
@@ -992,11 +871,13 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
       if (window.triadSetBroken) window.triadSetBroken(true);
       const firstDisabled = Array.from(disabled)[0];
       if (window.triadBreakFrom) window.triadBreakFrom(firstDisabled);
+      scheduleAutoReset();
     } else {
       status.textContent = '';
       status.classList.add('hidden');
       if (resetHint) resetHint.classList.add('hidden');
       if (window.triadSetBroken) window.triadSetBroken(false);
+      clearAutoReset();
     }
   }
 
