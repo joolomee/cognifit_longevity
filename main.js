@@ -16,15 +16,9 @@ if (window.self !== window.top) {
 
     // Fix scroll-to-top button
     const scrollBtn = document.querySelector('.scroll-top-btn');
-    if (scrollBtn) {
-      scrollBtn.style.position = 'absolute';
-      // Reposition on scroll
-      window.addEventListener('scroll', () => {
-        scrollBtn.style.top = (window.scrollY + window.innerHeight - 68) + 'px';
-      }, { passive: true });
-    }
+    if (scrollBtn) scrollBtn.style.position = 'sticky';
 
-    // Force all reveal elements
+    // Force all reveals
     document.querySelectorAll('.r').forEach(el => el.classList.add('on'));
     setTimeout(() => {
       document.querySelectorAll('*').forEach(el => {
@@ -33,7 +27,11 @@ if (window.self !== window.top) {
           el.style.transform = 'none';
         }
       });
-    }, 500);
+
+      // Send real height to Wix parent
+      const height = document.documentElement.scrollHeight;
+      window.parent.postMessage({ type: 'setHeight', height }, '*');
+    }, 1000);
   });
 }
 
