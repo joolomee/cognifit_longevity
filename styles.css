@@ -271,7 +271,7 @@ h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
   height:100svh;min-height:1020px;max-height:100vh;
   display:flex;flex-direction:column;justify-content:center;
   overflow:hidden;
-  padding-top:40px;
+  padding-top:80px;
 }
 .hero-photo-bg{
   position:absolute;inset:0;z-index:0;
