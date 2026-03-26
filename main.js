@@ -1,5 +1,7 @@
+// ── IFRAME MODE: adapt to Wix container ──
 if (window.self !== window.top) {
-  // Override IntersectionObserver
+
+  // Override IntersectionObserver so all sections render
   window.IntersectionObserver = class {
     constructor(cb) { this.cb = cb; }
     observe(el) {
@@ -10,16 +12,17 @@ if (window.self !== window.top) {
   };
 
   document.addEventListener('DOMContentLoaded', () => {
-    // Fix navbar
+    // Navbar: sticky instead of fixed (fixed breaks in iframes)
     const nav = document.getElementById('nav');
     if (nav) nav.style.position = 'sticky';
 
-    // Fix scroll-to-top button
+    // Scroll button: sticky instead of fixed
     const scrollBtn = document.querySelector('.scroll-top-btn');
     if (scrollBtn) scrollBtn.style.position = 'sticky';
 
-    // Force all reveals
+    // Force all reveal animations
     document.querySelectorAll('.r').forEach(el => el.classList.add('on'));
+
     setTimeout(() => {
       document.querySelectorAll('*').forEach(el => {
         if (getComputedStyle(el).opacity === '0') {
@@ -28,13 +31,8 @@ if (window.self !== window.top) {
         }
       });
 
-     // Send height after all content is rendered
-setTimeout(() => {
-  const height = document.documentElement.scrollHeight;
-  window.parent.postMessage(JSON.stringify({ type: 'setHeight', height }), '*');
-}, 1500);
-  });
-}
+      // Tell Wix the real content height
+      const
 
 /* ── NEURON CANVAS — flowing streams, subtle somas ── */
 (function(){
