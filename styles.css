@@ -411,6 +411,7 @@ h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
 
 /* --- LAYOUT RESPONSIVO (Tablet e Desktop - conforme imagem 24) --- */
 @media (min-width: 768px) {
+  
   .rating-row1 {
     flex-direction: row; /* Alinha tudo numa linha horizontal */
     justify-content: flex-start;
@@ -1159,7 +1160,7 @@ footer{background:#000;padding:clamp(16px,3vw,22px) clamp(16px,4vw,32px);display
   }
   .btn-secondary:active{transform:scale(.96)}
   
-  .hero-content{padding:28px 16px 74px;gap:28px;max-width:100%}
+  .hero-content{padding:44px 16px 74px;gap:28px;max-width:100%}
   .hero-badge{
     font-size:9px;
     padding:7px 14px;
