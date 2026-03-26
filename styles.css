@@ -2631,3 +2631,12 @@ a, button, .btn-primary, .btn-secondary, .btn-white, .btn-login, .pro-cta, [oncl
 /* Hide scrollbar when embedded in iframe */
 html::-webkit-scrollbar { width: 0; display: none; }
 html { scrollbar-width: none; -ms-overflow-style: none; }
+
+/* Remove scrollbar globally — keeps touch/wheel scroll working */
+html {
+  scrollbar-width: none;           /* Firefox */
+  -ms-overflow-style: none;        /* IE/Edge */
+}
+html::-webkit-scrollbar {
+  display: none;                   /* Chrome/Safari */
+}
