@@ -23,6 +23,13 @@ const heroBadge = document.querySelector('.hero-badge');
       heroBadge.style.setProperty('margin-bottom', '12px', 'important');
     }
 
+    const hero = document.querySelector('.hero');
+    if (hero) {
+      hero.style.setProperty('min-height', 'auto', 'important');
+      hero.style.setProperty('height', 'auto', 'important');
+      hero.style.setProperty('padding-bottom', '60px', 'important');
+    }
+
     const shimmer = document.querySelector('.hero-shimmer-soft');
     if (shimmer) {
       shimmer.style.setProperty('animation', 'none', 'important');
