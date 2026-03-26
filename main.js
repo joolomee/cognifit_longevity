@@ -117,53 +117,57 @@ if (window.self !== window.top) {
   });
 
 
-  // Add new colored press logos via SVG
-  const pressStrip = document.querySelector('.press-strip');
-  if (pressStrip) {
-    const newLogos = [
-      { id: 'forbes', name: 'Forbes', color: '#B00000' },
-      { id: 'techcrunch', name: 'TechCrunch', color: '#0A9952' },
-      { id: 'huffpost', name: 'Huffington Post', color: '#0DBE5D' },
-      { id: 'washpost', name: 'Washington Post', color: '#000000' },
-      { id: 'usatoday', name: 'USA Today', color: '#009BFF' },
-      { id: 'businessinsider', name: 'Business Insider', color: '#0070D1' },
-      { id: 'psychtoday', name: 'Psychology Today', color: '#00A3E0' },
-      { id: 'cnet', name: 'CNET', color: '#D40000' }
-    ];
+  // Press logos: remove filters, bigger, static, fill width
+    const pressStrip = document.querySelector('.press-strip');
+    if (pressStrip) {
+      pressStrip.style.setProperty('justify-content', 'space-evenly', 'important');
+      pressStrip.style.setProperty('gap', '0', 'important');
+      pressStrip.style.setProperty('animation', 'none', 'important');
 
-    newLogos.forEach(logo => {
-      const card = document.createElement('div');
-      card.className = 'press-logo-card';
-      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      svg.setAttribute('viewBox', '0 0 120 40');
-      svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-      svg.className = `press-logo-img press-logo-${logo.id}`;
-
-      const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-      text.setAttribute('x', '60');
-      text.setAttribute('y', '26');
-      text.setAttribute('text-anchor', 'middle');
-      text.setAttribute('font-size', '16');
-      text.setAttribute('font-weight', '700');
-      text.setAttribute('font-family', 'Arial, sans-serif');
-      text.setAttribute('fill', logo.color);
-      text.textContent = logo.name;
-
-      svg.appendChild(text);
-      card.appendChild(svg);
-      pressStrip.appendChild(card);
+      // Add new colored press logos via SVG
+      const newLogos = [
+        { id: 'forbes', name: 'Forbes', color: '#B00000' },
+        { id: 'techcrunch', name: 'TechCrunch', color: '#0A9952' },
+        { id: 'huffpost', name: 'Huffington Post', color: '#0DBE5D' },
+        { id: 'washpost', name: 'Washington Post', color: '#000000' },
+        { id: 'usatoday', name: 'USA Today', color: '#009BFF' },
+        { id: 'businessinsider', name: 'Business Insider', color: '#0070D1' },
+        { id: 'psychtoday', name: 'Psychology Today', color: '#00A3E0' },
+        { id: 'cnet', name: 'CNET', color: '#D40000' }
+      ];
+      newLogos.forEach(logo => {
+        const card = document.createElement('div');
+        card.className = 'press-logo-card';
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('viewBox', '0 0 120 40');
+        svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+        svg.classList.add('press-logo-img', 'press-logo-' + logo.id);
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', '60');
+        text.setAttribute('y', '26');
+        text.setAttribute('text-anchor', 'middle');
+        text.setAttribute('font-size', '16');
+        text.setAttribute('font-weight', '700');
+        text.setAttribute('font-family', 'Arial, sans-serif');
+        text.setAttribute('fill', logo.color);
+        text.textContent = logo.name;
+        svg.appendChild(text);
+        card.appendChild(svg);
+        pressStrip.appendChild(card);
+      });
+    }
+    document.querySelectorAll('.press-strip-inner').forEach(el => {
+      el.style.setProperty('animation', 'none', 'important');
+    });
+    document.querySelectorAll('.press-logo-card').forEach(card => {
+      card.style.setProperty('flex', '1 1 0', 'important');
+    });
+    document.querySelectorAll('.press-logo-img').forEach(img => {
+      img.style.setProperty('max-height', '32px', 'important');
+      img.style.setProperty('filter', 'none', 'important');
     });
 
-    // Now setup marquee with all logos
-    const logos = Array.from(pressStrip.children);
-    const inner = document.createElement('div');
-    inner.className = 'press-strip-inner';
-    logos.forEach(l => inner.appendChild(l));
-    // Duplicate for seamless loop
-    logos.forEach(l => inner.appendChild(l.cloneNode(true)));
-    pressStrip.appendChild(inner);
-  }
-
+    
     // Navbar: sticky instead of fixed (fixed breaks in iframes)
     const nav = document.getElementById('nav');
     if (nav) nav.style.position = 'sticky';
