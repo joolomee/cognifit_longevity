@@ -1,20 +1,31 @@
-// Force visibility when inside iframe
 if (window.self !== window.top) {
-  // Override IntersectionObserver before anything else runs
+  // Override IntersectionObserver
   window.IntersectionObserver = class {
     constructor(cb) { this.cb = cb; }
     observe(el) {
-      // Immediately trigger as visible
       this.cb([{ isIntersecting: true, target: el, intersectionRatio: 1 }], this);
     }
     unobserve() {}
     disconnect() {}
   };
 
-  // Also force all .r reveal elements when DOM loads
   document.addEventListener('DOMContentLoaded', () => {
+    // Fix navbar
+    const nav = document.getElementById('nav');
+    if (nav) nav.style.position = 'sticky';
+
+    // Fix scroll-to-top button
+    const scrollBtn = document.querySelector('.scroll-top-btn');
+    if (scrollBtn) {
+      scrollBtn.style.position = 'absolute';
+      // Reposition on scroll
+      window.addEventListener('scroll', () => {
+        scrollBtn.style.top = (window.scrollY + window.innerHeight - 68) + 'px';
+      }, { passive: true });
+    }
+
+    // Force all reveal elements
     document.querySelectorAll('.r').forEach(el => el.classList.add('on'));
-    // Force any elements starting at opacity 0
     setTimeout(() => {
       document.querySelectorAll('*').forEach(el => {
         if (getComputedStyle(el).opacity === '0') {
