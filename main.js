@@ -220,9 +220,7 @@
 
 
 
-const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:.08});
-document.querySelectorAll('.r').forEach(el=>obs.observe(el));
-document.querySelectorAll('.hero .r').forEach(el=>el.classList.add('on'));
+document.querySelectorAll('.r').forEach(el => el.classList.add('on'));
 
 /* Nav — adaptive: transparent on dark, light bg on s-white/s-off */
 const nav=document.getElementById('nav');
