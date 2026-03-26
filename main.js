@@ -11,6 +11,31 @@ if (window.self !== window.top) {
   };
 
   document.addEventListener('DOMContentLoaded', () => {
+  // Replace Athletes card icon with professional sports SVG
+  const proCards = document.querySelectorAll('.pro-card');
+  proCards.forEach(card => {
+    const h3 = card.querySelector('h3');
+    if (h3 && h3.textContent.trim() === 'Athletes') {
+      const photo = card.querySelector('.pro-photo');
+      if (photo) {
+        photo.innerHTML = '<svg viewBox="0 0 200 180" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="130" cy="30" r="16" fill="rgba(255,255,255,0.9)"/><path d="M115 55 L100 100 L80 140" stroke="rgba(255,255,255,0.85)" stroke-width="5" stroke-linecap="round"/><path d="M115 55 L140 95 L165 135" stroke="rgba(255,255,255,0.85)" stroke-width="5" stroke-linecap="round"/><path d="M115 55 L95 75" stroke="rgba(255,255,255,0.85)" stroke-width="5" stroke-linecap="round"/><path d="M115 55 L145 65 L160 50" stroke="rgba(255,255,255,0.85)" stroke-width="5" stroke-linecap="round"/><path d="M115 55 L115 95" stroke="rgba(255,255,255,0.85)" stroke-width="5" stroke-linecap="round"/><circle cx="50" cy="90" r="28" stroke="rgba(26,115,232,0.5)" stroke-width="2" fill="none"/><path d="M50 62 L50 118 M22 90 L78 90" stroke="rgba(26,115,232,0.4)" stroke-width="1.5"/></svg>';
+      }
+    }
+  });
+
+
+  // Marquee press logos
+  const pressStrip = document.querySelector('.press-strip');
+  if (pressStrip) {
+    const logos = Array.from(pressStrip.children);
+    const inner = document.createElement('div');
+    inner.className = 'press-strip-inner';
+    logos.forEach(l => inner.appendChild(l));
+    // Duplicate for seamless loop
+    logos.forEach(l => inner.appendChild(l.cloneNode(true)));
+    pressStrip.appendChild(inner);
+  }
+
     // Navbar: sticky instead of fixed (fixed breaks in iframes)
     const nav = document.getElementById('nav');
     if (nav) nav.style.position = 'sticky';
@@ -605,66 +630,82 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
   }
 })();
 
-/* ── SCI-CARD CASCADE INTERACTION ── */
+/* ── SCI-CARD CASCADE INTERACTION (toggle system) ── */
 (function(){
   const cards = document.querySelectorAll('.sci-card');
   const status = document.getElementById('sci-status');
   const resetHint = document.getElementById('sci-reset');
-  if(!cards.length || !status) return;
+  if(!cards.length) return;
 
   const NAMES = {
     executive: 'Executive Function',
-    memory:    'Working Memory',
+    memory: 'Working Memory',
     attention: 'Attention'
   };
-  let broken = false;
+  
+  // Track which cards are disabled
+  const disabled = new Set();
 
-  function breakAll(triggeredSystem) {
-    broken = true;
-    cards.forEach(card => {
-      card.classList.add('sci-broken');
-      card.classList.remove('sci-dim');
-    });
-    status.textContent = NAMES[triggeredSystem] + ' weakened — the entire network is compromised. All three systems depend on each other.';
-    status.classList.remove('hidden');
-    resetHint.classList.remove('hidden');
-    if(window.triadBreakFrom) window.triadBreakFrom(triggeredSystem);
-    setTimeout(() => {
-      cards.forEach(card => {
-        if(card.dataset.system !== triggeredSystem) card.classList.add('sci-dim');
-      });
-    }, 400);
+  // Move instruction text above sci-grid
+  const sciGrid = document.querySelector('.sci-grid');
+  if (sciGrid && status) {
+    const instructionEl = document.createElement('p');
+    instructionEl.className = 'sci-instruction';
+    instructionEl.textContent = 'Tap any ability to see what happens when it fails';
+    instructionEl.style.cssText = 'text-align:center;font-size:clamp(12px,2vw,14px);color:rgba(0,0,0,0.5);margin-bottom:16px;font-weight:600;letter-spacing:0.03em;';
+    sciGrid.parentNode.insertBefore(instructionEl, sciGrid);
   }
 
-  function resetAll() {
-    broken = false;
+  function updateState() {
+    const anyDisabled = disabled.size > 0;
+    
     cards.forEach(card => {
-      card.classList.remove('sci-broken', 'sci-dim');
+      const sys = card.dataset.system;
+      if (disabled.has(sys)) {
+        card.classList.add('sci-broken');
+        card.classList.remove('sci-dim');
+      } else if (anyDisabled) {
+        card.classList.add('sci-broken', 'sci-dim');
+      } else {
+        card.classList.remove('sci-broken', 'sci-dim');
+      }
     });
-    status.textContent = '';
-    status.classList.add('hidden');
-    resetHint.classList.add('hidden');
-    if(window.triadSetBroken) window.triadSetBroken(false);
+
+    if (anyDisabled) {
+      const names = Array.from(disabled).map(s => NAMES[s]).join(' & ');
+      status.textContent = names + ' weakened — the entire cognitive network is compromised. All three systems depend on each other.';
+      status.classList.remove('hidden');
+      if (resetHint) {
+        resetHint.textContent = 'Tap disabled abilities to restore them';
+        resetHint.classList.remove('hidden');
+      }
+      if (window.triadSetBroken) window.triadSetBroken(true);
+      const firstDisabled = Array.from(disabled)[0];
+      if (window.triadBreakFrom) window.triadBreakFrom(firstDisabled);
+    } else {
+      status.textContent = '';
+      status.classList.add('hidden');
+      if (resetHint) resetHint.classList.add('hidden');
+      if (window.triadSetBroken) window.triadSetBroken(false);
+    }
   }
 
   cards.forEach(card => {
+    card.style.cursor = 'pointer';
     card.addEventListener('click', e => {
       e.stopPropagation();
-      if(broken) { resetAll(); return; }
-      breakAll(card.dataset.system);
+      const sys = card.dataset.system;
+      if (disabled.has(sys)) {
+        disabled.delete(sys);
+      } else {
+        disabled.add(sys);
+      }
+      updateState();
     });
   });
-  document.addEventListener('click', () => { if(broken) resetAll(); });
 })();
 
-/* ── STEP-CARD MOUSE SPOTLIGHT ── */
-document.querySelectorAll('.step-card').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const r = card.getBoundingClientRect();
-    card.style.setProperty('--sx', ((e.clientX - r.left) / r.width * 100) + '%');
-    card.style.setProperty('--sy', ((e.clientY - r.top)  / r.height * 100) + '%');
-  });
-});
+
 
 /* ── TRIAD SVG — staggered cascade break ── */
 const _SYS_NODE = { executive: '0', memory: '1', attention: '2' };
