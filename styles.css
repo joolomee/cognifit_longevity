@@ -2669,11 +2669,3 @@ html {
 html::-webkit-scrollbar {
   display: none;                   /* Chrome/Safari */
 }
-
-.pro-card{min-height:420px;display:flex;flex-direction:column}
-.pro-photo{height:160px;min-height:160px;flex-shrink:0}
-.pro-text{flex:1;display:flex;flex-direction:column}
-@media(max-width:768px){
-  .pro-card{min-height:auto}
-  .pro-photo{height:120px;min-height:120px}
-}
