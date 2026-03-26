@@ -63,7 +63,7 @@ img{max-width:100%;display:block}
 
     /* 4. COMPENSAÇÃO NO HERO (para não ficar atrás da navbar mais alta) */
     .hero-content {
-      padding-top: 80px !important;
+      padding-top: 120px !important;
       padding-left: 24px !important;
       padding-right: 24px !important;
     }
@@ -271,7 +271,7 @@ h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
   height:100svh;min-height:1020px;max-height:100vh;
   display:flex;flex-direction:column;justify-content:center;
   overflow:hidden;
-  padding-top:70px;
+  padding-top:40px;
 }
 .hero-photo-bg{
   position:absolute;inset:0;z-index:0;
@@ -289,7 +289,7 @@ h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
 .hero-content{
   position:relative;z-index:4;
   max-width:var(--max);margin:0 auto;
-  padding:clamp(56px,8vw,88px) 24px clamp(72px,10vw,104px);
+  padding:clamp(20px,3vw,40px) 24px clamp(72px,10vw,104px);
   display:grid;grid-template-columns:1fr 420px;gap:clamp(40px,6vw,60px);align-items:center;
   transform-style:preserve-3d;
   will-change:transform;
