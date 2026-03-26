@@ -1,40 +1,30 @@
-// Detect iframe and force all reveal elements visible
+// Force visibility when inside iframe
 if (window.self !== window.top) {
-  // Force all reveal elements visible immediately
+  // Override IntersectionObserver before anything else runs
+  window.IntersectionObserver = class {
+    constructor(cb) { this.cb = cb; }
+    observe(el) {
+      // Immediately trigger as visible
+      this.cb([{ isIntersecting: true, target: el, intersectionRatio: 1 }], this);
+    }
+    unobserve() {}
+    disconnect() {}
+  };
+
+  // Also force all .r reveal elements when DOM loads
   document.addEventListener('DOMContentLoaded', () => {
-    // Trigger all .r (reveal) elements
     document.querySelectorAll('.r').forEach(el => el.classList.add('on'));
-    
-    // Force all elements with opacity:0 to be visible
-    document.querySelectorAll('*').forEach(el => {
-      const style = getComputedStyle(el);
-      if (style.opacity === '0') {
-        el.style.opacity = '1';
-        el.style.transform = 'none';
-        el.style.transition = 'none';
-      }
-    });
-    
-    // Override IntersectionObserver to trigger immediately in iframe
-    const OriginalObserver = IntersectionObserver;
-    window.IntersectionObserver = class {
-      constructor(callback, options) {
-        this.callback = callback;
-      }
-      observe(target) {
-        // Immediately trigger as if element is intersecting
-        this.callback([{
-          isIntersecting: true,
-          target: target,
-          intersectionRatio: 1
-        }], this);
-      }
-      unobserve() {}
-      disconnect() {}
-    };
+    // Force any elements starting at opacity 0
+    setTimeout(() => {
+      document.querySelectorAll('*').forEach(el => {
+        if (getComputedStyle(el).opacity === '0') {
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        }
+      });
+    }, 500);
   });
 }
-
 
 /* ── NEURON CANVAS — flowing streams, subtle somas ── */
 (function(){
