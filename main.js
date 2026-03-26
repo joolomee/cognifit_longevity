@@ -19,7 +19,7 @@ if (window.self !== window.top) {
   }
 
   // Create device mockup section
-  const reviewSection = document.querySelector('section.s-black');
+  const reviewSection = document.querySelectorAll('section.s-black');
   if (reviewSection) {
     const devicesSection = document.createElement('section');
     devicesSection.className = 'devices-section';
