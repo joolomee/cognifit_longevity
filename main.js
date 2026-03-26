@@ -28,10 +28,11 @@ if (window.self !== window.top) {
         }
       });
 
-      // Send real height to Wix parent
-      const height = document.documentElement.scrollHeight;
-      window.parent.postMessage({ type: 'setHeight', height }, '*');
-    }, 1000);
+     // Send height after all content is rendered
+setTimeout(() => {
+  const height = document.documentElement.scrollHeight;
+  window.parent.postMessage(JSON.stringify({ type: 'setHeight', height }), '*');
+}, 1500);
   });
 }
 
