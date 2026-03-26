@@ -2627,3 +2627,7 @@ a, button, .btn-primary, .btn-secondary, .btn-white, .btn-login, .pro-cta, [oncl
   .triad-svg{max-width:1000px}
   .td-lbl{font-size:15px}
 }
+
+/* Hide scrollbar when embedded in iframe */
+html::-webkit-scrollbar { width: 0; display: none; }
+html { scrollbar-width: none; -ms-overflow-style: none; }
