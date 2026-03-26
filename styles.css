@@ -1036,7 +1036,7 @@ footer{background:#000;padding:clamp(16px,3vw,22px) clamp(16px,4vw,32px);display
 @media(max-width:900px){
   nav{padding:0 20px}
   .hero{min-height:auto;height:auto;padding-top:60px}
-  .hero-content{grid-template-columns:1fr;padding:44px 24px 84px;gap:40px}
+  .hero-content{grid-template-columns:1fr;padding:80px 24px 84px;gap:40px}
   .hero-phones{display:none}
   .hero-text-shade{background:rgba(0,0,10,.7)}
   .hero-sub{max-width:100%}
