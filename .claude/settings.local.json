@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -:*)",
+      "Bash(/Users/joolomee/Desktop/CogniFit/Sites/styles.css:*)",
+      "WebFetch(domain:dribbble.com)",
+      "WebSearch",
+      "WebFetch(domain:www.behance.net)",
+      "Bash(sed -n '117,120p' /Users/joolomee/Desktop/CogniFit/Sites/index.html)",
+      "Bash(sed -n '144,152p' /Users/joolomee/Desktop/CogniFit/Sites/index.html)",
+      "Bash(find /Users/joolomee/Downloads /Users/joolomee/Desktop -name *.png)",
+      "Bash(find /Users/joolomee/Downloads /Users/joolomee/Desktop -name *cogni* -o -name *Cogni* -o -name *logo* -o -name *Logo*)",
+      "Bash(find /Users/joolomee/Desktop/CogniFit -name *cognifit_logo* -o -name *cognifit-logo* -o -name *CogniFit_logo*)",
+      "Bash(head -10 grep -n \"heading-glow.*infinite\\\\|platform-title.*shimmer\\\\|text-shimmer.*infinite\" /Users/joolomee/Desktop/CogniFit/Sites/styles.css)",
+      "Bash(head -10 grep -n \"sx\\\\|sy\\\\|spotlight\" /Users/joolomee/Desktop/CogniFit/Sites/main.js)",
+      "Bash(node -e \":*)",
+      "Bash(python3 -c \":*)",
+      "Bash(sed -n '317,335p' /Users/joolomee/Desktop/CogniFit/Sites/styles.css)",
+      "Bash(sed -n '2268,2295p' /Users/joolomee/Desktop/CogniFit/Sites/styles.css)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8080/index.html)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8080/styles.css)",
+      "Bash(curl -s http://localhost:8080/styles.css)",
+      "Bash(ls /Users/joolomee/Desktop/CogniFit/Sites/*.png /Users/joolomee/Desktop/CogniFit/Sites/*.svg /Users/joolomee/Desktop/CogniFit/Sites/*.webp)",
+      "WebFetch(domain:www.cognifit.com)",
+      "Bash(python3:*)",
+      "Bash(grep -n \"^}$\" styles.css)",
+      "Bash(node -c main.js)",
+      "Bash(/tmp/check.txt:*)",
+      "Read(//tmp/**)",
+      "Bash(ls /Users/joolomee/Desktop/CogniFit/Sites/devices_cognifit* /Users/joolomee/Desktop/CogniFit/Sites/*devices*)",
+      "Bash(gh repo:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(gh auth:*)",
+      "Bash(git remote:*)"
+    ]
+  }
+}
