@@ -2996,3 +2996,33 @@ html::-webkit-scrollbar {
   .btn-secondary { padding: 16px 40px; font-size: 18px; }
   .press-logo-img { max-height: 64px !important; height: 64px !important; }
 }
+
+/* ══════════════════════════════════════════════════════
+   WIX IFRAME OVERRIDES
+   html.is-iframe is set by JS when inside iframe
+══════════════════════════════════════════════════════ */
+html.is-iframe .hero {
+  height: auto !important;
+  min-height: 100svh !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+html.is-iframe .hero-content {
+  padding-top: clamp(80px, 10svh, 120px) !important;
+  padding-bottom: clamp(60px, 8svh, 100px) !important;
+}
+html.is-iframe .pro-stack {
+  grid-template-columns: repeat(4, 1fr) !important;
+  max-width: 1060px !important;
+  overflow: hidden !important;
+}
+@media (max-width: 900px) {
+  html.is-iframe .pro-stack {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (max-width: 640px) {
+  html.is-iframe .pro-stack {
+    grid-template-columns: 1fr !important;
+  }
+}

@@ -32,6 +32,8 @@ if (window.self !== window.top) {
     disconnect() {}
   };
 
+  document.documentElement.classList.add('is-iframe');
+
   document.addEventListener('DOMContentLoaded', () => {
   // Move triad triangle ABOVE sci-grid
   const sciSection = document.querySelector('.sci-grid');
