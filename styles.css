@@ -2532,35 +2532,9 @@ a, button, .btn-primary, .btn-secondary, .btn-white, .btn-login, .pro-cta, [oncl
 
 /* Ecrãs de telemóvel e tablets pequenos (até 768px de largura) */
 @media (max-width: 768px) {
-    .wrap { /* Lembre-se de verificar se .wrap é a classe correta para este contentor */
-        /* O primeiro valor (40px) é para Cima e Baixo. O segundo (24px) é para Esquerda e Direita */
+    .wrap {
         padding: 40px 24px !important;
     }
-
-    .hero-content {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        text-align: left !important;
-        padding-top: 130px !important;
-        padding-left: 24px !important;
-        padding-right: 24px !important;
-    }
-
-    .hero-content .r.d2 {
-        width: 100% !important;
-        display: flex !important;
-        justify-content: flex-start !important;
-        margin-bottom: 20px !important;
-    }
-
-    .hero-headline {
-        justify-content: flex-start !important;
-    }
-    .hero-bracket {
-        display: block !important;
-    }
-
     .btn-primary {
         display: inline-flex !important;
         width: auto !important;
@@ -2570,7 +2544,7 @@ a, button, .btn-primary, .btn-secondary, .btn-white, .btn-login, .pro-cta, [oncl
 
 @media(max-width:900px){
   .risk-missing-piece{
-    grid-template-columns:fr;
+    grid-template-columns:1fr;
     gap:18px;
     text-align:center;
   }
@@ -2718,7 +2692,7 @@ html::-webkit-scrollbar {
   .pro-card{min-height:340px!important}
 }
 @media(max-width:768px){
-  .pro-stack{grid-template-columns:1fr!important;gap:14px!important}
+  .pro-stack{grid-template-columns:1fr!important;gap:14px!important;max-width:360px!important;margin:0 auto!important}
   .pro-card{min-height:auto!important}
   .pro-desc,.pro-metrics{display:none!important}
 }
@@ -2807,6 +2781,12 @@ html::-webkit-scrollbar {
 /* ── TRIAD circles clickable hover ── */
 .td-node{cursor:pointer;transition:transform .2s ease}
 .td-node:hover{transform:scale(1.12)}
+
+/* ── TABLET / iPad: hide phones, single column ── */
+@media (max-width: 1024px) {
+  .hero-phones { display: none !important; }
+  .hero-content { grid-template-columns: 1fr !important; }
+}
 
 /* ══════════════════════════════════════════════════════
    RESPONSIVE FIX — Hero fits viewport on every screen
@@ -3055,6 +3035,22 @@ html.is-iframe .pro-stack {
 }
 html.is-iframe .pro-card {
   min-height: auto !important;
+}
+@media (max-width: 1024px) {
+  html.is-iframe .hero-phones {
+    display: none !important;
+  }
+  html.is-iframe .hero-content {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+  html.is-iframe .hero-sub {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    text-align: left !important;
+  }
 }
 @media (max-width: 768px) {
   html.is-iframe .pro-stack {
