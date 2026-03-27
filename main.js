@@ -95,8 +95,8 @@ const heroBadge = document.querySelector('.hero-badge');
     card.style.setProperty('flex', '1 1 0', 'important');
   });
   document.querySelectorAll('.press-logo-img').forEach(function(img) {
-    img.style.setProperty('max-height', '40px', 'important');
-    img.style.setProperty('height', '40px', 'important');
+    img.style.setProperty('max-height', '60px', 'important');
+    img.style.setProperty('height', '60px', 'important');
     img.style.setProperty('object-fit', 'contain', 'important');
   });
 
@@ -218,8 +218,8 @@ const heroBadge = document.querySelector('.hero-badge');
         card.style.setProperty('flex', '1 1 0', 'important');
       });
       document.querySelectorAll('.press-logo-img').forEach(function(img) {
-        img.style.setProperty('max-height', '40px', 'important');
-    img.style.setProperty('height', '40px', 'important');
+        img.style.setProperty('max-height', '60px', 'important');
+    img.style.setProperty('height', '60px', 'important');
         img.style.setProperty('object-fit', 'contain', 'important');
       });
 

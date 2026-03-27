@@ -970,7 +970,7 @@ h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
     flex:0 1 auto;
     display:flex;align-items:center;justify-content:center;
   }
-  .press-logo-img{max-height:40px;height:40px;width:auto;object-fit:contain}
+  .press-logo-img{max-height:60px;height:60px;width:auto;object-fit:contain}
   .t-badge:active{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));transform:none}
 
 .press-strip-inner{display:flex;gap:40px;align-items:center;animation:marquee-scroll 30s linear infinite;width:max-content}
@@ -1072,7 +1072,7 @@ footer{background:#000;padding:clamp(16px,3vw,22px) clamp(16px,4vw,32px);display
     border-radius:12px;
     flex:0 1 calc(33.333% - 8px);
   }
-  .press-logo-img{max-height:36px!important;height:36px!important}
+  .press-logo-img{max-height:50px!important;height:50px!important}
   .press-logo-card{
     min-height:40px;
     padding:8px 10px;
@@ -2788,13 +2788,13 @@ html::-webkit-scrollbar {
 
 /* ── PRESS LOGOS responsive sizing ── */
 @media(min-width:1400px){
-  .press-logo-img{max-height:48px!important;height:48px!important}
+  .press-logo-img{max-height:64px!important;height:64px!important}
 }
 @media(min-width:769px) and (max-width:1399px){
-  .press-logo-img{max-height:40px!important;height:40px!important}
+  .press-logo-img{max-height:56px!important;height:56px!important}
 }
 @media(max-width:768px){
-  .press-logo-img{max-height:30px!important;height:30px!important}
+  .press-logo-img{max-height:40px!important;height:40px!important}
   .press-logo-card{padding:8px 12px!important}
 }
 
@@ -2972,7 +2972,7 @@ html::-webkit-scrollbar {
   .hero-sub { font-size: clamp(18px, 1.5vw, 24px); }
   .hero-badge { font-size: clamp(12px, 0.8vw, 16px); }
   .hero-rating { max-width: 480px; }
-  .press-logo-img { max-height: 52px !important; height: 52px !important; }
+  .press-logo-img { max-height: 68px !important; height: 68px !important; }
   .devices-img { max-width: min(900px, 85%); }
 }
 
@@ -2982,7 +2982,7 @@ html::-webkit-scrollbar {
   .hero-content { max-width: 1400px; }
   .hero-h1 { font-size: clamp(56px, 3.5vw, 84px); }
   .hero-sub { font-size: clamp(20px, 1.2vw, 28px); }
-  .press-logo-img { max-height: 56px !important; height: 56px !important; }
+  .press-logo-img { max-height: 72px !important; height: 72px !important; }
   .devices-img { max-width: min(1000px, 80%); }
 }
 
@@ -2994,7 +2994,7 @@ html::-webkit-scrollbar {
   .hero-sub { font-size: clamp(24px, 1vw, 32px); }
   .btn-primary { padding: 20px 56px; font-size: 20px; }
   .btn-secondary { padding: 16px 40px; font-size: 18px; }
-  .press-logo-img { max-height: 64px !important; height: 64px !important; }
+  .press-logo-img { max-height: 80px !important; height: 80px !important; }
 }
 
 /* ══════════════════════════════════════════════════════
