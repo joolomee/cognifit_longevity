@@ -3016,20 +3016,18 @@ html.is-iframe .hero-content {
 }
 html.is-iframe .pro-stack {
   grid-template-columns: repeat(7, 1fr) !important;
-  max-width: 1400px !important;
-  gap: 12px !important;
+  max-width: 100% !important;
+  gap: 10px !important;
 }
-@media (max-width: 1200px) {
-  html.is-iframe .pro-stack {
-    grid-template-columns: repeat(4, 1fr) !important;
-  }
+html.is-iframe .pro-card {
+  min-height: auto !important;
 }
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   html.is-iframe .pro-stack {
     grid-template-columns: repeat(2, 1fr) !important;
   }
 }
-@media (max-width: 640px) {
+@media (max-width: 480px) {
   html.is-iframe .pro-stack {
     grid-template-columns: 1fr !important;
   }
