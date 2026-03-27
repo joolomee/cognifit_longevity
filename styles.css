@@ -3003,13 +3003,14 @@ html::-webkit-scrollbar {
 ══════════════════════════════════════════════════════ */
 html.is-iframe .hero {
   height: auto !important;
-  min-height: 100svh !important;
+  min-height: auto !important;
   max-height: none !important;
   overflow: visible !important;
 }
 html.is-iframe .hero-content {
-  padding-top: clamp(80px, 10svh, 120px) !important;
-  padding-bottom: clamp(60px, 8svh, 100px) !important;
+  margin-top: 0 !important;
+  padding-top: clamp(70px, 8vw, 100px) !important;
+  padding-bottom: clamp(50px, 6vw, 80px) !important;
 }
 html.is-iframe .pro-stack {
   grid-template-columns: repeat(4, 1fr) !important;
