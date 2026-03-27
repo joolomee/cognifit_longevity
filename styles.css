@@ -1348,9 +1348,9 @@ footer{background:#000;padding:clamp(16px,3vw,22px) clamp(16px,4vw,32px);display
   .hi-it::before{font-size:16px}
   .hi-close{margin-top:16px;padding-top:16px;font-size:13px;border-top:1px solid rgba(26,115,232,.2);color:#111}
   
-  .pro-stack{max-width:100%;gap:14px;grid-template-columns:1fr}
+  .pro-stack{max-width:100%;gap:10px;grid-template-columns:repeat(2,1fr)}
   .pro-card{min-height:unset}
-  .pro-photo{flex:0 0 128px}
+  .pro-photo{flex:0 0 100px}
   .pro-text{padding:18px 16px}
   .pro-text h3{font-size:20px;margin-bottom:4px;font-weight:900}
   .pro-stats{font-size:8px;font-weight:600}
@@ -2696,7 +2696,7 @@ html::-webkit-scrollbar {
   .pro-card{min-height:340px!important}
 }
 @media(max-width:768px){
-  .pro-stack{grid-template-columns:1fr!important;gap:14px!important;max-width:360px!important;margin:0 auto!important}
+  .pro-stack{grid-template-columns:repeat(2,1fr)!important;gap:10px!important;max-width:100%!important;margin:0 auto!important}
   .pro-card{min-height:auto!important}
   .pro-desc,.pro-metrics{display:none!important}
 }
@@ -3056,6 +3056,16 @@ html::-webkit-scrollbar {
    WIX IFRAME OVERRIDES
    html.is-iframe is set by JS when inside iframe
 ══════════════════════════════════════════════════════ */
+/* Ensure iframe content is scrollable on touch devices */
+@media (max-width: 1024px) {
+  html.is-iframe,
+  html.is-iframe body {
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    height: auto !important;
+    min-height: 100% !important;
+  }
+}
 html.is-iframe .hero {
   height: 100svh !important;
   min-height: 100svh !important;
@@ -3145,6 +3155,6 @@ html.is-iframe .pro-card {
 }
 @media (max-width: 480px) {
   html.is-iframe .pro-stack {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: repeat(2, 1fr) !important;
   }
 }
