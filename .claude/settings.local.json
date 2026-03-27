@@ -34,7 +34,8 @@
       "Bash(gh auth:*)",
       "Bash(git remote:*)",
       "Bash(git push:*)",
-      "Bash(git pull:*)"
+      "Bash(git pull:*)",
+      "Bash(git checkout:*)"
     ]
   }
 }
