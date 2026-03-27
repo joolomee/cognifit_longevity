@@ -3007,20 +3007,21 @@ html.is-iframe .hero {
   max-height: 100svh !important;
   overflow: hidden !important;
   position: relative !important;
+  padding-top: clamp(50px, 6svh, 80px) !important;
+  padding-bottom: clamp(50px, 6svh, 80px) !important;
+}
+html.is-iframe .hero-content {
+  margin-top: auto !important;
+  margin-bottom: auto !important;
   padding-top: 0 !important;
   padding-bottom: 0 !important;
 }
-html.is-iframe .hero-content {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-  padding-top: clamp(70px, 6svh, 110px) !important;
-  padding-bottom: clamp(60px, 8svh, 100px) !important;
-}
 html.is-iframe .hero-scroll-hint {
   position: absolute !important;
-  bottom: clamp(12px, 2svh, 28px) !important;
+  bottom: clamp(14px, 2.5svh, 30px) !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
+  z-index: 10 !important;
 }
 html.is-iframe .pro-stack {
   grid-template-columns: repeat(7, 1fr) !important;
