@@ -3003,13 +3003,15 @@ html::-webkit-scrollbar {
 ══════════════════════════════════════════════════════ */
 html.is-iframe .hero {
   height: auto !important;
-  min-height: auto !important;
+  min-height: 100svh !important;
   max-height: none !important;
   overflow: visible !important;
+  justify-content: flex-start !important;
 }
 html.is-iframe .hero-content {
   margin-top: 0 !important;
-  padding-top: clamp(70px, 8vw, 100px) !important;
+  margin-bottom: auto !important;
+  padding-top: clamp(80px, 10vw, 140px) !important;
   padding-bottom: clamp(50px, 6vw, 80px) !important;
 }
 html.is-iframe .pro-stack {
