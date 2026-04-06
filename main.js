@@ -22,6 +22,19 @@ function applyCTARouting() {
     btn.setAttribute('target', linkTarget);
     btn.setAttribute('rel', 'noopener noreferrer');
   });
+
+  // Route ALL external links (footer, disclaimer, etc.) — ensure they work in iframe
+  document.querySelectorAll('a[href]').forEach(function(a) {
+    var href = a.getAttribute('href') || '';
+    if (href.startsWith('http') || href.startsWith('mailto:')) {
+      if (!a.getAttribute('target')) {
+        a.setAttribute('target', linkTarget);
+      }
+      if (!a.getAttribute('rel') && href.startsWith('http')) {
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    }
+  });
 }
 
 // ── IFRAME MODE: adapt to Wix container ──
@@ -174,6 +187,16 @@ const heroBadge = document.querySelector('.hero-badge');
 
     // CTA routing: desktop → assessments, mobile → app store
     applyCTARouting();
+
+    // Make entire pro-card clickable (especially for mobile/touch)
+    document.querySelectorAll('.pro-card').forEach(function(card) {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', function(e) {
+        if (e.target.closest('a')) return;
+        var link = card.querySelector('.pro-cta');
+        if (link) link.click();
+      });
+    });
   });
 }
 
@@ -272,6 +295,16 @@ const heroBadge = document.querySelector('.hero-badge');
 
       // CTA routing: desktop → assessments, mobile → app store
       applyCTARouting();
+
+      // Make entire pro-card clickable (especially for mobile/touch)
+      document.querySelectorAll('.pro-card').forEach(function(card) {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', function(e) {
+          if (e.target.closest('a')) return; // Don't double-navigate if they click the link directly
+          var link = card.querySelector('.pro-cta');
+          if (link) link.click();
+        });
+      });
 
     });
   }
@@ -989,3 +1022,21 @@ window.triadSetBroken = function(state) {
     svg.removeAttribute('data-breaking');
   }
 };
+
+/* ── FAQ ACCORDION ── */
+document.querySelectorAll('.faq-q').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var item = btn.closest('.faq-item');
+    var isOpen = item.classList.contains('open');
+    // Close all other items
+    document.querySelectorAll('.faq-item.open').forEach(function(openItem) {
+      openItem.classList.remove('open');
+      openItem.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+    });
+    // Toggle this one
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+});

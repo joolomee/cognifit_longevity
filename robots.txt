@@ -1,0 +1,22 @@
+# robots.txt — brain.cognifit.com/longevity
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://brain.cognifit.com/longevity/sitemap.xml
+
+# AI crawlers — welcome
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
