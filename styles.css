@@ -2786,6 +2786,14 @@ html::-webkit-scrollbar {
 .td-node{cursor:pointer;transition:transform .2s ease}
 .td-node:hover{transform:scale(1.12)}
 
+/* ── FAQ SECTION ── */
+.faq-list{max-width:800px;margin:0 auto}
+.faq-item{border-bottom:1px solid #e8e8e8;padding:clamp(20px,3vw,28px) 0}
+.faq-item:last-child{border-bottom:none}
+.faq-q{font-size:clamp(16px,2.2vw,20px);font-weight:700;color:#111;cursor:default;line-height:1.4}
+.faq-a{margin-top:12px}
+.faq-a p{font-size:clamp(14px,1.8vw,16px);color:#444;line-height:1.8;margin:0}
+
 /* ── TABLET / iPad: hide phones, single column ── */
 @media (max-width: 1024px) {
   .hero-phones { display: none !important; }

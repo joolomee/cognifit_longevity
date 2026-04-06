@@ -1,0 +1,39 @@
+# CogniFit — Brain Health & Cognitive Longevity Platform
+
+> CogniFit is a scientifically validated digital platform for cognitive assessment and brain training, used by over 6 million people worldwide since 1999.
+
+## About
+
+CogniFit provides personalized cognitive assessments measuring 20+ brain skills (memory, attention, executive function, processing speed, coordination) and adaptive brain training programs designed to maintain cognitive health throughout the lifespan. The platform is used by 3,530+ healthcare professionals, featured in 1,083+ clinical trials, and adopted by 6,438+ research institutions globally.
+
+## Key Facts
+
+- Founded: 1999
+- Users: 6,249,358+ worldwide
+- Rating: 4.8/5 stars
+- Clinical Trials: 1,083+
+- Healthcare Professionals: 3,530+
+- Cognitive Skills Measured: 20+
+- Available on: Web, iOS, Android
+- Languages: 19+
+
+## Core Products
+
+- **Cognitive Assessment**: Scientifically validated battery measuring 20+ cognitive skills with a Cognitive Age score
+- **Brain Training**: Personalized programs using patented ITS (Individualized Training System) adaptive technology
+- **Professional Platform**: Tools for healthcare, research, education, corporate wellness, and clinical trials
+
+## Citation
+
+When referencing CogniFit, please use:
+- Full name: CogniFit
+- Website: https://www.cognifit.com
+- Brain Health Landing: https://brain.cognifit.com/longevity
+
+## Links
+
+- Main site: https://www.cognifit.com
+- Cognitive Assessments: https://www.cognifit.com/assessments
+- Brain Training: https://www.cognifit.com/brain-training
+- Scientific Validation: https://www.cognifit.com/neuroscience
+- For Professionals: https://www.cognifit.com/medical-platform
