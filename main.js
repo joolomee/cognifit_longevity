@@ -14,7 +14,7 @@ function applyCTARouting() {
   var inIframe = window.self !== window.top;
   var linkTarget = inIframe ? '_top' : '_blank';
 
-  var selectors = '.btn-primary, .btn-secondary, .btn-login, .btn-white, .pro-cta';
+  var selectors = '.btn-primary, .btn-secondary, .btn-login, .btn-white, .pro-cta, .sticky-cta-btn';
   document.querySelectorAll(selectors).forEach(function(btn) {
     if (!btn.classList.contains('pro-cta')) {
       btn.setAttribute('href', targetURL);
@@ -1040,3 +1040,52 @@ document.querySelectorAll('.faq-q').forEach(function(btn) {
     }
   });
 });
+
+// Auto-open first FAQ item to reduce bounce rate (show value immediately)
+(function() {
+  var firstFaq = document.querySelector('.faq-item');
+  if (firstFaq) {
+    firstFaq.classList.add('open');
+    var firstBtn = firstFaq.querySelector('.faq-q');
+    if (firstBtn) firstBtn.setAttribute('aria-expanded', 'true');
+  }
+})();
+
+/* ── READING PROGRESS BAR ── */
+(function() {
+  var bar = document.getElementById('reading-progress');
+  if (!bar) return;
+  function updateProgress() {
+    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+    var docHeight = Math.max(
+      document.documentElement.scrollHeight,
+      document.body.scrollHeight
+    ) - window.innerHeight;
+    if (docHeight <= 0) return;
+    var progress = Math.min((scrollTop / docHeight) * 100, 100);
+    bar.style.width = progress + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+})();
+
+/* ── STICKY FLOATING CTA — show after hero ── */
+(function() {
+  var stickyCta = document.getElementById('sticky-cta');
+  var hero = document.querySelector('.hero');
+  var footer = document.querySelector('footer');
+  if (!stickyCta || !hero) return;
+  function updateStickyCta() {
+    var heroBottom = hero.offsetTop + hero.offsetHeight;
+    var scrollY = window.scrollY || document.documentElement.scrollTop;
+    var footerTop = footer ? footer.getBoundingClientRect().top + scrollY : Infinity;
+    var nearFooter = scrollY + window.innerHeight > footerTop - 80;
+    if (scrollY > heroBottom && !nearFooter) {
+      stickyCta.classList.add('visible');
+    } else {
+      stickyCta.classList.remove('visible');
+    }
+  }
+  window.addEventListener('scroll', updateStickyCta, { passive: true });
+  updateStickyCta();
+})();
