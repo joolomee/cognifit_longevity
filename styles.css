@@ -558,12 +558,12 @@ h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
 .ph-bar.peak{background:var(--green)}
 .ph-goal-pill{display:inline-flex;background:rgba(255,255,255,.15);border-radius:6px;padding:4px 10px;font-size:9px;font-weight:900;color:#fff}
 .ph-age-card{background:#fff;border-radius:14px;padding:14px}
-.ph-age-lbl{font-size:8px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#bbb;margin-bottom:6px}
+.ph-age-lbl{font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#555;margin-bottom:6px}
 .ph-age-num{font-size:32px;font-weight:900;color:#000;line-height:1;margin-bottom:4px}
-.ph-age-ok{font-size:10px;color:var(--green);font-weight:700;margin-bottom:8px}
-.ph-age-bar{height:5px;background:#eee;border-radius:3px;overflow:hidden;margin-bottom:5px}
+.ph-age-ok{font-size:11px;color:var(--green);font-weight:800;margin-bottom:8px}
+.ph-age-bar{height:5px;background:#ddd;border-radius:3px;overflow:hidden;margin-bottom:5px}
 .ph-age-fill{height:100%;width:77%;background:var(--green);border-radius:3px}
-.ph-age-real{font-size:9px;color:#bbb;font-weight:500}
+.ph-age-real{font-size:10px;color:#666;font-weight:600}
 
 /* ── SKILLS PANEL ── */
 .skills-panel{
@@ -2880,8 +2880,8 @@ html::-webkit-scrollbar {
     display: none !important;
   }
   .guarantee-row {
-    padding-bottom: 0 !important;
-    margin-bottom: clamp(16px, 3svh, 40px) !important;
+    padding-bottom: 12px !important;
+    margin-bottom: clamp(24px, 4svh, 48px) !important;
   }
 }
 

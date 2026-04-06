@@ -11,11 +11,15 @@ function applyCTARouting() {
   if (isIOS) targetURL = iosURL;
   else if (isAndroid) targetURL = androidURL;
 
-  var selectors = '.btn-primary, .btn-secondary, .btn-login, .btn-white';
+  var inIframe = window.self !== window.top;
+  var linkTarget = inIframe ? '_top' : '_blank';
+
+  var selectors = '.btn-primary, .btn-secondary, .btn-login, .btn-white, .pro-cta';
   document.querySelectorAll(selectors).forEach(function(btn) {
-    if (btn.classList.contains('pro-cta')) return;
-    btn.setAttribute('href', targetURL);
-    btn.setAttribute('target', '_blank');
+    if (!btn.classList.contains('pro-cta')) {
+      btn.setAttribute('href', targetURL);
+    }
+    btn.setAttribute('target', linkTarget);
     btn.setAttribute('rel', 'noopener noreferrer');
   });
 }
@@ -134,15 +138,37 @@ const heroBadge = document.querySelector('.hero-badge');
         el.style.opacity = '1';
         el.style.transform = 'none';
       });
-      var h = document.documentElement.scrollHeight;
-      window.parent.postMessage(JSON.stringify({ type: 'setHeight', h: h }), '*');
+      sendHeight();
     }, 0);
+
+    // Robust height reporting — send multiple times to ensure Wix catches it
+    function sendHeight() {
+      var h = Math.max(
+        document.documentElement.scrollHeight,
+        document.body.scrollHeight,
+        document.documentElement.offsetHeight,
+        document.body.offsetHeight
+      );
+      // Standard postMessage
+      window.parent.postMessage(JSON.stringify({ type: 'setHeight', h: h }), '*');
+      // Wix-specific format
+      window.parent.postMessage({ type: 'setHeight', height: h }, '*');
+      window.parent.postMessage(JSON.stringify({ height: h }), '*');
+    }
+
+    // Re-send height after images load
+    window.addEventListener('load', function() {
+      sendHeight();
+      // Keep re-sending as content settles
+      setTimeout(sendHeight, 500);
+      setTimeout(sendHeight, 1500);
+      setTimeout(sendHeight, 3000);
+    });
 
     // Keep iframe height updated when content changes
     if (typeof ResizeObserver !== 'undefined') {
       new ResizeObserver(function() {
-        var h = document.documentElement.scrollHeight;
-        window.parent.postMessage(JSON.stringify({ type: 'setHeight', h: h }), '*');
+        sendHeight();
       }).observe(document.body);
     }
 
