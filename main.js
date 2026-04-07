@@ -11,8 +11,8 @@ function applyCTARouting() {
   if (isIOS) targetURL = iosURL;
   else if (isAndroid) targetURL = androidURL;
 
-  var inIframe = window.self !== window.top;
-  var linkTarget = inIframe ? '_top' : '_blank';
+  // ALL links open in NEW TAB — never replace current page (works in iframe too)
+  var linkTarget = '_blank';
 
   var selectors = '.btn-primary, .btn-secondary, .btn-login, .btn-white, .pro-cta, .sticky-cta-btn';
   document.querySelectorAll(selectors).forEach(function(btn) {
@@ -23,16 +23,14 @@ function applyCTARouting() {
     btn.setAttribute('rel', 'noopener noreferrer');
   });
 
-  // Route ALL external links (footer, disclaimer, etc.) — ensure they work in iframe
+  // FORCE ALL external links to open in new tab — overrides any existing target
   document.querySelectorAll('a[href]').forEach(function(a) {
     var href = a.getAttribute('href') || '';
-    if (href.startsWith('http') || href.startsWith('mailto:')) {
-      if (!a.getAttribute('target')) {
-        a.setAttribute('target', linkTarget);
-      }
-      if (!a.getAttribute('rel') && href.startsWith('http')) {
-        a.setAttribute('rel', 'noopener noreferrer');
-      }
+    // Skip in-page anchors
+    if (href.startsWith('#')) return;
+    if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('//')) {
+      a.setAttribute('target', '_blank');
+      a.setAttribute('rel', 'noopener noreferrer');
     }
   });
 }
