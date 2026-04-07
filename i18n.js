@@ -587,9 +587,13 @@
   function buildSelector() {
     var navR = document.querySelector('.nav-r');
     if (!navR) return;
+    // Remove any leftover EN span (legacy)
     navR.querySelectorAll('span').forEach(function(s) {
-      if (/^EN$/i.test(s.textContent.trim())) s.remove();
+      if (/^EN$/i.test((s.textContent || '').trim())) s.remove();
     });
+    // Avoid duplicates if buildSelector runs twice
+    var existing = navR.querySelector('.lang-selector');
+    if (existing) existing.parentNode.removeChild(existing);
 
     var wrap = document.createElement('div');
     wrap.className = 'lang-selector';
@@ -597,6 +601,7 @@
     var btn = document.createElement('button');
     btn.id = 'lang-btn';
     btn.className = 'lang-btn';
+    btn.type = 'button';
     btn.setAttribute('aria-expanded', 'false');
     btn.setAttribute('aria-haspopup', 'listbox');
     btn.setAttribute('title', 'Select language');
@@ -606,18 +611,23 @@
     dropdown.className = 'lang-dropdown';
     dropdown.setAttribute('role', 'listbox');
     dropdown.setAttribute('aria-label', 'Language selection');
+    // Force-collapsed initial state (defensive against CSS load order)
+    dropdown.style.display = 'none';
 
     Object.keys(LANGUAGES).forEach(function(code) {
       var item = document.createElement('button');
       item.className = 'lang-item';
+      item.type = 'button';
       item.setAttribute('role', 'option');
       item.setAttribute('data-lang', code);
       item.setAttribute('lang', code);
       item.setAttribute('aria-selected', 'false');
       item.innerHTML = '<span class="lang-flag">' + LANGUAGES[code].flag + '</span><span class="lang-name">' + LANGUAGES[code].nativeName + '</span>';
-      item.addEventListener('click', function() {
+      item.addEventListener('click', function(e) {
+        e.stopPropagation();
         setLang(code, true);
         dropdown.classList.remove('open');
+        dropdown.style.display = 'none';
         btn.setAttribute('aria-expanded', 'false');
       });
       dropdown.appendChild(item);
@@ -625,13 +635,26 @@
 
     btn.addEventListener('click', function(e) {
       e.stopPropagation();
-      var open = dropdown.classList.toggle('open');
-      btn.setAttribute('aria-expanded', String(open));
+      e.preventDefault();
+      var isOpen = dropdown.classList.toggle('open');
+      dropdown.style.display = isOpen ? 'block' : 'none';
+      btn.setAttribute('aria-expanded', String(isOpen));
     });
 
-    document.addEventListener('click', function() {
+    document.addEventListener('click', function(e) {
+      if (wrap.contains(e.target)) return;
       dropdown.classList.remove('open');
+      dropdown.style.display = 'none';
       btn.setAttribute('aria-expanded', 'false');
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        dropdown.classList.remove('open');
+        dropdown.style.display = 'none';
+        btn.setAttribute('aria-expanded', 'false');
+      }
     });
 
     wrap.appendChild(btn);

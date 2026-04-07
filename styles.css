@@ -3341,92 +3341,104 @@ html.is-iframe .pro-card {
   color: rgba(0,0,0,0.3);
 }
 /* ══════════════════════════════════════════════════════════
-   LANGUAGE SELECTOR + RTL SUPPORT — i18n
+   LANGUAGE SELECTOR — sits exactly where "EN" was, dropdown anchored
 ══════════════════════════════════════════════════════════ */
 .lang-selector {
   position: relative;
   display: inline-flex;
   align-items: center;
-  z-index: 1000;
+  z-index: 9999;
 }
 .lang-btn {
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.20);
-  border-radius: 6px;
-  color: rgba(255,255,255,.9);
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: 8px;
+  color: #fff;
   font-family: inherit;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .06em;
-  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  padding: 8px 14px;
   cursor: pointer;
-  transition: background .2s ease, border-color .2s ease;
+  transition: background .2s ease, border-color .2s ease, transform .15s ease;
   white-space: nowrap;
-  min-width: 36px;
-  text-align: center;
+  min-width: 44px;
+  min-height: 34px;
   line-height: 1;
   outline: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 .lang-btn:hover,
 .lang-btn:focus-visible {
-  background: rgba(255,255,255,.16);
-  border-color: rgba(255,255,255,.40);
+  background: rgba(255,255,255,.18);
+  border-color: rgba(255,255,255,.45);
 }
+.lang-btn:active { transform: scale(.96); }
 nav.nav-light .lang-btn {
   background: rgba(0,0,0,.06);
-  border-color: rgba(0,0,0,.16);
+  border-color: rgba(0,0,0,.18);
   color: #111;
 }
+
+/* DROPDOWN — absolute relative to .lang-selector, hidden by default */
 .lang-dropdown {
   display: none;
-  position: fixed;
-  top: 60px;
-  right: 20px;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  left: auto;
   background: #0d0d0d;
-  border: 1px solid rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.14);
   border-radius: 12px;
   padding: 6px;
-  min-width: 210px;
-  max-height: 380px;
+  min-width: 220px;
+  max-width: 260px;
+  max-height: 70vh;
   overflow-y: auto;
   z-index: 99999;
-  box-shadow: 0 20px 50px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.04);
+  box-shadow: 0 24px 60px rgba(0,0,0,.75), 0 0 0 1px rgba(255,255,255,.04);
   scrollbar-width: thin;
-  scrollbar-color: rgba(255,255,255,.12) transparent;
+  scrollbar-color: rgba(255,255,255,.18) transparent;
+  flex-direction: column;
+  gap: 0;
+  white-space: normal;
 }
-.lang-dropdown::-webkit-scrollbar { width: 4px; }
-.lang-dropdown::-webkit-scrollbar-thumb { background: rgba(255,255,255,.15); border-radius: 2px; }
+.lang-dropdown::-webkit-scrollbar { width: 6px; }
+.lang-dropdown::-webkit-scrollbar-thumb { background: rgba(255,255,255,.18); border-radius: 3px; }
 .lang-dropdown.open {
-  display: block;
-  animation: langDropIn .16s cubic-bezier(.4,0,.2,1);
+  display: flex;
+  animation: langDropIn .18s cubic-bezier(.4,0,.2,1);
 }
 @keyframes langDropIn {
-  from { opacity: 0; transform: translateY(-6px) scale(.98); }
+  from { opacity: 0; transform: translateY(-8px) scale(.96); }
   to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 .lang-item {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   width: 100%;
-  padding: 8px 12px;
+  padding: 10px 14px;
   background: none;
   border: none;
   border-radius: 8px;
-  color: rgba(255,255,255,.75);
+  color: rgba(255,255,255,.85);
   font-family: inherit;
   font-size: 13px;
   cursor: pointer;
   text-align: left;
   transition: background .12s ease, color .12s ease;
+  white-space: nowrap;
 }
 .lang-item:hover,
 .lang-item[aria-selected="true"] {
-  background: rgba(26,115,232,.22);
+  background: rgba(26,115,232,.28);
   color: #fff;
 }
 .lang-flag {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1;
   flex-shrink: 0;
   display: inline-block;
@@ -3458,7 +3470,7 @@ nav.nav-light .lang-btn {
 }
 [data-dir="rtl"] .lang-dropdown {
   right: auto;
-  left: 20px;
+  left: 0;
 }
 [data-dir="rtl"] .lang-item {
   text-align: right;
@@ -3467,18 +3479,43 @@ nav.nav-light .lang-btn {
 
 @media (max-width: 640px) {
   .lang-btn {
-    font-size: 10px;
-    padding: 4px 8px;
-    min-width: 30px;
+    font-size: 11px;
+    padding: 7px 12px;
+    min-width: 40px;
+    min-height: 32px;
   }
   .lang-dropdown {
-    right: 10px;
-    min-width: 185px;
-    max-height: 300px;
-    top: 54px;
+    min-width: 190px;
+    max-width: 240px;
+    max-height: 60vh;
+    right: 0;
   }
-  [data-dir="rtl"] .lang-dropdown {
-    right: auto;
-    left: 10px;
+}
+
+/* ══════════════════════════════════════════════════════════
+   HERO H1 — fit on every device (minimal, surgical fix)
+   Apenas garante que palavras longas (PT/DE/RU) não saem da caixa.
+   Não mexe em alinhamento, padding ou estrutura.
+══════════════════════════════════════════════════════════ */
+.hero-h1 {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+@media (max-width: 768px) {
+  .hero-h1 {
+    font-size: clamp(28px, 8vw, 44px);
+    line-height: 1.1;
+  }
+}
+@media (max-width: 480px) {
+  .hero-h1 {
+    font-size: clamp(24px, 8.5vw, 36px);
+  }
+}
+@media (max-width: 360px) {
+  .hero-h1 {
+    font-size: 22px;
   }
 }
