@@ -1053,10 +1053,25 @@ footer{background:#000;padding:clamp(40px,6vw,60px) clamp(16px,4vw,40px) clamp(1
 @media(max-width:900px){.footer-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:480px){.footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;align-items:center;text-align:center}.footer-bottom-links{justify-content:center}}
 
-/* ── REVEAL ── */
-.r{opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s ease}
-.r.on{opacity:1;transform:none}
+/* ── REVEAL ──
+   Progressive enhancement: content is VISIBLE by default.
+   JS adds .js-ready to <html>, then animates .r elements in.
+   If JS fails / is slow / iframe blocks it → content shows immediately.
+*/
+.r{opacity:1;transform:none;transition:opacity .65s ease,transform .65s ease}
+/* Only when JS is alive AND has marked the page ready do we hide .r for animation */
+html.js-ready .r:not(.on){opacity:0;transform:translateY(26px)}
+html.js-ready .r.on{opacity:1;transform:none}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* Respect users who prefer no animation */
+@media (prefers-reduced-motion: reduce) {
+  .r, html.js-ready .r:not(.on), html.js-ready .r.on {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
 
 /* ════════════════════════════════
    RESPONSIVE — TABLET (max 900px)
@@ -3493,29 +3508,49 @@ nav.nav-light .lang-btn {
 }
 
 /* ══════════════════════════════════════════════════════════
-   HERO H1 — fit on every device (minimal, surgical fix)
-   Apenas garante que palavras longas (PT/DE/RU) não saem da caixa.
-   Não mexe em alinhamento, padding ou estrutura.
+   HERO H1 — fit whole words on every device (NO hyphens)
+   Forces font to scale down so words like "independência" fit
+   without breaking. Never hyphenates.
 ══════════════════════════════════════════════════════════ */
 .hero-h1 {
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  hyphens: auto;
-  -webkit-hyphens: auto;
+  hyphens: none !important;
+  -webkit-hyphens: none !important;
+  word-break: keep-all;
+  overflow-wrap: normal;
 }
+.hero-h1 span {
+  hyphens: none !important;
+  -webkit-hyphens: none !important;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  white-space: normal;
+}
+/* Tablet — slightly smaller to fit longest words */
+@media (max-width: 1024px) {
+  .hero-h1 {
+    font-size: clamp(32px, 5.5vw, 60px);
+    line-height: 1.08;
+  }
+}
+/* Mobile — fit fully, never overflow, never break words */
 @media (max-width: 768px) {
   .hero-h1 {
-    font-size: clamp(28px, 8vw, 44px);
+    font-size: clamp(26px, 7vw, 42px);
     line-height: 1.1;
   }
 }
 @media (max-width: 480px) {
   .hero-h1 {
-    font-size: clamp(24px, 8.5vw, 36px);
+    font-size: clamp(22px, 7.5vw, 34px);
   }
 }
-@media (max-width: 360px) {
+@media (max-width: 380px) {
   .hero-h1 {
-    font-size: 22px;
+    font-size: clamp(20px, 7vw, 28px);
+  }
+}
+@media (max-width: 320px) {
+  .hero-h1 {
+    font-size: 19px;
   }
 }

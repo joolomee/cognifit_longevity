@@ -65,6 +65,34 @@
 <link rel="stylesheet" href="styles.css">
 <script src="i18n.js" defer></script>
 
+<!-- Reveal-on-load: mark JS ready immediately + animate .r elements as soon as DOM is parsed.
+     Content is visible by default (CSS), so this only ADDS the fade-in animation.
+     If this script fails for any reason, content shows instantly without animation. -->
+<script>
+  document.documentElement.classList.add('js-ready');
+  // Animate everything in as soon as DOM is parsed (no scroll listener, no IntersectionObserver)
+  function _cogniFitReveal(){
+    var els = document.querySelectorAll('.r');
+    for (var i = 0; i < els.length; i++) els[i].classList.add('on');
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', _cogniFitReveal);
+  } else {
+    _cogniFitReveal();
+  }
+  // Safety net: force visible after 1s even if something blocks DOMContentLoaded
+  setTimeout(_cogniFitReveal, 1000);
+</script>
+
+<!-- Google Analytics 4 (gtag.js) — REPLACE G-XXXXXXXXXX with your Measurement ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX', { 'anonymize_ip': true });
+</script>
+
 <!-- Schema.org JSON-LD — CogniFit Cognitive Longevity Landing Page -->
 <script type="application/ld+json">
 {
