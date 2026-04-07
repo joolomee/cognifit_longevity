@@ -6,7 +6,9 @@ Allow: /i18n.js
 Allow: /styles.css
 Allow: /main.js
 
-Sitemap: https://brain.cognifit.com/longevity/sitemap.xml
+# The /longevity page is included in the Wix-managed sitemap at brain.cognifit.com
+Sitemap: https://brain.cognifit.com/sitemap.xml
+Sitemap: https://brain.cognifit.com/pages-sitemap.xml
 
 # AI crawlers — welcome
 User-agent: GPTBot
