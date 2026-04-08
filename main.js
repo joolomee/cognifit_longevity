@@ -76,8 +76,8 @@ const heroBadge = document.querySelector('.hero-badge');
       '<p class="devices-sub" data-i18n="device.sub">Start on your computer, continue on your phone. Your progress syncs everywhere.</p>' +
       '<img src="devices_cognifit.png" alt="CogniFit on all devices" class="devices-img">' +
       '<div class="app-badges">' +
-        '<a href="https://itunes.apple.com/app/cognifit-brain-fitness/id528285610?mt=8" target="_blank" rel="noopener noreferrer" class="app-badge-img"><img src="appstore_badge_en.png" alt="Download on the App Store"></a>' +
-        '<a href="https://play.google.com/store/apps/details?id=com.cognifit.app&hl=en" target="_blank" rel="noopener noreferrer" class="app-badge-img"><img src="playstore_badge_en.png" alt="Get it on Google Play"></a>' +
+        '<a href="https://itunes.apple.com/app/cognifit-brain-fitness/id528285610?mt=8" target="_blank" rel="noopener noreferrer" class="app-badge-img"><img src="appstore_badge_en.png" alt="Download on the App Store" data-i18n-attr="alt:app.badge.ios"></a>' +
+        '<a href="https://play.google.com/store/apps/details?id=com.cognifit.app&hl=en" target="_blank" rel="noopener noreferrer" class="app-badge-img"><img src="playstore_badge_en.png" alt="Get it on Google Play" data-i18n-attr="alt:app.badge.android"></a>' +
       '</div>' +
     '</div>';
     iframeReviewSection.parentElement.insertBefore(ds, iframeReviewSection);
@@ -959,11 +959,12 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
       var _NAMES = getNames();
       var names = Array.from(disabled).map(function(s) { return _NAMES[s]; }).join(' & ');
       if (status) {
-        status.textContent = names + ' weakened \u2014 the entire cognitive network is compromised.';
+        var statusTpl = tx('sci.broken.status', '{names} weakened, the entire cognitive network is compromised.');
+        status.textContent = statusTpl.replace('{names}', names);
         status.classList.remove('hidden');
       }
       if (resetHint) {
-        resetHint.textContent = 'Tap disabled abilities to restore them';
+        resetHint.textContent = tx('sci.broken.hint', 'Tap disabled abilities to restore them');
         resetHint.classList.remove('hidden');
       }
       if (instructionEl) {

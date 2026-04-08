@@ -127,7 +127,10 @@ nav{
   -webkit-backdrop-filter:blur(28px) saturate(160%);
   border-bottom:1px solid rgba(255,255,255,.07);
   transition:background .4s ease;
+  overflow:visible;
 }
+/* Nav right container MUST allow absolute dropdown to overflow */
+.nav-r{overflow:visible !important;position:relative;}
 nav.hide{transform:none}
 .nav-links{display:flex;align-items:center;gap:clamp(14px,2.5vw,28px)}
 .nav-link{color:rgba(255,255,255,.7);font-size:clamp(11px,1.2vw,13px);font-weight:600;text-decoration:none;letter-spacing:.04em;transition:color .2s}
@@ -3406,10 +3409,11 @@ html.is-iframe .pro-card {
    LANGUAGE SELECTOR — sits exactly where "EN" was, dropdown anchored
 ══════════════════════════════════════════════════════════ */
 .lang-selector {
-  position: relative;
-  display: inline-flex;
+  position: relative !important;
+  display: inline-flex !important;
   align-items: center;
   z-index: 9999;
+  flex-shrink: 0;
 }
 .lang-btn {
   background: rgba(255,255,255,.10);
@@ -3444,13 +3448,15 @@ nav.nav-light .lang-btn {
   color: #111;
 }
 
-/* DROPDOWN — absolute relative to .lang-selector, hidden by default */
+/* DROPDOWN — absolute relative to .lang-selector, hidden by default.
+   Position is !important everywhere so no media query can flatten it into
+   the nav layout and push the navbar open. */
 .lang-dropdown {
-  display: none;
-  position: absolute;
-  top: calc(100% + 8px);
-  right: 0;
-  left: auto;
+  display: none !important;
+  position: absolute !important;
+  top: calc(100% + 8px) !important;
+  right: 0 !important;
+  left: auto !important;
   background: #0d0d0d;
   border: 1px solid rgba(255,255,255,.14);
   border-radius: 12px;
@@ -3466,11 +3472,12 @@ nav.nav-light .lang-btn {
   flex-direction: column;
   gap: 0;
   white-space: normal;
+  float: none !important;
 }
 .lang-dropdown::-webkit-scrollbar { width: 6px; }
 .lang-dropdown::-webkit-scrollbar-thumb { background: rgba(255,255,255,.18); border-radius: 3px; }
 .lang-dropdown.open {
-  display: flex;
+  display: flex !important;
   animation: langDropIn .18s cubic-bezier(.4,0,.2,1);
 }
 @keyframes langDropIn {
