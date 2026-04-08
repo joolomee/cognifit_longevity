@@ -1,33 +1,4 @@
-# robots.txt — brain.cognifit.com/longevity
 User-agent: *
 Allow: /
-Allow: /longevity
-Allow: /i18n.js
-Allow: /styles.css
-Allow: /main.js
 
-# The /longevity page is included in the Wix-managed sitemap at brain.cognifit.com
-Sitemap: https://brain.cognifit.com/sitemap.xml
-Sitemap: https://brain.cognifit.com/pages-sitemap.xml
-
-# AI crawlers — welcome
-User-agent: GPTBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: Applebot-Extended
-Allow: /
+Sitemap: https://cognifit-longevity.vercel.app/sitemap.xml
