@@ -72,8 +72,8 @@ const heroBadge = document.querySelector('.hero-badge');
     var ds = document.createElement('section');
     ds.className = 'devices-section';
     ds.innerHTML = '<div class="devices-container">' +
-      '<h2 class="devices-heading">Train on Any Device</h2>' +
-      '<p class="devices-sub">Start on your computer, continue on your phone. Your progress syncs everywhere.</p>' +
+      '<h2 class="devices-heading" data-i18n="device.h2">Train on Any Device</h2>' +
+      '<p class="devices-sub" data-i18n="device.sub">Start on your computer, continue on your phone. Your progress syncs everywhere.</p>' +
       '<img src="devices_cognifit.png" alt="CogniFit on all devices" class="devices-img">' +
       '<div class="app-badges">' +
         '<a href="https://itunes.apple.com/app/cognifit-brain-fitness/id528285610?mt=8" target="_blank" rel="noopener noreferrer" class="app-badge-img"><img src="appstore_badge_en.png" alt="Download on the App Store"></a>' +
@@ -81,6 +81,10 @@ const heroBadge = document.querySelector('.hero-badge');
       '</div>' +
     '</div>';
     iframeReviewSection.parentElement.insertBefore(ds, iframeReviewSection);
+    // Reapply translations now that the device section has been injected
+    if (window.CogniFitI18n && typeof window.CogniFitI18n.setLang === 'function') {
+      try { window.CogniFitI18n.setLang(window.CogniFitI18n.getLang(), false); } catch(e) {}
+    }
   }
 
   // Login button: open in new tab on mobile
@@ -120,24 +124,29 @@ const heroBadge = document.querySelector('.hero-badge');
     const nav = document.getElementById('nav');
     if (nav) nav.style.position = 'sticky';
 
-    // Scroll button: hidden until past hero
+    // Scroll button: hidden until hero is out of view
+    // Uses IntersectionObserver because inside Wix iframe the parent scrolls, not window
     const scrollBtn = document.querySelector('.scroll-top-btn');
     if (scrollBtn) {
-      scrollBtn.style.position = 'sticky';
       scrollBtn.style.opacity = '0';
       scrollBtn.style.pointerEvents = 'none';
       scrollBtn.style.transition = 'opacity .3s ease';
-      var heroIframe = document.querySelector('.hero');
-      window.addEventListener('scroll', function() {
-        var hb = heroIframe ? heroIframe.offsetTop + heroIframe.offsetHeight : 600;
-        if (window.scrollY > hb || document.documentElement.scrollTop > hb) {
-          scrollBtn.style.opacity = '1';
-          scrollBtn.style.pointerEvents = 'auto';
-        } else {
-          scrollBtn.style.opacity = '0';
-          scrollBtn.style.pointerEvents = 'none';
-        }
-      }, { passive: true });
+      var heroEl = document.querySelector('.hero');
+      if (heroEl && 'IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            // Show button once hero is no longer intersecting viewport (user scrolled past it)
+            if (!entry.isIntersecting) {
+              scrollBtn.style.opacity = '1';
+              scrollBtn.style.pointerEvents = 'auto';
+            } else {
+              scrollBtn.style.opacity = '0';
+              scrollBtn.style.pointerEvents = 'none';
+            }
+          });
+        }, { threshold: 0, rootMargin: '0px' });
+        io.observe(heroEl);
+      }
     }
 
     // Force all reveal animations
@@ -230,8 +239,8 @@ const heroBadge = document.querySelector('.hero-badge');
         var ds = document.createElement('section');
         ds.className = 'devices-section';
         ds.innerHTML = '<div class="devices-container">' +
-          '<h2 class="devices-heading">Train on Any Device</h2>' +
-          '<p class="devices-sub">Start on your computer, continue on your phone. Your progress syncs everywhere.</p>' +
+          '<h2 class="devices-heading" data-i18n="device.h2">Train on Any Device</h2>' +
+          '<p class="devices-sub" data-i18n="device.sub">Start on your computer, continue on your phone. Your progress syncs everywhere.</p>' +
           '<img src="devices_cognifit.png" alt="CogniFit on all devices" class="devices-img">' +
           '<div class="app-badges">' +
             '<a href="https://itunes.apple.com/app/cognifit-brain-fitness/id528285610?mt=8" target="_blank" rel="noopener noreferrer" class="app-badge-img"><img src="appstore_badge_en.png" alt="Download on the App Store"></a>' +
@@ -239,6 +248,10 @@ const heroBadge = document.querySelector('.hero-badge');
           '</div>' +
         '</div>';
         reviewSection.parentElement.insertBefore(ds, reviewSection);
+        // Reapply translations now that the device section has been injected
+        if (window.CogniFitI18n && typeof window.CogniFitI18n.setLang === 'function') {
+          try { window.CogniFitI18n.setLang(window.CogniFitI18n.getLang(), false); } catch(e) {}
+        }
       }
 
       // 8. Login button: open in new tab on mobile
@@ -272,24 +285,7 @@ const heroBadge = document.querySelector('.hero-badge');
 
       // 10. Athletes card: uses HTML SVG (no JS override)
 
-      // 11. Scroll-top button: only show after passing hero
-      var scrollTopBtn = document.querySelector('.scroll-top-btn');
-      if (scrollTopBtn) {
-        scrollTopBtn.style.opacity = '0';
-        scrollTopBtn.style.pointerEvents = 'none';
-        scrollTopBtn.style.transition = 'opacity .3s ease';
-        var heroEl = document.querySelector('.hero');
-        window.addEventListener('scroll', function() {
-          var heroBottom = heroEl ? heroEl.offsetTop + heroEl.offsetHeight : 600;
-          if (window.scrollY > heroBottom) {
-            scrollTopBtn.style.opacity = '1';
-            scrollTopBtn.style.pointerEvents = 'auto';
-          } else {
-            scrollTopBtn.style.opacity = '0';
-            scrollTopBtn.style.pointerEvents = 'none';
-          }
-        }, { passive: true });
-      }
+      // 11. Scroll-top button handled by IntersectionObserver above (works across all media queries inside Wix iframe)
 
       // CTA routing: desktop → assessments, mobile → app store
       applyCTARouting();
@@ -883,11 +879,22 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
   const resetHint = document.getElementById('sci-reset');
   if(!cards.length) return;
 
-  const NAMES = {
-    executive: 'Executive Function',
-    memory: 'Working Memory',
-    attention: 'Attention'
-  };
+  function tx(key, fallback) {
+    try {
+      var lang = (window.CFi18n && window.CFi18n.getLang && window.CFi18n.getLang()) || document.documentElement.lang || 'en';
+      if (window.T && window.T[lang] && window.T[lang][key]) return window.T[lang][key];
+      if (window.CFi18n && window.CFi18n.t) return window.CFi18n.t(key) || fallback;
+    } catch(e){}
+    return fallback;
+  }
+
+  function getNames() {
+    return {
+      executive: tx('sci.s1.t', 'Executive Function'),
+      memory: tx('sci.s2.t', 'Working Memory'),
+      attention: tx('sci.s3.t', 'Attention')
+    };
+  }
 
   const disabled = new Set();
   let autoResetTimer = null;
@@ -898,6 +905,7 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
   if (sciGrid) {
     instructionEl = document.createElement('p');
     instructionEl.className = 'sci-instruction';
+    instructionEl.setAttribute('data-i18n', 'sci.tap.idle');
     instructionEl.textContent = 'Tap any system to see what happens when it fails';
     instructionEl.style.cssText = 'text-align:center;font-size:clamp(12px,2vw,14px);color:rgba(0,0,0,0.5);margin-bottom:16px;font-weight:600;letter-spacing:0.03em;transition:all .3s ease;';
     sciGrid.parentNode.insertBefore(instructionEl, sciGrid);
@@ -918,7 +926,8 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
     if (status) status.classList.add('hidden');
     if (resetHint) resetHint.classList.add('hidden');
     if (instructionEl) {
-      instructionEl.textContent = 'Tap any system to see what happens when it fails';
+      instructionEl.setAttribute('data-i18n', 'sci.tap.idle');
+      instructionEl.textContent = tx('sci.tap.idle', 'Tap any system to see what happens when it fails');
       instructionEl.style.color = 'rgba(0,0,0,0.5)';
     }
     if (window.triadSetBroken) window.triadSetBroken(false);
@@ -947,7 +956,8 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
     });
 
     if (anyDisabled) {
-      var names = Array.from(disabled).map(function(s) { return NAMES[s]; }).join(' & ');
+      var _NAMES = getNames();
+      var names = Array.from(disabled).map(function(s) { return _NAMES[s]; }).join(' & ');
       if (status) {
         status.textContent = names + ' weakened \u2014 the entire cognitive network is compromised.';
         status.classList.remove('hidden');
@@ -957,7 +967,8 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
         resetHint.classList.remove('hidden');
       }
       if (instructionEl) {
-        instructionEl.textContent = 'Tap the damaged system to restore balance';
+        instructionEl.setAttribute('data-i18n', 'sci.tap.hint');
+        instructionEl.textContent = tx('sci.tap.hint', 'Tap the damaged system to restore balance');
         instructionEl.style.color = 'rgba(239,68,68,0.7)';
       }
       if (window.triadSetBroken) window.triadSetBroken(true);
@@ -1004,12 +1015,9 @@ window.triadBreakFrom = function(sysName) {
   const svg = document.getElementById('triad-svg');
   if (!svg) return;
   if (_triadBreakTimer) { clearTimeout(_triadBreakTimer); _triadBreakTimer = null; }
+  // Immediate: turn all 3 circles + edges red the moment user clicks
   svg.setAttribute('data-breaking', _SYS_NODE[sysName] || '0');
-  _triadBreakTimer = setTimeout(() => {
-    svg.classList.add('triad-broken');
-    svg.removeAttribute('data-breaking');
-    _triadBreakTimer = null;
-  }, 1400);
+  svg.classList.add('triad-broken');
 };
 window.triadSetBroken = function(state) {
   const svg = document.getElementById('triad-svg');
@@ -1039,15 +1047,7 @@ document.querySelectorAll('.faq-q').forEach(function(btn) {
   });
 });
 
-// Auto-open first FAQ item to reduce bounce rate (show value immediately)
-(function() {
-  var firstFaq = document.querySelector('.faq-item');
-  if (firstFaq) {
-    firstFaq.classList.add('open');
-    var firstBtn = firstFaq.querySelector('.faq-q');
-    if (firstBtn) firstBtn.setAttribute('aria-expanded', 'true');
-  }
-})();
+// FAQ items start closed by default; users click to expand
 
 /* ── READING PROGRESS BAR ── */
 (function() {
