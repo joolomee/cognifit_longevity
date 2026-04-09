@@ -75,9 +75,9 @@ const heroBadge = document.querySelector('.hero-badge');
       '<h2 class="devices-heading" data-i18n="device.h2">Train on Any Device</h2>' +
       '<p class="devices-sub" data-i18n="device.sub">Start on your computer, continue on your phone. Your progress syncs everywhere.</p>' +
       '<img src="devices_cognifit.png" alt="CogniFit on all devices" class="devices-img">' +
-      '<div class="app-badges">' +
-        '<a href="https://itunes.apple.com/app/cognifit-brain-fitness/id528285610?mt=8" target="_blank" rel="noopener noreferrer" class="app-badge-img"><img src="appstore_badge_en.png" alt="Download on the App Store" data-i18n-attr="alt:app.badge.ios"></a>' +
-        '<a href="https://play.google.com/store/apps/details?id=com.cognifit.app&hl=en" target="_blank" rel="noopener noreferrer" class="app-badge-img"><img src="playstore_badge_en.png" alt="Get it on Google Play" data-i18n-attr="alt:app.badge.android"></a>' +
+      '<div class="store-badges">' +
+        '<a href="https://apps.apple.com/app/cognifit-brain-training/id544218985" target="_blank" rel="noopener noreferrer" class="store-btn store-btn-apple" aria-label="Download on the App Store"><svg class="store-icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><span class="store-txt"><span class="store-line1" data-i18n="store.apple.line1">Download on the</span><span class="store-line2">App Store</span></span></a>' +
+        '<a href="https://play.google.com/store/apps/details?id=com.cognifit.app" target="_blank" rel="noopener noreferrer" class="store-btn store-btn-google" aria-label="Get it on Google Play"><svg class="store-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="#EA4335" d="M3.6 2.3c-.3.3-.5.8-.5 1.4v16.6c0 .6.2 1.1.5 1.4l10.8-9.7L3.6 2.3z"/><path fill="#34A853" d="M14.4 12l3.7-3.3-11.8-6.8c-.5-.3-1-.3-1.4-.1L14.4 12z"/><path fill="#FBBC04" d="M14.4 12L4.9 21.2c.4.2.9.2 1.4-.1l11.8-6.8L14.4 12z"/><path fill="#4285F4" d="M18.1 8.7L14.4 12l3.7 3.3 4-2.3c1-.6 1-2 0-2.6l-4-1.7z"/></svg><span class="store-txt"><span class="store-line1" data-i18n="store.google.line1">Get it on</span><span class="store-line2">Google Play</span></span></a>' +
       '</div>' +
     '</div>';
     iframeReviewSection.parentElement.insertBefore(ds, iframeReviewSection);
@@ -120,9 +120,9 @@ const heroBadge = document.querySelector('.hero-badge');
   });
 
 
-    // Navbar: sticky instead of fixed (fixed breaks in iframes)
+    // Navbar: fixed (requested by QA). Leave CSS position:fixed in place.
     const nav = document.getElementById('nav');
-    if (nav) nav.style.position = 'sticky';
+    if (nav) nav.style.position = 'fixed';
 
     // Scroll button: hidden until hero is out of view
     // Uses IntersectionObserver because inside Wix iframe the parent scrolls, not window
@@ -192,6 +192,22 @@ const heroBadge = document.querySelector('.hero-badge');
       }).observe(document.body);
     }
 
+    // ── SMOOTH SCROLL for anchor links inside Wix iframe ──
+    // CSS scroll-behavior:smooth doesn't work reliably in iframes,
+    // so we intercept anchor clicks and scroll programmatically.
+    document.addEventListener('click', function(e) {
+      var link = e.target.closest('a[href^="#"]');
+      if (!link) return;
+      var id = link.getAttribute('href').slice(1);
+      if (!id) return;
+      var target = document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Re-send height after scroll settles
+      setTimeout(sendHeight, 600);
+    });
+
     // CTA routing: desktop → assessments, mobile → app store
     applyCTARouting();
 
@@ -242,9 +258,9 @@ const heroBadge = document.querySelector('.hero-badge');
           '<h2 class="devices-heading" data-i18n="device.h2">Train on Any Device</h2>' +
           '<p class="devices-sub" data-i18n="device.sub">Start on your computer, continue on your phone. Your progress syncs everywhere.</p>' +
           '<img src="devices_cognifit.png" alt="CogniFit on all devices" class="devices-img">' +
-          '<div class="app-badges">' +
-            '<a href="https://itunes.apple.com/app/cognifit-brain-fitness/id528285610?mt=8" target="_blank" rel="noopener noreferrer" class="app-badge-img"><img src="appstore_badge_en.png" alt="Download on the App Store"></a>' +
-            '<a href="https://play.google.com/store/apps/details?id=com.cognifit.app&hl=en" target="_blank" rel="noopener noreferrer" class="app-badge-img"><img src="playstore_badge_en.png" alt="Get it on Google Play"></a>' +
+          '<div class="store-badges">' +
+            '<a href="https://apps.apple.com/app/cognifit-brain-training/id544218985" target="_blank" rel="noopener noreferrer" class="store-btn store-btn-apple" aria-label="Download on the App Store"><svg class="store-icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><span class="store-txt"><span class="store-line1" data-i18n="store.apple.line1">Download on the</span><span class="store-line2">App Store</span></span></a>' +
+            '<a href="https://play.google.com/store/apps/details?id=com.cognifit.app" target="_blank" rel="noopener noreferrer" class="store-btn store-btn-google" aria-label="Get it on Google Play"><svg class="store-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="#EA4335" d="M3.6 2.3c-.3.3-.5.8-.5 1.4v16.6c0 .6.2 1.1.5 1.4l10.8-9.7L3.6 2.3z"/><path fill="#34A853" d="M14.4 12l3.7-3.3-11.8-6.8c-.5-.3-1-.3-1.4-.1L14.4 12z"/><path fill="#FBBC04" d="M14.4 12L4.9 21.2c.4.2.9.2 1.4-.1l11.8-6.8L14.4 12z"/><path fill="#4285F4" d="M18.1 8.7L14.4 12l3.7 3.3 4-2.3c1-.6 1-2 0-2.6l-4-1.7z"/></svg><span class="store-txt"><span class="store-line1" data-i18n="store.google.line1">Get it on</span><span class="store-line2">Google Play</span></span></a>' +
           '</div>' +
         '</div>';
         reviewSection.parentElement.insertBefore(ds, reviewSection);
@@ -881,9 +897,9 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
 
   function tx(key, fallback) {
     try {
-      var lang = (window.CFi18n && window.CFi18n.getLang && window.CFi18n.getLang()) || document.documentElement.lang || 'en';
+      var lang = (window.CogniFitI18n && window.CogniFitI18n.getLang && window.CogniFitI18n.getLang()) || document.documentElement.lang || 'en';
       if (window.T && window.T[lang] && window.T[lang][key]) return window.T[lang][key];
-      if (window.CFi18n && window.CFi18n.t) return window.CFi18n.t(key) || fallback;
+      if (window.T && window.T.en && window.T.en[key]) return window.T.en[key];
     } catch(e){}
     return fallback;
   }
@@ -1087,4 +1103,211 @@ document.querySelectorAll('.faq-q').forEach(function(btn) {
   }
   window.addEventListener('scroll', updateStickyCta, { passive: true });
   updateStickyCta();
+})();
+
+/* ════════════════════════════════════════════════════════
+   QA FIX BLOCK — iPad Pro 13" pass
+   (added April 2026)
+   - Risk-card click/tap to reveal description on touch
+   - Sci broken state: re-render on langChange + use fresh i18n
+   - Nav kept fixed
+   - App Store + Google Play localized buttons in closing section
+   ════════════════════════════════════════════════════════ */
+(function(){
+  'use strict';
+
+  /* ---- RISK CARDS: click/tap to toggle description on touch devices ---- */
+  function initRiskCards() {
+    var cards = document.querySelectorAll('.risk-card');
+    if (!cards.length) return;
+    cards.forEach(function(card){
+      card.style.cursor = 'pointer';
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('role', 'button');
+      var toggle = function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        var isOpen = card.classList.toggle('rc-open');
+        // Close siblings
+        if (isOpen) {
+          cards.forEach(function(other){
+            if (other !== card) other.classList.remove('rc-open');
+          });
+        }
+      };
+      card.addEventListener('click', toggle);
+      card.addEventListener('touchend', function(e){
+        // Prevent ghost click
+        toggle(e);
+      }, { passive: false });
+      card.addEventListener('keydown', function(e){
+        if (e.key === 'Enter' || e.key === ' ') toggle(e);
+      });
+    });
+    // Click outside to close
+    document.addEventListener('click', function(e){
+      if (!e.target.closest('.risk-card')) {
+        cards.forEach(function(c){ c.classList.remove('rc-open'); });
+      }
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initRiskCards);
+  } else {
+    initRiskCards();
+  }
+
+  /* ---- SCI BROKEN STATE: re-render on langChange ---- */
+  document.addEventListener('langChange', function(){
+    // Force the sci-status / sci-reset / sci-instruction text to refresh
+    var status = document.getElementById('sci-status');
+    var resetHint = document.getElementById('sci-reset');
+    var instruction = document.querySelector('.sci-instruction');
+    var lang = (window.CogniFitI18n && window.CogniFitI18n.getLang && window.CogniFitI18n.getLang()) || 'en';
+    var T = window.T || {};
+    var dict = (T[lang] || T.en || {});
+    // If sci-status is currently visible (broken state), re-render with translated template
+    if (status && !status.classList.contains('hidden')) {
+      var brokenCards = document.querySelectorAll('.sci-card.sci-broken');
+      var nameMap = {
+        executive: dict['sci.s1.t'] || 'Executive Function',
+        memory: dict['sci.s2.t'] || 'Working Memory',
+        attention: dict['sci.s3.t'] || 'Attention'
+      };
+      var names = [];
+      brokenCards.forEach(function(c){
+        var sys = c.dataset.system;
+        if (nameMap[sys]) names.push(nameMap[sys]);
+      });
+      var tpl = dict['sci.broken.status'] || '{names} weakened, the entire cognitive network is compromised.';
+      status.textContent = tpl.replace('{names}', names.join(' & '));
+    }
+    if (resetHint && !resetHint.classList.contains('hidden')) {
+      resetHint.textContent = dict['sci.broken.hint'] || 'Tap disabled abilities to restore them';
+    }
+    if (instruction) {
+      var key = instruction.getAttribute('data-i18n') || 'sci.tap.idle';
+      if (dict[key]) instruction.textContent = dict[key];
+    }
+  });
+
+  /* ---- VAL MARQUEE: rebuild with individual logo PNGs ---- */
+  function initValMarquee() {
+    var wrap = document.querySelector('.val-marquee-wrap');
+    if (!wrap) return;
+    var old = wrap.querySelector('.val-marquee');
+    if (!old) return;
+    // Skip if already rebuilt
+    if (wrap.querySelector('.val-marquee-track')) return;
+
+    var logos = [
+      { src: 'neurogenesis.png', alt: 'Neurogenesis' },
+      { src: 'stanford.png', alt: 'Stanford' },
+      { src: 'unifesp.png', alt: 'UNIFESP' },
+      { src: 'pontificia.png', alt: 'Pontificia' },
+      { src: 'ucatolica.png', alt: 'Universidad Catolica' },
+      { src: 'powerbrainrx.png', alt: 'PowerBrainRx' },
+      { src: 'brain-rehab.png', alt: 'Brain Rehab' },
+      { src: 'neuro-performance.png', alt: 'Neuro Performance' },
+      { src: 'neuro-visio.png', alt: 'Neuro Visio' },
+      { src: 'rehabilitation-specialists.png', alt: 'Rehabilitation Specialists' },
+      { src: 'rizvi-brain.png', alt: 'Rizvi Brain' },
+      { src: 'synapse.png', alt: 'Synapse' },
+      { src: 'revive.png', alt: 'Revive' },
+      { src: 'evexia.png', alt: 'Evexia' },
+      { src: 'dementia-connection.png', alt: 'Dementia Connection' },
+      { src: 'advanced-optimal.png', alt: 'Advanced Optimal' },
+      { src: 'optimumedge.png', alt: 'Optimum Edge' },
+      { src: 'compass.png', alt: 'Compass' },
+      { src: 'envision.png', alt: 'Envision' },
+      { src: 'enable.png', alt: 'Enable' },
+      { src: 'fep.png', alt: 'FEP' },
+      { src: 'matrix.png', alt: 'Matrix' },
+      { src: 'opticards.png', alt: 'Opticards' },
+      { src: 'paloma.png', alt: 'Paloma' },
+      { src: 'shining.png', alt: 'Shining' },
+      { src: 'sofos.png', alt: 'Sofos' },
+      { src: 'vectorium.png', alt: 'Vectorium' },
+      { src: 'vb.png', alt: 'VB' },
+      { src: 'win.png', alt: 'Win' },
+      { src: 'youtopia.png', alt: 'Youtopia' },
+      { src: 'psycholoog-be.png', alt: 'Psycholoog BE' },
+      { src: 'psy-counsellors.png', alt: 'Psy Counsellors' },
+      { src: 'mj-surgical.png', alt: 'MJ Surgical' },
+      { src: 'adn-rhone.png', alt: 'ADN Rhone' },
+      { src: 'david-shoup.png', alt: 'David Shoup' },
+      { src: 'francesca-sinteri.png', alt: 'Francesca Sinteri' },
+      { src: 'jaime-orbacho.png', alt: 'Jaime Orbacho' },
+      { src: 'nerea-lopez.png', alt: 'Nerea Lopez' }
+    ];
+
+    var track = document.createElement('div');
+    track.className = 'val-marquee-track';
+    // Duplicate set for infinite loop
+    [0,1].forEach(function(){
+      logos.forEach(function(l){
+        var img = document.createElement('img');
+        img.src = l.src;
+        img.alt = l.alt;
+        img.className = 'val-logo';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        track.appendChild(img);
+      });
+    });
+    old.remove();
+    wrap.appendChild(track);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initValMarquee);
+  } else {
+    initValMarquee();
+  }
+
+  /* ---- APP STORE + GOOGLE PLAY BUTTONS in closing section ---- */
+  function initStoreBadges() {
+    var closing = document.querySelector('section.closing');
+    if (!closing || closing.querySelector('.store-badges')) return;
+    var wrap = document.createElement('div');
+    wrap.className = 'store-badges';
+    wrap.innerHTML =
+      '<a href="https://apps.apple.com/app/cognifit-brain-training/id544218985" target="_blank" rel="noopener noreferrer" class="store-btn store-btn-apple" aria-label="Download on the App Store">' +
+        '<svg class="store-icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>' +
+        '<span class="store-txt"><span class="store-line1" data-i18n="store.apple.line1">Download on the</span><span class="store-line2">App Store</span></span>' +
+      '</a>' +
+      '<a href="https://play.google.com/store/apps/details?id=com.cognifit.app" target="_blank" rel="noopener noreferrer" class="store-btn store-btn-google" aria-label="Get it on Google Play">' +
+        '<svg class="store-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="#EA4335" d="M3.6 2.3c-.3.3-.5.8-.5 1.4v16.6c0 .6.2 1.1.5 1.4l10.8-9.7L3.6 2.3z"/><path fill="#34A853" d="M14.4 12l3.7-3.3-11.8-6.8c-.5-.3-1-.3-1.4-.1L14.4 12z"/><path fill="#FBBC04" d="M14.4 12L4.9 21.2c.4.2.9.2 1.4-.1l11.8-6.8L14.4 12z"/><path fill="#4285F4" d="M18.1 8.7L14.4 12l3.7 3.3 4-2.3c1-.6 1-2 0-2.6l-4-1.7z"/></svg>' +
+        '<span class="store-txt"><span class="store-line1" data-i18n="store.google.line1">Get it on</span><span class="store-line2">Google Play</span></span>' +
+      '</a>';
+    var btnCenter = closing.querySelector('.btn-center');
+    if (btnCenter) btnCenter.after(wrap);
+    else closing.appendChild(wrap);
+    // Re-apply translations if i18n available
+    if (window.CogniFitI18n && typeof window.CogniFitI18n.setLang === 'function') {
+      try { window.CogniFitI18n.setLang(window.CogniFitI18n.getLang(), false); } catch(e){}
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initStoreBadges);
+  } else {
+    initStoreBadges();
+  }
+
+  /* ---- SCROLL-TOP BUTTON: force bottom-right position (override older CSS) ---- */
+  function initScrollTop() {
+    var btn = document.querySelector('.scroll-top-btn');
+    if (!btn) return;
+    btn.style.setProperty('left', 'auto', 'important');
+    btn.style.setProperty('right', '24px', 'important');
+    btn.style.setProperty('bottom', '24px', 'important');
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch(_) { window.scrollTo(0,0); }
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScrollTop);
+  } else {
+    initScrollTop();
+  }
 })();

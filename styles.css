@@ -3608,3 +3608,287 @@ nav.nav-light .lang-btn {
     font-size: 19px;
   }
 }
+
+/* ════════════════════════════════════════════════════════════════
+   QA FIX BLOCK — iPad Pro 13" pass (April 2026)
+   This block is loaded LAST and overrides earlier declarations.
+   Covers: hero viewport fit, users-worldwide inline row,
+           discover center, risk-card tap reveal, outcome inline,
+           pro-metrics alignment, clinics marquee PNG logos,
+           scroll-top bottom-right, app-store badges.
+   ════════════════════════════════════════════════════════════════ */
+
+/* ---- NAV: keep fixed ---- */
+nav#nav { position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; z-index: 1000 !important; }
+/* Content offset so fixed nav doesn't cover anything */
+body { padding-top: 0; }
+html.is-iframe main { padding-top: 0; }
+
+/* ---- HERO: fit within viewport on every device ---- */
+.hero {
+  height: 100svh !important;
+  min-height: 100svh !important;
+  max-height: 100svh !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  padding-top: clamp(60px, 8svh, 90px) !important;
+  padding-bottom: 0 !important;
+}
+.hero-content {
+  flex: 1 1 auto !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: clamp(4px, 1svh, 24px) !important;
+  padding-bottom: clamp(40px, 6svh, 80px) !important;
+  gap: clamp(14px, 3svh, 44px) !important;
+  overflow: hidden !important;
+  min-height: 0 !important;
+}
+.hero-scroll-hint {
+  position: absolute !important;
+  bottom: clamp(6px, 1.2svh, 18px) !important;
+  left: 0 !important;
+  right: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  flex-shrink: 0 !important;
+}
+/* Clamp font sizes down so German / Russian still fit */
+.hero-h1 { font-size: clamp(26px, min(4.4vw, 5.6svh), 68px) !important; line-height: 1.04 !important; margin-bottom: clamp(8px, 1.5svh, 18px) !important; }
+.hero-sub { font-size: clamp(13px, min(1.6vw, 2svh), 19px) !important; line-height: 1.55 !important; margin-bottom: clamp(10px, 1.8svh, 22px) !important; }
+.hero-badge { margin-bottom: clamp(8px, 1.4svh, 18px) !important; }
+.hero-rating { padding: clamp(8px, 1.4svh, 14px) clamp(12px, 2vw, 18px) !important; margin-top: clamp(10px, 1.6svh, 22px) !important; }
+.hero-read-time { margin-bottom: clamp(6px, 1svh, 14px) !important; }
+.guarantee-row { margin-top: clamp(6px, 1svh, 12px) !important; margin-bottom: clamp(6px, 1svh, 14px) !important; padding-bottom: 0 !important; }
+
+/* Landscape mobile compression */
+@media (max-height: 600px) and (orientation: landscape) {
+  .hero { padding-top: 52px !important; }
+  .hero-content { padding-top: 4px !important; padding-bottom: 32px !important; gap: 8px !important; }
+  .hero-h1 { font-size: clamp(18px, 3.4vw, 28px) !important; }
+  .hero-sub { font-size: 12px !important; margin-bottom: 6px !important; }
+  .hero-badge { font-size: 8px !important; padding: 3px 8px !important; margin-bottom: 4px !important; }
+  .hero-phones, .hero-read-time { display: none !important; }
+}
+
+/* Mobile: hero can grow (keeps hero-phones visible) — skip 100svh lock  */
+@media (max-width: 768px) {
+  .hero {
+    height: auto !important;
+    max-height: none !important;
+    min-height: 100svh !important;
+    overflow: visible !important;
+  }
+  .hero-content {
+    overflow: visible !important;
+  }
+}
+
+/* ---- HERO USERS-WORLDWIDE row: number + label on ONE line ---- */
+.hero-rating .rating-row1 {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: clamp(8px, 2vw, 16px) !important;
+  width: 100% !important;
+  text-align: left !important;
+}
+.hero-rating .rating-left {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 6px !important;
+  flex-shrink: 0 !important;
+}
+.hero-rating .rating-right {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: baseline !important;
+  gap: 6px !important;
+  white-space: nowrap !important;
+  flex-wrap: nowrap !important;
+}
+.hero-rating .rating-users {
+  display: inline !important;
+  font-size: clamp(10px, 1vw, 12px) !important;
+  color: rgba(255,255,255,.62) !important;
+  letter-spacing: .02em !important;
+  white-space: nowrap !important;
+  order: 1 !important;
+}
+.hero-rating .rating-number {
+  display: inline !important;
+  font-size: clamp(14px, 1.4vw, 18px) !important;
+  font-weight: 900 !important;
+  color: #4DA3FF !important;
+  line-height: 1 !important;
+  order: 2 !important;
+  white-space: nowrap !important;
+}
+@media (max-width: 640px) {
+  .hero-rating .rating-row1 { flex-direction: column !important; align-items: flex-start !important; justify-content: flex-start !important; gap: 8px !important; }
+  .hero-rating .rating-right { order: 2 !important; }
+}
+
+/* ---- DISCOVER SECTION: center lead text ---- */
+section.s-white .wrap.tc .lead-drk,
+section.s-white .wrap.tc p.lead-drk {
+  text-align: center !important;
+  margin-inline: auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ---- RISK CARDS: tap reveal on touch ---- */
+.risk-card { cursor: pointer !important; -webkit-tap-highlight-color: transparent; pointer-events: auto !important; }
+.risk-card * { pointer-events: none; }
+.risk-card.rc-open .rc-front { opacity: 0 !important; }
+.risk-card.rc-open .rc-desc { opacity: 1 !important; pointer-events: auto !important; }
+.risk-card.rc-open {
+  border-color: rgba(47,140,255,.45) !important;
+  background: linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.04)) !important;
+}
+/* On touch devices, make rc-hint pulse to invite tap */
+@media (hover: none) {
+  .risk-card .rc-hint { opacity: .55 !important; animation: rc-pulse 1.8s ease-in-out infinite; }
+}
+@keyframes rc-pulse { 0%,100% { opacity: .35; transform: translateX(0); } 50% { opacity: .85; transform: translateX(3px); } }
+
+/* ---- OUTCOMES: hi-close italic line with inline bold blue ---- */
+.hi-close {
+  display: block !important;
+  text-wrap: pretty !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+}
+.hi-close br { display: none !important; }
+.hi-close strong {
+  display: inline !important;
+  white-space: normal !important;
+}
+
+/* ---- PRO METRICS: consistent vertical baseline so numbers align ---- */
+.pro-card .pro-metrics {
+  align-items: end !important;
+  min-height: 52px !important;
+}
+.pro-card .pro-metric {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  min-height: 48px !important;
+}
+.pro-card .pm-num {
+  line-height: 1 !important;
+  min-height: 18px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+.pro-card .pm-lbl {
+  line-height: 1.25 !important;
+  min-height: 24px !important;
+  display: block !important;
+}
+
+/* ---- CLINICS MARQUEE: individual PNG logos ---- */
+.val-marquee-wrap {
+  overflow: hidden !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  margin-left: calc(-50vw + 50%) !important;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+}
+.val-marquee-track {
+  display: flex !important;
+  align-items: center !important;
+  gap: 56px !important;
+  width: max-content !important;
+  animation: val-scroll 90s linear infinite;
+}
+.val-marquee-track:hover { animation-play-state: paused; }
+.val-marquee-track .val-logo {
+  height: 64px !important;
+  width: auto !important;
+  max-width: 180px !important;
+  object-fit: contain !important;
+  flex-shrink: 0 !important;
+  filter: grayscale(100%) brightness(.95);
+  opacity: .78;
+  transition: opacity .3s ease, filter .3s ease;
+}
+.val-marquee-track .val-logo:hover { opacity: 1; filter: grayscale(0%); }
+@media (max-width: 900px) {
+  .val-marquee-track { gap: 40px !important; }
+  .val-marquee-track .val-logo { height: 48px !important; max-width: 140px !important; }
+}
+@media (max-width: 640px) {
+  .val-marquee-track { gap: 28px !important; }
+  .val-marquee-track .val-logo { height: 40px !important; max-width: 110px !important; }
+}
+@keyframes val-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ---- APP STORE + GOOGLE PLAY BUTTONS (localized, inside closing) ---- */
+.store-badges {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 14px !important;
+  flex-wrap: wrap !important;
+  margin: clamp(24px, 4vw, 40px) auto 0 !important;
+}
+.store-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  background: #000 !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,.15) !important;
+  border-radius: 12px !important;
+  padding: 10px 20px !important;
+  min-width: 180px !important;
+  min-height: 56px !important;
+  text-decoration: none !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  transition: transform .2s ease, box-shadow .2s ease !important;
+  box-shadow: 0 4px 18px rgba(0,0,0,.35) !important;
+}
+.store-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.45) !important; }
+.store-btn .store-icon { width: 28px; height: 28px; flex-shrink: 0; }
+.store-btn .store-txt { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.1; }
+.store-btn .store-line1 { font-size: 10px !important; font-weight: 500 !important; letter-spacing: .02em !important; opacity: .85; text-transform: none !important; }
+.store-btn .store-line2 { font-size: 17px !important; font-weight: 700 !important; letter-spacing: -.01em !important; margin-top: 2px; }
+.store-btn-apple .store-icon { color: #fff; }
+.closing .store-badges { margin-top: clamp(24px, 4vw, 40px) !important; }
+
+/* Closing section light-vs-dark awareness */
+.closing .store-btn { background: #000 !important; color: #fff !important; }
+
+/* ---- SCROLL-TOP BUTTON: bottom-right ---- */
+.scroll-top-btn {
+  position: fixed !important;
+  bottom: 24px !important;
+  right: 24px !important;
+  left: auto !important;
+  top: auto !important;
+  z-index: 9999 !important;
+}
+@media (max-width: 640px) {
+  .scroll-top-btn { bottom: 16px !important; right: 16px !important; }
+}
+
+/* ---- DESKTOP / iPad Pro 13" (1366) specific hero fit ---- */
+@media (min-width: 1024px) and (max-width: 1440px) {
+  .hero { padding-top: clamp(64px, 7svh, 86px) !important; }
+  .hero-h1 { font-size: clamp(34px, 4.2vw, 58px) !important; }
+  .hero-sub { font-size: clamp(14px, 1.4vw, 18px) !important; }
+  .hero-rating { max-width: 520px !important; }
+}
+
