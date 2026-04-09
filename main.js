@@ -161,39 +161,39 @@ const heroBadge = document.querySelector('.hero-badge');
       sendHeight();
     }, 0);
 
-    // Robust height reporting — send to Wix parent for auto-resize
+    // ── HEIGHT REPORTING to Wix parent for auto-resize ──
+    // Must match the Velo code: data.type === 'setHeight' && data.height
     function sendHeight() {
+      // Force layout recalc
+      document.body.offsetHeight;
       var h = Math.max(
         document.documentElement.scrollHeight,
         document.body.scrollHeight,
         document.documentElement.offsetHeight,
         document.body.offsetHeight
       );
-      // Wix HtmlComponent listens for this exact format
-      window.parent.postMessage({ type: 'setHeight', height: h }, '*');
-      // Fallback formats
-      window.parent.postMessage(JSON.stringify({ type: 'setHeight', h: h }), '*');
-      window.parent.postMessage(JSON.stringify({ height: h }), '*');
+      var msg = { type: 'setHeight', height: h };
+      // Send as object (Wix HtmlComponent.onMessage receives event.data directly)
+      try { window.parent.postMessage(msg, '*'); } catch(e){}
+      // Also send stringified (some Wix versions need this)
+      try { window.parent.postMessage(JSON.stringify(msg), '*'); } catch(e){}
     }
 
-    // Send height aggressively — Wix sometimes misses early messages
+    // Send repeatedly until Wix catches it
     sendHeight();
     window.addEventListener('load', function() {
       sendHeight();
-      setTimeout(sendHeight, 300);
-      setTimeout(sendHeight, 800);
-      setTimeout(sendHeight, 1500);
-      setTimeout(sendHeight, 3000);
-      setTimeout(sendHeight, 6000);
+      setTimeout(sendHeight, 100);
+      setTimeout(sendHeight, 500);
+      setTimeout(sendHeight, 1000);
+      setTimeout(sendHeight, 2000);
+      setTimeout(sendHeight, 4000);
+      setTimeout(sendHeight, 8000);
     });
-
-    // Keep iframe height updated when content changes
+    // Re-send on any content change
     if (typeof ResizeObserver !== 'undefined') {
-      new ResizeObserver(function() {
-        sendHeight();
-      }).observe(document.body);
+      new ResizeObserver(sendHeight).observe(document.body);
     }
-    // Also on resize (orientation change, etc.)
     window.addEventListener('resize', sendHeight);
 
     // ── SMOOTH SCROLL for anchor links inside Wix iframe ──
