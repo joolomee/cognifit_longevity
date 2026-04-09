@@ -16,8 +16,11 @@ function applyCTARouting() {
 
   var selectors = '.btn-primary, .btn-secondary, .btn-login, .btn-white, .pro-cta, .sticky-cta-btn';
   document.querySelectorAll(selectors).forEach(function(btn) {
-    if (!btn.classList.contains('pro-cta')) {
+    if (!btn.classList.contains('pro-cta') && !btn.classList.contains('btn-login')) {
       btn.setAttribute('href', targetURL);
+    }
+    if (btn.classList.contains('btn-login')) {
+      btn.setAttribute('href', 'https://www.cognifit.com/login');
     }
     btn.setAttribute('target', linkTarget);
     btn.setAttribute('rel', 'noopener noreferrer');
@@ -926,7 +929,7 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
     instructionEl = document.createElement('p');
     instructionEl.className = 'sci-instruction';
     instructionEl.setAttribute('data-i18n', 'sci.tap.idle');
-    instructionEl.textContent = 'Tap any system to see what happens when it fails';
+    instructionEl.textContent = tx('sci.tap.idle', 'Tap any system to see what happens when it fails');
     instructionEl.style.cssText = 'text-align:center;font-size:clamp(12px,2vw,14px);color:rgba(0,0,0,0.5);margin-bottom:16px;font-weight:600;letter-spacing:0.03em;transition:all .3s ease;';
     sciGrid.parentNode.insertBefore(instructionEl, sciGrid);
   }
