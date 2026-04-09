@@ -161,7 +161,7 @@ const heroBadge = document.querySelector('.hero-badge');
       sendHeight();
     }, 0);
 
-    // Robust height reporting — send multiple times to ensure Wix catches it
+    // Robust height reporting — send to Wix parent for auto-resize
     function sendHeight() {
       var h = Math.max(
         document.documentElement.scrollHeight,
@@ -169,20 +169,22 @@ const heroBadge = document.querySelector('.hero-badge');
         document.documentElement.offsetHeight,
         document.body.offsetHeight
       );
-      // Standard postMessage
-      window.parent.postMessage(JSON.stringify({ type: 'setHeight', h: h }), '*');
-      // Wix-specific format
+      // Wix HtmlComponent listens for this exact format
       window.parent.postMessage({ type: 'setHeight', height: h }, '*');
+      // Fallback formats
+      window.parent.postMessage(JSON.stringify({ type: 'setHeight', h: h }), '*');
       window.parent.postMessage(JSON.stringify({ height: h }), '*');
     }
 
-    // Re-send height after images load
+    // Send height aggressively — Wix sometimes misses early messages
+    sendHeight();
     window.addEventListener('load', function() {
       sendHeight();
-      // Keep re-sending as content settles
-      setTimeout(sendHeight, 500);
+      setTimeout(sendHeight, 300);
+      setTimeout(sendHeight, 800);
       setTimeout(sendHeight, 1500);
       setTimeout(sendHeight, 3000);
+      setTimeout(sendHeight, 6000);
     });
 
     // Keep iframe height updated when content changes
@@ -191,6 +193,8 @@ const heroBadge = document.querySelector('.hero-badge');
         sendHeight();
       }).observe(document.body);
     }
+    // Also on resize (orientation change, etc.)
+    window.addEventListener('resize', sendHeight);
 
     // ── SMOOTH SCROLL for anchor links inside Wix iframe ──
     // CSS scroll-behavior:smooth doesn't work reliably in iframes,

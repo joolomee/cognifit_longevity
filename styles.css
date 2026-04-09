@@ -3170,15 +3170,13 @@ html::-webkit-scrollbar {
    WIX IFRAME OVERRIDES
    html.is-iframe is set by JS when inside iframe
 ══════════════════════════════════════════════════════ */
-/* Ensure iframe content is scrollable on touch devices */
-@media (max-width: 1024px) {
-  html.is-iframe,
-  html.is-iframe body {
-    overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-    height: auto !important;
-    min-height: 100% !important;
-  }
+/* Ensure iframe content is scrollable on ALL devices (including desktop Wix embed) */
+html.is-iframe,
+html.is-iframe body {
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  height: auto !important;
+  min-height: 100% !important;
 }
 html.is-iframe .hero {
   min-height: 100svh !important;
