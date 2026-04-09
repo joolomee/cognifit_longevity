@@ -3651,10 +3651,15 @@ html.is-iframe .hero {
   min-height: 0 !important;
   max-height: none !important;
   overflow: visible !important;
-  padding-bottom: clamp(30px, 4vh, 60px) !important;
+  justify-content: flex-start !important;
+  padding-top: 80px !important;
+  padding-bottom: 40px !important;
 }
 html.is-iframe .hero-content {
   overflow: visible !important;
+  flex: 0 0 auto !important;
+  padding-top: 0 !important;
+  padding-bottom: 20px !important;
 }
 .hero-scroll-hint {
   position: absolute !important;
