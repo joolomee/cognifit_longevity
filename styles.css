@@ -3179,15 +3179,16 @@ html.is-iframe body {
   min-height: 100% !important;
 }
 html.is-iframe .hero {
-  min-height: 100svh !important;
-  max-height: 100svh !important;
-  overflow: hidden !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
   position: relative !important;
   display: flex !important;
   flex-direction: column !important;
   justify-content: center !important;
-  padding-top: clamp(60px, 7svh, 90px) !important;
-  padding-bottom: 0 !important;
+  padding-top: clamp(60px, 7vh, 90px) !important;
+  padding-bottom: clamp(30px, 4vh, 60px) !important;
 }
 html.is-iframe .hero-content {
   flex: 0 0 auto !important;
@@ -3220,9 +3221,10 @@ html.is-iframe .pro-card {
 /* Iframe: iPad/tablet — keep viewport fit, single column */
 @media (max-width: 1024px) {
   html.is-iframe .hero {
-    min-height: 100svh !important;
-    max-height: 100svh !important;
-    overflow: hidden !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
   }
   html.is-iframe .hero-content {
     flex: 0 0 auto !important;
@@ -3643,6 +3645,17 @@ html.is-iframe main { padding-top: 0; }
   gap: clamp(14px, 3svh, 44px) !important;
   overflow: hidden !important;
   min-height: 0 !important;
+}
+/* Iframe: hero must NOT use svh — inside iframe, svh = iframe height (can be huge) */
+html.is-iframe .hero {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+  padding-bottom: clamp(30px, 4vh, 60px) !important;
+}
+html.is-iframe .hero-content {
+  overflow: visible !important;
 }
 .hero-scroll-hint {
   position: absolute !important;
