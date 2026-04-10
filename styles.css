@@ -2576,7 +2576,7 @@ a, button, .btn-primary, .btn-secondary, .btn-white, .btn-login, .pro-cta, [oncl
 .risk-missing-piece__text{
   max-width:100%;
   margin:0;
-  text-align:left;
+  text-align:center;
   font-size:clamp(15px,1.3vw,16px);
   line-height:1.8;
   color:rgba(255,255,255,.88);
@@ -2753,20 +2753,20 @@ html::-webkit-scrollbar {
 /* Hero height now in main responsive block below */
 
 /* ── PRO-CARDS responsive grid ── */
-@media(min-width:1400px){
-  .pro-stack{max-width:1300px!important;grid-template-columns:repeat(4,1fr)!important;gap:20px!important}
-  .pro-card{min-height:420px!important}
-}
-@media(min-width:1024px) and (max-width:1399px){
-  .pro-stack{max-width:980px!important;grid-template-columns:repeat(4,1fr)!important;gap:16px!important}
+@media(min-width:1200px){
+  .pro-stack{max-width:1400px!important;grid-template-columns:repeat(7,minmax(0,1fr))!important;gap:14px!important}
   .pro-card{min-height:380px!important}
 }
-@media(min-width:769px) and (max-width:1023px){
-  .pro-stack{grid-template-columns:repeat(3,1fr)!important;gap:14px!important}
+@media(min-width:901px) and (max-width:1199px){
+  .pro-stack{max-width:980px!important;grid-template-columns:repeat(4,1fr)!important;gap:16px!important}
   .pro-card{min-height:340px!important}
 }
-@media(max-width:768px){
-  .pro-stack{grid-template-columns:repeat(2,1fr)!important;gap:10px!important;max-width:100%!important;margin:0 auto!important}
+@media(min-width:641px) and (max-width:900px){
+  .pro-stack{grid-template-columns:repeat(2,1fr)!important;gap:14px!important}
+  .pro-card{min-height:300px!important}
+}
+@media(max-width:640px){
+  .pro-stack{grid-template-columns:repeat(2,1fr)!important;gap:8px!important;max-width:100%!important;margin:0 auto!important}
   .pro-card{min-height:auto!important}
   .pro-desc,.pro-metrics{display:none!important}
 }
