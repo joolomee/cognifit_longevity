@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 80" role="img" aria-label="Yale University">
+  <g fill="#2b2b2b">
+    <path d="M24 22 L64 22 L64 52 Q64 62 44 66 Q24 62 24 52 Z" fill="none" stroke="#2b2b2b" stroke-width="2.5"/>
+    <text x="44" y="46" font-family="Georgia, 'Times New Roman', serif" font-size="18" font-weight="900" text-anchor="middle" font-style="italic">Y</text>
+    <text x="85" y="36" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="700" letter-spacing="2">YALE</text>
+    <text x="85" y="56" font-family="Georgia, 'Times New Roman', serif" font-size="10" font-weight="400" letter-spacing="2.2">UNIVERSITY</text>
+  </g>
+</svg>
