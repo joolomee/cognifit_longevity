@@ -7369,15 +7369,42 @@
   window.T = T; // Expose for main.js sci-broken + dynamic i18n lookups
   window.CogniFitI18n = { setLang: setLang, getLang: getLang, LANGUAGES: LANGUAGES };
 
-  document.addEventListener('DOMContentLoaded', function() {
-    buildSelector();
-    var lang = getLang();
-    if (lang !== DEFAULT_LANG) {
-      setLang(lang, false);
-    } else {
-      geoDetect(function(geoLang) { setLang(geoLang, true); });
+  var _i18nInitialized = false;
+  function initI18n() {
+    if (_i18nInitialized) return;
+    _i18nInitialized = true;
+    try {
+      buildSelector();
+      var lang = getLang();
+      if (lang !== DEFAULT_LANG) {
+        setLang(lang, false);
+      } else {
+        geoDetect(function(geoLang) { setLang(geoLang, true); });
+      }
+      updateSelector(lang);
+    } catch (err) {
+      // If anything crashes, at least wire up a minimal click handler on
+      // the static button so clicks are registered even without the dropdown.
+      try { console && console.warn && console.warn('[i18n] init failed:', err); } catch(e) {}
+      var btnFallback = document.getElementById('lang-btn');
+      if (btnFallback && !btnFallback.__fallbackWired) {
+        btnFallback.__fallbackWired = true;
+        btnFallback.addEventListener('click', function() {
+          setTimeout(initI18n, 0); // Try again on user click
+        });
+      }
     }
-    updateSelector(lang);
-  });
+  }
+
+  // Run immediately if DOM is already parsed (common in deferred script
+  // inside iframes where DOMContentLoaded may have already fired).
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initI18n);
+  } else {
+    // setTimeout 0 so the script finishes evaluating before running init
+    setTimeout(initI18n, 0);
+  }
+  // Window load as a final fallback — guarantees init runs at least once.
+  window.addEventListener('load', initI18n);
 
 })();

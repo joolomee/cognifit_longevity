@@ -122,12 +122,15 @@ nav{
   position:fixed;top:0;width: 100%;z-index:900;
   display:flex;align-items:center;justify-content:space-between;
   padding:0 40px;height:60px;
-  background:rgba(0,0,0,0.18);
+  background:rgba(0,0,0,0.45);
   backdrop-filter:blur(28px) saturate(160%);
   -webkit-backdrop-filter:blur(28px) saturate(160%);
-  border-bottom:1px solid rgba(255,255,255,.07);
+  border-bottom:1px solid rgba(255,255,255,.12);
   transition:background .4s ease;
   overflow:visible;
+}
+@media (max-width: 900px) {
+  nav { background: rgba(0,0,0,0.72) !important; }
 }
 /* Nav right container MUST allow absolute dropdown to overflow */
 .nav-r{overflow:visible !important;position:relative;}
@@ -1085,7 +1088,7 @@ html.js-ready .r.on{opacity:1;transform:none}
 ════════════════════════════════ */
 @media(max-width:900px){
   nav{padding:0 20px}
-  .hero{min-height:100svh;max-height:none;padding-top:84px}
+  .hero{min-height:100svh;max-height:none;padding-top:100px}
   .hero-content{grid-template-columns:1fr;padding:24px 24px 64px;gap:24px}
   .hero-phones{display:none}
   .hero-text-shade{background:rgba(0,0,10,.7)}
@@ -1170,7 +1173,7 @@ html.js-ready .r.on{opacity:1;transform:none}
   .nav-r{gap:10px}
   .btn-login{display:none;font-size:11px}
   
-  .hero{min-height:100svh;max-height:none;padding-top:78px}
+  .hero{min-height:100svh;max-height:none;padding-top:96px}
   .s-black,.s-dark,.s-white,.s-off,.s-blue{padding:56px 0}
   .wrap{padding:0 16px}
   
@@ -1504,7 +1507,7 @@ html.js-ready .r.on{opacity:1;transform:none}
   nav{padding:0 12px;height:50px}
   .nav-logo svg{height:18px}
   
-  .hero{min-height:100svh;max-height:none;padding-top:72px}
+  .hero{min-height:100svh;max-height:none;padding-top:90px}
   .wrap{padding:0 12px}
   .s-black,.s-dark,.s-white,.s-off,.s-blue{padding:44px 0}
   
@@ -1617,7 +1620,7 @@ html.js-ready .r.on{opacity:1;transform:none}
 @media(max-width:320px){
   nav{padding:0 10px;height:48px}
   .nav-logo svg{height:16px}
-  .hero{min-height:100svh;max-height:none;padding-top:68px}
+  .hero{min-height:100svh;max-height:none;padding-top:86px}
   .wrap{padding:0 10px}
   .s-black,.s-dark,.s-white,.s-off,.s-blue{padding:36px 0}
 
