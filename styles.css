@@ -2619,44 +2619,64 @@ a, button, .btn-primary, .btn-secondary, .btn-white, .btn-login, .pro-cta, [oncl
 }
 
 @media(max-width:900px){
-  .risk-missing-piece,
-  .s-dark .risk-missing-piece{
-    grid-template-columns:1fr !important;
+  /* Nuclear centering of the "missing piece" callout on mobile.
+     Container switched from grid to block so no column auto-sizing can
+     off-center the text. Every child is forced to text-align:center. */
+  .s-dark .risk-missing-piece,
+  section .risk-missing-piece,
+  .risk-missing-piece{
+    display:block !important;
+    grid-template-columns:none !important;
     gap:18px !important;
     text-align:center !important;
-    justify-items:center !important;
-    place-items:center !important;
+    padding-left:16px !important;
+    padding-right:16px !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    max-width:640px !important;
+  }
+  .risk-missing-piece > *{
+    text-align:center !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+  .risk-missing-piece .rmp-icon-wrap{
+    display:flex !important;
+    justify-content:center !important;
+    align-items:center !important;
+    margin:0 auto 18px !important;
   }
   .risk-missing-piece__text,
   .callout.risk-missing-piece__text,
-  .s-dark .risk-missing-piece__text{
+  .s-dark .risk-missing-piece__text,
+  .s-dark .callout.risk-missing-piece__text{
     text-align:center !important;
-    max-width:620px !important;
+    max-width:100% !important;
     margin:0 auto !important;
     width:100% !important;
     display:block !important;
-    padding-left:18px !important;
-    padding-right:18px !important;
+    padding:18px 20px !important;
     border-left:none !important;
+    border:1px solid rgba(255,255,255,.08) !important;
+    background:linear-gradient(135deg,rgba(26,115,232,.08),rgba(255,255,255,.02)) !important;
+    border-radius:14px !important;
   }
   .risk-missing-piece__text strong,
   .callout.risk-missing-piece__text strong{
     text-align:center !important;
     display:block !important;
     width:100% !important;
-    margin-left:auto !important;
-    margin-right:auto !important;
+    margin:0 auto !important;
   }
   .risk-missing-piece__text .rmp-highlight{
     text-align:center !important;
     display:block !important;
     width:100% !important;
-    margin-left:auto !important;
-    margin-right:auto !important;
+    margin:0 auto !important;
   }
   .risk-missing-piece__text .risk-line-break{
     display:block !important;
-    margin-top:8px !important;
+    margin:10px auto 0 !important;
     text-align:center !important;
     width:100% !important;
   }
@@ -2681,24 +2701,25 @@ a, button, .btn-primary, .btn-secondary, .btn-white, .btn-login, .pro-cta, [oncl
   .rni-sol-sub{font-size:10px}
   .rni-sol-desc{font-size:12px}
   .risk-missing-piece{
-    margin-top:18px;
-    gap:12px;
-    padding:0 16px;
-    grid-template-columns:1fr;
+    margin-top:18px !important;
+    gap:12px !important;
   }
-  .risk-missing-piece__frame{height:140px;width:min(100%,280px)}
+  .risk-missing-piece__frame{height:140px;width:min(100%,280px);margin:0 auto !important}
   .risk-missing-piece__slot,
   .risk-missing-piece__piece{width:116px;height:74px;border-radius:20px}
   .risk-missing-piece__text{
-    font-size:13px;
-    padding:0;
-    text-align:center;
+    font-size:13px !important;
+    text-align:center !important;
   }
   .risk-missing-piece__text strong{
-    font-size:18px;
+    font-size:18px !important;
+    text-align:center !important;
+    display:block !important;
   }
   .risk-missing-piece__text .risk-line-break{
-    display:inline;
+    display:block !important;
+    text-align:center !important;
+    margin-top:8px !important;
   }
   .triad-wrap{max-width:1000px;margin:120px auto 0;opacity:1}
   .triad-svg{max-width:1000px}
