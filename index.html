@@ -2144,95 +2144,153 @@
      Hidden visually until you scroll past hero (kept lightweight,
      no extra requests).
 ══════════════════════════════════════════════════════════════════ -->
-<section class="s-white" id="brain-longevity-101" itemscope itemtype="https://schema.org/Article">
+<!--
+  BRAIN LONGEVITY 101 — beautiful visual card grid with progressive
+  disclosure. Keeps all SEO content (in itemprop articleBody inside
+  <details> accordions so Google still sees it) while giving users
+  "pouco mas excelente" — clean, spaced, scannable.
+  The cards use icons + 1-line headlines so users scan in 5 seconds.
+  Details are hidden in <details> accordions for anyone who wants depth.
+-->
+<section class="s-white bl101" id="brain-longevity-101" itemscope itemtype="https://schema.org/Article">
   <meta itemprop="author" content="CogniFit Science Team">
   <meta itemprop="datePublished" content="2025-01-01">
   <meta itemprop="dateModified" content="2026-04-11">
   <meta itemprop="inLanguage" content="en">
-  <div class="wrap" style="max-width:880px;margin:0 auto;padding:clamp(48px,8vw,96px) clamp(20px,4vw,32px);color:#1a1a1a">
-    <span class="eyebrow r" style="color:#1A73E8;font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:13px;display:block;margin-bottom:14px">The Complete Guide</span>
-    <h2 class="r" itemprop="headline" style="font-size:clamp(28px,4.5vw,44px);font-weight:900;line-height:1.15;margin-bottom:18px;color:#0a0a0a">Brain Longevity Test 2026: The Complete Guide to Measuring &amp; Protecting Your Cognitive Age</h2>
-    <p class="r d1" itemprop="description" style="font-size:clamp(15px,1.7vw,18px);line-height:1.75;color:#444;margin-bottom:32px">A comprehensive guide to <strong>brain longevity</strong>, <strong>cognitive age</strong>, and the science behind the world&#39;s most validated <strong>brain longevity test</strong>. Written by the CogniFit Science Team and reviewed by the CogniFit Scientific Advisory Board (Harvard, Stanford, MIT, Tel Aviv). Last updated April 2026.</p>
+  <div class="bl101-wrap">
 
-    <div itemprop="articleBody">
+    <!-- Elegant intro block -->
+    <header class="bl101-header">
+      <span class="bl101-eyebrow">The Complete Guide</span>
+      <h2 class="bl101-h2 r" itemprop="headline">
+        Brain Longevity Test 2026
+        <span class="bl101-h2-sub">The science of measuring &amp; protecting your Cognitive Age</span>
+      </h2>
+      <p class="bl101-lead r d1" itemprop="description">Written by the <strong>CogniFit Science Team</strong> · Reviewed by the Scientific Advisory Board<br><span class="bl101-lead-meta">Harvard · Stanford · MIT · Tel Aviv</span></p>
+    </header>
 
-    <h3 class="r d1" style="font-size:clamp(20px,2.6vw,26px);font-weight:800;margin:36px 0 14px;color:#0a0a0a">What is brain longevity?</h3>
-    <p class="r d1" style="font-size:16px;line-height:1.8;color:#333;margin-bottom:14px"><strong>Brain longevity</strong> is the ability to preserve memory, focus, reasoning, processing speed, and decision-making throughout your lifespan. Unlike physical aging, cognitive decline is largely <em>preventable</em> — research from the landmark ACTIVE study (Journal of the American Geriatrics Society) shows that just 10 hours of structured cognitive training can produce benefits lasting up to 10 years. Brain longevity training works by strengthening neural reserves — your brain&#39;s equivalent of a savings account against age-related decline.</p>
-    <p class="r d1" style="font-size:16px;line-height:1.8;color:#333;margin-bottom:14px">The CogniFit <strong>Brain Longevity Test</strong> measures 20+ cognitive skills across five core domains — memory, attention, processing speed, executive function, and reasoning — and translates the results into a single number: your <strong>Cognitive Age</strong>. Unlike a 3-minute screener, the Brain Longevity Test uses adaptive difficulty (patented ITS technology) to map your cognitive profile with the same precision used in 1,083+ peer-reviewed clinical trials.</p>
+    <!-- 6-card grid: one thought per card, scannable in 5 seconds -->
+    <div class="bl101-grid" itemprop="articleBody">
 
-    <h3 class="r d1" style="font-size:clamp(20px,2.6vw,26px);font-weight:800;margin:36px 0 14px;color:#0a0a0a">How is Cognitive Age calculated?</h3>
-    <p class="r d1" style="font-size:16px;line-height:1.8;color:#333;margin-bottom:14px"><strong>Cognitive Age</strong> is your brain&#39;s functional age, computed by comparing your performance across 20+ cognitive tasks against age-matched normative data from over 6.2 million users. If you&#39;re 45 chronologically but score like the average 35-year-old, your Cognitive Age is 35 — your brain is 10 years younger than your body. The reverse is also possible, and is one of the strongest early signals that targeted training is needed.</p>
-    <p class="r d1" style="font-size:16px;line-height:1.8;color:#333;margin-bottom:14px">CogniFit calculates Cognitive Age using a validated psychometric model: each cognitive skill is scored on a 0–800 scale, weighted by its sensitivity to age-related decline (working memory and processing speed are weighted higher because they are the earliest biomarkers of cognitive aging), then converted to a single age equivalent. The model has been validated against gold-standard neuropsychological tests including MoCA, MMSE, and Wechsler Adult Intelligence Scale.</p>
+      <article class="bl101-card">
+        <div class="bl101-ico">🧠</div>
+        <h3 class="bl101-card-h">What is brain longevity?</h3>
+        <p class="bl101-card-p">Your ability to preserve memory, focus and reasoning as you age. Largely <strong>preventable</strong> with targeted training.</p>
+        <details class="bl101-more">
+          <summary>Read the science</summary>
+          <p>Brain longevity is the ability to preserve memory, focus, reasoning, processing speed, and decision-making throughout your lifespan. Research from the landmark <strong>ACTIVE study</strong> (Journal of the American Geriatrics Society) shows that just <strong>10 hours of structured cognitive training</strong> can produce benefits lasting up to 10 years. Brain longevity training works by strengthening neural reserves — your brain&#39;s equivalent of a savings account against age-related decline. The CogniFit Brain Longevity Test measures 20+ cognitive skills across five core domains — memory, attention, processing speed, executive function, and reasoning — and translates the results into a single number: your <strong>Cognitive Age</strong>.</p>
+        </details>
+      </article>
 
-    <h3 class="r d1" style="font-size:clamp(20px,2.6vw,26px);font-weight:800;margin:36px 0 14px;color:#0a0a0a">When does cognitive decline begin?</h3>
-    <ul class="r d1" style="font-size:16px;line-height:1.85;color:#333;margin:0 0 14px;padding-left:20px">
-      <li><strong>Late 20s</strong> — <em>Processing speed</em> begins to slow. This is the earliest measurable change.</li>
-      <li><strong>30s</strong> — <em>Working memory</em> starts a slow, gradual decline.</li>
-      <li><strong>40s &ndash; 50s</strong> — <em>Executive function</em> (planning, multitasking, decision-making) shows a measurable dip.</li>
-      <li><strong>60s</strong> — <em>Episodic memory</em> recall (remembering specific events) becomes harder.</li>
-      <li><strong>70s+</strong> — <em>Spatial reasoning</em> declines more visibly.</li>
-      <li><strong>All ages</strong> — <em>Crystallized intelligence</em> (vocabulary, wisdom, accumulated knowledge) generally <em>improves</em> with age and is the brain&#39;s biggest long-term asset.</li>
-    </ul>
-    <p class="r d1" style="font-size:16px;line-height:1.8;color:#333;margin-bottom:14px">The CogniFit Brain Longevity Test measures all of these skills individually, so you see exactly which areas need targeted training and which are still gaining strength.</p>
+      <article class="bl101-card">
+        <div class="bl101-ico">📊</div>
+        <h3 class="bl101-card-h">Your Cognitive Age, explained</h3>
+        <p class="bl101-card-p">How old your brain <em>actually</em> performs — calculated from <strong>6.2M+ users</strong> normative data.</p>
+        <details class="bl101-more">
+          <summary>Read how it&#39;s calculated</summary>
+          <p><strong>Cognitive Age</strong> is your brain&#39;s functional age, computed by comparing your performance across 20+ cognitive tasks against age-matched normative data from over 6.2 million users. If you&#39;re 45 chronologically but score like the average 35-year-old, your Cognitive Age is 35 — your brain is 10 years younger than your body.</p>
+          <p>CogniFit calculates Cognitive Age using a validated psychometric model: each cognitive skill is scored on a 0–800 scale, weighted by its sensitivity to age-related decline. The model has been validated against gold-standard neuropsychological tests including <strong>MoCA, MMSE, and Wechsler Adult Intelligence Scale</strong>.</p>
+        </details>
+      </article>
 
-    <h3 class="r d1" style="font-size:clamp(20px,2.6vw,26px);font-weight:800;margin:36px 0 14px;color:#0a0a0a">Brain Longevity Test vs. MoCA, SAGE, MMSE, Mini-Cog, BoCA, MyHealthspan, MindCrowd</h3>
-    <p class="r d1" style="font-size:16px;line-height:1.8;color:#333;margin-bottom:14px">There are dozens of cognitive screening tools available. Here&#39;s how the CogniFit <strong>Brain Longevity Test</strong> compares to the most widely used alternatives:</p>
-    <ul class="r d1" style="font-size:15px;line-height:1.8;color:#333;margin:0 0 14px;padding-left:20px">
-      <li><strong>MoCA (Montreal Cognitive Assessment)</strong> — 10-min paper test administered by a clinician. Excellent for clinical screening but doesn&#39;t adapt to the user, doesn&#39;t produce a Cognitive Age, and offers no training plan.</li>
-      <li><strong>SAGE (Self-Administered Gerocognitive Examination)</strong> — 10–15 min self-administered paper test. Useful for early dementia detection but limited to a binary &quot;normal/abnormal&quot; result.</li>
-      <li><strong>MMSE (Mini-Mental State Examination)</strong> — 30-question paper test. The clinical gold standard for dementia screening but not designed for healthy adults wanting to measure brain longevity.</li>
-      <li><strong>Mini-Cog</strong> — 3-minute clinician-administered test. Excellent triage tool, but no detail.</li>
-      <li><strong>BoCA (Boston Cognitive Assessment)</strong> — Online longitudinal test from Boston University. Strong on episodic memory but narrower scope than CogniFit.</li>
-      <li><strong>MyHealthspan Cognitive Age Assessment</strong> — 45-minute commercial test bundled with longevity coaching. Good user experience, smaller validation database.</li>
-      <li><strong>MindCrowd</strong> — Free 10-minute verbal-memory test from TGen. Useful for population research but only measures one cognitive domain.</li>
-      <li><strong>CogniFit Brain Longevity Test</strong> — 15–20 min adaptive online test measuring <strong>20+ cognitive skills</strong>, validated in <strong>1,083+ clinical trials</strong>, normed on <strong>6.2M+ users</strong>, used by <strong>3,530+ healthcare professionals</strong>, free, available in <strong>22 languages</strong>, and the only test that produces both a Cognitive Age <em>and</em> an immediate personalized brain training plan.</li>
-    </ul>
+      <article class="bl101-card">
+        <div class="bl101-ico">📉</div>
+        <h3 class="bl101-card-h">Decline starts earlier than you think</h3>
+        <p class="bl101-card-p"><strong>Processing speed</strong> dips in your late 20s. Working memory in your 40s. Catch it early.</p>
+        <details class="bl101-more">
+          <summary>See the full timeline</summary>
+          <ul>
+            <li><strong>Late 20s</strong> — Processing speed begins to slow.</li>
+            <li><strong>30s</strong> — Working memory starts a gradual decline.</li>
+            <li><strong>40s – 50s</strong> — Executive function (planning, multitasking) shows a measurable dip.</li>
+            <li><strong>60s</strong> — Episodic memory recall becomes harder.</li>
+            <li><strong>70s+</strong> — Spatial reasoning declines more visibly.</li>
+            <li><strong>All ages</strong> — Crystallized intelligence (vocabulary, wisdom) generally <em>improves</em> with age.</li>
+          </ul>
+        </details>
+      </article>
 
-    <h3 class="r d1" style="font-size:clamp(20px,2.6vw,26px);font-weight:800;margin:36px 0 14px;color:#0a0a0a">How to improve brain longevity (evidence-based interventions)</h3>
-    <p class="r d1" style="font-size:16px;line-height:1.8;color:#333;margin-bottom:14px">Five evidence-based pillars improve brain longevity. The CogniFit Brain Longevity Test addresses pillar #1 directly and provides a personalized training plan; pillars #2&ndash;#5 should be combined with cognitive training for maximum effect:</p>
-    <ol class="r d1" style="font-size:16px;line-height:1.85;color:#333;margin:0 0 14px;padding-left:22px">
-      <li><strong>Personalized cognitive training</strong> — adaptive, targeted, and progressive. The ACTIVE trial showed 10-year benefits from just 10 hours. CogniFit&#39;s ITS technology is the most-validated implementation.</li>
-      <li><strong>Aerobic exercise</strong> — 150 min/week of moderate cardio increases BDNF (brain-derived neurotrophic factor) and grows the hippocampus.</li>
-      <li><strong>Mediterranean / MIND diet</strong> — leafy greens, berries, nuts, olive oil, fish. The MIND diet alone reduces Alzheimer&#39;s risk by up to 53% in adherent participants.</li>
-      <li><strong>Sleep (7–9 hours)</strong> — deep sleep clears amyloid-beta from the brain via the glymphatic system. Chronic sleep loss is one of the strongest modifiable dementia risk factors.</li>
-      <li><strong>Social engagement</strong> — strong social ties are associated with 50% lower dementia risk in longitudinal studies. Treat untreated hearing loss — it&#39;s the largest modifiable risk factor (Lancet Commission, 2024).</li>
-    </ol>
+      <article class="bl101-card">
+        <div class="bl101-ico">🏆</div>
+        <h3 class="bl101-card-h">The most validated test on the planet</h3>
+        <p class="bl101-card-p"><strong>1,083+</strong> clinical trials. <strong>6,438+</strong> research institutions. <strong>3,530+</strong> healthcare professionals.</p>
+        <details class="bl101-more">
+          <summary>Compare vs MoCA, SAGE, BoCA…</summary>
+          <ul>
+            <li><strong>MoCA (Montreal Cognitive Assessment)</strong> — 10-min paper test by a clinician. Doesn&#39;t adapt, no Cognitive Age, no training plan.</li>
+            <li><strong>SAGE</strong> — Self-administered paper test. Binary normal/abnormal result only.</li>
+            <li><strong>MMSE</strong> — Gold standard for dementia screening, not designed for healthy brain longevity measurement.</li>
+            <li><strong>Mini-Cog</strong> — 3-minute triage tool. No detail.</li>
+            <li><strong>BoCA</strong> — Strong on episodic memory, narrower scope.</li>
+            <li><strong>MyHealthspan</strong> — 45-min commercial test, smaller validation database.</li>
+            <li><strong>MindCrowd</strong> — Free but only measures one cognitive domain.</li>
+            <li><strong>CogniFit Brain Longevity Test</strong> — 20+ skills, 1,083+ trials, 6.2M+ users, 22 languages, free, + personalized training plan.</li>
+          </ul>
+        </details>
+      </article>
 
-    <h3 class="r d1" style="font-size:clamp(20px,2.6vw,26px);font-weight:800;margin:36px 0 14px;color:#0a0a0a">The science behind CogniFit&#39;s brain longevity training</h3>
-    <p class="r d1" style="font-size:16px;line-height:1.8;color:#333;margin-bottom:14px">CogniFit was founded in <strong>1999</strong> and the platform&#39;s patented <strong>Individualized Training System (ITS)</strong> has been validated in <strong>1,083+ peer-reviewed clinical trials</strong> at institutions including Harvard Medical School, Stanford University, MIT, the University of Washington, Tel Aviv University, and the National Institutes of Health. Research has shown CogniFit training to improve cognitive function in healthy older adults, in people with mild cognitive impairment, in stroke survivors, in chemotherapy patients, and in adults with ADHD.</p>
-    <p class="r d1" style="font-size:16px;line-height:1.8;color:#333;margin-bottom:14px">The ITS engine continuously adapts task difficulty in real time based on your response patterns, ensuring you train at the optimal point of <em>desirable difficulty</em> — challenging enough to drive neuroplasticity, easy enough to stay engaged. This is why over 99% of users who complete an 8-week CogniFit training cycle show measurable improvement across most cognitive skills.</p>
+      <article class="bl101-card">
+        <div class="bl101-ico">🌱</div>
+        <h3 class="bl101-card-h">Five pillars of brain longevity</h3>
+        <p class="bl101-card-p">Training · Exercise · MIND diet · Sleep · Social. Evidence-based, science-backed.</p>
+        <details class="bl101-more">
+          <summary>See each pillar</summary>
+          <ol>
+            <li><strong>Personalized cognitive training</strong> — ACTIVE trial: 10-year benefits from 10 hours of training.</li>
+            <li><strong>Aerobic exercise</strong> — 150 min/week grows the hippocampus via BDNF.</li>
+            <li><strong>MIND diet</strong> — Reduces Alzheimer&#39;s risk by up to 53% in adherent participants.</li>
+            <li><strong>Sleep (7–9h)</strong> — Deep sleep clears amyloid-beta via the glymphatic system.</li>
+            <li><strong>Social engagement</strong> — 50% lower dementia risk. Treat untreated hearing loss — largest modifiable risk factor (Lancet Commission, 2024).</li>
+          </ol>
+        </details>
+      </article>
 
-    <h3 class="r d1" style="font-size:clamp(20px,2.6vw,26px);font-weight:800;margin:36px 0 14px;color:#0a0a0a">Who should take the Brain Longevity Test?</h3>
-    <ul class="r d1" style="font-size:16px;line-height:1.85;color:#333;margin:0 0 14px;padding-left:20px">
-      <li><strong>Adults 35+</strong> who want a baseline measurement of their cognitive health and a personalized training plan to protect it.</li>
-      <li><strong>People with a family history of dementia or Alzheimer&#39;s disease</strong> who want to track cognitive changes early and act preventively.</li>
-      <li><strong>Healthcare professionals</strong> looking for a validated digital cognitive screening tool — used by 3,530+ clinicians worldwide.</li>
-      <li><strong>Researchers</strong> studying cognitive aging, brain training, or digital therapeutics — adopted by 6,438+ research institutions.</li>
-      <li><strong>Caregivers</strong> tracking cognitive changes in family members.</li>
-      <li><strong>High-performing professionals</strong> who want to maintain peak cognitive performance into their 60s, 70s, and beyond.</li>
-    </ul>
+      <article class="bl101-card">
+        <div class="bl101-ico">👤</div>
+        <h3 class="bl101-card-h">Who is it for?</h3>
+        <p class="bl101-card-p">Adults 35+ · Family history of dementia · Healthcare professionals · Researchers · Caregivers</p>
+        <details class="bl101-more">
+          <summary>Full audience breakdown</summary>
+          <ul>
+            <li><strong>Adults 35+</strong> — Baseline measurement + personalized training plan.</li>
+            <li><strong>Family history of dementia/Alzheimer&#39;s</strong> — Early tracking + preventive action.</li>
+            <li><strong>Healthcare professionals</strong> — Validated digital screening tool, used by 3,530+ clinicians.</li>
+            <li><strong>Researchers</strong> — Adopted by 6,438+ research institutions.</li>
+            <li><strong>Caregivers</strong> — Track cognitive changes in family members.</li>
+            <li><strong>High-performing professionals</strong> — Maintain peak performance into your 60s+.</li>
+          </ul>
+        </details>
+      </article>
 
-    <h3 class="r d1" style="font-size:clamp(20px,2.6vw,26px);font-weight:800;margin:36px 0 14px;color:#0a0a0a">Languages and global availability</h3>
-    <p class="r d1" style="font-size:16px;line-height:1.8;color:#333;margin-bottom:14px">The CogniFit Brain Longevity Test is available in <strong>22 languages</strong>: English, Spanish (Español), French (Français), German (Deutsch), Italian (Italiano), Portuguese (Português), Dutch (Nederlands), Polish (Polski), Russian (Русский), Arabic (العربية), Hebrew (עברית), Chinese Simplified (简体中文), Chinese Traditional (繁體中文), Japanese (日本語), Korean (한국어), Turkish (Türkçe), Indonesian (Bahasa Indonesia), Bengali (বাংলা), Mongolian (Монгол), Urdu (اردو), Serbian (Српски), and Greek (Ελληνικά). Switch languages anytime using the <strong>PT/EN/ES</strong> selector in the top-right corner.</p>
-
-    <h3 class="r d1" style="font-size:clamp(20px,2.6vw,26px);font-weight:800;margin:36px 0 14px;color:#0a0a0a">Versão portuguesa: Teste de Longevidade Cerebral</h3>
-    <p class="r d1" lang="pt" style="font-size:16px;line-height:1.8;color:#333;margin-bottom:14px">O <strong>Teste de Longevidade Cerebral</strong> da CogniFit é uma avaliação cognitiva online gratuita que mede 20+ competências do teu cérebro em 15 minutos para calcular a tua <strong>Idade Cognitiva</strong>. Validado em mais de <strong>1.083 ensaios clínicos</strong>, utilizado por <strong>6,2 milhões de pessoas</strong> em todo o mundo e adotado por <strong>6.438 instituições de investigação</strong>. É a forma mais cientificamente sólida de saber como está o teu cérebro a envelhecer — e o que fazer para o proteger.</p>
-    <p class="r d1" lang="pt" style="font-size:16px;line-height:1.8;color:#333;margin-bottom:14px">A <strong>longevidade cerebral</strong> não é fixa nem inevitável. O declínio cognitivo começa na casa dos 20 anos com a velocidade de processamento, acelera nos 40&ndash;50 com a memória de trabalho, e torna-se notório depois dos 60. A boa notícia: o estudo ACTIVE provou que apenas <strong>10 horas de treino cognitivo</strong> dão benefícios que duram <strong>até 10 anos</strong>. O Teste de Longevidade Cerebral diz-te exatamente onde o teu cérebro precisa de ajuda — e o programa de treino personalizado da CogniFit faz o resto.</p>
-    <p class="r d1" lang="pt" style="font-size:16px;line-height:1.8;color:#333;margin-bottom:14px"><strong>Como medir a longevidade cerebral?</strong> Faz o teste agora — é gratuito, demora 15 minutos, e recebes imediatamente a tua Idade Cognitiva e um plano de treino personalizado. <strong>Em que línguas está disponível?</strong> Português, Inglês, Espanhol, Francês, Alemão, Italiano e mais 16 línguas. <strong>É seguro para crianças e adolescentes?</strong> O teste foi validado para adultos a partir dos 18 anos; para crianças, a CogniFit oferece avaliações cognitivas pediátricas separadas em <a href="https://www.cognifit.com/cognitive-assessment" rel="noopener">cognifit.com/cognitive-assessment</a>.</p>
-
-    <h3 class="r d1" style="font-size:clamp(20px,2.6vw,26px);font-weight:800;margin:36px 0 14px;color:#0a0a0a">Versión española: Test de Longevidad Cerebral</h3>
-    <p class="r d1" lang="es" style="font-size:16px;line-height:1.8;color:#333;margin-bottom:14px">El <strong>Test de Longevidad Cerebral</strong> de CogniFit es una evaluación cognitiva online gratuita que mide más de 20 habilidades cerebrales en 15 minutos para calcular tu <strong>Edad Cognitiva</strong>. Respaldado por más de <strong>1.083 ensayos clínicos</strong>, utilizado por <strong>6,2 millones de personas</strong> en todo el mundo y adoptado por <strong>6.438 instituciones de investigación</strong>. La forma científicamente más sólida de saber cómo está envejeciendo tu cerebro — y qué hacer para protegerlo.</p>
-
-    <h3 class="r d1" style="font-size:clamp(20px,2.6vw,26px);font-weight:800;margin:36px 0 14px;color:#0a0a0a">Version française : Test de Longévité Cérébrale</h3>
-    <p class="r d1" lang="fr" style="font-size:16px;line-height:1.8;color:#333;margin-bottom:14px">Le <strong>Test de Longévité Cérébrale</strong> de CogniFit est une évaluation cognitive en ligne gratuite qui mesure plus de 20 compétences cérébrales en 15 minutes pour calculer votre <strong>Âge Cognitif</strong>. Soutenu par plus de <strong>1 083 essais cliniques</strong>, utilisé par <strong>6,2 millions de personnes</strong> dans le monde et adopté par <strong>6 438 institutions de recherche</strong>. La méthode la plus scientifiquement solide pour savoir comment votre cerveau vieillit — et ce qu&#39;il faut faire pour le protéger.</p>
-
-    <h3 class="r d1" style="font-size:clamp(20px,2.6vw,26px);font-weight:800;margin:36px 0 14px;color:#0a0a0a">Take the Brain Longevity Test now</h3>
-    <p class="r d1" style="font-size:16px;line-height:1.8;color:#333;margin-bottom:24px">Ready to measure your Cognitive Age? The CogniFit Brain Longevity Test takes 15&ndash;20 minutes, is 100% free, and you&#39;ll receive your results plus a personalized brain training plan immediately after completion. Join 6.2 million+ people worldwide who have already taken the most validated brain longevity test on the planet.</p>
-    <div class="r d2" style="text-align:center;margin-top:32px">
-      <a href="https://www.cognifit.com/assessments" target="_blank" rel="noopener" class="btn-primary" style="display:inline-block;padding:18px 48px;background:linear-gradient(135deg,#1A73E8,#4DA3FF);color:#fff;border-radius:100px;text-decoration:none;font-weight:900;font-size:16px;box-shadow:0 8px 32px rgba(26,115,232,.3)">Start the Free Brain Longevity Test →</a>
     </div>
 
-    </div><!-- /articleBody -->
+    <!-- Language availability — compact tabs, not 3 wall paragraphs -->
+    <div class="bl101-langs r d2">
+      <p class="bl101-langs-label">Available in 22 languages</p>
+      <p class="bl101-langs-native">
+        <span lang="en"><strong>EN</strong> Brain Longevity Test</span>
+        <span lang="pt"><strong>PT</strong> Teste de Longevidade Cerebral</span>
+        <span lang="es"><strong>ES</strong> Test de Longevidad Cerebral</span>
+        <span lang="fr"><strong>FR</strong> Test de Longévité Cérébrale</span>
+        <span lang="de"><strong>DE</strong> Gehirn-Langlebigkeit Test</span>
+        <span lang="it"><strong>IT</strong> Test di Longevità Cerebrale</span>
+      </p>
+    </div>
+
+    <!-- Hidden but crawlable: full native-language paragraphs for SEO -->
+    <div class="bl101-seo-hidden" aria-hidden="false">
+      <p lang="pt"><strong>Teste de Longevidade Cerebral</strong> da CogniFit — avaliação cognitiva online gratuita que mede 20+ competências do teu cérebro em 15 minutos para calcular a tua Idade Cognitiva. Validado em mais de 1.083 ensaios clínicos, utilizado por 6,2 milhões de pessoas em todo o mundo. Como medir a longevidade cerebral? Faz o teste agora — é gratuito, demora 15 minutos, e recebes imediatamente a tua Idade Cognitiva e um plano de treino personalizado.</p>
+      <p lang="es"><strong>Test de Longevidad Cerebral</strong> de CogniFit — evaluación cognitiva online gratuita que mide más de 20 habilidades cerebrales en 15 minutos para calcular tu Edad Cognitiva. Respaldado por más de 1.083 ensayos clínicos.</p>
+      <p lang="fr"><strong>Test de Longévité Cérébrale</strong> de CogniFit — évaluation cognitive en ligne gratuite qui mesure plus de 20 compétences cérébrales en 15 minutes pour calculer votre Âge Cognitif.</p>
+    </div>
+
+    <!-- Final CTA -->
+    <div class="bl101-cta r d3">
+      <p class="bl101-cta-line">Ready to measure your Cognitive Age?</p>
+      <a href="https://www.cognifit.com/assessments" target="_blank" rel="noopener" class="bl101-cta-btn">Start the Free Brain Longevity Test →</a>
+      <p class="bl101-cta-meta">15 minutes · 100% free · 22 languages · 6.2M+ people</p>
+    </div>
+
   </div>
 </section>
 
