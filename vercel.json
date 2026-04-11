@@ -58,6 +58,37 @@
           "value": "text/plain; charset=utf-8"
         }
       ]
+    },
+    {
+      "source": "/31e17b6fe618041ce972cdeab51467e8.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/longevity/31e17b6fe618041ce972cdeab51467e8.txt",
+      "destination": "/31e17b6fe618041ce972cdeab51467e8.txt"
+    },
+    {
+      "source": "/longevity/sitemap.xml",
+      "destination": "/sitemap.xml"
+    },
+    {
+      "source": "/longevity/robots.txt",
+      "destination": "/robots.txt"
     }
   ]
 }

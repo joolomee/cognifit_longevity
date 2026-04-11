@@ -1,0 +1,132 @@
+<!-- ════════════════════════════════════════════════════════════
+     COLA ISTO NA HEAD DA HOMEPAGE WIX (brain.cognifit.com/)
+     Wix → Settings → Custom Code → Head → "All pages" OR "Home only"
+
+     O que faz:
+     1. Injeta um top-bar no topo da página linkando para /longevity
+     2. O top-bar é dismissable mas reaparece em cada nova sessão
+     3. Inclui markup Schema.org para Google ver o link como recomendação
+     4. Inclui IndexNow ping para forçar re-indexação
+     5. Inclui prefetch + preconnect para tornar o clique instantâneo
+
+     SEO impact:
+     - Cada visitante que abra brain.cognifit.com/ vê uma CTA clara
+       para /longevity, o que aumenta o tráfego direto à página
+     - Google vê um internal link de uma página de tráfego alto para
+       /longevity → distribui PageRank
+     - O Schema BreadcrumbList torna o link semanticamente forte
+══════════════════════════════════════════════════════════════ -->
+
+<!-- Preconnect + prefetch -->
+<link rel="preconnect" href="https://brain.cognifit.com">
+<link rel="prefetch" href="https://brain.cognifit.com/longevity">
+<link rel="prerender" href="https://brain.cognifit.com/longevity">
+
+<!-- Schema.org SiteNavigationElement — Google reads this as nav metadata -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SiteNavigationElement",
+  "name": ["Brain Longevity Test", "Brain Longevity Training", "Cognitive Age Assessment"],
+  "url": [
+    "https://brain.cognifit.com/longevity",
+    "https://brain.cognifit.com/longevity",
+    "https://brain.cognifit.com/longevity"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "url": "https://brain.cognifit.com/",
+  "mentions": {
+    "@type": "MedicalTest",
+    "name": "CogniFit Brain Longevity Test",
+    "url": "https://brain.cognifit.com/longevity",
+    "description": "Free online cognitive age assessment that measures 20+ brain skills in 15 minutes."
+  },
+  "significantLink": [
+    "https://brain.cognifit.com/longevity",
+    "https://brain.cognifit.com/longevity?lang=es",
+    "https://brain.cognifit.com/longevity?lang=pt"
+  ]
+}
+</script>
+
+<!-- IndexNow re-ping on every homepage view -->
+<script>
+(function(){
+  try {
+    var KEY = '31e17b6fe618041ce972cdeab51467e8';
+    var STORAGE = 'cf_indexnow_home_lastping';
+    var SIX_HOURS = 6*60*60*1000;
+    var last = 0;
+    try { last = parseInt(localStorage.getItem(STORAGE) || '0', 10); } catch(e) {}
+    if (Date.now() - last < SIX_HOURS) return;
+    try { localStorage.setItem(STORAGE, String(Date.now())); } catch(e) {}
+    var url = 'https://api.indexnow.org/IndexNow?url=' +
+              encodeURIComponent('https://brain.cognifit.com/longevity') +
+              '&key=' + KEY;
+    if (typeof navigator !== 'undefined' && navigator.sendBeacon) {
+      try { navigator.sendBeacon(url); } catch(e) {}
+    }
+  } catch(e) {}
+})();
+</script>
+
+<!-- Top-bar banner — auto-injected on DOMContentLoaded -->
+<style id="cf-longevity-banner-css">
+  #cf-longevity-banner {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 999999;
+    background: linear-gradient(135deg, #1A73E8, #4DA3FF);
+    color: #fff; padding: 10px 16px;
+    display: flex; align-items: center; justify-content: center; gap: 14px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 14px; font-weight: 600;
+    box-shadow: 0 4px 20px rgba(0,0,0,.25);
+    text-align: center; flex-wrap: wrap;
+  }
+  #cf-longevity-banner a {
+    color: #fff; text-decoration: underline; font-weight: 800;
+    background: rgba(255,255,255,.18); padding: 6px 14px; border-radius: 100px;
+    text-decoration: none; transition: background .2s;
+  }
+  #cf-longevity-banner a:hover { background: rgba(255,255,255,.32); }
+  #cf-longevity-banner-close {
+    position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+    background: none; border: none; color: #fff; cursor: pointer;
+    font-size: 20px; line-height: 1; padding: 4px 8px; opacity: .7;
+  }
+  #cf-longevity-banner-close:hover { opacity: 1; }
+  body.cf-banner-on { padding-top: 48px !important; }
+  @media (max-width: 640px) {
+    #cf-longevity-banner { font-size: 12px; padding: 8px 32px 8px 12px; }
+    #cf-longevity-banner a { padding: 5px 12px; font-size: 11px; }
+  }
+</style>
+<script>
+(function(){
+  function inject() {
+    if (sessionStorage && sessionStorage.getItem('cf_banner_dismissed') === '1') return;
+    if (document.getElementById('cf-longevity-banner')) return;
+    var bar = document.createElement('div');
+    bar.id = 'cf-longevity-banner';
+    bar.innerHTML = '🧠 New: Free <strong>Brain Longevity Test 2026</strong> — measure your Cognitive Age in 15 min ' +
+                    '<a href="https://brain.cognifit.com/longevity">Take the Test →</a>' +
+                    '<button id="cf-longevity-banner-close" aria-label="Dismiss">×</button>';
+    document.body.insertBefore(bar, document.body.firstChild);
+    document.body.classList.add('cf-banner-on');
+    var btn = document.getElementById('cf-longevity-banner-close');
+    if (btn) btn.addEventListener('click', function(){
+      bar.remove(); document.body.classList.remove('cf-banner-on');
+      try { sessionStorage.setItem('cf_banner_dismissed', '1'); } catch(e) {}
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', inject);
+  } else {
+    inject();
+  }
+})();
+</script>
