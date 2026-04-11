@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 80" role="img" aria-label="Tel Aviv University">
+  <g fill="#2b2b2b">
+    <path d="M24 28 L44 18 L64 28 L64 58 L24 58 Z" fill="none" stroke="#2b2b2b" stroke-width="2.5"/>
+    <path d="M34 58 L34 40 L54 40 L54 58" fill="none" stroke="#2b2b2b" stroke-width="2"/>
+    <text x="85" y="32" font-family="Georgia, 'Times New Roman', serif" font-size="16" font-weight="700" letter-spacing="1">TEL AVIV</text>
+    <text x="85" y="52" font-family="Georgia, 'Times New Roman', serif" font-size="12" font-weight="400" letter-spacing="1.5">UNIVERSITY</text>
+  </g>
+</svg>
