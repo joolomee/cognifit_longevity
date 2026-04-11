@@ -4382,17 +4382,221 @@ footer { padding-top: clamp(56px, 8vw, 96px) !important; padding-bottom: clamp(4
 .footer-grid { gap: clamp(32px, 5vw, 56px) !important; margin-bottom: clamp(32px, 5vw, 48px) !important; }
 .footer-grid a { padding: clamp(4px, 0.6vw, 7px) 0; }
 
-/* Mobile refinements: slightly tighter but still comfortable */
-@media (max-width: 640px) {
+/* ════════════════════════════════════════════════════════════════
+   TABLET BREATHING ROOM (641–1024px): generous spacing so content
+   never feels cramped at this viewport size.
+════════════════════════════════════════════════════════════════ */
+@media (min-width: 641px) and (max-width: 1024px) {
+  /* Sections: bigger vertical padding */
   .s-black, .s-dark, .s-white, .s-off {
-    padding-top: clamp(56px, 14vw, 84px) !important;
-    padding-bottom: clamp(56px, 14vw, 84px) !important;
+    padding-top: clamp(80px, 10vw, 112px) !important;
+    padding-bottom: clamp(80px, 10vw, 112px) !important;
   }
-  #brain-longevity-101 h3 { margin-top: clamp(36px, 9vw, 48px) !important; }
-  #brain-longevity-101 p { line-height: 1.8 !important; }
-  .faq-item { margin-bottom: 14px !important; }
-  .rev-card { padding: 20px !important; }
-  .stats-row { gap: 18px !important; }
-  .trust-badges { gap: 10px !important; }
+  .wrap { padding-left: clamp(24px, 4vw, 40px) !important; padding-right: clamp(24px, 4vw, 40px) !important; }
+
+  /* Hero: more breathing between hero blocks */
+  .hero-content { gap: clamp(24px, 4vw, 40px) !important; padding-top: clamp(140px, 18vw, 180px) !important; }
+  .hero-badge { margin-bottom: clamp(18px, 2.5vw, 26px) !important; }
+  .hero-headline { margin-bottom: clamp(18px, 2.5vw, 26px) !important; }
+  .hero-sub { margin-bottom: clamp(24px, 3vw, 32px) !important; max-width: 560px !important; }
+  .hero-rating { margin-top: clamp(26px, 3.5vw, 36px) !important; padding: 18px 22px !important; }
+  .guarantee-row { margin-top: clamp(18px, 2.5vw, 26px) !important; gap: 12px !important; }
+
+  /* H2s everywhere: more top-margin so they don't glue to the element above */
+  h2 { margin-top: clamp(18px, 2.5vw, 28px) !important; margin-bottom: clamp(20px, 2.8vw, 30px) !important; }
+  section .eyebrow { margin-bottom: clamp(18px, 2.5vw, 26px) !important; }
+
+  /* Paragraphs: more generous line-height + bottom-margin */
+  section p { line-height: 1.8 !important; }
+  section p + p { margin-top: clamp(14px, 2vw, 20px) !important; }
+
+  /* Pro cards grid */
+  .pro-stack { gap: clamp(20px, 2.8vw, 28px) !important; }
+  .pro-text { padding: clamp(20px, 2.8vw, 28px) !important; }
+  .pro-text h3 { margin-bottom: clamp(12px, 1.6vw, 16px) !important; }
+  .pro-desc { margin-bottom: clamp(16px, 2.2vw, 22px) !important; line-height: 1.7 !important; }
+
+  /* Validation section: more gap between elements */
+  .val-btns { margin-top: clamp(24px, 3.5vw, 36px) !important; margin-bottom: clamp(40px, 5.5vw, 60px) !important; gap: 16px !important; }
+  .val-logos-marquee-wrap { margin: clamp(28px, 4vw, 44px) auto !important; }
+  .val-stats-row { margin-top: clamp(32px, 4.5vw, 48px) !important; gap: clamp(20px, 3vw, 28px) !important; }
+  .val-stat { padding: clamp(28px, 3.5vw, 36px) clamp(22px, 3vw, 30px) !important; }
+
+  /* Trust / stats row */
+  .stats-row { gap: clamp(28px, 4vw, 44px) !important; margin: clamp(40px, 5.5vw, 60px) 0 !important; }
+  .trust-badges { gap: clamp(12px, 1.8vw, 18px) !important; margin: clamp(32px, 4.5vw, 44px) 0 !important; }
+  .press-strip { gap: clamp(18px, 2.5vw, 26px) !important; margin: clamp(32px, 4.5vw, 44px) 0 !important; }
+  .reviews-grid { gap: clamp(24px, 3.5vw, 36px) !important; margin-top: clamp(32px, 4.5vw, 48px) !important; }
+  .rev-card { padding: clamp(26px, 3.5vw, 36px) !important; }
+
+  /* FAQ — more air per question */
+  .faq-item { margin-bottom: clamp(14px, 2vw, 20px) !important; }
+  .faq-q-text { padding: clamp(20px, 2.8vw, 28px) !important; line-height: 1.4 !important; }
+  .faq-a { padding: clamp(16px, 2.2vw, 22px) clamp(20px, 2.8vw, 28px) clamp(22px, 3vw, 30px) !important; }
+  .faq-a p { line-height: 1.8 !important; margin-bottom: clamp(12px, 1.8vw, 18px) !important; }
+
+  /* Brain Longevity 101 — much bigger gaps between H3 sections */
+  #brain-longevity-101 .wrap { padding: clamp(80px, 10vw, 112px) clamp(24px, 4vw, 40px) !important; max-width: 760px !important; }
+  #brain-longevity-101 h2 { font-size: clamp(28px, 4.2vw, 38px) !important; margin-bottom: clamp(24px, 3.4vw, 36px) !important; line-height: 1.2 !important; }
+  #brain-longevity-101 h3 { margin-top: clamp(52px, 7vw, 72px) !important; margin-bottom: clamp(18px, 2.5vw, 26px) !important; font-size: clamp(20px, 2.6vw, 26px) !important; }
+  #brain-longevity-101 p { margin-bottom: clamp(18px, 2.5vw, 24px) !important; line-height: 1.9 !important; font-size: clamp(15px, 1.8vw, 17px) !important; }
+  #brain-longevity-101 ul, #brain-longevity-101 ol { margin-bottom: clamp(22px, 3vw, 30px) !important; }
+  #brain-longevity-101 li { margin-bottom: clamp(12px, 1.8vw, 18px) !important; line-height: 1.85 !important; }
+
+  /* Closing + footer */
+  .closing { padding: clamp(80px, 10vw, 112px) 0 !important; }
+  .closing-quote { margin-bottom: clamp(32px, 4.5vw, 48px) !important; }
+  .store-badges { margin-top: clamp(36px, 5vw, 56px) !important; }
+  footer { padding: clamp(64px, 8.5vw, 88px) 0 clamp(48px, 6.5vw, 64px) !important; }
+  .footer-grid { gap: clamp(40px, 5.5vw, 56px) !important; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   MOBILE BREATHING ROOM (<= 640px): comprehensive spacing overhaul
+   so mobile never feels cramped. This is the highest-priority
+   breakpoint — most users visit on phones.
+════════════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  /* Section vertical padding: much bigger breathing at top/bottom */
+  .s-black, .s-dark, .s-white, .s-off {
+    padding-top: clamp(72px, 18vw, 104px) !important;
+    padding-bottom: clamp(72px, 18vw, 104px) !important;
+  }
+  /* Horizontal wrap padding: more side breathing */
+  .wrap { padding-left: 20px !important; padding-right: 20px !important; }
+
+  /* Hero — generous gap between every block */
+  .hero-content { gap: clamp(18px, 4.5vw, 28px) !important; }
+  .hero-badge { margin-bottom: clamp(16px, 4vw, 22px) !important; margin-top: 14px !important; }
+  .hero-headline { margin-bottom: clamp(16px, 4vw, 22px) !important; }
+  .hero-sub { margin-bottom: clamp(20px, 5vw, 28px) !important; line-height: 1.75 !important; }
+  .hero-read-time { margin-bottom: clamp(16px, 4vw, 22px) !important; }
+  .hero-content .btn-primary { margin-bottom: clamp(22px, 5.5vw, 32px) !important; }
+  .hero-rating {
+    margin-top: clamp(22px, 5.5vw, 32px) !important;
+    margin-bottom: clamp(16px, 4vw, 22px) !important;
+    padding: 16px 18px !important;
+  }
+  .guarantee-row { margin-top: clamp(16px, 4vw, 22px) !important; gap: 10px !important; flex-wrap: wrap !important; }
+
+  /* Eyebrow / H2 spacing */
+  .eyebrow { margin-bottom: clamp(14px, 3.5vw, 20px) !important; font-size: 12px !important; }
+  section h2 { margin-bottom: clamp(18px, 4.5vw, 26px) !important; line-height: 1.2 !important; }
+  section h2 + p,
+  section h2 + .lead,
+  section h2 + .lead-drk { margin-top: clamp(10px, 2.5vw, 16px) !important; line-height: 1.75 !important; }
+
+  /* Paragraphs everywhere: more generous line-height + bottom-margin */
+  section p { line-height: 1.8 !important; }
+  section p + p { margin-top: clamp(14px, 3.5vw, 20px) !important; }
+
+  /* Pro cards grid: more gap between cards, more padding inside */
+  .pro-stack { gap: 16px !important; margin-top: clamp(28px, 7vw, 40px) !important; }
+  .pro-card { border-radius: 16px !important; }
+  .pro-text { padding: 18px 16px !important; }
+  .pro-text h3 { margin-bottom: 10px !important; font-size: 14px !important; line-height: 1.35 !important; }
+  .pro-desc { margin-bottom: 14px !important; line-height: 1.7 !important; font-size: 12px !important; }
+  .pro-metrics { padding: 12px 0 !important; margin-bottom: 14px !important; }
+
+  /* Validation section — more air */
+  .val-btns { margin-top: clamp(22px, 5.5vw, 32px) !important; margin-bottom: clamp(36px, 9vw, 52px) !important; gap: 12px !important; flex-direction: column !important; align-items: stretch !important; }
+  .val-btn { width: 100% !important; justify-content: center !important; padding: 14px 24px !important; }
+  .val-logos-marquee-wrap { margin: clamp(24px, 6vw, 36px) auto !important; }
+  .val-stats-row { margin-top: clamp(28px, 7vw, 40px) !important; gap: 14px !important; padding: 0 12px !important; }
+  .val-stat { padding: 22px 14px !important; min-width: 0 !important; flex: 1 1 calc(50% - 14px) !important; }
+  .val-stat-num { margin-bottom: 8px !important; }
+
+  /* Trust / stats: vertical rhythm */
+  .stats-row { gap: clamp(24px, 6vw, 36px) !important; margin: clamp(36px, 9vw, 52px) 0 !important; }
+  .stat-bl { padding: 20px 16px !important; }
+  .trust-badges { gap: 10px !important; margin: clamp(28px, 7vw, 40px) 0 !important; }
+  .press-strip { gap: 14px !important; margin: clamp(28px, 7vw, 40px) 0 !important; }
+  .reviews-grid { gap: 20px !important; margin-top: clamp(28px, 7vw, 40px) !important; grid-template-columns: 1fr !important; }
+  .rev-card { padding: 22px 20px !important; }
+  .rev-card .rev-date { margin-bottom: 8px !important; }
+  .rev-card .rev-stars { margin-bottom: 8px !important; }
+  .rev-card .rev-title { margin-bottom: 10px !important; }
+  .rev-card .rev-body { margin-bottom: 16px !important; line-height: 1.7 !important; }
+
+  /* FAQ — generous spacing per question */
+  #faq { padding-top: clamp(72px, 18vw, 96px) !important; padding-bottom: clamp(72px, 18vw, 96px) !important; }
+  .faq-item { margin-bottom: 14px !important; border-radius: 14px !important; }
+  .faq-q-text { padding: 18px 18px !important; font-size: 15px !important; line-height: 1.45 !important; }
+  .faq-a { padding: 14px 18px 20px !important; }
+  .faq-a p { font-size: 14px !important; line-height: 1.75 !important; margin-bottom: 12px !important; }
+
+  /* Brain Longevity 101 — the section the user called out explicitly */
+  #brain-longevity-101 .wrap {
+    padding: clamp(72px, 18vw, 96px) 22px !important;
+    max-width: 100% !important;
+  }
+  #brain-longevity-101 .eyebrow { margin-bottom: 16px !important; font-size: 11px !important; }
+  #brain-longevity-101 h2 {
+    font-size: clamp(24px, 6.5vw, 32px) !important;
+    line-height: 1.22 !important;
+    margin-bottom: clamp(18px, 4.5vw, 26px) !important;
+  }
+  #brain-longevity-101 > .wrap > p[itemprop="description"] {
+    margin-bottom: clamp(36px, 9vw, 52px) !important;
+    padding-bottom: clamp(22px, 5.5vw, 32px) !important;
+    font-size: 15px !important;
+    line-height: 1.75 !important;
+  }
+  #brain-longevity-101 h3 {
+    margin-top: clamp(40px, 10vw, 56px) !important;
+    margin-bottom: clamp(16px, 4vw, 22px) !important;
+    font-size: clamp(19px, 5vw, 23px) !important;
+    line-height: 1.3 !important;
+  }
+  #brain-longevity-101 p {
+    margin-bottom: clamp(16px, 4vw, 22px) !important;
+    line-height: 1.85 !important;
+    font-size: 15px !important;
+  }
+  #brain-longevity-101 ul,
+  #brain-longevity-101 ol {
+    margin-bottom: clamp(20px, 5vw, 28px) !important;
+    padding-left: 22px !important;
+  }
+  #brain-longevity-101 li {
+    margin-bottom: 12px !important;
+    line-height: 1.8 !important;
+    font-size: 15px !important;
+  }
+  #brain-longevity-101 .btn-primary {
+    display: block !important;
+    margin: clamp(28px, 7vw, 40px) auto 0 !important;
+    max-width: 340px !important;
+    padding: 18px 32px !important;
+    text-align: center !important;
+  }
+
+  /* Closing / final CTA */
+  .closing { padding: clamp(72px, 18vw, 96px) 0 !important; }
+  .closing-quote { margin-bottom: clamp(28px, 7vw, 40px) !important; line-height: 1.55 !important; }
+  .store-badges { margin-top: clamp(32px, 8vw, 44px) !important; gap: 14px !important; }
+
+  /* Footer */
+  footer { padding: clamp(56px, 14vw, 72px) 0 clamp(36px, 9vw, 48px) !important; }
+  .footer-grid { gap: 32px !important; margin-bottom: 32px !important; grid-template-columns: 1fr !important; }
+  .footer-grid a { padding: 6px 0 !important; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   VERY SMALL MOBILE (<=380px): still preserve breathing
+════════════════════════════════════════════════════════════════ */
+@media (max-width: 380px) {
+  .wrap { padding-left: 16px !important; padding-right: 16px !important; }
+  .s-black, .s-dark, .s-white, .s-off {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+  }
+  #brain-longevity-101 .wrap { padding: 60px 18px !important; }
+  #brain-longevity-101 h2 { font-size: 22px !important; }
+  #brain-longevity-101 h3 { font-size: 17px !important; margin-top: 36px !important; }
+  #brain-longevity-101 p { font-size: 14px !important; line-height: 1.75 !important; }
+  .faq-q-text { font-size: 14px !important; padding: 16px !important; }
+  .faq-a { padding: 12px 16px 18px !important; }
+  .faq-a p { font-size: 13px !important; }
 }
 

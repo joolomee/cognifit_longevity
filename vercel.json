@@ -79,12 +79,33 @@
           "value": "index, follow"
         }
       ]
+    },
+    {
+      "source": "/BingSiteAuth.xml",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/xml; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "index, follow"
+        }
+      ]
     }
   ],
   "rewrites": [
     {
       "source": "/longevity/31e17b6fe618041ce972cdeab51467e8.txt",
       "destination": "/31e17b6fe618041ce972cdeab51467e8.txt"
+    },
+    {
+      "source": "/longevity/BingSiteAuth.xml",
+      "destination": "/BingSiteAuth.xml"
     },
     {
       "source": "/longevity/sitemap.xml",
