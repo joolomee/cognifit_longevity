@@ -2772,9 +2772,10 @@ html::-webkit-scrollbar {
 
 /* ── VALIDATION MARQUEE (full-width continuous scroll) ── */
 .val-marquee-wrap {
-  width: 100vw;
-  max-width: 100vw;
-  margin-left: calc(-50vw + 50%);
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
   overflow: hidden;
 }
 .val-marquee {
@@ -4080,12 +4081,16 @@ section.s-white .wrap.tc p.lead-drk {
   display: block !important;
 }
 
-/* ---- CLINICS MARQUEE: individual PNG logos ---- */
+/* ---- CLINICS MARQUEE: individual PNG logos ----
+   width:100% (NOT 100vw) + zero negative margin so the marquee can never
+   bleed past the viewport on iframe layouts. The mask still gives the
+   fade-in/fade-out edges. */
 .val-marquee-wrap {
   overflow: hidden !important;
   width: 100% !important;
-  max-width: 100vw !important;
-  margin-left: calc(-50vw + 50%) !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
   -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
           mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
 }
@@ -4176,5 +4181,218 @@ section.s-white .wrap.tc p.lead-drk {
   .hero-h1 { font-size: clamp(34px, 4.2vw, 58px) !important; }
   .hero-sub { font-size: clamp(14px, 1.4vw, 18px) !important; }
   .hero-rating { max-width: 520px !important; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   OVERFLOW SAFETY NET — KILLS HORIZONTAL SCROLL ON ALL MEDIA QUERIES
+   This block runs LAST (highest specificity by source order) and
+   forces every potentially-overflowing element back inside the
+   viewport. Catches: 100vw bleeds, negative-margin tricks, long
+   unbreakable text, oversized images, marquees, fixed-width grids.
+   IMPORTANT: uses 100% (not 100vw) so it accounts for scrollbar width.
+══════════════════════════════════════════════════════════════════ */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  position: relative !important;
+}
+/* Every direct child of body is clamped to parent width */
+body > * {
+  max-width: 100% !important;
+  overflow-x: clip;
+}
+/* All sections, mains, articles, asides, headers, footers, navs */
+main, section, article, aside, header, footer, nav, div.wrap, .s-white, .s-black, .s-off, .s-dark {
+  max-width: 100% !important;
+  overflow-x: clip;
+}
+/* Anything that uses the full-bleed pattern (margin-left: calc(-50vw + 50%))
+   must clip its overflow. Otherwise the negative margin escapes the viewport
+   on browsers where the scrollbar takes width. */
+.pro-stack,
+.val-marquee-wrap,
+.val-logos-marquee-wrap,
+.devices-row,
+.press-strip,
+.hero-photo-bg,
+.hero-color-grade,
+.hero-text-shade {
+  overflow: hidden !important;
+  max-width: 100% !important;
+}
+/* Long unbreakable words (Portuguese, German) must wrap rather than push the
+   page wider. Allow word-break on prose, but never on the H1 (which has its
+   own no-hyphen rules). */
+p, li, td, th, dd, dt, .faq-q-text, .faq-a, .lead-drk, .lead, .closing-quote,
+.callout, .pro-desc, .rev-body, .hero-sub, .stat-l, .pm-lbl {
+  overflow-wrap: anywhere !important;
+  word-wrap: break-word !important;
+  word-break: normal;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+/* Images, video, iframes, SVG, canvas, picture must never exceed their
+   container. Already set on img above but repeat for completeness. */
+img, video, iframe, svg, canvas, picture, embed, object {
+  max-width: 100% !important;
+  height: auto;
+}
+/* Tables: scroll inside their own wrapper rather than push the page */
+table {
+  max-width: 100% !important;
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+pre, code {
+  max-width: 100% !important;
+  overflow-x: auto;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+/* Fixed/absolute positioned overlays must respect viewport width */
+#scroll-top-btn,
+.scroll-top-btn {
+  max-width: 100% !important;
+}
+/* Hero content padding box must not exceed viewport even with the H1's clamp */
+.hero,
+.hero-content {
+  max-width: 100% !important;
+  overflow-x: clip;
+}
+.hero-h1 {
+  max-width: 100% !important;
+  overflow-wrap: break-word !important;
+}
+/* The new Brain Longevity 101 deep content section */
+#brain-longevity-101,
+#brain-longevity-101 .wrap {
+  max-width: 100% !important;
+  overflow-x: clip;
+  box-sizing: border-box;
+}
+#brain-longevity-101 h2,
+#brain-longevity-101 h3,
+#brain-longevity-101 p,
+#brain-longevity-101 ul,
+#brain-longevity-101 ol,
+#brain-longevity-101 li {
+  max-width: 100% !important;
+  overflow-wrap: anywhere !important;
+}
+
+/* Final-final fallback: any element that somehow escapes still gets clipped
+   visually so the user can never see horizontal scroll. */
+@media (max-width: 1920px) {
+  html { overflow-x: hidden !important; }
+  body { overflow-x: hidden !important; }
+}
+@supports (overflow: clip) {
+  html, body { overflow-x: clip !important; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   UX BREATHING ROOM — loosen cramped content and add consistent
+   vertical rhythm. Final pass that runs last so it wins over older
+   rules. Goal: no "wall of text" feel; every block gets generous
+   breathing room without bloating the page.
+══════════════════════════════════════════════════════════════════ */
+
+/* Section vertical padding — bump min to 64px (was 40px) so mobile
+   doesn't feel cramped between sections. */
+.s-black, .s-dark, .s-white, .s-off {
+  padding-top: clamp(64px, 9vw, 120px) !important;
+  padding-bottom: clamp(64px, 9vw, 120px) !important;
+}
+
+/* Add more air between the eyebrow label and H2, and between H2 and
+   the lead paragraph that follows. */
+.eyebrow { margin-bottom: clamp(14px, 2vw, 22px) !important; }
+section h2 { margin-bottom: clamp(16px, 2vw, 28px) !important; line-height: 1.18 !important; }
+section h2 + p,
+section h2 + .lead,
+section h2 + .lead-drk { margin-top: clamp(8px, 1.2vw, 14px) !important; }
+section p + p { margin-top: clamp(10px, 1.4vw, 16px) !important; }
+
+/* Hero — more space between badge, headline, sub, CTA, rating */
+.hero-badge { margin-bottom: clamp(14px, 2vw, 22px) !important; }
+.hero-headline { margin-bottom: clamp(14px, 2vw, 22px) !important; }
+.hero-sub { margin-bottom: clamp(18px, 2.5vw, 28px) !important; }
+.hero-read-time { margin-bottom: clamp(14px, 2vw, 20px) !important; }
+.hero-content .btn-primary { margin-bottom: clamp(20px, 3vw, 32px); }
+.hero-rating { margin-top: clamp(20px, 3vw, 32px) !important; margin-bottom: clamp(14px, 2vw, 20px) !important; }
+.guarantee-row { margin-top: clamp(14px, 2vw, 22px) !important; }
+
+/* Validation section — more gap between headline, buttons, logos, stats */
+.val-btns { margin-top: clamp(18px, 2.5vw, 28px) !important; margin-bottom: clamp(32px, 5vw, 52px) !important; }
+.val-logos-marquee-wrap { margin-top: clamp(20px, 3vw, 32px) !important; margin-bottom: clamp(32px, 5vw, 52px) !important; }
+.val-stats-row { margin-top: clamp(24px, 4vw, 40px) !important; gap: clamp(16px, 2.5vw, 24px) !important; }
+.val-stat { padding: clamp(22px, 3vw, 32px) clamp(18px, 2.5vw, 26px) !important; }
+
+/* Pro cards grid — more gap so cards aren't touching */
+.pro-stack { gap: clamp(14px, 2vw, 22px) !important; }
+.pro-text { padding: clamp(16px, 2.2vw, 24px) clamp(14px, 2vw, 20px) !important; }
+.pro-text h3 { margin-bottom: clamp(8px, 1.2vw, 12px) !important; }
+.pro-desc { margin-bottom: clamp(12px, 1.6vw, 18px) !important; }
+.pro-metrics { margin-top: clamp(10px, 1.4vw, 16px) !important; padding: clamp(10px, 1.4vw, 16px) 0 !important; }
+
+/* Trust section — more space between stats row and badges and press logos */
+.stats-row { gap: clamp(20px, 3vw, 36px) !important; margin-top: clamp(32px, 5vw, 56px) !important; margin-bottom: clamp(28px, 4vw, 48px) !important; }
+.trust-badges { margin-top: clamp(24px, 3.5vw, 40px) !important; margin-bottom: clamp(24px, 3.5vw, 40px) !important; gap: clamp(10px, 1.5vw, 14px) !important; }
+.press-strip { margin-top: clamp(24px, 4vw, 40px) !important; margin-bottom: clamp(24px, 4vw, 40px) !important; gap: clamp(14px, 2vw, 20px) !important; }
+.reviews-grid { gap: clamp(20px, 3vw, 32px) !important; margin-top: clamp(28px, 4vw, 48px) !important; }
+.rev-card { padding: clamp(22px, 3vw, 32px) !important; }
+.rev-card .rev-date { margin-bottom: clamp(6px, 1vw, 10px) !important; }
+.rev-card .rev-stars { margin-bottom: clamp(6px, 1vw, 10px) !important; }
+.rev-card .rev-title { margin-bottom: clamp(8px, 1.2vw, 14px) !important; }
+.rev-card .rev-body { margin-bottom: clamp(14px, 2vw, 20px) !important; }
+
+/* FAQ items — add breathing room between question blocks */
+.faq-item { margin-bottom: clamp(12px, 1.6vw, 18px) !important; }
+.faq-q-text { padding: clamp(16px, 2.2vw, 24px) clamp(16px, 2vw, 24px) !important; }
+.faq-a { padding: clamp(12px, 1.8vw, 20px) clamp(16px, 2vw, 24px) clamp(18px, 2.5vw, 26px) !important; }
+.faq-a p { margin-bottom: clamp(10px, 1.4vw, 16px) !important; line-height: 1.75 !important; }
+
+/* Brain Longevity 101 deep content — MUCH more generous spacing
+   between H3 subsections and their paragraphs. This is where the
+   "wall of text" feeling was strongest. */
+#brain-longevity-101 .wrap { padding: clamp(64px, 10vw, 120px) clamp(20px, 4vw, 32px) !important; }
+#brain-longevity-101 h2 { margin-bottom: clamp(22px, 3vw, 32px) !important; }
+#brain-longevity-101 > .wrap > p[itemprop="description"] { margin-bottom: clamp(40px, 5vw, 60px) !important; padding-bottom: clamp(24px, 3vw, 36px) !important; border-bottom: 1px solid rgba(0,0,0,0.08); }
+#brain-longevity-101 h3 { margin-top: clamp(44px, 6vw, 72px) !important; margin-bottom: clamp(16px, 2.2vw, 24px) !important; padding-top: clamp(8px, 1.2vw, 14px); }
+#brain-longevity-101 p { margin-bottom: clamp(16px, 2.2vw, 22px) !important; line-height: 1.85 !important; }
+#brain-longevity-101 ul,
+#brain-longevity-101 ol { margin-bottom: clamp(18px, 2.5vw, 26px) !important; padding-left: clamp(22px, 2.5vw, 28px) !important; }
+#brain-longevity-101 li { margin-bottom: clamp(10px, 1.4vw, 16px) !important; line-height: 1.8 !important; }
+#brain-longevity-101 li:last-child { margin-bottom: 0 !important; }
+#brain-longevity-101 .btn-primary { margin-top: clamp(24px, 3vw, 36px) !important; }
+
+/* CTA / button breathing room — don't let buttons feel cramped next to text */
+.btn-primary, .btn-secondary { margin-top: clamp(8px, 1.2vw, 16px); }
+
+/* Closing section — more space around the quote + store badges */
+.closing { padding-top: clamp(72px, 10vw, 128px) !important; padding-bottom: clamp(72px, 10vw, 128px) !important; }
+.closing-quote { margin-bottom: clamp(28px, 4vw, 44px) !important; line-height: 1.55 !important; }
+.store-badges { margin-top: clamp(32px, 5vw, 52px) !important; gap: clamp(14px, 2vw, 22px) !important; }
+
+/* Footer — more air between columns */
+footer { padding-top: clamp(56px, 8vw, 96px) !important; padding-bottom: clamp(40px, 6vw, 64px) !important; }
+.footer-grid { gap: clamp(32px, 5vw, 56px) !important; margin-bottom: clamp(32px, 5vw, 48px) !important; }
+.footer-grid a { padding: clamp(4px, 0.6vw, 7px) 0; }
+
+/* Mobile refinements: slightly tighter but still comfortable */
+@media (max-width: 640px) {
+  .s-black, .s-dark, .s-white, .s-off {
+    padding-top: clamp(56px, 14vw, 84px) !important;
+    padding-bottom: clamp(56px, 14vw, 84px) !important;
+  }
+  #brain-longevity-101 h3 { margin-top: clamp(36px, 9vw, 48px) !important; }
+  #brain-longevity-101 p { line-height: 1.8 !important; }
+  .faq-item { margin-bottom: 14px !important; }
+  .rev-card { padding: 20px !important; }
+  .stats-row { gap: 18px !important; }
+  .trust-badges { gap: 10px !important; }
 }
 

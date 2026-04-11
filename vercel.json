@@ -9,7 +9,11 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "frame-ancestors 'self' https://brain.cognifit.com https://*.cognifit.com https://*.wixsite.com https://*.wix.com https://*.editorx.io https://*.editorx.com"
+          "value": "upgrade-insecure-requests; frame-ancestors 'self' https://brain.cognifit.com https://*.cognifit.com https://*.wixsite.com https://*.wix.com https://*.editorx.io https://*.editorx.com"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
         },
         {
           "key": "Cache-Control",

@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Force HTTPS: upgrade any http:// sub-resource automatically. Fixes
+     Google Search Console 'A página não é publicada através de HTTPS'. -->
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 <title>Brain Longevity Test 2026: Free Cognitive Age Assessment & Brain Training | CogniFit</title>
 <meta name="description" content="✓ Free Brain Longevity Test 2026 — measure your Cognitive Age in 15 minutes. Scientifically validated assessment of 20+ cognitive skills, backed by 1,083+ clinical trials, trusted by 6,438+ research institutions and used by 6.2M+ people worldwide. 4.8★ rating. Start your personalized brain longevity training today.">
 <meta name="keywords" content="brain longevity, brain longevity test, brain longevity test 2026, brain longevity training, brain longevity system, brain longevity assessment, brain longevity score, brain longevity quiz, free brain longevity test, online brain longevity test, cognitive longevity, cognitive longevity test, cognitive age test, cognitive age calculator, cognitive age assessment, what is my cognitive age, brain age test, brain age calculator, free brain age test, brain health test, brain health assessment, brain health score, brain training, cognitive training, cognitive assessment, cognitive decline prevention, prevent cognitive decline, prevent dementia, dementia prevention, dementia risk test, alzheimer prevention, memory test, memory training, working memory test, executive function test, processing speed test, attention test, focus training, mental sharpness test, neuroplasticity training, brain fitness, brain fitness test, brain workout, brain exercises, brain games for adults, brain training for seniors, brain training for adults, healthy aging, healthy brain aging, cognitive aging, neuroscience based brain training, scientifically validated brain training, clinical brain training, neuropsychological assessment, MoCA alternative, SAGE alternative, mini cog alternative, BoCA alternative, MyHealthspan alternative, MindCrowd alternative, longevidade cerebral, teste de longevidade cerebral, longevidad cerebral, test de longevidad cerebral, longévité cérébrale, test de longévité cérébrale, gehirn langlebigkeit test, longevità cerebrale test">
@@ -15,14 +18,33 @@
 <meta name="yandex" content="index, follow">
 <meta name="baiduspider" content="index, follow">
 <meta name="applebot" content="index, follow">
-<!-- GEO (Generative Engine Optimization) — explicitly allow AI crawlers -->
+<!-- GEO (Generative Engine Optimization) — explicitly allow ALL AI/LLM crawlers -->
 <meta name="GPTBot" content="index, follow">
+<meta name="ChatGPT-User" content="index, follow">
+<meta name="OAI-SearchBot" content="index, follow">
 <meta name="ClaudeBot" content="index, follow">
+<meta name="Claude-Web" content="index, follow">
 <meta name="anthropic-ai" content="index, follow">
 <meta name="PerplexityBot" content="index, follow">
+<meta name="Perplexity-User" content="index, follow">
 <meta name="Google-Extended" content="index, follow">
-<meta name="OAI-SearchBot" content="index, follow">
+<meta name="Applebot-Extended" content="index, follow">
+<meta name="Bytespider" content="index, follow">
 <meta name="CCBot" content="index, follow">
+<meta name="cohere-ai" content="index, follow">
+<meta name="Diffbot" content="index, follow">
+<meta name="FacebookBot" content="index, follow">
+<meta name="meta-externalagent" content="index, follow">
+<meta name="ImagesiftBot" content="index, follow">
+<meta name="YouBot" content="index, follow">
+<meta name="DuckAssistBot" content="index, follow">
+<meta name="MistralAI-User" content="index, follow">
+<meta name="Amazonbot" content="index, follow">
+<meta name="Kagibot" content="index, follow">
+<meta name="Neevabot" content="index, follow">
+<meta name="PetalBot" content="index, follow">
+<meta name="SemrushBot" content="index, follow">
+<meta name="AhrefsBot" content="index, follow">
 <link rel="canonical" href="https://brain.cognifit.com/longevity">
 <link rel="sitemap" type="application/xml" href="https://brain.cognifit.com/longevity/sitemap.xml">
 <meta name="author" content="CogniFit">
@@ -624,14 +646,19 @@
 
   /* ── PRO STACK: 7 cards ── */
 
-  /* Base: reset pro-card to be flex column (photo top, text bottom) */
+  /* Base: reset pro-card to be flex column (photo top, text bottom).
+     NOTE: width: 100% (NOT 100vw) so it never overflows the viewport
+     when a scrollbar is present. The full-bleed trick was causing
+     horizontal scroll on iframe-embedded layouts. */
   .pro-stack {
     grid-template-columns: repeat(4, 1fr) !important;
-    width: 100vw !important;
-    max-width: 100vw !important;
-    margin-left: calc(-50vw + 50%) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
     gap: 14px !important;
     padding: 0 clamp(16px, 3vw, 40px) !important;
+    box-sizing: border-box !important;
   }
   /* Override row layout → column so photo sits on top */
   .pro-card {

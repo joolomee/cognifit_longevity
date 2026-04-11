@@ -6,18 +6,46 @@
      para que o Google consiga indexar.
 ═══════════════════════════════════════════════════════ -->
 
+<!-- Force HTTPS: upgrade any http:// sub-resource automatically. Fixes
+     Google Search Console 'A página não é publicada através de HTTPS'. -->
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
 <!-- Canonical URL -->
 <link rel="canonical" href="https://brain.cognifit.com/longevity">
 
 <!-- Robots: explicit index/follow + per-bot allow + AI/LLM crawler allow -->
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="googlebot-news" content="index, follow">
 <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="slurp" content="index, follow">
+<meta name="duckduckbot" content="index, follow">
+<meta name="yandex" content="index, follow">
+<meta name="baiduspider" content="index, follow">
+<meta name="applebot" content="index, follow">
+<!-- AI / LLM crawlers (GEO) -->
 <meta name="GPTBot" content="index, follow">
+<meta name="ChatGPT-User" content="index, follow">
+<meta name="OAI-SearchBot" content="index, follow">
 <meta name="ClaudeBot" content="index, follow">
+<meta name="Claude-Web" content="index, follow">
 <meta name="anthropic-ai" content="index, follow">
 <meta name="PerplexityBot" content="index, follow">
+<meta name="Perplexity-User" content="index, follow">
 <meta name="Google-Extended" content="index, follow">
+<meta name="Applebot-Extended" content="index, follow">
+<meta name="Bytespider" content="index, follow">
+<meta name="CCBot" content="index, follow">
+<meta name="cohere-ai" content="index, follow">
+<meta name="Diffbot" content="index, follow">
+<meta name="FacebookBot" content="index, follow">
+<meta name="meta-externalagent" content="index, follow">
+<meta name="ImagesiftBot" content="index, follow">
+<meta name="YouBot" content="index, follow">
+<meta name="DuckAssistBot" content="index, follow">
+<meta name="MistralAI-User" content="index, follow">
+<meta name="Amazonbot" content="index, follow">
+<meta name="Kagibot" content="index, follow">
 
 <!-- SEO meta -->
 <meta name="title" content="Brain Longevity Test 2026: Free Cognitive Age Assessment & Brain Training | CogniFit">

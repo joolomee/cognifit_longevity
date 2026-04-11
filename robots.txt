@@ -80,5 +80,42 @@ Allow: /
 User-agent: ImagesiftBot
 Allow: /
 
+User-agent: YouBot
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: MistralAI-User
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Kagibot
+Allow: /
+
+User-agent: Neevabot
+Allow: /
+
+User-agent: PetalBot
+Allow: /
+
+# SEO tools (allow them — they help discover and audit the page)
+User-agent: SemrushBot
+Allow: /
+
+User-agent: AhrefsBot
+Allow: /
+
+User-agent: MJ12bot
+Allow: /
+
+User-agent: DotBot
+Allow: /
+
+User-agent: BLEXBot
+Allow: /
+
 Sitemap: https://brain.cognifit.com/longevity/sitemap.xml
 Sitemap: https://cognifit-longevity.vercel.app/sitemap.xml
