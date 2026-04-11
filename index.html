@@ -459,36 +459,50 @@
     white-space: nowrap !important;
   }
 
-  /* ── PRESS LOGOS: horizontal em web + tablet ── */
+  /* ── PRESS LOGOS: uniform card size + uniform img bounds so no logo looks dominant ── */
   .press-strip {
     display: flex !important;
     flex-direction: row !important;
     flex-wrap: wrap !important;
     justify-content: center !important;
     align-items: center !important;
-    gap: 10px !important;
+    gap: 14px !important;
   }
   .press-logo-card {
-    flex: 0 1 auto !important;
+    flex: 0 0 auto !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    min-width: 80px !important;
-    padding: 14px 18px !important;
+    width: 140px !important;
+    height: 56px !important;
+    padding: 8px 14px !important;
+    box-sizing: border-box !important;
   }
-  /* NBC needs taller card */
-  .press-logo-card:has(.press-logo-nbc) { padding: 6px 18px !important; }
+  .press-logo-card:has(.press-logo-nbc) { padding: 8px 14px !important; }
   .press-logo-img {
-    max-height: 28px !important;
+    max-height: 24px !important;
+    max-width: 100% !important;
     width: auto !important;
+    height: auto !important;
     object-fit: contain !important;
     filter: brightness(0) invert(1) !important;
-    opacity: 0.85 !important;
+    opacity: 0.82 !important;
     transition: opacity .2s ease !important;
   }
   .press-logo-img:hover { opacity: 1 !important; }
   .press-logo-abc { filter: invert(1) !important; }
-  .press-logo-nbc { filter: none !important; }
+  .press-logo-nbc { filter: none !important; max-height: 34px !important; }
+  @media (max-width: 640px) {
+    .press-strip { gap: 10px !important; }
+    .press-logo-card { width: 110px !important; height: 48px !important; padding: 6px 10px !important; }
+    .press-logo-img { max-height: 20px !important; }
+    .press-logo-nbc { max-height: 28px !important; }
+  }
+  @media (max-width: 380px) {
+    .press-logo-card { width: 96px !important; height: 44px !important; }
+    .press-logo-img { max-height: 18px !important; }
+    .press-logo-nbc { max-height: 24px !important; }
+  }
 
   /* ── TRIAD: reduzir espaço abaixo da animação ── */
   .triad-wrap {
@@ -663,7 +677,15 @@
   </div>
   <div class="nav-r">
     <a href="https://www.cognifit.com/login" target="_blank" class="btn-login" id="login" data-i18n="nav.join">Login</a>
-    <!-- Language selector is built dynamically by i18n.js (buildSelector) and appended here -->
+    <!-- Language selector: static skeleton rendered immediately (works even without JS),
+         i18n.js then wires up the dropdown + click handlers. -->
+    <div class="lang-selector" id="lang-selector-static">
+      <button type="button" id="lang-btn" class="lang-btn" aria-haspopup="listbox" aria-expanded="false" title="Select language">
+        <svg class="lang-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span class="lang-btn-label">EN</span>
+        <svg class="lang-btn-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+    </div>
   </div>
 </nav>
 
@@ -1525,34 +1547,29 @@
       <a href="https://www.cognifit.com/products-pipeline" target="_blank" rel="noopener noreferrer" class="val-btn" data-i18n="val.b1">Products Pipeline</a>
       <a href="https://www.cognifit.com/about-team#scientific-advisory-board" target="_blank" rel="noopener noreferrer" class="val-btn" data-i18n="val.b2">Scientific Advisory Board</a>
     </div>
-    <div class="val-marquee-wrap r d3">
-      <div class="val-marquee-track">
-        <!-- Set 1 -->
-        <img src="logos/harvard.svg" alt="Harvard Medical School" class="val-logo" width="280" height="80" loading="lazy" decoding="async">
-        <img src="logos/stanford.svg" alt="Stanford University" class="val-logo" width="280" height="80" loading="lazy" decoding="async">
-        <img src="logos/mit.svg" alt="Massachusetts Institute of Technology" class="val-logo" width="280" height="80" loading="lazy" decoding="async">
-        <img src="logos/uwashington.svg" alt="University of Washington" class="val-logo" width="280" height="80" loading="lazy" decoding="async">
-        <img src="logos/telaviv.svg" alt="Tel Aviv University" class="val-logo" width="280" height="80" loading="lazy" decoding="async">
-        <img src="logos/johnshopkins.svg" alt="Johns Hopkins University" class="val-logo" width="280" height="80" loading="lazy" decoding="async">
-        <img src="logos/yale.svg" alt="Yale University" class="val-logo" width="280" height="80" loading="lazy" decoding="async">
-        <img src="logos/ucla.svg" alt="UCLA" class="val-logo" width="280" height="80" loading="lazy" decoding="async">
-        <img src="logos/mayoclinic.svg" alt="Mayo Clinic" class="val-logo" width="280" height="80" loading="lazy" decoding="async">
-        <img src="logos/nih.svg" alt="National Institutes of Health" class="val-logo" width="280" height="80" loading="lazy" decoding="async">
-        <img src="logos/oxford.svg" alt="University of Oxford" class="val-logo" width="280" height="80" loading="lazy" decoding="async">
-        <img src="logos/cambridge.svg" alt="University of Cambridge" class="val-logo" width="280" height="80" loading="lazy" decoding="async">
-        <!-- Set 2 (duplicate for seamless loop) -->
-        <img src="logos/harvard.svg" alt="" aria-hidden="true" class="val-logo" width="280" height="80" loading="lazy" decoding="async">
-        <img src="logos/stanford.svg" alt="" aria-hidden="true" class="val-logo" width="280" height="80" loading="lazy" decoding="async">
-        <img src="logos/mit.svg" alt="" aria-hidden="true" class="val-logo" width="280" height="80" loading="lazy" decoding="async">
-        <img src="logos/uwashington.svg" alt="" aria-hidden="true" class="val-logo" width="280" height="80" loading="lazy" decoding="async">
-        <img src="logos/telaviv.svg" alt="" aria-hidden="true" class="val-logo" width="280" height="80" loading="lazy" decoding="async">
-        <img src="logos/johnshopkins.svg" alt="" aria-hidden="true" class="val-logo" width="280" height="80" loading="lazy" decoding="async">
-        <img src="logos/yale.svg" alt="" aria-hidden="true" class="val-logo" width="280" height="80" loading="lazy" decoding="async">
-        <img src="logos/ucla.svg" alt="" aria-hidden="true" class="val-logo" width="280" height="80" loading="lazy" decoding="async">
-        <img src="logos/mayoclinic.svg" alt="" aria-hidden="true" class="val-logo" width="280" height="80" loading="lazy" decoding="async">
-        <img src="logos/nih.svg" alt="" aria-hidden="true" class="val-logo" width="280" height="80" loading="lazy" decoding="async">
-        <img src="logos/oxford.svg" alt="" aria-hidden="true" class="val-logo" width="280" height="80" loading="lazy" decoding="async">
-        <img src="logos/cambridge.svg" alt="" aria-hidden="true" class="val-logo" width="280" height="80" loading="lazy" decoding="async">
+    <!--
+      VALIDATION MARQUEE — logos removed until real, licensed logotypes are provided.
+      To re-enable:
+        1. Add real .svg/.png logo files to a /logos/ folder in the repo
+        2. Replace the placeholder stat cards below with <img class="val-logo"> elements
+        3. Only use logos the user has rights to display
+    -->
+    <div class="val-stats-row r d3">
+      <div class="val-stat">
+        <div class="val-stat-num">6,438+</div>
+        <div class="val-stat-lbl" data-i18n="val.stat1">Research Institutions</div>
+      </div>
+      <div class="val-stat">
+        <div class="val-stat-num">1,083+</div>
+        <div class="val-stat-lbl" data-i18n="val.stat2">Clinical Trials</div>
+      </div>
+      <div class="val-stat">
+        <div class="val-stat-num">3,530+</div>
+        <div class="val-stat-lbl" data-i18n="val.stat3">Healthcare Professionals</div>
+      </div>
+      <div class="val-stat">
+        <div class="val-stat-num">6.2M+</div>
+        <div class="val-stat-lbl" data-i18n="val.stat4">Users Worldwide</div>
       </div>
     </div>
     <p class="r d4" style="margin-top:24px;color:#999;font-size:13px" data-i18n="val.more">and thousands more worldwide</p>

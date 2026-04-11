@@ -172,6 +172,10 @@
       "val.b1": "Products Pipeline",
       "val.b2": "Scientific Advisory Board",
       "val.more": "and thousands more worldwide",
+      "val.stat1": "Research Institutions",
+      "val.stat2": "Clinical Trials",
+      "val.stat3": "Healthcare Professionals",
+      "val.stat4": "Users Worldwide",
       "trust.eyebrow": "Trusted Worldwide",
       "trust.h.top": "Join our global family of",
       "trust.h.users": "users",
@@ -1777,6 +1781,10 @@
       "val.b1": "Pipeline de Produtos",
       "val.b2": "Conselho Consultivo Científico",
       "val.more": "e milhares mais em todo o mundo",
+      "val.stat1": "Instituições de Investigação",
+      "val.stat2": "Ensaios Clínicos",
+      "val.stat3": "Profissionais de Saúde",
+      "val.stat4": "Utilizadores no Mundo",
       "trust.eyebrow": "Confiável a Nível Mundial",
       "trust.h.top": "Junte-se à nossa família global de",
       "trust.h.users": "utilizadores",
@@ -1803,7 +1811,7 @@
       "risk.r3.d": "A inatividade cognitiva é um dos principais fatores de risco modificáveis para o Alzheimer e outras formas de demência.",
       "risk.r4.d": "A clareza mental impulsiona a conexão social, o propósito e o prazer, tudo diminui à medida que a cognição se desvanece.",
       "risk.sol.d": "Exercícios diários cientificamente validados que fortalecem a atenção, a memória e a função executiva, prevenindo cada um dos riscos acima.",
-      "risk.miss.text": "<strong>O treino cognitivo é<br><span class=\"rmp-highlight\">a peça que falta.</span></strong> <span class=\"risk-line-break\">Completa o sistema que proteja a independência e a tomada de decisões diária.</span>",
+      "risk.miss.text": "<strong>O treino cognitivo é<br><span class=\"rmp-highlight\">a peça que falta.</span></strong> <span class=\"risk-line-break\">Completa o sistema que protege a independência e a tomada de decisões diárias.</span>",
       "sci.lead": "De acordo com investigação publicada na <em>Nature Reviews Neuroscience</em>, a longevidade cerebral depende de três sistemas cognitivos interligados que protegem a sua saúde mental e independência à medida que envelhece. <a href=\"https://www.cognifit.com/neuroscience\" style=\"color:var(--blue);text-decoration:none;font-weight:700\">Explore a validação científica completa</a>.",
       "sci.s1.why": "<strong>Porque importa:</strong> Gere a vida, finanças, saúde, relações. <strong>Quando isto declina → a independência declina.</strong>",
       "sci.s2.why": "<strong>Porque importa:</strong> Suporta o raciocínio e o funcionamento diário. <strong>Quando enfraquece → a confusão aumenta.</strong>",
@@ -7217,7 +7225,13 @@
     var btn = document.getElementById('lang-btn');
     if (btn) {
       var code = lang.toUpperCase();
-      btn.textContent = code.length > 2 ? code.substring(0,2) : code;
+      var shortCode = code.length > 2 ? code.substring(0,2) : code;
+      var label = btn.querySelector('.lang-btn-label');
+      if (label) {
+        label.textContent = shortCode;
+      } else {
+        btn.textContent = shortCode;
+      }
       btn.setAttribute('data-lang', lang);
     }
     document.querySelectorAll('.lang-item').forEach(function(item) {
@@ -7236,25 +7250,38 @@
   function buildSelector() {
     var navR = document.querySelector('.nav-r');
     if (!navR) return;
-    // Remove any leftover EN span (legacy)
+    // Remove any leftover legacy "EN" span (not the new .lang-selector wrapper).
     navR.querySelectorAll('span').forEach(function(s) {
+      if (s.closest && s.closest('.lang-selector')) return;
       if (/^EN$/i.test((s.textContent || '').trim())) s.remove();
     });
-    // Avoid duplicates if buildSelector runs twice
-    var existing = navR.querySelector('.lang-selector');
-    if (existing) existing.parentNode.removeChild(existing);
 
-    var wrap = document.createElement('div');
-    wrap.className = 'lang-selector';
+    // Reuse the static .lang-selector skeleton rendered in HTML whenever it exists,
+    // so the button is visible immediately even if this JS is slow or blocked.
+    var wrap = navR.querySelector('.lang-selector');
+    var btn;
+    if (wrap) {
+      btn = wrap.querySelector('#lang-btn') || wrap.querySelector('.lang-btn');
+      // If the dropdown was already built by a previous run, wipe it before rebuilding.
+      var oldDropdown = wrap.querySelector('.lang-dropdown');
+      if (oldDropdown) oldDropdown.parentNode.removeChild(oldDropdown);
+    } else {
+      wrap = document.createElement('div');
+      wrap.className = 'lang-selector';
+      navR.appendChild(wrap);
+    }
 
-    var btn = document.createElement('button');
-    btn.id = 'lang-btn';
-    btn.className = 'lang-btn';
-    btn.type = 'button';
+    if (!btn) {
+      btn = document.createElement('button');
+      btn.id = 'lang-btn';
+      btn.className = 'lang-btn';
+      btn.type = 'button';
+      btn.setAttribute('aria-haspopup', 'listbox');
+      btn.setAttribute('title', 'Select language');
+      btn.textContent = 'EN';
+      wrap.appendChild(btn);
+    }
     btn.setAttribute('aria-expanded', 'false');
-    btn.setAttribute('aria-haspopup', 'listbox');
-    btn.setAttribute('title', 'Select language');
-    btn.textContent = 'EN';
 
     var dropdown = document.createElement('div');
     dropdown.className = 'lang-dropdown';
@@ -7334,9 +7361,9 @@
       }
     });
 
-    wrap.appendChild(btn);
+    // btn is already inside wrap (either from the static HTML skeleton or from
+    // the fallback creation above) — only append the dropdown.
     wrap.appendChild(dropdown);
-    navR.appendChild(wrap);
   }
 
   window.T = T; // Expose for main.js sci-broken + dynamic i18n lookups

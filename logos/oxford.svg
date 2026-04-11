@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 80" role="img" aria-label="University of Oxford">
-  <g fill="#2b2b2b">
-    <path d="M24 52 L44 20 L64 52 Z" fill="none" stroke="#2b2b2b" stroke-width="2.5"/>
-    <rect x="22" y="52" width="44" height="10" fill="none" stroke="#2b2b2b" stroke-width="2.5"/>
-    <text x="85" y="36" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700" letter-spacing="1.5">OXFORD</text>
-    <text x="85" y="56" font-family="Georgia, 'Times New Roman', serif" font-size="10" font-weight="400" letter-spacing="2">UNIVERSITY</text>
-  </g>
-</svg>
