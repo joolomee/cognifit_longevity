@@ -7260,11 +7260,20 @@
     // so the button is visible immediately even if this JS is slow or blocked.
     var wrap = navR.querySelector('.lang-selector');
     var btn;
+    var hasStaticDropdown = false;
     if (wrap) {
       btn = wrap.querySelector('#lang-btn') || wrap.querySelector('.lang-btn');
-      // If the dropdown was already built by a previous run, wipe it before rebuilding.
-      var oldDropdown = wrap.querySelector('.lang-dropdown');
-      if (oldDropdown) oldDropdown.parentNode.removeChild(oldDropdown);
+      // If a static dropdown is already present in HTML, keep it. Its inline
+      // onclick handlers already work without JS. We'll just make sure the
+      // outside-click / Escape handlers are attached below.
+      var staticDropdown = wrap.querySelector('#lang-dropdown-static');
+      if (staticDropdown) {
+        hasStaticDropdown = true;
+      } else {
+        // Only remove a dropdown that was previously built by JS (not the static one)
+        var oldDropdown = wrap.querySelector('.lang-dropdown');
+        if (oldDropdown) oldDropdown.parentNode.removeChild(oldDropdown);
+      }
     } else {
       wrap = document.createElement('div');
       wrap.className = 'lang-selector';
@@ -7282,6 +7291,26 @@
       wrap.appendChild(btn);
     }
     btn.setAttribute('aria-expanded', 'false');
+
+    // If a static dropdown already exists, just attach outside-click + Escape
+    // handlers and return. The button's inline onclick handles toggling.
+    if (hasStaticDropdown) {
+      var staticDd = document.getElementById('lang-dropdown-static');
+      document.addEventListener('click', function(e) {
+        if (wrap.contains(e.target)) return;
+        staticDd.classList.remove('open');
+        document.documentElement.classList.remove('lang-modal-open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          staticDd.classList.remove('open');
+          document.documentElement.classList.remove('lang-modal-open');
+          btn.setAttribute('aria-expanded', 'false');
+        }
+      });
+      return;
+    }
 
     var dropdown = document.createElement('div');
     dropdown.className = 'lang-dropdown';

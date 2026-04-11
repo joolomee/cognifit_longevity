@@ -680,11 +680,43 @@
     <!-- Language selector: static skeleton rendered immediately (works even without JS),
          i18n.js then wires up the dropdown + click handlers. -->
     <div class="lang-selector" id="lang-selector-static">
-      <button type="button" id="lang-btn" class="lang-btn" aria-haspopup="listbox" aria-expanded="false" title="Select language">
+      <button type="button" id="lang-btn" class="lang-btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="lang-dropdown-static" title="Select language"
+              onclick="(function(b){var d=document.getElementById('lang-dropdown-static');if(!d)return;var open=d.classList.toggle('open');b.setAttribute('aria-expanded',String(open));document.documentElement.classList.toggle('lang-modal-open',open);})(this);event.stopPropagation();">
         <svg class="lang-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
         <span class="lang-btn-label">EN</span>
         <svg class="lang-btn-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
+      <div class="lang-dropdown" id="lang-dropdown-static" role="listbox" aria-label="Language selection">
+        <div class="lang-modal-header">
+          <span class="lang-modal-title">Select language</span>
+          <button type="button" class="lang-modal-close" aria-label="Close language menu"
+                  onclick="(function(){var d=document.getElementById('lang-dropdown-static');if(d)d.classList.remove('open');var b=document.getElementById('lang-btn');if(b)b.setAttribute('aria-expanded','false');document.documentElement.classList.remove('lang-modal-open');})();event.stopPropagation();">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <button type="button" class="lang-item" role="option" data-lang="en" lang="en" onclick="window.CogniFitI18n&&window.CogniFitI18n.setLang('en',true);document.getElementById('lang-dropdown-static').classList.remove('open');document.getElementById('lang-btn').setAttribute('aria-expanded','false');document.documentElement.classList.remove('lang-modal-open');event.stopPropagation();"><span class="lang-flag">🇬🇧</span><span class="lang-name">English</span></button>
+        <button type="button" class="lang-item" role="option" data-lang="es" lang="es" onclick="window.CogniFitI18n&&window.CogniFitI18n.setLang('es',true);document.getElementById('lang-dropdown-static').classList.remove('open');document.getElementById('lang-btn').setAttribute('aria-expanded','false');document.documentElement.classList.remove('lang-modal-open');event.stopPropagation();"><span class="lang-flag">🇪🇸</span><span class="lang-name">Español</span></button>
+        <button type="button" class="lang-item" role="option" data-lang="fr" lang="fr" onclick="window.CogniFitI18n&&window.CogniFitI18n.setLang('fr',true);document.getElementById('lang-dropdown-static').classList.remove('open');document.getElementById('lang-btn').setAttribute('aria-expanded','false');document.documentElement.classList.remove('lang-modal-open');event.stopPropagation();"><span class="lang-flag">🇫🇷</span><span class="lang-name">Français</span></button>
+        <button type="button" class="lang-item" role="option" data-lang="de" lang="de" onclick="window.CogniFitI18n&&window.CogniFitI18n.setLang('de',true);document.getElementById('lang-dropdown-static').classList.remove('open');document.getElementById('lang-btn').setAttribute('aria-expanded','false');document.documentElement.classList.remove('lang-modal-open');event.stopPropagation();"><span class="lang-flag">🇩🇪</span><span class="lang-name">Deutsch</span></button>
+        <button type="button" class="lang-item" role="option" data-lang="it" lang="it" onclick="window.CogniFitI18n&&window.CogniFitI18n.setLang('it',true);document.getElementById('lang-dropdown-static').classList.remove('open');document.getElementById('lang-btn').setAttribute('aria-expanded','false');document.documentElement.classList.remove('lang-modal-open');event.stopPropagation();"><span class="lang-flag">🇮🇹</span><span class="lang-name">Italiano</span></button>
+        <button type="button" class="lang-item" role="option" data-lang="pt" lang="pt" onclick="window.CogniFitI18n&&window.CogniFitI18n.setLang('pt',true);document.getElementById('lang-dropdown-static').classList.remove('open');document.getElementById('lang-btn').setAttribute('aria-expanded','false');document.documentElement.classList.remove('lang-modal-open');event.stopPropagation();"><span class="lang-flag">🇵🇹</span><span class="lang-name">Português</span></button>
+        <button type="button" class="lang-item" role="option" data-lang="nl" lang="nl" onclick="window.CogniFitI18n&&window.CogniFitI18n.setLang('nl',true);document.getElementById('lang-dropdown-static').classList.remove('open');document.getElementById('lang-btn').setAttribute('aria-expanded','false');document.documentElement.classList.remove('lang-modal-open');event.stopPropagation();"><span class="lang-flag">🇳🇱</span><span class="lang-name">Nederlands</span></button>
+        <button type="button" class="lang-item" role="option" data-lang="pl" lang="pl" onclick="window.CogniFitI18n&&window.CogniFitI18n.setLang('pl',true);document.getElementById('lang-dropdown-static').classList.remove('open');document.getElementById('lang-btn').setAttribute('aria-expanded','false');document.documentElement.classList.remove('lang-modal-open');event.stopPropagation();"><span class="lang-flag">🇵🇱</span><span class="lang-name">Polski</span></button>
+        <button type="button" class="lang-item" role="option" data-lang="ru" lang="ru" onclick="window.CogniFitI18n&&window.CogniFitI18n.setLang('ru',true);document.getElementById('lang-dropdown-static').classList.remove('open');document.getElementById('lang-btn').setAttribute('aria-expanded','false');document.documentElement.classList.remove('lang-modal-open');event.stopPropagation();"><span class="lang-flag">🇷🇺</span><span class="lang-name">Русский</span></button>
+        <button type="button" class="lang-item" role="option" data-lang="ar" lang="ar" onclick="window.CogniFitI18n&&window.CogniFitI18n.setLang('ar',true);document.getElementById('lang-dropdown-static').classList.remove('open');document.getElementById('lang-btn').setAttribute('aria-expanded','false');document.documentElement.classList.remove('lang-modal-open');event.stopPropagation();"><span class="lang-flag">🇸🇦</span><span class="lang-name">العربية</span></button>
+        <button type="button" class="lang-item" role="option" data-lang="he" lang="he" onclick="window.CogniFitI18n&&window.CogniFitI18n.setLang('he',true);document.getElementById('lang-dropdown-static').classList.remove('open');document.getElementById('lang-btn').setAttribute('aria-expanded','false');document.documentElement.classList.remove('lang-modal-open');event.stopPropagation();"><span class="lang-flag">🇮🇱</span><span class="lang-name">עברית</span></button>
+        <button type="button" class="lang-item" role="option" data-lang="zh" lang="zh" onclick="window.CogniFitI18n&&window.CogniFitI18n.setLang('zh',true);document.getElementById('lang-dropdown-static').classList.remove('open');document.getElementById('lang-btn').setAttribute('aria-expanded','false');document.documentElement.classList.remove('lang-modal-open');event.stopPropagation();"><span class="lang-flag">🇨🇳</span><span class="lang-name">中文(简体)</span></button>
+        <button type="button" class="lang-item" role="option" data-lang="zh-HK" lang="zh-HK" onclick="window.CogniFitI18n&&window.CogniFitI18n.setLang('zh-HK',true);document.getElementById('lang-dropdown-static').classList.remove('open');document.getElementById('lang-btn').setAttribute('aria-expanded','false');document.documentElement.classList.remove('lang-modal-open');event.stopPropagation();"><span class="lang-flag">🇭🇰</span><span class="lang-name">中文(繁體)</span></button>
+        <button type="button" class="lang-item" role="option" data-lang="ja" lang="ja" onclick="window.CogniFitI18n&&window.CogniFitI18n.setLang('ja',true);document.getElementById('lang-dropdown-static').classList.remove('open');document.getElementById('lang-btn').setAttribute('aria-expanded','false');document.documentElement.classList.remove('lang-modal-open');event.stopPropagation();"><span class="lang-flag">🇯🇵</span><span class="lang-name">日本語</span></button>
+        <button type="button" class="lang-item" role="option" data-lang="ko" lang="ko" onclick="window.CogniFitI18n&&window.CogniFitI18n.setLang('ko',true);document.getElementById('lang-dropdown-static').classList.remove('open');document.getElementById('lang-btn').setAttribute('aria-expanded','false');document.documentElement.classList.remove('lang-modal-open');event.stopPropagation();"><span class="lang-flag">🇰🇷</span><span class="lang-name">한국어</span></button>
+        <button type="button" class="lang-item" role="option" data-lang="tr" lang="tr" onclick="window.CogniFitI18n&&window.CogniFitI18n.setLang('tr',true);document.getElementById('lang-dropdown-static').classList.remove('open');document.getElementById('lang-btn').setAttribute('aria-expanded','false');document.documentElement.classList.remove('lang-modal-open');event.stopPropagation();"><span class="lang-flag">🇹🇷</span><span class="lang-name">Türkçe</span></button>
+        <button type="button" class="lang-item" role="option" data-lang="id" lang="id" onclick="window.CogniFitI18n&&window.CogniFitI18n.setLang('id',true);document.getElementById('lang-dropdown-static').classList.remove('open');document.getElementById('lang-btn').setAttribute('aria-expanded','false');document.documentElement.classList.remove('lang-modal-open');event.stopPropagation();"><span class="lang-flag">🇮🇩</span><span class="lang-name">Bahasa Indonesia</span></button>
+        <button type="button" class="lang-item" role="option" data-lang="bn" lang="bn" onclick="window.CogniFitI18n&&window.CogniFitI18n.setLang('bn',true);document.getElementById('lang-dropdown-static').classList.remove('open');document.getElementById('lang-btn').setAttribute('aria-expanded','false');document.documentElement.classList.remove('lang-modal-open');event.stopPropagation();"><span class="lang-flag">🇧🇩</span><span class="lang-name">বাংলা</span></button>
+        <button type="button" class="lang-item" role="option" data-lang="mn" lang="mn" onclick="window.CogniFitI18n&&window.CogniFitI18n.setLang('mn',true);document.getElementById('lang-dropdown-static').classList.remove('open');document.getElementById('lang-btn').setAttribute('aria-expanded','false');document.documentElement.classList.remove('lang-modal-open');event.stopPropagation();"><span class="lang-flag">🇲🇳</span><span class="lang-name">Монгол</span></button>
+        <button type="button" class="lang-item" role="option" data-lang="ur" lang="ur" onclick="window.CogniFitI18n&&window.CogniFitI18n.setLang('ur',true);document.getElementById('lang-dropdown-static').classList.remove('open');document.getElementById('lang-btn').setAttribute('aria-expanded','false');document.documentElement.classList.remove('lang-modal-open');event.stopPropagation();"><span class="lang-flag">🇵🇰</span><span class="lang-name">اردو</span></button>
+        <button type="button" class="lang-item" role="option" data-lang="sr" lang="sr" onclick="window.CogniFitI18n&&window.CogniFitI18n.setLang('sr',true);document.getElementById('lang-dropdown-static').classList.remove('open');document.getElementById('lang-btn').setAttribute('aria-expanded','false');document.documentElement.classList.remove('lang-modal-open');event.stopPropagation();"><span class="lang-flag">🇷🇸</span><span class="lang-name">Српски</span></button>
+        <button type="button" class="lang-item" role="option" data-lang="el" lang="el" onclick="window.CogniFitI18n&&window.CogniFitI18n.setLang('el',true);document.getElementById('lang-dropdown-static').classList.remove('open');document.getElementById('lang-btn').setAttribute('aria-expanded','false');document.documentElement.classList.remove('lang-modal-open');event.stopPropagation();"><span class="lang-flag">🇬🇷</span><span class="lang-name">Ελληνικά</span></button>
+      </div>
     </div>
   </div>
 </nav>
@@ -1548,13 +1580,28 @@
       <a href="https://www.cognifit.com/about-team#scientific-advisory-board" target="_blank" rel="noopener noreferrer" class="val-btn" data-i18n="val.b2">Scientific Advisory Board</a>
     </div>
     <!--
-      VALIDATION MARQUEE — logos removed until real, licensed logotypes are provided.
-      To re-enable:
-        1. Add real .svg/.png logo files to a /logos/ folder in the repo
-        2. Replace the placeholder stat cards below with <img class="val-logo"> elements
-        3. Only use logos the user has rights to display
+      VALIDATION MARQUEE — uses CogniFit's own asset hosted at www.cognifit.com
+      (same organization as brain.cognifit.com, so no third-party trademark issue).
+      If the image 404s or is blocked, onerror hides the marquee and a fallback
+      stats block is shown instead.
     -->
-    <div class="val-stats-row r d3">
+    <div class="val-marquee-wrap r d3" id="val-marquee-wrap">
+      <div class="val-marquee">
+        <img src="https://www.cognifit.com/img/newart/clinicsLogos.webp"
+             alt="CogniFit partner institutions worldwide"
+             class="val-marquee-img"
+             width="1800" height="140"
+             loading="eager" decoding="async"
+             onerror="(function(i){var w=document.getElementById('val-marquee-wrap');if(w)w.style.display='none';var f=document.getElementById('val-stats-fallback');if(f)f.style.display='flex';})(this)">
+        <img src="https://www.cognifit.com/img/newart/clinicsLogos.webp"
+             alt=""
+             aria-hidden="true"
+             class="val-marquee-img"
+             width="1800" height="140"
+             loading="eager" decoding="async">
+      </div>
+    </div>
+    <div class="val-stats-row r d3" id="val-stats-fallback" style="display:none">
       <div class="val-stat">
         <div class="val-stat-num">6,438+</div>
         <div class="val-stat-lbl" data-i18n="val.stat1">Research Institutions</div>

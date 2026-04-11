@@ -1217,6 +1217,7 @@ html.js-ready .r.on{opacity:1;transform:none}
   .hero-badge{
     font-size:9px;
     padding:7px 14px;
+    margin-top:24px;
     margin-bottom:24px;
     background:rgba(26,115,232,.18);
     border:1px solid rgba(26,115,232,.4);
@@ -3945,8 +3946,24 @@ html.is-iframe .hero-content {
   white-space: nowrap !important;
 }
 @media (max-width: 640px) {
-  .hero-rating .rating-row1 { flex-direction: column !important; align-items: flex-start !important; justify-content: flex-start !important; gap: 8px !important; }
+  .hero-rating { text-align: center !important; }
+  .hero-rating .rating-row1 {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    text-align: center !important;
+  }
+  .hero-rating .rating-left,
+  .hero-rating .rating-right {
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    width: 100%;
+  }
   .hero-rating .rating-right { order: 2 !important; }
+  .hero-rating .rating-users,
+  .hero-rating .rating-number { text-align: center !important; }
 }
 
 /* ---- DISCOVER SECTION: center lead text ---- */
