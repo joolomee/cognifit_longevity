@@ -497,6 +497,10 @@
       "val.b1": "Línea de Productos",
       "val.b2": "Consejo Asesor Científico",
       "val.more": "y miles más en todo el mundo",
+      "val.stat1": "Instituciones de Investigación",
+      "val.stat2": "Ensayos Clínicos",
+      "val.stat3": "Profesionales de la Salud",
+      "val.stat4": "Usuarios en el Mundo",
       "trust.eyebrow": "Confianza Mundial",
       "trust.h.top": "Únete a nuestra familia global de",
       "trust.h.users": "usuarios",
@@ -818,6 +822,10 @@
       "val.b1": "Pipeline de Produits",
       "val.b2": "Conseil Consultatif Scientifique",
       "val.more": "et des milliers d'autres dans le monde",
+      "val.stat1": "Institutions de Recherche",
+      "val.stat2": "Essais Cliniques",
+      "val.stat3": "Professionnels de Santé",
+      "val.stat4": "Utilisateurs dans le Monde",
       "trust.eyebrow": "Approuvé Mondialement",
       "trust.h.top": "Rejoignez notre famille mondiale de",
       "trust.h.users": "utilisateurs",
@@ -1139,6 +1147,10 @@
       "val.b1": "Produkt-Pipeline",
       "val.b2": "Wissenschaftlicher Beirat",
       "val.more": "und Tausende mehr weltweit",
+      "val.stat1": "Forschungseinrichtungen",
+      "val.stat2": "Klinische Studien",
+      "val.stat3": "Medizinisches Fachpersonal",
+      "val.stat4": "Nutzer Weltweit",
       "trust.eyebrow": "Weltweit Vertraut",
       "trust.h.top": "Treten Sie unserer globalen Familie von",
       "trust.h.users": "Nutzern bei",
@@ -1460,6 +1472,10 @@
       "val.b1": "Pipeline di Prodotti",
       "val.b2": "Comitato Consultivo Scientifico",
       "val.more": "e migliaia in più nel mondo",
+      "val.stat1": "Istituzioni di Ricerca",
+      "val.stat2": "Studi Clinici",
+      "val.stat3": "Professionisti Sanitari",
+      "val.stat4": "Utenti nel Mondo",
       "trust.eyebrow": "Fiducia Mondiale",
       "trust.h.top": "Unisciti alla nostra famiglia globale di",
       "trust.h.users": "utenti",
@@ -2106,6 +2122,10 @@
       "val.b1": "Productpijplijn",
       "val.b2": "Wetenschappelijke Adviesraad",
       "val.more": "en duizenden meer wereldwijd",
+      "val.stat1": "Onderzoeksinstellingen",
+      "val.stat2": "Klinische Studies",
+      "val.stat3": "Zorgverleners",
+      "val.stat4": "Gebruikers Wereldwijd",
       "trust.eyebrow": "Wereldwijd Vertrouwd",
       "trust.h.top": "Sluit u aan bij onze wereldwijde familie van",
       "trust.h.users": "gebruikers",
@@ -2427,6 +2447,10 @@
       "val.b1": "Linia Produktów",
       "val.b2": "Naukowa Rada Doradcza",
       "val.more": "i tysiące więcej na całym świecie",
+      "val.stat1": "Instytucje Badawcze",
+      "val.stat2": "Badania Kliniczne",
+      "val.stat3": "Pracownicy Służby Zdrowia",
+      "val.stat4": "Użytkownicy na Świecie",
       "trust.eyebrow": "Zaufanie na Całym Świecie",
       "trust.h.top": "Dołącz do naszej globalnej rodziny",
       "trust.h.users": "użytkowników",
@@ -2748,6 +2772,10 @@
       "val.b1": "Линейка Продуктов",
       "val.b2": "Научный Консультативный Совет",
       "val.more": "и тысячи других по всему миру",
+      "val.stat1": "Исследовательские Учреждения",
+      "val.stat2": "Клинические Исследования",
+      "val.stat3": "Медицинские Специалисты",
+      "val.stat4": "Пользователей по Всему Миру",
       "trust.eyebrow": "Доверие по Всему Миру",
       "trust.h.top": "Присоединяйтесь к нашей глобальной семье из",
       "trust.h.users": "пользователей",
@@ -3069,6 +3097,10 @@
       "val.b1": "خط أنابيب المنتجات",
       "val.b2": "المجلس الاستشاري العلمي",
       "val.more": "وآلاف آخرين حول العالم",
+      "val.stat1": "مؤسسات البحث",
+      "val.stat2": "التجارب السريرية",
+      "val.stat3": "اختصاصيو الرعاية الصحية",
+      "val.stat4": "المستخدمون حول العالم",
       "trust.eyebrow": "موثوق به عالميًا",
       "trust.h.top": "انضم إلى عائلتنا العالمية من",
       "trust.h.users": "مستخدم",
@@ -3390,6 +3422,10 @@
       "val.b1": "צינור מוצרים",
       "val.b2": "הוועדה המייעצת המדעית",
       "val.more": "ועוד אלפים ברחבי העולם",
+      "val.stat1": "מוסדות מחקר",
+      "val.stat2": "ניסויים קליניים",
+      "val.stat3": "אנשי מקצוע בתחום הבריאות",
+      "val.stat4": "משתמשים ברחבי העולם",
       "trust.eyebrow": "מהימן ברחבי העולם",
       "trust.h.top": "הצטרפו למשפחה הגלובלית שלנו בת",
       "trust.h.users": "משתמשים",
@@ -3711,6 +3747,10 @@
       "val.b1": "产品管线",
       "val.b2": "科学顾问委员会",
       "val.more": "以及全球数千家",
+      "val.stat1": "研究机构",
+      "val.stat2": "临床试验",
+      "val.stat3": "医疗专业人员",
+      "val.stat4": "全球用户",
       "trust.eyebrow": "全球信赖",
       "trust.h.top": "加入我们的全球大家庭",
       "trust.h.users": "用户",
@@ -4032,6 +4072,10 @@
       "val.b1": "產品管線",
       "val.b2": "科學顧問委員會",
       "val.more": "以及全球數千家",
+      "val.stat1": "研究機構",
+      "val.stat2": "臨床試驗",
+      "val.stat3": "醫療專業人員",
+      "val.stat4": "全球用戶",
       "trust.eyebrow": "全球信賴",
       "trust.h.top": "加入我們的全球大家庭",
       "trust.h.users": "用戶",
@@ -4353,6 +4397,10 @@
       "val.b1": "製品パイプライン",
       "val.b2": "科学諮問委員会",
       "val.more": "世界中の数千以上",
+      "val.stat1": "研究機関",
+      "val.stat2": "臨床試験",
+      "val.stat3": "医療従事者",
+      "val.stat4": "世界中のユーザー",
       "trust.eyebrow": "世界中で信頼されている",
       "trust.h.top": "私たちのグローバルファミリーに参加",
       "trust.h.users": "ユーザー",
@@ -4674,6 +4722,10 @@
       "val.b1": "제품 파이프라인",
       "val.b2": "과학 자문 위원회",
       "val.more": "전 세계 수천 곳 더",
+      "val.stat1": "연구 기관",
+      "val.stat2": "임상 시험",
+      "val.stat3": "의료 전문가",
+      "val.stat4": "전 세계 사용자",
       "trust.eyebrow": "전 세계 신뢰",
       "trust.h.top": "우리의 글로벌 가족에 합류하세요",
       "trust.h.users": "사용자",
@@ -4995,6 +5047,10 @@
       "val.b1": "Ürün Hattı",
       "val.b2": "Bilimsel Danışma Kurulu",
       "val.more": "ve dünyada binlerce daha",
+      "val.stat1": "Araştırma Kurumları",
+      "val.stat2": "Klinik Denemeler",
+      "val.stat3": "Sağlık Profesyonelleri",
+      "val.stat4": "Dünya Çapında Kullanıcılar",
       "trust.eyebrow": "Dünya Çapında Güvenilir",
       "trust.h.top": "Küresel ailemize katılın",
       "trust.h.users": "kullanıcı",
@@ -5316,6 +5372,10 @@
       "val.b1": "Pipeline Produk",
       "val.b2": "Dewan Penasihat Ilmiah",
       "val.more": "dan ribuan lainnya di seluruh dunia",
+      "val.stat1": "Lembaga Penelitian",
+      "val.stat2": "Uji Klinis",
+      "val.stat3": "Profesional Kesehatan",
+      "val.stat4": "Pengguna di Seluruh Dunia",
       "trust.eyebrow": "Dipercaya di Seluruh Dunia",
       "trust.h.top": "Bergabunglah dengan keluarga global kami",
       "trust.h.users": "pengguna",
@@ -5637,6 +5697,10 @@
       "val.b1": "পণ্য পাইপলাইন",
       "val.b2": "বৈজ্ঞানিক উপদেষ্টা বোর্ড",
       "val.more": "এবং বিশ্বব্যাপী আরও হাজার হাজার",
+      "val.stat1": "গবেষণা প্রতিষ্ঠান",
+      "val.stat2": "ক্লিনিকাল ট্রায়াল",
+      "val.stat3": "স্বাস্থ্যসেবা পেশাদার",
+      "val.stat4": "বিশ্বব্যাপী ব্যবহারকারী",
       "trust.eyebrow": "বিশ্বব্যাপী বিশ্বস্ত",
       "trust.h.top": "আমাদের বিশ্বব্যাপী পরিবারে যোগ দিন",
       "trust.h.users": "ব্যবহারকারী",
@@ -5958,6 +6022,10 @@
       "val.b1": "Бүтээгдэхүүний хоолой",
       "val.b2": "Шинжлэх ухааны зөвлөх зөвлөл",
       "val.more": "дэлхий дахинаас мянга мянган",
+      "val.stat1": "Судалгааны байгууллага",
+      "val.stat2": "Эмнэлзүйн туршилт",
+      "val.stat3": "Эрүүл мэндийн мэргэжилтэн",
+      "val.stat4": "Дэлхий даяарх хэрэглэгч",
       "trust.eyebrow": "Дэлхий даяар итгэмжлэгдсэн",
       "trust.h.top": "Манай дэлхийн гэр бүлд нэгдээрэй",
       "trust.h.users": "хэрэглэгч",
@@ -6279,6 +6347,10 @@
       "val.b1": "مصنوعات کی پائپ لائن",
       "val.b2": "سائنسی مشاورتی بورڈ",
       "val.more": "اور دنیا بھر میں ہزاروں مزید",
+      "val.stat1": "تحقیقی ادارے",
+      "val.stat2": "طبی آزمائشیں",
+      "val.stat3": "صحت کے پیشہ ور",
+      "val.stat4": "دنیا بھر میں صارفین",
       "trust.eyebrow": "دنیا بھر میں قابل اعتماد",
       "trust.h.top": "ہماری عالمی فیملی میں شامل ہوں",
       "trust.h.users": "صارفین",
@@ -6600,6 +6672,10 @@
       "val.b1": "Линија Производа",
       "val.b2": "Научни Саветодавни Одбор",
       "val.more": "и хиљаде других широм света",
+      "val.stat1": "Истраживачке Институције",
+      "val.stat2": "Клиничка Испитивања",
+      "val.stat3": "Здравствени Радници",
+      "val.stat4": "Корисници Широм Света",
       "trust.eyebrow": "Поверење Широм Света",
       "trust.h.top": "Придружите се нашој глобалној породици",
       "trust.h.users": "корисника",
@@ -6921,6 +6997,10 @@
       "val.b1": "Αγωγός Προϊόντων",
       "val.b2": "Επιστημονικό Συμβουλευτικό Συμβούλιο",
       "val.more": "και χιλιάδες άλλα παγκοσμίως",
+      "val.stat1": "Ερευνητικά Ιδρύματα",
+      "val.stat2": "Κλινικές Δοκιμές",
+      "val.stat3": "Επαγγελματίες Υγείας",
+      "val.stat4": "Χρήστες Παγκοσμίως",
       "trust.eyebrow": "Αξιόπιστο Παγκοσμίως",
       "trust.h.top": "Γίνετε μέλος της παγκόσμιας οικογένειάς μας",
       "trust.h.users": "χρήστες",
@@ -7292,10 +7372,54 @@
     }
     btn.setAttribute('aria-expanded', 'false');
 
-    // If a static dropdown already exists, just attach outside-click + Escape
-    // handlers and return. The button's inline onclick handles toggling.
+    // If a static dropdown already exists, attach JS click handlers as a
+    // fallback for environments where inline onclick handlers may be blocked
+    // (e.g. Wix iframe with strict CSP). Inline handlers stay as a no-JS
+    // fallback; whichever fires first wins.
     if (hasStaticDropdown) {
       var staticDd = document.getElementById('lang-dropdown-static');
+
+      // Wire up the toggle button via addEventListener (CSP-safe)
+      if (btn && !btn.__wiredClick) {
+        btn.__wiredClick = true;
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          var open = staticDd.classList.toggle('open');
+          btn.setAttribute('aria-expanded', String(open));
+          document.documentElement.classList.toggle('lang-modal-open', open);
+        });
+      }
+
+      // Wire up each language item via addEventListener (CSP-safe)
+      var staticItems = staticDd.querySelectorAll('.lang-item');
+      staticItems.forEach(function(item) {
+        if (item.__wiredClick) return;
+        item.__wiredClick = true;
+        item.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          var code = item.getAttribute('data-lang');
+          if (code) setLang(code, true);
+          staticDd.classList.remove('open');
+          document.documentElement.classList.remove('lang-modal-open');
+          btn.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      // Wire up the modal close button via addEventListener (CSP-safe)
+      var staticClose = staticDd.querySelector('.lang-modal-close');
+      if (staticClose && !staticClose.__wiredClick) {
+        staticClose.__wiredClick = true;
+        staticClose.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          staticDd.classList.remove('open');
+          document.documentElement.classList.remove('lang-modal-open');
+          btn.setAttribute('aria-expanded', 'false');
+        });
+      }
+
       document.addEventListener('click', function(e) {
         if (wrap.contains(e.target)) return;
         staticDd.classList.remove('open');
