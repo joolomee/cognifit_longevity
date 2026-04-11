@@ -3,6 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <!-- ============================================================
+     EARLY BOOTSTRAP — runs before anything else so Google/Bing
+     crawlers see the correct <html lang> + canonical for the
+     specific language URL variant they just fetched. Without this,
+     ?lang=pt URLs still expose lang='en' + EN canonical, which
+     Semrush / Google flag as 'hreflang language mismatch' and
+     'conflicting hreflang and rel=canonical URLs'.
+============================================================ -->
+<script>
+(function(){
+  try {
+    var VALID = {en:1,es:1,fr:1,de:1,it:1,pt:1,nl:1,pl:1,ru:1,ar:1,he:1,zh:1,"zh-HK":1,ja:1,ko:1,tr:1,id:1,bn:1,mn:1,ur:1,sr:1,el:1};
+    var RTL = {ar:1, he:1, ur:1};
+    var p = new URLSearchParams(window.location.search);
+    var lang = (p.get('lang') || '').trim();
+    if (VALID[lang]) {
+      document.documentElement.lang = lang;
+      document.documentElement.setAttribute('data-dir', RTL[lang] ? 'rtl' : 'ltr');
+      document.documentElement.dir = RTL[lang] ? 'rtl' : 'ltr';
+      // Rewrite canonical so it self-references this lang variant,
+      // not the default EN URL (fixes Semrush hreflang/canonical conflict).
+      var waitForHead = function() {
+        var c = document.querySelector('link[rel="canonical"]');
+        if (c) {
+          c.href = 'https://brain.cognifit.com/longevity' + (lang === 'en' ? '' : '?lang=' + lang);
+        } else {
+          // Canonical not parsed yet — retry
+          setTimeout(waitForHead, 0);
+        }
+      };
+      waitForHead();
+    }
+  } catch(e) {}
+})();
+</script>
+<!-- ============================================================
      SEARCH ENGINE VERIFICATION TAGS — must be the FIRST tags in
      <head> so Google/Bing find them in the first bytes of the HTML
      response, before any parsing issue, truncation, or cache layer
@@ -69,7 +104,12 @@
 <meta name="SemrushBot" content="index, follow">
 <meta name="AhrefsBot" content="index, follow">
 <link rel="canonical" href="https://brain.cognifit.com/longevity">
-<link rel="sitemap" type="application/xml" href="https://brain.cognifit.com/longevity/sitemap.xml">
+<!-- Sitemap references — Wix serves its own sitemaps at the domain
+     root. Point crawlers to BOTH the Wix-generated ones AND the
+     comprehensive 22-language one hosted on Vercel. -->
+<link rel="sitemap" type="application/xml" href="https://brain.cognifit.com/sitemap.xml">
+<link rel="sitemap" type="application/xml" href="https://brain.cognifit.com/pages-sitemap.xml">
+<link rel="sitemap" type="application/xml" href="https://cognifit-longevity.vercel.app/sitemap.xml">
 <meta name="author" content="CogniFit">
 <meta name="publisher" content="CogniFit">
 <meta name="copyright" content="CogniFit">
@@ -2294,6 +2334,44 @@
   <div class="footer-disclaimer">
     <p data-i18n="footer.disclaimer">* Every CogniFit cognitive assessment is intended as an aid for assessing cognitive wellbeing of an individual. In a clinical setting, the CogniFit results (when interpreted by a qualified healthcare provider), may be used as an aid in determining whether further cognitive evaluation is needed. CogniFit's brain trainings are designed to promote/encourage the general state of cognitive health. CogniFit does not offer any medical diagnosis or treatment of any medical disease or condition. CogniFit products may also be used for research purposes for any range of cognitive related assessments. If used for research purposes, all use of the product must be in compliance with appropriate human subjects' procedures as they exist within the researchers' institution and will be the researcher's obligation. All such human subject protections shall be under the provisions of all applicable sections of the Code of Federal Regulations.</p>
   </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       STATIC LANGUAGE FOOTER NAV — plain <a> links to every
+       language variant so crawlers (Semrush, Google, Bing) can
+       discover all 22 lang URLs without running JS. Fixes the
+       Semrush 'orphan pages in sitemap' warning because these URLs
+       are now reachable via a static HTML link trail from the main
+       document, not just via the sitemap.xml.
+       Visually styled small + muted so it doesn't distract users
+       who already use the JS language selector in the nav.
+  ═══════════════════════════════════════════════════════════ -->
+  <nav class="footer-lang-nav" aria-label="Available languages" style="margin:clamp(32px,5vw,48px) 0 clamp(20px,3vw,28px);padding:clamp(20px,3vw,28px) 0;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)">
+    <p style="color:rgba(255,255,255,.5);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin:0 0 12px;text-align:center">Available in 22 languages</p>
+    <ul style="list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 14px;margin:0;padding:0;font-size:13px;line-height:1.8">
+      <li><a href="https://brain.cognifit.com/longevity" hreflang="en" lang="en" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">English</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=es" hreflang="es" lang="es" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">Español</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=fr" hreflang="fr" lang="fr" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">Français</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=de" hreflang="de" lang="de" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">Deutsch</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=it" hreflang="it" lang="it" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">Italiano</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=pt" hreflang="pt" lang="pt" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">Português</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=nl" hreflang="nl" lang="nl" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">Nederlands</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=pl" hreflang="pl" lang="pl" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">Polski</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=ru" hreflang="ru" lang="ru" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">Русский</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=ar" hreflang="ar" lang="ar" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">العربية</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=he" hreflang="he" lang="he" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">עברית</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=zh" hreflang="zh-CN" lang="zh" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">中文(简体)</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=zh-HK" hreflang="zh-HK" lang="zh-HK" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">中文(繁體)</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=ja" hreflang="ja" lang="ja" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">日本語</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=ko" hreflang="ko" lang="ko" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">한국어</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=tr" hreflang="tr" lang="tr" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">Türkçe</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=id" hreflang="id" lang="id" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">Bahasa Indonesia</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=bn" hreflang="bn" lang="bn" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">বাংলা</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=mn" hreflang="mn" lang="mn" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">Монгол</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=ur" hreflang="ur" lang="ur" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">اردو</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=sr" hreflang="sr" lang="sr" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">Српски</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=el" hreflang="el" lang="el" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">Ελληνικά</a></li>
+    </ul>
+  </nav>
 
   <!-- Bottom bar -->
   <div class="footer-bottom">

@@ -117,5 +117,6 @@ Allow: /
 User-agent: BLEXBot
 Allow: /
 
-Sitemap: https://brain.cognifit.com/longevity/sitemap.xml
+Sitemap: https://brain.cognifit.com/sitemap.xml
+Sitemap: https://brain.cognifit.com/pages-sitemap.xml
 Sitemap: https://cognifit-longevity.vercel.app/sitemap.xml

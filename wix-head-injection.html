@@ -21,8 +21,16 @@
      Google Search Console 'A página não é publicada através de HTTPS'. -->
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
-<!-- Canonical URL -->
+<!-- Canonical URL — IMPORTANT: Only include this if you are NOT
+     also serving the full index.html from Vercel. If index.html is
+     rendered on brain.cognifit.com/longevity, it already contains
+     its own <link rel="canonical"> and duplicating it here would
+     trigger Semrush's 'multiple canonical URLs' error.
+     Kept commented out by default. Uncomment only if the Wix page
+     does NOT render the full index.html.
 <link rel="canonical" href="https://brain.cognifit.com/longevity">
+-->
+
 
 <!-- Robots: explicit index/follow + per-bot allow + AI/LLM crawler allow -->
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
