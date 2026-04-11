@@ -16,7 +16,7 @@ CogniFit provides personalized cognitive assessments measuring 20+ brain skills 
 - Research Institutions: 6,438+
 - Cognitive Skills Measured: 20+
 - Available on: Web, iOS, Android
-- Languages: 19+
+- Languages: 22 (English, Spanish, French, German, Italian, Portuguese, Dutch, Polish, Russian, Arabic, Hebrew, Chinese Simplified, Chinese Traditional, Japanese, Korean, Turkish, Indonesian, Bengali, Mongolian, Urdu, Serbian, Greek)
 
 ## Cognitive Longevity & Healthy Aging
 

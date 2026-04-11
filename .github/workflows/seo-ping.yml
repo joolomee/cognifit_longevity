@@ -1,0 +1,95 @@
+name: SEO Ping (IndexNow + Sitemap)
+
+# Pings IndexNow (Bing/Yandex/Seznam/Naver/Yep) + Google + Bing sitemap
+# endpoints every day at 06:00 UTC and on every push to main, so the page
+# is force-recrawled aggressively.
+#
+# IndexNow keyfile must be hosted at:
+#   https://brain.cognifit.com/31e17b6fe618041ce972cdeab51467e8.txt
+# (upload the file from the repo root to Wix → Settings → File Manager).
+
+on:
+  schedule:
+    - cron: '0 6 * * *'   # Every day at 06:00 UTC
+  push:
+    branches: [main, claude/fix-language-layout-issues-h2A3G]
+  workflow_dispatch:      # Manual trigger from GitHub UI
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: IndexNow — submit URLs to Bing/Yandex/Seznam/Naver/Yep
+        run: |
+          curl -sS -X POST "https://api.indexnow.org/IndexNow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d '{
+              "host": "brain.cognifit.com",
+              "key": "31e17b6fe618041ce972cdeab51467e8",
+              "keyLocation": "https://brain.cognifit.com/31e17b6fe618041ce972cdeab51467e8.txt",
+              "urlList": [
+                "https://brain.cognifit.com/longevity",
+                "https://brain.cognifit.com/longevity?lang=en",
+                "https://brain.cognifit.com/longevity?lang=es",
+                "https://brain.cognifit.com/longevity?lang=fr",
+                "https://brain.cognifit.com/longevity?lang=de",
+                "https://brain.cognifit.com/longevity?lang=it",
+                "https://brain.cognifit.com/longevity?lang=pt",
+                "https://brain.cognifit.com/longevity?lang=nl",
+                "https://brain.cognifit.com/longevity?lang=pl",
+                "https://brain.cognifit.com/longevity?lang=ru",
+                "https://brain.cognifit.com/longevity?lang=ar",
+                "https://brain.cognifit.com/longevity?lang=he",
+                "https://brain.cognifit.com/longevity?lang=zh",
+                "https://brain.cognifit.com/longevity?lang=zh-HK",
+                "https://brain.cognifit.com/longevity?lang=ja",
+                "https://brain.cognifit.com/longevity?lang=ko",
+                "https://brain.cognifit.com/longevity?lang=tr",
+                "https://brain.cognifit.com/longevity?lang=id",
+                "https://brain.cognifit.com/longevity?lang=bn",
+                "https://brain.cognifit.com/longevity?lang=mn",
+                "https://brain.cognifit.com/longevity?lang=ur",
+                "https://brain.cognifit.com/longevity?lang=sr",
+                "https://brain.cognifit.com/longevity?lang=el"
+              ]
+            }' -w "\nHTTP_STATUS=%{http_code}\n" || true
+
+      - name: IndexNow (Bing direct endpoint) — extra redundancy
+        run: |
+          curl -sS -X POST "https://www.bing.com/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d '{
+              "host": "brain.cognifit.com",
+              "key": "31e17b6fe618041ce972cdeab51467e8",
+              "keyLocation": "https://brain.cognifit.com/31e17b6fe618041ce972cdeab51467e8.txt",
+              "urlList": [
+                "https://brain.cognifit.com/longevity"
+              ]
+            }' -w "\nHTTP_STATUS=%{http_code}\n" || true
+
+      - name: IndexNow (Yandex direct endpoint) — extra redundancy
+        run: |
+          curl -sS -X POST "https://yandex.com/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d '{
+              "host": "brain.cognifit.com",
+              "key": "31e17b6fe618041ce972cdeab51467e8",
+              "keyLocation": "https://brain.cognifit.com/31e17b6fe618041ce972cdeab51467e8.txt",
+              "urlList": [
+                "https://brain.cognifit.com/longevity"
+              ]
+            }' -w "\nHTTP_STATUS=%{http_code}\n" || true
+
+      - name: Ping Google sitemap submission
+        run: |
+          curl -sS "https://www.google.com/ping?sitemap=https://brain.cognifit.com/longevity/sitemap.xml" \
+            -w "\nHTTP_STATUS=%{http_code}\n" || true
+          curl -sS "https://www.google.com/ping?sitemap=https://cognifit-longevity.vercel.app/sitemap.xml" \
+            -w "\nHTTP_STATUS=%{http_code}\n" || true
+
+      - name: Ping Bing sitemap submission
+        run: |
+          curl -sS "https://www.bing.com/ping?sitemap=https://brain.cognifit.com/longevity/sitemap.xml" \
+            -w "\nHTTP_STATUS=%{http_code}\n" || true
+          curl -sS "https://www.bing.com/ping?sitemap=https://cognifit-longevity.vercel.app/sitemap.xml" \
+            -w "\nHTTP_STATUS=%{http_code}\n" || true

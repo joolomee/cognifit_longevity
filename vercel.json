@@ -9,7 +9,11 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "frame-ancestors 'self' https://brain.cognifit.com https://*.wixsite.com https://*.wix.com"
+          "value": "upgrade-insecure-requests; frame-ancestors 'self' https://brain.cognifit.com https://*.cognifit.com https://*.wixsite.com https://*.wix.com https://*.editorx.io https://*.editorx.com"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
         },
         {
           "key": "Cache-Control",
@@ -17,17 +21,136 @@
         },
         {
           "key": "Access-Control-Allow-Origin",
-          "value": "https://brain.cognifit.com"
+          "value": "*"
         },
         {
           "key": "Access-Control-Allow-Methods",
-          "value": "GET, OPTIONS"
+          "value": "GET, OPTIONS, HEAD"
         },
         {
           "key": "Access-Control-Allow-Headers",
           "value": "Content-Type"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
         }
       ]
+    },
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/xml; charset=utf-8"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "index, follow"
+        }
+      ]
+    },
+    {
+      "source": "/robots.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        }
+      ]
+    },
+    {
+      "source": "/31e17b6fe618041ce972cdeab51467e8.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "index, follow"
+        }
+      ]
+    },
+    {
+      "source": "/BingSiteAuth.xml",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/xml; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "index, follow"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    },
+    {
+      "source": "/bingsiteauth.xml",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/xml; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "index, follow"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/longevity/31e17b6fe618041ce972cdeab51467e8.txt",
+      "destination": "/31e17b6fe618041ce972cdeab51467e8.txt"
+    },
+    {
+      "source": "/longevity/BingSiteAuth.xml",
+      "destination": "/BingSiteAuth.xml"
+    },
+    {
+      "source": "/longevity/bingsiteauth.xml",
+      "destination": "/bingsiteauth.xml"
+    },
+    {
+      "source": "/BingSiteAuth",
+      "destination": "/BingSiteAuth.xml"
+    },
+    {
+      "source": "/longevity/BingSiteAuth",
+      "destination": "/BingSiteAuth.xml"
+    },
+    {
+      "source": "/longevity/sitemap.xml",
+      "destination": "/sitemap.xml"
+    },
+    {
+      "source": "/longevity/robots.txt",
+      "destination": "/robots.txt"
     }
   ]
 }

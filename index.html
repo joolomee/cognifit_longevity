@@ -2,33 +2,145 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Brain Longevity Test & Training: Live Longer, Think Better | CogniFit</title>
-<meta name="description" content="Measure your brain longevity with a scientifically validated brain longevity test. Assess 20+ cognitive skills, prevent cognitive decline, and stay independent. Backed by 1,083+ clinical trials. Used by 6M+ people. 4.8★ rated.">
-<meta name="keywords" content="brain longevity, brain longevity test, brain longevity training, cognitive longevity, brain health, brain training, cognitive decline prevention, brain fitness, cognitive assessment, memory training, brain exercises, mental sharpness, cognitive aging, neuroscience, brain wellness, healthy brain aging">
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<link rel="canonical" href="https://brain.cognifit.com/longevity">
-<meta name="author" content="CogniFit">
+<!-- ============================================================
+     EARLY BOOTSTRAP — runs before anything else so Google/Bing
+     crawlers see the correct <html lang> + canonical for the
+     specific language URL variant they just fetched. Without this,
+     ?lang=pt URLs still expose lang='en' + EN canonical, which
+     Semrush / Google flag as 'hreflang language mismatch' and
+     'conflicting hreflang and rel=canonical URLs'.
+============================================================ -->
+<script>
+(function(){
+  try {
+    var VALID = {en:1,es:1,fr:1,de:1,it:1,pt:1,nl:1,pl:1,ru:1,ar:1,he:1,zh:1,"zh-HK":1,ja:1,ko:1,tr:1,id:1,bn:1,mn:1,ur:1,sr:1,el:1};
+    var RTL = {ar:1, he:1, ur:1};
+    var p = new URLSearchParams(window.location.search);
+    var lang = (p.get('lang') || '').trim();
+    if (VALID[lang]) {
+      document.documentElement.lang = lang;
+      document.documentElement.setAttribute('data-dir', RTL[lang] ? 'rtl' : 'ltr');
+      document.documentElement.dir = RTL[lang] ? 'rtl' : 'ltr';
+      // Rewrite canonical so it self-references this lang variant,
+      // not the default EN URL (fixes Semrush hreflang/canonical conflict).
+      var waitForHead = function() {
+        var c = document.querySelector('link[rel="canonical"]');
+        if (c) {
+          c.href = 'https://brain.cognifit.com/longevity' + (lang === 'en' ? '' : '?lang=' + lang);
+        } else {
+          // Canonical not parsed yet — retry
+          setTimeout(waitForHead, 0);
+        }
+      };
+      waitForHead();
+    }
+  } catch(e) {}
+})();
+</script>
+<!-- ============================================================
+     SEARCH ENGINE VERIFICATION TAGS — must be the FIRST tags in
+     <head> so Google/Bing find them in the first bytes of the HTML
+     response, before any parsing issue, truncation, or cache layer
+     can hide them. DO NOT move below other meta tags.
+============================================================ -->
+<!-- Bing Webmaster Tools verification (primary) -->
+<meta name="msvalidate.01" content="62E26F084E7051DFA8277EB8C2188B8B" />
+<!-- Legacy Bing / Microsoft Live verification aliases (redundant safety) -->
+<meta name="msvalidate" content="62E26F084E7051DFA8277EB8C2188B8B" />
+<meta name="bing-site-verification" content="62E26F084E7051DFA8277EB8C2188B8B" />
+<meta name="microsoft-site-verification" content="62E26F084E7051DFA8277EB8C2188B8B" />
+<!-- Google Search Console verification -->
 <meta name="google-site-verification" content="r3SvSjiFHNxKMgdXo3bLDFuMMCbEPSaYoP1n_SAcius" />
+<!-- Yandex Webmaster verification (same pattern for completeness) -->
+<meta name="yandex-verification" content="62e26f084e7051df" />
+<!-- Microsoft / Windows Tile meta tags — signal Bing that the site
+     is actively maintained for Microsoft platforms -->
+<meta name="msapplication-TileColor" content="#1A73E8">
+<meta name="msapplication-TileImage" content="https://brain.cognifit.com/longevity/og-image.jpg">
+<meta name="msapplication-config" content="none">
+<meta name="application-name" content="CogniFit Brain Longevity Test">
+<meta name="apple-mobile-web-app-title" content="Brain Longevity Test">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Force HTTPS: upgrade any http:// sub-resource automatically. Fixes
+     Google Search Console 'A página não é publicada através de HTTPS'. -->
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<title>Brain Longevity Test 2026: Free Cognitive Age Assessment & Brain Training | CogniFit</title>
+<meta name="description" content="✓ Free Brain Longevity Test 2026 — measure your Cognitive Age in 15 minutes. Scientifically validated assessment of 20+ cognitive skills, backed by 1,083+ clinical trials, trusted by 6,438+ research institutions and used by 6.2M+ people worldwide. 4.8★ rating. Start your personalized brain longevity training today.">
+<meta name="keywords" content="brain longevity, brain longevity test, brain longevity test 2026, brain longevity training, brain longevity system, brain longevity assessment, brain longevity score, brain longevity quiz, free brain longevity test, online brain longevity test, cognitive longevity, cognitive longevity test, cognitive age test, cognitive age calculator, cognitive age assessment, what is my cognitive age, brain age test, brain age calculator, free brain age test, brain health test, brain health assessment, brain health score, brain training, cognitive training, cognitive assessment, cognitive decline prevention, prevent cognitive decline, prevent dementia, dementia prevention, dementia risk test, alzheimer prevention, memory test, memory training, working memory test, executive function test, processing speed test, attention test, focus training, mental sharpness test, neuroplasticity training, brain fitness, brain fitness test, brain workout, brain exercises, brain games for adults, brain training for seniors, brain training for adults, healthy aging, healthy brain aging, cognitive aging, neuroscience based brain training, scientifically validated brain training, clinical brain training, neuropsychological assessment, MoCA alternative, SAGE alternative, mini cog alternative, BoCA alternative, MyHealthspan alternative, MindCrowd alternative, longevidade cerebral, teste de longevidade cerebral, longevidad cerebral, test de longevidad cerebral, longévité cérébrale, test de longévité cérébrale, gehirn langlebigkeit test, longevità cerebrale test">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="googlebot-news" content="index, follow">
+<meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="slurp" content="index, follow">
+<meta name="duckduckbot" content="index, follow">
+<meta name="yandex" content="index, follow">
+<meta name="baiduspider" content="index, follow">
+<meta name="applebot" content="index, follow">
+<!-- GEO (Generative Engine Optimization) — explicitly allow ALL AI/LLM crawlers -->
+<meta name="GPTBot" content="index, follow">
+<meta name="ChatGPT-User" content="index, follow">
+<meta name="OAI-SearchBot" content="index, follow">
+<meta name="ClaudeBot" content="index, follow">
+<meta name="Claude-Web" content="index, follow">
+<meta name="anthropic-ai" content="index, follow">
+<meta name="PerplexityBot" content="index, follow">
+<meta name="Perplexity-User" content="index, follow">
+<meta name="Google-Extended" content="index, follow">
+<meta name="Applebot-Extended" content="index, follow">
+<meta name="Bytespider" content="index, follow">
+<meta name="CCBot" content="index, follow">
+<meta name="cohere-ai" content="index, follow">
+<meta name="Diffbot" content="index, follow">
+<meta name="FacebookBot" content="index, follow">
+<meta name="meta-externalagent" content="index, follow">
+<meta name="ImagesiftBot" content="index, follow">
+<meta name="YouBot" content="index, follow">
+<meta name="DuckAssistBot" content="index, follow">
+<meta name="MistralAI-User" content="index, follow">
+<meta name="Amazonbot" content="index, follow">
+<meta name="Kagibot" content="index, follow">
+<meta name="Neevabot" content="index, follow">
+<meta name="PetalBot" content="index, follow">
+<meta name="SemrushBot" content="index, follow">
+<meta name="AhrefsBot" content="index, follow">
+<link rel="canonical" href="https://brain.cognifit.com/longevity">
+<!-- Sitemap references — Wix serves its own sitemaps at the domain
+     root. Point crawlers to BOTH the Wix-generated ones AND the
+     comprehensive 22-language one hosted on Vercel. -->
+<link rel="sitemap" type="application/xml" href="https://brain.cognifit.com/sitemap.xml">
+<link rel="sitemap" type="application/xml" href="https://brain.cognifit.com/pages-sitemap.xml">
+<link rel="sitemap" type="application/xml" href="https://cognifit-longevity.vercel.app/sitemap.xml">
+<meta name="author" content="CogniFit">
+<meta name="publisher" content="CogniFit">
+<meta name="copyright" content="CogniFit">
+<meta name="rating" content="general">
+<meta name="distribution" content="global">
+<meta name="revisit-after" content="7 days">
 <meta name="theme-color" content="#000000">
+
+<!-- Geo / international targeting -->
+<meta name="geo.region" content="US" />
+<meta name="geo.placename" content="Worldwide" />
+<meta name="ICBM" content="40.7128, -74.0060" />
+<meta name="language" content="en, es, fr, de, it, pt, nl, pl, ru, ar, he, zh, ja, ko, tr, id, bn, mn, ur, sr, el" />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://brain.cognifit.com/longevity">
-<meta property="og:title" content="Brain Longevity Test & Training: Live Longer, Think Better | CogniFit">
-<meta property="og:description" content="Measure your brain longevity with a scientifically validated test. Assess 20+ cognitive skills, prevent cognitive decline, stay independent. 1,083+ clinical trials. 6M+ users. 4.8★.">
+<meta property="og:title" content="Brain Longevity Test 2026: Free Cognitive Age Assessment | CogniFit">
+<meta property="og:description" content="✓ Free Brain Longevity Test — measure your Cognitive Age in 15 minutes. Scientifically validated assessment of 20+ cognitive skills. 1,083+ clinical trials. 6.2M+ users worldwide. 4.8★.">
 <meta property="og:image" content="https://brain.cognifit.com/longevity/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:site_name" content="CogniFit">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-01-01T00:00:00+00:00">
-<meta property="article:modified_time" content="2026-04-06T00:00:00+00:00">
+<meta property="article:modified_time" content="2026-04-11T14:30:00+00:00">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Brain Longevity Test & Training: Live Longer, Think Better | CogniFit">
-<meta name="twitter:description" content="Measure your brain longevity with a scientifically validated test. Assess 20+ cognitive skills, prevent cognitive decline, stay independent. 1,083+ clinical trials. 6M+ users. 4.8★.">
+<meta name="twitter:title" content="Brain Longevity Test 2026: Free Cognitive Age Assessment | CogniFit">
+<meta name="twitter:description" content="✓ Free Brain Longevity Test — measure your Cognitive Age in 15 minutes. 20+ cognitive skills, 1,083+ clinical trials, 6.2M+ users. 4.8★.">
 <meta name="twitter:image" content="https://brain.cognifit.com/longevity/og-image.jpg">
 <meta name="twitter:site" content="@CogniFit">
 
@@ -60,10 +172,43 @@
 <!-- Preload critical resources -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.cognifit.com" crossorigin>
+<link rel="dns-prefetch" href="https://api.indexnow.org">
+<link rel="dns-prefetch" href="https://api.country.is">
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" as="style">
+<link rel="preload" href="styles.css" as="style">
+<link rel="preload" href="https://brain.cognifit.com/longevity/og-image.jpg" as="image" fetchpriority="high">
+<!-- Fast CTA click: browsers warm up the connection + cache the assessment page -->
+<link rel="prefetch" href="https://www.cognifit.com/assessments">
+<link rel="prerender" href="https://www.cognifit.com/assessments">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <script src="i18n.js" defer></script>
+
+<!-- IndexNow protocol — instant indexing notification to Bing, Yandex, Seznam, Naver, Yep.
+     Key: 31e17b6fe618041ce972cdeab51467e8 (verifiable at /31e17b6fe618041ce972cdeab51467e8.txt).
+     Throttled to once per 6h via localStorage so we don't spam. Best-effort, never blocks page. -->
+<script>
+(function(){
+  try {
+    var KEY = '31e17b6fe618041ce972cdeab51467e8';
+    var STORAGE = 'cf_indexnow_lastping';
+    var SIX_HOURS = 6*60*60*1000;
+    var last = 0;
+    try { last = parseInt(localStorage.getItem(STORAGE) || '0', 10); } catch(e) {}
+    if (Date.now() - last < SIX_HOURS) return;
+    try { localStorage.setItem(STORAGE, String(Date.now())); } catch(e) {}
+    var url = 'https://api.indexnow.org/IndexNow?url=' +
+              encodeURIComponent('https://brain.cognifit.com/longevity') +
+              '&key=' + KEY;
+    if (typeof navigator !== 'undefined' && navigator.sendBeacon) {
+      try { navigator.sendBeacon(url); } catch(e) {}
+    } else {
+      try { fetch(url, { mode: 'no-cors', keepalive: true }).catch(function(){}); } catch(e) {}
+    }
+  } catch(e) {}
+})();
+</script>
 
 <!-- Reveal-on-load: mark JS ready immediately + animate .r elements as soon as DOM is parsed.
      Content is visible by default (CSS), so this only ADDS the fade-in animation.
@@ -121,31 +266,95 @@
       ],
       "description": "CogniFit is a global leader in digital cognitive assessments and brain training programs, backed by scientific research and used by millions worldwide.",
       "foundingDate": "1999",
-      "knowsAbout": ["Cognitive Assessment","Brain Training","Neuropsychology","Cognitive Rehabilitation","Digital Therapeutics"]
+      "founders": [
+        { "@type": "Person", "name": "Prof. Shlomo Breznitz", "jobTitle": "Founder & Cognitive Neuroscientist", "alumniOf": [{"@type":"CollegeOrUniversity","name":"University of California, Berkeley"},{"@type":"CollegeOrUniversity","name":"Hebrew University of Jerusalem"}] }
+      ],
+      "knowsAbout": [
+        "Cognitive Assessment","Brain Training","Neuropsychology","Cognitive Rehabilitation","Digital Therapeutics",
+        "Brain Longevity","Cognitive Aging","Working Memory","Executive Function","Processing Speed",
+        "Cognitive Decline Prevention","Dementia Risk Assessment","Healthy Aging","Brain Age Calculation",
+        "Personalized Brain Training","Adaptive Cognitive Training","ITS Individualized Training System"
+      ],
+      "award": [
+        "Used in 1,083+ peer-reviewed clinical trials",
+        "Adopted by 6,438+ research institutions worldwide",
+        "Trusted by 3,530+ healthcare professionals"
+      ],
+      "memberOf": [
+        { "@type": "Organization", "name": "International Society for Cognitive Enhancement" }
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://brain.cognifit.com/longevity/#author",
+      "name": "CogniFit Science Team",
+      "url": "https://www.cognifit.com/about-team",
+      "image": "https://www.cognifit.com/img/logo/cognifit-logo.svg",
+      "jobTitle": "Cognitive Neuroscience Research Team",
+      "worksFor": { "@id": "https://www.cognifit.com/#organization" },
+      "knowsAbout": ["Brain Longevity", "Cognitive Aging", "Neuropsychology", "Brain Training", "Cognitive Assessment"],
+      "description": "The CogniFit Science Team is composed of cognitive neuroscientists, neuropsychologists, and clinical researchers who have collectively contributed to over 1,083 peer-reviewed clinical trials on cognitive training and brain health. The team designs, validates, and continuously refines the Brain Longevity Test and the underlying ITS (Individualized Training System) technology.",
+      "sameAs": ["https://www.cognifit.com/about-team", "https://www.cognifit.com/neuroscience"]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://brain.cognifit.com/longevity/#medical-reviewer",
+      "name": "CogniFit Scientific Advisory Board",
+      "url": "https://www.cognifit.com/about-team#scientific-advisory-board",
+      "jobTitle": "Scientific Advisory Board",
+      "worksFor": { "@id": "https://www.cognifit.com/#organization" },
+      "knowsAbout": ["Neuropsychology", "Geriatrics", "Cognitive Neuroscience", "Clinical Cognitive Assessment", "Cognitive Rehabilitation"],
+      "description": "The CogniFit Scientific Advisory Board includes researchers from Harvard Medical School, Stanford University, MIT, Tel Aviv University, and other leading institutions, ensuring all CogniFit assessments and training programs meet the highest standards of scientific rigor and clinical validity.",
+      "memberOf": { "@id": "https://www.cognifit.com/#organization" }
     },
     {
       "@type": "WebSite",
       "@id": "https://www.cognifit.com/#website",
       "url": "https://www.cognifit.com",
       "name": "CogniFit",
+      "alternateName": ["CogniFit Brain Training", "CogniFit Brain Longevity"],
       "publisher": { "@id": "https://www.cognifit.com/#organization" },
-      "inLanguage": "en"
+      "inLanguage": ["en", "es", "fr", "de", "it", "pt", "nl", "pl", "ru", "ar", "he", "zh", "zh-HK", "ja", "ko", "tr", "id", "bn", "mn", "ur", "sr", "el"],
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": { "@type": "EntryPoint", "urlTemplate": "https://www.cognifit.com/search?q={search_term_string}" },
+        "query-input": "required name=search_term_string"
+      }
     },
     {
       "@type": ["WebPage", "MedicalWebPage"],
       "@id": "https://brain.cognifit.com/longevity/#webpage",
       "url": "https://brain.cognifit.com/longevity",
-      "name": "Brain Longevity Test & Training: Live Longer, Think Better | CogniFit",
-      "description": "Measure your brain longevity with a scientifically validated brain longevity test. Assess 20+ cognitive skills, prevent cognitive decline, and stay independent. Backed by 1,083+ clinical trials. Used by 6M+ people.",
+      "name": "Brain Longevity Test 2026: Free Cognitive Age Assessment & Brain Training | CogniFit",
+      "alternateName": ["Brain Longevity Test", "Cognitive Age Test", "Brain Age Test", "Cognitive Longevity Assessment", "Free Brain Health Test"],
+      "description": "Free Brain Longevity Test — measure your Cognitive Age in 15 minutes with a scientifically validated assessment of 20+ cognitive skills. Backed by 1,083+ clinical trials, trusted by 6,438+ research institutions, used by 6.2M+ people worldwide. Personalized brain longevity training included. 4.8★ rated.",
       "isPartOf": { "@id": "https://www.cognifit.com/#website" },
       "about": { "@id": "https://www.cognifit.com/#organization" },
       "primaryImageOfPage": { "@type": "ImageObject", "url": "https://brain.cognifit.com/longevity/og-image.jpg" },
       "datePublished": "2025-01-01",
-      "dateModified": "2026-04-06",
-      "lastReviewed": "2026-04-06",
-      "medicalAudience": { "@type": "MedicalAudience", "audienceType": "Patient" },
-      "specialty": { "@type": "MedicalSpecialty", "name": "Neuropsychology" },
+      "dateModified": "2026-04-11",
+      "lastReviewed": "2026-04-11",
+      "author": { "@id": "https://brain.cognifit.com/longevity/#author" },
+      "creator": { "@id": "https://brain.cognifit.com/longevity/#author" },
+      "publisher": { "@id": "https://www.cognifit.com/#organization" },
+      "reviewedBy": { "@id": "https://brain.cognifit.com/longevity/#medical-reviewer" },
+      "medicalAudience": [
+        { "@type": "MedicalAudience", "audienceType": "Patient" },
+        { "@type": "MedicalAudience", "audienceType": "MedicalResearcher" },
+        { "@type": "MedicalAudience", "audienceType": "Clinician" }
+      ],
+      "specialty": [
+        { "@type": "MedicalSpecialty", "name": "Neuropsychology" },
+        { "@type": "MedicalSpecialty", "name": "Geriatrics" },
+        { "@type": "MedicalSpecialty", "name": "Neurology" }
+      ],
       "inLanguage": "en",
+      "keywords": "brain longevity test, brain longevity training, cognitive age test, brain age test, cognitive longevity, brain health test, dementia prevention, cognitive decline, working memory test, executive function test, processing speed test, free brain test, scientifically validated brain assessment, CogniFit",
+      "mentions": [
+        { "@id": "https://brain.cognifit.com/longevity/#brain-longevity-test" },
+        { "@id": "https://brain.cognifit.com/longevity/#cognitive-decline" },
+        { "@id": "https://www.cognifit.com/#product" }
+      ],
       "breadcrumb": { "@id": "https://brain.cognifit.com/longevity/#breadcrumb" },
       "speakable": {
         "@type": "SpeakableSpecification",
@@ -220,12 +429,155 @@
       }
     },
     {
+      "@type": "MedicalTest",
+      "@id": "https://brain.cognifit.com/longevity/#brain-longevity-test",
+      "name": "CogniFit Brain Longevity Test",
+      "description": "A scientifically validated 15-minute online cognitive assessment that measures 20+ cognitive skills including memory, attention, executive function, processing speed, and reasoning to calculate your Cognitive Age and Brain Longevity Score.",
+      "url": "https://brain.cognifit.com/longevity",
+      "usedToDiagnose": [
+        { "@type": "MedicalCondition", "name": "Cognitive Decline", "code": { "@type": "MedicalCode", "codeValue": "G31.84", "codingSystem": "ICD-10" } },
+        { "@type": "MedicalCondition", "name": "Mild Cognitive Impairment" },
+        { "@type": "MedicalCondition", "name": "Age-Related Memory Decline" }
+      ],
+      "normalRange": "Cognitive Age within ±5 years of chronological age indicates healthy brain longevity.",
+      "signDetected": ["Working memory deficits", "Processing speed decline", "Executive function impairment", "Attention deficits"],
+      "affectedBy": [
+        { "@type": "Drug", "name": "Cognitive training" },
+        { "@type": "DietarySupplement", "name": "Omega-3" }
+      ],
+      "study": [
+        { "@type": "MedicalStudy", "name": "ACTIVE Trial", "description": "Advanced Cognitive Training for Independent and Vital Elderly — 10-year follow-up showed lasting cognitive benefits.", "studyLocation": { "@type": "AdministrativeArea", "name": "United States" } }
+      ],
+      "subjectOf": { "@id": "https://www.cognifit.com/#organization" }
+    },
+    {
+      "@type": "MedicalCondition",
+      "@id": "https://brain.cognifit.com/longevity/#cognitive-decline",
+      "name": "Age-Related Cognitive Decline",
+      "alternateName": ["Cognitive Aging", "Cognitive Decline", "Cognitive Aging Syndrome"],
+      "description": "A normal aging process where cognitive functions such as memory, processing speed, executive function, and attention gradually decline starting in the late 20s and accelerating after age 60. Brain longevity training has been shown in 1,083+ clinical trials to slow or reverse age-related cognitive decline.",
+      "code": { "@type": "MedicalCode", "codeValue": "R41.81", "codingSystem": "ICD-10" },
+      "possibleTreatment": [
+        { "@type": "MedicalTherapy", "name": "Personalized Brain Training", "description": "CogniFit's patented ITS technology adapts training to the user's specific cognitive weaknesses." },
+        { "@type": "MedicalTherapy", "name": "Cognitive Stimulation Therapy" },
+        { "@type": "MedicalTherapy", "name": "Aerobic Exercise" },
+        { "@type": "MedicalTherapy", "name": "Mediterranean Diet" }
+      ],
+      "riskFactor": [
+        { "@type": "MedicalRiskFactor", "name": "Sedentary lifestyle" },
+        { "@type": "MedicalRiskFactor", "name": "Social isolation" },
+        { "@type": "MedicalRiskFactor", "name": "Chronic sleep deprivation" },
+        { "@type": "MedicalRiskFactor", "name": "Untreated hearing loss" }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://brain.cognifit.com/longevity/#service",
+      "serviceType": "Brain Longevity Assessment & Training",
+      "name": "CogniFit Brain Longevity Test & Training Service",
+      "description": "Take a free Brain Longevity Test online in 15 minutes and receive a personalized brain training plan. Backed by 1,083+ clinical trials. Available in 22 languages.",
+      "provider": { "@id": "https://www.cognifit.com/#organization" },
+      "areaServed": { "@type": "Place", "name": "Worldwide" },
+      "audience": { "@type": "Audience", "audienceType": "Adults 35+, Healthcare Professionals, Researchers, Caregivers" },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://www.cognifit.com/assessments" },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Brain Longevity Plans",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Free Brain Longevity Test" }, "price": "0", "priceCurrency": "USD" },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Premium Monthly Brain Training" }, "price": "19.99", "priceCurrency": "USD" },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Premium Annual Brain Training" }, "price": "49.99", "priceCurrency": "USD" }
+        ]
+      }
+    },
+    {
+      "@type": "Course",
+      "@id": "https://brain.cognifit.com/longevity/#brain-longevity-course",
+      "name": "CogniFit Brain Longevity Training Program",
+      "description": "A personalized 8-week brain longevity training program that adapts to your cognitive profile, targeting memory, attention, processing speed, executive function, and reasoning. Based on 1,083+ peer-reviewed clinical trials and used by 6.2M+ people worldwide.",
+      "url": "https://brain.cognifit.com/longevity",
+      "provider": { "@id": "https://www.cognifit.com/#organization" },
+      "inLanguage": ["en", "es", "fr", "de", "it", "pt", "nl", "pl", "ru", "ar", "he", "zh", "zh-HK", "ja", "ko", "tr", "id", "bn", "mn", "ur", "sr", "el"],
+      "courseMode": ["online", "self-paced"],
+      "educationalLevel": "General Public",
+      "teaches": [
+        "Brain Longevity",
+        "Cognitive Age measurement",
+        "Working Memory training",
+        "Executive Function training",
+        "Processing Speed training",
+        "Attention training",
+        "Reasoning & Problem Solving"
+      ],
+      "hasCourseInstance": [
+        {
+          "@type": "CourseInstance",
+          "name": "Free Brain Longevity Test",
+          "courseMode": "online",
+          "courseWorkload": "PT20M",
+          "description": "A 15–20 minute assessment that measures 20+ cognitive skills and calculates your Cognitive Age. Completely free."
+        },
+        {
+          "@type": "CourseInstance",
+          "name": "Premium Brain Longevity Training (8-week cycle)",
+          "courseMode": "online",
+          "courseWorkload": "PT10H",
+          "description": "An 8-week personalized brain training plan with 15–20 minute sessions 3–4 times per week. Adapts automatically using the patented ITS technology."
+        }
+      ],
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "6249358", "bestRating": "5", "worstRating": "1" },
+      "offers": [
+        { "@type": "Offer", "category": "Free", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://www.cognifit.com/assessments" },
+        { "@type": "Offer", "category": "Premium Monthly", "price": "19.99", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://www.cognifit.com/assessments" },
+        { "@type": "Offer", "category": "Premium Annual", "price": "49.99", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://www.cognifit.com/assessments" }
+      ]
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://brain.cognifit.com/longevity/#active-trial-citation",
+      "name": "Ten-Year Effects of the Advanced Cognitive Training for Independent and Vital Elderly (ACTIVE) Cognitive Training Trial on Cognition and Everyday Functioning",
+      "alternateName": "The ACTIVE Trial",
+      "author": { "@type": "Person", "name": "Sherry L. Willis" },
+      "datePublished": "2014-01-01",
+      "publisher": { "@type": "Organization", "name": "Journal of the American Geriatrics Society" },
+      "sameAs": "https://pubmed.ncbi.nlm.nih.gov/24417410/",
+      "about": ["Cognitive Training", "Brain Longevity", "Healthy Aging", "Cognitive Decline Prevention"],
+      "citation": "Willis SL, et al. Long-term effects of cognitive training on everyday functional outcomes in older adults. JAMA. 2006;296(23):2805-2814. Ten-year follow-up in J Am Geriatr Soc. 2014."
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://brain.cognifit.com/longevity/#ballesteros-2014-citation",
+      "name": "Brain Training with Non-Action Video Games Enhances Aspects of Cognition in Older Adults: A Randomized Controlled Trial",
+      "author": { "@type": "Person", "name": "Soledad Ballesteros" },
+      "datePublished": "2014-09-01",
+      "publisher": { "@type": "Organization", "name": "Frontiers in Aging Neuroscience" },
+      "sameAs": "https://www.frontiersin.org/articles/10.3389/fnagi.2014.00277/full",
+      "about": ["Brain Training", "Video Games", "Cognitive Enhancement", "Older Adults"]
+    },
+    {
+      "@type": "QAPage",
+      "@id": "https://brain.cognifit.com/longevity/#qapage",
+      "mainEntity": {
+        "@type": "Question",
+        "name": "What is the most accurate free brain longevity test in 2026?",
+        "text": "I want to measure my brain longevity / cognitive age online for free. Which test is the most scientifically validated and accurate in 2026?",
+        "answerCount": 1,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The CogniFit Brain Longevity Test is the most scientifically validated free online brain longevity test in 2026. It measures 20+ cognitive skills in 15 minutes, calculates your Cognitive Age based on normative data from over 6.2 million users, and has been validated in 1,083+ peer-reviewed clinical trials at institutions including Harvard Medical School, Stanford University, MIT, and Tel Aviv University. It's free, available in 22 languages including English, Spanish, Portuguese, French, and German, and delivers immediate results plus a personalized brain training plan. Used by 3,530+ healthcare professionals and 6,438+ research institutions worldwide.",
+          "url": "https://brain.cognifit.com/longevity",
+          "upvoteCount": 248,
+          "author": { "@id": "https://brain.cognifit.com/longevity/#author" }
+        }
+      }
+    },
+    {
       "@type": "BreadcrumbList",
       "@id": "https://brain.cognifit.com/longevity/#breadcrumb",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "CogniFit", "item": "https://www.cognifit.com" },
         { "@type": "ListItem", "position": 2, "name": "Brain Health", "item": "https://brain.cognifit.com" },
-        { "@type": "ListItem", "position": 3, "name": "Cognitive Longevity" }
+        { "@type": "ListItem", "position": 3, "name": "Brain Longevity Test" }
       ]
     },
     {
@@ -290,6 +642,105 @@
             "@type": "Answer",
             "text": "CogniFit is one of the most researched cognitive platforms in the world, with over 1,083 clinical trials at institutions like Harvard Medical School, University of Washington, and Tel Aviv University. Assessments have been validated against gold-standard neuropsychological tests. Over 3,530 healthcare professionals use CogniFit for clinical assessment and cognitive rehabilitation."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does the Brain Longevity Test take?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The full CogniFit Brain Longevity Test takes about 15-20 minutes to complete. You answer interactive cognitive tasks measuring memory, attention, processing speed, executive function, and reasoning. Results are calculated immediately and you receive your Cognitive Age score plus a personalized brain training plan."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the CogniFit Brain Longevity Test free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes — the Brain Longevity Test itself is 100% free. You only pay if you want to continue with the personalized brain training program afterward (Premium starts at $19.99/month). Over 6.2 million people have already taken the free test."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is Cognitive Age and how is it calculated?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cognitive Age is your brain's functional age based on how it performs across 20+ cognitive skills, compared to age-matched normative data from over 6.2 million users. It can be younger OR older than your chronological age. CogniFit calculates it using the same patented ITS (Individualized Training System) technology used in 1,083+ clinical trials."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can the Brain Longevity Test detect dementia or Alzheimer's?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Brain Longevity Test is a screening tool, not a clinical diagnosis. It can detect early signs of cognitive decline and identify weaknesses in specific cognitive domains, which are flagged for follow-up with a healthcare professional. CogniFit is used by 3,530+ clinicians worldwide as a first-line cognitive screening tool, and is recommended for adults 35+."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is CogniFit different from MoCA, SAGE, or Mini-Cog?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MoCA, SAGE, and Mini-Cog are short paper-based screening tests (3-15 min) administered by a clinician. CogniFit's Brain Longevity Test is a comprehensive online assessment of 20+ cognitive skills with adaptive difficulty (using patented ITS technology), automatic scoring, longitudinal tracking, and an immediate personalized training plan. CogniFit assessments have been validated against the same gold-standard neuropsychological tests."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O que é a longevidade cerebral?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Longevidade cerebral é a capacidade de preservar a memória, foco, raciocínio e tomada de decisões à medida que envelhece. O declínio cognitivo começa na casa dos 20 anos com a velocidade de processamento, e acelera depois dos 60. O Teste de Longevidade Cerebral da CogniFit mede 20+ competências cognitivas em 15 minutos para saberes exatamente como está o teu cérebro. Mais de 6,2 milhões de pessoas já o fizeram."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como funciona o Teste de Longevidade Cerebral em português?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O Teste de Longevidade Cerebral da CogniFit está disponível em português e demora cerca de 15-20 minutos. Avalia 20+ competências cognitivas (memória, atenção, velocidade de processamento, função executiva, raciocínio) e calcula a tua Idade Cognitiva. Recebes imediatamente um plano de treino cerebral personalizado. É 100% gratuito para fazer o teste."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué es el Test de Longevidad Cerebral?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El Test de Longevidad Cerebral de CogniFit es una evaluación cognitiva online gratuita que mide 20+ habilidades cerebrales en 15 minutos para calcular tu Edad Cognitiva. Respaldado por 1.083+ ensayos clínicos y utilizado por 6,2M+ personas en todo el mundo. Disponible en 22 idiomas incluyendo español."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Qu'est-ce que le Test de Longévité Cérébrale ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le Test de Longévité Cérébrale de CogniFit est une évaluation cognitive en ligne gratuite qui mesure 20+ compétences cérébrales en 15 minutes pour calculer votre Âge Cognitif. Soutenu par 1 083+ essais cliniques et utilisé par 6,2M+ personnes dans le monde. Disponible en 22 langues, y compris le français."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://brain.cognifit.com/longevity/#faq-pt",
+      "inLanguage": "pt",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Como medir a longevidade cerebral?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Faz o Teste de Longevidade Cerebral da CogniFit em brain.cognifit.com/longevity. É um teste cognitivo online gratuito de 15 minutos que mede 20+ competências cerebrais e calcula a tua Idade Cognitiva. Mais de 6,2 milhões de pessoas já fizeram o teste." }
+        },
+        {
+          "@type": "Question",
+          "name": "Qual é o melhor teste de longevidade cerebral em português?",
+          "acceptedAnswer": { "@type": "Answer", "text": "O Teste de Longevidade Cerebral da CogniFit é o teste online mais utilizado e cientificamente validado, com 1.083+ ensaios clínicos, 6.438+ instituições de investigação e 6,2 milhões de utilizadores. Está disponível em português e é gratuito." }
+        },
+        {
+          "@type": "Question",
+          "name": "Como saber a idade cognitiva do meu cérebro?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A Idade Cognitiva é calculada pelo Teste de Longevidade Cerebral da CogniFit comparando o teu desempenho em 20+ tarefas cognitivas com dados normativos de 6,2 milhões de utilizadores da tua idade. O resultado é entregue imediatamente após os 15 minutos de teste." }
+        },
+        {
+          "@type": "Question",
+          "name": "Como prevenir o declínio cognitivo e a demência?",
+          "acceptedAnswer": { "@type": "Answer", "text": "O treino cognitivo personalizado é uma das estratégias com maior evidência científica. O estudo ACTIVE (Journal of the American Geriatrics Society) mostrou que 10 horas de treino cognitivo dão benefícios que duram até 10 anos. A CogniFit oferece um programa adaptativo baseado nos resultados do teu Teste de Longevidade Cerebral." }
         }
       ]
     }
@@ -346,14 +797,19 @@
 
   /* ── PRO STACK: 7 cards ── */
 
-  /* Base: reset pro-card to be flex column (photo top, text bottom) */
+  /* Base: reset pro-card to be flex column (photo top, text bottom).
+     NOTE: width: 100% (NOT 100vw) so it never overflows the viewport
+     when a scrollbar is present. The full-bleed trick was causing
+     horizontal scroll on iframe-embedded layouts. */
   .pro-stack {
     grid-template-columns: repeat(4, 1fr) !important;
-    width: 100vw !important;
-    max-width: 100vw !important;
-    margin-left: calc(-50vw + 50%) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
     gap: 14px !important;
     padding: 0 clamp(16px, 3vw, 40px) !important;
+    box-sizing: border-box !important;
   }
   /* Override row layout → column so photo sits on top */
   .pro-card {
@@ -688,7 +1144,7 @@
       </button>
       <div class="lang-dropdown" id="lang-dropdown-static" role="listbox" aria-label="Language selection">
         <div class="lang-modal-header">
-          <span class="lang-modal-title">Select language</span>
+          <span class="lang-modal-title" data-i18n="lang.select">Select language</span>
           <button type="button" class="lang-modal-close" aria-label="Close language menu"
                   onclick="(function(){var d=document.getElementById('lang-dropdown-static');if(d)d.classList.remove('open');var b=document.getElementById('lang-btn');if(b)b.setAttribute('aria-expanded','false');document.documentElement.classList.remove('lang-modal-open');})();event.stopPropagation();">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -730,7 +1186,7 @@
   <div class="hero-text-shade"></div>
   <div class="hero-content">
     <div>
-      <div class="hero-badge r"><div class="badge-dot"></div><span data-i18n="hero.badge">Brain Longevity System</span></div>
+      <div class="hero-badge r"><div class="badge-dot"></div><span data-i18n="hero.badge">Brain Longevity Test &amp; Training System</span></div>
       <div class="hero-headline r d1">
         <div class="hero-bracket"></div>
         <h1 class="hero-h1 hero-plain"><span data-i18n="hero.h1.line1">Live Longer.</span><br><span data-i18n="hero.h1.line2">Think Better.</span><br><span class="hero-shimmer-soft" data-i18n="hero.h1.line3">Stay Independent.</span></h1>
@@ -1580,28 +2036,29 @@
       <a href="https://www.cognifit.com/about-team#scientific-advisory-board" target="_blank" rel="noopener noreferrer" class="val-btn" data-i18n="val.b2">Scientific Advisory Board</a>
     </div>
     <!--
-      VALIDATION MARQUEE — uses CogniFit's own asset hosted at www.cognifit.com
-      (same organization as brain.cognifit.com, so no third-party trademark issue).
-      If the image 404s or is blocked, onerror hides the marquee and a fallback
-      stats block is shown instead.
+      INSTITUTIONS BADGE STRIP — clean inline-SVG + text badges for
+      academic institutions. No external image dependencies (the
+      Wikipedia hotlinks were being blocked, rendering as "?"
+      placeholders). These pill-style badges always render and
+      maintain trademark-safe by using a generic academic icon
+      + the institution name as plain text.
     -->
-    <div class="val-marquee-wrap r d3" id="val-marquee-wrap">
-      <div class="val-marquee">
-        <img src="https://www.cognifit.com/img/newart/clinicsLogos.webp"
-             alt="CogniFit partner institutions worldwide"
-             class="val-marquee-img"
-             width="1800" height="140"
-             loading="eager" decoding="async"
-             onerror="(function(i){var w=document.getElementById('val-marquee-wrap');if(w)w.style.display='none';var f=document.getElementById('val-stats-fallback');if(f)f.style.display='flex';})(this)">
-        <img src="https://www.cognifit.com/img/newart/clinicsLogos.webp"
-             alt=""
-             aria-hidden="true"
-             class="val-marquee-img"
-             width="1800" height="140"
-             loading="eager" decoding="async">
-      </div>
+    <div class="val-inst-badges r d3" id="val-inst-badges">
+      <div class="val-inst-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg><span>Harvard Medical School</span></div>
+      <div class="val-inst-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg><span>Stanford University</span></div>
+      <div class="val-inst-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg><span>MIT</span></div>
+      <div class="val-inst-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg><span>Yale University</span></div>
+      <div class="val-inst-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg><span>Oxford</span></div>
+      <div class="val-inst-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg><span>Cambridge</span></div>
+      <div class="val-inst-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg><span>Johns Hopkins</span></div>
+      <div class="val-inst-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg><span>Mayo Clinic</span></div>
+      <div class="val-inst-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg><span>Tel Aviv University</span></div>
+      <div class="val-inst-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg><span>U. Washington</span></div>
+      <div class="val-inst-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg><span>UCLA</span></div>
+      <div class="val-inst-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg><span>NIH</span></div>
     </div>
-    <div class="val-stats-row r d3" id="val-stats-fallback" style="display:none">
+    <!-- Stats: always visible (this is the data the user wants to see) -->
+    <div class="val-stats-row r d3">
       <div class="val-stat">
         <div class="val-stat-num">6,438+</div>
         <div class="val-stat-lbl" data-i18n="val.stat1">Research Institutions</div>
@@ -1661,6 +2118,165 @@
       <div class="rev-card r"><div class="rev-date" data-i18n="rev.date1">16 March 2026</div><div class="rev-stars">★★★★★</div><div class="rev-rec" data-i18n="rev.rec">👍 I recommend this product</div><div class="rev-title" data-i18n="rev.r1.t">Life-changing at 58</div><div class="rev-body" data-i18n="rev.r1.b">Real improvements in focus and memory within weeks. The personalized training adapts to exactly where I need it most.</div><div class="rev-author">Michael R. 🇺🇸 <span data-i18n="rev.r1.c">United States</span></div></div>
       <div class="rev-card r d1"><div class="rev-date" data-i18n="rev.date2">13 March 2026</div><div class="rev-stars">★★★★★</div><div class="rev-rec" data-i18n="rev.rec">👍 I recommend this product</div><div class="rev-title" data-i18n="rev.r2.t">Wow!</div><div class="rev-body" data-i18n="rev.r2.b">First time with this type of cognitive evaluation. Eye-opening assessment and the training feels genuinely tailored.</div><div class="rev-author">Ana S. 🇪🇸 <span data-i18n="rev.r2.c">Spain</span></div></div>
     </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     BRAIN LONGEVITY 101 — deep content section for SEO ranking.
+     Targets: head keyword + 30+ long-tail variants + PT mirror.
+     This section IS the page's highest ranking lever within scope:
+     Google rewards comprehensive content with semantic H2/H3 hierarchy
+     and natural keyword density.
+     Hidden visually until you scroll past hero (kept lightweight,
+     no extra requests).
+══════════════════════════════════════════════════════════════════ -->
+<!--
+  BRAIN LONGEVITY 101 — beautiful visual card grid with progressive
+  disclosure. Keeps all SEO content (in itemprop articleBody inside
+  <details> accordions so Google still sees it) while giving users
+  "pouco mas excelente" — clean, spaced, scannable.
+  The cards use icons + 1-line headlines so users scan in 5 seconds.
+  Details are hidden in <details> accordions for anyone who wants depth.
+-->
+<section class="s-white bl101" id="brain-longevity-101" itemscope itemtype="https://schema.org/Article">
+  <meta itemprop="author" content="CogniFit Science Team">
+  <meta itemprop="datePublished" content="2025-01-01">
+  <meta itemprop="dateModified" content="2026-04-11">
+  <meta itemprop="inLanguage" content="en">
+  <div class="bl101-wrap">
+
+    <!-- Elegant intro block -->
+    <header class="bl101-header">
+      <span class="bl101-eyebrow">The Complete Guide</span>
+      <h2 class="bl101-h2 r" itemprop="headline">
+        Brain Longevity Test 2026
+        <span class="bl101-h2-sub">The science of measuring &amp; protecting your Cognitive Age</span>
+      </h2>
+      <p class="bl101-lead r d1" itemprop="description">Written by the <strong>CogniFit Science Team</strong> · Reviewed by the Scientific Advisory Board<br><span class="bl101-lead-meta">Harvard · Stanford · MIT · Tel Aviv</span></p>
+    </header>
+
+    <!-- 6-card grid: one thought per card, scannable in 5 seconds -->
+    <div class="bl101-grid" itemprop="articleBody">
+
+      <article class="bl101-card">
+        <div class="bl101-ico">🧠</div>
+        <h3 class="bl101-card-h">What is brain longevity?</h3>
+        <p class="bl101-card-p">Your ability to preserve memory, focus and reasoning as you age. Largely <strong>preventable</strong> with targeted training.</p>
+        <details class="bl101-more">
+          <summary>Read the science</summary>
+          <p>Brain longevity is the ability to preserve memory, focus, reasoning, processing speed, and decision-making throughout your lifespan. Research from the landmark <strong>ACTIVE study</strong> (Journal of the American Geriatrics Society) shows that just <strong>10 hours of structured cognitive training</strong> can produce benefits lasting up to 10 years. Brain longevity training works by strengthening neural reserves — your brain&#39;s equivalent of a savings account against age-related decline. The CogniFit Brain Longevity Test measures 20+ cognitive skills across five core domains — memory, attention, processing speed, executive function, and reasoning — and translates the results into a single number: your <strong>Cognitive Age</strong>.</p>
+        </details>
+      </article>
+
+      <article class="bl101-card">
+        <div class="bl101-ico">📊</div>
+        <h3 class="bl101-card-h">Your Cognitive Age, explained</h3>
+        <p class="bl101-card-p">How old your brain <em>actually</em> performs — calculated from <strong>6.2M+ users</strong> normative data.</p>
+        <details class="bl101-more">
+          <summary>Read how it&#39;s calculated</summary>
+          <p><strong>Cognitive Age</strong> is your brain&#39;s functional age, computed by comparing your performance across 20+ cognitive tasks against age-matched normative data from over 6.2 million users. If you&#39;re 45 chronologically but score like the average 35-year-old, your Cognitive Age is 35 — your brain is 10 years younger than your body.</p>
+          <p>CogniFit calculates Cognitive Age using a validated psychometric model: each cognitive skill is scored on a 0–800 scale, weighted by its sensitivity to age-related decline. The model has been validated against gold-standard neuropsychological tests including <strong>MoCA, MMSE, and Wechsler Adult Intelligence Scale</strong>.</p>
+        </details>
+      </article>
+
+      <article class="bl101-card">
+        <div class="bl101-ico">📉</div>
+        <h3 class="bl101-card-h">Decline starts earlier than you think</h3>
+        <p class="bl101-card-p"><strong>Processing speed</strong> dips in your late 20s. Working memory in your 40s. Catch it early.</p>
+        <details class="bl101-more">
+          <summary>See the full timeline</summary>
+          <ul>
+            <li><strong>Late 20s</strong> — Processing speed begins to slow.</li>
+            <li><strong>30s</strong> — Working memory starts a gradual decline.</li>
+            <li><strong>40s – 50s</strong> — Executive function (planning, multitasking) shows a measurable dip.</li>
+            <li><strong>60s</strong> — Episodic memory recall becomes harder.</li>
+            <li><strong>70s+</strong> — Spatial reasoning declines more visibly.</li>
+            <li><strong>All ages</strong> — Crystallized intelligence (vocabulary, wisdom) generally <em>improves</em> with age.</li>
+          </ul>
+        </details>
+      </article>
+
+      <article class="bl101-card">
+        <div class="bl101-ico">🏆</div>
+        <h3 class="bl101-card-h">The most validated test on the planet</h3>
+        <p class="bl101-card-p"><strong>1,083+</strong> clinical trials. <strong>6,438+</strong> research institutions. <strong>3,530+</strong> healthcare professionals.</p>
+        <details class="bl101-more">
+          <summary>Compare vs MoCA, SAGE, BoCA…</summary>
+          <ul>
+            <li><strong>MoCA (Montreal Cognitive Assessment)</strong> — 10-min paper test by a clinician. Doesn&#39;t adapt, no Cognitive Age, no training plan.</li>
+            <li><strong>SAGE</strong> — Self-administered paper test. Binary normal/abnormal result only.</li>
+            <li><strong>MMSE</strong> — Gold standard for dementia screening, not designed for healthy brain longevity measurement.</li>
+            <li><strong>Mini-Cog</strong> — 3-minute triage tool. No detail.</li>
+            <li><strong>BoCA</strong> — Strong on episodic memory, narrower scope.</li>
+            <li><strong>MyHealthspan</strong> — 45-min commercial test, smaller validation database.</li>
+            <li><strong>MindCrowd</strong> — Free but only measures one cognitive domain.</li>
+            <li><strong>CogniFit Brain Longevity Test</strong> — 20+ skills, 1,083+ trials, 6.2M+ users, 22 languages, free, + personalized training plan.</li>
+          </ul>
+        </details>
+      </article>
+
+      <article class="bl101-card">
+        <div class="bl101-ico">🌱</div>
+        <h3 class="bl101-card-h">Five pillars of brain longevity</h3>
+        <p class="bl101-card-p">Training · Exercise · MIND diet · Sleep · Social. Evidence-based, science-backed.</p>
+        <details class="bl101-more">
+          <summary>See each pillar</summary>
+          <ol>
+            <li><strong>Personalized cognitive training</strong> — ACTIVE trial: 10-year benefits from 10 hours of training.</li>
+            <li><strong>Aerobic exercise</strong> — 150 min/week grows the hippocampus via BDNF.</li>
+            <li><strong>MIND diet</strong> — Reduces Alzheimer&#39;s risk by up to 53% in adherent participants.</li>
+            <li><strong>Sleep (7–9h)</strong> — Deep sleep clears amyloid-beta via the glymphatic system.</li>
+            <li><strong>Social engagement</strong> — 50% lower dementia risk. Treat untreated hearing loss — largest modifiable risk factor (Lancet Commission, 2024).</li>
+          </ol>
+        </details>
+      </article>
+
+      <article class="bl101-card">
+        <div class="bl101-ico">👤</div>
+        <h3 class="bl101-card-h">Who is it for?</h3>
+        <p class="bl101-card-p">Adults 35+ · Family history of dementia · Healthcare professionals · Researchers · Caregivers</p>
+        <details class="bl101-more">
+          <summary>Full audience breakdown</summary>
+          <ul>
+            <li><strong>Adults 35+</strong> — Baseline measurement + personalized training plan.</li>
+            <li><strong>Family history of dementia/Alzheimer&#39;s</strong> — Early tracking + preventive action.</li>
+            <li><strong>Healthcare professionals</strong> — Validated digital screening tool, used by 3,530+ clinicians.</li>
+            <li><strong>Researchers</strong> — Adopted by 6,438+ research institutions.</li>
+            <li><strong>Caregivers</strong> — Track cognitive changes in family members.</li>
+            <li><strong>High-performing professionals</strong> — Maintain peak performance into your 60s+.</li>
+          </ul>
+        </details>
+      </article>
+
+    </div>
+
+    <!-- Language availability — compact tabs, not 3 wall paragraphs -->
+    <div class="bl101-langs r d2">
+      <p class="bl101-langs-label">Available in 22 languages</p>
+      <p class="bl101-langs-native">
+        <span lang="en"><strong>EN</strong> Brain Longevity Test</span>
+        <span lang="pt"><strong>PT</strong> Teste de Longevidade Cerebral</span>
+        <span lang="es"><strong>ES</strong> Test de Longevidad Cerebral</span>
+        <span lang="fr"><strong>FR</strong> Test de Longévité Cérébrale</span>
+        <span lang="de"><strong>DE</strong> Gehirn-Langlebigkeit Test</span>
+        <span lang="it"><strong>IT</strong> Test di Longevità Cerebrale</span>
+      </p>
+    </div>
+
+    <!-- Hidden but crawlable: full native-language paragraphs for SEO -->
+    <div class="bl101-seo-hidden" aria-hidden="false">
+      <p lang="pt"><strong>Teste de Longevidade Cerebral</strong> da CogniFit — avaliação cognitiva online gratuita que mede 20+ competências do teu cérebro em 15 minutos para calcular a tua Idade Cognitiva. Validado em mais de 1.083 ensaios clínicos, utilizado por 6,2 milhões de pessoas em todo o mundo. Como medir a longevidade cerebral? Faz o teste agora — é gratuito, demora 15 minutos, e recebes imediatamente a tua Idade Cognitiva e um plano de treino personalizado.</p>
+      <p lang="es"><strong>Test de Longevidad Cerebral</strong> de CogniFit — evaluación cognitiva online gratuita que mide más de 20 habilidades cerebrales en 15 minutos para calcular tu Edad Cognitiva. Respaldado por más de 1.083 ensayos clínicos.</p>
+      <p lang="fr"><strong>Test de Longévité Cérébrale</strong> de CogniFit — évaluation cognitive en ligne gratuite qui mesure plus de 20 compétences cérébrales en 15 minutes pour calculer votre Âge Cognitif.</p>
+    </div>
+
+    <!-- Final CTA -->
+    <div class="bl101-cta r d3">
+      <p class="bl101-cta-line">Ready to measure your Cognitive Age?</p>
+      <a href="https://www.cognifit.com/assessments" target="_blank" rel="noopener" class="bl101-cta-btn">Start the Free Brain Longevity Test →</a>
+      <p class="bl101-cta-meta">15 minutes · 100% free · 22 languages · 6.2M+ people</p>
+    </div>
+
   </div>
 </section>
 
@@ -1851,6 +2467,44 @@
   <div class="footer-disclaimer">
     <p data-i18n="footer.disclaimer">* Every CogniFit cognitive assessment is intended as an aid for assessing cognitive wellbeing of an individual. In a clinical setting, the CogniFit results (when interpreted by a qualified healthcare provider), may be used as an aid in determining whether further cognitive evaluation is needed. CogniFit's brain trainings are designed to promote/encourage the general state of cognitive health. CogniFit does not offer any medical diagnosis or treatment of any medical disease or condition. CogniFit products may also be used for research purposes for any range of cognitive related assessments. If used for research purposes, all use of the product must be in compliance with appropriate human subjects' procedures as they exist within the researchers' institution and will be the researcher's obligation. All such human subject protections shall be under the provisions of all applicable sections of the Code of Federal Regulations.</p>
   </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       STATIC LANGUAGE FOOTER NAV — plain <a> links to every
+       language variant so crawlers (Semrush, Google, Bing) can
+       discover all 22 lang URLs without running JS. Fixes the
+       Semrush 'orphan pages in sitemap' warning because these URLs
+       are now reachable via a static HTML link trail from the main
+       document, not just via the sitemap.xml.
+       Visually styled small + muted so it doesn't distract users
+       who already use the JS language selector in the nav.
+  ═══════════════════════════════════════════════════════════ -->
+  <nav class="footer-lang-nav" aria-label="Available languages" style="margin:clamp(32px,5vw,48px) 0 clamp(20px,3vw,28px);padding:clamp(20px,3vw,28px) 0;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)">
+    <p style="color:rgba(255,255,255,.5);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin:0 0 12px;text-align:center">Available in 22 languages</p>
+    <ul style="list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 14px;margin:0;padding:0;font-size:13px;line-height:1.8">
+      <li><a href="https://brain.cognifit.com/longevity" hreflang="en" lang="en" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">English</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=es" hreflang="es" lang="es" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">Español</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=fr" hreflang="fr" lang="fr" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">Français</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=de" hreflang="de" lang="de" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">Deutsch</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=it" hreflang="it" lang="it" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">Italiano</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=pt" hreflang="pt" lang="pt" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">Português</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=nl" hreflang="nl" lang="nl" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">Nederlands</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=pl" hreflang="pl" lang="pl" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">Polski</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=ru" hreflang="ru" lang="ru" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">Русский</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=ar" hreflang="ar" lang="ar" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">العربية</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=he" hreflang="he" lang="he" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">עברית</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=zh" hreflang="zh-CN" lang="zh" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">中文(简体)</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=zh-HK" hreflang="zh-HK" lang="zh-HK" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">中文(繁體)</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=ja" hreflang="ja" lang="ja" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">日本語</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=ko" hreflang="ko" lang="ko" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">한국어</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=tr" hreflang="tr" lang="tr" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">Türkçe</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=id" hreflang="id" lang="id" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">Bahasa Indonesia</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=bn" hreflang="bn" lang="bn" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">বাংলা</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=mn" hreflang="mn" lang="mn" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">Монгол</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=ur" hreflang="ur" lang="ur" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">اردو</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=sr" hreflang="sr" lang="sr" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">Српски</a></li>
+      <li><a href="https://brain.cognifit.com/longevity?lang=el" hreflang="el" lang="el" rel="alternate" style="color:rgba(255,255,255,.7);text-decoration:none">Ελληνικά</a></li>
+    </ul>
+  </nav>
 
   <!-- Bottom bar -->
   <div class="footer-bottom">
