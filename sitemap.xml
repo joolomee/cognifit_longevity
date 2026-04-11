@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://brain.cognifit.com/longevity</loc>
     <lastmod>2026-04-11</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://brain.cognifit.com/longevity/og-image.jpg</image:loc>
+      <image:title>Brain Longevity Test 2026 — CogniFit</image:title>
+      <image:caption>Free Brain Longevity Test: measure your Cognitive Age in 15 minutes. 1,083+ clinical trials. 6.2M+ users. 4.8★ rated.</image:caption>
+    </image:image>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://brain.cognifit.com/longevity"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://brain.cognifit.com/longevity"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://brain.cognifit.com/longevity?lang=es"/>
@@ -29,5 +35,47 @@
     <xhtml:link rel="alternate" hreflang="ur" href="https://brain.cognifit.com/longevity?lang=ur"/>
     <xhtml:link rel="alternate" hreflang="sr" href="https://brain.cognifit.com/longevity?lang=sr"/>
     <xhtml:link rel="alternate" hreflang="el" href="https://brain.cognifit.com/longevity?lang=el"/>
+  </url>
+  <url>
+    <loc>https://brain.cognifit.com/longevity?lang=es</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://brain.cognifit.com/longevity?lang=fr</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://brain.cognifit.com/longevity?lang=de</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://brain.cognifit.com/longevity?lang=it</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://brain.cognifit.com/longevity?lang=pt</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://brain.cognifit.com/longevity?lang=ja</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://brain.cognifit.com/longevity?lang=zh</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
 </urlset>
