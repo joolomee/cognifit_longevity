@@ -1192,8 +1192,8 @@
       "out.box2.i2": "<strong>Woche 2-4:</strong> Die meisten Nutzer fühlen sich klarer, schnellere Erinnerung, besserer Fokus in Gesprächen, klareres Denken",
       "out.box2.i3": "<strong>Woche 4-8:</strong> Messbare Verbesserung in den trainierten kognitiven Bereichen, in Ihrem persönlichen Dashboard nachverfolgt",
       "out.box2.i4": "<strong>Monat 3+:</strong> Kumulierte Gewinne, die ACTIVE-Studie ergab, dass die Vorteile strukturierten Trainings 5-10 Jahre anhalten",
-      "out.box2.c": "Nur 15-20 Minuten, 3-4 Mal pro Woche. <strong>Beständigkeit ist der Schlüssel zur kognitiven Langlebigkeit.</strong>",
-      "who.lead": "Egal ob Sie 35 oder 75 sind, kognitives Training liefert messbare Vorteile. In <em>Nature Reviews Neuroscience</em> veröffentlichte Forschung zeigt, dass gezielte Hirnübungen die neuronale Effizienz in jedem Alter verbessern.",
+      "out.box2.c": "Nur 15-20 Minuten, 3-4 Mal pro Woche. <strong>Beständigkeit ist der Schlüssel zur Gehirnlanglebigkeit.</strong>",
+      "who.lead": "Egal ob Sie 35 oder 75 sind, Gehirnlanglebigkeit-Training liefert messbare Vorteile. In <em>Nature Reviews Neuroscience</em> veröffentlichte Forschung zeigt, dass gezielte Hirnübungen die neuronale Effizienz in jedem Alter verbessern.",
       "who.c1.d": "Die Verarbeitungsgeschwindigkeit erreicht ihren Höhepunkt Ende der 20er und beginnt ab 35 zu sinken. Frühes kognitives Training baut neuronale Reserven auf, die Ihre Unabhängigkeit jahrzehntelang schützen, wie ein Sparkonto fürs kognitive Alter.",
       "who.c2.d": "Exekutivfunktion, Arbeitsgedächtnis und anhaltende Aufmerksamkeit beeinflussen die berufliche Leistung direkt. CogniFit zielt mit adaptivem Training auf diese anspruchsvollen kognitiven Fähigkeiten ab, das sich Ihrem Niveau anpasst.",
       "who.c3.d": "Eine familiäre Vorgeschichte von Demenz oder Alzheimer erhöht die Sorge, zu Recht. Die ACTIVE-Studie zeigte, dass strukturiertes kognitives Training den kognitiven Abbau um bis zu 10 Jahre verzögern kann. Frühes Handeln zählt am meisten.",
@@ -1208,8 +1208,8 @@
       "pro.c7.d": "Kognitive Höchstleistung für den Spitzensport. Reaktionszeit, Konzentration unter Druck und Entscheidungstraining für Wettkampfsportler.",
       "rev.r1.b": "Echte Verbesserungen bei Konzentration und Gedächtnis innerhalb von Wochen. Das personalisierte Training passt sich genau dort an, wo ich es am meisten brauche.",
       "rev.r2.b": "Zum ersten Mal mit dieser Art von kognitiver Bewertung. Augenöffnende Beurteilung und das Training fühlt sich wirklich maßgeschneidert an.",
-      "faq.q1": "Was ist kognitive Langlebigkeit, und warum sollte es mich interessieren?",
-      "faq.a1": "Sehen Sie es so: Wir investieren alle darin, unseren Körper gesund zu halten, aber was ist mit dem Organ, das unser Leben tatsächlich steuert? Kognitive Langlebigkeit bedeutet, Gedächtnis, Konzentration, logisches Denken und Entscheidungsfindung so lange wie möglich scharf zu halten. Das Knifflige daran? Anders als ein schmerzendes Knie schleicht sich der kognitive Abbau an, die meisten Menschen bemerken ihn erst, wenn er bereits ihr tägliches Leben beeinträchtigt. Die gute Nachricht ist, dass die Forschung zeigt, dass Sie aktiv „neurale Reserven\" durch gezieltes Training aufbauen können, genau wie Sie Muskeln aufbauen. Genau dafür ist CogniFit konzipiert, und über 6 Millionen Menschen tun es bereits. Je früher Sie beginnen, desto stärker wird Ihr Fundament.",
+      "faq.q1": "Was ist Gehirnlanglebigkeit, und warum sollte es mich interessieren?",
+      "faq.a1": "Sehen Sie es so: Wir investieren alle darin, unseren Körper gesund zu halten, aber was ist mit dem Organ, das unser Leben tatsächlich steuert? Gehirnlanglebigkeit ist Ihre Fähigkeit, Gedächtnis, Konzentration, logisches Denken und Entscheidungsfindung im Alter zu bewahren. Das Knifflige daran? Anders als ein schmerzendes Knie schleicht sich der kognitive Abbau an, die meisten Menschen bemerken ihn erst, wenn er bereits ihr tägliches Leben beeinträchtigt. Die gute Nachricht ist, dass die Forschung zeigt, dass Sie aktiv „neurale Reserven\" durch gezieltes Training aufbauen können, genau wie Sie Muskeln aufbauen. Genau dafür ist der Gehirnlanglebigkeit-Test von CogniFit konzipiert, und über 6 Millionen Menschen nutzen ihn bereits. Je früher Sie beginnen, desto stärker wird Ihr Fundament.",
       "faq.q2": "Funktioniert Gehirntraining wirklich, oder ist es nur ein Hype?",
       "phone.title1": "Gehirntraining",
       "phone.skill1": "Gedächtnis",
@@ -1243,12 +1243,12 @@
       "rev.date1": "16. März 2026",
       "rev.date2": "13. März 2026",
       "cta.eyebrow": "Loslegen",
-      "cta.h2": "Beginnen Sie Heute Ihre Reise zu Kognitiver Langlebigkeit",
-      "cta.lead": "Sie müssen nicht warten, bis der kognitive Verfall einsetzt. Je früher Sie in Gehirngesundheit und kognitives Training investieren, desto stärker und widerstandsfähiger wird Ihr Gehirn mit der Zeit. Schließen Sie sich über 6 Millionen Menschen an, die für gesundes Altern trainieren.",
+      "cta.h2": "Beginnen Sie Heute Ihre Gehirnlanglebigkeit-Reise",
+      "cta.lead": "Sie müssen nicht warten, bis der kognitive Verfall einsetzt. Je früher Sie in Gehirnlanglebigkeit und kognitives Training investieren, desto stärker und widerstandsfähiger wird Ihr Gehirn mit der Zeit. Schließen Sie sich über 6 Millionen Menschen an, die für gesundes Gehirnaltern trainieren.",
       "cta.step1": "Entdecken Sie Ihr Gehirnprofil",
       "cta.step2": "Erhalten Sie Ihren personalisierten Plan",
       "cta.step3": "Beginnen Sie heute mit Ihrer Verbesserung",
-      "cta.btn": "Machen Sie Jetzt Ihren Kognitiven Test",
+      "cta.btn": "Machen Sie Jetzt Ihren Gehirnlanglebigkeit-Test",
       "closing.quote": "\"Ihr Körper mag altern. Aber Ihr Gehirn kann <em>scharf, anpassungsfähig und stark</em> bleiben. Wenn Sie es trainieren.\"",
       "closing.sub": "Die Frage ist nicht, ob Sie altern werden.<br>Es geht darum, wie gut Ihr Geist mit Ihnen altert.",
       "closing.cta2": "Machen Sie den Ersten Schritt",
@@ -1324,7 +1324,7 @@
       "footer.bottom.contact": "Kontakt",
       "footer.bottom.help": "Hilfe",
       "footer.copy": "CogniFit Inc © 2026",
-      "sticky.cta": "Kostenlose Gehirnbewertung",
+      "sticky.cta": "Kostenloser Gehirnlanglebigkeit-Test",
       "sci.broken.status": "{names} geschwächt, das gesamte kognitive Netzwerk ist beeinträchtigt.",
       "sci.broken.hint": "Tippen Sie auf deaktivierte Fähigkeiten, um sie wiederherzustellen",
       "scroll.top.aria": "Zurück nach oben",
@@ -1341,19 +1341,19 @@
       "store.google.line2": "Google Play"
     },
     "it": {
-      "page.title": "Longevità Cognitiva e Allenamento Cerebrale | CogniFit, 1.083+ Studi",
+      "page.title": "Test di Longevità Cerebrale e Allenamento: Vivi Più, Pensa Meglio | CogniFit",
       "nav.platform": "Piattaforma",
       "nav.faq": "FAQ",
       "nav.science": "Scienza",
       "nav.training": "Allenamento",
-      "hero.badge": "Sistema di Longevità Cognitiva",
+      "hero.badge": "Sistema di Longevità Cerebrale",
       "hero.h1.line1": "Vivi più a lungo.",
       "hero.h1.line2": "Pensa meglio.",
       "hero.h1.line3": "Rimani indipendente.",
       "hero.readtime": "4 min di lettura · Basato su 1.083+ studi clinici",
       "hero.cta": "Protegga il Suo Cervello",
-      "discover.eyebrow": "Valutazione Cognitiva",
-      "discover.h2": "Scopra i Punti di Forza e di Debolezza del Suo Cervello",
+      "discover.eyebrow": "Test di Longevità Cerebrale",
+      "discover.h2": "Test di Longevità Cerebrale: Scopra i Punti di Forza e di Debolezza del Suo Cervello",
       "discover.panel": "Abilità Cognitive",
       "discover.sk1": "Memoria Contestuale",
       "discover.sk2": "Coordinazione Occhio-Mano",
@@ -1378,7 +1378,7 @@
       "risk.sol.s": "Fornito da CogniFit",
       "risk.sol.b": "CHIAVE",
       "sci.eyebrow": "Neuroscienza",
-      "sci.h2": "La Scienza Dietro la Salute del Cervello e la Longevità Cognitiva",
+      "sci.h2": "La Scienza Dietro la Longevità Cerebrale",
       "sci.s1.num": "Sistema 01",
       "sci.s1.t": "Funzione Esecutiva",
       "sci.s1.role": "Il CEO del Suo Cervello",
@@ -1401,9 +1401,9 @@
       "sci.s3.a3": "Chiarezza mentale",
       "sci.s3.a4": "Controllo cognitivo",
       "sci.reset": "Clicca ovunque per ripristinare tutti i sistemi",
-      "plat.eyebrow": "La Piattaforma",
-      "plat.h2": "CogniFit, La Sua Piattaforma di Allenamento Cerebrale per un Cervello Migliore e la Longevità Cognitiva",
-      "plat.lead": "Un sistema cognitivo personalizzato progettato per misurare, identificare e allenare esattamente ciò che conta per la sua indipendenza.",
+      "plat.eyebrow": "Il Suo Piano di Longevità Cerebrale",
+      "plat.h2": "CogniFit, La Sua Piattaforma di Longevità Cerebrale per Misurare, Allenare e Monitorare la Sua Salute Cognitiva",
+      "plat.lead": "Un sistema di longevità cerebrale personalizzato progettato per misurare, identificare e allenare esattamente ciò che conta per la sua indipendenza.",
       "plat.s1.t": "Valuta il Suo Cervello",
       "plat.s2.t": "Ottieni un Programma Personalizzato",
       "plat.s3.t": "Alleni Ciò che Conta",
@@ -1419,10 +1419,10 @@
       "out.cta": "Vedi Cosa È Possibile",
       "out.chart1": "Punteggio Memoria",
       "out.chart2": "Attenzione & Concentrazione",
-      "out.box1.t": "Non è Solo Allenamento Cerebrale, È Longevità Cognitiva",
+      "out.box1.t": "Non è Solo Allenamento Cerebrale, È Longevità Cerebrale",
       "out.box2.t": "Quando Vedrai i Risultati?",
       "who.eyebrow": "Il Suo Profilo",
-      "who.h2": "Chi Beneficia dell'Allenamento Cognitivo per un Invecchiamento Sano?",
+      "who.h2": "Chi Beneficia dell'Allenamento di Longevità Cerebrale?",
       "who.c1.t": "Adulti 35+",
       "who.c2.t": "Professionisti",
       "who.c3.t": "Mente Preventiva",
@@ -1473,10 +1473,10 @@
       "rev.r1.c": "Stati Uniti",
       "rev.r2.t": "Wow!",
       "rev.r2.c": "Spagna",
-      "faq.eyebrow": "Domande Frequenti",
-      "faq.h2": "Le Sue Domande sulla Salute del Cervello, Risposte",
-      "hero.sub": "Invecchiare è inevitabile. <strong>Il declino cognitivo non deve esserlo.</strong> Protegga le abilità mentali fondamentali che determinano quanto indipendentemente vivi mentre invecchi.",
-      "discover.lead": "Le nostre <a href=\"https://www.cognifit.com/cognitive-assessment\" style=\"color:var(--blue);text-decoration:none;font-weight:700\">valutazioni cognitive scientificamente validate</a> misurano oltre 20 abilità cerebrali tra memoria, attenzione e funzione esecutiva, offrendoti un quadro completo della sua salute cognitiva e del benessere cerebrale.",
+      "faq.eyebrow": "FAQ Longevità Cerebrale",
+      "faq.h2": "FAQ Longevità Cerebrale: Le Sue Domande sulla Salute del Cervello, Risposte",
+      "hero.sub": "Invecchiare è inevitabile. <strong>Il declino cognitivo non deve esserlo.</strong> Misura la sua <strong>longevità cerebrale</strong> e protegga le abilità mentali fondamentali che determinano quanto indipendentemente vivi mentre invecchi.",
+      "discover.lead": "Il nostro <a href=\"https://www.cognifit.com/cognitive-assessment\" style=\"color:var(--blue);text-decoration:none;font-weight:700\">test di longevità cerebrale scientificamente validato</a> misura oltre 20 abilità cerebrali tra memoria, attenzione e funzione esecutiva, offrendoti un quadro completo della sua salute cognitiva e di come il suo cervello sta davvero invecchiando.",
       "risk.r1.d": "Le decisioni quotidiane, finanze, farmaci, cura di sé, diventano sempre più difficili da gestire da soli.",
       "risk.r2.d": "Una memoria di lavoro ridotta rende più difficile valutare le opzioni, seguire le istruzioni o individuare i rischi per la salute.",
       "risk.r3.d": "L'inattività cognitiva è uno dei principali fattori di rischio modificabili per l'Alzheimer e altre forme di demenza.",
@@ -7265,6 +7265,27 @@
     // has !important), so no inline style can leak and no media query can
     // force the dropdown into the nav flow.
 
+    // Mobile modal header: title + close (X) button. Hidden on desktop via CSS.
+    var header = document.createElement('div');
+    header.className = 'lang-modal-header';
+    var title = document.createElement('span');
+    title.className = 'lang-modal-title';
+    title.textContent = 'Select language';
+    var closeBtn = document.createElement('button');
+    closeBtn.className = 'lang-modal-close';
+    closeBtn.type = 'button';
+    closeBtn.setAttribute('aria-label', 'Close language menu');
+    closeBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+    closeBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      dropdown.classList.remove('open');
+      document.documentElement.classList.remove('lang-modal-open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+    header.appendChild(title);
+    header.appendChild(closeBtn);
+    dropdown.appendChild(header);
+
     Object.keys(LANGUAGES).forEach(function(code) {
       var item = document.createElement('button');
       item.className = 'lang-item';
@@ -7278,6 +7299,7 @@
         e.stopPropagation();
         setLang(code, true);
         dropdown.classList.remove('open');
+        document.documentElement.classList.remove('lang-modal-open');
         btn.setAttribute('aria-expanded', 'false');
       });
       dropdown.appendChild(item);
@@ -7288,11 +7310,18 @@
       e.preventDefault();
       var isOpen = dropdown.classList.toggle('open');
       btn.setAttribute('aria-expanded', String(isOpen));
+      // Lock body scroll when mobile modal is open
+      if (isOpen) {
+        document.documentElement.classList.add('lang-modal-open');
+      } else {
+        document.documentElement.classList.remove('lang-modal-open');
+      }
     });
 
     document.addEventListener('click', function(e) {
       if (wrap.contains(e.target)) return;
       dropdown.classList.remove('open');
+      document.documentElement.classList.remove('lang-modal-open');
       btn.setAttribute('aria-expanded', 'false');
     });
 
@@ -7300,6 +7329,7 @@
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
         dropdown.classList.remove('open');
+        document.documentElement.classList.remove('lang-modal-open');
         btn.setAttribute('aria-expanded', 'false');
       }
     });
