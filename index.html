@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="CogniFit">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-01-01T00:00:00+00:00">
-<meta property="article:modified_time" content="2026-04-06T00:00:00+00:00">
+<meta property="article:modified_time" content="2026-04-12T00:00:00+00:00">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
@@ -63,6 +63,15 @@
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" as="style">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="images/cognifit_logo_blue.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="CogniFit">
+<meta name="format-detection" content="telephone=no">
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="none">
+<link rel="sitemap" type="application/xml" href="sitemap.xml">
 <script src="i18n.js" defer></script>
 
 <!-- Reveal-on-load: mark JS ready immediately + animate .r elements as soon as DOM is parsed.
@@ -141,8 +150,8 @@
       "about": { "@id": "https://www.cognifit.com/#organization" },
       "primaryImageOfPage": { "@type": "ImageObject", "url": "https://brain.cognifit.com/longevity/og-image.jpg" },
       "datePublished": "2025-01-01",
-      "dateModified": "2026-04-06",
-      "lastReviewed": "2026-04-06",
+      "dateModified": "2026-04-12",
+      "lastReviewed": "2026-04-12",
       "medicalAudience": { "@type": "MedicalAudience", "audienceType": "Patient" },
       "specialty": { "@type": "MedicalSpecialty", "name": "Neuropsychology" },
       "inLanguage": "en",
@@ -1874,6 +1883,36 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
     <span data-i18n="sticky.cta">Free Brain Longevity Test</span>
   </a>
+</div>
+
+<!-- Cookie Consent Banner -->
+<div id="cookie-consent" class="cookie-banner" role="dialog" aria-label="Cookie preferences" aria-modal="false" style="display:none">
+  <div class="cookie-inner">
+    <div class="cookie-text">
+      <h3 class="cookie-title" data-i18n="cookie.title">We value your privacy</h3>
+      <p class="cookie-desc" data-i18n="cookie.desc">We use cookies to enhance your experience, analyze site traffic, and for marketing purposes. You can choose which cookies to accept.</p>
+    </div>
+    <div class="cookie-categories">
+      <label class="cookie-cat">
+        <input type="checkbox" checked disabled>
+        <span class="cookie-cat-name" data-i18n="cookie.essential">Essential</span>
+        <span class="cookie-cat-tag" data-i18n="cookie.always">Always on</span>
+      </label>
+      <label class="cookie-cat">
+        <input type="checkbox" id="cookie-analytics" checked>
+        <span class="cookie-cat-name" data-i18n="cookie.analytics">Analytics</span>
+      </label>
+      <label class="cookie-cat">
+        <input type="checkbox" id="cookie-marketing">
+        <span class="cookie-cat-name" data-i18n="cookie.marketing">Marketing</span>
+      </label>
+    </div>
+    <div class="cookie-actions">
+      <button id="cookie-accept-all" class="cookie-btn cookie-btn-primary" data-i18n="cookie.acceptAll">Accept All</button>
+      <button id="cookie-save" class="cookie-btn cookie-btn-secondary" data-i18n="cookie.save">Save Preferences</button>
+      <button id="cookie-reject" class="cookie-btn cookie-btn-ghost" data-i18n="cookie.reject">Reject All</button>
+    </div>
+  </div>
 </div>
 
 <script src="main.js" defer></script>

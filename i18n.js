@@ -379,7 +379,16 @@
       "store.apple.line1": "Download on the",
       "store.apple.line2": "App Store",
       "store.google.line1": "Get it on",
-      "store.google.line2": "Google Play"
+      "store.google.line2": "Google Play",
+      "cookie.title": "We value your privacy",
+      "cookie.desc": "We use cookies to enhance your experience, analyze site traffic, and for marketing purposes. You can choose which cookies to accept.",
+      "cookie.essential": "Essential",
+      "cookie.always": "Always on",
+      "cookie.analytics": "Analytics",
+      "cookie.marketing": "Marketing",
+      "cookie.acceptAll": "Accept All",
+      "cookie.save": "Save Preferences",
+      "cookie.reject": "Reject All"
     },
     "es": {
       "page.title": "Test de Longevidad Cerebral y Entrenamiento: Vive Más, Piensa Mejor | CogniFit",
@@ -700,7 +709,16 @@
       "store.apple.line1": "Descárgalo en",
       "store.apple.line2": "App Store",
       "store.google.line1": "Disponible en",
-      "store.google.line2": "Google Play"
+      "store.google.line2": "Google Play",
+      "cookie.title": "Valoramos tu privacidad",
+      "cookie.desc": "Usamos cookies para mejorar tu experiencia, analizar el tráfico del sitio y con fines de marketing. Puedes elegir qué cookies aceptar.",
+      "cookie.essential": "Esenciales",
+      "cookie.always": "Siempre activas",
+      "cookie.analytics": "Analíticas",
+      "cookie.marketing": "Marketing",
+      "cookie.acceptAll": "Aceptar todas",
+      "cookie.save": "Guardar preferencias",
+      "cookie.reject": "Rechazar todas"
     },
     "fr": {
       "page.title": "Test de Longévité Cérébrale et Entraînement : Vivez Plus, Pensez Mieux | CogniFit",
@@ -1021,7 +1039,16 @@
       "store.apple.line1": "Télécharger dans l’",
       "store.apple.line2": "App Store",
       "store.google.line1": "Disponible sur",
-      "store.google.line2": "Google Play"
+      "store.google.line2": "Google Play",
+      "cookie.title": "Nous respectons votre vie privée",
+      "cookie.desc": "Nous utilisons des cookies pour améliorer votre expérience, analyser le trafic et à des fins marketing. Vous pouvez choisir les cookies à accepter.",
+      "cookie.essential": "Essentiels",
+      "cookie.always": "Toujours actifs",
+      "cookie.analytics": "Analytiques",
+      "cookie.marketing": "Marketing",
+      "cookie.acceptAll": "Tout accepter",
+      "cookie.save": "Enregistrer",
+      "cookie.reject": "Tout refuser"
     },
     "de": {
       "page.title": "Gehirnlanglebigkeit-Test & Training: Länger Leben, Besser Denken | CogniFit",
@@ -1342,7 +1369,16 @@
       "store.apple.line1": "Laden im",
       "store.apple.line2": "App Store",
       "store.google.line1": "Jetzt bei",
-      "store.google.line2": "Google Play"
+      "store.google.line2": "Google Play",
+      "cookie.title": "Wir schätzen Ihre Privatsphäre",
+      "cookie.desc": "Wir verwenden Cookies, um Ihre Erfahrung zu verbessern, den Website-Verkehr zu analysieren und für Marketingzwecke. Sie können wählen, welche Cookies Sie akzeptieren.",
+      "cookie.essential": "Essentiell",
+      "cookie.always": "Immer aktiv",
+      "cookie.analytics": "Analytik",
+      "cookie.marketing": "Marketing",
+      "cookie.acceptAll": "Alle akzeptieren",
+      "cookie.save": "Einstellungen speichern",
+      "cookie.reject": "Alle ablehnen"
     },
     "it": {
       "page.title": "Test di Longevità Cerebrale e Allenamento: Vivi Più, Pensa Meglio | CogniFit",
@@ -1663,7 +1699,16 @@
       "store.apple.line1": "Scarica su",
       "store.apple.line2": "App Store",
       "store.google.line1": "Disponibile su",
-      "store.google.line2": "Google Play"
+      "store.google.line2": "Google Play",
+      "cookie.title": "Rispettiamo la tua privacy",
+      "cookie.desc": "Utilizziamo i cookie per migliorare la tua esperienza, analizzare il traffico del sito e per scopi di marketing. Puoi scegliere quali cookie accettare.",
+      "cookie.essential": "Essenziali",
+      "cookie.always": "Sempre attivi",
+      "cookie.analytics": "Analitici",
+      "cookie.marketing": "Marketing",
+      "cookie.acceptAll": "Accetta tutti",
+      "cookie.save": "Salva preferenze",
+      "cookie.reject": "Rifiuta tutti"
     },
     "pt": {
       "page.title": "Teste de Longevidade Cerebral e Treino: Viva Mais, Pense Melhor | CogniFit",
@@ -1988,7 +2033,16 @@
       "store.apple.line1": "Descarregar na",
       "store.apple.line2": "App Store",
       "store.google.line1": "Disponível no",
-      "store.google.line2": "Google Play"
+      "store.google.line2": "Google Play",
+      "cookie.title": "Valorizamos a sua privacidade",
+      "cookie.desc": "Usamos cookies para melhorar a sua experiência, analisar o tráfego do site e para fins de marketing. Pode escolher quais cookies aceitar.",
+      "cookie.essential": "Essenciais",
+      "cookie.always": "Sempre ativos",
+      "cookie.analytics": "Analíticos",
+      "cookie.marketing": "Marketing",
+      "cookie.acceptAll": "Aceitar todos",
+      "cookie.save": "Guardar preferências",
+      "cookie.reject": "Rejeitar todos"
     },
     "nl": {
       "page.title": "Breinlangevigheid Test & Training: Leef Langer, Denk Beter | CogniFit",

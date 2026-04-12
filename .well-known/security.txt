@@ -1,0 +1,6 @@
+Contact: mailto:security@cognifit.com
+Contact: https://www.cognifit.com/contact
+Expires: 2027-04-12T00:00:00.000Z
+Preferred-Languages: en, es, fr, de, it, pt
+Canonical: https://brain.cognifit.com/.well-known/security.txt
+Policy: https://www.cognifit.com/privacy-policy
