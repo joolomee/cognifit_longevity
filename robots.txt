@@ -26,8 +26,52 @@ User-agent: Bingbot
 Allow: /
 Crawl-delay: 1
 
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+
+# Yandex (Russian market)
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 2
+
+# Baidu (Chinese market)
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2
+
+# Naver (Korean market)
+User-agent: Yeti
+Allow: /
+
+# Social Media Crawlers — for link previews / cards
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: Slackbot
+Allow: /
+
+User-agent: Discordbot
+Allow: /
+
+# Apple
+User-agent: Applebot
+Allow: /
+
 # AI Crawlers — Explicitly allowed for GEO optimization
 User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
 Allow: /
 
 User-agent: ChatGPT-User
@@ -60,10 +104,10 @@ Allow: /
 User-agent: anthropic-ai
 Allow: /
 
-User-agent: Applebot
+User-agent: YouBot
 Allow: /
 
-User-agent: YouBot
+User-agent: Amazonbot
 Allow: /
 
 # Sitemaps

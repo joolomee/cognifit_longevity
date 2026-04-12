@@ -32,10 +32,6 @@
           "value": "nosniff"
         },
         {
-          "key": "X-Frame-Options",
-          "value": "SAMEORIGIN"
-        },
-        {
           "key": "Referrer-Policy",
           "value": "strict-origin-when-cross-origin"
         },
@@ -54,7 +50,7 @@
       ]
     },
     {
-      "source": "/(.*).(?:js|css)$",
+      "source": "/(.*)\\.(?:js|css)$",
       "headers": [
         {
           "key": "Cache-Control",
@@ -63,7 +59,7 @@
       ]
     },
     {
-      "source": "/(.*).(?:png|jpg|jpeg|webp|svg|gif|ico)$",
+      "source": "/(.*)\\.(?:png|jpg|jpeg|webp|svg|gif|ico)$",
       "headers": [
         {
           "key": "Cache-Control",
