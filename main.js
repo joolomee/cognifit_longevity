@@ -1198,8 +1198,13 @@ document.querySelectorAll('.faq-q').forEach(function(btn) {
     }
   });
 
-  /* ---- VAL MARQUEE: rebuild with individual logo PNGs ---- */
+  /* ---- VAL MARQUEE: use external CogniFit-hosted image ---- */
+  /* Individual logo PNGs are placeholders — keep the external
+     clinicsLogos.webp from the HTML. If it 404s, the onerror
+     handler in the HTML hides the marquee and shows the fallback
+     stats row automatically. */
   function initValMarquee() {
+    return; // use HTML external image instead of placeholder PNGs
     var wrap = document.querySelector('.val-marquee-wrap');
     if (!wrap) return;
     var old = wrap.querySelector('.val-marquee');
