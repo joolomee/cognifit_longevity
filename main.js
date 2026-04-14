@@ -40,7 +40,10 @@ function applyCTARouting() {
 
 // ── IFRAME MODE: adapt to Wix container ──
 if (window.self !== window.top) {
-  // Override IntersectionObserver so all sections render
+  // Save real IntersectionObserver before overriding (needed for scroll-top button)
+  var RealIntersectionObserver = window.IntersectionObserver;
+
+  // Override IntersectionObserver so all sections render immediately
   window.IntersectionObserver = class {
     constructor(cb) { this.cb = cb; }
     observe(el) {
@@ -135,8 +138,8 @@ const heroBadge = document.querySelector('.hero-badge');
       scrollBtn.style.pointerEvents = 'none';
       scrollBtn.style.transition = 'opacity .3s ease';
       var heroEl = document.querySelector('.hero');
-      if (heroEl && 'IntersectionObserver' in window) {
-        var io = new IntersectionObserver(function(entries) {
+      if (heroEl && RealIntersectionObserver) {
+        var io = new RealIntersectionObserver(function(entries) {
           entries.forEach(function(entry) {
             // Show button once hero is no longer intersecting viewport (user scrolled past it)
             if (!entry.isIntersecting) {
@@ -331,6 +334,8 @@ const heroBadge = document.querySelector('.hero-badge');
 (function(){
   const canvas = document.getElementById('neural-canvas');
   if(!canvas) return;
+  // Skip heavy canvas on mobile or when user prefers reduced motion
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const ctx = canvas.getContext('2d');
   let W, H, neurons = [], signals = [], streams = [];
   const mouse = {x:-9999, y:-9999};
@@ -550,6 +555,7 @@ document.querySelectorAll('.r').forEach(el => el.classList.add('on'));
 const nav=document.getElementById('nav');
 const _lightSecs=[...document.querySelectorAll('.s-white,.s-off')];
 function updateNav(){
+  if(!nav) return;
   const navH=nav.offsetHeight||60;
   let isLight=false;
   _lightSecs.forEach(sec=>{
@@ -684,21 +690,6 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
     textNode.nodeValue = raw.includes('.') ? '0.0' : '0';
     statObserver.observe(el);
   });
-
-  /* ── 5. FLOATING DEPTH LAYERS ── */
-  const floaters = document.querySelectorAll('.eyebrow, .display');
-  function updateFloaters() {
-    const scrollY = window.scrollY;
-    floaters.forEach(el => {
-      const rect = el.getBoundingClientRect();
-      if(rect.bottom < -100 || rect.top > window.innerHeight + 100) return;
-      const distFromCenter = rect.top + rect.height / 2 - window.innerHeight / 2;
-      const shift = distFromCenter * 0.04;
-      el.style.transform = el.classList.contains('on')
-        ? `translateY(${shift}px)`
-        : el.style.transform;
-    });
-  }
 
   /* ── 6. HERO TEXT LAYERS PARALLAX ── */
   const heroText = document.querySelector('.hero-text');
@@ -1143,10 +1134,6 @@ document.querySelectorAll('.faq-q').forEach(function(btn) {
         }
       };
       card.addEventListener('click', toggle);
-      card.addEventListener('touchend', function(e){
-        // Prevent ghost click
-        toggle(e);
-      }, { passive: false });
       card.addEventListener('keydown', function(e){
         if (e.key === 'Enter' || e.key === ' ') toggle(e);
       });
@@ -1198,83 +1185,11 @@ document.querySelectorAll('.faq-q').forEach(function(btn) {
     }
   });
 
-  /* ---- VAL MARQUEE: use external CogniFit-hosted image ---- */
-  /* Individual logo PNGs are placeholders — keep the external
-     clinicsLogos.webp from the HTML. If it 404s, the onerror
-     handler in the HTML hides the marquee and shows the fallback
-     stats row automatically. */
-  function initValMarquee() {
-    return; // use HTML external image instead of placeholder PNGs
-    var wrap = document.querySelector('.val-marquee-wrap');
-    if (!wrap) return;
-    var old = wrap.querySelector('.val-marquee');
-    if (!old) return;
-    // Skip if already rebuilt
-    if (wrap.querySelector('.val-marquee-track')) return;
-
-    var logos = [
-      { src: 'neurogenesis.png', alt: 'Neurogenesis' },
-      { src: 'stanford.png', alt: 'Stanford' },
-      { src: 'unifesp.png', alt: 'UNIFESP' },
-      { src: 'pontificia.png', alt: 'Pontificia' },
-      { src: 'ucatolica.png', alt: 'Universidad Catolica' },
-      { src: 'powerbrainrx.png', alt: 'PowerBrainRx' },
-      { src: 'brain-rehab.png', alt: 'Brain Rehab' },
-      { src: 'neuro-performance.png', alt: 'Neuro Performance' },
-      { src: 'neuro-visio.png', alt: 'Neuro Visio' },
-      { src: 'rehabilitation-specialists.png', alt: 'Rehabilitation Specialists' },
-      { src: 'rizvi-brain.png', alt: 'Rizvi Brain' },
-      { src: 'synapse.png', alt: 'Synapse' },
-      { src: 'revive.png', alt: 'Revive' },
-      { src: 'evexia.png', alt: 'Evexia' },
-      { src: 'dementia-connection.png', alt: 'Dementia Connection' },
-      { src: 'advanced-optimal.png', alt: 'Advanced Optimal' },
-      { src: 'optimumedge.png', alt: 'Optimum Edge' },
-      { src: 'compass.png', alt: 'Compass' },
-      { src: 'envision.png', alt: 'Envision' },
-      { src: 'enable.png', alt: 'Enable' },
-      { src: 'fep.png', alt: 'FEP' },
-      { src: 'matrix.png', alt: 'Matrix' },
-      { src: 'opticards.png', alt: 'Opticards' },
-      { src: 'paloma.png', alt: 'Paloma' },
-      { src: 'shining.png', alt: 'Shining' },
-      { src: 'sofos.png', alt: 'Sofos' },
-      { src: 'vectorium.png', alt: 'Vectorium' },
-      { src: 'vb.png', alt: 'VB' },
-      { src: 'win.png', alt: 'Win' },
-      { src: 'youtopia.png', alt: 'Youtopia' },
-      { src: 'psycholoog-be.png', alt: 'Psycholoog BE' },
-      { src: 'psy-counsellors.png', alt: 'Psy Counsellors' },
-      { src: 'mj-surgical.png', alt: 'MJ Surgical' },
-      { src: 'adn-rhone.png', alt: 'ADN Rhone' },
-      { src: 'david-shoup.png', alt: 'David Shoup' },
-      { src: 'francesca-sinteri.png', alt: 'Francesca Sinteri' },
-      { src: 'jaime-orbacho.png', alt: 'Jaime Orbacho' },
-      { src: 'nerea-lopez.png', alt: 'Nerea Lopez' }
-    ];
-
-    var track = document.createElement('div');
-    track.className = 'val-marquee-track';
-    // Duplicate set for infinite loop
-    [0,1].forEach(function(){
-      logos.forEach(function(l){
-        var img = document.createElement('img');
-        img.src = l.src;
-        img.alt = l.alt;
-        img.className = 'val-logo';
-        img.loading = 'lazy';
-        img.decoding = 'async';
-        track.appendChild(img);
-      });
-    });
-    old.remove();
-    wrap.appendChild(track);
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initValMarquee);
-  } else {
-    initValMarquee();
-  }
+  /* ---- VAL MARQUEE: uses composite clinicsLogos.webp (HTML already set up) ---- */
+  /* Individual clinic PNGs are not hosted separately; the composite webp from
+     cognifit.com/img/newart/clinicsLogos.webp is used directly in the HTML.
+     A local copy (clinicsLogos.webp) is the primary src with the remote URL
+     as onerror fallback. No JS rebuild needed. */
 
   /* ---- APP STORE + GOOGLE PLAY BUTTONS in closing section ---- */
   function initStoreBadges() {
@@ -1321,96 +1236,5 @@ document.querySelectorAll('.faq-q').forEach(function(btn) {
     document.addEventListener('DOMContentLoaded', initScrollTop);
   } else {
     initScrollTop();
-  }
-})();
-
-/* ═══════════════════════════════════════════════════════════════
-   COOKIE CONSENT — GDPR compliant, one-time choice
-   ═══════════════════════════════════════════════════════════════ */
-(function(){
-  var STORAGE_KEY = 'cognifit_cookie_consent';
-
-  function getConsent() {
-    try {
-      var raw = localStorage.getItem(STORAGE_KEY);
-      return raw ? JSON.parse(raw) : null;
-    } catch(e) { return null; }
-  }
-
-  function saveConsent(prefs) {
-    try {
-      prefs.timestamp = new Date().toISOString();
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(prefs));
-    } catch(e) {}
-  }
-
-  function hideBanner() {
-    var banner = document.getElementById('cookie-consent');
-    if (banner) {
-      banner.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease';
-      banner.style.transform = 'translateY(100%)';
-      banner.style.opacity = '0';
-      setTimeout(function(){ banner.style.display = 'none'; }, 500);
-    }
-  }
-
-  function showBanner() {
-    var banner = document.getElementById('cookie-consent');
-    if (banner) {
-      banner.style.display = 'block';
-      // Re-apply translations if i18n is available
-      try {
-        if (window.CogniFitI18n && window.CogniFitI18n.setLang) {
-          window.CogniFitI18n.setLang(window.CogniFitI18n.getLang());
-        }
-      } catch(e) {}
-    }
-  }
-
-  function initCookieConsent() {
-    var existing = getConsent();
-    if (existing) return; // Already consented, don't show
-
-    // Delay showing by 1.5s so it doesn't distract from first impression
-    setTimeout(showBanner, 1500);
-
-    var acceptAll = document.getElementById('cookie-accept-all');
-    var saveBtn = document.getElementById('cookie-save');
-    var rejectBtn = document.getElementById('cookie-reject');
-    var analyticsBox = document.getElementById('cookie-analytics');
-    var marketingBox = document.getElementById('cookie-marketing');
-
-    if (acceptAll) {
-      acceptAll.addEventListener('click', function(){
-        saveConsent({ essential: true, analytics: true, marketing: true });
-        hideBanner();
-      });
-    }
-
-    if (saveBtn) {
-      saveBtn.addEventListener('click', function(){
-        saveConsent({
-          essential: true,
-          analytics: analyticsBox ? analyticsBox.checked : false,
-          marketing: marketingBox ? marketingBox.checked : false
-        });
-        hideBanner();
-      });
-    }
-
-    if (rejectBtn) {
-      rejectBtn.addEventListener('click', function(){
-        saveConsent({ essential: true, analytics: false, marketing: false });
-        if (analyticsBox) analyticsBox.checked = false;
-        if (marketingBox) marketingBox.checked = false;
-        hideBanner();
-      });
-    }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCookieConsent);
-  } else {
-    initCookieConsent();
   }
 })();

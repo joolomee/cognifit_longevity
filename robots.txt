@@ -1,115 +1,17 @@
-# CogniFit Cognitive Longevity Platform
-# https://brain.cognifit.com/longevity
-
 User-agent: *
 Allow: /
-Disallow: /admin/
-Disallow: /api/
-Disallow: /private/
-Disallow: /.git/
-Disallow: /.claude/
 
-# Google
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 1
-
-User-agent: Googlebot-Image
-Allow: /images/
-Allow: /*.png$
-Allow: /*.jpg$
-Allow: /*.webp$
-Allow: /*.svg$
-
-# Bing
-User-agent: Bingbot
-Allow: /
-Crawl-delay: 1
-
-# DuckDuckGo
-User-agent: DuckDuckBot
-Allow: /
-
-# Yandex (Russian market)
-User-agent: YandexBot
-Allow: /
-Crawl-delay: 2
-
-# Baidu (Chinese market)
-User-agent: Baiduspider
-Allow: /
-Crawl-delay: 2
-
-# Naver (Korean market)
-User-agent: Yeti
-Allow: /
-
-# Social Media Crawlers — for link previews / cards
-User-agent: facebookexternalhit
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: LinkedInBot
-Allow: /
-
-User-agent: WhatsApp
-Allow: /
-
-User-agent: Slackbot
-Allow: /
-
-User-agent: Discordbot
-Allow: /
-
-# Apple
-User-agent: Applebot
-Allow: /
-
-# AI Crawlers — Explicitly allowed for GEO optimization
+# AI crawlers — welcome
 User-agent: GPTBot
-Allow: /
-
-User-agent: OAI-SearchBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: CCBot
 Allow: /
 
 User-agent: ClaudeBot
 Allow: /
 
-User-agent: Claude-Web
-Allow: /
-
 User-agent: PerplexityBot
 Allow: /
 
-User-agent: Bytespider
+User-agent: Bingbot
 Allow: /
 
-User-agent: Cohere-ai
-Allow: /
-
-User-agent: Meta-ExternalAgent
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: anthropic-ai
-Allow: /
-
-User-agent: YouBot
-Allow: /
-
-User-agent: Amazonbot
-Allow: /
-
-# Sitemaps
 Sitemap: https://brain.cognifit.com/longevity/sitemap.xml
-Sitemap: https://cognifit-longevity.vercel.app/sitemap.xml

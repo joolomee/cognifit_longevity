@@ -1,0 +1,777 @@
+/* ══════════════════════════════════════════════════════════════════
+   RESPONSIVE FIX — CogniFit Longevity Landing Page
+   Loaded AFTER styles.css to override conflicting rules.
+
+   Fixes:
+   1. Hero "div 1" visible on ALL screen sizes
+   2. Proper scrolling (mouse wheel + manual + touch)
+   3. Media query conflicts resolved (mobile-first)
+   4. Iframe (Wix Studio) integration optimized
+   5. Overflow/clipping issues eliminated
+   6. Touch-friendly interactions for mobile
+   7. Viewport height issues (svh/dvh/vh fallbacks)
+
+   Breakpoints (mobile-first):
+   - Base:     0–479px   (small mobile)
+   - SM:       480px+    (large mobile)
+   - MD:       768px+    (tablet)
+   - LG:       1024px+   (desktop)
+   - XL:       1400px+   (large desktop)
+   - XXL:      1920px+   (ultra-wide)
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────────
+   0. VIEWPORT & GLOBAL SCROLL FIX
+   Problem: html/body overflow:hidden blocks scroll
+   in both standalone AND iframe contexts
+   ────────────────────────────────────────────── */
+html {
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  scroll-behavior: smooth;
+  /* Height must be auto — never lock to 100vh */
+  height: auto !important;
+  min-height: 100%;
+}
+body {
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  height: auto !important;
+  min-height: 100%;
+  /* Ensure content pushes body height naturally */
+  position: relative;
+}
+
+/* Touch scrolling for iOS/Android */
+html, body {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ──────────────────────────────────────────────
+   1. HERO SECTION — "DIV 1" ALWAYS VISIBLE
+   Problem: height:100svh + overflow:hidden clips
+   content on small screens; svh unreliable in iframes
+   ────────────────────────────────────────────── */
+
+/* Base (mobile-first): hero grows with content */
+.hero {
+  height: auto !important;
+  min-height: 100vh !important;    /* fallback for older browsers */
+  min-height: 100svh !important;   /* modern: smallest viewport */
+  max-height: none !important;     /* NEVER clip */
+  overflow: visible !important;    /* NEVER clip content */
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  padding-top: 120px !important;   /* clear fixed nav on mobile */
+  padding-bottom: 32px !important;
+  position: relative;
+}
+
+.hero-content {
+  flex: 1 0 auto !important;
+  overflow: visible !important;    /* NEVER clip */
+  min-height: 0 !important;
+  width: 100%;
+  max-width: var(--max, 1060px);
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  text-align: left !important;
+  gap: 16px !important;
+}
+
+/* Hero background layers must not interfere with content */
+.hero-photo-bg,
+.hero-color-grade,
+#neural-canvas,
+.hero-text-shade {
+  pointer-events: none;
+}
+
+/* Scroll hint: relative flow, never absolute clipping */
+.hero-scroll-hint {
+  position: relative !important;
+  bottom: auto !important;
+  left: auto !important;
+  right: auto !important;
+  margin-top: auto !important;
+  flex-shrink: 0 !important;
+  width: 100% !important;
+  padding: 12px 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  z-index: 5;
+}
+
+/* ──────────────────────────────────────────────
+   2. MOBILE PHONES (hero mockups)
+   ────────────────────────────────────────────── */
+/* Show on mobile, hide on tablet where space is tight */
+.hero-phones {
+  display: flex !important;
+  position: relative !important;
+  height: auto !important;
+  gap: 0 !important;
+  justify-content: center !important;
+  align-self: center !important;
+  width: 100% !important;
+  max-width: 320px !important;
+  margin: 16px auto 0 !important;
+}
+.phone {
+  position: relative !important;
+}
+.phone-train {
+  left: auto !important;
+  bottom: auto !important;
+  width: 48% !important;
+  z-index: 2 !important;
+  margin-right: -10px !important;
+}
+.phone-stats {
+  right: auto !important;
+  top: auto !important;
+  width: 52% !important;
+  z-index: 1 !important;
+  margin-left: -10px !important;
+}
+
+/* ──────────────────────────────────────────────
+   3. NAVIGATION — fixed, accessible
+   ────────────────────────────────────────────── */
+nav#nav {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 1000 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* ──────────────────────────────────────────────
+   4. SECTION OVERFLOW FIX
+   Problem: overflow:hidden on sections clips
+   absolutely positioned decorations AND prevents
+   content from being accessible
+   ────────────────────────────────────────────── */
+.hero,
+.s-dark,
+.s-black,
+.s-white,
+.s-off,
+.s-blue,
+.closing {
+  overflow-x: hidden !important;   /* prevent horizontal scroll */
+  overflow-y: visible !important;  /* allow content to show */
+}
+
+/* ──────────────────────────────────────────────
+   5. WRAP/CONTAINER — consistent padding
+   ────────────────────────────────────────────── */
+.wrap {
+  max-width: var(--max, 1060px);
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ══════════════════════════════════════════════
+   TABLET (768px+)
+   ══════════════════════════════════════════════ */
+@media (min-width: 768px) {
+  .hero {
+    padding-top: clamp(70px, 9svh, 100px) !important;
+    padding-bottom: 0 !important;
+    justify-content: center !important;
+  }
+
+  .hero-content {
+    padding: clamp(16px, 2svh, 32px) 24px clamp(24px, 4svh, 60px) !important;
+    gap: clamp(16px, 3svh, 40px) !important;
+    grid-template-columns: 1fr !important; /* single column on tablet */
+  }
+
+  /* Hide phones on tablet — not enough space for 2-col */
+  .hero-phones {
+    display: none !important;
+  }
+
+  .wrap {
+    padding: 0 32px;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   DESKTOP (1024px+)
+   ══════════════════════════════════════════════ */
+@media (min-width: 1024px) {
+  .hero {
+    min-height: 100svh !important;
+    padding-top: clamp(64px, 8svh, 90px) !important;
+    justify-content: center !important;
+  }
+
+  .hero-content {
+    display: grid !important;
+    grid-template-columns: 1fr 420px !important;
+    align-items: center !important;
+    gap: clamp(28px, 5vw, 52px) !important;
+    padding: clamp(8px, 1.5svh, 24px) 24px clamp(40px, 6svh, 80px) !important;
+    flex: 1 0 auto !important;
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+  }
+
+  /* Show phones on desktop (2-col layout) */
+  .hero-phones {
+    display: flex !important;
+    position: relative !important;
+    height: 560px !important;
+    max-width: 420px !important;
+    margin: 0 !important;
+  }
+
+  .phone-train {
+    position: absolute !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    width: 220px !important;
+    margin: 0 !important;
+  }
+  .phone-stats {
+    position: absolute !important;
+    right: 0 !important;
+    top: 0 !important;
+    width: 220px !important;
+    margin: 0 !important;
+  }
+
+  .hero-scroll-hint {
+    position: absolute !important;
+    bottom: clamp(6px, 1.2svh, 18px) !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .wrap {
+    padding: 0 16px;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   LARGE DESKTOP (1400px+)
+   ══════════════════════════════════════════════ */
+@media (min-width: 1400px) {
+  .hero-content {
+    max-width: 1200px;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   ULTRA-WIDE (1920px+)
+   ══════════════════════════════════════════════ */
+@media (min-width: 1920px) {
+  .hero-content {
+    max-width: 1200px;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   LANDSCAPE MOBILE (short viewport)
+   ══════════════════════════════════════════════ */
+@media (max-height: 600px) and (orientation: landscape) {
+  .hero {
+    min-height: auto !important;
+    padding-top: 52px !important;
+  }
+  .hero-content {
+    padding-top: 4px !important;
+    padding-bottom: 24px !important;
+    gap: 8px !important;
+  }
+  .hero-h1 {
+    font-size: clamp(18px, 3.4vw, 28px) !important;
+  }
+  .hero-sub {
+    font-size: 12px !important;
+    margin-bottom: 6px !important;
+  }
+  .hero-badge {
+    font-size: 8px !important;
+    padding: 3px 8px !important;
+    margin-bottom: 4px !important;
+  }
+  .hero-phones,
+  .hero-read-time {
+    display: none !important;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   SMALL MOBILE (≤480px)
+   ══════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .hero {
+    padding-top: 110px !important;
+  }
+  .hero-content {
+    padding: 0 16px !important;
+    gap: 12px !important;
+  }
+  .hero-phones {
+    max-width: 280px !important;
+  }
+  .hero-h1 {
+    font-size: clamp(22px, 7.5vw, 34px) !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-h1 {
+    font-size: clamp(20px, 7vw, 28px) !important;
+  }
+}
+
+@media (max-width: 320px) {
+  .hero-h1 {
+    font-size: 19px !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   PRO-CARDS GRID — clean responsive breakpoints
+   ══════════════════════════════════════════════════════ */
+/* Mobile: 2 columns */
+.pro-stack {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 10px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 16px !important;
+}
+.pro-card {
+  min-height: auto !important;
+}
+
+/* Tablet: 3 columns */
+@media (min-width: 768px) {
+  .pro-stack {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 14px !important;
+    max-width: 980px !important;
+    margin: 0 auto !important;
+  }
+  .pro-card {
+    min-height: 340px !important;
+  }
+}
+
+/* Desktop: 4 columns */
+@media (min-width: 1024px) {
+  .pro-stack {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 16px !important;
+  }
+  .pro-card {
+    min-height: 380px !important;
+  }
+}
+
+/* Large desktop: 4 columns, wider */
+@media (min-width: 1400px) {
+  .pro-stack {
+    max-width: 1300px !important;
+    gap: 20px !important;
+  }
+  .pro-card {
+    min-height: 420px !important;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════
+   WIX IFRAME OVERRIDES
+   html.is-iframe is set by JS when inside iframe.
+
+   KEY PRINCIPLE: Inside Wix iframe, the PARENT page
+   handles scrolling. The iframe must:
+   - Report its full height to parent
+   - NOT use svh/dvh (these = iframe height, not viewport)
+   - NOT lock height to 100vh
+   - Allow content to flow naturally
+   ══════════════════════════════════════════════════════ */
+
+/* Iframe: allow parent scroll, no internal scrollbars */
+html.is-iframe {
+  overflow: visible !important;
+  height: auto !important;
+  min-height: 0 !important;
+  /* Hide scrollbar visually but keep scroll functional */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+html.is-iframe::-webkit-scrollbar {
+  display: none;
+}
+
+html.is-iframe body {
+  overflow: visible !important;
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+/* Iframe hero: NO viewport-locked heights */
+html.is-iframe .hero {
+  height: auto !important;
+  min-height: 0 !important;   /* NOT 100svh — svh = iframe height */
+  max-height: none !important;
+  overflow: visible !important;
+  padding-top: 80px !important;
+  padding-bottom: 40px !important;
+  justify-content: flex-start !important;
+}
+
+html.is-iframe .hero-content {
+  flex: 0 0 auto !important;
+  overflow: visible !important;
+  padding-top: 0 !important;
+  padding-bottom: 20px !important;
+  margin: 0 auto !important;
+}
+
+/* Iframe scroll hint: relative, in-flow */
+html.is-iframe .hero-scroll-hint {
+  position: relative !important;
+  bottom: auto !important;
+  margin-top: 20px !important;
+  padding: 12px 0 !important;
+}
+
+/* Iframe pro-stack: responsive, NOT forced 7-col */
+html.is-iframe .pro-stack {
+  grid-template-columns: repeat(2, 1fr) !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+@media (min-width: 768px) {
+  html.is-iframe .pro-stack {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  html.is-iframe .hero-content {
+    display: grid !important;
+    grid-template-columns: 1fr 420px !important;
+    align-items: center !important;
+    gap: clamp(20px, 3vw, 50px) !important;
+  }
+  html.is-iframe .hero-phones {
+    display: flex !important;
+  }
+  html.is-iframe .pro-stack {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+
+@media (min-width: 1400px) {
+  html.is-iframe .pro-stack {
+    grid-template-columns: repeat(4, 1fr) !important;
+    max-width: 1300px !important;
+  }
+}
+
+/* Iframe tablet: single column hero */
+@media (max-width: 1023px) {
+  html.is-iframe .hero-content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+    grid-template-columns: 1fr !important;
+    padding-top: clamp(20px, 4vw, 40px) !important;
+  }
+  html.is-iframe .hero-phones {
+    display: none !important;
+  }
+}
+
+/* Iframe mobile: show phones */
+@media (max-width: 767px) {
+  html.is-iframe .hero-phones {
+    display: flex !important;
+    position: relative !important;
+    height: auto !important;
+    max-width: 320px !important;
+    margin: 16px auto 0 !important;
+  }
+}
+
+/* Iframe: all sections flow naturally */
+html.is-iframe .s-dark,
+html.is-iframe .s-black,
+html.is-iframe .s-white,
+html.is-iframe .s-off,
+html.is-iframe .s-blue,
+html.is-iframe .closing {
+  overflow: visible !important;
+}
+
+/* Iframe: marquee uses percentage, not 100vw (avoids h-scroll in iframe) */
+html.is-iframe .val-marquee-wrap {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+}
+
+
+/* ══════════════════════════════════════════════════════
+   TOUCH-FRIENDLY INTERACTIONS
+   ══════════════════════════════════════════════════════ */
+
+/* Minimum touch target size (WCAG 2.5.8) */
+.btn-primary,
+.btn-secondary,
+.btn-white,
+.btn-login,
+.store-btn,
+.scroll-top-btn,
+.sticky-cta-btn,
+.faq-q,
+.lang-btn,
+.pro-cta {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Risk cards: tap to flip on touch */
+@media (hover: none) and (pointer: coarse) {
+  .risk-card {
+    cursor: pointer !important;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .risk-card .rc-hint {
+    opacity: 0.55 !important;
+  }
+  /* Larger tap targets on mobile */
+  .faq-q {
+    padding: clamp(20px, 3vw, 28px) 0 !important;
+  }
+}
+
+/* Smooth tap feedback */
+.btn-primary:active,
+.btn-secondary:active,
+.btn-white:active,
+.btn-login:active {
+  transform: scale(0.97) !important;
+  transition: transform 0.1s ease !important;
+}
+
+
+/* ══════════════════════════════════════════════════════
+   FAQ SECTION — proper accordion
+   ══════════════════════════════════════════════════════ */
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(.4,0,.2,1),
+              padding 0.3s ease,
+              opacity 0.3s ease;
+  opacity: 0;
+}
+.faq-item.open .faq-a {
+  max-height: 800px !important; /* increased from 600px for long translations */
+  opacity: 1;
+}
+
+
+/* ══════════════════════════════════════════════════════
+   MARQUEE — no horizontal overflow
+   ══════════════════════════════════════════════════════ */
+.val-marquee-wrap {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
+
+/* ══════════════════════════════════════════════════════
+   LANGUAGE DROPDOWN — accessible on all sizes
+   ══════════════════════════════════════════════════════ */
+.lang-dropdown {
+  max-height: 70vh;
+  max-height: 70dvh; /* dynamic viewport for mobile address bar */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 640px) {
+  .lang-dropdown {
+    max-height: 60vh;
+    max-height: 60dvh;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════
+   STICKY CTA — proper mobile positioning
+   ══════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  .sticky-cta {
+    bottom: 16px !important;
+    right: 16px !important;
+    left: 16px !important;
+  }
+  .sticky-cta-btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  /* Move scroll-top button to avoid overlap with sticky CTA */
+  .scroll-top-btn {
+    bottom: 80px !important;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════
+   DEVICES SECTION — responsive image
+   ══════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  .devices-img {
+    max-width: 100% !important;
+    margin: -20px auto -30px !important;
+  }
+  .devices-heading {
+    font-size: clamp(18px, 5vw, 26px) !important;
+  }
+  .devices-sub {
+    font-size: clamp(12px, 3vw, 14px) !important;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════
+   SAFE AREA INSETS — notch/Dynamic Island devices
+   ══════════════════════════════════════════════════════ */
+@supports (padding-top: env(safe-area-inset-top)) {
+  nav#nav {
+    padding-top: env(safe-area-inset-top);
+  }
+  .hero {
+    padding-top: calc(120px + env(safe-area-inset-top)) !important;
+  }
+  @media (min-width: 768px) {
+    .hero {
+      padding-top: calc(clamp(70px, 9svh, 100px) + env(safe-area-inset-top)) !important;
+    }
+  }
+  footer {
+    padding-bottom: calc(16px + env(safe-area-inset-bottom));
+  }
+  .sticky-cta {
+    bottom: calc(16px + env(safe-area-inset-bottom)) !important;
+  }
+  .scroll-top-btn {
+    bottom: calc(24px + env(safe-area-inset-bottom)) !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   HIGH CONTRAST / FORCED COLORS — accessibility
+   ══════════════════════════════════════════════════════ */
+@media (forced-colors: active) {
+  .btn-primary,
+  .btn-secondary,
+  .btn-white,
+  .btn-login {
+    border: 2px solid ButtonText !important;
+  }
+  .risk-card,
+  .sci-card,
+  .step-card,
+  .who-card,
+  .pro-card {
+    border: 1px solid CanvasText !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   CROSS-BROWSER FIXES
+   ══════════════════════════════════════════════════════ */
+/* Safari flex gap fallback */
+@supports not (gap: 10px) {
+  .nav-links > * + * { margin-left: 14px; }
+  .trust-badges > * + * { margin-left: 10px; }
+  .cta-steps > * + * { margin-top: 10px; }
+}
+
+/* Firefox smooth scrolling fix */
+@-moz-document url-prefix() {
+  html { scroll-behavior: smooth; }
+}
+
+/* ══════════════════════════════════════════════════════
+   VERY TALL MOBILE (e.g. Samsung Galaxy Fold unfolded)
+   ══════════════════════════════════════════════════════ */
+@media (min-height: 900px) and (max-width: 480px) {
+  .hero {
+    min-height: auto !important;
+    padding-bottom: 48px !important;
+  }
+  .hero-content {
+    gap: 20px !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   FOLDABLE DEVICES (Galaxy Fold, etc.)
+   ══════════════════════════════════════════════════════ */
+@media (max-width: 320px) {
+  .guarantee-row {
+    flex-direction: column !important;
+    gap: 6px !important;
+  }
+  .g-badge {
+    width: 100% !important;
+    justify-content: center !important;
+    font-size: 8px !important;
+  }
+  .trust-badges {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  .t-badge {
+    text-align: center !important;
+    justify-content: center !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   PRINT STYLES (bonus)
+   ══════════════════════════════════════════════════════ */
+@media print {
+  nav, .scroll-top-btn, .sticky-cta, #neural-canvas,
+  .hero-scroll-hint, .reading-progress {
+    display: none !important;
+  }
+  .hero {
+    min-height: auto !important;
+    height: auto !important;
+    page-break-after: always;
+  }
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+}
