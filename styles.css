@@ -1745,9 +1745,10 @@ html.js-ready .r.on{opacity:1;transform:none}
   -webkit-backdrop-filter: blur(8px);
 }
 
-/* ── All sections clip orbs to their bounds ── */
+/* ── All sections clip orbs horizontally but allow vertical content ── */
 .hero, .s-dark, .s-black, .s-white, .s-off, .s-blue, .closing {
-  overflow: hidden;
+  overflow-x: clip;
+  overflow-y: visible;
 }
 
 /* ═══════════════════════════════════
