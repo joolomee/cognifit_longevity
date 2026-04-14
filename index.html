@@ -347,25 +347,7 @@
     letter-spacing: .02em;
   }
   .val-btn:hover { background: #000; color: #fff; }
-  .val-logos {
-    display: grid;
-    grid-template-columns: repeat(11, 1fr);
-    gap: 20px 24px;
-    align-items: center;
-    justify-items: center;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  @media (max-width: 1100px) {
-    .val-logos { grid-template-columns: repeat(8, 1fr); gap: 18px 20px; }
-  }
-  @media (max-width: 768px) {
-    .val-logos { grid-template-columns: repeat(5, 1fr); gap: 16px; }
-  }
   @media (max-width: 480px) {
-    .val-logos { grid-template-columns: repeat(3, 1fr); gap: 14px; }
-    .val-logo-item img { max-height: 24px; max-width: 70px; }
     .val-btns { gap: 10px; }
     .val-btn { font-size: 13px; padding: 10px 18px; }
   }
@@ -869,7 +851,7 @@
           <div class="rc-title" data-i18n="risk.r1.t">Loss of independence</div>
           <svg class="rc-hint" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 9h10M9 4l5 5-5 5" stroke="#9ca3af" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
-        <div class="rc-desc" data-i18n="risk.r1.d">Daily decisions like finances, medication, and self-care become increasingly difficult to manage alone.</div>
+        <div class="rc-desc" aria-hidden="true" data-i18n="risk.r1.d">Daily decisions like finances, medication, and self-care become increasingly difficult to manage alone.</div>
       </div>
       <div class="risk-card">
         <div class="rc-front">
@@ -877,7 +859,7 @@
           <div class="rc-title" data-i18n="risk.r2.t">Poor health decisions</div>
           <svg class="rc-hint" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 9h10M9 4l5 5-5 5" stroke="#9ca3af" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
-        <div class="rc-desc" data-i18n="risk.r2.d">Reduced working memory makes it harder to weigh options, follow instructions, or spot health risks.</div>
+        <div class="rc-desc" aria-hidden="true" data-i18n="risk.r2.d">Reduced working memory makes it harder to weigh options, follow instructions, or spot health risks.</div>
       </div>
       <div class="risk-card">
         <div class="rc-front">
@@ -885,7 +867,7 @@
           <div class="rc-title" data-i18n="risk.r3.t">Risk of dementia</div>
           <svg class="rc-hint" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 9h10M9 4l5 5-5 5" stroke="#9ca3af" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
-        <div class="rc-desc" data-i18n="risk.r3.d">Cognitive inactivity is a leading modifiable risk factor for Alzheimer's and other forms of dementia.</div>
+        <div class="rc-desc" aria-hidden="true" data-i18n="risk.r3.d">Cognitive inactivity is a leading modifiable risk factor for Alzheimer's and other forms of dementia.</div>
       </div>
       <div class="risk-card">
         <div class="rc-front">
@@ -893,7 +875,7 @@
           <div class="rc-title" data-i18n="risk.r4.t">Reduced lifespan quality</div>
           <svg class="rc-hint" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 9h10M9 4l5 5-5 5" stroke="#9ca3af" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
-        <div class="rc-desc" data-i18n="risk.r4.d">Mental clarity drives social connection, purpose, and enjoyment. All diminish as cognition fades.</div>
+        <div class="rc-desc" aria-hidden="true" data-i18n="risk.r4.d">Mental clarity drives social connection, purpose, and enjoyment. All diminish as cognition fades.</div>
       </div>
     </div>
 
@@ -1164,10 +1146,10 @@
               <circle cx="70" cy="52" r="3.5" fill="#1a73e8"/>
               <circle cx="101" cy="34" r="3.5" fill="#1a73e8"/>
               <circle cx="132" cy="14" r="3.5" fill="#1a73e8"/>
-              <text x="8" y="93" font-family="sans-serif" font-size="8" fill="rgba(0,0,0,.4)" data-i18n="chart.week1">Week 1</text>
-              <text x="104" y="93" font-family="sans-serif" font-size="8" fill="rgba(0,0,0,.4)" data-i18n="chart.week8">Week 8</text>
+              <text x="8" y="93" font-family="'Plus Jakarta Sans',sans-serif" font-size="8" fill="rgba(0,0,0,.4)" data-i18n="chart.week1">Week 1</text>
+              <text x="104" y="93" font-family="'Plus Jakarta Sans',sans-serif" font-size="8" fill="rgba(0,0,0,.4)" data-i18n="chart.week8">Week 8</text>
               <rect x="92" y="3" width="38" height="13" rx="6" fill="rgba(26,115,232,.12)"/>
-              <text x="111" y="13" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#1a73e8">+24%</text>
+              <text x="111" y="13" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="8" font-weight="700" fill="#1a73e8">+24%</text>
             </svg>
           </div>
           <div class="hi-chart">
@@ -1188,10 +1170,10 @@
               <rect x="56" y="48" width="17" height="34" rx="3.5" fill="url(#att-g)" opacity=".72"/>
               <rect x="79" y="34" width="17" height="48" rx="3.5" fill="url(#att-g)" opacity=".86"/>
               <rect x="102" y="18" width="17" height="64" rx="3.5" fill="url(#att-g)"/>
-              <text x="18" y="93" text-anchor="middle" font-family="sans-serif" font-size="8" fill="rgba(0,0,0,.4)" data-i18n="chart.w1">W1</text>
-              <text x="110" y="93" text-anchor="middle" font-family="sans-serif" font-size="8" fill="rgba(0,0,0,.4)" data-i18n="chart.w8">W8</text>
+              <text x="18" y="93" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="8" fill="rgba(0,0,0,.4)" data-i18n="chart.w1">W1</text>
+              <text x="110" y="93" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="8" fill="rgba(0,0,0,.4)" data-i18n="chart.w8">W8</text>
               <rect x="92" y="3" width="38" height="13" rx="6" fill="rgba(52,168,83,.12)"/>
-              <text x="111" y="13" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#34A853">+31%</text>
+              <text x="111" y="13" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="8" font-weight="700" fill="#34A853">+31%</text>
             </svg>
           </div>
         </div>
@@ -1532,7 +1514,7 @@
 </section>
 
 <!-- VALIDATION -->
-<section class="s-off r" style="border-top:1px solid #e5e5e5">
+<section class="s-off" style="border-top:1px solid #e5e5e5">
   <div class="wrap tc">
     <span class="eyebrow r" style="color:var(--blue)" data-i18n="val.eyebrow">Scientific Partnerships</span>
     <h2 class="r" style="color:#000;font-size:clamp(28px,4vw,48px);margin-bottom:10px" data-i18n="val.h2">Validation</h2>
@@ -1569,7 +1551,7 @@
     </h2>
     <div class="stats-row" style="margin-top:clamp(28px,5vw,56px)">
       <div class="stat-bl r"><div class="stat-n">6.2<em>M+</em></div><div class="stat-l" data-i18n="trust.s1">Active Users</div></div>
-      <div class="stat-bl r d1"><div class="stat-n">6,421<em>+</em></div><div class="stat-l" data-i18n="trust.s2">Clinics & Institutions</div></div>
+      <div class="stat-bl r d1"><div class="stat-n">6,438<em>+</em></div><div class="stat-l" data-i18n="trust.s2">Clinics & Institutions</div></div>
       <div class="stat-bl r d2"><div class="stat-n">135<em>M+</em></div><div class="stat-l" data-i18n="trust.s3">Games Played</div></div>
       <div class="stat-bl r d3"><div class="stat-n">4.8<em>★</em></div><div class="stat-l" data-i18n="trust.s4">Average Rating</div></div>
     </div>
@@ -1606,7 +1588,7 @@
     <div class="faq-list r d2" itemscope itemtype="https://schema.org/FAQPage">
 
       <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <button class="faq-q" aria-expanded="false">
+        <button type="button" class="faq-q" aria-expanded="false">
           <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M6 12h12"/></svg></span>
           <span class="faq-q-text" itemprop="name" data-i18n="faq.q1">What is cognitive longevity, and why should I care?</span>
           <span class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
@@ -1617,7 +1599,7 @@
       </div>
 
       <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <button class="faq-q" aria-expanded="false">
+        <button type="button" class="faq-q" aria-expanded="false">
           <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></span>
           <span class="faq-q-text" itemprop="name" data-i18n="faq.q2">Does brain training actually work, or is it just hype?</span>
           <span class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
@@ -1628,7 +1610,7 @@
       </div>
 
       <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <button class="faq-q" aria-expanded="false">
+        <button type="button" class="faq-q" aria-expanded="false">
           <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></span>
           <span class="faq-q-text" itemprop="name" data-i18n="faq.q3">Which mental abilities start fading first?</span>
           <span class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
@@ -1639,7 +1621,7 @@
       </div>
 
       <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <button class="faq-q" aria-expanded="false">
+        <button type="button" class="faq-q" aria-expanded="false">
           <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></span>
           <span class="faq-q-text" itemprop="name" data-i18n="faq.q4">What makes CogniFit different from other brain training apps?</span>
           <span class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
@@ -1650,7 +1632,7 @@
       </div>
 
       <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <button class="faq-q" aria-expanded="false">
+        <button type="button" class="faq-q" aria-expanded="false">
           <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
           <span class="faq-q-text" itemprop="name" data-i18n="faq.q5">How quickly will I actually notice a difference?</span>
           <span class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
@@ -1661,7 +1643,7 @@
       </div>
 
       <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <button class="faq-q" aria-expanded="false">
+        <button type="button" class="faq-q" aria-expanded="false">
           <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
           <span class="faq-q-text" itemprop="name" data-i18n="faq.q6">Is there real science behind CogniFit?</span>
           <span class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
@@ -1683,9 +1665,9 @@
     <p class="lead r d1" style="color:rgba(255,255,255,.75);max-width:min(820px,100%);margin:0 auto" data-i18n="cta.lead">You don't need to wait for cognitive decline to act. The earlier you invest in brain health and cognitive training, the stronger and more resilient your brain becomes over time. Join 6M+ people training for healthy aging.</p>
     <div class="cta-steps r d2">
       <div class="cta-step"><div class="cta-num">1</div><span data-i18n="cta.step1">Discover your brain profile</span></div>
-      <div class="cta-arr">→</div>
+      <div class="cta-arr" aria-hidden="true">→</div>
       <div class="cta-step"><div class="cta-num">2</div><span data-i18n="cta.step2">Get your personalized plan</span></div>
-      <div class="cta-arr">→</div>
+      <div class="cta-arr" aria-hidden="true">→</div>
       <div class="cta-step"><div class="cta-num">3</div><span data-i18n="cta.step3">Start improving today</span></div>
     </div>
     <div class="btn-center">
@@ -1695,7 +1677,7 @@
 </section>
 
 <!-- CLOSING -->
-<section class="closing">
+<section class="closing" aria-label="Start your brain longevity journey">
   <p class="closing-quote r" data-i18n="closing.quote" data-i18n-html>"Your body may age. But your brain can stay <em>sharp, adaptable, and strong</em>. If you train it."</p>
   <p class="closing-sub r d1" data-i18n="closing.sub" data-i18n-html>The question isn't whether you'll age.<br>It's how well your mind will age with you.</p>
   <div class="btn-center">
@@ -1805,7 +1787,7 @@
 <!-- Sticky Floating CTA — appears after scrolling past hero -->
 <div class="sticky-cta" id="sticky-cta">
   <a href="https://www.cognifit.com/assessments" class="sticky-cta-btn">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
     <span data-i18n="sticky.cta">Free Brain Assessment</span>
   </a>
 </div>
