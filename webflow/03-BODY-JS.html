@@ -1,0 +1,1160 @@
+<!--
+  ╔══════════════════════════════════════════════════════════════════╗
+  ║  CogniFit Longevity — Webflow Custom Code (Before </body>)      ║
+  ║                                                                  ║
+  ║  HOW TO USE IN WEBFLOW:                                          ║
+  ║  1. Open your Webflow project                                    ║
+  ║  2. Go to Project Settings → Custom Code                         ║
+  ║  3. Paste the ENTIRE contents of this file into the             ║
+  ║     "Footer Code" (Before </body> tag) field                     ║
+  ║  4. Save & Publish                                               ║
+  ╚══════════════════════════════════════════════════════════════════╝
+-->
+
+<!-- i18n engine — must load before inline scripts run their translations -->
+<script src="https://cognifit-longevity.vercel.app/i18n.js" defer></script>
+
+<script>
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   0. CLASS BRIDGE & DOM INJECTION
+   Webflow uses hero-section / closing-section class names;
+   all CSS & JS expect .hero / .closing. Bridge immediately.
+   Also injects DOM elements Webflow can't create natively
+   (canvas, progress bar, scroll-top button, glow ring).
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+(function() {
+  /* Class bridge: Webflow → Vercel */
+  var bridge = { 'hero-section': 'hero', 'closing-section': 'closing' };
+  Object.keys(bridge).forEach(function(wf) {
+    document.querySelectorAll('.' + wf).forEach(function(el) {
+      el.classList.add(bridge[wf]);
+    });
+  });
+
+  /* Inject hero background layers (canvas + gradient + shade) */
+  var hero = document.querySelector('.hero');
+  if (hero && !document.getElementById('neural-canvas')) {
+    var grade = document.createElement('div');
+    grade.className = 'hero-color-grade';
+    hero.insertBefore(grade, hero.firstChild);
+
+    var canvas = document.createElement('canvas');
+    canvas.id = 'neural-canvas';
+    hero.insertBefore(canvas, grade.nextSibling);
+
+    var shade = document.createElement('div');
+    shade.className = 'hero-text-shade';
+    hero.insertBefore(shade, canvas.nextSibling);
+  }
+
+  /* Inject reading-progress bar */
+  if (!document.getElementById('reading-progress')) {
+    var rp = document.createElement('div');
+    rp.id = 'reading-progress';
+    document.body.appendChild(rp);
+  }
+
+  /* Inject scroll-top button */
+  if (!document.querySelector('.scroll-top-btn')) {
+    var stb = document.createElement('button');
+    stb.className = 'scroll-top-btn';
+    stb.setAttribute('aria-label', 'Scroll to top');
+    stb.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>';
+    document.body.appendChild(stb);
+  }
+
+  /* Inject glow ring (cursor follower) */
+  if (!document.getElementById('ccr')) {
+    var ccr = document.createElement('div');
+    ccr.id = 'ccr';
+    document.body.appendChild(ccr);
+  }
+
+  /* Set sk-fill inline widths for scroll animation.
+     The skill-bar JS reads bar.style.width, saves it, resets to 0%,
+     then animates back on scroll. Webflow can't set inline styles,
+     so we set them here before the animation code runs. */
+  var skWidths = [77.5, 60, 87.5, 52.5]; /* Contextual Memory, Hand-eye, Divided Attn, Spatial */
+  document.querySelectorAll('.sk-fill').forEach(function(bar, i) {
+    if (skWidths[i] !== undefined) bar.style.width = skWidths[i] + '%';
+  });
+})();
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   1. CTA URL ROUTING
+   Desktop → /assessments  |  iOS → App Store  |  Android → Play Store
+   All links open in a new tab.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+function applyCTARouting() {
+  var isIOS     = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  var isAndroid = /Android/.test(navigator.userAgent);
+
+  var iosURL     = 'https://itunes.apple.com/app/cognifit-brain-fitness/id528285610?mt=8';
+  var androidURL = 'https://play.google.com/store/apps/details?id=com.cognifit.app&hl=en';
+  var desktopURL = 'https://www.cognifit.com/assessments';
+
+  var targetURL = isIOS ? iosURL : (isAndroid ? androidURL : desktopURL);
+
+  var selectors = '.btn-primary, .btn-secondary, .btn-login, .btn-white, .pro-cta, .sticky-cta-btn';
+  document.querySelectorAll(selectors).forEach(function(btn) {
+    if (!btn.classList.contains('pro-cta') && !btn.classList.contains('btn-login')) {
+      btn.setAttribute('href', targetURL);
+    }
+    if (btn.classList.contains('btn-login')) {
+      btn.setAttribute('href', 'https://www.cognifit.com/login');
+    }
+    btn.setAttribute('target', '_blank');
+    btn.setAttribute('rel', 'noopener noreferrer');
+  });
+
+  // Force all external links to open in new tab
+  document.querySelectorAll('a[href]').forEach(function(a) {
+    var href = a.getAttribute('href') || '';
+    if (href.startsWith('#')) return;
+    if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('//')) {
+      a.setAttribute('target', '_blank');
+      a.setAttribute('rel', 'noopener noreferrer');
+    }
+  });
+}
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   2. NEURAL CANVAS ANIMATION
+   Flowing streams + soma neurons + axon connections + signals.
+   Skipped entirely when prefers-reduced-motion is set.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+(function() {
+  var canvas = document.getElementById('neural-canvas');
+  if (!canvas) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var ctx = canvas.getContext('2d');
+  var W, H, neurons = [], signals = [], streams = [];
+  var mouse = { x: -9999, y: -9999 };
+
+  var CFG = {
+    count: 24,
+    connDist: 250,
+    palette: [
+      { h: 210, s: 65, l: 55 },
+      { h: 220, s: 60, l: 58 },
+      { h: 200, s: 70, l: 52 }
+    ]
+  };
+
+  /* ── Stream particle — flows along a fixed path ── */
+  function Stream() { this.reset(true); }
+  Stream.prototype.reset = function(init) {
+    this.x = init ? Math.random() * W : -10;
+    this.y = init ? Math.random() * H : Math.random() * H;
+    var angle = -0.2 + Math.random() * 0.4 + (Math.random() < 0.3 ? Math.PI : 0);
+    var speed = 0.3 + Math.random() * 0.5;
+    this.vx = Math.cos(angle) * speed;
+    this.vy = Math.sin(angle) * speed * 0.3;
+    this.len = 40 + Math.random() * 80;
+    this.h = 205 + Math.random() * 25;
+    this.a = 0.04 + Math.random() * 0.08;
+    this.w = 0.4 + Math.random() * 0.8;
+    this.trail = [];
+    this.maxTrail = Math.floor(this.len / Math.max(0.1, Math.hypot(this.vx, this.vy)));
+  };
+  Stream.prototype.update = function() {
+    this.trail.unshift({ x: this.x, y: this.y });
+    if (this.trail.length > this.maxTrail) this.trail.pop();
+    this.x += this.vx;
+    this.y += this.vy;
+    if (this.x > W + 20 || this.x < -20 || this.y > H + 20 || this.y < -20) this.reset(false);
+  };
+  Stream.prototype.draw = function() {
+    if (this.trail.length < 2) return;
+    for (var i = 0; i < this.trail.length - 1; i++) {
+      var alpha = this.a * (1 - i / this.trail.length);
+      ctx.beginPath();
+      ctx.moveTo(this.trail[i].x, this.trail[i].y);
+      ctx.lineTo(this.trail[i + 1].x, this.trail[i + 1].y);
+      ctx.strokeStyle = 'hsla(' + this.h + ',70%,65%,' + alpha + ')';
+      ctx.lineWidth = this.w * (1 - i / this.trail.length);
+      ctx.stroke();
+    }
+  };
+
+  /* ── Signal — travels between neurons ── */
+  function Signal(from, to) {
+    this.from = from; this.to = to; this.t = 0; this.alive = true;
+    this.speed = 0.005 + Math.random() * 0.006;
+    this.color = from.color;
+  }
+  Signal.prototype.getPos = function(t) {
+    var cx = (this.from.x + this.to.x) / 2 + this.from.bx;
+    var cy = (this.from.y + this.to.y) / 2 + this.from.by;
+    var m = 1 - t;
+    return {
+      x: m * m * this.from.x + 2 * m * t * cx + t * t * this.to.x,
+      y: m * m * this.from.y + 2 * m * t * cy + t * t * this.to.y
+    };
+  };
+  Signal.prototype.update = function() {
+    this.t += this.speed;
+    if (this.t >= 1) {
+      this.alive = false;
+      this.to.activate(0.7);
+      if (Math.random() < 0.45) this.to.fire();
+    }
+  };
+  Signal.prototype.draw = function() {
+    var pos = this.getPos(this.t);
+    var h = this.color.h, s = this.color.s, l = this.color.l;
+    var g = ctx.createRadialGradient(pos.x, pos.y, 0, pos.x, pos.y, 6);
+    g.addColorStop(0, 'hsla(' + h + ',' + s + '%,' + (l + 25) + '%,0.55)');
+    g.addColorStop(1, 'transparent');
+    ctx.beginPath(); ctx.arc(pos.x, pos.y, 6, 0, Math.PI * 2);
+    ctx.fillStyle = g; ctx.fill();
+    ctx.beginPath(); ctx.arc(pos.x, pos.y, 1.4, 0, Math.PI * 2);
+    ctx.fillStyle = 'hsla(' + h + ',' + s + '%,90%,0.7)'; ctx.fill();
+  };
+
+  /* ── Neuron ── */
+  function Neuron(x, y) {
+    this.x = x; this.y = y;
+    this.vx = (Math.random() - 0.5) * 0.1;
+    this.vy = (Math.random() - 0.5) * 0.1;
+    this.r = 1.8 + Math.random() * 2.2;
+    this.color = CFG.palette[Math.floor(Math.random() * CFG.palette.length)];
+    this.activation = 0;
+    this.breathe = Math.random() * Math.PI * 2;
+    this.breatheSpeed = 0.006 + Math.random() * 0.004;
+    this.connections = [];
+    this.fireTimer = 100 + Math.floor(Math.random() * 280);
+    this.bx = (Math.random() - 0.5) * 70;
+    this.by = (Math.random() - 0.5) * 70;
+    this.dendrites = [];
+    for (var i = 0; i < 2 + Math.floor(Math.random() * 3); i++) {
+      this.dendrites.push({ angle: Math.random() * Math.PI * 2, len: 10 + Math.random() * 20 });
+    }
+  }
+  Neuron.prototype.activate = function(v) { this.activation = Math.min(1, this.activation + v); };
+  Neuron.prototype.fire = function() {
+    if (!this.connections.length) return;
+    var t = this.connections[Math.floor(Math.random() * this.connections.length)];
+    if (t) signals.push(new Signal(this, t));
+  };
+  Neuron.prototype.update = function() {
+    this.breathe += this.breatheSpeed;
+    this.activation *= 0.94;
+    var dx = this.x - mouse.x, dy = this.y - mouse.y;
+    if (Math.hypot(dx, dy) < 180) this.activate(0.02);
+    this.x += this.vx; this.y += this.vy;
+    if (this.x < 50)     this.vx += 0.006;
+    if (this.x > W - 50) this.vx -= 0.006;
+    if (this.y < 50)     this.vy += 0.006;
+    if (this.y > H - 50) this.vy -= 0.006;
+    this.vx *= 0.996; this.vy *= 0.996;
+    this.fireTimer--;
+    if (this.fireTimer <= 0) {
+      this.fire(); this.activate(0.4);
+      this.fireTimer = 140 + Math.floor(Math.random() * 300);
+    }
+  };
+  Neuron.prototype.drawAxons = function() {
+    var h = this.color.h, s = this.color.s, l = this.color.l;
+    var self = this;
+    this.connections.forEach(function(b) {
+      var d = Math.hypot(self.x - b.x, self.y - b.y);
+      var str = 1 - d / CFG.connDist;
+      var alpha = str * (0.07 + self.activation * 0.1);
+      var cx = (self.x + b.x) / 2 + self.bx * 0.4;
+      var cy = (self.y + b.y) / 2 + self.by * 0.4;
+      ctx.beginPath(); ctx.moveTo(self.x, self.y);
+      ctx.quadraticCurveTo(cx, cy, b.x, b.y);
+      var grad = ctx.createLinearGradient(self.x, self.y, b.x, b.y);
+      grad.addColorStop(0, 'hsla(' + h + ',' + s + '%,' + l + '%,' + alpha + ')');
+      grad.addColorStop(1, 'hsla(' + b.color.h + ',' + b.color.s + '%,' + b.color.l + '%,' + (alpha * 0.4) + ')');
+      ctx.strokeStyle = grad; ctx.lineWidth = 0.5 + str * 0.7; ctx.stroke();
+    });
+  };
+  Neuron.prototype.drawDendrites = function() {
+    var h = this.color.h, s = this.color.s, l = this.color.l;
+    var self = this;
+    this.dendrites.forEach(function(d) {
+      var ex = self.x + Math.cos(d.angle + self.breathe * 0.07) * d.len;
+      var ey = self.y + Math.sin(d.angle + self.breathe * 0.07) * d.len;
+      ctx.beginPath(); ctx.moveTo(self.x, self.y); ctx.lineTo(ex, ey);
+      ctx.strokeStyle = 'hsla(' + h + ',' + s + '%,' + l + '%,' + (0.07 + self.activation * 0.08) + ')';
+      ctx.lineWidth = 0.4; ctx.stroke();
+    });
+  };
+  Neuron.prototype.drawSoma = function() {
+    var h = this.color.h, s = this.color.s, l = this.color.l;
+    var bf = Math.sin(this.breathe) * 0.1 + 0.9;
+    var r = this.r * bf + this.activation * 1.8;
+    var glowR = r * (3 + this.activation * 5);
+    var glow = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, glowR);
+    glow.addColorStop(0, 'hsla(' + h + ',' + s + '%,' + (l + 10) + '%,' + (0.07 + this.activation * 0.2) + ')');
+    glow.addColorStop(1, 'transparent');
+    ctx.beginPath(); ctx.arc(this.x, this.y, glowR, 0, Math.PI * 2); ctx.fillStyle = glow; ctx.fill();
+    var ba = 0.25 + this.activation * 0.45;
+    var body = ctx.createRadialGradient(this.x - r * 0.3, this.y - r * 0.3, 0, this.x, this.y, r);
+    body.addColorStop(0, 'hsla(' + h + ',' + s + '%,' + (l + 22) + '%,' + ba + ')');
+    body.addColorStop(1, 'hsla(' + h + ',' + s + '%,' + l + '%,' + (ba * 0.45) + ')');
+    ctx.beginPath(); ctx.arc(this.x, this.y, r, 0, Math.PI * 2); ctx.fillStyle = body; ctx.fill();
+  };
+
+  function drawAmbient() {
+    var t = Date.now() * 0.00015;
+    [{ x: 0.22, y: 0.32, r: 400, a: 0.03, h: 215 }, { x: 0.76, y: 0.62, r: 340, a: 0.025, h: 222 }].forEach(function(b, i) {
+      var bx = W * (b.x + Math.sin(t * (0.28 + i * 0.12)) * 0.05);
+      var by = H * (b.y + Math.cos(t * (0.22 + i * 0.1)) * 0.05);
+      var g = ctx.createRadialGradient(bx, by, 0, bx, by, b.r);
+      g.addColorStop(0, 'hsla(' + b.h + ',70%,45%,' + b.a + ')');
+      g.addColorStop(1, 'transparent');
+      ctx.beginPath(); ctx.arc(bx, by, b.r, 0, Math.PI * 2); ctx.fillStyle = g; ctx.fill();
+    });
+  }
+
+  function buildConnections() {
+    neurons.forEach(function(n) { n.connections = []; });
+    neurons.forEach(function(a, i) {
+      neurons.forEach(function(b, j) {
+        if (i >= j) return;
+        if (Math.hypot(a.x - b.x, a.y - b.y) < CFG.connDist) {
+          a.connections.push(b); b.connections.push(a);
+        }
+      });
+    });
+  }
+
+  function resize() {
+    var hero = canvas.closest ? canvas.closest('.hero') : null;
+    W = canvas.width  = hero ? hero.offsetWidth  : window.innerWidth;
+    H = canvas.height = hero ? hero.offsetHeight : window.innerHeight;
+    buildConnections();
+  }
+
+  function tick() {
+    ctx.clearRect(0, 0, W, H);
+    drawAmbient();
+    streams.forEach(function(s) { s.update(); s.draw(); });
+    neurons.forEach(function(n) { n.drawAxons(); });
+    neurons.forEach(function(n) { n.drawDendrites(); });
+    signals = signals.filter(function(s) { s.update(); s.draw(); return s.alive; });
+    neurons.forEach(function(n) { n.update(); n.drawSoma(); });
+    requestAnimationFrame(tick);
+  }
+
+  canvas.addEventListener('mousemove', function(e) {
+    var r = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
+  });
+  canvas.addEventListener('mouseleave', function() { mouse.x = -9999; mouse.y = -9999; });
+  canvas.addEventListener('click', function(e) {
+    var r = canvas.getBoundingClientRect();
+    var cx = e.clientX - r.left, cy = e.clientY - r.top;
+    var near = null, nd = Infinity;
+    neurons.forEach(function(n) {
+      var d = Math.hypot(n.x - cx, n.y - cy);
+      if (d < nd) { nd = d; near = n; }
+    });
+    if (near) { near.activate(1); near.fire(); near.fire(); }
+  });
+  canvas.addEventListener('touchmove', function(e) {
+    e.preventDefault();
+    var r = canvas.getBoundingClientRect();
+    mouse.x = e.touches[0].clientX - r.left;
+    mouse.y = e.touches[0].clientY - r.top;
+  }, { passive: false });
+
+  window.addEventListener('resize', resize);
+  resize();
+  neurons = [];
+  for (var _i = 0; _i < CFG.count; _i++) {
+    neurons.push(new Neuron(80 + Math.random() * (W - 160), 80 + Math.random() * (H - 160)));
+  }
+  buildConnections();
+  neurons.forEach(function(n, i) { n.fireTimer = i * 15 + Math.floor(Math.random() * 70); });
+  streams = [];
+  for (var _s = 0; _s < 55; _s++) { streams.push(new Stream()); }
+  tick();
+})();
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   3. NAV ADAPTIVE BACKGROUND
+   Transparent on dark sections, light on .s-white / .s-off sections.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+(function() {
+  var nav = document.getElementById('nav');
+  if (!nav) return;
+  var lightSecs = Array.from(document.querySelectorAll('.s-white, .s-off'));
+
+  function updateNav() {
+    var navH = nav.offsetHeight || 60;
+    var isLight = false;
+    lightSecs.forEach(function(sec) {
+      var r = sec.getBoundingClientRect();
+      if (r.top < navH && r.bottom > 0) isLight = true;
+    });
+    nav.classList.toggle('nav-light', isLight);
+    var past = window.scrollY > 60;
+    if (!isLight) {
+      nav.style.background = past ? 'rgba(0,0,0,0.45)' : 'rgba(0,0,0,0.15)';
+    } else {
+      nav.style.background = 'rgba(255,255,255,0.82)';
+    }
+  }
+
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+})();
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   4. SKILL BARS — scroll-triggered fill animation
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+document.querySelectorAll('.sk-fill').forEach(function(bar) {
+  var targetW = bar.style.width;
+  bar.style.width = '0%';
+  new IntersectionObserver(function(entries, ob) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        bar.style.width = targetW;
+        ob.unobserve(bar);
+      }
+    });
+  }, { threshold: 0.5 }).observe(bar);
+});
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   5. PARALLAX ENGINE
+   Hero canvas, section backgrounds, pro-card 3D tilt,
+   sitewide card tilt, trust badge tilt, stats count-up,
+   hero text fade, pro-card stagger entrance.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+(function() {
+  /* ── 1. Hero canvas parallax ── */
+  var heroCanvas = document.getElementById('neural-canvas');
+  if (heroCanvas) {
+    window.addEventListener('scroll', function() {
+      heroCanvas.style.transform = 'translateY(' + (window.scrollY * 0.3) + 'px)';
+    }, { passive: true });
+  }
+
+  /* ── 2. Section background parallax ── */
+  var parallaxSections = document.querySelectorAll('.s-black, .s-dark, .s-blue, .closing');
+  function updateSectionParallax() {
+    var scrollY = window.scrollY;
+    parallaxSections.forEach(function(sec) {
+      var rect = sec.getBoundingClientRect();
+      var centerOffset = (rect.top + rect.height / 2) - window.innerHeight / 2;
+      sec.style.backgroundPositionY = 'calc(50% + ' + (centerOffset * 0.08) + 'px)';
+    });
+  }
+
+  /* ── 3. Pro-card 3D tilt ── */
+  document.querySelectorAll('.pro-card').forEach(function(card) {
+    card.addEventListener('mousemove', function(e) {
+      var r = card.getBoundingClientRect();
+      var dx = (e.clientX - (r.left + r.width  / 2)) / (r.width  / 2);
+      var dy = (e.clientY - (r.top  + r.height / 2)) / (r.height / 2);
+      card.style.transform  = 'translateY(-6px) rotateY(' + (dx * 5) + 'deg) rotateX(' + (-dy * 4) + 'deg)';
+      card.style.transition = 'transform 0.08s ease';
+    });
+    card.addEventListener('mouseleave', function() {
+      card.style.transform  = '';
+      card.style.transition = 'transform 0.5s cubic-bezier(.4,0,.2,1)';
+    });
+  });
+
+  /* ── 3b. Sitewide card tilt ── */
+  document.querySelectorAll('.sci-card, .step-card, .who-card, .rev-card').forEach(function(card) {
+    card.addEventListener('mousemove', function(e) {
+      var r = card.getBoundingClientRect();
+      var dx = (e.clientX - (r.left + r.width  / 2)) / (r.width  / 2);
+      var dy = (e.clientY - (r.top  + r.height / 2)) / (r.height / 2);
+      card.style.transform  = 'translateY(-4px) rotateY(' + (dx * 4) + 'deg) rotateX(' + (-dy * 3) + 'deg)';
+      card.style.transition = 'transform 0.08s ease';
+    });
+    card.addEventListener('mouseleave', function() {
+      card.style.transform  = '';
+      card.style.transition = 'transform 0.5s cubic-bezier(.4,0,.2,1)';
+    });
+  });
+
+  /* ── 3c. Trust badge tilt ── */
+  document.querySelectorAll('.t-badge').forEach(function(b) {
+    b.addEventListener('mousemove', function(e) {
+      var r = b.getBoundingClientRect();
+      var dx = (e.clientX - (r.left + r.width  / 2)) / (r.width  / 2);
+      var dy = (e.clientY - (r.top  + r.height / 2)) / (r.height / 2);
+      b.style.transform  = 'translateY(-3px) scale(1.04) rotateY(' + (dx * 4) + 'deg) rotateX(' + (-dy * 3) + 'deg)';
+      b.style.transition = 'transform 0.08s ease';
+    });
+    b.addEventListener('mouseleave', function() {
+      b.style.transform  = '';
+      b.style.transition = 'transform 0.5s cubic-bezier(.4,0,.2,1)';
+    });
+  });
+
+  /* ── 4. Stats count-up ── */
+  function animateCount(textNode, target, isDecimal, duration) {
+    var start = performance.now();
+    function step(now) {
+      var elapsed  = now - start;
+      var progress = Math.min(elapsed / duration, 1);
+      var eased    = 1 - Math.pow(1 - progress, 3);
+      var current  = target * eased;
+      textNode.nodeValue = isDecimal ? current.toFixed(1) : Math.floor(current).toLocaleString();
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  var statObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (!e.isIntersecting) return;
+      var el  = e.target;
+      var raw = el.dataset.count;
+      if (!raw) return;
+      var target    = parseFloat(raw);
+      var isDecimal = raw.includes('.');
+      var textNode  = Array.from(el.childNodes).find(function(n) { return n.nodeType === 3; });
+      if (!textNode) return;
+      animateCount(textNode, target, isDecimal, 1800);
+      statObserver.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.stat-n').forEach(function(el) {
+    var textNode = Array.from(el.childNodes).find(function(n) { return n.nodeType === 3; });
+    if (!textNode) return;
+    var raw = textNode.nodeValue.trim();
+    var num = parseFloat(raw.replace(/,/g, ''));
+    if (isNaN(num)) return;
+    el.dataset.count      = raw.replace(/,/g, '');
+    textNode.nodeValue    = raw.includes('.') ? '0.0' : '0';
+    statObserver.observe(el);
+  });
+
+  /* ── 5. Hero text layers parallax ── */
+  var heroText = document.querySelector('.hero-text');
+  if (heroText) {
+    window.addEventListener('scroll', function() {
+      var y = window.scrollY;
+      if (y < window.innerHeight * 1.5) {
+        heroText.style.transform = 'translateY(' + (y * 0.18) + 'px)';
+        heroText.style.opacity   = String(1 - y / (window.innerHeight * 0.85));
+      }
+    }, { passive: true });
+  }
+
+  /* ── 6. Pro-card stagger entrance ── */
+  var proCardObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (!e.isIntersecting) return;
+      var delay = Array.from(e.target.parentNode.children).indexOf(e.target) * 120;
+      setTimeout(function() {
+        e.target.style.opacity   = '1';
+        e.target.style.transform = 'translateY(0) scale(1)';
+      }, delay);
+      proCardObserver.unobserve(e.target);
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.pro-card').forEach(function(card) {
+    card.style.opacity    = '0';
+    card.style.transform  = 'translateY(40px) scale(0.97)';
+    card.style.transition = 'opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1)';
+    proCardObserver.observe(card);
+  });
+
+  /* ── Combined scroll handler ── */
+  window.addEventListener('scroll', updateSectionParallax, { passive: true });
+  updateSectionParallax();
+})();
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   6. COGNI:WAVE DYNAMIC LAYER
+   Cursor glow, magnetic buttons, gradient transition dividers,
+   ambient orbs, traveling streaks, glow ring.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+(function() {
+  /* ── 1. Cursor glow ── */
+  var glow = document.createElement('div');
+  glow.className = 'cursor-glow';
+  document.body.appendChild(glow);
+  var glowX = 0, glowY = 0, mouseX = 0, mouseY = 0;
+  document.addEventListener('mousemove', function(e) { mouseX = e.clientX; mouseY = e.clientY; });
+  (function trackGlow() {
+    glowX += (mouseX - glowX) * 0.07;
+    glowY += (mouseY - glowY) * 0.07;
+    glow.style.left = glowX + 'px';
+    glow.style.top  = glowY + 'px';
+    requestAnimationFrame(trackGlow);
+  })();
+
+  /* ── 2. Magnetic buttons ── */
+  document.querySelectorAll('.btn-primary, .btn-white, .btn-secondary').forEach(function(btn) {
+    btn.addEventListener('mousemove', function(e) {
+      var r = btn.getBoundingClientRect();
+      var x = ((e.clientX - r.left) / r.width  - 0.5) * 14;
+      var y = ((e.clientY - r.top)  / r.height - 0.5) * 10;
+      btn.style.transition = 'transform 0.1s ease';
+      btn.style.transform  = 'translate(' + x + 'px, ' + y + 'px)';
+    });
+    btn.addEventListener('mouseleave', function() {
+      btn.style.transition = 'transform 0.55s cubic-bezier(.4,0,.2,1)';
+      btn.style.transform  = '';
+    });
+  });
+
+  /* ── 3. Smooth gradient transition dividers between sections ── */
+  var COLOR_MAP = {
+    'hero':    '#000000',
+    's-black': '#000000',
+    's-dark':  '#080808',
+    's-white': '#ffffff',
+    's-off':   '#f4f4f4',
+    's-blue':  '#1A73E8',
+    'closing': '#000000'
+  };
+  function sectionColor(el) {
+    for (var cls in COLOR_MAP) {
+      if (el.classList.contains(cls)) return COLOR_MAP[cls];
+    }
+    return null;
+  }
+  var sections = Array.from(document.querySelectorAll('.hero, section, .closing'));
+  sections.forEach(function(sec, i) {
+    if (i === 0) return;
+    var from = sectionColor(sections[i - 1]);
+    var to   = sectionColor(sec);
+    if (!from || !to || from === to) return;
+    var div = document.createElement('div');
+    div.className = 'wave-div';
+    div.style.cssText = 'height:1px;background:linear-gradient(90deg,transparent 0%,rgba(26,115,232,.28) 25%,rgba(255,255,255,.1) 50%,rgba(26,115,232,.28) 75%,transparent 100%);box-shadow:0 0 16px 6px rgba(26,115,232,.07);margin:0;position:relative;z-index:2;pointer-events:none;';
+    sec.parentNode.insertBefore(div, sec);
+  });
+
+  /* ── 4. Ambient orbs ── */
+  var ORB_CONFIGS = [
+    { selector: '.hero',    orbs: [
+      { w: 750, h: 750, left: '70%', top: '28%', color: 'rgba(26,115,232,0.14)', cls: 'a' },
+      { w: 500, h: 500, left: '6%',  top: '58%', color: 'rgba(110,50,230,0.09)', cls: 'b' },
+      { w: 340, h: 340, left: '42%', top: '78%', color: 'rgba(0,200,210,0.07)',  cls: 'c' }
+    ]},
+    { selector: '.s-dark',  orbs: [
+      { w: 560, h: 560, left: '88%', top: '22%', color: 'rgba(26,115,232,0.10)', cls: 'b' },
+      { w: 400, h: 400, left: '4%',  top: '68%', color: 'rgba(120,40,220,0.08)', cls: 'a' },
+      { w: 260, h: 260, left: '50%', top: '50%', color: 'rgba(0,180,200,0.05)',  cls: 'c' }
+    ]},
+    { selector: '.s-black', orbs: [
+      { w: 600, h: 600, left: '15%', top: '35%', color: 'rgba(26,115,232,0.09)', cls: 'c' },
+      { w: 380, h: 380, left: '82%', top: '65%', color: 'rgba(100,40,200,0.07)', cls: 'b' }
+    ]},
+    { selector: '.s-white', orbs: [
+      { w: 700, h: 700, left: '80%', top: '20%', color: 'rgba(26,115,232,0.04)', cls: 'b' },
+      { w: 500, h: 500, left: '5%',  top: '75%', color: 'rgba(100,60,220,0.03)', cls: 'a' }
+    ]},
+    { selector: '.s-off',   orbs: [
+      { w: 600, h: 600, left: '78%', top: '30%', color: 'rgba(26,115,232,0.04)', cls: 'a' },
+      { w: 400, h: 400, left: '8%',  top: '60%', color: 'rgba(80,40,180,0.03)',  cls: 'c' }
+    ]},
+    { selector: '.s-blue',  orbs: [
+      { w: 520, h: 520, left: '82%', top: '38%', color: 'rgba(255,255,255,0.07)', cls: 'b' },
+      { w: 320, h: 320, left: '12%', top: '68%', color: 'rgba(255,255,255,0.05)', cls: 'c' }
+    ]},
+    { selector: '.closing', orbs: [
+      { w: 650, h: 650, left: '50%', top: '50%', color: 'rgba(26,115,232,0.09)', cls: 'a' },
+      { w: 350, h: 350, left: '85%', top: '25%', color: 'rgba(100,40,200,0.06)', cls: 'c' }
+    ]}
+  ];
+  ORB_CONFIGS.forEach(function(cfg) {
+    document.querySelectorAll(cfg.selector).forEach(function(sec) {
+      cfg.orbs.forEach(function(o) {
+        var orb = document.createElement('div');
+        orb.className = 'orb ' + o.cls;
+        orb.style.width      = o.w + 'px';
+        orb.style.height     = o.h + 'px';
+        orb.style.left       = o.left;
+        orb.style.top        = o.top;
+        orb.style.background = o.color;
+        sec.appendChild(orb);
+      });
+    });
+  });
+
+  /* ── 5. Traveling background streaks ── */
+  var TRAVELER_CFGS = [
+    { sel: '.hero',    ts: [{ cls: 't1', top: '22%', dur: '13s', del: '0s'   },
+                             { cls: 't2', top: '68%', dur: '19s', del: '-6s'  },
+                             { cls: 't3', top: '44%', dur: '25s', del: '-11s' }] },
+    { sel: '.s-dark',  ts: [{ cls: 't1', top: '18%', dur: '16s', del: '-3s'  },
+                             { cls: 't2', top: '72%', dur: '21s', del: '-9s'  }] },
+    { sel: '.s-black', ts: [{ cls: 't1', top: '35%', dur: '18s', del: '-7s'  },
+                             { cls: 't3', top: '60%', dur: '26s', del: '-14s' }] },
+    { sel: '.s-blue',  ts: [{ cls: 't1', top: '25%', dur: '14s', del: '-4s'  },
+                             { cls: 't2', top: '70%', dur: '22s', del: '-10s' }] },
+    { sel: '.closing', ts: [{ cls: 't1', top: '30%', dur: '15s', del: '-2s'  },
+                             { cls: 't3', top: '65%', dur: '24s', del: '-12s' }] }
+  ];
+  TRAVELER_CFGS.forEach(function(cfg) {
+    document.querySelectorAll(cfg.sel).forEach(function(sec) {
+      cfg.ts.forEach(function(t) {
+        var el = document.createElement('div');
+        el.className = 'traveler ' + t.cls;
+        el.style.cssText = '--top:' + t.top + ';--dur:' + t.dur + ';--del:' + t.del + ';top:' + t.top;
+        sec.appendChild(el);
+      });
+    });
+  });
+
+  /* ── 6. Glow ring ── */
+  var ccr = document.getElementById('ccr');
+  if (ccr && window.matchMedia('(hover:hover)').matches) {
+    document.addEventListener('mousemove', function(e) {
+      ccr.style.left = e.clientX + 'px';
+      ccr.style.top  = e.clientY + 'px';
+    }, { passive: true });
+    var hoverEls = 'a,button,.btn-primary,.btn-white,.btn-secondary,.btn-login,.pro-cta';
+    document.querySelectorAll(hoverEls).forEach(function(el) {
+      el.addEventListener('mouseenter', function() { ccr.classList.add('hover'); });
+      el.addEventListener('mouseleave', function() { ccr.classList.remove('hover'); });
+    });
+  }
+})();
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   7. SCI-CARD CASCADE INTERACTION
+   Tap a system to break it; tap again (or wait 10 s) to restore all.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+(function() {
+  var cards     = document.querySelectorAll('.sci-card');
+  var status    = document.getElementById('sci-status');
+  var resetHint = document.getElementById('sci-reset');
+  if (!cards.length) return;
+
+  function tx(key, fallback) {
+    try {
+      var lang = (window.CogniFitI18n && window.CogniFitI18n.getLang && window.CogniFitI18n.getLang())
+                 || document.documentElement.lang || 'en';
+      if (window.T && window.T[lang] && window.T[lang][key]) return window.T[lang][key];
+      if (window.T && window.T.en  && window.T.en[key])  return window.T.en[key];
+    } catch (e) {}
+    return fallback;
+  }
+
+  function getNames() {
+    return {
+      executive: tx('sci.s1.t', 'Executive Function'),
+      memory:    tx('sci.s2.t', 'Working Memory'),
+      attention: tx('sci.s3.t', 'Attention')
+    };
+  }
+
+  var disabled      = new Set();
+  var autoResetTimer = null;
+
+  /* Insert instruction text above sci-grid */
+  var sciGrid       = document.querySelector('.sci-grid');
+  var instructionEl = null;
+  if (sciGrid) {
+    instructionEl = document.createElement('p');
+    instructionEl.className = 'sci-instruction';
+    instructionEl.setAttribute('data-i18n', 'sci.tap.idle');
+    instructionEl.textContent = tx('sci.tap.idle', 'Tap any system to see what happens when it fails');
+    instructionEl.style.cssText = 'text-align:center;font-size:clamp(12px,2vw,14px);color:rgba(0,0,0,0.5);margin-bottom:16px;font-weight:600;letter-spacing:0.03em;transition:all .3s ease;';
+    sciGrid.parentNode.insertBefore(instructionEl, sciGrid);
+  }
+
+  function clearAutoReset() {
+    if (autoResetTimer) { clearTimeout(autoResetTimer); autoResetTimer = null; }
+  }
+
+  function restoreAll() {
+    clearAutoReset();
+    disabled.clear();
+    cards.forEach(function(card) {
+      card.classList.remove('sci-broken', 'sci-dim');
+      card.style.removeProperty('background');
+      card.style.removeProperty('opacity');
+    });
+    if (status)    status.classList.add('hidden');
+    if (resetHint) resetHint.classList.add('hidden');
+    if (instructionEl) {
+      instructionEl.setAttribute('data-i18n', 'sci.tap.idle');
+      instructionEl.textContent  = tx('sci.tap.idle', 'Tap any system to see what happens when it fails');
+      instructionEl.style.color  = 'rgba(0,0,0,0.5)';
+    }
+    if (window.triadSetBroken) window.triadSetBroken(false);
+  }
+
+  function scheduleAutoReset() {
+    clearAutoReset();
+    autoResetTimer = setTimeout(restoreAll, 10000);
+  }
+
+  function updateBrokenState() {
+    var anyDisabled = disabled.size > 0;
+    cards.forEach(function(card) {
+      var sys = card.dataset.system;
+      if (disabled.has(sys)) {
+        card.classList.add('sci-broken');
+        card.classList.remove('sci-dim');
+        card.style.setProperty('background', 'rgba(239,68,68,.13)', 'important');
+        card.style.setProperty('opacity', '1', 'important');
+      } else if (anyDisabled) {
+        card.classList.remove('sci-broken', 'sci-dim');
+        card.style.setProperty('background', 'rgba(239,68,68,.07)', 'important');
+        card.style.setProperty('opacity', '1', 'important');
+      }
+    });
+
+    if (anyDisabled) {
+      var _NAMES = getNames();
+      var names  = Array.from(disabled).map(function(s) { return _NAMES[s]; }).join(' & ');
+      if (status) {
+        var tpl = tx('sci.broken.status', '{names} weakened, the entire cognitive network is compromised.');
+        status.textContent = tpl.replace('{names}', names);
+        status.classList.remove('hidden');
+      }
+      if (resetHint) {
+        resetHint.textContent = tx('sci.broken.hint', 'Tap disabled abilities to restore them');
+        resetHint.classList.remove('hidden');
+      }
+      if (instructionEl) {
+        instructionEl.setAttribute('data-i18n', 'sci.tap.hint');
+        instructionEl.textContent = tx('sci.tap.hint', 'Tap the damaged system to restore balance');
+        instructionEl.style.color = 'rgba(239,68,68,0.7)';
+      }
+      if (window.triadSetBroken)  window.triadSetBroken(true);
+      if (window.triadBreakFrom)  window.triadBreakFrom(Array.from(disabled)[0]);
+      scheduleAutoReset();
+    }
+  }
+
+  cards.forEach(function(card) {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', function() {
+      var sys = card.dataset.system;
+      if (disabled.has(sys)) {
+        restoreAll();
+      } else {
+        disabled.add(sys);
+        updateBrokenState();
+      }
+    });
+  });
+
+  /* Triad nodes mirror sci-card toggles */
+  document.querySelectorAll('.td-node').forEach(function(node) {
+    node.style.cursor = 'pointer';
+    node.addEventListener('click', function() {
+      var sysMap = { 'td-n0': 'executive', 'td-n1': 'memory', 'td-n2': 'attention' };
+      var sys  = sysMap[node.id];
+      if (!sys) return;
+      var card = document.querySelector('.sci-card[data-system="' + sys + '"]');
+      if (card) card.click();
+    });
+  });
+
+  /* Re-render broken-state labels on language change */
+  document.addEventListener('langChange', function() {
+    var lang = (window.CogniFitI18n && window.CogniFitI18n.getLang && window.CogniFitI18n.getLang()) || 'en';
+    var T    = window.T || {};
+    var dict = (T[lang] || T.en || {});
+    if (status && !status.classList.contains('hidden')) {
+      var brokenCards = document.querySelectorAll('.sci-card.sci-broken');
+      var nameMap = {
+        executive: dict['sci.s1.t'] || 'Executive Function',
+        memory:    dict['sci.s2.t'] || 'Working Memory',
+        attention: dict['sci.s3.t'] || 'Attention'
+      };
+      var names = [];
+      brokenCards.forEach(function(c) {
+        var sys = c.dataset.system;
+        if (nameMap[sys]) names.push(nameMap[sys]);
+      });
+      var tpl = dict['sci.broken.status'] || '{names} weakened, the entire cognitive network is compromised.';
+      status.textContent = tpl.replace('{names}', names.join(' & '));
+    }
+    if (resetHint && !resetHint.classList.contains('hidden')) {
+      resetHint.textContent = dict['sci.broken.hint'] || 'Tap disabled abilities to restore them';
+    }
+    if (instructionEl) {
+      var key = instructionEl.getAttribute('data-i18n') || 'sci.tap.idle';
+      if (dict[key]) instructionEl.textContent = dict[key];
+    }
+  });
+})();
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   8. TRIAD SVG — staggered cascade break animation
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+(function() {
+  var SYS_NODE      = { executive: '0', memory: '1', attention: '2' };
+  var triadBreakTimer = null;
+
+  window.triadBreakFrom = function(sysName) {
+    var svg = document.getElementById('triad-svg');
+    if (!svg) return;
+    if (triadBreakTimer) { clearTimeout(triadBreakTimer); triadBreakTimer = null; }
+    svg.setAttribute('data-breaking', SYS_NODE[sysName] || '0');
+    svg.classList.add('triad-broken');
+  };
+
+  window.triadSetBroken = function(state) {
+    var svg = document.getElementById('triad-svg');
+    if (!svg) return;
+    if (!state) {
+      if (triadBreakTimer) { clearTimeout(triadBreakTimer); triadBreakTimer = null; }
+      svg.classList.remove('triad-broken');
+      svg.removeAttribute('data-breaking');
+    }
+  };
+})();
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   9. FAQ ACCORDION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+document.querySelectorAll('.faq-q').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var item   = btn.closest('.faq-item');
+    if (!item) return;
+    var isOpen = item.classList.contains('open');
+    /* Close all open items */
+    document.querySelectorAll('.faq-item.open').forEach(function(openItem) {
+      openItem.classList.remove('open');
+      var q = openItem.querySelector('.faq-q');
+      if (q) q.setAttribute('aria-expanded', 'false');
+    });
+    /* Toggle clicked item */
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+});
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   10. READING PROGRESS BAR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+(function() {
+  var bar = document.getElementById('reading-progress');
+  if (!bar) return;
+  function updateProgress() {
+    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+    var docHeight = Math.max(
+      document.documentElement.scrollHeight,
+      document.body.scrollHeight
+    ) - window.innerHeight;
+    if (docHeight <= 0) return;
+    bar.style.width = Math.min((scrollTop / docHeight) * 100, 100) + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+})();
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   11. STICKY FLOATING CTA — visible after hero, hidden near footer
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+(function() {
+  var stickyCta = document.getElementById('sticky-cta');
+  var hero      = document.querySelector('.hero');
+  var footer    = document.querySelector('footer');
+  if (!stickyCta || !hero) return;
+
+  function updateStickyCta() {
+    var heroBottom  = hero.offsetTop + hero.offsetHeight;
+    var scrollY     = window.scrollY || document.documentElement.scrollTop;
+    var footerTop   = footer ? footer.getBoundingClientRect().top + scrollY : Infinity;
+    var nearFooter  = scrollY + window.innerHeight > footerTop - 80;
+    if (scrollY > heroBottom && !nearFooter) {
+      stickyCta.classList.add('visible');
+    } else {
+      stickyCta.classList.remove('visible');
+    }
+  }
+
+  window.addEventListener('scroll', updateStickyCta, { passive: true });
+  updateStickyCta();
+})();
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   12. RISK CARD CLICK / TAP TOGGLE
+   Opens description on tap (touch-friendly); click-outside closes.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+(function() {
+  function initRiskCards() {
+    var cards = document.querySelectorAll('.risk-card');
+    if (!cards.length) return;
+
+    cards.forEach(function(card) {
+      card.style.cursor = 'pointer';
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('role', 'button');
+
+      var toggle = function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var isOpen = card.classList.toggle('rc-open');
+        if (isOpen) {
+          cards.forEach(function(other) {
+            if (other !== card) other.classList.remove('rc-open');
+          });
+        }
+      };
+
+      card.addEventListener('click', toggle);
+      card.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') toggle(e);
+      });
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.risk-card')) {
+        cards.forEach(function(c) { c.classList.remove('rc-open'); });
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initRiskCards);
+  } else {
+    initRiskCards();
+  }
+})();
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   13. STORE BADGES — inject into closing section
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+(function() {
+  function initStoreBadges() {
+    var closing = document.querySelector('section.closing');
+    if (!closing || closing.querySelector('.store-badges')) return;
+
+    var wrap = document.createElement('div');
+    wrap.className = 'store-badges';
+    wrap.innerHTML =
+      '<a href="https://apps.apple.com/app/cognifit-brain-training/id544218985" target="_blank" rel="noopener noreferrer" class="store-btn store-btn-apple" aria-label="Download on the App Store">' +
+        '<svg class="store-icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>' +
+        '<span class="store-txt"><span class="store-line1" data-i18n="store.apple.line1">Download on the</span><span class="store-line2">App Store</span></span>' +
+      '</a>' +
+      '<a href="https://play.google.com/store/apps/details?id=com.cognifit.app" target="_blank" rel="noopener noreferrer" class="store-btn store-btn-google" aria-label="Get it on Google Play">' +
+        '<svg class="store-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="#EA4335" d="M3.6 2.3c-.3.3-.5.8-.5 1.4v16.6c0 .6.2 1.1.5 1.4l10.8-9.7L3.6 2.3z"/><path fill="#34A853" d="M14.4 12l3.7-3.3-11.8-6.8c-.5-.3-1-.3-1.4-.1L14.4 12z"/><path fill="#FBBC04" d="M14.4 12L4.9 21.2c.4.2.9.2 1.4-.1l11.8-6.8L14.4 12z"/><path fill="#4285F4" d="M18.1 8.7L14.4 12l3.7 3.3 4-2.3c1-.6 1-2 0-2.6l-4-1.7z"/></svg>' +
+        '<span class="store-txt"><span class="store-line1" data-i18n="store.google.line1">Get it on</span><span class="store-line2">Google Play</span></span>' +
+      '</a>';
+
+    var btnCenter = closing.querySelector('.btn-center');
+    if (btnCenter) {
+      btnCenter.after(wrap);
+    } else {
+      closing.appendChild(wrap);
+    }
+
+    /* Re-apply translations if i18n is already loaded */
+    if (window.CogniFitI18n && typeof window.CogniFitI18n.setLang === 'function') {
+      try { window.CogniFitI18n.setLang(window.CogniFitI18n.getLang(), false); } catch (e) {}
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initStoreBadges);
+  } else {
+    initStoreBadges();
+  }
+})();
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   14. SCROLL-TOP BUTTON
+   Fixed bottom-right; smooth scrolls to top on click.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+(function() {
+  function initScrollTop() {
+    var btn = document.querySelector('.scroll-top-btn');
+    if (!btn) return;
+
+    /* Enforce position */
+    btn.style.setProperty('left',   'auto', 'important');
+    btn.style.setProperty('right',  '24px', 'important');
+    btn.style.setProperty('bottom', '24px', 'important');
+
+    /* Show/hide via IntersectionObserver on hero */
+    var heroEl = document.querySelector('.hero');
+    if (heroEl) {
+      btn.style.opacity       = '0';
+      btn.style.pointerEvents = 'none';
+      btn.style.transition    = 'opacity .3s ease';
+      new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          btn.style.opacity       = entry.isIntersecting ? '0' : '1';
+          btn.style.pointerEvents = entry.isIntersecting ? 'none' : 'auto';
+        });
+      }, { threshold: 0, rootMargin: '0px' }).observe(heroEl);
+    }
+
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (_) { window.scrollTo(0, 0); }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScrollTop);
+  } else {
+    initScrollTop();
+  }
+})();
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   DOMCONTENTLOADED INIT
+   CTA routing, pro-card hero badge margin, triad move,
+   login-button new-tab on mobile, pro-card whole-card click.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+document.addEventListener('DOMContentLoaded', function() {
+  /* Scroll reveal — mark all .r elements as visible */
+  document.querySelectorAll('.r').forEach(function(el) { el.classList.add('on'); });
+
+  /* Hero badge closer to headline */
+  var heroBadge = document.querySelector('.hero-badge');
+  if (heroBadge) heroBadge.style.setProperty('margin-bottom', '12px', 'important');
+
+  /* Move triad triangle above sci-grid */
+  var sciGrid   = document.querySelector('.sci-grid');
+  var triadWrap = document.querySelector('.triad-wrap');
+  if (sciGrid && triadWrap && sciGrid.parentElement) {
+    sciGrid.parentElement.insertBefore(triadWrap, sciGrid);
+  }
+
+  /* Login button: new tab on mobile */
+  var loginBtn = document.querySelector('.btn-login');
+  if (loginBtn && window.innerWidth <= 768) {
+    loginBtn.setAttribute('target', '_blank');
+    loginBtn.setAttribute('rel', 'noopener noreferrer');
+  }
+
+  /* CTA routing */
+  applyCTARouting();
+
+  /* Make entire pro-card clickable on touch */
+  document.querySelectorAll('.pro-card').forEach(function(card) {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', function(e) {
+      if (e.target.closest('a')) return;
+      var link = card.querySelector('.pro-cta');
+      if (link) link.click();
+    });
+  });
+});
+</script>
