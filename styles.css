@@ -2719,13 +2719,23 @@ a, button, .btn-primary, .btn-secondary, .btn-white, .btn-login, .pro-cta, [oncl
   .app-badge{padding:8px 14px;font-size:12px}
 }
 
-/* Hide scrollbar globally — keeps touch/wheel scroll working */
+/* Thin scrollbar for a cleaner look */
 html {
-  scrollbar-width: none;           /* Firefox */
-  -ms-overflow-style: none;        /* IE/Edge */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,.2) transparent;
 }
 html::-webkit-scrollbar {
-  display: none;                   /* Chrome/Safari */
+  width: 6px;
+}
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
+html::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,.2);
+  border-radius: 3px;
+}
+html::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,.4);
 }
 
 /* ── VALIDATION MARQUEE (full-width continuous scroll) ── */
@@ -3191,12 +3201,14 @@ html::-webkit-scrollbar {
    WIX IFRAME OVERRIDES
    html.is-iframe is set by JS when inside iframe
 ══════════════════════════════════════════════════════ */
-/* Iframe: no internal scroll — Wix page handles scrolling via auto-resize */
+/* Iframe: allow scrolling inside the iframe (Webflow embed) */
 html.is-iframe,
 html.is-iframe body {
-  overflow: hidden !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
   height: auto !important;
   min-height: 0 !important;
+  -webkit-overflow-scrolling: touch;
 }
 html.is-iframe .hero {
   height: auto !important;
