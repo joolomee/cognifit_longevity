@@ -218,3 +218,19 @@ python3 -m http.server 8000
 - **Search Console**: propriedade `brain.cognifit.com`
 - **Repo**: `joolomee/cognifit_longevity`
 - **Branch desta migração**: `claude/adapt-webflow-migration-Ykeel`
+
+---
+
+## Webflow Architecture
+
+Migration model: **Vercel-hosted source of truth + Webflow shell** (não é Webflow nativo).
+
+- **Vercel** continua a servir `index.html`, `styles.css`, `main.js` e `i18n.js` em `brain.cognifit.com/longevity/` — fonte única de verdade.
+- **Webflow** funciona como casca SEO + container; nunca duplica markup nem assets.
+- Três blocos colados na página Webflow (ver `webflow/`):
+  1. `01-head-custom-code.html` → meta tags, hreflang (22 idiomas), JSON-LD, preloads, `styles.css` + `i18n.js` defer.
+  2. `02-body-embed.html` → loader que faz `fetch` ao `index.html` do Vercel, extrai `<body>`, re-cria `<script>` inline e dispara `cognifit:body-ready`.
+  3. `03-before-body-close.html` → carrega `main.js` após `cognifit:body-ready` (timeout 3s).
+- `vercel.json` deve manter `Access-Control-Allow-Origin: *` e CSP `frame-ancestors` com `*.webflow.io` / `*.webflow.com`, senão o loader falha.
+- SEO server-rendered no head do Webflow; conteúdo client-rendered via fetch do CDN — Google indexa o head injection.
+- Update flow: editar no repo → push para `main` → Vercel redeploy → Webflow refresca no próximo load (cache 1h).
