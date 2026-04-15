@@ -1775,6 +1775,14 @@ document.addEventListener('DOMContentLoaded', function() {
       var dropdown = document.getElementById('lang-dropdown-static');
       if (!btn || !dropdown) return;
 
+      /* Restore lang-modal-header and lang-modal-title classes */
+      var header = dropdown.querySelector('div');
+      if (header) {
+        header.classList.add('lang-modal-header');
+        var title = header.querySelector('span');
+        if (title) title.classList.add('lang-modal-title');
+      }
+
       /* Restore lang-item class (Webflow replaces with w-button) */
       dropdown.querySelectorAll('[data-lang]').forEach(function(el) {
         el.classList.remove('w-button');
