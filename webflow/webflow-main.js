@@ -1762,4 +1762,72 @@ document.addEventListener('DOMContentLoaded', function() {
       if (link) link.click();
     });
   });
+
+  /* ── Language Switcher UI ──────────────────────────────────────────
+     Webflow strips onclick attributes from published HTML. Wire all
+     lang-switcher interactions via addEventListener instead.
+     Also restores CSS classes Webflow removes from <button> elements
+     (converts button→a and replaces class with "w-button").
+  ─────────────────────────────────────────────────────────────────── */
+  (function() {
+    function setupLangSwitcher() {
+      var btn = document.getElementById('lang-btn');
+      var dropdown = document.getElementById('lang-dropdown-static');
+      if (!btn || !dropdown) return;
+
+      /* Restore lang-item class (Webflow replaces with w-button) */
+      dropdown.querySelectorAll('[data-lang]').forEach(function(el) {
+        el.classList.remove('w-button');
+        el.classList.add('lang-item');
+        el.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          var lang = el.getAttribute('data-lang');
+          if (window.CogniFitI18n && window.CogniFitI18n.setLang) {
+            window.CogniFitI18n.setLang(lang, true);
+          }
+          dropdown.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+          document.documentElement.classList.remove('lang-modal-open');
+        });
+      });
+
+      /* Restore lang-modal-close class on close button */
+      var closeBtn = dropdown.querySelector('[aria-label="Close language menu"]');
+      if (closeBtn) {
+        closeBtn.classList.remove('w-button');
+        closeBtn.classList.add('lang-modal-close');
+        closeBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          dropdown.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+          document.documentElement.classList.remove('lang-modal-open');
+        });
+      }
+
+      /* Lang button toggle */
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var open = dropdown.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(open));
+        document.documentElement.classList.toggle('lang-modal-open', open);
+      });
+
+      /* Close on outside click */
+      document.addEventListener('click', function(e) {
+        if (!dropdown.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+          dropdown.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+          document.documentElement.classList.remove('lang-modal-open');
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupLangSwitcher);
+    } else {
+      setupLangSwitcher();
+    }
+  })();
 });
