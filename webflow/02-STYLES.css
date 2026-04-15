@@ -738,7 +738,7 @@ h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
   border:1px solid #1e1e1e;border-radius:16px;
   padding:clamp(20px,3vw,28px) clamp(16px,2.5vw,22px);
   transition:border-color .3s,background .3s,transform .3s,box-shadow .3s;
-  will-change:transform;
+  will-change:transform;transform-style:preserve-3d;
   position:relative;overflow:hidden;
 }
 .step-card::after{
@@ -858,7 +858,7 @@ h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
 
 /* ── WHO ── */
 .who-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,2vw,16px)}
-.who-card{background:#fff;border:1.5px solid #e5e5e5;border-radius:16px;padding:clamp(20px,3vw,28px) clamp(16px,2.5vw,20px);text-align:center;transition:box-shadow .22s,transform .25s}
+.who-card{background:#fff;border:1.5px solid #e5e5e5;border-radius:16px;padding:clamp(20px,3vw,28px) clamp(16px,2.5vw,20px);text-align:center;transition:box-shadow .22s,transform .25s;will-change:transform;transform-style:preserve-3d}
 @media (hover:hover) and (pointer:fine){
   .who-card:hover{box-shadow:0 10px 32px rgba(0,0,0,.1);transform:translateY(-3px)}
 }
@@ -884,7 +884,9 @@ h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
   position:relative;
   border:1px solid rgba(255,255,255,.08);
   border-top:3px solid var(--c,rgba(26,115,232,.7));
-  background:rgba(10,10,18,.65);
+  background:rgba(10,10,18,.55);
+  backdrop-filter:blur(20px) saturate(1.5);
+  -webkit-backdrop-filter:blur(20px) saturate(1.5);
   will-change:transform;
   transform-style:preserve-3d;
 }
