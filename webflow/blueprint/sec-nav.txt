@@ -1,0 +1,21 @@
+# Section: NAV
+# Source: index.html lines 655-670
+# ---
+
+<nav#nav>
+  <a.nav-logo-link> [href=#, style=text-decoration:none]
+    <img.logo-dark> [src=<base64 inline>, alt=CogniFit]
+    <img.logo-white> [src=<base64 inline>, alt=CogniFit]
+  <div.nav-links>
+    <a.nav-link> [i18n=nav.platform, href=#platform]
+        · "Platform"
+    <a.nav-link> [i18n=nav.faq, href=#faq]
+        · "FAQ"
+    <a.nav-link> [i18n=nav.science, href=https://www.cognifit.com/neuroscience]
+        · "Science"
+    <a.nav-link> [i18n=nav.training, href=https://www.cognifit.com/brain-training]
+        · "Brain Training"
+  <div.nav-r>
+    <a.btn-login#login> [i18n=nav.join, href=https://www.cognifit.com/login]
+        · "Login"
+<main>

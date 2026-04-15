@@ -1,0 +1,40 @@
+# Section: DISCOVER
+# Source: index.html lines 749-779
+# ---
+
+<section.s-white>
+  <div.wrap.tc>
+    <span.eyebrow.r> [i18n=discover.eyebrow]
+        · "Brain Longevity Test"
+    <h2.r.d1> [i18n=discover.h2, style=color:#000]
+        · "Brain Longevity Test: Discover Your Brain's Strengths and Weaknesses"
+    <p.lead-drk.r.d1> [i18n=discover.lead, i18n-html, style=max-width:min(720px,100%);margin:0 auto clamp(24px,5vw,40px);text-align:center]
+        · "Our"
+      <a> [href=https://www.cognifit.com/cognitive-assessment, style=color:var(--blue);text-decoration:none;font-weight:700]
+          · "scientifically validated brain longevity test"
+        · "measures 20+ brain skills across memory, attention, and executive function, giving you a complete…"
+    <div.skills-panel.r.d2>
+      <div.panel-lbl> [i18n=discover.panel]
+          · "Cognitive Skills"
+      <div.sk-row>
+        <div.sk-ico>
+          <svg viewBox=""> (inline SVG — copy from index.html)
+          <div> [style=flex:1]
+            <div.sk-name> [i18n=discover.sk1]
+                · "Contextual Memory"
+            <div.sk-score>
+                · "620 / 800"
+            <div.sk-track>
+              <div.sk-fill> [style=width:77.5%]
+        <div.sk-row>
+          <div.sk-ico>
+            <svg viewBox=""> (inline SVG — copy from index.html)
+            <div.sk-row>
+              <div.sk-ico>
+                <svg viewBox=""> (inline SVG — copy from index.html)
+                <div.sk-row>
+                  <div.sk-ico>
+                    <svg viewBox=""> (inline SVG — copy from index.html)
+                  <div.btn-center>
+                    <a.btn-secondary.r.d3> [i18n=discover.cta, href=https://www.cognifit.com/assessments]
+                        · "Discover Your Brain"

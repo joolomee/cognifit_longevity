@@ -1,0 +1,42 @@
+# Section: PRO
+# Source: index.html lines 1207-1518
+# ---
+
+<section.s-dark>
+  <div.wrap.tc>
+    <span.eyebrow.eyebrow-dim.r> [i18n=pro.eyebrow]
+        · "For Professionals"
+    <h2.r.d1> [i18n=pro.h2]
+        · "Discover CogniFit"
+    <p.lead.r.d1> [i18n=pro.lead, style=max-width:min(480px,100%);margin:0 auto clamp(28px,5vw,48px)]
+        · "Offer our brain health technology to your patients, students, employees or clients"
+    <div.pro-stack>
+      <div.pro-card.r> [style=--c:#7B1FA2]
+        <div.pro-text>
+          <h3> [i18n=pro.c1.t]
+              · "Healthcare Professionals"
+          <p.pro-desc> [i18n=pro.c1.d]
+              · "Neuropsychological exploration, stimulation, and cognitive rehabilitation. Clinically proven, rei…"
+          <div.pro-metrics>
+            <div.pro-metric>
+              <span.pm-num>
+                  · "3,530"
+              <span.pm-lbl> [i18n=pro.c1.l1]
+                  · "Clinicians"
+            <div.pro-metric>
+              <span.pm-num>
+                  · "96,110"
+              <span.pm-lbl> [i18n=pro.c1.l2]
+                  · "Patients"
+          <a.pro-cta> [i18n=pro.cta, i18n-html, href=https://www.cognifit.com/medical-platform]
+              · "Explore"
+            <span>
+                · "→"
+        <div.pro-photo> [style=background:linear-gradient(135deg,#2d004a,#1a0030)]
+          <svg viewBox=""> (inline SVG — copy from index.html)
+          <svg viewBox=""> (inline SVG — copy from index.html)
+          <svg viewBox=""> (inline SVG — copy from index.html)
+          <svg viewBox=""> (inline SVG — copy from index.html)
+          <svg viewBox=""> (inline SVG — copy from index.html)
+          <svg viewBox=""> (inline SVG — copy from index.html)
+          <svg viewBox=""> (inline SVG — copy from index.html)

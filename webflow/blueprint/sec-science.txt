@@ -1,0 +1,88 @@
+# Section: SCIENCE
+# Source: index.html lines 977-1077
+# ---
+
+<section.s-white>
+  <div.wrap>
+    <div.tc> [style=margin-bottom:clamp(24px,5vw,44px)]
+      <span.eyebrow.r> [i18n=sci.eyebrow]
+          · "Neuroscience"
+      <h2.r.d1> [i18n=sci.h2, style=color:#000]
+          · "The Science Behind Brain Longevity"
+      <p.lead-drk.r.d1> [i18n=sci.lead, i18n-html, style=max-width:min(820px,100%);margin:0 auto]
+          · "According to research published in"
+        <em>
+            · "Nature Reviews Neuroscience"
+          · ", brain longevity depends on three interconnected cognitive systems that protect your mental heal…"
+        <a> [href=https://www.cognifit.com/neuroscience, style=color:var(--blue);text-decoration:none;font-weight:700]
+            · "Explore the full scientific validation"
+          · "."
+    <div.sci-grid>
+      <div.sci-card.r#sci-executive>
+        <div.sci-num> [i18n=sci.s1.num]
+            · "System 01"
+        <h3> [i18n=sci.s1.t]
+            · "Executive Function"
+        <div.sci-role> [i18n=sci.s1.role]
+            · "Your Brain's CEO"
+        <div.sci-attrs>
+          <div.sci-attr> [i18n=sci.s1.a1]
+              · "Decision-making"
+          <div.sci-attr> [i18n=sci.s1.a2]
+              · "Planning & Strategy"
+          <div.sci-attr> [i18n=sci.s1.a3]
+              · "Self-control"
+          <div.sci-attr> [i18n=sci.s1.a4]
+              · "Adaptability"
+        <div.sci-why> [i18n=sci.s1.why, i18n-html]
+          <strong>
+              · "Why it matters:"
+            · "Manages life: finances, health, relationships."
+          <strong>
+              · "When this declines → independence declines."
+      <div.sci-card.r.d1#sci-memory>
+        <div.sci-num> [i18n=sci.s2.num]
+            · "System 02"
+        <h3> [i18n=sci.s2.t]
+            · "Working Memory"
+        <div.sci-role> [i18n=sci.s2.role]
+            · "Your Mental Workspace"
+        <div.sci-attrs>
+          <div.sci-attr> [i18n=sci.s2.a1]
+              · "Holding information in mind"
+          <div.sci-attr> [i18n=sci.s2.a2]
+              · "Following conversations"
+          <div.sci-attr> [i18n=sci.s2.a3]
+              · "Problem-solving"
+          <div.sci-attr> [i18n=sci.s2.a4]
+              · "Learning new things"
+        <div.sci-why> [i18n=sci.s2.why, i18n-html]
+          <strong>
+              · "Why it matters:"
+            · "Supports reasoning and daily functioning."
+          <strong>
+              · "When this weakens → confusion increases."
+      <div.sci-card.r.d2#sci-attention>
+        <div.sci-num> [i18n=sci.s3.num]
+            · "System 03"
+        <h3> [i18n=sci.s3.t]
+            · "Attention"
+        <div.sci-role> [i18n=sci.s3.role]
+            · "Your Focus System"
+        <div.sci-attrs>
+          <div.sci-attr> [i18n=sci.s3.a1]
+              · "Sustained concentration"
+          <div.sci-attr> [i18n=sci.s3.a2]
+              · "Filtering distractions"
+          <div.sci-attr> [i18n=sci.s3.a3]
+              · "Mental clarity"
+          <div.sci-attr> [i18n=sci.s3.a4]
+              · "Cognitive control"
+        <div.sci-why> [i18n=sci.s3.why, i18n-html]
+          <strong>
+              · "Why it matters:"
+            · "Attention is the gateway to everything."
+          <strong>
+              · "If it drops → everything follows."
+    <div.triad-wrap>
+      <svg viewBox=""> (inline SVG — copy from index.html)

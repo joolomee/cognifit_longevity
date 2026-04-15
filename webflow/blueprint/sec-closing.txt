@@ -1,0 +1,19 @@
+# Section: CLOSING
+# Source: index.html lines 1699-1715
+# ---
+
+<section.closing>
+  <p.closing-quote.r> [i18n=closing.quote, i18n-html]
+      · ""Your body may age. But your brain can stay"
+    <em>
+        · "sharp, adaptable, and strong"
+      · ". If you train it.""
+  <p.closing-sub.r.d1> [i18n=closing.sub, i18n-html]
+      · "The question isn't whether you'll age."
+    <br>
+      · "It's how well your mind will age with you."
+  <div.btn-center>
+    <a.btn-primary.r.d2> [i18n=closing.cta2, href=https://www.cognifit.com/assessments]
+        · "Take the First Step"
+<a.scroll-top-btn> [href=#, aria-label=Back to top]
+  <svg viewBox=""> (inline SVG — copy from index.html)

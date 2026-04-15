@@ -1,0 +1,144 @@
+# Section: FOOTER
+# Source: index.html lines 1716-1806
+# ---
+
+<footer>
+  <img> [src=<base64 inline>, alt=CogniFit, style=height:20px;width:auto;opacity:0.4]
+  <div.footer-grid>
+    <div.footer-col>
+      <h4.footer-col-title> [i18n=footer.col.brain]
+          · "Brain Science"
+      <a> [i18n=footer.brain.human, href=https://www.cognifit.com/brain]
+          · "The Human Brain"
+      <a> [i18n=footer.brain.mind, href=https://www.cognifit.com/mind]
+          · "Brain and Mind"
+      <a> [i18n=footer.brain.parts, href=https://www.cognifit.com/brain-parts]
+          · "Parts of the Brain"
+      <a> [i18n=footer.brain.neurons, href=https://www.cognifit.com/active-neurons]
+          · "Neurons"
+      <a> [i18n=footer.brain.plasticity, href=https://www.cognifit.com/brain-plasticity-and-cognition]
+          · "Brain Plasticity"
+      <a> [i18n=footer.brain.fitness, href=https://www.cognifit.com/brain-fitness]
+          · "Brain Fitness"
+      <a> [i18n=footer.brain.cognition, href=https://www.cognifit.com/cognition]
+          · "Cognition"
+      <a> [i18n=footer.brain.memoryloss, href=https://www.cognifit.com/memory-loss]
+          · "Memory Loss"
+      <a> [i18n=footer.brain.intellectual, href=https://www.cognifit.com/dementia]
+          · "Intellectual Disabilities"
+      <a> [i18n=footer.brain.functions, href=https://www.cognifit.com/brain-functions]
+          · "Brain Functions"
+      <a> [i18n=footer.brain.executive, href=https://www.cognifit.com/executive-functions]
+          · "Executive Functions"
+      <a> [i18n=footer.brain.coord, href=https://www.cognifit.com/coordination]
+          · "Coordination"
+      <a> [i18n=footer.brain.memory, href=https://www.cognifit.com/memory]
+          · "Memory"
+      <a> [i18n=footer.brain.perception, href=https://www.cognifit.com/perception]
+          · "Perception"
+      <a> [i18n=footer.brain.attention, href=https://www.cognifit.com/attention]
+          · "Attention"
+    <div.footer-col>
+      <h4.footer-col-title> [i18n=footer.col.research]
+          · "Research"
+      <a> [i18n=footer.research.digital, href=https://www.cognifit.com/digital-therapeutics]
+          · "Digital Therapeutics Validation"
+      <a> [i18n=footer.research.games, href=https://www.cognifit.com/Study-cognitive-training-vs-compute]
+          · "Computer Games"
+      <a> [i18n=footer.research.older, href=https://www.cognifit.com/study-cognitive-training-vs-physica]
+          · "Healthy Older Adults Trial"
+      <a> [i18n=footer.research.navy, href=https://www.cognifit.com/study-evaluation-fatigue-pilots-mar]
+          · "Navy Pilots"
+      <a> [i18n=footer.research.wellness, href=https://www.cognifit.com/study-holistic-assess-senior-wellne]
+          · "Senior Wellness"
+      <a> [i18n=footer.research.seniors, href=https://www.cognifit.com/study-itv-cognitive-training-senior]
+          · "Healthy Seniors"
+      <a> [i18n=footer.research.sct, href=https://www.cognifit.com/senior-cognitive-training-symposium]
+          · "Senior Cognitive Training"
+      <a> [i18n=footer.research.adults, href=https://www.cognifit.com/study-cct-senior-conference]
+          · "Cognitive State in Adults"
+      <a> [i18n=footer.research.review, href=https://www.cognifit.com/study-systematic-review-tools-preve]
+          · "Systematic Review"
+      <a> [i18n=footer.research.sg4d, href=https://www.cognifit.com/study-taxonomy-games-dementia]
+          · "SG4D Taxonomy"
+    <div.footer-col>
+      <h4.footer-col-title> [i18n=footer.col.games]
+          · "Brain Games"
+      <a> [i18n=footer.games.chess, href=https://www.cognifit.com/chess]
+          · "Chess Online"
+      <a> [i18n=footer.games.cross, href=https://www.cognifit.com/mini-crossword]
+          · "Mini Crossword"
+      <a> [i18n=footer.games.fruit, href=https://www.cognifit.com/watch-and-catch]
+          · "Fruit Frenzy"
+      <a> [i18n=footer.games.pipe, href=https://www.cognifit.com/pipe-panic]
+          · "Pipe Panic"
+      <a> [i18n=footer.games.crystal, href=https://www.cognifit.com/crystal-miner]
+          · "Crystal Miner"
+      <a> [i18n=footer.games.solitaire, href=https://www.cognifit.com/solitaire]
+          · "Solitaire"
+      <a> [i18n=footer.games.robo, href=https://www.cognifit.com/robo-factory]
+          · "Robo Factory"
+      <a> [i18n=footer.games.ant, href=https://www.cognifit.com/ant-escape]
+          · "Ant Escape"
+      <a> [i18n=footer.games.treasure, href=https://www.cognifit.com/treasure-island]
+          · "Treasure Island"
+      <a> [i18n=footer.games.neon, href=https://www.cognifit.com/neon-lights]
+          · "Neon Lights"
+      <a> [i18n=footer.games.more, href=https://www.cognifit.com/brain-games]
+          · "See More Games..."
+    <div.footer-col>
+      <h4.footer-col-title> [i18n=footer.col.tools]
+          · "Tools"
+      <a> [i18n=footer.tools.families, href=https://www.cognifit.com/family-platform]
+          · "For Families"
+      <a> [i18n=footer.tools.clinicians, href=https://www.cognifit.com/medical-platform]
+          · "For Clinicians"
+      <a> [i18n=footer.tools.researchers, href=https://www.cognifit.com/cognitive-research-tool-v1]
+          · "For Researchers"
+      <a> [i18n=footer.tools.education, href=https://www.cognifit.com/educational-technology]
+          · "Education"
+      <a> [i18n=footer.tools.patent, href=https://www.cognifit.com/patent]
+          · "Patent"
+      <a> [i18n=footer.tools.mindfit, href=https://www.cognifit.com/mindfulness]
+          · "MindFit"
+      <a> [i18n=footer.tools.baby, href=https://www.cognifit.com/babybright]
+          · "Babybright"
+      <a> [i18n=footer.tools.resellers, href=https://www.cognifit.com/resellers]
+          · "Resellers"
+      <a> [i18n=footer.tools.kids, href=https://www.cognifit.com/brain-training-kids]
+          · "Exercises for Children"
+      <a> [i18n=footer.tools.devt, href=https://www.cognifit.com/cognitive-development]
+          · "Cognitive Development"
+      <a> [i18n=footer.tools.exercise, href=https://www.cognifit.com/brain-training]
+          · "Brain Exercise"
+      <a> [i18n=footer.tools.its, href=https://www.cognifit.com/cognifit-individualized-training-sy]
+          · "Individualized Training System"
+      <a> [i18n=footer.tools.games, href=https://www.cognifit.com/brain-games]
+          · "Brain Games"
+      <a> [i18n=footer.tools.mental, href=https://www.cognifit.com/mental-exercise]
+          · "Mental Exercise"
+      <a> [i18n=footer.tools.iq, href=https://www.cognifit.com/iq-test-iqbe]
+          · "IQ Test"
+  <div.footer-disclaimer>
+    <p> [i18n=footer.disclaimer]
+        · "* Every CogniFit cognitive assessment is intended as an aid for assessing cognitive wellbeing of …"
+  <div.footer-bottom>
+    <div.footer-bottom-links>
+      <a> [i18n=footer.bottom.terms, href=https://www.cognifit.com/terms-and-conditions]
+          · "Terms of Service"
+      <a> [i18n=footer.bottom.privacy, href=https://www.cognifit.com/privacy-policy]
+          · "Privacy Policy"
+      <a> [i18n=footer.bottom.mgmt, href=https://www.cognifit.com/about-team]
+          · "Management Team"
+      <a> [i18n=footer.bottom.newsroom, href=https://blog.cognifit.com/category/cognifit-news/]
+          · "CogniFit Newsroom"
+      <a> [i18n=footer.bottom.affiliate, href=https://cognifit.com/affiliates]
+          · "Become an Affiliate"
+      <a> [i18n=footer.bottom.reseller, href=https://www.cognifit.com/resellers]
+          · "Become a Reseller"
+      <a> [i18n=footer.bottom.contact, href=mailto:support@cognifit.com]
+          · "Contact Us"
+      <a> [i18n=footer.bottom.help, href=https://support.cognifit.com/]
+          · "Help"
+    <div.footer-copy> [i18n=footer.copy]
+        · "CogniFit Inc © 2026"

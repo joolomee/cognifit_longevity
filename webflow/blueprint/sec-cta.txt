@@ -1,0 +1,35 @@
+# Section: CTA
+# Source: index.html lines 1680-1698
+# ---
+
+<section.s-blue#assessment>
+  <div.wrap.tc>
+    <span.eyebrow.r> [i18n=cta.eyebrow, style=color:rgba(255,255,255,.5)]
+        · "Get Started"
+    <h2.r.d1> [i18n=cta.h2]
+        · "Start Your Brain Longevity Journey Today"
+    <p.lead.r.d1> [i18n=cta.lead, style=color:rgba(255,255,255,.75);max-width:min(820px,100%);margin:0 auto]
+        · "You don't need to wait for cognitive decline to act. The earlier you invest in brain longevity an…"
+    <div.cta-steps.r.d2>
+      <div.cta-step>
+        <div.cta-num>
+            · "1"
+        <span> [i18n=cta.step1]
+            · "Discover your brain profile"
+      <div.cta-arr>
+          · "→"
+      <div.cta-step>
+        <div.cta-num>
+            · "2"
+        <span> [i18n=cta.step2]
+            · "Get your personalized plan"
+      <div.cta-arr>
+          · "→"
+      <div.cta-step>
+        <div.cta-num>
+            · "3"
+        <span> [i18n=cta.step3]
+            · "Start improving today"
+    <div.btn-center>
+      <a.btn-white.r.d3#telegram-cta-trigger> [i18n=cta.btn, href=https://www.cognifit.com/assessments]
+          · "Take Your Brain Longevity Test Now"

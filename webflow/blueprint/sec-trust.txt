@@ -1,0 +1,105 @@
+# Section: TRUST
+# Source: index.html lines 1563-1602
+# ---
+
+<section.s-black> [style=border-top:1px solid #111]
+  <div.wrap.tc>
+    <span.eyebrow.eyebrow-dim.r> [i18n=trust.eyebrow]
+        · "Trusted Worldwide"
+    <h2.r.d1.trust-headline>
+      <span.trust-headline-top> [i18n=trust.h.top]
+          · "Join our global family of"
+      <span.trust-headline-number>
+          · "6,249,358"
+      <span.trust-headline-users> [i18n=trust.h.users]
+          · "users"
+    <div.stats-row> [style=margin-top:clamp(28px,5vw,56px)]
+      <div.stat-bl.r>
+        <div.stat-n>
+            · "6.2"
+          <em>
+              · "M+"
+        <div.stat-l> [i18n=trust.s1]
+            · "Active Users"
+      <div.stat-bl.r.d1>
+        <div.stat-n>
+            · "6,421"
+          <em>
+              · "+"
+        <div.stat-l> [i18n=trust.s2]
+            · "Clinics & Institutions"
+      <div.stat-bl.r.d2>
+        <div.stat-n>
+            · "135"
+          <em>
+              · "M+"
+        <div.stat-l> [i18n=trust.s3]
+            · "Games Played"
+      <div.stat-bl.r.d3>
+        <div.stat-n>
+            · "4.8"
+          <em>
+              · "★"
+        <div.stat-l> [i18n=trust.s4]
+            · "Average Rating"
+    <div.trust-badges.r>
+      <div.t-badge> [i18n=trust.b1]
+          · "🏥 Healthcare"
+      <div.t-badge> [i18n=trust.b2]
+          · "🔬 Research"
+      <div.t-badge> [i18n=trust.b3]
+          · "🎓 Education"
+      <div.t-badge> [i18n=trust.b4]
+          · "✅ Clinically Validated"
+    <p> [i18n=trust.press, style=…]
+        · "Press around the world is talking about our mental training programs and assessments."
+    <div.press-strip>
+      <div.press-logo-card>
+        <img.pl.press-logo-img.press-logo-wsj> [src=WSJ_Logo.svg.png, alt=The Wall Street Journal, w=140, h=60]
+      <div.press-logo-card>
+        <img.pl.press-logo-img.press-logo-cbs> [src=CBS_logo.svg.png, alt=CBS, w=80, h=60]
+      <div.press-logo-card>
+        <img.pl.press-logo-img.press-logo-abc> [src=American_Broadcasting_Company_Logo.svg.png, alt=ABC, w=80, h=60]
+      <div.press-logo-card>
+        <img.pl.press-logo-img.press-logo-nbc> [src=NBC_logo.svg.png, alt=NBC, w=140, h=60]
+      <div.press-logo-card>
+        <img.pl.press-logo-img.press-logo-cnn> [src=CNN.svg.png, alt=CNN, w=120, h=60]
+      <div.press-logo-card>
+        <img.pl.press-logo-img.press-logo-nyt> [src=NewYorkTimes.svg.png, alt=The New York Times, w=180, h=60]
+      <div.press-logo-card>
+        <img.pl.press-logo-img.press-logo-lifetime> [src=Logo_Lifetime_2020.svg.png, alt=Lifetime, w=140, h=60]
+      <div.press-logo-card>
+        <img.pl.press-logo-img.press-logo-mnt> [src=medicalnewstoday.png, alt=Medical News Today, w=180, h=60]
+      <div.press-logo-card>
+        <img.pl.press-logo-img.press-logo-smartmoney> [src=smart-money-logo-svg-vector.svg, alt=Smart Money, w=140, h=60]
+    <div.reviews-grid>
+      <div.rev-card.r>
+        <div.rev-date> [i18n=rev.date1]
+            · "16 March 2026"
+        <div.rev-stars>
+            · "★★★★★"
+        <div.rev-rec> [i18n=rev.rec]
+            · "👍 I recommend this product"
+        <div.rev-title> [i18n=rev.r1.t]
+            · "Life-changing at 58"
+        <div.rev-body> [i18n=rev.r1.b]
+            · "Real improvements in focus and memory within weeks. The personalized training adapts to exactly w…"
+        <div.rev-author>
+            · "Michael R. 🇺🇸"
+          <span> [i18n=rev.r1.c]
+              · "United States"
+      <div.rev-card.r.d1>
+        <div.rev-date> [i18n=rev.date2]
+            · "13 March 2026"
+        <div.rev-stars>
+            · "★★★★★"
+        <div.rev-rec> [i18n=rev.rec]
+            · "👍 I recommend this product"
+        <div.rev-title> [i18n=rev.r2.t]
+            · "Wow!"
+        <div.rev-body> [i18n=rev.r2.b]
+            · "First time with this type of cognitive evaluation. Eye-opening assessment and the training feels …"
+        <div.rev-author>
+            · "Ana S. 🇪🇸"
+          <span> [i18n=rev.r2.c]
+              · "Spain"

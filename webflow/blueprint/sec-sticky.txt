@@ -1,0 +1,7 @@
+# Section: STICKY_CTA
+# Source: index.html lines 1807-1817
+# ---
+
+<div.sticky-cta#sticky-cta>
+  <a.sticky-cta-btn> [href=https://www.cognifit.com/assessments]
+    <svg viewBox=""> (inline SVG — copy from index.html)

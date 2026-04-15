@@ -1,0 +1,141 @@
+# Section: RISK
+# Source: index.html lines 780-976
+# ---
+
+<section.s-dark>
+  <div.wrap>
+    <div.g2.g2-top>
+      <div.r>
+        <span.eyebrow.eyebrow-dim> [i18n=risk.eyebrow]
+            · "The Real Problem"
+        <h2> [i18n=risk.h2]
+            · "The Real Risk of Aging Isn't Physical. It's Cognitive"
+        <p.lead> [i18n=risk.lead, style=margin-bottom:clamp(20px,3vw,28px)]
+            · "Most people cover the basics, but miss the most critical pillar of healthy aging:"
+        <div.wellness-gap>
+          <div.wg-item.wg-have>
+            <div.wg-icon>
+                · "🥗"
+            <div.wg-content>
+              <span.wg-label> [i18n=risk.pillar1]
+                  · "Diet & Nutrition"
+            <div.wg-check>
+                · "✓"
+          <div.wg-item.wg-have>
+            <div.wg-icon>
+                · "🏃"
+            <div.wg-content>
+              <span.wg-label> [i18n=risk.pillar2]
+                  · "Physical Exercise"
+            <div.wg-check>
+                · "✓"
+          <div.wg-item.wg-have>
+            <div.wg-icon>
+                · "😴"
+            <div.wg-content>
+              <span.wg-label> [i18n=risk.pillar3]
+                  · "Quality Sleep"
+            <div.wg-check>
+                · "✓"
+          <div.wg-item.wg-missing>
+            <div.wg-icon>
+                · "🧠"
+            <div.wg-content>
+              <span.wg-label> [i18n=risk.pillar4]
+                  · "Cognitive Training"
+              <span.wg-missing-tag> [i18n=risk.missing]
+                  · "Missing Piece"
+            <div.wg-check.wg-green>
+                · "✓"
+      <div.r.d2.risk-visual-col>
+        <div.risk-side-visual.risk-side-visual--pillars>
+          <div.risk-side-visual__glow>
+          <div.risk-side-visual__core>
+            <div.risk-side-visual__core-brain>
+                · "🧘"
+            <div.risk-side-visual__core-label> [i18n=risk.core]
+                · "Mind Balance"
+          <div.risk-side-visual__orbit.risk-side-visual__orbit--one>
+          <div.risk-side-visual__orbit.risk-side-visual__orbit--two>
+          <div.risk-pillar.risk-pillar--nutrition>
+            <div.risk-pillar__icon>
+                · "🥗"
+            <div.risk-pillar__label> [i18n=risk.pillar1]
+                · "Diet & Nutrition"
+          <div.risk-pillar.risk-pillar--exercise>
+            <div.risk-pillar__icon>
+                · "🏃"
+            <div.risk-pillar__label> [i18n=risk.pillar2]
+                · "Physical Exercise"
+          <div.risk-pillar.risk-pillar--sleep>
+            <div.risk-pillar__icon>
+                · "🌙"
+            <div.risk-pillar__label> [i18n=risk.pillar3]
+                · "Quality Sleep"
+          <div.risk-pillar.risk-pillar--training.risk-pillar--highlight>
+            <div.risk-pillar__icon>
+                · "🧠"
+            <div.risk-pillar__label> [i18n=risk.pillar4]
+                · "Cognitive Training"
+          <div.risk-side-visual__link.risk-side-visual__link--nutrition>
+          <div.risk-side-visual__link.risk-side-visual__link--exercise>
+          <div.risk-side-visual__link.risk-side-visual__link--sleep>
+          <div.risk-side-visual__link.risk-side-visual__link--training>
+    <div.risk-row>
+      <div.risk-card>
+        <div.rc-front>
+          <div.rc-icon>
+            <svg viewBox=""> (inline SVG — copy from index.html)
+            <svg viewBox=""> (inline SVG — copy from index.html)
+            <div.rc-desc> [i18n=risk.r1.d]
+                · "Daily decisions like finances, medication, and self-care become increasingly difficult to manage …"
+          <div.risk-card>
+            <div.rc-front>
+              <div.rc-icon>
+                <svg viewBox=""> (inline SVG — copy from index.html)
+                <svg viewBox=""> (inline SVG — copy from index.html)
+                <div.rc-desc> [i18n=risk.r2.d]
+                    · "Reduced working memory makes it harder to weigh options, follow instructions, or spot health risks."
+              <div.risk-card>
+                <div.rc-front>
+                  <div.rc-icon>
+                    <svg viewBox=""> (inline SVG — copy from index.html)
+                    <div.rc-title> [i18n=risk.r3.t]
+                        · "Risk of dementia"
+                    <svg viewBox=""> (inline SVG — copy from index.html)
+                    <div.rc-desc> [i18n=risk.r3.d]
+                        · "Cognitive inactivity is a leading modifiable risk factor for Alzheimer's and other forms of demen…"
+                  <div.risk-card>
+                    <div.rc-front>
+                      <div.rc-icon>
+                        <svg viewBox=""> (inline SVG — copy from index.html)
+                        <div.rc-title> [i18n=risk.r4.t]
+                            · "Reduced lifespan quality"
+                        <svg viewBox=""> (inline SVG — copy from index.html)
+                        <div.rc-desc> [i18n=risk.r4.d]
+                            · "Mental clarity drives social connection, purpose, and enjoyment. All diminish as cognition fades."
+                    <div.risk-prevent>
+                      <div.rp-line>
+                      <div.rp-label> [i18n=risk.prevent]
+                          · "What Prevents All of This"
+                      <div.rp-line>
+                    <div.rp-arrows>
+                      <svg viewBox=""> (inline SVG — copy from index.html)
+                      <svg viewBox=""> (inline SVG — copy from index.html)
+                      <svg viewBox=""> (inline SVG — copy from index.html)
+                      <div.rni-solution>
+                        <div.rni-sol-icon>
+                            · "🧠"
+                        <div.rni-sol-body>
+                          <div.rni-sol-title> [i18n=risk.sol.t]
+                              · "Cognitive Training"
+                          <div.rni-sol-sub> [i18n=risk.sol.s]
+                              · "Delivered by CogniFit"
+                          <div.rni-sol-desc> [i18n=risk.sol.d]
+                              · "Daily scientifically validated exercises that strengthen attention, memory, and executive functio…"
+                        <div.rni-sol-badge> [i18n=risk.sol.b]
+                            · "KEY"
+                      <div.risk-missing-piece.r.d2>
+                        <div.rmp-icon-wrap>
+                          <div.rmp-icon-glow>
+                          <svg viewBox=""> (inline SVG — copy from index.html)

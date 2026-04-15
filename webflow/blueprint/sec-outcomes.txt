@@ -1,0 +1,38 @@
+# Section: OUTCOMES
+# Source: index.html lines 1096-1189
+# ---
+
+<section.s-white>
+  <div.wrap>
+    <div.g2.g2-top>
+      <div.r>
+        <span.eyebrow> [i18n=out.eyebrow]
+            · "The Results"
+        <h2> [i18n=out.h2, style=color:#000]
+            · "What Consistent Brain Training Delivers"
+        <p.lead-drk> [i18n=out.lead, i18n-html, style=margin-bottom:clamp(16px,4vw,30px)]
+            · "With regular use of"
+          <a> [href=https://www.cognifit.com/brain-training, style=color:var(--blue);text-decoration:none;font-weight:700]
+              · "CogniFit's personalized brain training"
+            · ", users across all age groups experience measurable improvements in daily cognitive performance, …"
+        <div.pill-wrap>
+          <div.out-pill> [i18n=out.p1]
+              · "Better mental clarity"
+          <div.out-pill> [i18n=out.p2]
+              · "Faster thinking"
+          <div.out-pill> [i18n=out.p3]
+              · "Improved focus"
+          <div.out-pill> [i18n=out.p4]
+              · "Stronger decisions"
+          <div.out-pill> [i18n=out.p5]
+              · "Greater independence"
+        <div.btn-center.btn-center-left>
+          <a.btn-secondary> [i18n=out.cta, href=https://www.cognifit.com/assessments]
+              · "See What's Possible"
+      <div.r.d2>
+        <div.hi-charts>
+          <div.hi-chart>
+            <div.hi-chart-label> [i18n=out.chart1]
+                · "Memory Score"
+            <svg viewBox=""> (inline SVG — copy from index.html)
+            <svg viewBox=""> (inline SVG — copy from index.html)

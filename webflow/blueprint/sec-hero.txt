@@ -1,0 +1,97 @@
+# Section: HERO
+# Source: index.html lines 671-748
+# ---
+
+<section.hero>
+  <div.hero-photo-bg>
+  <div.hero-color-grade>
+  <canvas#neural-canvas>
+  <div.hero-text-shade>
+  <div.hero-content>
+    <div>
+      <div.hero-badge.r>
+        <div.badge-dot>
+        <span> [i18n=hero.badge]
+            · "Brain Longevity System"
+      <div.hero-headline.r.d1>
+        <div.hero-bracket>
+        <h1.hero-h1.hero-plain>
+          <span> [i18n=hero.h1.line1]
+              · "Live Longer."
+          <br>
+          <span> [i18n=hero.h1.line2]
+              · "Think Better."
+          <br>
+          <span.hero-shimmer-soft> [i18n=hero.h1.line3]
+              · "Stay Independent."
+      <p.hero-sub.r.d2> [i18n=hero.sub, i18n-html]
+          · "Aging is inevitable."
+        <strong>
+            · "Cognitive decline doesn't have to be."
+          · "Measure your"
+        <strong>
+            · "brain longevity"
+          · "and protect the core mental abilities that determine how independently you live as you age."
+      <div.hero-read-time.r.d2>
+        <svg viewBox=""> (inline SVG — copy from index.html)
+        <div.hero-phones.r.d2>
+          <div.phone.phone-train>
+            <div.ph-body>
+              <div.ph-title> [i18n=phone.title1]
+                  · "Brain Train"
+              <div.ph-skill>
+                <div.ph-skill-name> [i18n=phone.skill1]
+                    · "Memory"
+                <div.ph-skill-bar>
+                  <div.ph-skill-fill> [style=width:80%]
+              <div.ph-skill>
+                <div.ph-skill-name> [i18n=phone.skill2]
+                    · "Reasoning"
+                <div.ph-skill-bar>
+                  <div.ph-skill-fill> [style=width:62%]
+              <div.ph-skill>
+                <div.ph-skill-name> [i18n=phone.skill3]
+                    · "Concentration"
+                <div.ph-skill-bar>
+                  <div.ph-skill-fill> [style=width:50%]
+              <div.ph-skill>
+                <div.ph-skill-name> [i18n=phone.skill4]
+                    · "Coordination"
+                <div.ph-skill-bar>
+                  <div.ph-skill-fill> [style=width:42%]
+              <div.ph-next>
+                <div.ph-next-label> [i18n=phone.workout]
+                    · "Your Daily Workout"
+                <div.ph-next-val> [i18n=phone.nextsession]
+                    · "NEXT SESSION →"
+          <div.phone.phone-stats>
+            <div.ph-body>
+              <div.ph-title> [i18n=phone.title2]
+                  · "Brain Health"
+              <div.ph-chart>
+                <div.ph-chart-label> [i18n=phone.score]
+                    · "Cognitive Score 0–800"
+                <div.ph-bars>
+                  <div.ph-bar> [style=height:100%]
+                  <div.ph-bar> [style=height:100%]
+                  <div.ph-bar> [style=height:55%]
+                  <div.ph-bar> [style=height:62%]
+                  <div.ph-bar.peak> [style=height:75%]
+                <div.ph-goal-pill> [i18n=phone.goal]
+                    · "GOAL 670"
+              <div.ph-age-card>
+                <div.ph-age-lbl> [i18n=phone.cognage]
+                    · "Cognitive Age"
+                <div.ph-age-num>
+                    · "37"
+                <div.ph-age-ok> [i18n=phone.cognage.ok]
+                    · "Ideal cognitive age ✓"
+                <div.ph-age-bar>
+                  <div.ph-age-fill>
+                <div.ph-age-real> [i18n=phone.realage]
+                    · "Real Age: 47 years old"
+      <div.hero-scroll-hint.r.d4>
+        <span> [i18n=hero.scroll]
+            · "Scroll"
+        <div.scroll-arrow>
+          <svg viewBox=""> (inline SVG — copy from index.html)

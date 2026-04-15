@@ -1,0 +1,306 @@
+# i18n keys (304 total) — default (English) text
+
+chart.w1	W1
+chart.w8	W8
+chart.week1	Week 1
+chart.week8	Week 8
+closing.cta2	Take the First Step
+closing.quote	"Your body may age. But your brain can stay
+closing.sub	The question isn't whether you'll age.
+cta.btn	Take Your Brain Longevity Test Now
+cta.eyebrow	Get Started
+cta.h2	Start Your Brain Longevity Journey Today
+cta.lead	You don't need to wait for cognitive decline to act. The earlier you invest in brain longevity and cognitive training, the stronger and more resilient your brain becomes over time. Join 6M+ people tra
+cta.step1	Discover your brain profile
+cta.step2	Get your personalized plan
+cta.step3	Start improving today
+discover.cta	Discover Your Brain
+discover.eyebrow	Brain Longevity Test
+discover.h2	Brain Longevity Test: Discover Your Brain's Strengths and Weaknesses
+discover.lead	Our
+discover.panel	Cognitive Skills
+discover.sk1	Contextual Memory
+discover.sk2	Hand-eye Coordination
+discover.sk3	Planning
+discover.sk4	Working Memory
+faq.a1	Think of it this way: we all invest in keeping our bodies healthy, but what about the organ that actually runs our lives? Brain longevity is your ability to preserve memory, focus, reasoning, and deci
+faq.a2	It's a fair question, and the answer is yes, when it's done right. The landmark ACTIVE study, published in the Journal of the American Geriatrics Society, tracked thousands of older adults and found t
+faq.a3	Here's what surprises most people: your processing speed, how fast you think, actually starts slowing down in your late 20s. Then in your 40s and 50s, working memory and executive function (planning,
+faq.a4	Most brain training apps are really just games dressed up as science. CogniFit is different. It was built by neuroscientists in 1999, long before "brain training" was trendy. It's been used in 1,083+
+faq.a5	Most people tell us they start feeling sharper within 2-4 weeks, with more focused conversations, faster recall, and clearer thinking. Just 15-20 minutes, 3-4 times a week. Clinical studies show measu
+faq.a6	Absolutely, and we don't say that lightly. CogniFit is one of the most researched cognitive platforms in the world, with over 1,083 clinical trials and peer-reviewed studies at institutions like Harva
+faq.eyebrow	Brain Longevity FAQ
+faq.h2	Brain Longevity FAQ: Your Questions About Brain Health, Answered
+faq.q1	What is brain longevity, and why should I care?
+faq.q2	Does brain training actually work, or is it just hype?
+faq.q3	Which mental abilities start fading first?
+faq.q4	What makes CogniFit different from other brain training apps?
+faq.q5	How quickly will I actually notice a difference?
+faq.q6	Is there real science behind CogniFit?
+footer.bottom.affiliate	Become an Affiliate
+footer.bottom.contact	Contact Us
+footer.bottom.help	Help
+footer.bottom.mgmt	Management Team
+footer.bottom.newsroom	CogniFit Newsroom
+footer.bottom.privacy	Privacy Policy
+footer.bottom.reseller	Become a Reseller
+footer.bottom.terms	Terms of Service
+footer.brain.attention	Attention
+footer.brain.cognition	Cognition
+footer.brain.coord	Coordination
+footer.brain.executive	Executive Functions
+footer.brain.fitness	Brain Fitness
+footer.brain.functions	Brain Functions
+footer.brain.human	The Human Brain
+footer.brain.intellectual	Intellectual Disabilities
+footer.brain.memory	Memory
+footer.brain.memoryloss	Memory Loss
+footer.brain.mind	Brain and Mind
+footer.brain.neurons	Neurons
+footer.brain.parts	Parts of the Brain
+footer.brain.perception	Perception
+footer.brain.plasticity	Brain Plasticity
+footer.col.brain	Brain Science
+footer.col.games	Brain Games
+footer.col.research	Research
+footer.col.tools	Tools
+footer.copy	CogniFit Inc © 2026
+footer.disclaimer	* Every CogniFit cognitive assessment is intended as an aid for assessing cognitive wellbeing of an individual. In a clinical setting, the CogniFit results (when interpreted by a qualified healthcare
+footer.games.ant	Ant Escape
+footer.games.chess	Chess Online
+footer.games.cross	Mini Crossword
+footer.games.crystal	Crystal Miner
+footer.games.fruit	Fruit Frenzy
+footer.games.more	See More Games...
+footer.games.neon	Neon Lights
+footer.games.pipe	Pipe Panic
+footer.games.robo	Robo Factory
+footer.games.solitaire	Solitaire
+footer.games.treasure	Treasure Island
+footer.research.adults	Cognitive State in Adults
+footer.research.digital	Digital Therapeutics Validation
+footer.research.games	Computer Games
+footer.research.navy	Navy Pilots
+footer.research.older	Healthy Older Adults Trial
+footer.research.review	Systematic Review
+footer.research.sct	Senior Cognitive Training
+footer.research.seniors	Healthy Seniors
+footer.research.sg4d	SG4D Taxonomy
+footer.research.wellness	Senior Wellness
+footer.tools.baby	Babybright
+footer.tools.clinicians	For Clinicians
+footer.tools.devt	Cognitive Development
+footer.tools.education	Education
+footer.tools.exercise	Brain Exercise
+footer.tools.families	For Families
+footer.tools.games	Brain Games
+footer.tools.iq	IQ Test
+footer.tools.its	Individualized Training System
+footer.tools.kids	Exercises for Children
+footer.tools.mental	Mental Exercise
+footer.tools.mindfit	MindFit
+footer.tools.patent	Patent
+footer.tools.researchers	For Researchers
+footer.tools.resellers	Resellers
+hero.badge	Brain Longevity System
+hero.cta	Protect Your Brain
+hero.guarantee1	100% Satisfaction Guaranteed
+hero.guarantee2	30 Day Money Back
+hero.h1.line1	Live Longer.
+hero.h1.line2	Think Better.
+hero.h1.line3	Stay Independent.
+hero.readtime	4 min read &middot; Based on 1,083+ clinical studies
+hero.scroll	Scroll
+hero.sub	Aging is inevitable.
+hero.users	Users Worldwide
+nav.faq	FAQ
+nav.join	Login
+nav.platform	Platform
+nav.science	Science
+nav.training	Brain Training
+out.box1.c	It's not about adding years to your life.
+out.box1.i1	Staying sharp at 50, 60, 70 and beyond
+out.box1.i2	Making better life decisions, every day
+out.box1.i3	Maintaining full autonomy as you age
+out.box1.i4	Reducing your long-term cognitive risk
+out.box1.t	This Isn't Just Brain Training. It's Brain Longevity
+out.box2.c	Just 15-20 minutes, 3-4 times per week.
+out.box2.i1	
+out.box2.i2	
+out.box2.i3	
+out.box2.i4	
+out.box2.t	When Will You See Results?
+out.chart1	Memory Score
+out.chart2	Attention &amp; Focus
+out.cta	See What's Possible
+out.eyebrow	The Results
+out.h2	What Consistent Brain Training Delivers
+out.lead	With regular use of
+out.p1	Better mental clarity
+out.p2	Faster thinking
+out.p3	Improved focus
+out.p4	Stronger decisions
+out.p5	Greater independence
+phone.cognage	Cognitive Age
+phone.cognage.ok	Ideal cognitive age ✓
+phone.goal	GOAL 670
+phone.nextsession	NEXT SESSION →
+phone.realage	Real Age: 47 years old
+phone.score	Cognitive Score 0–800
+phone.skill1	Memory
+phone.skill2	Reasoning
+phone.skill3	Concentration
+phone.skill4	Coordination
+phone.title1	Brain Train
+phone.title2	Brain Health
+phone.workout	Your Daily Workout
+plat.cta	Begin Now
+plat.eyebrow	Your Brain Longevity Plan
+plat.h2	CogniFit: Your Brain Longevity Platform to Measure, Train &amp; Track Your Cognitive Health
+plat.lead	A personalized brain longevity system designed to measure, identify, and train exactly what matters for your independence.
+plat.s1.c1	Measure attention, memory & executive function
+plat.s1.c2	Get a clear cognitive baseline
+plat.s1.d	Scientifically validated cognitive assessment to establish your baseline.
+plat.s1.t	Assess Your Brain
+plat.s2.c1	Targets your weakest areas first
+plat.s2.c2	Adjusts difficulty continuously
+plat.s2.c3	Optimizes results over time
+plat.s2.d	AI adapts training specifically to your unique brain profile.
+plat.s2.t	Get a Personalized Program
+plat.s3.c1	Improve focus & attention
+plat.s3.c2	Strengthen working memory
+plat.s3.c3	Enhance decision-making
+plat.s3.d	Short, engaging sessions designed for real-life impact.
+plat.s3.t	Train What Matters
+plat.s4.c1	Monitor progress visually
+plat.s4.c2	Stay motivated with milestones
+plat.s4.c3	Build lasting brain habits
+plat.s4.d	Clear reports showing how your brain evolves over time.
+plat.s4.t	Track Your Cognitive Age
+pro.c1.d	Neuropsychological exploration, stimulation, and cognitive rehabilitation. Clinically proven, reimbursable, reliable.
+pro.c1.l1	Clinicians
+pro.c1.l2	Patients
+pro.c1.t	Healthcare Professionals
+pro.c2.d	Cognitive Assessment Batteries and brain training for experimental studies. Validated tools for brain-based research.
+pro.c2.l1	Researchers
+pro.c2.l2	Participants
+pro.c2.t	Scientific Research
+pro.c3.d	Neuropsychological evaluation, stimulation, and cognitive tools for your students in and beyond the classroom.
+pro.c3.l1	Schools
+pro.c3.l2	Students
+pro.c3.t	Education Professionals
+pro.c4.d	Online mental wellness platform giving everyone the power to improve with simple tools for wellbeing and performance.
+pro.c4.l1	Companies
+pro.c4.l2	Employees
+pro.c4.t	Employee Wellbeing
+pro.c5.d	Validated cognitive outcome measures for clinical research. FDA-recognized digital endpoints for neurological and psychiatric trials.
+pro.c5.l1	Clinical Trials
+pro.c5.l2	Participants
+pro.c5.t	Clinical Trials
+pro.c6.d	Integrate CogniFit's cognitive technology into your own platform. Full SDK, custom branding, and dedicated support.
+pro.c6.l1	Partners
+pro.c6.l2	Users
+pro.c6.t	White Label Partnerships
+pro.c7.d	Peak cognitive performance for elite sport. Reaction time, focus under pressure, and decision-making training for competitive athletes.
+pro.c7.l1	Coaches
+pro.c7.l2	Athletes
+pro.c7.t	Athletes
+pro.cta	Explore
+pro.eyebrow	For Professionals
+pro.h2	Discover CogniFit
+pro.lead	Offer our brain health technology to your patients, students, employees or clients
+rev.date1	16 March 2026
+rev.date2	13 March 2026
+rev.r1.b	Real improvements in focus and memory within weeks. The personalized training adapts to exactly where I need it most.
+rev.r1.c	United States
+rev.r1.t	Life-changing at 58
+rev.r2.b	First time with this type of cognitive evaluation. Eye-opening assessment and the training feels genuinely tailored.
+rev.r2.c	Spain
+rev.r2.t	Wow!
+rev.rec	👍 I recommend this product
+risk.core	Mind Balance
+risk.eyebrow	The Real Problem
+risk.h2	The Real Risk of Aging Isn't Physical. It's Cognitive
+risk.lead	Most people cover the basics, but miss the most critical pillar of healthy aging:
+risk.miss.text	
+risk.missing	Missing Piece
+risk.pillar1	Diet &amp; Nutrition
+risk.pillar2	Physical Exercise
+risk.pillar3	Quality Sleep
+risk.pillar4	Cognitive Training
+risk.prevent	What Prevents All of This
+risk.r1.d	Daily decisions like finances, medication, and self-care become increasingly difficult to manage alone.
+risk.r1.t	Loss of independence
+risk.r2.d	Reduced working memory makes it harder to weigh options, follow instructions, or spot health risks.
+risk.r2.t	Poor health decisions
+risk.r3.d	Cognitive inactivity is a leading modifiable risk factor for Alzheimer's and other forms of dementia.
+risk.r3.t	Risk of dementia
+risk.r4.d	Mental clarity drives social connection, purpose, and enjoyment. All diminish as cognition fades.
+risk.r4.t	Reduced lifespan quality
+risk.sol.b	KEY
+risk.sol.d	Daily scientifically validated exercises that strengthen attention, memory, and executive function, preventing every risk above.
+risk.sol.s	Delivered by CogniFit
+risk.sol.t	Cognitive Training
+sci.chain	Break one, and the whole system weakens.
+sci.eyebrow	Neuroscience
+sci.h2	The Science Behind Brain Longevity
+sci.lead	According to research published in
+sci.reset	Click anywhere to restore all systems
+sci.s1.a1	Decision-making
+sci.s1.a2	Planning & Strategy
+sci.s1.a3	Self-control
+sci.s1.a4	Adaptability
+sci.s1.label.l1	Executive
+sci.s1.label.l2	Function
+sci.s1.num	System 01
+sci.s1.role	Your Brain's CEO
+sci.s1.t	Executive Function
+sci.s1.why	
+sci.s2.a1	Holding information in mind
+sci.s2.a2	Following conversations
+sci.s2.a3	Problem-solving
+sci.s2.a4	Learning new things
+sci.s2.label.l1	Working
+sci.s2.label.l2	Memory
+sci.s2.num	System 02
+sci.s2.role	Your Mental Workspace
+sci.s2.t	Working Memory
+sci.s2.why	
+sci.s3.a1	Sustained concentration
+sci.s3.a2	Filtering distractions
+sci.s3.a3	Mental clarity
+sci.s3.a4	Cognitive control
+sci.s3.label.l1	Attention
+sci.s3.num	System 03
+sci.s3.role	Your Focus System
+sci.s3.t	Attention
+sci.s3.why	
+sticky.cta	Free Brain Longevity Test
+trust.b1	🏥 Healthcare
+trust.b2	🔬 Research
+trust.b3	🎓 Education
+trust.b4	✅ Clinically Validated
+trust.eyebrow	Trusted Worldwide
+trust.h.top	Join our global family of
+trust.h.users	users
+trust.press	Press around the world is talking about our mental training programs and assessments.
+trust.s1	Active Users
+trust.s2	Clinics & Institutions
+trust.s3	Games Played
+trust.s4	Average Rating
+val.b1	Products Pipeline
+val.b2	Scientific Advisory Board
+val.h2	Validation
+val.more	and thousands more worldwide
+val.sub	6438+ clinics and research institutions are currently running their studies with us.
+who.c1.d	Processing speed peaks in your late 20s and begins declining from 35. Early cognitive training builds neural reserves that protect your independence for decades, like saving for a cognitive retirement
+who.c1.t	Adults 35+
+who.c2.d	Executive function, working memory, and sustained attention directly impact career performance. CogniFit targets these high-demand cognitive skills with adaptive training that scales to your level.
+who.c2.t	Professionals
+who.c3.d	Family history of dementia or Alzheimer's increases concern, and rightly so. The ACTIVE study showed that structured cognitive training can delay cognitive decline by up to 10 years. Acting early matt
+who.c3.t	Prevention-Minded
+who.c4.d	You track your VO2 max, sleep quality, and nutrition. Why not your brain? Cognitive Age is the missing metric in your longevity stack, and
+who.c4.t	Longevity Investors
+who.eyebrow	Your Profile
+who.h2	Who Benefits from Brain Longevity Training?
+who.lead	Whether you're 35 or 75, brain longevity training delivers measurable benefits. Research published in

@@ -1,0 +1,68 @@
+# Section: FAQ
+# Source: index.html lines 1603-1679
+# ---
+
+<section.s-white#faq>
+  <div.wrap>
+    <span.eyebrow.r> [i18n=faq.eyebrow]
+        · "Brain Longevity FAQ"
+    <h2.r.d1> [i18n=faq.h2, style=color:#000]
+        · "Brain Longevity FAQ: Your Questions About Brain Health, Answered"
+    <div.faq-list.r.d2>
+      <div.faq-item> [itemprop=mainEntity]
+        <button.faq-q>
+          <span.faq-icon>
+            <svg viewBox=""> (inline SVG — copy from index.html)
+            <svg viewBox=""> (inline SVG — copy from index.html)
+          <div.faq-a> [itemprop=acceptedAnswer]
+            <div> [itemprop=text]
+              <p> [i18n=faq.a1]
+                  · "Think of it this way: we all invest in keeping our bodies healthy, but what about the organ that …"
+        <div.faq-item> [itemprop=mainEntity]
+          <button.faq-q>
+            <span.faq-icon>
+              <svg viewBox=""> (inline SVG — copy from index.html)
+              <svg viewBox=""> (inline SVG — copy from index.html)
+            <div.faq-a> [itemprop=acceptedAnswer]
+              <div> [itemprop=text]
+                <p> [i18n=faq.a2]
+                    · "It's a fair question, and the answer is yes, when it's done right. The landmark ACTIVE study, pub…"
+          <div.faq-item> [itemprop=mainEntity]
+            <button.faq-q>
+              <span.faq-icon>
+                <svg viewBox=""> (inline SVG — copy from index.html)
+                <span.faq-q-text> [i18n=faq.q3, itemprop=name]
+                    · "Which mental abilities start fading first?"
+                <span.faq-chevron>
+                  <svg viewBox=""> (inline SVG — copy from index.html)
+                <div.faq-a> [itemprop=acceptedAnswer]
+                  <div> [itemprop=text]
+                    <p> [i18n=faq.a3]
+                        · "Here's what surprises most people: your processing speed, how fast you think, actually starts slo…"
+              <div.faq-item> [itemprop=mainEntity]
+                <button.faq-q>
+                  <span.faq-icon>
+                    <svg viewBox=""> (inline SVG — copy from index.html)
+                    <svg viewBox=""> (inline SVG — copy from index.html)
+                  <div.faq-a> [itemprop=acceptedAnswer]
+                    <div> [itemprop=text]
+                      <p> [i18n=faq.a4]
+                          · "Most brain training apps are really just games dressed up as science. CogniFit is different. It w…"
+                <div.faq-item> [itemprop=mainEntity]
+                  <button.faq-q>
+                    <span.faq-icon>
+                      <svg viewBox=""> (inline SVG — copy from index.html)
+                      <svg viewBox=""> (inline SVG — copy from index.html)
+                    <div.faq-a> [itemprop=acceptedAnswer]
+                      <div> [itemprop=text]
+                        <p> [i18n=faq.a5]
+                            · "Most people tell us they start feeling sharper within 2-4 weeks, with more focused conversations,…"
+                  <div.faq-item> [itemprop=mainEntity]
+                    <button.faq-q>
+                      <span.faq-icon>
+                        <svg viewBox=""> (inline SVG — copy from index.html)
+                        <svg viewBox=""> (inline SVG — copy from index.html)
+                      <div.faq-a> [itemprop=acceptedAnswer]
+                        <div> [itemprop=text]
+                          <p> [i18n=faq.a6]
+                              · "Absolutely, and we don't say that lightly. CogniFit is one of the most researched cognitive platf…"

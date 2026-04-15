@@ -1,0 +1,71 @@
+# Section: HOW_IT_WORKS
+# Source: index.html lines 1078-1095
+# ---
+
+<section.s-black#platform>
+  <div.wrap>
+    <div.tc> [style=margin-bottom:clamp(24px,5vw,44px)]
+      <span.eyebrow.eyebrow-dim.r> [i18n=plat.eyebrow]
+          · "Your Brain Longevity Plan"
+      <h2.r.d1> [i18n=plat.h2]
+          · "CogniFit: Your Brain Longevity Platform to Measure, Train & Track Your Cognitive Health"
+      <p.lead.r.d1> [i18n=plat.lead, style=max-width:min(560px,100%);margin:0 auto]
+          · "A personalized brain longevity system designed to measure, identify, and train exactly what matte…"
+    <div.steps-grid>
+      <div.step-card.r>
+        <div.step-n>
+            · "01"
+        <h3> [i18n=plat.s1.t]
+            · "Assess Your Brain"
+        <p> [i18n=plat.s1.d]
+            · "Scientifically validated cognitive assessment to establish your baseline."
+        <div.step-checks>
+          <div.step-chk> [i18n=plat.s1.c1]
+              · "Measure attention, memory & executive function"
+          <div.step-chk> [i18n=plat.s1.c2]
+              · "Get a clear cognitive baseline"
+      <div.step-card.r.d1>
+        <div.step-n>
+            · "02"
+        <h3> [i18n=plat.s2.t]
+            · "Get a Personalized Program"
+        <p> [i18n=plat.s2.d]
+            · "AI adapts training specifically to your unique brain profile."
+        <div.step-checks>
+          <div.step-chk> [i18n=plat.s2.c1]
+              · "Targets your weakest areas first"
+          <div.step-chk> [i18n=plat.s2.c2]
+              · "Adjusts difficulty continuously"
+          <div.step-chk> [i18n=plat.s2.c3]
+              · "Optimizes results over time"
+      <div.step-card.r.d2>
+        <div.step-n>
+            · "03"
+        <h3> [i18n=plat.s3.t]
+            · "Train What Matters"
+        <p> [i18n=plat.s3.d]
+            · "Short, engaging sessions designed for real-life impact."
+        <div.step-checks>
+          <div.step-chk> [i18n=plat.s3.c1]
+              · "Improve focus & attention"
+          <div.step-chk> [i18n=plat.s3.c2]
+              · "Strengthen working memory"
+          <div.step-chk> [i18n=plat.s3.c3]
+              · "Enhance decision-making"
+      <div.step-card.r.d3>
+        <div.step-n>
+            · "04"
+        <h3> [i18n=plat.s4.t]
+            · "Track Your Cognitive Age"
+        <p> [i18n=plat.s4.d]
+            · "Clear reports showing how your brain evolves over time."
+        <div.step-checks>
+          <div.step-chk> [i18n=plat.s4.c1]
+              · "Monitor progress visually"
+          <div.step-chk> [i18n=plat.s4.c2]
+              · "Stay motivated with milestones"
+          <div.step-chk> [i18n=plat.s4.c3]
+              · "Build lasting brain habits"
+    <div.tc.btn-center> [style=margin-top:clamp(28px,5vw,48px)]
+      <a.btn-primary.r> [i18n=plat.cta, href=https://www.cognifit.com/assessments]
+          · "Begin Now"

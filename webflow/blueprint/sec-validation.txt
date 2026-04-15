@@ -1,0 +1,43 @@
+# Section: VALIDATION
+# Source: index.html lines 1519-1562
+# ---
+
+<section.s-off.r> [style=border-top:1px solid #e5e5e5]
+  <div.wrap.tc>
+    <h2.r> [i18n=val.h2, style=color:#000;font-size:clamp(28px,4vw,48px);margin-bottom:10px]
+        · "Validation"
+    <p.r.d1> [i18n=val.sub, style=color:#555;font-size:clamp(14px,2vw,17px);margin-bottom:28px]
+        · "6438+ clinics and research institutions are currently running their studies with us."
+    <div.val-btns.r.d2>
+      <a.val-btn> [i18n=val.b1, href=https://www.cognifit.com/products-pipeline]
+          · "Products Pipeline"
+      <a.val-btn> [i18n=val.b2, href=https://www.cognifit.com/about-team#scientific-advisory-boar]
+          · "Scientific Advisory Board"
+    <div.val-marquee-wrap.r.d3>
+      <div.val-marquee-track>
+        <img.val-logo> [src=logos/harvard.svg, alt=Harvard Medical School, w=280, h=80]
+        <img.val-logo> [src=logos/stanford.svg, alt=Stanford University, w=280, h=80]
+        <img.val-logo> [src=logos/mit.svg, alt=Massachusetts Institute of Technology, w=280, h=80]
+        <img.val-logo> [src=logos/uwashington.svg, alt=University of Washington, w=280, h=80]
+        <img.val-logo> [src=logos/telaviv.svg, alt=Tel Aviv University, w=280, h=80]
+        <img.val-logo> [src=logos/johnshopkins.svg, alt=Johns Hopkins University, w=280, h=80]
+        <img.val-logo> [src=logos/yale.svg, alt=Yale University, w=280, h=80]
+        <img.val-logo> [src=logos/ucla.svg, alt=UCLA, w=280, h=80]
+        <img.val-logo> [src=logos/mayoclinic.svg, alt=Mayo Clinic, w=280, h=80]
+        <img.val-logo> [src=logos/nih.svg, alt=National Institutes of Health, w=280, h=80]
+        <img.val-logo> [src=logos/oxford.svg, alt=University of Oxford, w=280, h=80]
+        <img.val-logo> [src=logos/cambridge.svg, alt=University of Cambridge, w=280, h=80]
+        <img.val-logo> [src=logos/harvard.svg, alt=, w=280, h=80]
+        <img.val-logo> [src=logos/stanford.svg, alt=, w=280, h=80]
+        <img.val-logo> [src=logos/mit.svg, alt=, w=280, h=80]
+        <img.val-logo> [src=logos/uwashington.svg, alt=, w=280, h=80]
+        <img.val-logo> [src=logos/telaviv.svg, alt=, w=280, h=80]
+        <img.val-logo> [src=logos/johnshopkins.svg, alt=, w=280, h=80]
+        <img.val-logo> [src=logos/yale.svg, alt=, w=280, h=80]
+        <img.val-logo> [src=logos/ucla.svg, alt=, w=280, h=80]
+        <img.val-logo> [src=logos/mayoclinic.svg, alt=, w=280, h=80]
+        <img.val-logo> [src=logos/nih.svg, alt=, w=280, h=80]
+        <img.val-logo> [src=logos/oxford.svg, alt=, w=280, h=80]
+        <img.val-logo> [src=logos/cambridge.svg, alt=, w=280, h=80]
+    <p.r.d4> [i18n=val.more, style=margin-top:24px;color:#999;font-size:13px]
+        · "and thousands more worldwide"
