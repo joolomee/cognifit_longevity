@@ -5906,3 +5906,193 @@ body > .w-embed + *, body > section + section { margin-top: 0 !important; }
   .val-marquee,
   .partners-marquee { animation: none !important; }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   DIRECT-TARGETED SAFETY NETS v2 — correct class names from live
+═══════════════════════════════════════════════════════════════ */
+
+/* ── Skills: correct class is .sk-fill inside .sk-track ── */
+.sk-track {
+  background: rgba(0,0,0,.08) !important;
+  height: 6px !important;
+  border-radius: 3px !important;
+  overflow: hidden !important;
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  margin-top: 8px !important;
+}
+.sk-fill, .sk-fill.inline-div-0 {
+  background: linear-gradient(90deg, #34A853 0%, #4BD076 50%, #34A853 100%) !important;
+  height: 100% !important;
+  min-width: 4% !important;
+  border-radius: 3px !important;
+  display: block !important;
+  box-shadow: 0 0 10px rgba(52,168,83,.4) !important;
+  transition: width 1s cubic-bezier(.4,0,.2,1) !important;
+}
+/* First sk-row fallback — ensure visible fill even without inline style */
+.sk-row:nth-child(1) .sk-fill:not([style*="width"]),
+.sk-row:nth-child(2) .sk-fill[style=""],
+.skills-panel .sk-row:first-of-type .sk-fill {
+  width: 77% !important; /* Memória Contextual 620/800 ≈ 77% */
+}
+
+/* ── rc-hint: ULTRA-aggressive size lock (beats any inline style) ── */
+html body svg.rc-hint,
+html body .rc-card svg.rc-hint,
+html body .risk-card svg.rc-hint,
+html body .risk-card .rc-front svg,
+html body .risk-card .rc-front svg.rc-hint,
+html body .risk-card svg[class*="rc-hint"] {
+  width: 16px !important;
+  height: 16px !important;
+  max-width: 16px !important;
+  max-height: 16px !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  flex: 0 0 16px !important;
+  opacity: .45 !important;
+  position: absolute !important;
+  right: 14px !important;
+  bottom: 14px !important;
+  align-self: auto !important;
+}
+/* risk-card layout: title centered vertically, hint bottom-right */
+html body .risk-card {
+  position: relative !important;
+  min-height: 140px !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+html body .risk-card .rc-front {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+  position: relative !important;
+  padding-bottom: 30px !important;
+}
+html body .risk-card .rc-icon {
+  align-self: flex-start !important;
+  flex: 0 0 auto !important;
+}
+html body .risk-card .rc-icon svg {
+  width: 22px !important;
+  height: 22px !important;
+}
+html body .risk-card .rc-title {
+  flex: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  margin: 0 !important;
+}
+
+/* ── Hero right column: phone mockups placeholder (shows something instead of raw text) ── */
+.hero-phones {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 14px !important;
+  justify-content: center !important;
+  align-items: center !important;
+  position: relative !important;
+  z-index: 4 !important;
+}
+.hero-phones:empty::before,
+.hero-phones > *:not(img):not(.phone-mockup):only-child {
+  /* If hero-phones has no actual phone elements, add a visual block */
+}
+/* Style the raw text list that's showing in the hero — make it look like phone screens */
+.hero-phones > div,
+.hero-phones > ul,
+.hero-phones > .hero-list {
+  background: linear-gradient(180deg, rgba(26,115,232,.08), rgba(0,0,0,.6)) !important;
+  border: 1.5px solid rgba(26,115,232,.35) !important;
+  border-radius: 28px !important;
+  padding: 24px 18px !important;
+  min-width: 180px !important;
+  max-width: 220px !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,.45), inset 0 0 0 6px rgba(0,0,0,.8), inset 0 0 0 8px rgba(26,115,232,.2) !important;
+  color: #fff !important;
+  font-size: 13px !important;
+  line-height: 1.8 !important;
+  list-style: none !important;
+}
+.hero-phones h3, .hero-phones h4 {
+  color: var(--blue) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: .05em !important;
+  margin-bottom: 10px !important;
+}
+@media (max-width: 991px) { .hero-phones { display: none !important; } }
+
+/* ── Language selector: PT button should be clean, not blue square ── */
+.lang-btn, .nav-lang, .lang-select, [class*="lang-btn"] {
+  background: transparent !important;
+  border: 1.5px solid rgba(255,255,255,.15) !important;
+  color: #fff !important;
+  padding: 6px 12px !important;
+  border-radius: 8px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all .2s ease !important;
+  min-height: 34px !important;
+}
+.lang-btn:hover, .nav-lang:hover {
+  background: rgba(255,255,255,.08) !important;
+  border-color: rgba(255,255,255,.3) !important;
+}
+.lang-btn-icon, .lang-btn-chevron {
+  width: 14px !important;
+  height: 14px !important;
+  flex-shrink: 0 !important;
+  opacity: .7 !important;
+}
+/* Active language — subtle indicator, NOT a big blue square */
+.lang-btn.active, .lang-btn[aria-selected="true"], [class*="lang"][class*="active"] {
+  background: rgba(26,115,232,.15) !important;
+  border-color: rgba(26,115,232,.5) !important;
+  color: #fff !important;
+}
+
+/* ── "A peça que falta" right column — inject visual puzzle piece ── */
+.g2 > .r.d2:empty,
+.risk-visual-col:empty,
+.g2-right:empty {
+  min-height: 400px !important;
+  position: relative !important;
+}
+.g2 > .r.d2:empty::before,
+.risk-visual-col:empty::before {
+  content: '🧩' !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  font-size: clamp(80px, 15vw, 180px) !important;
+  opacity: .3 !important;
+  filter: drop-shadow(0 0 40px rgba(26,115,232,.4)) !important;
+  animation: puzzle-float 3s ease-in-out infinite !important;
+}
+@keyframes puzzle-float {
+  0%, 100% { transform: translate(-50%, -50%) rotate(-5deg); opacity: .3; }
+  50% { transform: translate(-50%, -55%) rotate(5deg); opacity: .5; }
+}
+
+/* ── .rc-hint SVG: force absolute position to bottom-right corner ── */
+.risk-card > .rc-front > svg:last-child,
+.risk-card svg.rc-hint {
+  position: absolute !important;
+  right: 14px !important;
+  bottom: 14px !important;
+  width: 16px !important;
+  height: 16px !important;
+  margin: 0 !important;
+}
