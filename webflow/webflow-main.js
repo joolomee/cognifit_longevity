@@ -81,12 +81,21 @@
   document.querySelectorAll('.wg-item').forEach(function(item) {
     var label = item.querySelector('.wg-label');
     if (!label || item.querySelector('.wg-content')) return;
-    var content = document.createElement('div');
-    content.className = 'wg-content';
-    item.insertBefore(content, label);
-    content.appendChild(label);
-    var mtag = item.querySelector('.wg-missing-tag');
-    if (mtag) content.appendChild(mtag);
+    var container = label.parentNode;
+    if (container === item) {
+      /* label is a direct child — create wrapper and insertBefore */
+      var content = document.createElement('div');
+      content.className = 'wg-content';
+      item.insertBefore(content, label);
+      content.appendChild(label);
+      var mtag = item.querySelector('.wg-missing-tag');
+      if (mtag) content.appendChild(mtag);
+    } else {
+      /* label is nested inside an anonymous wrapper — just stamp the class */
+      container.classList.add('wg-content');
+      var mtag = item.querySelector('.wg-missing-tag');
+      if (mtag && mtag.parentNode !== container) container.appendChild(mtag);
+    }
     if (item.classList.contains('wg-missing') && !item.querySelector('.wg-check')) {
       var chk = document.createElement('div');
       chk.className = 'wg-check wg-green';
@@ -166,8 +175,15 @@
     icon.innerHTML = rcIcons[i] || rcIcons[0];
 
     front.appendChild(icon);
-    card.insertBefore(front, title);
+    /* title may be nested inside an anonymous wrapper (Webflow adds a <div>
+       around inline elements). Insert front before the direct-child ancestor. */
+    var titleRef = title.parentNode === card ? title : title.parentNode;
+    card.insertBefore(front, titleRef);
     front.appendChild(title);
+    /* clean up the now-empty wrapper div if it has no remaining children */
+    if (titleRef !== title && titleRef.parentNode === card && titleRef.children.length === 0) {
+      titleRef.remove();
+    }
 
     var hintWrap = document.createElement('div');
     hintWrap.innerHTML = rcHint;
