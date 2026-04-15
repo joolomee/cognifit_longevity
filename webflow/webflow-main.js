@@ -13,6 +13,15 @@
       bridge[wf].split(' ').forEach(function(cls) { el.classList.add(cls); });
     });
   });
+  /* Position-based section class assignment (Webflow lacks hero/closing styles) */
+  var _secs = document.querySelectorAll('body > section, .page-wrapper > section, section');
+  var _allSecs = Array.prototype.slice.call(document.querySelectorAll('section'));
+  if (_allSecs.length > 0 && !_allSecs[0].classList.contains('hero')) {
+    _allSecs[0].classList.add('hero');
+  }
+  if (_allSecs.length > 0 && !_allSecs[_allSecs.length-1].classList.contains('closing')) {
+    _allSecs[_allSecs.length-1].classList.add('closing');
+  }
 
   /* ── Inject right-side visual column (orbiting pillars) ──
      Webflow only has the left text column inside risk-top.
