@@ -6096,3 +6096,398 @@ html body .risk-card .rc-title {
   height: 16px !important;
   margin: 0 !important;
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   SAFETY NETS v3 — Final pass from live-page audit (April 2026)
+   Covers: hero gradient, neural canvas, press logos, validation
+   dark bg, sector cards, testimonial layout, benefit pills,
+   footer visibility, lang PT button, risk-card hint sizing.
+═══════════════════════════════════════════════════════════════ */
+
+/* ── 1. HERO H1 gradient (white → soft blue) + span gradient ── */
+html body .hero .hero-h1,
+html body section.hero h1.hero-h1,
+html body .hero-h1 {
+  background: linear-gradient(180deg, #ffffff 0%, #bcd2ff 60%, #7fa6ff 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+  filter: drop-shadow(0 8px 32px rgba(26,115,232,.35)) !important;
+}
+/* If HERO has .gradient-blue class on last span, gradient it blue */
+html body .hero-h1 span.gradient-blue,
+html body .hero-h1 > span:last-child {
+  background: linear-gradient(135deg, #3b8bff 0%, #1A73E8 50%, #0b4db8 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+/* ── 2. Neural canvas + hero bg layers VISIBILITY ── */
+html body section.hero,
+html body .hero {
+  position: relative !important;
+  overflow: hidden !important;
+}
+html body #neural-canvas {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 2 !important;
+  pointer-events: auto !important;
+  display: block !important;
+  opacity: .85 !important;
+}
+html body .hero-color-grade {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+  background: radial-gradient(ellipse at 30% 40%, rgba(26,115,232,.25), transparent 60%),
+              radial-gradient(ellipse at 70% 70%, rgba(59,139,255,.2), transparent 70%),
+              linear-gradient(180deg, #000 0%, #07122b 50%, #000 100%) !important;
+  pointer-events: none !important;
+}
+html body .hero-text-shade {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 3 !important;
+  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,.25) 70%, rgba(0,0,0,.6) 100%) !important;
+  pointer-events: none !important;
+}
+html body .hero > .wrap,
+html body .hero .wrap,
+html body .hero > *:not(.hero-color-grade):not(#neural-canvas):not(.hero-text-shade):not(.hero-photo-bg) {
+  position: relative !important;
+  z-index: 4 !important;
+}
+
+/* ── 3. LANG button PT — kill the blue square, make it a clean pill ── */
+html body .lang-btn,
+html body button.lang-btn,
+html body [data-lang],
+html body .lang-switcher button,
+html body [class*="lang-btn"]:not(.lang-btn-chevron):not(.lang-btn-icon) {
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 1.5px solid rgba(255,255,255,.22) !important;
+  border-radius: 999px !important;
+  padding: 6px 14px !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  line-height: 1 !important;
+  min-height: 34px !important;
+  min-width: 48px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+}
+html body .lang-btn.active,
+html body .lang-btn[aria-selected="true"],
+html body .lang-btn[aria-current="true"] {
+  background-color: rgba(26,115,232,.18) !important;
+  border-color: rgba(26,115,232,.6) !important;
+  color: #fff !important;
+}
+html body .lang-btn:hover {
+  background-color: rgba(255,255,255,.08) !important;
+  border-color: rgba(255,255,255,.4) !important;
+}
+
+/* ── 4. PRESS LOGOS — white tint + proper size + no broken-img icon ── */
+html body .press-strip {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 14px !important;
+  padding: 16px 0 !important;
+}
+html body .press-logo-card {
+  background: rgba(255,255,255,.04) !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  border-radius: 10px !important;
+  padding: 10px 16px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 44px !important;
+  transition: all .2s ease !important;
+}
+html body .press-logo-card:hover {
+  background: rgba(255,255,255,.08) !important;
+  border-color: rgba(255,255,255,.2) !important;
+}
+html body .press-logo-card img,
+html body .press-logo-img,
+html body img.press-logo-img {
+  max-height: 26px !important;
+  height: auto !important;
+  width: auto !important;
+  max-width: 140px !important;
+  object-fit: contain !important;
+  filter: brightness(0) invert(1) opacity(.85) !important;
+  display: inline-block !important;
+}
+/* Hide broken alt-text fallback when image fails */
+html body .press-logo-img[src=""],
+html body .press-logo-img:not([src]) { display: none !important; }
+
+/* ── 5. VALIDATION section — force dark background + remove EN leak ── */
+html body .validation,
+html body section.validation,
+html body section[class*="validation"],
+html body .val-wrap,
+html body .validation-section {
+  background: #000 !important;
+  color: #fff !important;
+}
+html body .validation h2,
+html body .validation .val-h2,
+html body .validation .section-title,
+html body section.validation h2 {
+  color: #fff !important;
+}
+html body .validation p,
+html body .validation .val-sub,
+html body .validation .val-more {
+  color: rgba(255,255,255,.75) !important;
+}
+/* Hide any stray English label that escaped marquee alt text */
+html body .val-marquee-alt-text,
+html body [data-english-leak="true"] { display: none !important; }
+html body .validation .btn-outline,
+html body .validation a.btn {
+  background: transparent !important;
+  color: #fff !important;
+  border: 1.5px solid rgba(255,255,255,.3) !important;
+  border-radius: 999px !important;
+}
+
+/* ── 6. SECTORS CARDS — dark theme, no purple bleed ── */
+html body .sector-card,
+html body .who-card,
+html body [class*="sector-card"],
+html body .pro-card {
+  background: rgba(20,20,30,.85) !important;
+  background-image: linear-gradient(180deg, rgba(30,30,50,.9), rgba(10,10,20,.95)) !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  color: #fff !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+}
+html body .sector-card .sector-hero,
+html body .sector-card-hero,
+html body .pro-card-hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #0a0a1a 100%) !important;
+  height: 180px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+}
+html body .sector-card h3,
+html body .sector-card .sector-title,
+html body .pro-card h3 { color: #fff !important; text-align: center !important; }
+html body .sector-card p,
+html body .sector-card .sector-desc,
+html body .pro-card p { color: rgba(255,255,255,.72) !important; }
+html body .sector-card .btn-explore,
+html body .sector-card a.explore,
+html body .pro-card a.explore {
+  background: linear-gradient(135deg, #1A73E8, #3b8bff) !important;
+  color: #fff !important;
+  border-radius: 999px !important;
+  padding: 10px 20px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  border: none !important;
+}
+
+/* ── 7. TESTIMONIAL — no blue bleed, center properly ── */
+html body .testimonial-section,
+html body section.testimonial,
+html body [class*="testimonial"] {
+  background: #000 !important;
+  padding: clamp(48px, 8vw, 96px) 0 !important;
+}
+html body .testimonial-quote,
+html body .testi-quote,
+html body blockquote.testimonial {
+  font-size: clamp(24px, 4vw, 42px) !important;
+  line-height: 1.3 !important;
+  color: #fff !important;
+  text-align: center !important;
+  max-width: 900px !important;
+  margin: 0 auto !important;
+  padding: 0 24px !important;
+  background: transparent !important;
+}
+html body .testimonial-quote::before,
+html body .testi-quote::before { content: '"' !important; }
+html body .testimonial-cta {
+  display: flex !important;
+  justify-content: center !important;
+  margin-top: 32px !important;
+}
+
+/* ── 8. BENEFIT PILLS — correct small pill size, not giant tag ── */
+html body .benefit-pill,
+html body .benefit-tag,
+html body [class*="benefit-pill"],
+html body .pill-benefit {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  background: rgba(26,115,232,.08) !important;
+  color: #1A73E8 !important;
+  border: 1.5px solid rgba(26,115,232,.25) !important;
+  border-radius: 999px !important;
+  padding: 8px 16px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  margin: 4px !important;
+  max-width: fit-content !important;
+}
+@media (max-width: 640px) {
+  html body .benefit-pill,
+  html body [class*="benefit-pill"] {
+    font-size: 13px !important;
+    padding: 6px 12px !important;
+  }
+}
+
+/* ── 9. FOOTER — make CogniFit logo + text visible on dark ── */
+html body footer,
+html body .footer,
+html body .site-footer {
+  background: #0a0a0a !important;
+  color: #c4c4c4 !important;
+  padding-top: 48px !important;
+}
+html body .footer-logo,
+html body .footer img[alt*="CogniFit"],
+html body .footer img[alt*="cognifit"] {
+  filter: brightness(0) invert(1) opacity(.9) !important;
+  max-height: 32px !important;
+  width: auto !important;
+}
+html body .footer-col a,
+html body .footer a {
+  color: rgba(255,255,255,.55) !important;
+  text-decoration: none !important;
+  font-size: 13px !important;
+  line-height: 1.9 !important;
+}
+html body .footer-col a:hover {
+  color: #fff !important;
+}
+html body .footer-col-title,
+html body .footer-col h4 {
+  color: #fff !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  margin-bottom: 12px !important;
+}
+
+/* ── 10. HERO PHONES — if Webflow Designer renders as plain text
+        because .hero-phones has no phone-train/phone-stats children,
+        style children as phone-mockup visual placeholders ── */
+html body .hero-phones {
+  position: relative !important;
+  min-height: 420px !important;
+  display: flex !important;
+  gap: 16px !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+html body .hero-phones > div:not([class]),
+html body .hero-phones > div:empty,
+html body .hero-phones > .hero-phones-list {
+  flex: 1 1 0 !important;
+  max-width: 220px !important;
+  min-height: 420px !important;
+  background: linear-gradient(180deg, rgba(12,18,44,.9), rgba(0,0,0,.95)) !important;
+  border: 2px solid rgba(26,115,232,.35) !important;
+  border-radius: 36px !important;
+  padding: 24px 16px !important;
+  box-shadow: 0 40px 80px -20px rgba(0,0,0,.6),
+              inset 0 0 0 4px rgba(0,0,0,.9),
+              inset 0 0 0 6px rgba(26,115,232,.2),
+              0 0 60px rgba(26,115,232,.2) !important;
+  color: #fff !important;
+  font-size: 13px !important;
+  line-height: 1.8 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+}
+
+/* ── 11. HERO-BADGE if empty (no content came through from Webflow) ── */
+html body .hero-badge:empty::before,
+html body .hero-badge > [class*="Div"]:only-child:empty::before {
+  content: '🧠 ' attr(data-i18n-fallback) !important;
+  display: inline-block !important;
+}
+html body .hero-badge:empty {
+  content: '' !important;
+  min-height: 28px !important;
+  padding: 6px 16px !important;
+}
+/* If hero-badge has only a "Div Block" placeholder, give it visible content */
+html body .hero-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background: linear-gradient(135deg, rgba(26,115,232,.15), rgba(26,115,232,.08)) !important;
+  border: 1.5px solid rgba(26,115,232,.45) !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  letter-spacing: .08em !important;
+  text-transform: uppercase !important;
+  padding: 8px 16px !important;
+  border-radius: 999px !important;
+  margin-bottom: 20px !important;
+  box-shadow: 0 0 0 1px rgba(26,115,232,.2), 0 12px 32px -8px rgba(26,115,232,.5) !important;
+  min-height: 28px !important;
+}
+
+/* ── 12. ALL SKELETON DIVS — hide empty "Div Block" placeholders from Designer ── */
+html body .hero > div:not([class]):empty,
+html body .hero-badge > div:not([class]):empty,
+html body .hero-badge > div[class=""]:empty {
+  display: none !important;
+}
+
+/* ── 13. SK-FILL — explicit width for all 6 skill rows as fallback ── */
+html body .sk-row:nth-child(1) .sk-fill { width: 77% !important; } /* Memória Contextual 620/800 */
+html body .sk-row:nth-child(2) .sk-fill { width: 68% !important; }
+html body .sk-row:nth-child(3) .sk-fill { width: 82% !important; }
+html body .sk-row:nth-child(4) .sk-fill { width: 71% !important; }
+html body .sk-row:nth-child(5) .sk-fill { width: 64% !important; }
+html body .sk-row:nth-child(6) .sk-fill { width: 79% !important; }
+
+/* ── 14. RC-HINT — final kill of giant arrows (ultra specific) ── */
+html body .risk-card .rc-hint,
+html body .risk-card svg[class*="rc-hint"],
+html body .risk-card [class*="rc-front"] > svg,
+html body .rc-card svg,
+html body section [class*="risk"] [class*="card"] svg[class*="hint"] {
+  width: 16px !important;
+  height: 16px !important;
+  max-width: 16px !important;
+  max-height: 16px !important;
+  position: absolute !important;
+  right: 14px !important;
+  bottom: 14px !important;
+  opacity: .5 !important;
+}
