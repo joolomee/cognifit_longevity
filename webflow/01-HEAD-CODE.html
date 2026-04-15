@@ -1,416 +1,133 @@
-<!--
-  ============================================================
-  WEBFLOW CUSTOM CODE — HEAD SECTION
-  ============================================================
-  WHERE TO PASTE:
-    Webflow Designer → Pages panel → (gear icon next to page)
-    → "Custom Code" tab → "Head Code" field
+<!-- ═══════════════════════════════════════════════════════════════════════════
+   CogniFit Brain Longevity — COMPLETE "Inside <head> tag" CUSTOM CODE
 
-  DO NOT paste the <title> or canonical <link> here —
-  those are set in Webflow's Page Settings SEO fields.
-  DO NOT paste <html>, <head>, or <body> — Webflow adds those.
-  DO NOT paste <meta charset> or <meta name="viewport"> —
-  Webflow injects them automatically.
-  ============================================================
--->
+   Paste the ENTIRE contents of this file into:
+   Webflow → Page Settings (gear of /longevity) → Custom Code → Inside <head> tag
 
-<!-- ── SEO Meta Tags ─────────────────────────────────────── -->
-<meta name="description" content="Cognitive training for healthy aging, backed by 1,083+ clinical trials. Assess 20+ brain skills, prevent cognitive decline, and stay independent. Used by 6M+ people. 4.8★ rated. Free assessment.">
-<meta name="keywords" content="brain health, cognitive longevity, brain training, mental health, cognitive decline prevention, brain fitness, cognitive assessment, memory training, brain exercises, mental sharpness, cognitive aging, neuroscience, brain wellness">
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+   ⚠  DELETE everything that is already in that field BEFORE pasting.
+   ⚠  Leave the Project-level "Head Code" EMPTY (all is here, page-scoped).
+   ═══════════════════════════════════════════════════════════════════════════ -->
+
+<!-- ── KILL SWITCH: blocks any residual Vercel URL before browser fetches ── -->
+<script>
+(function(){var V='vercel.app';document.write=function(){};
+new MutationObserver(function(m){m.forEach(function(r){r.addedNodes.forEach(function(n){if((n.tagName==='SCRIPT'||n.tagName==='LINK')&&((n.src||n.href||'').indexOf(V)>-1){
+try{n.src='';n.href='';n.type='blocked';}catch(e){}
+n.parentNode&&n.parentNode.removeChild(n);}});});}).observe(document.documentElement,{childList:true,subtree:true});
+document.querySelectorAll('link[href*="'+V+'"],script[src*="'+V+'"]').forEach(function(e){try{e.src='';e.href='';}catch(r){}e.parentNode&&e.parentNode.removeChild(e);});})();
+</script>
+
+<!-- ── Viewport + charset ── -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- ── SEO ── -->
+<meta name="description" content="Sistema científico de Longevidade Cerebral CogniFit. Avaliações cognitivas validadas, treino personalizado com IA, e métricas de progresso. +6M utilizadores.">
+<meta name="keywords" content="longevidade cerebral, treino cognitivo, avaliação cognitiva, memória, função executiva, atenção, CogniFit, saúde mental, prevenção demência, neuroplasticidade, brain training">
 <meta name="author" content="CogniFit">
-<meta name="google-site-verification" content="r3SvSjiFHNxKMgdXo3bLDFuMMCbEPSaYoP1n_SAcius">
-<meta name="theme-color" content="#000000">
-<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="publisher" content="CogniFit">
+<meta name="copyright" content="CogniFit 1999-2026">
+<meta name="rating" content="general">
+<meta name="language" content="Portuguese">
+<meta name="distribution" content="global">
+<meta name="revisit-after" content="7 days">
 
-<!-- ── Bing Webmaster Verification ───────────────────────── -->
-<meta name="msvalidate.01" content="">
+<!-- ── Robots + AI crawlers ── -->
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="googlebot" content="index, follow">
+<meta name="bingbot" content="index, follow">
+<meta name="GPTBot" content="index">
+<meta name="ClaudeBot" content="index">
+<meta name="PerplexityBot" content="index">
+<meta name="Google-Extended" content="index">
+<meta name="CCBot" content="index">
 
-<!-- ── Favicon & Touch Icons ─────────────────────────────── -->
-<link rel="icon" type="image/svg+xml" href="https://brain.cognifit.com/longevity/cognifit-logo.svg">
-<link rel="apple-touch-icon" sizes="180x180" href="https://brain.cognifit.com/longevity/cognifit_logo_blue.png">
+<!-- ── Canonical + hreflang ── -->
+<link rel="canonical" href="https://cognifit-df2ae7.webflow.io/longevity">
+<link rel="alternate" hreflang="pt" href="https://cognifit-df2ae7.webflow.io/longevity">
+<link rel="alternate" hreflang="pt-PT" href="https://cognifit-df2ae7.webflow.io/longevity">
+<link rel="alternate" hreflang="en" href="https://cognifit-df2ae7.webflow.io/longevity?lang=en">
+<link rel="alternate" hreflang="es" href="https://cognifit-df2ae7.webflow.io/longevity?lang=es">
+<link rel="alternate" hreflang="fr" href="https://cognifit-df2ae7.webflow.io/longevity?lang=fr">
+<link rel="alternate" hreflang="de" href="https://cognifit-df2ae7.webflow.io/longevity?lang=de">
+<link rel="alternate" hreflang="it" href="https://cognifit-df2ae7.webflow.io/longevity?lang=it">
+<link rel="alternate" hreflang="x-default" href="https://cognifit-df2ae7.webflow.io/longevity">
 
-<!-- ── Open Graph / Facebook ─────────────────────────────── -->
+<!-- ── GEO ── -->
+<meta name="geo.region" content="PT">
+<meta name="geo.placename" content="Portugal">
+<meta name="geo.position" content="39.3999;-8.2245">
+<meta name="ICBM" content="39.3999, -8.2245">
+<meta name="DC.language" content="pt">
+<meta name="DC.publisher" content="CogniFit">
+
+<!-- ── Open Graph ── -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://brain.cognifit.com/longevity">
-<meta property="og:title" content="Cognitive Longevity & Brain Health Training | CogniFit">
-<meta property="og:description" content="Cognitive training for healthy aging, backed by 1,083+ clinical trials. Assess 20+ brain skills, prevent cognitive decline. Used by 6M+ people. 4.8★.">
-<meta property="og:image" content="https://brain.cognifit.com/longevity/og-image.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="CogniFit Brain Longevity System - Cognitive training backed by 1,083+ clinical trials">
-<meta property="og:site_name" content="CogniFit">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="pt_PT">
+<meta property="og:locale:alternate" content="en_US">
 <meta property="og:locale:alternate" content="es_ES">
 <meta property="og:locale:alternate" content="fr_FR">
 <meta property="og:locale:alternate" content="de_DE">
 <meta property="og:locale:alternate" content="it_IT">
-<meta property="og:locale:alternate" content="pt_PT">
-<meta property="og:locale:alternate" content="ja_JP">
-<meta property="og:locale:alternate" content="ko_KR">
-<meta property="og:locale:alternate" content="zh_CN">
-<meta property="og:locale:alternate" content="ar_SA">
-<meta property="og:locale:alternate" content="ru_RU">
-<meta property="og:locale:alternate" content="nl_NL">
-<meta property="og:locale:alternate" content="pl_PL">
-<meta property="og:locale:alternate" content="tr_TR">
-<meta property="og:locale:alternate" content="el_GR">
-<meta property="article:published_time" content="2025-01-01T00:00:00+00:00">
-<meta property="article:modified_time" content="2026-04-14T00:00:00+00:00">
+<meta property="og:site_name" content="CogniFit">
+<meta property="og:url" content="https://cognifit-df2ae7.webflow.io/longevity">
+<meta property="og:title" content="CogniFit — Viva Mais. Pense Melhor. Mantenha a Sua Independência">
+<meta property="og:description" content="Sistema científico de Longevidade Cerebral. Avaliações cognitivas validadas, treino personalizado com IA. +6M utilizadores.">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="CogniFit Brain Longevity">
 
-<!-- ── Twitter Card ──────────────────────────────────────── -->
+<!-- ── Twitter ── -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Cognitive Longevity & Brain Health Training | CogniFit">
-<meta name="twitter:description" content="Cognitive training for healthy aging, backed by 1,083+ clinical trials. Assess 20+ brain skills, prevent cognitive decline. Used by 6M+ people. 4.8★.">
-<meta name="twitter:image" content="https://brain.cognifit.com/longevity/og-image.jpg">
-<meta name="twitter:image:alt" content="CogniFit Brain Longevity System - Cognitive training backed by 1,083+ clinical trials">
-<meta name="twitter:site" content="@CogniFit">
-<meta name="twitter:creator" content="@CogniFit">
+<meta name="twitter:site" content="@cognifit">
+<meta name="twitter:creator" content="@cognifit">
+<meta name="twitter:url" content="https://cognifit-df2ae7.webflow.io/longevity">
+<meta name="twitter:title" content="CogniFit — Brain Longevity">
+<meta name="twitter:description" content="Sistema científico de Longevidade Cerebral. +6M utilizadores.">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/og-image.png">
 
-<!-- ── Hreflang — 22 languages ───────────────────────────── -->
-<link rel="alternate" hreflang="en" href="https://brain.cognifit.com/longevity">
-<link rel="alternate" hreflang="es" href="https://brain.cognifit.com/longevity?lang=es">
-<link rel="alternate" hreflang="fr" href="https://brain.cognifit.com/longevity?lang=fr">
-<link rel="alternate" hreflang="de" href="https://brain.cognifit.com/longevity?lang=de">
-<link rel="alternate" hreflang="it" href="https://brain.cognifit.com/longevity?lang=it">
-<link rel="alternate" hreflang="pt" href="https://brain.cognifit.com/longevity?lang=pt">
-<link rel="alternate" hreflang="nl" href="https://brain.cognifit.com/longevity?lang=nl">
-<link rel="alternate" hreflang="pl" href="https://brain.cognifit.com/longevity?lang=pl">
-<link rel="alternate" hreflang="ru" href="https://brain.cognifit.com/longevity?lang=ru">
-<link rel="alternate" hreflang="ar" href="https://brain.cognifit.com/longevity?lang=ar">
-<link rel="alternate" hreflang="he" href="https://brain.cognifit.com/longevity?lang=he">
-<link rel="alternate" hreflang="zh-CN" href="https://brain.cognifit.com/longevity?lang=zh">
-<link rel="alternate" hreflang="zh-HK" href="https://brain.cognifit.com/longevity?lang=zh-HK">
-<link rel="alternate" hreflang="ja" href="https://brain.cognifit.com/longevity?lang=ja">
-<link rel="alternate" hreflang="ko" href="https://brain.cognifit.com/longevity?lang=ko">
-<link rel="alternate" hreflang="tr" href="https://brain.cognifit.com/longevity?lang=tr">
-<link rel="alternate" hreflang="id" href="https://brain.cognifit.com/longevity?lang=id">
-<link rel="alternate" hreflang="bn" href="https://brain.cognifit.com/longevity?lang=bn">
-<link rel="alternate" hreflang="mn" href="https://brain.cognifit.com/longevity?lang=mn">
-<link rel="alternate" hreflang="ur" href="https://brain.cognifit.com/longevity?lang=ur">
-<link rel="alternate" hreflang="sr" href="https://brain.cognifit.com/longevity?lang=sr">
-<link rel="alternate" hreflang="el" href="https://brain.cognifit.com/longevity?lang=el">
-<link rel="alternate" hreflang="x-default" href="https://brain.cognifit.com/longevity">
+<!-- ── Mobile / PWA / Apple ── -->
+<meta name="theme-color" content="#1A73E8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="CogniFit">
+<meta name="format-detection" content="telephone=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="CogniFit">
+<meta name="msapplication-TileColor" content="#1A73E8">
 
-<!-- ── Google Fonts ───────────────────────────────────────── -->
+<!-- ── Performance ── -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+<!-- ── Google Fonts ── -->
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" as="style">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-<!-- ── CogniFit Master Stylesheet (from Vercel) ──────────── -->
-<!-- Loads the full production CSS to ensure visual parity.
-     Any Webflow-specific differences are overridden below. -->
-<!-- Critical inline CSS — renders correct backgrounds/colors even if
-     the external stylesheet fails to load (crawlers, slow connections).
-     This block is intentionally duplicated from the master CSS. -->
-<style>
-/* ── Critical: Variables + base ── */
-:root{--blue:#1A73E8;--blue-d:#1256B8;--blue-l:#E8F0FE;--green:#34A853;--yellow:#FBBC04;--g1:#111;--g2:#1e1e1e;--g3:#c4c4c4;--g4:#b0b0b0;--max:1060px}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;overflow-x:hidden}
-body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#000;color:#fff;overflow-x:hidden;-webkit-font-smoothing:antialiased;padding:0;font-size:18px;line-height:1.6}
-
-/* ── Critical: Section backgrounds — ensures crawlers see correct colors ── */
-.s-black{background:#000;padding:clamp(40px,8vw,96px) 0}
-.s-dark{background:#080808;padding:clamp(40px,8vw,96px) 0}
-.s-white{background:#fff;padding:clamp(40px,8vw,96px) 0;color:#000}
-.s-off{background:#f4f4f4;padding:clamp(40px,8vw,96px) 0;color:#000}
-.hero,.hero-section{position:relative;min-height:100svh;max-height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding-top:64px;background:#000}
-.closing,.closing-section{background:#000;padding:clamp(60px,10vw,110px) 24px;text-align:center;border-top:1px solid #111;position:relative;overflow:hidden}
-nav,.nav-bar{background:rgba(0,0,0,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
-
-/* ── Critical: Typography colors per section ── */
-.s-white h2,.s-off h2{color:#000}
-.s-dark h2,.s-black h2,.hero h1,.closing-quote{color:#fff}
-.s-white .lead,.s-off .lead,.s-white .lead-drk,.s-off .lead-drk{color:#252525}
-.s-dark .lead,.s-black .lead,.closing-sub{color:rgba(255,255,255,.78)}
-
-/* ── Critical: Card backgrounds ── */
-.risk-card{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.025));border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:clamp(18px,2.8vw,26px);color:#fff}
-.sci-card{background:#fff;border:1.5px solid #e8e8e8;border-radius:18px;color:#000}
-.who-card{background:#fff;border:1.5px solid #e8e8e8;border-radius:18px;color:#000}
-.step-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:18px;color:#fff}
-.pro-card{background:#111;border:1px solid rgba(255,255,255,.06);border-radius:22px;color:#fff}
-
-/* ── Webflow structure overrides ── */
-.hero-content{grid-template-columns:1fr !important;position:relative;z-index:4;max-width:var(--max);margin:0 auto}
-.hero-section,.closing-section{position:relative;overflow:hidden}
-.hero-inner{max-width:600px}
-
-/* ── Critical: Reviews ── */
-.reviews-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,2vw,14px);max-width:700px;margin:44px auto 0}
-.rev-card{background:#fff;border-radius:16px;padding:clamp(18px,3vw,22px)}
-.rev-date{font-size:11px;color:#999;margin-bottom:6px}
-.rev-stars{color:var(--yellow);font-size:16px;margin-bottom:4px}
-.rev-rec{font-size:11px;color:var(--green);font-weight:700;margin-bottom:8px}
-.rev-title{font-size:15px;font-weight:900;color:#000;margin-bottom:6px}
-.rev-body{font-size:13px;color:#555;line-height:1.6}
-.rev-author{font-size:11px;font-weight:700;color:#444;margin-top:14px}
-
-/* ── Critical: Footer ── */
-footer{background:#000;padding:clamp(40px,6vw,60px) clamp(16px,4vw,40px) clamp(16px,3vw,22px);border-top:1px solid #111}
-.footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,40px);max-width:1200px;margin:0 auto clamp(28px,4vw,44px)}
-.footer-col{display:flex;flex-direction:column;gap:8px}
-.footer-col-title{color:#fff;font-size:clamp(14px,1.5vw,16px);font-weight:800;margin:0 0 8px;letter-spacing:.02em}
-.footer-col a{color:#999;font-size:clamp(11px,1.3vw,13px);text-decoration:none;transition:color .18s;line-height:1.5}
-.footer-col a:hover{color:#fff}
-.footer-disclaimer{max-width:1200px;margin:0 auto;padding:clamp(16px,3vw,24px) 0;border-top:1px solid rgba(255,255,255,.08);font-size:12px;line-height:1.7;color:rgba(255,255,255,0.6)}
-.footer-disclaimer p{margin:0}
-.footer-bottom{max-width:1200px;margin:0 auto;padding:clamp(14px,2vw,20px) 0 0;border-top:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
-.footer-bottom-links{display:flex;gap:clamp(12px,2vw,20px);flex-wrap:wrap}
-.footer-bottom-links a{color:#999;font-size:clamp(11px,1.3vw,12px);text-decoration:none;transition:color .18s}
-.footer-bottom-links a:hover{color:#fff}
-.footer-copy{color:#888;font-size:clamp(10px,1.3vw,12px)}
-
-/* ── Critical: Validation marquee ── */
-.val-marquee-wrap{width:100%;max-width:100%;overflow:hidden}
-.val-marquee{display:flex;width:max-content;animation:val-scroll 60s linear infinite;will-change:transform}
-.val-marquee:hover{animation-play-state:paused}
-.val-marquee-img{height:140px;width:auto;min-width:1800px;object-fit:contain;flex-shrink:0;display:block;filter:grayscale(.15);transition:filter .3s ease}
-@keyframes val-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-
-/* ── Critical: Store badges ── */
-.store-badges{display:flex!important;justify-content:center!important;align-items:center!important;gap:14px!important;flex-wrap:wrap!important;margin:clamp(24px,4vw,40px) auto 0!important}
-.store-btn{display:inline-flex!important;align-items:center!important;gap:10px!important;background:#000!important;color:#fff!important;border:1px solid rgba(255,255,255,.15)!important;border-radius:12px!important;padding:10px 20px!important;min-width:180px!important;min-height:56px!important;text-decoration:none!important;font-family:'Plus Jakarta Sans',sans-serif!important;transition:transform .2s ease,box-shadow .2s ease!important;box-shadow:0 4px 18px rgba(0,0,0,.35)!important}
-.store-btn .store-icon{width:28px;height:28px;flex-shrink:0}
-.store-btn .store-txt{display:flex;flex-direction:column;align-items:flex-start;line-height:1.1}
-.store-btn .store-line1{font-size:10px!important;font-weight:500!important;opacity:.85}
-.store-btn .store-line2{font-size:17px!important;font-weight:700!important;margin-top:2px}
-
-/* ── Critical: Device section ── */
-.devices-section{background:#f8f9fa;padding:clamp(48px,8vw,96px) 0;color:#000;overflow:hidden}
-.devices-container{max-width:var(--max);margin:0 auto;padding:0 24px;display:flex;flex-direction:column;align-items:center;gap:clamp(16px,3vw,28px)}
-.devices-heading{font-size:clamp(24px,5vw,44px);font-weight:900;text-align:center;margin:0;line-height:1.15;letter-spacing:-.03em;color:#111}
-.devices-sub{font-size:clamp(14px,2vw,17px);color:#555;text-align:center;max-width:420px;margin:0 auto}
-.devices-img{max-width:min(900px,85%);height:auto;display:block;margin:0 auto}
-
-/* ── Critical: Sticky CTA ── */
-.sticky-cta{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:999;transition:opacity .3s ease}
-.sticky-cta-btn{display:flex;align-items:center;gap:8px;background:var(--blue);color:#fff;padding:12px 24px;border-radius:100px;font-weight:700;font-size:15px;text-decoration:none;box-shadow:0 4px 20px rgba(26,115,232,.4);transition:all .2s ease}
-.sticky-cta-btn:hover{background:var(--blue-d);transform:scale(1.03)}
-.sticky-cta-btn svg{width:18px;height:18px}
-
-/* ── Webflow scroll fix — prevent native scroll blocking ── */
-html,body{overflow-y:auto !important;height:auto !important}
-#neural-canvas{pointer-events:none}
-
-/* ── Responsive: footer + reviews ── */
-@media(max-width:900px){.footer-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:768px){.reviews-grid{grid-template-columns:1fr}}
-@media(max-width:480px){.footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;align-items:center;text-align:center}.footer-bottom-links{justify-content:center}}
-</style>
-
-<!-- Full production stylesheet (non-critical, loaded async for performance) -->
+<!-- ── Master CSS from jsDelivr ── -->
 <link rel="stylesheet" id="cogni-css" href="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/webflow/02-STYLES.css">
 
-<!-- ── Early Reveal Script (js-ready class + fade-in) ────── -->
-<!-- Marks the <html> element as JS-capable immediately and
-     triggers the .r → .on reveal animation as soon as the
-     DOM is parsed. Content is visible by default via CSS, so
-     if this script ever fails the page still shows instantly. -->
-<script>
-  document.documentElement.classList.add('js-ready');
-  function _cogniFitReveal() {
-    var els = document.querySelectorAll('.r');
-    for (var i = 0; i < els.length; i++) els[i].classList.add('on');
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', _cogniFitReveal);
-  } else {
-    _cogniFitReveal();
-  }
-  // Safety net: force visible after 1 s even if DOMContentLoaded is delayed
-  setTimeout(_cogniFitReveal, 1000);
-</script>
+<!-- ── Critical inline CSS ── -->
+<style>
+:root{--blue:#1A73E8;--blue-d:#1256B8;--blue-l:#E8F0FE;--green:#34A853;--yellow:#FBBC04;--g1:#111;--g2:#1e1e1e;--g3:#c4c4c4;--g4:#b0b0b0;--max:1060px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden;margin:0;padding:0;-webkit-text-size-adjust:100%}
+body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#000;color:#fff;overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-size:18px;line-height:1.6;margin:0;padding:0}
+img{max-width:100%;display:block}
+.s-black{background:#000}.s-dark{background:#080808}.s-white{background:#fff;color:#000}.s-off{background:#f4f4f4;color:#000}
+.hero,.hero-section{position:relative;min-height:100svh;max-height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding-top:64px;background:#000}
+.closing,.closing-section{background:#000;padding:clamp(60px,10vw,110px) 24px;text-align:center;border-top:1px solid #111;position:relative;overflow:hidden}
+nav{background:rgba(0,0,0,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);position:fixed;top:0;left:0;right:0;width:100%;z-index:900}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+html,body{overflow-y:auto!important;height:auto!important}
+.r{opacity:1;transform:none}
+</style>
 
-<!-- ── Schema.org JSON-LD ─────────────────────────────────── -->
+<!-- ── JSON-LD: Organization + WebPage + WebApplication + FAQPage ── -->
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://www.cognifit.com/#organization",
-      "name": "CogniFit",
-      "url": "https://www.cognifit.com",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.cognifit.com/img/logo/cognifit-logo.svg",
-        "width": 280,
-        "height": 60
-      },
-      "sameAs": [
-        "https://www.facebook.com/CogniFit",
-        "https://twitter.com/CogniFit",
-        "https://www.linkedin.com/company/cognifit",
-        "https://www.youtube.com/user/CogniFit",
-        "https://www.instagram.com/cognifit"
-      ],
-      "description": "CogniFit is a global leader in digital cognitive assessments and brain training programs, backed by scientific research and used by millions worldwide.",
-      "foundingDate": "1999",
-      "knowsAbout": ["Cognitive Assessment","Brain Training","Neuropsychology","Cognitive Rehabilitation","Digital Therapeutics"]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://www.cognifit.com/#website",
-      "url": "https://www.cognifit.com",
-      "name": "CogniFit",
-      "publisher": { "@id": "https://www.cognifit.com/#organization" },
-      "inLanguage": "en"
-    },
-    {
-      "@type": ["WebPage", "MedicalWebPage"],
-      "@id": "https://brain.cognifit.com/longevity/#webpage",
-      "url": "https://brain.cognifit.com/longevity",
-      "name": "Cognitive Longevity & Brain Health Training | CogniFit",
-      "description": "Cognitive training for healthy aging, backed by 1,083+ clinical trials. Assess 20+ brain skills, prevent cognitive decline, and stay independent. Used by 6M+ people.",
-      "isPartOf": { "@id": "https://www.cognifit.com/#website" },
-      "about": { "@id": "https://www.cognifit.com/#organization" },
-      "primaryImageOfPage": { "@type": "ImageObject", "url": "https://brain.cognifit.com/longevity/og-image.jpg" },
-      "datePublished": "2025-01-01",
-      "dateModified": "2026-04-14",
-      "lastReviewed": "2026-04-14",
-      "medicalAudience": { "@type": "MedicalAudience", "audienceType": "Patient" },
-      "specialty": { "@type": "MedicalSpecialty", "name": "Neuropsychology" },
-      "inLanguage": "en",
-      "breadcrumb": { "@id": "https://brain.cognifit.com/longevity/#breadcrumb" },
-      "speakable": {
-        "@type": "SpeakableSpecification",
-        "cssSelector": [".hero-h1", ".hero-sub", ".faq-q-text", ".faq-a p", ".sci-why", ".closing-quote"]
-      }
-    },
-    {
-      "@type": "WebApplication",
-      "@id": "https://www.cognifit.com/#webapp",
-      "name": "CogniFit Brain Training",
-      "url": "https://www.cognifit.com",
-      "applicationCategory": "HealthApplication",
-      "browserRequirements": "Requires JavaScript. Requires HTML5.",
-      "operatingSystem": "All",
-      "author": { "@id": "https://www.cognifit.com/#organization" },
-      "description": "Scientifically validated cognitive assessment and brain training platform that measures 20+ cognitive skills and provides personalized training programs for cognitive longevity.",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "Free cognitive assessment with premium training plans available", "availability": "https://schema.org/InStock" },
-      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "6249358", "bestRating": "5", "worstRating": "1" },
-      "featureList": ["20+ Cognitive Skill Assessments","Personalized Brain Training Programs","Cognitive Age Calculation","Progress Tracking & Analytics","Cross-device Sync (Web, iOS, Android)","Scientifically Validated Methodology","Executive Function Training","Working Memory Training","Attention Training"],
-      "screenshot": "https://brain.cognifit.com/longevity/og-image.jpg"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://www.cognifit.com/#ios-app",
-      "name": "CogniFit - Brain Training",
-      "operatingSystem": "iOS",
-      "applicationCategory": "HealthAndFitnessApplication",
-      "url": "https://apps.apple.com/app/cognifit-brain-training/id544218985",
-      "author": { "@id": "https://www.cognifit.com/#organization" },
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
-      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "52400", "bestRating": "5", "worstRating": "1" }
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://www.cognifit.com/#android-app",
-      "name": "CogniFit - Brain Training",
-      "operatingSystem": "Android",
-      "applicationCategory": "HealthAndFitnessApplication",
-      "url": "https://play.google.com/store/apps/details?id=com.cognifit.app",
-      "author": { "@id": "https://www.cognifit.com/#organization" },
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
-      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "38200", "bestRating": "5", "worstRating": "1" }
-    },
-    {
-      "@type": "Product",
-      "@id": "https://www.cognifit.com/#product",
-      "name": "CogniFit Cognitive Longevity System",
-      "description": "A personalized cognitive system designed to measure, identify, and train exactly what matters for your independence. Includes cognitive assessments, personalized brain training programs, and progress tracking.",
-      "brand": { "@id": "https://www.cognifit.com/#organization" },
-      "image": "https://brain.cognifit.com/longevity/og-image.jpg",
-      "url": "https://brain.cognifit.com/longevity",
-      "category": "Brain Health & Cognitive Training",
-      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "reviewCount": "2", "bestRating": "5", "worstRating": "1" },
-      "review": [
-        { "@type": "Review", "author": { "@type": "Person", "name": "Michael R." }, "datePublished": "2026-03-16", "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }, "name": "Life-changing at 58", "reviewBody": "Real improvements in focus and memory within weeks. The personalized training adapts to exactly where I need it most." },
-        { "@type": "Review", "author": { "@type": "Person", "name": "Ana S." }, "datePublished": "2026-03-13", "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }, "name": "Wow!", "reviewBody": "First time with this type of cognitive evaluation. Eye-opening assessment and the training feels genuinely tailored." }
-      ],
-      "offers": {
-        "@type": "AggregateOffer",
-        "url": "https://www.cognifit.com/assessments",
-        "priceCurrency": "USD",
-        "lowPrice": "0",
-        "highPrice": "49.99",
-        "offerCount": 3,
-        "availability": "https://schema.org/InStock",
-        "priceValidUntil": "2027-12-31",
-        "offers": [
-          { "@type": "Offer", "name": "Free Cognitive Assessment", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://www.cognifit.com/assessments" },
-          { "@type": "Offer", "name": "Premium Monthly", "price": "19.99", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://www.cognifit.com/assessments" },
-          { "@type": "Offer", "name": "Premium Annual", "price": "49.99", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://www.cognifit.com/assessments" }
-        ]
-      }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://brain.cognifit.com/longevity/#breadcrumb",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "CogniFit", "item": "https://www.cognifit.com" },
-        { "@type": "ListItem", "position": 2, "name": "Brain Health", "item": "https://brain.cognifit.com" },
-        { "@type": "ListItem", "position": 3, "name": "Cognitive Longevity" }
-      ]
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://brain.cognifit.com/longevity/#faq",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What is cognitive longevity, and why should I care?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Cognitive longevity means keeping your memory, focus, reasoning, and decision-making sharp for as long as possible. Unlike a sore knee, cognitive decline sneaks up on you. Most people don't notice until it's already affecting their daily life. Research shows you can actively build neural reserves through targeted training. CogniFit is designed to do exactly that, and over 6 million people are already using it."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Does brain training actually work, or is it just hype?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, when it's done right. The landmark ACTIVE study, published in the Journal of the American Geriatrics Society, tracked thousands of older adults and found that cognitive training benefits lasted up to 10 years. CogniFit's programs have been used in over 1,083 clinical trials because they challenge the specific areas where your brain needs it most."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Which mental abilities start fading first?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Processing speed starts slowing down in your late 20s. In your 40s and 50s, working memory and executive function begin to dip. By your 60s, recalling specific events gets harder. However, vocabulary, wisdom, and accumulated knowledge often keep getting better with age. CogniFit measures all 20+ of these skills individually."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What makes CogniFit different from other brain training apps?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "CogniFit was built by neuroscientists in 1999, used in 1,083+ clinical trials, trusted by 3,530+ healthcare professionals, and adopted by 6,438+ research institutions. It uses patented ITS technology that adapts in real-time to your performance. You get a real Cognitive Age score, not just a game score."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How quickly will I actually notice a difference?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Most people start feeling sharper within 2-4 weeks, with more focused conversations, faster recall, and clearer thinking. Just 15-20 minutes, 3-4 times a week. Clinical studies show measurable improvements after about 8 weeks, and the ACTIVE trial found benefits can last 5-10 years."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Is there real science behind CogniFit?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "CogniFit is one of the most researched cognitive platforms in the world, with over 1,083 clinical trials at institutions like Harvard Medical School, University of Washington, and Tel Aviv University. Assessments have been validated against gold-standard neuropsychological tests. Over 3,530 healthcare professionals use CogniFit for clinical assessment and cognitive rehabilitation."
-          }
-        }
-      ]
-    }
-  ]
-}
+{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://www.cognifit.com/#organization","name":"CogniFit","url":"https://www.cognifit.com","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/logo.png"},"foundingDate":"1999","description":"Líder mundial em avaliações cognitivas digitais e treino cerebral personalizado baseado em IA.","sameAs":["https://www.facebook.com/CogniFit","https://twitter.com/CogniFit","https://www.linkedin.com/company/cognifit","https://www.youtube.com/user/CogniFit","https://www.instagram.com/cognifit"],"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"6249358","bestRating":"5"}},{"@type":["WebPage","MedicalWebPage"],"url":"https://cognifit-df2ae7.webflow.io/longevity","name":"CogniFit — Viva Mais. Pense Melhor. Mantenha a Sua Independência","inLanguage":"pt-PT","description":"Sistema científico de Longevidade Cerebral com treino cognitivo personalizado, validado em +1083 estudos clínicos.","datePublished":"2025-01-01","dateModified":"2026-04-15","specialty":{"@type":"MedicalSpecialty","name":"Neuropsychology"},"audience":{"@type":"PeopleAudience","suggestedMinAge":35},"about":{"@type":"MedicalCondition","name":"Declínio Cognitivo"},"lastReviewed":"2026-04-15","reviewedBy":{"@type":"Organization","name":"CogniFit Scientific Advisory Board"}},{"@type":"WebApplication","name":"CogniFit Brain Training","applicationCategory":"HealthApplication","operatingSystem":"Web, iOS, Android","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"6249358","bestRating":"5"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"O que é longevidade cerebral?","acceptedAnswer":{"@type":"Answer","text":"Longevidade cerebral significa manter a memória, o foco, o raciocínio e a tomada de decisões afiados o máximo de tempo possível à medida que envelhece."}},{"@type":"Question","name":"O treino cerebral funciona mesmo?","acceptedAnswer":{"@type":"Answer","text":"Sim. O estudo ACTIVE demonstrou que os benefícios duram até 10 anos. O CogniFit foi utilizado em +1.083 estudos clínicos."}},{"@type":"Question","name":"O que torna o CogniFit diferente?","acceptedAnswer":{"@type":"Answer","text":"Criado por neurocientistas em 1999, utilizado em 1.083+ estudos clínicos, e confiado por 3.530+ profissionais. Tecnologia adaptativa patenteada."}},{"@type":"Question","name":"Em quanto tempo noto a diferença?","acceptedAnswer":{"@type":"Answer","text":"A maioria sente-se mais afiada em 2-4 semanas. Estudos mostram melhorias mensuráveis às 8 semanas."}}]}]}
 </script>
