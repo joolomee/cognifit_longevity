@@ -82,7 +82,6 @@ img{max-width:100%;display:block}
       padding-right: 24px !important;
     }
   }
-}
 
 /* Regras para os links Explore da secção PRO */
 a.pro-cta {
@@ -656,6 +655,7 @@ h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
 }
 .rc-front{display:flex;flex-direction:column;gap:14px;transition:opacity .2s}
 .rc-icon{flex-shrink:0;line-height:1;transform:scale(1.08);transform-origin:left center}
+.rc-hint{width:16px;height:16px;opacity:.45;flex-shrink:0;display:block;align-self:flex-end}
 .rc-title{
   font-size:clamp(18px,2vw,26px);font-weight:800;
   color:#fff;line-height:1.2;letter-spacing:-.02em;
@@ -1879,7 +1879,7 @@ a, button, .btn-primary, .btn-secondary, .btn-white, .btn-login, .pro-cta, [oncl
 }
 /* Parallax glow ring — follows cursor with lag */
 .custom-cursor { display: none; }
-.custom-cursor-ring {
+.custom-cursor-ring, #ccr {
   position: fixed;
   width: 48px; height: 48px;
   border-radius: 50%;
@@ -1891,8 +1891,8 @@ a, button, .btn-primary, .btn-secondary, .btn-white, .btn-login, .pro-cta, [oncl
   background: radial-gradient(circle, rgba(13,71,161,.14) 0%, transparent 70%);
   transition: width .3s ease, height .3s ease;
 }
-.custom-cursor-ring.hover { width: 72px; height: 72px; }
-@media(hover:none){ .custom-cursor,.custom-cursor-ring{ display:none; } }
+.custom-cursor-ring.hover, #ccr.hover { width: 72px; height: 72px; }
+@media(hover:none){ .custom-cursor,.custom-cursor-ring,#ccr{ display:none; } }
 
 /* ── PLATFORM TITLE ── */
 .platform-title {
@@ -3212,10 +3212,6 @@ html::-webkit-scrollbar-thumb:hover {
   .press-logo-img { max-height: 80px !important; height: 80px !important; }
 }
 
-══════════════════════════════════════════════════════ */
-@media (max-width: 480px) {
-}
-
 /* Landscape mobile: very short viewports must still fit hero */
 @media (max-height: 560px) {
   .hero { min-height: 100svh; max-height: 100svh; padding-top: 48px; }
@@ -3233,7 +3229,7 @@ html::-webkit-scrollbar-thumb:hover {
 /* ══════════════════════════════════════════════════════════
    READING PROGRESS BAR — top of viewport
 ══════════════════════════════════════════════════════════ */
-.reading-progress {
+#reading-progress {
   position: fixed;
   top: 0;
   left: 0;
@@ -5244,7 +5240,7 @@ nav#nav {
    ══════════════════════════════════════════════════════ */
 @media print {
   nav, .scroll-top-btn, .sticky-cta, #neural-canvas,
-  .hero-scroll-hint, .reading-progress {
+  .hero-scroll-hint, #reading-progress {
     display: none !important;
   }
   .hero {
@@ -5291,3 +5287,172 @@ nav#nav {
 .press-logo-nbc { filter: none !important; max-height: 24px !important; height: 24px !important; }
 .press-logo-mnt { max-height: 24px !important; height: 24px !important; }
 .press-logo-smartmoney { max-height: 24px !important; height: 24px !important; }
+
+/* ═══════════════════════════════════════════════════════════════
+   WEBFLOW NATIVE — SCROLL, RESPONSIVE & CROSS-BROWSER FIXES
+   Adapts all behaviours to Webflow Designer + every browser/device
+═══════════════════════════════════════════════════════════════ */
+
+/* ── Body scroll: Webflow sometimes locks overflow ── */
+html { scroll-behavior: smooth; overflow-x: hidden; }
+html, body { -webkit-overflow-scrolling: touch; }
+/* Ensure Webflow's page-wrapper never blocks vertical scroll */
+.page-wrapper { overflow-x: clip; overflow-y: visible; }
+
+/* ── iOS notch / Dynamic Island — safe-area insets ── */
+@supports (padding-top: env(safe-area-inset-top)) {
+  nav {
+    padding-top: env(safe-area-inset-top);
+    height: calc(60px + env(safe-area-inset-top));
+  }
+  .hero { padding-top: calc(64px + env(safe-area-inset-top)); }
+  .scroll-top-btn { bottom: calc(24px + env(safe-area-inset-bottom)); }
+  .sticky-cta { bottom: calc(24px + env(safe-area-inset-bottom)); }
+}
+@supports (padding-top: env(safe-area-inset-top)) {
+  @media (max-width: 640px) {
+    nav { height: calc(54px + env(safe-area-inset-top)); }
+    .hero { padding-top: calc(96px + env(safe-area-inset-top)); }
+    .sticky-cta { bottom: calc(16px + env(safe-area-inset-bottom)); left: calc(16px + env(safe-area-inset-left)); right: calc(16px + env(safe-area-inset-right)); }
+  }
+}
+
+/* ── Webflow Designer: .r elements visible without js-ready ── */
+/* Without html.js-ready, all .r elements remain fully visible (safe fallback) */
+.r { opacity: 1; transform: none; }
+html.js-ready .r:not(.on) { opacity: 0; transform: translateY(26px); }
+html.js-ready .r.on { opacity: 1; transform: none; }
+
+/* ── Webflow breakpoint: 991px (Webflow tablet) ── */
+@media (max-width: 991px) {
+  .g2 { grid-template-columns: 1fr; gap: 32px; }
+  .risk-cards { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .sci-grid { grid-template-columns: repeat(2,1fr); gap: 18px; }
+  .steps-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .who-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .hero-phones { display: none; }
+  .hero-content { grid-template-columns: 1fr; padding: 24px 24px 64px; }
+  .footer-grid { grid-template-columns: repeat(2,1fr); }
+}
+
+/* ── Webflow breakpoint: 767px (Webflow mobile landscape) ── */
+@media (max-width: 767px) {
+  nav { padding: 0 16px; height: 54px; }
+  .nav-links { display: none; }
+  .hero { min-height: 100svh; padding-top: 54px; }
+  .hero-content { padding-top: clamp(120px,18svh,155px); }
+  .risk-cards { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .risk-card { min-height: 110px; padding: 14px; }
+  .rc-title { font-size: 15px; }
+  .rc-desc { font-size: 12px; padding: 12px; }
+  .sci-grid { grid-template-columns: 1fr; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .who-grid { grid-template-columns: 1fr 1fr; }
+  .pro-stack { grid-template-columns: 1fr 1fr !important; }
+  .reviews-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: repeat(2,1fr); }
+  .footer-bottom { flex-direction: column; align-items: center; text-align: center; }
+  .footer-bottom-links { justify-content: center; }
+}
+
+/* ── Webflow breakpoint: 479px (Webflow mobile portrait) ── */
+@media (max-width: 479px) {
+  nav { height: 50px; padding: 0 12px; background: rgba(0,0,0,.97) !important; }
+  .hero-content { padding-top: clamp(110px,17svh,145px); padding-left: 16px; padding-right: 16px; }
+  .risk-cards { grid-template-columns: 1fr 1fr; gap: 7px; }
+  .risk-card { min-height: 100px; padding: 12px; border-radius: 14px; }
+  .rc-title { font-size: 14px; }
+  .rc-front { gap: 8px; }
+  .g2 { gap: 24px; }
+  h2 { font-size: clamp(20px,6vw,30px); }
+  .lead,.lead-drk { font-size: 14px; }
+  .btn-primary,.btn-white { font-size: 14px; padding: 14px 26px; }
+  .pro-stack { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .cta-steps { flex-direction: column; gap: 10px; }
+  .stats-row { flex-direction: column; gap: 16px; }
+}
+
+/* ── Touch devices: disable 3D tilt animations (performance) ── */
+@media (hover: none) {
+  .pro-card, .sci-card, .step-card, .who-card, .rev-card {
+    transform: none !important;
+  }
+  /* Flash cards: tap to reveal (no hover on touch) */
+  .risk-card:hover .rc-front { opacity: 1; }
+  .risk-card:hover .rc-desc { opacity: 0; pointer-events: none; }
+  /* Only .rc-open class (set by JS) controls visibility on touch */
+}
+
+/* ── Scroll-triggered reveal: ensure elements are always visible
+   when IntersectionObserver is blocked or script is slow ── */
+.r { transition: opacity .65s ease, transform .65s ease; }
+@media (prefers-reduced-motion: reduce) {
+  .r, html.js-ready .r:not(.on), html.js-ready .r.on {
+    opacity: 1 !important; transform: none !important; transition: none !important;
+  }
+  .scroll-arrow, .badge-dot, @keyframes td-breathe,
+  .risk-side-visual__glow, .risk-core-float { animation: none !important; }
+}
+
+/* ── Scroll-top button: never overlaps sticky-cta ── */
+.scroll-top-btn { bottom: 24px; right: 24px; }
+@media (max-width: 640px) {
+  .scroll-top-btn { bottom: 80px; right: 16px; width: 40px; height: 40px; }
+}
+
+/* ── Cross-browser: gap fallback for older Safaris ── */
+@supports not (gap: 10px) {
+  .risk-cards > * + * { margin-left: 10px; }
+  .pro-stack > * + * { margin-left: 16px; }
+}
+
+/* ── Firefox: custom scrollbar ── */
+* { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.15) transparent; }
+.s-white *, .s-off * { scrollbar-color: rgba(0,0,0,.15) transparent; }
+
+/* ── Prevent text selection on interactive card elements ── */
+.risk-card, .pro-card, .sci-card, .step-card, .who-card {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* ── Focus-visible ring: cross-browser ── */
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+:focus:not(:focus-visible) { outline: none; }
+
+/* ── Webflow: override W-specific display conflicts ── */
+.w-nav { overflow: visible !important; }
+.w-nav-overlay { z-index: 800 !important; }
+/* Ensure Webflow nav doesn't hide our custom nav styles */
+nav.w-nav { display: flex !important; align-items: center !important; justify-content: space-between !important; }
+/* Webflow brand anchor */
+nav .w-nav-brand { display: flex !important; align-items: center !important; }
+/* Webflow nav menu on desktop: keep inline */
+.w-nav-menu { display: flex !important; align-items: center !important; gap: clamp(14px,2.5vw,28px); }
+@media (max-width: 767px) {
+  .w-nav-menu { display: none !important; }
+  .w-nav-button { display: none !important; }
+}
+
+/* ── Landscape phone: hero keeps tight layout ── */
+@media (max-height: 480px) and (orientation: landscape) {
+  .hero { min-height: 100svh; padding-top: 44px; }
+  .hero-content { padding-top: clamp(50px,10svh,80px) !important; gap: 10px !important; }
+  .hero-h1 { font-size: clamp(20px,4vw,32px) !important; margin-bottom: 6px !important; }
+  .hero-sub { font-size: 13px !important; margin-bottom: 8px !important; }
+  .hero-badge { font-size: 8px !important; margin-bottom: 8px !important; }
+  .hero-rating { padding: 8px 12px !important; margin-top: 6px !important; }
+  .hero-phones { display: none !important; }
+  .guarantee-row { margin-bottom: 8px !important; padding-bottom: 12px !important; }
+}
+
+/* ── Very tall screens (e.g. portrait tablets 1024px+): hero fills correctly ── */
+@media (min-height: 900px) and (max-width: 1024px) {
+  .hero { min-height: 100svh; }
+  .hero-content { padding-top: clamp(80px,12svh,120px) !important; }
+}
