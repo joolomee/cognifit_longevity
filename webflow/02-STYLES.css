@@ -267,7 +267,7 @@ nav.nav-light .btn-login{
 .btn-white:active{transform:translateY(-1px)}
 
 .btn-center{display:flex;justify-content:center;align-items:center}
-.btn-center-left{justify-content:flex-start}
+.btn-center-left{justify-content:center}
 
 /* ── LAYOUT ── */
 .wrap{max-width:var(--max);margin:0 auto;padding:0 16px}
@@ -287,7 +287,7 @@ h2[data-i18n="risk.h2"]{font-size:clamp(26px,4.2vw,52px);line-height:1.15;letter
 .tc h2{margin-bottom:14px}
 h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
 .eyebrow{display:block;font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--blue);margin-bottom:18px}
-.eyebrow-dim{color:rgba(255,255,255,.72)}
+.eyebrow-dim{color:rgba(255,255,255,.55)}
 .lead{font-size:clamp(18px,2.8vw,24px);line-height:1.85;color:rgba(255,255,255,.86);font-weight:500}
 .lead-drk{font-size:clamp(18px,2.8vw,24px);line-height:1.85;color:#d9d9d9;font-weight:500}
 /* Override for light sections */
@@ -351,6 +351,25 @@ h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
   0%, 100% { transform: translateY(0); opacity: 0.35; }
   50% { transform: translateY(6px); opacity: 0.7; }
 }
+.scroll-hint {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.35);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+@keyframes float-up{
+  0%,100%{transform:translateY(0);opacity:1}
+  50%{transform:translateY(-3px);opacity:.95}
+}
 
 .hero-badge{
   display:inline-flex;align-items:center;gap:8px;
@@ -376,7 +395,7 @@ h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
   0%,100%{opacity:1;transform:scale(1)}
   50%{opacity:.4;transform:scale(1.3)}
 }
-.hero-h1{font-size:clamp(30px,5vw,72px);color:#fff;margin-bottom:18px;text-shadow:0 4px 24px rgba(0,0,0,.5);font-weight:900;letter-spacing:-.03em;line-height:1.05}
+.hero-h1{font-size:clamp(30px,5vw,72px);color:#fff;margin-bottom:18px;text-shadow:0 4px 24px rgba(0,0,0,.5);font-weight:950;letter-spacing:-.03em;line-height:1.05}
 .hero-sub{font-size:clamp(15px,1.9vw,21px);color:rgba(255,255,255,.92);line-height:1.65;max-width:min(560px,100%);margin-bottom:clamp(18px,3.5vw,30px);font-weight:500}
 .hero-sub strong{color:#fff;font-weight:800;letter-spacing:-.01em}
 .hero-rating{
@@ -436,7 +455,7 @@ h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
   }
 }
 .stars{color:var(--yellow);font-size:18px;letter-spacing:2px;text-shadow:0 2px 6px rgba(251,188,4,.2)}
-.rating-n{font-size:22px;font-weight:900;color:#fff;letter-spacing:-.02em}
+.rating-n{font-size:22px;font-weight:950;color:#fff;letter-spacing:-.02em}
 .rating-sep{display:none}
 .rating-users{
   font-size:11px;
@@ -454,6 +473,8 @@ h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
   text-shadow:0 0 28px rgba(47,140,255,.24);
   line-height:1.1;
 }
+.rating-c::before{content:''}
+.rating-c::after{content:''}
 .hero-scroll-hint{
   display:flex;
   flex-direction:column;
@@ -572,6 +593,7 @@ h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
   min-width:min(320px,100%);
   margin:0 auto 40px;
   border:1px solid #f0f0f0;
+  backdrop-filter:blur(10px);
 }
 .panel-lbl{font-size:clamp(10px,1.6vw,12px);font-weight:800;letter-spacing:.03em;color:#aaa;margin-bottom:20px}
 .sk-row{
@@ -975,13 +997,13 @@ h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
 .trust-headline-number::after{content:"\00a0"}
 .press-strip{display:flex;flex-direction:row;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;overflow:hidden;position:relative;width:100%;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
   .press-logo-card{
-    min-height:40px;
+    min-height:52px;
     padding:10px 18px;
     border-radius:14px;
     flex:0 1 auto;
     display:flex;align-items:center;justify-content:center;
   }
-  .press-logo-img{max-height:24px;height:24px;width:auto;object-fit:contain}
+  .press-logo-img{max-height:60px;height:60px;width:auto;object-fit:contain}
   .t-badge:active{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));transform:none}
 
 .press-strip-inner{display:flex;gap:40px;align-items:center;animation:marquee-scroll 30s linear infinite;width:max-content}
@@ -1037,7 +1059,10 @@ footer{background:#000;padding:clamp(40px,6vw,60px) clamp(16px,4vw,40px) clamp(1
 .footer-col-title{color:#fff;font-size:clamp(14px,1.5vw,16px);font-weight:800;margin:0 0 8px;letter-spacing:.02em}
 .footer-col a{color:#999;font-size:clamp(11px,1.3vw,13px);text-decoration:none;transition:color .18s;line-height:1.5}
 .footer-col a:hover{color:#fff}
-.footer-disclaimer{max-width:1200px;margin:0 auto;padding:clamp(16px,3vw,24px) 0;border-top:1px solid rgba(255,255,255,.08);font-size:12px;line-height:1.7;color:rgba(255,255,255,0.6)}
+@media (hover:hover) and (pointer:fine){
+  .footer-links a:hover{color:#fff}
+}
+.footer-disclaimer{max-width:1200px;margin:0 auto;padding:clamp(16px,3vw,24px) 0;border-top:1px solid rgba(255,255,255,.08);font-size:11px;line-height:1.6;color:rgba(255,255,255,0.35)}
 .footer-disclaimer p{margin:0}
 .footer-bottom{max-width:1200px;margin:0 auto;padding:clamp(14px,2vw,20px) 0 0;border-top:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
 .footer-bottom-links{display:flex;gap:clamp(12px,2vw,20px);flex-wrap:wrap}
@@ -1101,12 +1126,12 @@ html.js-ready .r.on{opacity:1;transform:none}
   .pro-card{min-height:238px}
   .press-strip{gap:10px;justify-content:center}
   .press-logo-card{
-    min-height:40px;
+    min-height:44px;
     padding:8px 10px;
     border-radius:12px;
     flex:0 1 auto;
   }
-  .press-logo-img{max-height:22px!important;height:22px!important}
+  .press-logo-img{max-height:50px!important;height:50px!important}
   .trust-headline{gap:6px}
   .pill-wrap{justify-content:flex-start}
   .out-pill{font-size:13px}
@@ -1142,6 +1167,7 @@ html.js-ready .r.on{opacity:1;transform:none}
     padding:10px 16px;
     min-width:0;
     justify-content:center;
+    transform:translateX(14px);
   }
 }
 
@@ -1216,7 +1242,7 @@ html.js-ready .r.on{opacity:1;transform:none}
     border:1px solid rgba(255,255,255,.08);
   }
   .stars{font-size:16px;letter-spacing:2px}
-  .rating-n{font-size:20px;font-weight:900}
+  .rating-n{font-size:20px;font-weight:950}
   .rating-c{font-size:12px;color:rgba(255,255,255,.82);gap:8px}
   .rating-c::before{font-size:34px}
   .rating-c::after{font-size:12px}
@@ -1391,8 +1417,9 @@ html.js-ready .r.on{opacity:1;transform:none}
     padding:10px 18px;
     min-width:0;
     justify-content:center;
+    transform:translateX(18px);
   }
-  
+
   .skills-panel{
     padding:20px;
     margin-bottom:28px;
@@ -1438,12 +1465,12 @@ html.js-ready .r.on{opacity:1;transform:none}
   }
   .press-strip{gap:6px;justify-content:center;flex-wrap:wrap}
   .press-logo-card{
-    min-height:36px;
-    padding:6px 8px;
+    min-height:42px;
+    padding:8px 10px;
     border-radius:10px;
     flex:0 1 calc(33.333% - 6px);
   }
-  .press-logo-img{max-height:18px!important;height:18px!important}
+  .press-logo-img{max-height:40px!important;height:40px!important}
   .t-badge:active{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));transform:none}
   
   .reviews-grid{grid-template-columns:1fr;gap:14px;max-width:100%;margin:36px auto 0}
@@ -2886,11 +2913,15 @@ html::-webkit-scrollbar-thumb:hover {
   .press-logo-img{max-height:64px!important;height:64px!important}
 }
 @media(min-width:769px) and (max-width:1399px){
-  .press-logo-img{max-height:56px!important;height:56px!important}
+  .press-logo-img{max-height:60px!important;height:60px!important}
 }
-@media(max-width:768px){
-  .press-logo-img{max-height:40px!important;height:40px!important}
+@media(max-width:768px) and (min-width:481px){
+  .press-logo-img{max-height:50px!important;height:50px!important}
   .press-logo-card{padding:8px 12px!important}
+}
+@media(max-width:480px){
+  .press-logo-img{max-height:40px!important;height:40px!important}
+  .press-logo-card{padding:6px 8px!important}
 }
 
 /* ── SCI-CARD darker states (no opacity change) ── */
