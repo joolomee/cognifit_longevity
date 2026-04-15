@@ -1,0 +1,12 @@
+{
+  "//": "Config MCP para Claude Code neste repo. Depois de editar e colocar o WEBFLOW_TOKEN real, fecha e reabre o Claude Code (ou corre /mcp para verificar). A próxima sessão terá as tools mcp__webflow__* disponíveis.",
+  "mcpServers": {
+    "webflow": {
+      "command": "npx",
+      "args": ["-y", "@webflow/mcp-server"],
+      "env": {
+        "WEBFLOW_TOKEN": "<COLA-AQUI-O-TEU-TOKEN-WEBFLOW>"
+      }
+    }
+  }
+}
