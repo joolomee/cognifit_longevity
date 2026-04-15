@@ -1,0 +1,36 @@
+<!-- ═══════════════════════════════════════════════════════════════
+     COLA ISTO NO WEBFLOW: Page Settings → Before </body> tag
+     Página: /longevity
+
+     Carrega o main.js só DEPOIS de o body embed ter sido injectado.
+     i18n.js já está pré-carregado pelo head custom code (defer),
+     por isso o objecto global I18N estará pronto a tempo.
+═══════════════════════════════════════════════════════════════ -->
+
+<script>
+(function(){
+  var MAIN_JS = 'https://brain.cognifit.com/longevity/main.js';
+
+  function loadMain(){
+    // Evita injecção dupla
+    if (document.querySelector('script[data-cognifit-main]')) return;
+    var s = document.createElement('script');
+    s.src = MAIN_JS;
+    s.defer = true;
+    s.setAttribute('data-cognifit-main', '1');
+    document.body.appendChild(s);
+  }
+
+  // Espera o evento que o loader de body emite quando termina,
+  // ou cai num timeout de segurança após 3s.
+  var loaded = false;
+  document.addEventListener('cognifit:body-ready', function(){
+    if (!loaded){ loaded = true; loadMain(); }
+  });
+  setTimeout(function(){
+    if (!loaded){ loaded = true; loadMain(); }
+  }, 3000);
+})();
+</script>
+
+<!-- (Opcional) Plausible / GA4 / pixels podes acrescentar abaixo -->
