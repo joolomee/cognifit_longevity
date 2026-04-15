@@ -1787,6 +1787,10 @@ document.addEventListener('DOMContentLoaded', function() {
       dropdown.querySelectorAll('[data-lang]').forEach(function(el) {
         el.classList.remove('w-button');
         el.classList.add('lang-item');
+        /* Restore lang-flag / lang-name classes on child spans */
+        var spans = el.querySelectorAll('span');
+        if (spans[0]) spans[0].classList.add('lang-flag');
+        if (spans[1]) spans[1].classList.add('lang-name');
         el.addEventListener('click', function(e) {
           e.preventDefault();
           e.stopPropagation();
