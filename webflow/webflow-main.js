@@ -1859,3 +1859,64 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   })();
 });
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   WINDOW.LOAD SAFETY NET
+   Re-applies class bridge + scroll reveal on window.load.
+   Webflow may wipe deferred-script changes before load fires.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+(function() {
+  function reInitAll() {
+    /* Class bridge: hero / closing */
+    var allSecs = Array.prototype.slice.call(document.querySelectorAll('section'));
+    if (allSecs.length > 0 && !allSecs[0].classList.contains('hero')) {
+      allSecs[0].classList.add('hero');
+    }
+    if (allSecs.length > 0 && !allSecs[allSecs.length - 1].classList.contains('closing')) {
+      allSecs[allSecs.length - 1].classList.add('closing');
+    }
+    /* Scroll reveal */
+    document.querySelectorAll('.r').forEach(function(el) { el.classList.add('on'); });
+    /* wg-content wrapper */
+    document.querySelectorAll('.wg-item').forEach(function(item) {
+      var label = item.querySelector('.wg-label');
+      if (!label || item.querySelector('.wg-content')) return;
+      var container = label.parentNode;
+      if (container === item) {
+        var content = document.createElement('div');
+        content.className = 'wg-content';
+        item.insertBefore(content, label);
+        content.appendChild(label);
+        var mtag = item.querySelector('.wg-missing-tag');
+        if (mtag) content.appendChild(mtag);
+      } else {
+        container.classList.add('wg-content');
+      }
+      if (item.classList.contains('wg-missing') && !item.querySelector('.wg-check')) {
+        var chk = document.createElement('div');
+        chk.className = 'wg-check wg-green';
+        chk.textContent = '\u2713';
+        item.appendChild(chk);
+      }
+    });
+    /* rc-front wrapper */
+    document.querySelectorAll('.risk-card').forEach(function(card) {
+      if (card.querySelector('.rc-front')) return;
+      var title = card.querySelector('.rc-title');
+      if (!title) return;
+      var front = document.createElement('div');
+      front.className = 'rc-front';
+      var titleRef = title.parentNode === card ? title : title.parentNode;
+      card.insertBefore(front, titleRef);
+      front.appendChild(title);
+      if (titleRef !== title && titleRef.parentNode === card && titleRef.children.length === 0) {
+        titleRef.remove();
+      }
+    });
+  }
+  if (document.readyState === 'complete') {
+    reInitAll();
+  } else {
+    window.addEventListener('load', reInitAll);
+  }
+})();
