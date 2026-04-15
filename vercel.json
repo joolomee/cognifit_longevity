@@ -9,7 +9,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "frame-ancestors 'self' https://brain.cognifit.com https://*.wixsite.com https://*.wix.com"
+          "value": "frame-ancestors 'self' https://brain.cognifit.com https://*.wixsite.com https://*.wix.com https://*.webflow.io https://*.webflow.com"
         },
         {
           "key": "Cache-Control",
@@ -17,7 +17,7 @@
         },
         {
           "key": "Access-Control-Allow-Origin",
-          "value": "https://brain.cognifit.com"
+          "value": "*"
         },
         {
           "key": "Access-Control-Allow-Methods",

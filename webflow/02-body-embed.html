@@ -1,0 +1,71 @@
+<!-- ═══════════════════════════════════════════════════════════════
+     COLA ISTO NUM ELEMENTO "EMBED" DE WEBFLOW (Designer)
+     Página: /longevity (ou onde quer publicar a landing)
+
+     Este loader pequeno (~2 KB) busca o <body> completo da
+     deployment Vercel (brain.cognifit.com/longevity/index.html),
+     extrai o seu conteúdo e injecta-o em #cognifit-longevity-root.
+     Resultado: a página renderiza EXACTAMENTE como no Vercel,
+     com todas as imagens base64 inline, SVGs, etc.
+
+     Vantagens:
+       - Sem dependência da limitação de tamanho de Embed (50 KB)
+       - Atualizar o Vercel atualiza automaticamente o Webflow
+       - SEO continua a funcionar via head injection (já feito)
+       - i18n e main.js carregam normalmente do CDN Vercel
+═══════════════════════════════════════════════════════════════ -->
+
+<div id="cognifit-longevity-root">
+  <!-- Skeleton/fallback enquanto o body carrega -->
+  <div style="min-height:60vh;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:#666">
+    <div style="text-align:center">
+      <div style="width:48px;height:48px;border:3px solid #eee;border-top-color:#000;border-radius:50%;animation:cf-spin 1s linear infinite;margin:0 auto 16px"></div>
+      <div>Loading…</div>
+    </div>
+  </div>
+</div>
+
+<style>@keyframes cf-spin{to{transform:rotate(360deg)}}</style>
+
+<script>
+(function(){
+  var SRC = 'https://brain.cognifit.com/longevity/index.html';
+  var ROOT_ID = 'cognifit-longevity-root';
+
+  function inject(html){
+    var root = document.getElementById(ROOT_ID);
+    if (!root) return;
+    // Extrai apenas o conteúdo de <body>...</body>
+    var m = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+    var body = m ? m[1] : html;
+    root.innerHTML = body;
+
+    // Re-executa <script> tags inline (innerHTML não os corre)
+    var scripts = root.querySelectorAll('script');
+    scripts.forEach(function(old){
+      var s = document.createElement('script');
+      for (var i=0; i<old.attributes.length; i++){
+        s.setAttribute(old.attributes[i].name, old.attributes[i].value);
+      }
+      if (old.src) s.src = old.src;
+      else s.text = old.textContent;
+      old.parentNode.replaceChild(s, old);
+    });
+
+    // Dispara DOMContentLoaded para o main.js (carregado no footer)
+    // saber que o markup já existe.
+    document.dispatchEvent(new Event('cognifit:body-ready'));
+  }
+
+  fetch(SRC, {credentials: 'omit', mode: 'cors'})
+    .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.text(); })
+    .then(inject)
+    .catch(function(err){
+      var root = document.getElementById(ROOT_ID);
+      if (root) root.innerHTML =
+        '<div style="padding:60px 20px;text-align:center;font-family:system-ui;color:#900">'+
+        '<strong>Failed to load content.</strong><br><small>'+ String(err) +'</small></div>';
+      console.error('[cognifit-loader]', err);
+    });
+})();
+</script>
