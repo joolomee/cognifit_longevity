@@ -12,7 +12,7 @@
 -->
 
 <!-- i18n engine — must load before inline scripts run their translations -->
-<script src="https://cognifit-longevity.vercel.app/i18n.js" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/i18n.js" defer></script>
 
 <script>
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -24,11 +24,83 @@
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 (function() {
   /* Class bridge: Webflow → Vercel */
-  var bridge = { 'hero-section': 'hero', 'closing-section': 'closing' };
+  var bridge = { 'hero-section': 'hero', 'closing-section': 'closing', 'trust-top': 'trust-headline-top', 'trust-number': 'trust-headline-number', 'trust-users': 'trust-headline-users', 'risk-top': 'g2 g2-top', 'risk-left': 'r', 'lead-white': 'lead', 'eyebrow-dim': 'eyebrow' };
   Object.keys(bridge).forEach(function(wf) {
     document.querySelectorAll('.' + wf).forEach(function(el) {
-      el.classList.add(bridge[wf]);
+      bridge[wf].split(' ').forEach(function(cls) { el.classList.add(cls); });
     });
+  });
+
+  /* ── Inject right-side visual column (orbiting pillars) ──
+     Webflow only has the left text column inside risk-top.
+     We inject the right visual column so the g2 two-column
+     layout renders the animated pillar diagram like Vercel. */
+  /* Clean incomplete native elements (whtml_builder creates
+     skeletons without child classes — remove so JS re-creates). */
+  var _vc = document.querySelector('.risk-visual-col');
+  if (_vc && !_vc.querySelector('.risk-side-visual__core')) _vc.remove();
+
+  var riskLeft = document.querySelector('.risk-left');
+  if (riskLeft && !document.querySelector('.risk-visual-col')) {
+    var vc = document.createElement('div');
+    vc.className = 'r d2 risk-visual-col';
+    vc.setAttribute('aria-hidden', 'true');
+    vc.innerHTML =
+      '<div class="risk-side-visual risk-side-visual--pillars">' +
+        '<div class="risk-side-visual__glow"></div>' +
+        '<div class="risk-side-visual__core">' +
+          '<div class="risk-side-visual__core-brain">🧘</div>' +
+          '<div class="risk-side-visual__core-label" data-i18n="risk.core">Mind Balance</div>' +
+        '</div>' +
+        '<div class="risk-side-visual__orbit risk-side-visual__orbit--one"></div>' +
+        '<div class="risk-side-visual__orbit risk-side-visual__orbit--two"></div>' +
+        '<div class="risk-pillar risk-pillar--nutrition">' +
+          '<div class="risk-pillar__icon">🥗</div>' +
+          '<div class="risk-pillar__label" data-i18n="risk.pillar1">Diet &amp; Nutrition</div>' +
+        '</div>' +
+        '<div class="risk-pillar risk-pillar--exercise">' +
+          '<div class="risk-pillar__icon">🏃</div>' +
+          '<div class="risk-pillar__label" data-i18n="risk.pillar2">Physical Exercise</div>' +
+        '</div>' +
+        '<div class="risk-pillar risk-pillar--sleep">' +
+          '<div class="risk-pillar__icon">🌙</div>' +
+          '<div class="risk-pillar__label" data-i18n="risk.pillar3">Quality Sleep</div>' +
+        '</div>' +
+        '<div class="risk-pillar risk-pillar--training risk-pillar--highlight">' +
+          '<div class="risk-pillar__icon">🧠</div>' +
+          '<div class="risk-pillar__label" data-i18n="risk.pillar4">Cognitive Training</div>' +
+        '</div>' +
+        '<div class="risk-side-visual__link risk-side-visual__link--nutrition"></div>' +
+        '<div class="risk-side-visual__link risk-side-visual__link--exercise"></div>' +
+        '<div class="risk-side-visual__link risk-side-visual__link--sleep"></div>' +
+        '<div class="risk-side-visual__link risk-side-visual__link--training"></div>' +
+      '</div>';
+    riskLeft.parentNode.appendChild(vc);
+  }
+
+  /* Set inline style on risk lead to match Vercel spacing */
+  var riskLead = document.querySelector('.lead-white');
+  if (riskLead) riskLead.style.marginBottom = 'clamp(20px,3vw,28px)';
+
+  /* ── Wellness-gap structural fix ──
+     Webflow can't nest wg-label inside wg-content wrapper div.
+     We wrap label (+missing-tag if present) in wg-content to
+     match Vercel's flex layout. Also adds green ✓ on missing item. */
+  document.querySelectorAll('.wg-item').forEach(function(item) {
+    var label = item.querySelector('.wg-label');
+    if (!label || item.querySelector('.wg-content')) return;
+    var content = document.createElement('div');
+    content.className = 'wg-content';
+    item.insertBefore(content, label);
+    content.appendChild(label);
+    var mtag = item.querySelector('.wg-missing-tag');
+    if (mtag) content.appendChild(mtag);
+    if (item.classList.contains('wg-missing') && !item.querySelector('.wg-check')) {
+      var chk = document.createElement('div');
+      chk.className = 'wg-check wg-green';
+      chk.textContent = '\u2713';
+      item.appendChild(chk);
+    }
   });
 
   /* Inject hero background layers (canvas + gradient + shade) */
@@ -77,6 +149,289 @@
   var skWidths = [77.5, 60, 87.5, 52.5]; /* Contextual Memory, Hand-eye, Divided Attn, Spatial */
   document.querySelectorAll('.sk-fill').forEach(function(bar, i) {
     if (skWidths[i] !== undefined) bar.style.width = skWidths[i] + '%';
+  });
+
+  /* ── Risk-card flash-card restructure ──
+     Webflow can't nest rc-front/rc-icon/rc-hint, so we inject them.
+     Wraps each card's rc-title inside rc-front with icon + hint arrow. */
+  var rcIcons = [
+    '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>',
+    '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+    '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg>',
+    '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>'
+  ];
+  var rcHint = '<svg class="rc-hint" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 9h10M9 4l5 5-5 5" stroke="#9ca3af" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  document.querySelectorAll('.risk-card').forEach(function(card, i) {
+    var title = card.querySelector('.rc-title');
+    if (!title || card.querySelector('.rc-front')) return; // already done
+
+    var front = document.createElement('div');
+    front.className = 'rc-front';
+
+    var icon = document.createElement('div');
+    icon.className = 'rc-icon';
+    icon.innerHTML = rcIcons[i] || rcIcons[0];
+
+    front.appendChild(icon);
+    card.insertBefore(front, title);
+    front.appendChild(title);
+
+    var hintWrap = document.createElement('div');
+    hintWrap.innerHTML = rcHint;
+    front.appendChild(hintWrap.firstChild);
+  });
+
+  /* ── Inject missing risk section bottom content ──
+     Adds the "What Prevents" divider, arrows, solution block,
+     and animated puzzle "missing piece" after the risk-row.
+     Cleans incomplete native elements first. */
+  var _rp = document.querySelector('.risk-prevent');
+  if (_rp && !_rp.querySelector('.rp-label')) _rp.remove();
+  var _arr = document.querySelector('.rp-arrows');
+  if (_arr && !_arr.querySelector('.rp-arr')) _arr.remove();
+  var _sol = document.querySelector('.rni-solution');
+  if (_sol && !_sol.querySelector('.rni-sol-title')) _sol.remove();
+  var _rmp = document.querySelector('.risk-missing-piece');
+  if (_rmp && !_rmp.querySelector('.rmp-puzzle-svg')) _rmp.remove();
+
+  var riskRow = document.querySelector('.risk-row');
+  if (riskRow && !document.querySelector('.risk-prevent')) {
+    var frag = document.createDocumentFragment();
+    var tpl = document.createElement('div');
+    tpl.innerHTML =
+      '<div class="risk-prevent"><div class="rp-line"></div><div class="rp-label" data-i18n="risk.prevent">What Prevents All of This</div><div class="rp-line"></div></div>' +
+      '<div class="rp-arrows" aria-hidden="true">' +
+        '<svg class="rp-arr" width="16" height="22" viewBox="0 0 16 22"><polyline points="2,3 8,19 14,3" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+        '<svg class="rp-arr" width="16" height="22" viewBox="0 0 16 22"><polyline points="2,3 8,19 14,3" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+        '<svg class="rp-arr" width="16" height="22" viewBox="0 0 16 22"><polyline points="2,3 8,19 14,3" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+      '</div>' +
+      '<div class="rni-solution">' +
+        '<div class="rni-sol-icon">🧠</div>' +
+        '<div class="rni-sol-body">' +
+          '<div class="rni-sol-title" data-i18n="risk.sol.t">Cognitive Training</div>' +
+          '<div class="rni-sol-sub" data-i18n="risk.sol.s">Delivered by CogniFit</div>' +
+          '<div class="rni-sol-desc" data-i18n="risk.sol.d">Daily scientifically validated exercises that strengthen attention, memory, and executive function, preventing every risk above.</div>' +
+        '</div>' +
+        '<div class="rni-sol-badge" data-i18n="risk.sol.b">KEY</div>' +
+      '</div>' +
+      '<div class="risk-missing-piece r d2">' +
+        '<div class="rmp-icon-wrap">' +
+          '<div class="rmp-icon-glow"></div>' +
+          '<svg class="rmp-puzzle-svg" viewBox="0 0 220 200" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+            '<defs>' +
+              '<filter id="puz-glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>' +
+              '<filter id="puz-glow-in" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>' +
+              '<clipPath id="puz-clip"><rect x="30" y="20" width="160" height="160" rx="8"/></clipPath>' +
+            '</defs>' +
+            '<g class="puz-p1" filter="url(#puz-glow)"><path d="M60,60 L105,60 L105,68 C110,68 114,72 114,77 C114,82 110,86 105,86 L105,105 L60,105 Z" fill="rgba(26,115,232,0.75)" stroke="rgba(26,115,232,1)" stroke-width="1.5"/></g>' +
+            '<g class="puz-p2" filter="url(#puz-glow)"><path d="M115,60 L160,60 L160,105 L115,105 L115,86 C110,86 106,82 106,77 C106,72 110,68 115,68 Z" fill="rgba(47,140,255,0.65)" stroke="rgba(26,115,232,1)" stroke-width="1.5"/></g>' +
+            '<g class="puz-p3" filter="url(#puz-glow)"><path d="M60,106 L105,106 L105,115 C110,115 114,119 114,124 C114,129 110,133 105,133 L105,140 L60,140 Z" fill="rgba(26,115,232,0.7)" stroke="rgba(26,115,232,1)" stroke-width="1.5"/></g>' +
+            '<g class="puz-p4-missing" filter="url(#puz-glow-in)"><path d="M115,106 L160,106 L160,140 L115,140 L115,133 C110,133 106,129 106,124 C106,119 110,115 115,115 Z" fill="rgba(52,168,83,0.85)" stroke="rgba(52,168,83,1)" stroke-width="2"/>' +
+              '<animateTransform attributeName="transform" type="translate" values="80,60; 80,60; 0,0; 0,0; 0,0; 0,0; 80,60" dur="4s" repeatCount="indefinite" calcMode="spline" keySplines="0 0 1 1; .4 0 .2 1; 0 0 1 1; 0 0 1 1; 0 0 1 1; .4 0 .2 1" keyTimes="0; 0.15; 0.45; 0.55; 0.7; 0.85; 1"/>' +
+              '<animate attributeName="opacity" values="0;0;1;1;1;0;0" dur="4s" repeatCount="indefinite" keyTimes="0;0.14;0.44;0.55;0.7;0.84;1"/>' +
+            '</g>' +
+            '<rect x="55" y="55" width="110" height="90" rx="6" fill="rgba(52,168,83,0.15)" stroke="rgba(52,168,83,0.6)" stroke-width="1.5"><animate attributeName="opacity" values="0;0;0;1;0;0;0" dur="4s" repeatCount="indefinite" keyTimes="0;0.43;0.44;0.5;0.56;0.57;1"/></rect>' +
+            '<g opacity="0.4" clip-path="url(#puz-clip)">' +
+              '<path d="M75,75 Q90,70 105,78 Q115,70 130,75 Q145,70 155,80" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round" fill="none"/>' +
+              '<path d="M70,90 Q88,84 100,92 Q115,85 135,90 Q148,85 158,92" stroke="rgba(255,255,255,0.5)" stroke-width="1.2" stroke-linecap="round" fill="none"/>' +
+              '<path d="M72,105 Q85,99 98,106 Q112,100 128,107 Q142,101 156,107" stroke="rgba(255,255,255,0.5)" stroke-width="1.2" stroke-linecap="round" fill="none"/>' +
+              '<path d="M78,118 Q92,113 107,120 Q120,114 136,120 Q147,115 155,121" stroke="rgba(255,255,255,0.45)" stroke-width="1.1" stroke-linecap="round" fill="none"/>' +
+            '</g>' +
+            '<circle cx="110" cy="77" r="5" fill="rgba(255,255,255,0.15)" stroke="rgba(26,115,232,0.8)" stroke-width="1"/>' +
+            '<circle cx="110" cy="124" r="5" fill="rgba(255,255,255,0.12)" stroke="rgba(26,115,232,0.7)" stroke-width="1"/>' +
+            '<text x="110" y="168" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" font-weight="700" fill="rgba(255,255,255,0.5)" letter-spacing="2">COGNITIVE TRAINING</text>' +
+            '<circle r="2.5" fill="#2f8cff" opacity="0.8" filter="url(#puz-glow)"><animateMotion dur="3s" repeatCount="indefinite"><mpath href="#puz-orbit"/></animateMotion></circle>' +
+            '<path id="puz-orbit" d="M110,40 C145,40 175,65 175,100 C175,135 145,160 110,160 C75,160 45,135 45,100 C45,65 75,40 110,40" fill="none"/>' +
+          '</svg>' +
+        '</div>' +
+        '<div class="callout risk-missing-piece__text" data-i18n="risk.miss.text" data-i18n-html><strong>Cognitive training is<br><span class="rmp-highlight">the missing piece.</span></strong> <span class="risk-line-break">It completes the system that protects independence and daily decision-making.</span></div>' +
+      '</div>';
+    while (tpl.firstChild) frag.appendChild(tpl.firstChild);
+    riskRow.parentNode.appendChild(frag);
+  }
+
+  /* ── Webflow scroll fix ──
+     Ensure Webflow body/html don't fight the external CSS overflow rules.
+     Remove any stale is-iframe class and force scroll. */
+  document.documentElement.classList.remove('is-iframe');
+  document.body.style.overflowY = 'auto';
+  document.body.style.height = 'auto';
+})();
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   0b. DATA-I18N ATTRIBUTE INJECTION
+   Webflow can't set custom attributes on every element.
+   This injects all missing data-i18n attributes so the i18n engine
+   can translate every text element across all 22 languages.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+(function() {
+  function setI18n(selector, key, html) {
+    var el = document.querySelector(selector);
+    if (el && !el.hasAttribute('data-i18n')) {
+      el.setAttribute('data-i18n', key);
+      if (html) el.setAttribute('data-i18n-html', '');
+    }
+  }
+  function setI18nAll(selector, keys, html) {
+    document.querySelectorAll(selector).forEach(function(el, i) {
+      if (keys[i] && !el.hasAttribute('data-i18n')) {
+        el.setAttribute('data-i18n', keys[i]);
+        if (html) el.setAttribute('data-i18n-html', '');
+      }
+    });
+  }
+
+  /* ── NAV ── */
+  var navLinks = document.querySelectorAll('.nav-link');
+  var navKeys = ['nav.platform', 'nav.faq', 'nav.science', 'nav.training'];
+  navLinks.forEach(function(el, i) { if (navKeys[i]) el.setAttribute('data-i18n', navKeys[i]); });
+  setI18n('.btn-login', 'nav.join');
+
+  /* ── HERO ── */
+  setI18n('.hero-badge > span:last-child, .hero-badge span:not(.badge-dot)', 'hero.badge');
+  /* Hero badge — find the text span */
+  var badge = document.querySelector('.hero-badge');
+  if (badge) {
+    var bSpans = badge.querySelectorAll('span');
+    bSpans.forEach(function(s) {
+      if (s.textContent.trim() === 'Cognitive Longevity System') s.setAttribute('data-i18n', 'hero.badge');
+    });
+  }
+  /* Hero H1 — wrap raw text nodes in spans with data-i18n */
+  var heroH1 = document.querySelector('.hero-h1');
+  if (heroH1 && !heroH1.querySelector('[data-i18n]')) {
+    var h1Children = Array.from(heroH1.childNodes);
+    var lineKeys = ['hero.h1.line1', 'hero.h1.line2'];
+    var lineIdx = 0;
+    h1Children.forEach(function(node) {
+      if (node.nodeType === 3 && node.textContent.trim()) {
+        var span = document.createElement('span');
+        span.setAttribute('data-i18n', lineKeys[lineIdx] || '');
+        span.textContent = node.textContent;
+        heroH1.replaceChild(span, node);
+        lineIdx++;
+      }
+    });
+    var shimmer = heroH1.querySelector('.hero-shimmer, .hero-shimmer-soft');
+    if (shimmer) shimmer.setAttribute('data-i18n', 'hero.h1.line3');
+  }
+  setI18n('.hero-sub', 'hero.sub'); var hs = document.querySelector('.hero-sub'); if (hs) hs.setAttribute('data-i18n-html', '');
+  setI18n('.hero-read-time', 'hero.readtime');
+  var heroCta = document.querySelector('.hero-cta-wrap .btn-primary, .hero-inner .btn-primary');
+  if (heroCta) heroCta.setAttribute('data-i18n', 'hero.cta');
+  setI18n('.rating-users', 'hero.users');
+  var gBadges = document.querySelectorAll('.g-badge');
+  if (gBadges[0]) gBadges[0].setAttribute('data-i18n', 'hero.guarantee1');
+  if (gBadges[1]) gBadges[1].setAttribute('data-i18n', 'hero.guarantee2');
+
+  /* ── DISCOVER ── */
+  var discoverSection = document.querySelector('.skills-panel');
+  if (discoverSection) {
+    var discParent = discoverSection.closest('.s-white') || discoverSection.closest('section');
+    if (discParent) {
+      var de = discParent.querySelector('.eyebrow'); if (de && !de.hasAttribute('data-i18n')) de.setAttribute('data-i18n', 'discover.eyebrow');
+      var dh2 = discParent.querySelector('h2'); if (dh2 && !dh2.hasAttribute('data-i18n')) dh2.setAttribute('data-i18n', 'discover.h2');
+      var dlead = discParent.querySelector('.lead-drk'); if (dlead && !dlead.hasAttribute('data-i18n')) { dlead.setAttribute('data-i18n', 'discover.lead'); dlead.setAttribute('data-i18n-html', ''); }
+      var dcta = discParent.querySelector('.btn-secondary'); if (dcta && !dcta.hasAttribute('data-i18n')) dcta.setAttribute('data-i18n', 'discover.cta');
+    }
+  }
+  setI18n('.panel-lbl', 'discover.panel');
+  setI18nAll('.sk-name', ['discover.sk1', 'discover.sk2', 'discover.sk3', 'discover.sk4']);
+
+  /* ── RISK ── */
+  var riskSection = document.querySelector('.risk-top, .risk-left');
+  if (riskSection) {
+    var rs = riskSection.closest('.s-dark') || riskSection;
+    var rEye = rs.querySelector('.eyebrow-dim, .eyebrow');
+    if (rEye && !rEye.hasAttribute('data-i18n')) rEye.setAttribute('data-i18n', 'risk.eyebrow');
+    var rH2 = rs.querySelector('h2');
+    if (rH2 && !rH2.hasAttribute('data-i18n')) rH2.setAttribute('data-i18n', 'risk.h2');
+    var rLead = rs.querySelector('.lead-white, .lead');
+    if (rLead && !rLead.hasAttribute('data-i18n')) rLead.setAttribute('data-i18n', 'risk.lead');
+  }
+  setI18nAll('.wg-label', ['risk.pillar1', 'risk.pillar2', 'risk.pillar3', 'risk.pillar4']);
+  setI18n('.wg-missing-tag', 'risk.missing');
+  setI18nAll('.rc-title', ['risk.r1.t', 'risk.r2.t', 'risk.r3.t', 'risk.r4.t']);
+  setI18nAll('.rc-desc', ['risk.r1.d', 'risk.r2.d', 'risk.r3.d', 'risk.r4.d']);
+
+  /* ── PLATFORM ── */
+  var platSection = document.getElementById('platform');
+  if (platSection) {
+    var pEye = platSection.querySelector('.eyebrow-dim, .eyebrow');
+    if (pEye && !pEye.hasAttribute('data-i18n')) pEye.setAttribute('data-i18n', 'plat.eyebrow');
+    var pH2 = platSection.querySelector('h2');
+    if (pH2 && !pH2.hasAttribute('data-i18n')) pH2.setAttribute('data-i18n', 'plat.h2');
+    var pLead = platSection.querySelector('.lead');
+    if (pLead && !pLead.hasAttribute('data-i18n')) pLead.setAttribute('data-i18n', 'plat.lead');
+    var pCta = platSection.querySelector('.btn-primary');
+    if (pCta && !pCta.hasAttribute('data-i18n')) pCta.setAttribute('data-i18n', 'plat.cta');
+  }
+  var stepCards = document.querySelectorAll('.step-card');
+  stepCards.forEach(function(card, i) {
+    var n = i + 1;
+    var h3 = card.querySelector('h3'); if (h3 && !h3.hasAttribute('data-i18n')) h3.setAttribute('data-i18n', 'plat.s' + n + '.t');
+    var p = card.querySelector('p'); if (p && !p.hasAttribute('data-i18n')) p.setAttribute('data-i18n', 'plat.s' + n + '.d');
+    var chks = card.querySelectorAll('.step-chk');
+    chks.forEach(function(chk, ci) { if (!chk.hasAttribute('data-i18n')) chk.setAttribute('data-i18n', 'plat.s' + n + '.c' + (ci + 1)); });
+  });
+
+  /* ── FAQ ── */
+  var faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(function(item, i) {
+    var n = i + 1;
+    var qText = item.querySelector('.faq-q-text');
+    if (qText && !qText.hasAttribute('data-i18n')) qText.setAttribute('data-i18n', 'faq.q' + n);
+    var aP = item.querySelector('.faq-a p, p.faq-a');
+    if (aP && !aP.hasAttribute('data-i18n')) { aP.setAttribute('data-i18n', 'faq.a' + n); aP.setAttribute('data-i18n-html', ''); }
+  });
+
+  /* ── TRUST / STATS ── */
+  setI18nAll('.stat-l', ['trust.s1', 'trust.s2', 'trust.s3', 'trust.s4']);
+  var trustSection = document.querySelector('.stats-row, .stat-bl');
+  if (trustSection) {
+    var tParent = trustSection.closest('.s-off, .s-dark, section');
+    if (tParent) {
+      var tEye = tParent.querySelector('.eyebrow-dim, .eyebrow');
+      if (tEye && !tEye.hasAttribute('data-i18n')) tEye.setAttribute('data-i18n', 'trust.eyebrow');
+      /* Trust headline spans (Webflow uses trust-top/trust-users, Vercel uses trust-headline-top/trust-headline-users) */
+      var thTop = tParent.querySelector('.trust-headline-top, .trust-top');
+      if (thTop && !thTop.hasAttribute('data-i18n')) thTop.setAttribute('data-i18n', 'trust.h.top');
+      var thUsers = tParent.querySelector('.trust-headline-users, .trust-users');
+      if (thUsers && !thUsers.hasAttribute('data-i18n')) thUsers.setAttribute('data-i18n', 'trust.h.users');
+      /* Trust press paragraph */
+      var tPress = tParent.querySelector('p[style]');
+      if (tPress && !tPress.hasAttribute('data-i18n') && tPress.textContent.indexOf('Press') !== -1) tPress.setAttribute('data-i18n', 'trust.press');
+    }
+  }
+  /* Trust badges */
+  var tBadges = document.querySelectorAll('.t-badge');
+  tBadges.forEach(function(b, i) { if (!b.hasAttribute('data-i18n')) b.setAttribute('data-i18n', 'trust.b' + (i + 1)); });
+
+  /* ── VALIDATION ── */
+  var valSection = document.querySelector('.val-logos, .val-btn');
+  if (valSection) {
+    var vParent = valSection.closest('.s-off, .s-white, section');
+    if (vParent) {
+      var vEye = vParent.querySelector('.eyebrow'); if (vEye && !vEye.hasAttribute('data-i18n')) vEye.setAttribute('data-i18n', 'val.eyebrow');
+      var vH2 = vParent.querySelector('h2'); if (vH2 && !vH2.hasAttribute('data-i18n')) vH2.setAttribute('data-i18n', 'val.h2');
+    }
+  }
+
+  /* ── CLOSING ── */
+  setI18n('.closing-quote', 'closing.quote'); var cq = document.querySelector('.closing-quote'); if (cq) cq.setAttribute('data-i18n-html', '');
+  setI18n('.closing-sub', 'closing.sub');
+  var closingCta = document.querySelector('.closing .btn-primary, .closing-section .btn-primary');
+  if (closingCta && !closingCta.hasAttribute('data-i18n')) closingCta.setAttribute('data-i18n', 'closing.cta');
+
+  /* ── REVIEWS ── */
+  var revCards = document.querySelectorAll('.rev-card');
+  revCards.forEach(function(card, i) {
+    var n = i + 1;
+    var title = card.querySelector('.rev-title'); if (title && !title.hasAttribute('data-i18n')) title.setAttribute('data-i18n', 'rev.r' + n + '.t');
+    var body = card.querySelector('.rev-body, .rev-text'); if (body && !body.hasAttribute('data-i18n')) body.setAttribute('data-i18n', 'rev.r' + n + '.b');
+    var author = card.querySelector('.rev-author'); if (author && !author.hasAttribute('data-i18n')) author.setAttribute('data-i18n', 'rev.r' + n + '.a');
   });
 })();
 
@@ -358,12 +713,12 @@ function applyCTARouting() {
     });
     if (near) { near.activate(1); near.fire(); near.fire(); }
   });
+  /* Touch-move tracking (passive — never blocks native scroll) */
   canvas.addEventListener('touchmove', function(e) {
-    e.preventDefault();
     var r = canvas.getBoundingClientRect();
     mouse.x = e.touches[0].clientX - r.left;
     mouse.y = e.touches[0].clientY - r.top;
-  }, { passive: false });
+  }, { passive: true });
 
   window.addEventListener('resize', resize);
   resize();
@@ -1113,6 +1468,265 @@ document.querySelectorAll('.faq-q').forEach(function(btn) {
     document.addEventListener('DOMContentLoaded', initScrollTop);
   } else {
     initScrollTop();
+  }
+})();
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   15. REVIEWS — inject 2 review cards into trust section
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+(function() {
+  function initReviews() {
+    /* Find the trust section (contains press-strip) */
+    var pressStrip = document.querySelector('.press-strip');
+    if (!pressStrip || document.querySelector('.reviews-grid')) return;
+
+    var grid = document.createElement('div');
+    grid.className = 'reviews-grid';
+    grid.innerHTML =
+      '<div class="rev-card r">' +
+        '<div class="rev-date" data-i18n="rev.date1">16 March 2026</div>' +
+        '<div class="rev-stars">\u2605\u2605\u2605\u2605\u2605</div>' +
+        '<div class="rev-rec" data-i18n="rev.rec">\uD83D\uDC4D I recommend this product</div>' +
+        '<div class="rev-title" data-i18n="rev.r1.t">Life-changing at 58</div>' +
+        '<div class="rev-body" data-i18n="rev.r1.b">Real improvements in focus and memory within weeks. The personalized training adapts to exactly where I need it most.</div>' +
+        '<div class="rev-author">Michael R. \uD83C\uDDFA\uD83C\uDDF8 <span data-i18n="rev.r1.c">United States</span></div>' +
+      '</div>' +
+      '<div class="rev-card r d1">' +
+        '<div class="rev-date" data-i18n="rev.date2">13 March 2026</div>' +
+        '<div class="rev-stars">\u2605\u2605\u2605\u2605\u2605</div>' +
+        '<div class="rev-rec" data-i18n="rev.rec">\uD83D\uDC4D I recommend this product</div>' +
+        '<div class="rev-title" data-i18n="rev.r2.t">Wow!</div>' +
+        '<div class="rev-body" data-i18n="rev.r2.b">First time with this type of cognitive evaluation. Eye-opening assessment and the training feels genuinely tailored.</div>' +
+        '<div class="rev-author">Ana S. \uD83C\uDDEA\uD83C\uDDF8 <span data-i18n="rev.r2.c">Spain</span></div>' +
+      '</div>';
+
+    pressStrip.after(grid);
+
+    /* Re-apply translations */
+    if (window.CogniFitI18n && typeof window.CogniFitI18n.setLang === 'function') {
+      try { window.CogniFitI18n.setLang(window.CogniFitI18n.getLang(), false); } catch (e) {}
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initReviews);
+  } else {
+    initReviews();
+  }
+})();
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   16. FOOTER — inject full 4-column footer
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+(function() {
+  function initFooter() {
+    if (document.querySelector('footer')) return;
+
+    var footer = document.createElement('footer');
+    footer.innerHTML =
+      '<div class="wrap">' +
+      '<div class="footer-grid">' +
+
+      /* Brain Science column */
+      '<div class="footer-col">' +
+        '<h4 class="footer-col-title" data-i18n="footer.col.brain">Brain Science</h4>' +
+        '<a href="https://www.cognifit.com/brain" data-i18n="footer.brain.human">The Human Brain</a>' +
+        '<a href="https://www.cognifit.com/mind" data-i18n="footer.brain.mind">Brain and Mind</a>' +
+        '<a href="https://www.cognifit.com/brain-parts" data-i18n="footer.brain.parts">Parts of the Brain</a>' +
+        '<a href="https://www.cognifit.com/active-neurons" data-i18n="footer.brain.neurons">Neurons</a>' +
+        '<a href="https://www.cognifit.com/brain-plasticity-and-cognition" data-i18n="footer.brain.plasticity">Brain Plasticity</a>' +
+        '<a href="https://www.cognifit.com/brain-fitness" data-i18n="footer.brain.fitness">Brain Fitness</a>' +
+        '<a href="https://www.cognifit.com/cognition" data-i18n="footer.brain.cognition">Cognition</a>' +
+        '<a href="https://www.cognifit.com/memory-loss" data-i18n="footer.brain.memoryloss">Memory Loss</a>' +
+        '<a href="https://www.cognifit.com/dementia" data-i18n="footer.brain.intellectual">Intellectual Disabilities</a>' +
+        '<a href="https://www.cognifit.com/brain-functions" data-i18n="footer.brain.functions">Brain Functions</a>' +
+        '<a href="https://www.cognifit.com/executive-functions" data-i18n="footer.brain.executive">Executive Functions</a>' +
+        '<a href="https://www.cognifit.com/coordination" data-i18n="footer.brain.coord">Coordination</a>' +
+        '<a href="https://www.cognifit.com/memory" data-i18n="footer.brain.memory">Memory</a>' +
+        '<a href="https://www.cognifit.com/perception" data-i18n="footer.brain.perception">Perception</a>' +
+        '<a href="https://www.cognifit.com/attention" data-i18n="footer.brain.attention">Attention</a>' +
+      '</div>' +
+
+      /* Research column */
+      '<div class="footer-col">' +
+        '<h4 class="footer-col-title" data-i18n="footer.col.research">Research</h4>' +
+        '<a href="https://www.cognifit.com/digital-therapeutics" data-i18n="footer.research.digital">Digital Therapeutics Validation</a>' +
+        '<a href="https://www.cognifit.com/Study-cognitive-training-vs-computer-games" data-i18n="footer.research.games">Computer Games</a>' +
+        '<a href="https://www.cognifit.com/study-cognitive-training-vs-physical-training" data-i18n="footer.research.older">Healthy Older Adults Trial</a>' +
+        '<a href="https://www.cognifit.com/study-evaluation-fatigue-pilots-marine" data-i18n="footer.research.navy">Navy Pilots</a>' +
+        '<a href="https://www.cognifit.com/study-holistic-assess-senior-wellness" data-i18n="footer.research.wellness">Senior Wellness</a>' +
+        '<a href="https://www.cognifit.com/study-itv-cognitive-training-seniors" data-i18n="footer.research.seniors">Healthy Seniors</a>' +
+        '<a href="https://www.cognifit.com/senior-cognitive-training-symposium" data-i18n="footer.research.sct">Senior Cognitive Training</a>' +
+        '<a href="https://www.cognifit.com/study-cct-senior-conference" data-i18n="footer.research.adults">Cognitive State in Adults</a>' +
+        '<a href="https://www.cognifit.com/study-systematic-review-tools-prevention-cognitive-decline" data-i18n="footer.research.review">Systematic Review</a>' +
+        '<a href="https://www.cognifit.com/study-taxonomy-games-dementia" data-i18n="footer.research.sg4d">SG4D Taxonomy</a>' +
+      '</div>' +
+
+      /* Brain Games column */
+      '<div class="footer-col">' +
+        '<h4 class="footer-col-title" data-i18n="footer.col.games">Brain Games</h4>' +
+        '<a href="https://www.cognifit.com/chess" data-i18n="footer.games.chess">Chess Online</a>' +
+        '<a href="https://www.cognifit.com/mini-crossword" data-i18n="footer.games.cross">Mini Crossword</a>' +
+        '<a href="https://www.cognifit.com/watch-and-catch" data-i18n="footer.games.fruit">Fruit Frenzy</a>' +
+        '<a href="https://www.cognifit.com/pipe-panic" data-i18n="footer.games.pipe">Pipe Panic</a>' +
+        '<a href="https://www.cognifit.com/crystal-miner" data-i18n="footer.games.crystal">Crystal Miner</a>' +
+        '<a href="https://www.cognifit.com/solitaire" data-i18n="footer.games.solitaire">Solitaire</a>' +
+        '<a href="https://www.cognifit.com/robo-factory" data-i18n="footer.games.robo">Robo Factory</a>' +
+        '<a href="https://www.cognifit.com/ant-escape" data-i18n="footer.games.ant">Ant Escape</a>' +
+        '<a href="https://www.cognifit.com/treasure-island" data-i18n="footer.games.treasure">Treasure Island</a>' +
+        '<a href="https://www.cognifit.com/neon-lights" data-i18n="footer.games.neon">Neon Lights</a>' +
+        '<a href="https://www.cognifit.com/brain-games" data-i18n="footer.games.more">See More Games...</a>' +
+      '</div>' +
+
+      /* Tools column */
+      '<div class="footer-col">' +
+        '<h4 class="footer-col-title" data-i18n="footer.col.tools">Tools</h4>' +
+        '<a href="https://www.cognifit.com/family-platform" data-i18n="footer.tools.families">For Families</a>' +
+        '<a href="https://www.cognifit.com/medical-platform" data-i18n="footer.tools.clinicians">For Clinicians</a>' +
+        '<a href="https://www.cognifit.com/cognitive-research-tool-v1" data-i18n="footer.tools.researchers">For Researchers</a>' +
+        '<a href="https://www.cognifit.com/educational-technology" data-i18n="footer.tools.education">Education</a>' +
+        '<a href="https://www.cognifit.com/patent" data-i18n="footer.tools.patent">Patent</a>' +
+        '<a href="https://www.cognifit.com/mindfulness" data-i18n="footer.tools.mindfit">MindFit</a>' +
+        '<a href="https://www.cognifit.com/babybright" data-i18n="footer.tools.baby">Babybright</a>' +
+        '<a href="https://www.cognifit.com/resellers" data-i18n="footer.tools.resellers">Resellers</a>' +
+        '<a href="https://www.cognifit.com/brain-training-kids" data-i18n="footer.tools.kids">Exercises for Children</a>' +
+        '<a href="https://www.cognifit.com/cognitive-development" data-i18n="footer.tools.devt">Cognitive Development</a>' +
+        '<a href="https://www.cognifit.com/brain-training" data-i18n="footer.tools.exercise">Brain Exercise</a>' +
+        '<a href="https://www.cognifit.com/cognifit-individualized-training-system" data-i18n="footer.tools.its">Individualized Training System</a>' +
+        '<a href="https://www.cognifit.com/brain-games" data-i18n="footer.tools.games">Brain Games</a>' +
+        '<a href="https://www.cognifit.com/mental-exercise" data-i18n="footer.tools.mental">Mental Exercise</a>' +
+        '<a href="https://www.cognifit.com/iq-test-iqbe" data-i18n="footer.tools.iq">IQ Test</a>' +
+      '</div>' +
+
+      '</div>' + /* /footer-grid */
+
+      /* Disclaimer */
+      '<div class="footer-disclaimer">' +
+        '<p data-i18n="footer.disclaimer">* Every CogniFit cognitive assessment is intended as an aid for assessing cognitive wellbeing of an individual. In a clinical setting, the CogniFit results (when interpreted by a qualified healthcare provider), may be used as an aid in determining whether further cognitive evaluation is needed. CogniFit\'s brain trainings are designed to promote/encourage the general state of cognitive health. CogniFit does not offer any medical diagnosis or treatment of any medical disease or condition.</p>' +
+      '</div>' +
+
+      /* Bottom bar */
+      '<div class="footer-bottom">' +
+        '<div class="footer-bottom-links">' +
+          '<a href="https://www.cognifit.com/terms-and-conditions" data-i18n="footer.bottom.terms">Terms of Service</a>' +
+          '<a href="https://www.cognifit.com/privacy-policy" data-i18n="footer.bottom.privacy">Privacy Policy</a>' +
+          '<a href="https://www.cognifit.com/about-team" data-i18n="footer.bottom.mgmt">Management Team</a>' +
+          '<a href="https://blog.cognifit.com/category/cognifit-news/" data-i18n="footer.bottom.newsroom">CogniFit Newsroom</a>' +
+          '<a href="https://cognifit.com/affiliates" data-i18n="footer.bottom.affiliate">Become an Affiliate</a>' +
+          '<a href="https://www.cognifit.com/resellers" data-i18n="footer.bottom.reseller">Become a Reseller</a>' +
+          '<a href="mailto:support@cognifit.com" data-i18n="footer.bottom.contact">Contact Us</a>' +
+          '<a href="https://support.cognifit.com/" data-i18n="footer.bottom.help">Help</a>' +
+        '</div>' +
+        '<div class="footer-copy" data-i18n="footer.copy">CogniFit Inc \u00A9 2026</div>' +
+      '</div>' +
+
+      '</div>'; /* /wrap */
+
+    /* Append footer after the last section */
+    document.body.appendChild(footer);
+
+    /* Re-apply translations */
+    if (window.CogniFitI18n && typeof window.CogniFitI18n.setLang === 'function') {
+      try { window.CogniFitI18n.setLang(window.CogniFitI18n.getLang(), false); } catch (e) {}
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFooter);
+  } else {
+    initFooter();
+  }
+})();
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   17b. DEVICE SECTION — "Train on Any Device" with mockup image
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+(function() {
+  function initDevices() {
+    if (document.querySelector('.devices-section')) return;
+
+    /* Insert before the second .s-black section (trust/reviews) */
+    var blacks = document.querySelectorAll('section.s-black');
+    var anchor = blacks.length >= 2 ? blacks[1] : null;
+    if (!anchor) return;
+
+    var ds = document.createElement('section');
+    ds.className = 'devices-section';
+    ds.innerHTML =
+      '<div class="devices-container">' +
+        '<h2 class="devices-heading" data-i18n="device.h2">Train on Any Device</h2>' +
+        '<p class="devices-sub" data-i18n="device.sub">Start on your computer, continue on your phone. Your progress syncs everywhere.</p>' +
+        '<img src="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/devices_cognifit.png" alt="CogniFit on all devices" class="devices-img" width="900" height="520" loading="lazy" decoding="async">' +
+        '<div class="store-badges">' +
+          '<a href="https://apps.apple.com/app/cognifit-brain-training/id544218985" target="_blank" rel="noopener noreferrer" class="store-btn store-btn-apple" aria-label="Download on the App Store">' +
+            '<svg class="store-icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>' +
+            '<span class="store-txt"><span class="store-line1" data-i18n="store.apple.line1">Download on the</span><span class="store-line2">App Store</span></span>' +
+          '</a>' +
+          '<a href="https://play.google.com/store/apps/details?id=com.cognifit.app" target="_blank" rel="noopener noreferrer" class="store-btn store-btn-google" aria-label="Get it on Google Play">' +
+            '<svg class="store-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="#EA4335" d="M3.6 2.3c-.3.3-.5.8-.5 1.4v16.6c0 .6.2 1.1.5 1.4l10.8-9.7L3.6 2.3z"/><path fill="#34A853" d="M14.4 12l3.7-3.3-11.8-6.8c-.5-.3-1-.3-1.4-.1L14.4 12z"/><path fill="#FBBC04" d="M14.4 12L4.9 21.2c.4.2.9.2 1.4-.1l11.8-6.8L14.4 12z"/><path fill="#4285F4" d="M18.1 8.7L14.4 12l3.7 3.3 4-2.3c1-.6 1-2 0-2.6l-4-1.7z"/></svg>' +
+            '<span class="store-txt"><span class="store-line1" data-i18n="store.google.line1">Get it on</span><span class="store-line2">Google Play</span></span>' +
+          '</a>' +
+        '</div>' +
+      '</div>';
+
+    anchor.parentElement.insertBefore(ds, anchor);
+
+    if (window.CogniFitI18n && typeof window.CogniFitI18n.setLang === 'function') {
+      try { window.CogniFitI18n.setLang(window.CogniFitI18n.getLang(), false); } catch (e) {}
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initDevices);
+  } else {
+    initDevices();
+  }
+})();
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   18. STICKY FLOATING CTA — appears after scrolling past hero
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+(function() {
+  function initStickyCTA() {
+    if (document.getElementById('sticky-cta')) return;
+
+    var div = document.createElement('div');
+    div.className = 'sticky-cta';
+    div.id = 'sticky-cta';
+    div.innerHTML =
+      '<a href="https://www.cognifit.com/assessments" class="sticky-cta-btn">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>' +
+        '<span data-i18n="sticky.cta">Free Brain Assessment</span>' +
+      '</a>';
+    document.body.appendChild(div);
+
+    /* Show/hide based on hero visibility */
+    var heroEl = document.querySelector('.hero');
+    if (heroEl) {
+      div.style.opacity = '0';
+      div.style.pointerEvents = 'none';
+      div.style.transition = 'opacity .3s ease';
+      new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          div.style.opacity = entry.isIntersecting ? '0' : '1';
+          div.style.pointerEvents = entry.isIntersecting ? 'none' : 'auto';
+        });
+      }, { threshold: 0 }).observe(heroEl);
+    }
+
+    if (window.CogniFitI18n && typeof window.CogniFitI18n.setLang === 'function') {
+      try { window.CogniFitI18n.setLang(window.CogniFitI18n.getLang(), false); } catch (e) {}
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initStickyCTA);
+  } else {
+    initStickyCTA();
   }
 })();
 
