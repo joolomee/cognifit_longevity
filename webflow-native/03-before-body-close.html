@@ -1,0 +1,26 @@
+<!-- ═══════════════════════════════════════════════════════════════
+     COLA ISTO NO WEBFLOW: Page Settings → Before </body> tag
+     Página: /longevity (abordagem nativa — sem fetch loader)
+
+     Carrega o main.js directamente. Como o conteúdo está inline nos
+     Embeds (não é injectado via fetch), o DOM já está pronto quando
+     este script é avaliado.
+     i18n.js já está pré-carregado pelo head custom code (defer).
+═══════════════════════════════════════════════════════════════ -->
+
+<script>
+(function(){
+  var MAIN_JS = 'https://brain.cognifit.com/longevity/main.js';
+
+  // Evita injecção dupla
+  if (document.querySelector('script[data-cognifit-main]')) return;
+
+  var s = document.createElement('script');
+  s.src  = MAIN_JS;
+  s.defer = true;
+  s.setAttribute('data-cognifit-main', '1');
+  document.body.appendChild(s);
+})();
+</script>
+
+<!-- (Opcional) Plausible / GA4 / pixels podes acrescentar abaixo -->

@@ -1,0 +1,83 @@
+        <svg class="rmp-puzzle-svg" viewBox="0 0 220 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="puz-glow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="3" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="puz-glow-in" x="-40%" y="-40%" width="180%" height="180%">
+              <feGaussianBlur stdDeviation="5" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <clipPath id="puz-clip">
+              <rect x="30" y="20" width="160" height="160" rx="8"/>
+            </clipPath>
+          </defs>
+
+          <!-- Brain outline split into 4 puzzle pieces (top-left, top-right, bottom-left, bottom-right) -->
+          <!-- Piece 1: top-left -->
+          <g class="puz-p1" filter="url(#puz-glow)">
+            <path d="M60,60 L105,60 L105,68 C110,68 114,72 114,77 C114,82 110,86 105,86 L105,105 L60,105 Z" 
+                  fill="rgba(26,115,232,0.75)" stroke="rgba(26,115,232,1)" stroke-width="1.5"/>
+          </g>
+
+          <!-- Piece 2: top-right -->
+          <g class="puz-p2" filter="url(#puz-glow)">
+            <path d="M115,60 L160,60 L160,105 L115,105 L115,86 C110,86 106,82 106,77 C106,72 110,68 115,68 Z" 
+                  fill="rgba(47,140,255,0.65)" stroke="rgba(26,115,232,1)" stroke-width="1.5"/>
+          </g>
+
+          <!-- Piece 3: bottom-left -->
+          <g class="puz-p3" filter="url(#puz-glow)">
+            <path d="M60,106 L105,106 L105,115 C110,115 114,119 114,124 C114,129 110,133 105,133 L105,140 L60,140 Z" 
+                  fill="rgba(26,115,232,0.7)" stroke="rgba(26,115,232,1)" stroke-width="1.5"/>
+          </g>
+
+          <!-- Piece 4 (MISSING): bottom-right — animated flying in -->
+          <g class="puz-p4-missing" filter="url(#puz-glow-in)">
+            <path d="M115,106 L160,106 L160,140 L115,140 L115,133 C110,133 106,129 106,124 C106,119 110,115 115,115 Z" 
+                  fill="rgba(52,168,83,0.85)" stroke="rgba(52,168,83,1)" stroke-width="2"/>
+            <!-- Glow pulse when piece lands -->
+            <animateTransform attributeName="transform" type="translate"
+              values="80,60; 80,60; 0,0; 0,0; 0,0; 0,0; 80,60"
+              dur="4s" repeatCount="indefinite" calcMode="spline"
+              keySplines="0 0 1 1; .4 0 .2 1; 0 0 1 1; 0 0 1 1; 0 0 1 1; .4 0 .2 1"
+              keyTimes="0; 0.15; 0.45; 0.55; 0.7; 0.85; 1"/>
+            <animate attributeName="opacity" values="0;0;1;1;1;0;0" dur="4s" repeatCount="indefinite"
+              keyTimes="0;0.14;0.44;0.55;0.7;0.84;1"/>
+          </g>
+
+          <!-- Completion flash -->
+          <rect x="55" y="55" width="110" height="90" rx="6" fill="rgba(52,168,83,0.15)" stroke="rgba(52,168,83,0.6)" stroke-width="1.5">
+            <animate attributeName="opacity" values="0;0;0;1;0;0;0" dur="4s" repeatCount="indefinite"
+              keyTimes="0;0.43;0.44;0.5;0.56;0.57;1"/>
+          </rect>
+
+          <!-- Brain sulci overlay (detail lines on pieces) -->
+          <g opacity="0.4" clip-path="url(#puz-clip)">
+            <path d="M75,75 Q90,70 105,78 Q115,70 130,75 Q145,70 155,80" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            <path d="M70,90 Q88,84 100,92 Q115,85 135,90 Q148,85 158,92" stroke="rgba(255,255,255,0.5)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+            <path d="M72,105 Q85,99 98,106 Q112,100 128,107 Q142,101 156,107" stroke="rgba(255,255,255,0.5)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+            <path d="M78,118 Q92,113 107,120 Q120,114 136,120 Q147,115 155,121" stroke="rgba(255,255,255,0.45)" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+          </g>
+
+          <!-- Connector nubs between pieces -->
+          <circle cx="110" cy="77" r="5" fill="rgba(255,255,255,0.15)" stroke="rgba(26,115,232,0.8)" stroke-width="1"/>
+          <circle cx="110" cy="124" r="5" fill="rgba(255,255,255,0.12)" stroke="rgba(26,115,232,0.7)" stroke-width="1"/>
+
+          <!-- Label -->
+          <text x="110" y="168" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" font-weight="700" fill="rgba(255,255,255,0.5)" letter-spacing="2">COGNITIVE TRAINING</text>
+
+          <!-- Orbit particle -->
+          <circle r="2.5" fill="#2f8cff" opacity="0.8" filter="url(#puz-glow)">
+            <animateMotion dur="3s" repeatCount="indefinite">
+              <mpath href="#puz-orbit"/>
+            </animateMotion>
+          </circle>
+          <path id="puz-orbit" d="M110,40 C145,40 175,65 175,100 C175,135 145,160 110,160 C75,160 45,135 45,100 C45,65 75,40 110,40" fill="none"/>
+        </svg>
+      </div>
+      <div class="callout risk-missing-piece__text" data-i18n="risk.miss.text" data-i18n-html><strong>Cognitive training is<br><span class="rmp-highlight">the missing piece.</span></strong> <span class="risk-line-break">It completes the system that protects independence and daily decision-making.</span></div>
+    </div>
+  </div>
+</section>
+
