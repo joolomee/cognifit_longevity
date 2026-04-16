@@ -6696,3 +6696,78 @@ html body .rni-sol-badge {
   }
   html body .rni-sol-icon { font-size: 26px !important; }
 }
+
+/* ── 21. MOBILE PROGRESS CHARTS — smaller, more appealing, side-by-side
+        rather than full-width giants. ── */
+@media (max-width: 640px) {
+  /* Charts container: 2-col grid on mobile for side-by-side */
+  html body .proof-charts,
+  html body .result-charts,
+  html body .progress-charts,
+  html body [class*="chart-grid"],
+  html body [class*="proof-grid"] {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+    margin: 16px 0 !important;
+  }
+  /* Each chart card: compact, rounded, subtle bg */
+  html body .proof-chart,
+  html body .chart-card,
+  html body .progress-card,
+  html body [class*="chart-item"] {
+    padding: 14px 12px !important;
+    border-radius: 14px !important;
+    background: linear-gradient(180deg, rgba(240,246,255,.8), rgba(255,255,255,.95)) !important;
+    border: 1px solid rgba(26,115,232,.12) !important;
+    box-shadow: 0 4px 14px -6px rgba(26,115,232,.2) !important;
+  }
+  /* Chart title (Pontuação de Memória / Atenção e Foco) */
+  html body .chart-title,
+  html body .proof-title,
+  html body .progress-title,
+  html body [class*="chart"] h4,
+  html body [class*="chart"] .eyebrow {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.03em !important;
+    margin-bottom: 8px !important;
+    text-align: center !important;
+  }
+  /* SVG chart itself: cap height so it doesn't dominate */
+  html body .proof-chart svg,
+  html body .chart-card svg,
+  html body .progress-card svg,
+  html body [class*="chart"] svg {
+    max-height: 120px !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+  /* Percentage badge (+24%, +31%) */
+  html body .chart-badge,
+  html body .proof-badge,
+  html body [class*="pct-badge"],
+  html body [class*="chart"] [class*="badge"] {
+    font-size: 13px !important;
+    padding: 3px 8px !important;
+    border-radius: 999px !important;
+    font-weight: 800 !important;
+  }
+  /* X-axis labels (Semana 1 / Semana 8, S1/S8) */
+  html body .chart-xlabel,
+  html body [class*="chart"] text,
+  html body [class*="chart"] .axis-label {
+    font-size: 10px !important;
+  }
+}
+@media (max-width: 380px) {
+  html body .proof-charts,
+  html body .result-charts,
+  html body [class*="chart-grid"] {
+    gap: 8px !important;
+  }
+  html body .proof-chart,
+  html body .chart-card {
+    padding: 10px 8px !important;
+  }
+}
