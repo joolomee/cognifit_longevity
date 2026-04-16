@@ -21,3 +21,256 @@ function _cogniFitReveal(){var e=document.querySelectorAll('.r');for(var i=0;i<e
 if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',_cogniFitReveal);}else{_cogniFitReveal();}
 setTimeout(_cogniFitReveal,1000);
 </script>
+
+<!-- ── DOM safety-net v3: injects missing hero-badge text, translates stray
+        EN footer items, hides Webflow Designer empty "Div Block" skeletons,
+        ensures .hero-phones has structured children for the CSS mockup. ── -->
+<script>
+(function(){
+  function run(){
+    var lang = (document.documentElement.lang || 'pt').slice(0,2).toLowerCase();
+
+    /* 1. Hero-badge — inject content if empty */
+    var badge = document.querySelector('.hero-badge');
+    if (badge && !badge.textContent.trim()) {
+      var txt = (lang === 'pt') ? 'PREPARAR O SEU CÉREBRO PARA 2045' :
+                (lang === 'es') ? 'PREPARA TU CEREBRO PARA 2045' :
+                (lang === 'fr') ? 'PRÉPAREZ VOTRE CERVEAU POUR 2045' :
+                                  'FUTURE-PROOF YOUR BRAIN FOR 2045';
+      badge.innerHTML = '<span class="badge-dot">\u2022</span><span>'+txt+'</span>';
+    }
+
+    /* 2. Remove Webflow Designer empty "Div Block" skeletons above hero */
+    var emptyDivs = document.querySelectorAll('.hero > div:not([class]):empty, .hero-badge > div:not([class]):empty');
+    emptyDivs.forEach(function(d){ d.parentNode.removeChild(d); });
+
+    /* 3. Structure .hero-phones children so the CSS phone-mockup shows */
+    var phones = document.querySelector('.hero-phones');
+    if (phones && phones.children.length > 0) {
+      Array.prototype.slice.call(phones.children).forEach(function(c){
+        if (!c.tagName || c.tagName === 'BR' || !c.className) {
+          var wrap = document.createElement('div');
+          wrap.className = 'hero-phones-list';
+          wrap.appendChild(c.cloneNode(true));
+          phones.replaceChild(wrap, c);
+        }
+      });
+    }
+
+    /* 4. Translate stray English footer items Webflow may have hardcoded.
+          These come from Webflow's template, not our data-i18n markup. */
+    var footerFix = {
+      'pt': {
+        'Senior Wellness Trial': 'Ensaio de Bem-estar Sénior',
+        'Alzheimer\u2019s Diagnosis': 'Diagnóstico de Alzheimer',
+        "Alzheimer's Diagnosis": 'Diagnóstico de Alzheimer',
+        'ADHD Training': 'Treino para TDAH',
+        'Research Bibliography': 'Bibliografia de Investigação',
+        'Assessment Validations': 'Validações de Avaliações',
+        'Editorial Process': 'Processo Editorial',
+        'worldwide including Harvard, Stanford, University of Washington, Tel Aviv University, and 6,438+ more':
+          'em todo o mundo, incluindo Harvard, Stanford, Universidade de Washington, Universidade de Tel Aviv e mais de 6.438'
+      },
+      'es': {
+        'Senior Wellness Trial': 'Ensayo de Bienestar Senior',
+        "Alzheimer's Diagnosis": 'Diagnóstico de Alzheimer',
+        'ADHD Training': 'Entrenamiento TDAH',
+        'Research Bibliography': 'Bibliografía de Investigación',
+        'Assessment Validations': 'Validaciones de Evaluación',
+        'Editorial Process': 'Proceso Editorial'
+      }
+    };
+    var dict = footerFix[lang];
+    if (dict) {
+      var foot = document.querySelector('footer, .footer, .site-footer') || document.body;
+      var walker = document.createTreeWalker(foot, NodeFilter.SHOW_TEXT, null, false);
+      var nodes = [];
+      while (walker.nextNode()) nodes.push(walker.currentNode);
+      nodes.forEach(function(n){
+        var t = n.nodeValue.trim();
+        if (dict[t]) { n.nodeValue = n.nodeValue.replace(t, dict[t]); }
+      });
+      /* Also any validation-marquee alt-text leak */
+      var valBody = document.querySelector('.validation, section.validation, [class*="validation"]');
+      if (valBody) {
+        var vw = document.createTreeWalker(valBody, NodeFilter.SHOW_TEXT, null, false);
+        var vnodes = [];
+        while (vw.nextNode()) vnodes.push(vw.currentNode);
+        vnodes.forEach(function(n){
+          var t = n.nodeValue.trim();
+          if (dict[t]) { n.nodeValue = n.nodeValue.replace(t, dict[t]); }
+        });
+      }
+    }
+
+    /* 5. Press-logo img onerror → replace with styled text pill */
+    document.querySelectorAll('.press-logo-img').forEach(function(img){
+      img.addEventListener('error', function(){
+        if (img._fallbackDone) return; img._fallbackDone = true;
+        var card = img.closest('.press-logo-card');
+        if (card) {
+          card.innerHTML = '<span style="color:#fff;font-weight:700;font-size:13px;letter-spacing:.02em">'+(img.alt||'')+'</span>';
+        }
+      });
+      /* Trigger re-check if already broken */
+      if (img.complete && (img.naturalWidth === 0 || img.naturalHeight === 0)) {
+        img.dispatchEvent(new Event('error'));
+      }
+    });
+
+    /* 6. Force lang-btn PT: remove any inline style that makes it a blue square */
+    document.querySelectorAll('.lang-btn, [class*="lang-btn"]').forEach(function(b){
+      if (b.classList.contains('lang-btn-icon') || b.classList.contains('lang-btn-chevron')) return;
+      b.style.background = '';
+      b.style.backgroundColor = '';
+      b.removeAttribute('data-inline-bg');
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', run);
+  } else { run(); }
+  /* Run again after i18n + main.js have injected their content */
+  setTimeout(run, 1200);
+  setTimeout(run, 3000);
+})();
+</script>
+
+<!-- ── Robust stats counter fallback (in case webflow-main.js counter fails
+        because i18n mutated the DOM or IntersectionObserver never fired) ── -->
+<script>
+(function(){
+  function animate(el, target, isDecimal, duration, suffixHTML){
+    var start = performance.now();
+    var base = isDecimal ? '0.0' : '0';
+    el.innerHTML = base + (suffixHTML || '');
+    function step(now){
+      var p = Math.min((now - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      var cur = target * eased;
+      var txt = isDecimal ? cur.toFixed(1) : Math.floor(cur).toLocaleString();
+      el.innerHTML = txt + (suffixHTML || '');
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  function prep(el){
+    if (el.__counterDone || el.__counterReady) return;
+    /* Parse: first child may be text "6.2" or "6,438"; trailing <em>M+</em> etc. */
+    var full = el.textContent.trim();
+    var match = full.match(/^([\d,.]+)\s*(.*)$/);
+    if (!match) return;
+    var numStr = match[1].replace(/,/g, '');
+    var target = parseFloat(numStr);
+    if (isNaN(target)) return;
+    var isDecimal = numStr.indexOf('.') !== -1;
+    /* Preserve <em> suffix HTML if present, else plain text suffix */
+    var em = el.querySelector('em');
+    var suffixHTML = em ? em.outerHTML : (match[2] ? '<em>' + match[2] + '</em>' : '');
+    el.__counterTarget = target;
+    el.__counterDecimal = isDecimal;
+    el.__counterSuffix = suffixHTML;
+    el.__counterReady = true;
+    /* Reset display to 0 while waiting */
+    el.innerHTML = (isDecimal ? '0.0' : '0') + suffixHTML;
+  }
+
+  function fire(el){
+    if (el.__counterDone || !el.__counterReady) return;
+    el.__counterDone = true;
+    animate(el, el.__counterTarget, el.__counterDecimal, 1800, el.__counterSuffix);
+  }
+
+  function inViewport(el){
+    var r = el.getBoundingClientRect();
+    return r.top < (window.innerHeight || document.documentElement.clientHeight) * 0.95
+        && r.bottom > 0;
+  }
+
+  function init(){
+    var nodes = document.querySelectorAll('.stat-n, .stats-num, .stat-num, [data-count]');
+    if (!nodes.length) return;
+    nodes.forEach(prep);
+
+    /* Observer path */
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if (e.isIntersecting) { fire(e.target); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.25 });
+      nodes.forEach(function(n){ io.observe(n); });
+    }
+
+    /* Scroll fallback (for browsers / layouts where IO misbehaves) */
+    function onScroll(){
+      nodes.forEach(function(n){ if (!n.__counterDone && inViewport(n)) fire(n); });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+
+    /* Immediate check: if already in viewport, fire now */
+    setTimeout(onScroll, 50);
+    setTimeout(onScroll, 1500);  /* after i18n */
+    setTimeout(onScroll, 3500);  /* after slow networks */
+
+    /* Absolute fallback: after 6s, force-fire any remaining zero counter */
+    setTimeout(function(){
+      nodes.forEach(function(n){ if (!n.__counterDone) fire(n); });
+    }, 6000);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else { init(); }
+  /* Re-init after i18n mutations */
+  setTimeout(init, 1500);
+  setTimeout(init, 4000);
+})();
+</script>
+
+<!-- ── FAQ accordion: bind click to toggle .open class (mobile-friendly) ── -->
+<script>
+(function(){
+  function bind(){
+    var items = document.querySelectorAll('.faq-item, .faq details, details.faq-item');
+    items.forEach(function(item){
+      if (item.__faqBound) return;
+      item.__faqBound = true;
+      var q = item.querySelector('.faq-q, .faq-question, summary, button');
+      if (!q) return;
+      q.setAttribute('role', 'button');
+      q.setAttribute('tabindex', '0');
+      function toggle(e){
+        e.preventDefault();
+        var wasOpen = item.classList.contains('open') || item.hasAttribute('open');
+        /* Close siblings (accordion behavior) */
+        document.querySelectorAll('.faq-item.open, details.faq-item[open]').forEach(function(sib){
+          if (sib !== item) { sib.classList.remove('open'); sib.removeAttribute('open'); }
+        });
+        if (wasOpen) {
+          item.classList.remove('open');
+          item.removeAttribute('open');
+          q.setAttribute('aria-expanded', 'false');
+        } else {
+          item.classList.add('open');
+          if (item.tagName === 'DETAILS') item.setAttribute('open', '');
+          q.setAttribute('aria-expanded', 'true');
+        }
+      }
+      q.addEventListener('click', toggle);
+      q.addEventListener('keydown', function(e){
+        if (e.key === 'Enter' || e.key === ' ') toggle(e);
+      });
+      /* Touch devices: ensure pointer cursor */
+      q.style.cursor = 'pointer';
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bind);
+  } else { bind(); }
+  setTimeout(bind, 1500);
+  setTimeout(bind, 4000);
+})();
+</script>

@@ -1,4 +1,5 @@
 .vercel
 .webflow-token
+.mcp.json
 .DS_Store
 .claude/
