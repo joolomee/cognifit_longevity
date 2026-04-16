@@ -7191,3 +7191,71 @@ html body span:empty:not([class]):not([id]):not([style]) {
 }
 /* Except canvas, iframe, img — they are intentionally empty */
 html body canvas, html body iframe, html body img, html body svg { display: revert !important; }
+
+/* ══════════════════════════════════════════════════════════════════════
+   ── 26. DESIGNER-TUNEABLE CSS CUSTOM PROPERTIES ──
+   These vars can be OVERRIDDEN from Webflow Designer:
+     Select element → right-panel → Custom properties → Add:
+       property = --hero-pad-top      value = 88px
+       property = --section-pad-y     value = 80px
+       property = --h1-size           value = clamp(48px,6vw,72px)
+       property = --radius            value = 16px
+       (etc — see list below)
+   Any value set on an element overrides the root value for that element
+   and its children, so you can tune one section without touching CSS.
+   ══════════════════════════════════════════════════════════════════════ */
+:root {
+  /* Hero */
+  --hero-pad-top: clamp(96px, 12vw, 160px);
+  --hero-pad-bottom: clamp(60px, 8vw, 120px);
+  --hero-gap: clamp(24px, 4vw, 48px);
+  --h1-size: clamp(40px, 6vw, 72px);
+  --h1-lh: 1.05;
+  --h2-size: clamp(28px, 4.2vw, 48px);
+  --sub-size: clamp(16px, 1.6vw, 19px);
+
+  /* Sections */
+  --section-pad-y: clamp(48px, 8vw, 96px);
+  --section-gap: clamp(40px, 6vw, 72px);
+  --wrap-max: 1060px;
+  --wrap-pad: clamp(16px, 3vw, 32px);
+
+  /* Components */
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+  --shadow-soft: 0 8px 32px rgba(0,0,0,.25);
+  --shadow-hard: 0 14px 48px rgba(0,0,0,.45);
+
+  /* Hero-specific colors */
+  --badge-bg: rgba(26,115,232,.12);
+  --badge-border: rgba(26,115,232,.35);
+  --badge-dot: #4d96ff;
+  --shimmer-1: rgba(180,200,255,.75);
+  --shimmer-2: rgba(100,160,255,.85);
+  --shimmer-3: rgba(26,115,232,.80);
+  --shimmer-4: rgba(160,200,255,.75);
+
+  /* Mobile tap-target */
+  --tap-min: 44px;
+}
+
+/* Rebind critical selectors to the vars so Designer overrides propagate. */
+html body .hero { padding-top: var(--hero-pad-top); padding-bottom: var(--hero-pad-bottom); }
+html body .hero-content { gap: var(--hero-gap); }
+html body .hero-h1 { font-size: var(--h1-size); line-height: var(--h1-lh); }
+html body .hero-sub { font-size: var(--sub-size); }
+html body .hero-badge { background: var(--badge-bg); border-color: var(--badge-border); }
+html body .hero-badge .badge-dot { background: var(--badge-dot); }
+html body .hero-shimmer-soft {
+  background: linear-gradient(105deg,
+    var(--shimmer-1) 0%,
+    var(--shimmer-2) 40%,
+    var(--shimmer-3) 70%,
+    var(--shimmer-4) 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+html body .wrap { max-width: var(--wrap-max); padding-left: var(--wrap-pad); padding-right: var(--wrap-pad); }
+
