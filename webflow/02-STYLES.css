@@ -6579,3 +6579,120 @@ html body [class*="hero"] [class*="shimmer"] {
     padding-top: 76px !important;
   }
 }
+
+/* ── 18. SK-ROW HOVER — kill the giant layout jump.
+        Original rule shifted the row by margin:0 -8px and changed padding,
+        causing the row to leap out of the panel. Replace with in-place
+        background + radius only, no layout change. ── */
+@media (hover: hover) and (pointer: fine) {
+  html body .sk-row:hover,
+  html body .skills-panel .sk-row:hover {
+    background: rgba(26,115,232,.04) !important;
+    margin: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    border-radius: 6px !important;
+    transform: none !important;
+    box-shadow: none !important;
+    transition: background .18s ease !important;
+  }
+  /* Remove any stray decorative dot/glow injected by Webflow's "Interactions" */
+  html body .sk-row:hover::before,
+  html body .sk-row:hover::after {
+    display: none !important;
+    content: none !important;
+  }
+}
+
+/* ── 19. SCI-CARD — system names must be prominent, not tiny ── */
+html body .sci-card h3,
+html body .sci-card > h3,
+html body [class*="sci-card"] h3 {
+  font-size: clamp(22px, 3.4vw, 30px) !important;
+  font-weight: 800 !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.02em !important;
+  color: #0a0a0a !important;
+  margin: 6px 0 8px !important;
+}
+html body .sci-card .sci-num,
+html body .sci-card [class*="sci-num"] {
+  font-size: clamp(11px, 1.5vw, 13px) !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+  color: var(--blue, #1A73E8) !important;
+  text-transform: uppercase !important;
+}
+html body .sci-card .sci-role {
+  font-size: clamp(13px, 1.8vw, 15px) !important;
+  font-style: italic !important;
+  color: #555 !important;
+  margin-bottom: 14px !important;
+}
+@media (max-width: 640px) {
+  html body .sci-card h3 { font-size: 26px !important; }
+  html body .sci-card .sci-role { font-size: 14px !important; }
+}
+
+/* ── 20. RNI-SOLUTION — "O Que Previne Tudo Isto" box proper layout ── */
+html body .rni-solution {
+  display: grid !important;
+  grid-template-columns: 56px 1fr auto !important;
+  gap: 16px !important;
+  align-items: start !important;
+  padding: 20px 22px !important;
+  background: linear-gradient(135deg, rgba(10,20,50,.7), rgba(5,10,25,.85)) !important;
+  border: 1px solid rgba(26,115,232,.35) !important;
+  border-radius: 16px !important;
+  max-width: 720px !important;
+  margin: 18px auto 0 !important;
+}
+html body .rni-sol-icon {
+  font-size: 32px !important;
+  line-height: 1 !important;
+}
+html body .rni-sol-body {
+  min-width: 0 !important;
+  text-align: left !important;
+}
+html body .rni-sol-title {
+  font-size: clamp(16px, 2.4vw, 20px) !important;
+  font-weight: 800 !important;
+  color: #fff !important;
+  margin-bottom: 2px !important;
+}
+html body .rni-sol-sub {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: var(--blue, #1A73E8) !important;
+  margin-bottom: 8px !important;
+}
+html body .rni-sol-desc {
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+  color: rgba(255,255,255,.78) !important;
+}
+html body .rni-sol-badge {
+  align-self: center !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.1em !important;
+  padding: 6px 10px !important;
+  border-radius: 999px !important;
+  background: linear-gradient(135deg, #1A73E8, #4d96ff) !important;
+  color: #fff !important;
+  white-space: nowrap !important;
+}
+@media (max-width: 540px) {
+  html body .rni-solution {
+    grid-template-columns: 44px 1fr !important;
+    gap: 12px !important;
+    padding: 16px !important;
+  }
+  html body .rni-sol-badge {
+    grid-column: 1 / -1 !important;
+    justify-self: start !important;
+    margin-top: 6px !important;
+  }
+  html body .rni-sol-icon { font-size: 26px !important; }
+}
