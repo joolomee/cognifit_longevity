@@ -135,3 +135,142 @@ setTimeout(_cogniFitReveal,1000);
   setTimeout(run, 3000);
 })();
 </script>
+
+<!-- ── Robust stats counter fallback (in case webflow-main.js counter fails
+        because i18n mutated the DOM or IntersectionObserver never fired) ── -->
+<script>
+(function(){
+  function animate(el, target, isDecimal, duration, suffixHTML){
+    var start = performance.now();
+    var base = isDecimal ? '0.0' : '0';
+    el.innerHTML = base + (suffixHTML || '');
+    function step(now){
+      var p = Math.min((now - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      var cur = target * eased;
+      var txt = isDecimal ? cur.toFixed(1) : Math.floor(cur).toLocaleString();
+      el.innerHTML = txt + (suffixHTML || '');
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  function prep(el){
+    if (el.__counterDone || el.__counterReady) return;
+    /* Parse: first child may be text "6.2" or "6,438"; trailing <em>M+</em> etc. */
+    var full = el.textContent.trim();
+    var match = full.match(/^([\d,.]+)\s*(.*)$/);
+    if (!match) return;
+    var numStr = match[1].replace(/,/g, '');
+    var target = parseFloat(numStr);
+    if (isNaN(target)) return;
+    var isDecimal = numStr.indexOf('.') !== -1;
+    /* Preserve <em> suffix HTML if present, else plain text suffix */
+    var em = el.querySelector('em');
+    var suffixHTML = em ? em.outerHTML : (match[2] ? '<em>' + match[2] + '</em>' : '');
+    el.__counterTarget = target;
+    el.__counterDecimal = isDecimal;
+    el.__counterSuffix = suffixHTML;
+    el.__counterReady = true;
+    /* Reset display to 0 while waiting */
+    el.innerHTML = (isDecimal ? '0.0' : '0') + suffixHTML;
+  }
+
+  function fire(el){
+    if (el.__counterDone || !el.__counterReady) return;
+    el.__counterDone = true;
+    animate(el, el.__counterTarget, el.__counterDecimal, 1800, el.__counterSuffix);
+  }
+
+  function inViewport(el){
+    var r = el.getBoundingClientRect();
+    return r.top < (window.innerHeight || document.documentElement.clientHeight) * 0.95
+        && r.bottom > 0;
+  }
+
+  function init(){
+    var nodes = document.querySelectorAll('.stat-n, .stats-num, .stat-num, [data-count]');
+    if (!nodes.length) return;
+    nodes.forEach(prep);
+
+    /* Observer path */
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if (e.isIntersecting) { fire(e.target); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.25 });
+      nodes.forEach(function(n){ io.observe(n); });
+    }
+
+    /* Scroll fallback (for browsers / layouts where IO misbehaves) */
+    function onScroll(){
+      nodes.forEach(function(n){ if (!n.__counterDone && inViewport(n)) fire(n); });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+
+    /* Immediate check: if already in viewport, fire now */
+    setTimeout(onScroll, 50);
+    setTimeout(onScroll, 1500);  /* after i18n */
+    setTimeout(onScroll, 3500);  /* after slow networks */
+
+    /* Absolute fallback: after 6s, force-fire any remaining zero counter */
+    setTimeout(function(){
+      nodes.forEach(function(n){ if (!n.__counterDone) fire(n); });
+    }, 6000);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else { init(); }
+  /* Re-init after i18n mutations */
+  setTimeout(init, 1500);
+  setTimeout(init, 4000);
+})();
+</script>
+
+<!-- ── FAQ accordion: bind click to toggle .open class (mobile-friendly) ── -->
+<script>
+(function(){
+  function bind(){
+    var items = document.querySelectorAll('.faq-item, .faq details, details.faq-item');
+    items.forEach(function(item){
+      if (item.__faqBound) return;
+      item.__faqBound = true;
+      var q = item.querySelector('.faq-q, .faq-question, summary, button');
+      if (!q) return;
+      q.setAttribute('role', 'button');
+      q.setAttribute('tabindex', '0');
+      function toggle(e){
+        e.preventDefault();
+        var wasOpen = item.classList.contains('open') || item.hasAttribute('open');
+        /* Close siblings (accordion behavior) */
+        document.querySelectorAll('.faq-item.open, details.faq-item[open]').forEach(function(sib){
+          if (sib !== item) { sib.classList.remove('open'); sib.removeAttribute('open'); }
+        });
+        if (wasOpen) {
+          item.classList.remove('open');
+          item.removeAttribute('open');
+          q.setAttribute('aria-expanded', 'false');
+        } else {
+          item.classList.add('open');
+          if (item.tagName === 'DETAILS') item.setAttribute('open', '');
+          q.setAttribute('aria-expanded', 'true');
+        }
+      }
+      q.addEventListener('click', toggle);
+      q.addEventListener('keydown', function(e){
+        if (e.key === 'Enter' || e.key === ' ') toggle(e);
+      });
+      /* Touch devices: ensure pointer cursor */
+      q.style.cursor = 'pointer';
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bind);
+  } else { bind(); }
+  setTimeout(bind, 1500);
+  setTimeout(bind, 4000);
+})();
+</script>
