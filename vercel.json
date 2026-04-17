@@ -4,6 +4,14 @@
       "source": "/(.*)",
       "headers": [
         {
+          "key": "Server",
+          "value": "Webflow"
+        },
+        {
+          "key": "X-Powered-By",
+          "value": "Webflow"
+        },
+        {
           "key": "X-Robots-Tag",
           "value": "noindex, nofollow"
         },
