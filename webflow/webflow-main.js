@@ -413,6 +413,30 @@
       if (tPress && !tPress.hasAttribute('data-i18n') && tPress.textContent.indexOf('Press') !== -1) tPress.setAttribute('data-i18n', 'trust.press');
     }
   }
+  /* Trust heading spacing: inject real space nodes after i18n renders
+     Prevents "de6,249,358utilizadores" → "de 6,249,358 utilizadores" */
+  function fixTrustSpacing() {
+    var hl = document.querySelector('.trust-headline');
+    if (!hl) return;
+    var top = hl.querySelector('.trust-headline-top, .trust-top');
+    var num = hl.querySelector('.trust-headline-number, .trust-number');
+    var usr = hl.querySelector('.trust-headline-users, .trust-users');
+    /* Add space text node AFTER top span if next sibling isn't a space node */
+    function ensureSpace(afterEl) {
+      if (!afterEl) return;
+      var next = afterEl.nextSibling;
+      if (!next || (next.nodeType === 3 && next.nodeValue.trim() === '')) {
+        /* already empty text or no sibling — replace/insert space */
+        if (next && next.nodeType === 3) { next.nodeValue = ' '; }
+        else { afterEl.parentNode.insertBefore(document.createTextNode(' '), afterEl.nextSibling); }
+      }
+    }
+    ensureSpace(top);
+    ensureSpace(num);
+  }
+  /* Run after i18n has had time to render (i18n.js is deferred) */
+  setTimeout(fixTrustSpacing, 300);
+  setTimeout(fixTrustSpacing, 900);
   /* Trust badges */
   var tBadges = document.querySelectorAll('.t-badge');
   tBadges.forEach(function(b, i) { if (!b.hasAttribute('data-i18n')) b.setAttribute('data-i18n', 'trust.b' + (i + 1)); });
@@ -879,15 +903,16 @@ document.querySelectorAll('.sk-fill').forEach(function(bar) {
       if (!e.isIntersecting) return;
       var el  = e.target;
       var raw = el.dataset.count;
-      if (!raw) return;
+      if (!raw || el.dataset.counted) return;
+      el.dataset.counted = '1';
       var target    = parseFloat(raw);
-      var isDecimal = raw.includes('.');
+      var isDecimal = raw.indexOf('.') !== -1;
       var textNode  = Array.from(el.childNodes).find(function(n) { return n.nodeType === 3; });
       if (!textNode) return;
       animateCount(textNode, target, isDecimal, 1800);
       statObserver.unobserve(el);
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
 
   document.querySelectorAll('.stat-n').forEach(function(el) {
     var textNode = Array.from(el.childNodes).find(function(n) { return n.nodeType === 3; });
@@ -895,10 +920,22 @@ document.querySelectorAll('.sk-fill').forEach(function(bar) {
     var raw = textNode.nodeValue.trim();
     var num = parseFloat(raw.replace(/,/g, ''));
     if (isNaN(num)) return;
-    el.dataset.count      = raw.replace(/,/g, '');
-    textNode.nodeValue    = raw.includes('.') ? '0.0' : '0';
+    el.dataset.count   = raw.replace(/,/g, '');
+    textNode.nodeValue = raw.indexOf('.') !== -1 ? '0.0' : '0';
     statObserver.observe(el);
   });
+  /* Fallback: if observer never fires (scroll-pinned context), trigger after 800ms */
+  setTimeout(function() {
+    document.querySelectorAll('.stat-n[data-count]:not([data-counted])').forEach(function(el) {
+      var raw = el.dataset.count;
+      if (!raw) return;
+      el.dataset.counted = '1';
+      var target    = parseFloat(raw);
+      var isDecimal = raw.indexOf('.') !== -1;
+      var textNode  = Array.from(el.childNodes).find(function(n) { return n.nodeType === 3; });
+      if (textNode) animateCount(textNode, target, isDecimal, 1800);
+    });
+  }, 800);
 
   /* ── 5. Hero text layers parallax ── */
   var heroText = document.querySelector('.hero-text');
@@ -1748,6 +1785,64 @@ document.addEventListener('DOMContentLoaded', function() {
   /* Scroll reveal — mark all .r elements as visible */
   document.querySelectorAll('.r').forEach(function(el) { el.classList.add('on'); });
 
+  /* Phone mockup class injection (runs early via DOMContentLoaded) */
+  (function initPhonesEarly() {
+    var phones = document.querySelector('.hero-phones');
+    if (!phones) return;
+    var phoneDivs = Array.prototype.slice.call(phones.children).filter(function(el) {
+      return el.tagName === 'DIV' && !el.classList.contains('hero-scroll-hint');
+    });
+    if (phoneDivs.length < 2) return;
+    var train = phoneDivs[0];
+    if (!train.classList.contains('phone')) {
+      train.classList.add('phone', 'phone-train');
+      var tb = train.querySelector('div');
+      if (tb) {
+        tb.classList.add('ph-body');
+        Array.prototype.slice.call(tb.children).forEach(function(k,i) {
+          if (i===0) k.classList.add('ph-title');
+          else if (i>=1&&i<=4) {
+            k.classList.add('ph-skill');
+            var sc=Array.prototype.slice.call(k.children);
+            if(sc[0])sc[0].classList.add('ph-skill-name');
+            if(sc[1])sc[1].classList.add('ph-skill-bar');
+          } else if (i===5) {
+            k.classList.add('ph-next');
+            var nc=Array.prototype.slice.call(k.children);
+            if(nc[0])nc[0].classList.add('ph-next-label');
+            if(nc[1])nc[1].classList.add('ph-next-val');
+          }
+        });
+      }
+    }
+    var stats = phoneDivs[1];
+    if (!stats.classList.contains('phone')) {
+      stats.classList.add('phone', 'phone-stats');
+      var sb = stats.querySelector('div');
+      if (sb) {
+        sb.classList.add('ph-body');
+        Array.prototype.slice.call(sb.children).forEach(function(k,i) {
+          if (i===0) k.classList.add('ph-title');
+          else if (i===1) {
+            k.classList.add('ph-chart');
+            var cc=Array.prototype.slice.call(k.children);
+            if(cc[0])cc[0].classList.add('ph-chart-label');
+            if(cc[1])cc[1].classList.add('ph-bars');
+            if(cc[2])cc[2].classList.add('ph-goal-pill');
+          } else if (i===2) {
+            k.classList.add('ph-age-card');
+            var ac=Array.prototype.slice.call(k.children);
+            if(ac[0])ac[0].classList.add('ph-age-lbl');
+            if(ac[1])ac[1].classList.add('ph-age-num');
+            if(ac[2])ac[2].classList.add('ph-age-ok');
+            if(ac[3]){ac[3].classList.add('ph-age-bar');var f=ac[3].querySelector('div');if(f)f.classList.add('ph-age-fill');}
+            if(ac[4])ac[4].classList.add('ph-age-real');
+          }
+        });
+      }
+    }
+  })();
+
   /* Hero badge closer to headline */
   var heroBadge = document.querySelector('.hero-badge');
   if (heroBadge) heroBadge.style.setProperty('margin-bottom', '12px', 'important');
@@ -1866,6 +1961,78 @@ document.addEventListener('DOMContentLoaded', function() {
    Webflow may wipe deferred-script changes before load fires.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 (function() {
+  /* ── Phone mockup class injection ──
+     Webflow creates anonymous divs inside .hero-phones with no class names.
+     This bridges the structure so .phone / .ph-skill etc. CSS rules apply. */
+  function initPhones() {
+    var phones = document.querySelector('.hero-phones');
+    if (!phones) return;
+    var phoneDivs = Array.prototype.slice.call(phones.children).filter(function(el) {
+      return el.tagName === 'DIV' && !el.classList.contains('hero-scroll-hint');
+    });
+    if (phoneDivs.length < 2) return;
+
+    /* ── Phone 1: train (left, skills) ── */
+    var train = phoneDivs[0];
+    if (!train.classList.contains('phone')) {
+      train.classList.add('phone', 'phone-train');
+      var trainBody = train.querySelector('div');
+      if (trainBody) {
+        trainBody.classList.add('ph-body');
+        var tKids = Array.prototype.slice.call(trainBody.children);
+        tKids.forEach(function(kid, i) {
+          if (i === 0) {
+            kid.classList.add('ph-title');
+          } else if (i >= 1 && i <= 4) {
+            kid.classList.add('ph-skill');
+            var sc = Array.prototype.slice.call(kid.children);
+            if (sc[0]) sc[0].classList.add('ph-skill-name');
+            if (sc[1]) { sc[1].classList.add('ph-skill-bar'); }
+          } else if (i === 5) {
+            kid.classList.add('ph-next');
+            var nc = Array.prototype.slice.call(kid.children);
+            if (nc[0]) nc[0].classList.add('ph-next-label');
+            if (nc[1]) nc[1].classList.add('ph-next-val');
+          }
+        });
+      }
+    }
+
+    /* ── Phone 2: stats (right, chart + age) ── */
+    var stats = phoneDivs[1];
+    if (!stats.classList.contains('phone')) {
+      stats.classList.add('phone', 'phone-stats');
+      var statsBody = stats.querySelector('div');
+      if (statsBody) {
+        statsBody.classList.add('ph-body');
+        var sKids = Array.prototype.slice.call(statsBody.children);
+        sKids.forEach(function(kid, i) {
+          if (i === 0) {
+            kid.classList.add('ph-title');
+          } else if (i === 1) {
+            kid.classList.add('ph-chart');
+            var cc = Array.prototype.slice.call(kid.children);
+            if (cc[0]) cc[0].classList.add('ph-chart-label');
+            if (cc[1]) cc[1].classList.add('ph-bars');
+            if (cc[2]) cc[2].classList.add('ph-goal-pill');
+          } else if (i === 2) {
+            kid.classList.add('ph-age-card');
+            var ac = Array.prototype.slice.call(kid.children);
+            if (ac[0]) ac[0].classList.add('ph-age-lbl');
+            if (ac[1]) ac[1].classList.add('ph-age-num');
+            if (ac[2]) ac[2].classList.add('ph-age-ok');
+            if (ac[3]) {
+              ac[3].classList.add('ph-age-bar');
+              var fill = ac[3].querySelector('div');
+              if (fill) fill.classList.add('ph-age-fill');
+            }
+            if (ac[4]) ac[4].classList.add('ph-age-real');
+          }
+        });
+      }
+    }
+  }
+
   function reInitAll() {
     /* Class bridge: hero / closing */
     var allSecs = Array.prototype.slice.call(document.querySelectorAll('section'));
@@ -1875,6 +2042,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (allSecs.length > 0 && !allSecs[allSecs.length - 1].classList.contains('closing')) {
       allSecs[allSecs.length - 1].classList.add('closing');
     }
+    initPhones();
     /* Scroll reveal */
     document.querySelectorAll('.r').forEach(function(el) { el.classList.add('on'); });
     /* wg-content wrapper */
