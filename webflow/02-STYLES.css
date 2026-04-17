@@ -6576,3 +6576,93 @@ html body .risk-card .rc-title {
   /* ── No overflow ── */
   body,html{overflow-x:hidden !important;max-width:100vw}
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   CRITICAL FIXES — must stay last to win the cascade
+═══════════════════════════════════════════════════════════════════ */
+
+/* ── 1. Nav padding: beats #nav{padding-left:40px!important} in HEAD ── */
+@media(max-width:640px){ #nav{padding:0 14px!important} }
+@media(max-width:480px){ #nav{padding:0 12px!important} }
+
+/* ── 2. Hide Webflow-native duplicate lang button (i18n.js builds the real one) ──
+   Belt-and-suspenders: webflow-main.js also removes it from the DOM.
+   Any Webflow-native anchor with id="lang-btn" is the duplicate. */
+nav .nav-r > a#lang-btn,
+nav .nav-r > a.w-button[id="lang-btn"] {
+  display: none !important;
+}
+
+/* ── 3. Hero phones on mobile: show as stacked side-by-side phone cards ── */
+@media(max-width:640px){
+  /* Override all the !important hide rules above this point */
+  .hero-phones{
+    display:flex!important;
+    flex-direction:row!important;
+    justify-content:center!important;
+    align-items:flex-start!important;
+    gap:10px!important;
+    margin:20px auto 0!important;
+    padding:0!important;
+    height:260px!important;
+    position:relative!important;
+    overflow:visible!important;
+    width:auto!important;
+  }
+  /* Phone cards: switch from absolute to relative positioning */
+  .hero-phones .phone{
+    position:relative!important;
+    top:auto!important;left:auto!important;right:auto!important;bottom:auto!important;
+    width:140px!important;
+    border-radius:22px!important;
+    flex-shrink:0!important;
+  }
+  /* Offset second phone card down for a layered effect */
+  .hero-phones .phone-stats{
+    margin-top:28px!important;
+    animation:ph-mob-b 7s ease-in-out infinite!important;
+  }
+  .hero-phones .phone-train{
+    animation:ph-mob-a 7s ease-in-out infinite!important;
+  }
+  /* Scale down phone internals */
+  .hero-phones .ph-body{padding:12px 10px!important}
+  .hero-phones .ph-title{font-size:11px!important;margin-bottom:8px!important}
+  .hero-phones .ph-skill{padding:7px 9px!important;margin-bottom:5px!important;border-radius:8px!important}
+  .hero-phones .ph-skill-name{font-size:9px!important;margin-bottom:4px!important}
+  .hero-phones .ph-skill-bar{height:4px!important}
+  .hero-phones .ph-chart{padding:10px!important;margin-bottom:8px!important;border-radius:10px!important}
+  .hero-phones .ph-chart-label{font-size:8px!important;margin-bottom:6px!important}
+  .hero-phones .ph-bars{height:46px!important;gap:3px!important;margin-bottom:6px!important}
+  .hero-phones .ph-goal-pill{font-size:8px!important;padding:3px 7px!important;border-radius:5px!important}
+  .hero-phones .ph-age-card{padding:10px!important;border-radius:10px!important}
+  .hero-phones .ph-age-lbl{font-size:8px!important;margin-bottom:3px!important}
+  .hero-phones .ph-age-num{font-size:22px!important;margin-bottom:3px!important}
+  .hero-phones .ph-age-ok{font-size:9px!important;margin-bottom:5px!important}
+  .hero-phones .ph-age-bar{margin-bottom:4px!important}
+  .hero-phones .ph-age-real{font-size:8px!important}
+  .hero-phones .ph-next{padding:7px 9px!important;margin-top:5px!important;border-radius:8px!important}
+  .hero-phones .ph-next-label,.hero-phones .ph-next-val{font-size:9px!important}
+}
+
+/* ── 4. Trust headline: ensure spaces between inline spans (all lang) ── */
+.trust-headline-top::after{ content:" " }
+.trust-headline-number::after{ content:"\00a0" }
+
+/* ── 5. Language selector improved styling ── */
+.lang-selector{ gap:0 }
+.lang-btn{
+  min-width:56px!important;
+  padding:7px 10px!important;
+  font-size:11px!important;
+  border-radius:9px!important;
+  height:34px!important;
+}
+@media(max-width:640px){
+  .lang-btn{
+    min-width:46px!important;
+    padding:6px 8px!important;
+    font-size:11px!important;
+    height:32px!important;
+  }
+}

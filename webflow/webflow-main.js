@@ -399,6 +399,29 @@ window.__cfLongevityInit = true;
     if (aP && !aP.hasAttribute('data-i18n')) { aP.setAttribute('data-i18n', 'faq.a' + n); aP.setAttribute('data-i18n-html', ''); }
   });
 
+  /* ── IMAGE URL PATCH ─────────────────────────────────────────────────────
+     The Webflow embed may still reference old cdn.prod.website-files.com/img/newart/
+     paths that 404. Map every filename to its jsDelivr equivalent on load. ── */
+  (function patchBrokenImages() {
+    var CDN = 'https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/';
+    var files = [
+      'clinicsLogos.webp','devices_cognifit.png',
+      'WSJ_Logo.svg.png','CBS_logo.svg.png','American_Broadcasting_Company_Logo.svg.png',
+      'NBC_logo.svg.png','CNN.svg.png','NewYorkTimes.svg.png','Logo_Lifetime_2020.svg.png',
+      'medicalnewstoday.png','smart-money-logo-svg-vector.svg'
+    ];
+    var map = {};
+    files.forEach(function(f){ map[f] = CDN + f; });
+    function patch() {
+      document.querySelectorAll('img[src]').forEach(function(img) {
+        var fname = (img.getAttribute('src') || '').split('/').pop().split('?')[0];
+        if (map[fname] && img.naturalWidth === 0) img.src = map[fname];
+      });
+    }
+    patch();
+    window.addEventListener('load', patch);
+  })();
+
   /* ── TRUST / STATS ── */
   setI18nAll('.stat-l', ['trust.s1', 'trust.s2', 'trust.s3', 'trust.s4']);
   var trustSection = document.querySelector('.stats-row, .stat-bl');
@@ -1883,83 +1906,32 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  /* ── Language Switcher UI ──────────────────────────────────────────
-     Webflow strips onclick attributes from published HTML. Wire all
-     lang-switcher interactions via addEventListener instead.
-     Also restores CSS classes Webflow removes from <button> elements
-     (converts button→a and replaces class with "w-button").
+  /* ── Remove Webflow-native duplicate lang button ──────────────────
+     i18n.js (loaded first) runs buildSelector() which creates the real
+     .lang-selector > button#lang-btn in .nav-r.
+     Webflow also publishes a native A#lang-btn.w-button (added via the
+     Webflow designer) that duplicates the control and hijacks
+     getElementById('lang-btn'), causing updateSelector() to update the
+     hidden/wrong element instead of the i18n-built button.
+     Solution: remove the Webflow-native element, then re-apply the
+     current language so the i18n button shows the correct code.
   ─────────────────────────────────────────────────────────────────── */
-  (function() {
-    function setupLangSwitcher() {
-      var btn = document.getElementById('lang-btn');
-      var dropdown = document.getElementById('lang-dropdown-static');
-      if (!btn || !dropdown) return;
-
-      /* Restore lang-modal-header and lang-modal-title classes */
-      var header = dropdown.querySelector('div');
-      if (header) {
-        header.classList.add('lang-modal-header');
-        var title = header.querySelector('span');
-        if (title) title.classList.add('lang-modal-title');
-      }
-
-      /* Restore lang-item class (Webflow replaces with w-button) */
-      dropdown.querySelectorAll('[data-lang]').forEach(function(el) {
-        el.classList.remove('w-button');
-        el.classList.add('lang-item');
-        /* Restore lang-flag / lang-name classes on child spans */
-        var spans = el.querySelectorAll('span');
-        if (spans[0]) spans[0].classList.add('lang-flag');
-        if (spans[1]) spans[1].classList.add('lang-name');
-        el.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          var lang = el.getAttribute('data-lang');
-          if (window.CogniFitI18n && window.CogniFitI18n.setLang) {
-            window.CogniFitI18n.setLang(lang, true);
-          }
-          dropdown.classList.remove('open');
-          btn.setAttribute('aria-expanded', 'false');
-          document.documentElement.classList.remove('lang-modal-open');
-        });
-      });
-
-      /* Restore lang-modal-close class on close button */
-      var closeBtn = dropdown.querySelector('[aria-label="Close language menu"]');
-      if (closeBtn) {
-        closeBtn.classList.remove('w-button');
-        closeBtn.classList.add('lang-modal-close');
-        closeBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          dropdown.classList.remove('open');
-          btn.setAttribute('aria-expanded', 'false');
-          document.documentElement.classList.remove('lang-modal-open');
-        });
-      }
-
-      /* Lang button toggle */
-      btn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        var open = dropdown.classList.toggle('open');
-        btn.setAttribute('aria-expanded', String(open));
-        document.documentElement.classList.toggle('lang-modal-open', open);
-      });
-
-      /* Close on outside click */
-      document.addEventListener('click', function(e) {
-        if (!dropdown.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
-          dropdown.classList.remove('open');
-          btn.setAttribute('aria-expanded', 'false');
-          document.documentElement.classList.remove('lang-modal-open');
-        }
-      });
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', setupLangSwitcher);
-    } else {
-      setupLangSwitcher();
+  (function removeDuplicateLangBtn() {
+    var navR = document.querySelector('.nav-r');
+    if (!navR) return;
+    /* Remove any anchor/link with id="lang-btn" (Webflow converts buttons to anchors
+       with class w-button — our real button is a <button> element built by i18n.js) */
+    navR.querySelectorAll('a#lang-btn, a.w-button[id="lang-btn"]').forEach(function(el) {
+      el.parentNode.removeChild(el);
+    });
+    /* Also remove any stray plain <span> showing a lang code (legacy placeholder) */
+    navR.querySelectorAll('span').forEach(function(s) {
+      var t = (s.textContent || '').trim();
+      if (/^[A-Z]{2}(-[A-Z]{2})?$/i.test(t) && !s.className) s.parentNode.removeChild(s);
+    });
+    /* Re-apply current language so the i18n-built button shows the correct code */
+    if (window.CogniFitI18n && window.CogniFitI18n.setLang && window.CogniFitI18n.getLang) {
+      window.CogniFitI18n.setLang(window.CogniFitI18n.getLang(), false);
     }
   })();
 });
