@@ -919,11 +919,16 @@ document.querySelectorAll('.sk-fill').forEach(function(bar) {
   }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
 
   document.querySelectorAll('.stat-n').forEach(function(el) {
+    /* Guard: if already set up with a real target (>0), just re-observe (handles double-run) */
+    if (el.dataset.count && parseFloat(el.dataset.count) > 0) {
+      if (!el.dataset.counted) statObserver.observe(el);
+      return;
+    }
     var textNode = Array.from(el.childNodes).find(function(n) { return n.nodeType === 3; });
     if (!textNode) return;
     var raw = textNode.nodeValue.trim();
     var num = parseFloat(raw.replace(/,/g, ''));
-    if (isNaN(num)) return;
+    if (isNaN(num) || num === 0) return; /* skip zeros — means text was already reset */
     el.dataset.count   = raw.replace(/,/g, '');
     textNode.nodeValue = raw.indexOf('.') !== -1 ? '0.0' : '0';
     statObserver.observe(el);
@@ -1162,10 +1167,10 @@ document.querySelectorAll('.sk-fill').forEach(function(bar) {
   var disabled      = new Set();
   var autoResetTimer = null;
 
-  /* Insert instruction text above sci-grid */
+  /* Insert instruction text above sci-grid — dedup guard prevents double-insert */
   var sciGrid       = document.querySelector('.sci-grid');
   var instructionEl = null;
-  if (sciGrid) {
+  if (sciGrid && !sciGrid.parentNode.querySelector('.sci-instruction')) {
     instructionEl = document.createElement('p');
     instructionEl.className = 'sci-instruction';
     instructionEl.setAttribute('data-i18n', 'sci.tap.idle');
