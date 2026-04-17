@@ -23,48 +23,82 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Read custom code files
-        id: read-code
+      - name: Verify Webflow token
+        env:
+          WEBFLOW_TOKEN: ${{ secrets.WEBFLOW_TOKEN }}
         run: |
-          HEAD_CODE=$(cat webflow/01-HEAD-CODE.html)
-          BODY_CODE=$(cat webflow/03-BODY-JS.html)
+          if [ -z "$WEBFLOW_TOKEN" ]; then
+            echo "::error::WEBFLOW_TOKEN secret is not set"
+            exit 1
+          fi
+          echo "Token length: ${#WEBFLOW_TOKEN} chars"
 
-          # Store as step outputs via environment files
-          {
-            echo "head_code<<CODEEOF"
-            echo "$HEAD_CODE"
-            echo "CODEEOF"
-          } >> "$GITHUB_OUTPUT"
+          HTTP_CODE=$(curl -sS -o /tmp/wf-auth.json -w '%{http_code}' \
+            -X GET "https://api.webflow.com/v2/token/introspect" \
+            -H "Authorization: Bearer ${WEBFLOW_TOKEN}" \
+            -H "Content-Type: application/json")
 
-          {
-            echo "body_code<<CODEEOF"
-            echo "$BODY_CODE"
-            echo "CODEEOF"
-          } >> "$GITHUB_OUTPUT"
+          echo "Token introspect: HTTP ${HTTP_CODE}"
+          cat /tmp/wf-auth.json
+          echo ""
+
+          if [[ ! "$HTTP_CODE" =~ ^20 ]]; then
+            echo "::warning::Token introspect failed — token may be invalid or lack scopes"
+          fi
+
+      - name: Read and validate custom code files
+        run: |
+          HEAD_SIZE=$(wc -c < webflow/01-HEAD-CODE.html)
+          BODY_SIZE=$(wc -c < webflow/03-BODY-JS.html)
+          echo "Head code: ${HEAD_SIZE} bytes"
+          echo "Body code: ${BODY_SIZE} bytes"
+
+          if [ "$HEAD_SIZE" -gt 10000 ]; then
+            echo "::warning::Head code is ${HEAD_SIZE} bytes — may exceed Webflow limit"
+          fi
+          if [ "$BODY_SIZE" -gt 10000 ]; then
+            echo "::warning::Body code is ${BODY_SIZE} bytes — may exceed Webflow limit"
+          fi
 
       - name: Update Webflow page custom code
         env:
           WEBFLOW_TOKEN: ${{ secrets.WEBFLOW_TOKEN }}
         run: |
-          # Build JSON payload with jq to handle escaping
           PAYLOAD=$(jq -n \
             --arg head "$(cat webflow/01-HEAD-CODE.html)" \
             --arg body "$(cat webflow/03-BODY-JS.html)" \
             '{scripts: [{location: "header", version: "1.0.0", attributes: {}, htmlContent: $head}, {location: "footer", version: "1.0.0", attributes: {}, htmlContent: $body}]}')
 
+          echo "Payload size: $(echo "$PAYLOAD" | wc -c) bytes"
+
           HTTP_CODE=$(curl -sS -o /tmp/wf-response.json -w '%{http_code}' \
             -X PUT "https://api.webflow.com/v2/pages/${PAGE_ID}/custom_code" \
             -H "Authorization: Bearer ${WEBFLOW_TOKEN}" \
             -H "Content-Type: application/json" \
-            -H "accept-version: 2.0.0" \
             -d "$PAYLOAD")
 
           echo "Custom code update: HTTP ${HTTP_CODE}"
           cat /tmp/wf-response.json
+          echo ""
 
           if [[ ! "$HTTP_CODE" =~ ^20 ]]; then
             echo "::error::Failed to update custom code (HTTP ${HTTP_CODE})"
-            exit 1
+            echo "Trying alternative: site-level custom code..."
+
+            HTTP_CODE2=$(curl -sS -o /tmp/wf-response2.json -w '%{http_code}' \
+              -X PUT "https://api.webflow.com/v2/sites/${SITE_ID}/custom_code" \
+              -H "Authorization: Bearer ${WEBFLOW_TOKEN}" \
+              -H "Content-Type: application/json" \
+              -d "$PAYLOAD")
+
+            echo "Site-level custom code: HTTP ${HTTP_CODE2}"
+            cat /tmp/wf-response2.json
+            echo ""
+
+            if [[ ! "$HTTP_CODE2" =~ ^20 ]]; then
+              echo "::error::Both page-level and site-level custom code update failed"
+              exit 1
+            fi
           fi
 
       - name: Purge jsDelivr CDN cache
@@ -91,11 +125,11 @@ jobs:
             -X POST "https://api.webflow.com/v2/sites/${SITE_ID}/publish" \
             -H "Authorization: Bearer ${WEBFLOW_TOKEN}" \
             -H "Content-Type: application/json" \
-            -H "accept-version: 2.0.0" \
             -d '{"customDomains": [], "publishToWebflowSubdomain": true}')
 
           echo "Publish: HTTP ${HTTP_CODE}"
           cat /tmp/wf-publish.json
+          echo ""
 
           if [[ ! "$HTTP_CODE" =~ ^20 ]]; then
             echo "::error::Failed to publish Webflow site (HTTP ${HTTP_CODE})"
