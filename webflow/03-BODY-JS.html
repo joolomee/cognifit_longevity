@@ -14,6 +14,126 @@
 <!-- ── Main application bundle (class bridge + DOM injection + behaviors) from jsDelivr ── -->
 <script src="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/webflow/webflow-main.js" defer></script>
 
+<!-- ── Hero content injection: inserts missing hero elements if Webflow DOM lacks them ── -->
+<script>
+(function(){
+  function injectHero(){
+    var hc = document.querySelector('.hero-content, .hero .wrap, .hero > div, section.hero');
+    if (!hc) return;
+
+    /* Find or create the hero text column */
+    var textCol = hc.querySelector('.hero-headline, .hero-h1, h1');
+    var parentCol = textCol ? textCol.parentElement : hc;
+
+    /* 1. Hero badge */
+    if (!document.querySelector('.hero-badge')) {
+      var badge = document.createElement('div');
+      badge.className = 'hero-badge r';
+      badge.innerHTML = '<div class="badge-dot"></div><span data-i18n="hero.badge">Cognitive Longevity System</span>';
+      parentCol.insertBefore(badge, parentCol.firstChild);
+    }
+
+    /* 2. Hero H1 (if missing or empty) */
+    var h1 = document.querySelector('.hero-h1');
+    if (!h1 || !h1.textContent.trim()) {
+      if (!h1) {
+        var hl = document.createElement('div');
+        hl.className = 'hero-headline r d1';
+        hl.innerHTML = '<div class="hero-bracket"></div><h1 class="hero-h1 hero-plain"><span data-i18n="hero.h1.line1">Live Longer.</span><br><span data-i18n="hero.h1.line2">Think Better.</span><br><span class="hero-shimmer-soft" data-i18n="hero.h1.line3">Stay Independent.</span></h1>';
+        var badgeEl = document.querySelector('.hero-badge');
+        if (badgeEl && badgeEl.nextSibling) parentCol.insertBefore(hl, badgeEl.nextSibling);
+        else parentCol.appendChild(hl);
+      }
+    }
+
+    /* 3. Hero subtitle */
+    if (!document.querySelector('.hero-sub')) {
+      var sub = document.createElement('p');
+      sub.className = 'hero-sub r d2';
+      sub.setAttribute('data-i18n', 'hero.sub');
+      sub.setAttribute('data-i18n-html', '');
+      sub.innerHTML = 'Aging is inevitable. <strong>Cognitive decline doesn\'t have to be.</strong> Protect the core mental abilities that determine how independently you live as you age.';
+      parentCol.appendChild(sub);
+    }
+
+    /* 4. Read-time row */
+    if (!document.querySelector('.hero-read-time')) {
+      var rt = document.createElement('div');
+      rt.className = 'hero-read-time r d2';
+      rt.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;vertical-align:middle;margin-right:6px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span data-i18n="hero.readtime">4 min read · Based on 1,083+ clinical studies</span>';
+      parentCol.appendChild(rt);
+    }
+
+    /* 5. CTA button */
+    if (!document.querySelector('.hero-content .btn-primary, .hero .btn-primary')) {
+      var cta = document.createElement('div');
+      cta.className = 'r d2';
+      cta.innerHTML = '<a href="https://www.cognifit.com/assessments" target="_blank" rel="noopener noreferrer" class="btn-primary" data-i18n="hero.cta">Protect Your Brain</a>';
+      parentCol.appendChild(cta);
+    }
+
+    /* 6. Rating row */
+    if (!document.querySelector('.hero-rating')) {
+      var rating = document.createElement('div');
+      rating.className = 'hero-rating r d3';
+      rating.innerHTML = '<div class="rating-row1"><div class="rating-left"><span class="rating-n">4.8</span><span class="stars">\u2605\u2605\u2605\u2605\u2605</span></div><div class="rating-right"><span class="rating-number">6,249,358</span><span class="rating-users" data-i18n="hero.users">Users Worldwide</span></div></div>';
+      parentCol.appendChild(rating);
+    }
+
+    /* 7. Guarantee badges */
+    if (!document.querySelector('.guarantee-row')) {
+      var guar = document.createElement('div');
+      guar.className = 'guarantee-row r d3';
+      guar.innerHTML = '<div class="g-badge" data-i18n="hero.guarantee1">100% Satisfaction Guaranteed</div><div class="g-badge" data-i18n="hero.guarantee2">30 Day Money Back</div>';
+      parentCol.appendChild(guar);
+    }
+
+    /* 8. Hero phones — the main missing piece */
+    if (!document.querySelector('.hero-phones')) {
+      var phones = document.createElement('div');
+      phones.className = 'hero-phones r d2';
+      phones.innerHTML = ''
+        + '<div class="phone phone-train"><div class="ph-body">'
+        + '<div class="ph-title" data-i18n="phone.title1">Brain Train</div>'
+        + '<div class="ph-skill"><div class="ph-skill-name" data-i18n="phone.skill1">Memory</div><div class="ph-skill-bar"><div class="ph-skill-fill" style="width:80%"></div></div></div>'
+        + '<div class="ph-skill"><div class="ph-skill-name" data-i18n="phone.skill2">Reasoning</div><div class="ph-skill-bar"><div class="ph-skill-fill" style="width:62%"></div></div></div>'
+        + '<div class="ph-skill"><div class="ph-skill-name" data-i18n="phone.skill3">Concentration</div><div class="ph-skill-bar"><div class="ph-skill-fill" style="width:50%"></div></div></div>'
+        + '<div class="ph-skill"><div class="ph-skill-name" data-i18n="phone.skill4">Coordination</div><div class="ph-skill-bar"><div class="ph-skill-fill" style="width:42%"></div></div></div>'
+        + '<div class="ph-next"><div class="ph-next-label" data-i18n="phone.workout">Your Daily Workout</div><div class="ph-next-val" data-i18n="phone.nextsession">NEXT SESSION \u2192</div></div>'
+        + '</div></div>'
+        + '<div class="phone phone-stats"><div class="ph-body">'
+        + '<div class="ph-title" data-i18n="phone.title2">Brain Health</div>'
+        + '<div class="ph-chart">'
+        + '<div class="ph-chart-label" data-i18n="phone.score">Cognitive Score 0\u2013800</div>'
+        + '<div class="ph-bars">'
+        + '<div class="ph-bar" style="height:100%"></div>'
+        + '<div class="ph-bar" style="height:100%"></div>'
+        + '<div class="ph-bar" style="height:55%"></div>'
+        + '<div class="ph-bar" style="height:62%"></div>'
+        + '<div class="ph-bar peak" style="height:75%"></div>'
+        + '</div>'
+        + '<div class="ph-goal-pill" data-i18n="phone.goal">GOAL 670</div>'
+        + '</div>'
+        + '<div class="ph-age-card">'
+        + '<div class="ph-age-lbl" data-i18n="phone.cognage">Cognitive Age</div>'
+        + '<div class="ph-age-num">37</div>'
+        + '<div class="ph-age-ok" data-i18n="phone.cognage.ok">Ideal cognitive age \u2713</div>'
+        + '<div class="ph-age-bar"><div class="ph-age-fill"></div></div>'
+        + '<div class="ph-age-real" data-i18n="phone.realage">Real Age: 47 years old</div>'
+        + '</div>'
+        + '</div></div>';
+      hc.appendChild(phones);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', injectHero);
+  } else { injectHero(); }
+  setTimeout(injectHero, 800);
+  setTimeout(injectHero, 2500);
+})();
+</script>
+
 <!-- ── Reveal fallback (makes .r elements visible even if main.js is slow) ── -->
 <script>
 document.documentElement.classList.add('js-ready');
