@@ -132,6 +132,12 @@ html,body{overflow-y:auto!important;height:auto!important}
 #nav .nav-logo-link{display:inline-flex !important;align-items:center}
 #nav{padding-left:40px !important;padding-right:40px !important}
 
+/* ── Footer grid — inline fallback so CDN cache never breaks it ── */
+footer>div:nth-child(2){display:grid !important;grid-template-columns:repeat(4,1fr) !important;gap:clamp(20px,3vw,40px) !important;max-width:1200px !important;margin:0 auto clamp(28px,4vw,44px) !important;align-items:flex-start !important}
+footer>div:nth-child(2)>.footer-col{flex:1 1 0 !important;width:auto !important}
+@media(max-width:900px){footer>div:nth-child(2){grid-template-columns:repeat(2,1fr) !important}}
+@media(max-width:480px){footer>div:nth-child(2){grid-template-columns:1fr !important}.footer-bottom{flex-direction:column !important;align-items:center !important;text-align:center !important}.footer-bottom-links{justify-content:center !important}}
+
 /* ── Hero 2-column grid on desktop ── */
 @media (min-width:981px){
   .hero-content{display:grid !important;grid-template-columns:1fr 420px !important;gap:48px !important;align-items:start !important;max-width:1200px !important;margin:0 auto !important;padding:120px 40px 80px !important;position:relative !important;z-index:2 !important}
