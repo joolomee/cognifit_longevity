@@ -1,50 +1,12 @@
-<style>
-.w-webflow-badge{display:none!important}
-html body nav,html body .nav,html body .navbar{position:fixed!important;top:0!important;left:0!important;right:0!important;z-index:900!important;background:rgba(0,0,0,.92)!important;backdrop-filter:blur(12px)!important;-webkit-backdrop-filter:blur(12px)!important;min-height:56px!important;display:flex!important;align-items:center!important;padding:0 clamp(16px,3vw,32px)!important}
-html body nav .w-nav-brand,html body nav .brand,html body .navbar .w-nav-brand{flex-shrink:0}
-html body nav .w-nav-menu,html body nav .nav-menu{display:flex!important;align-items:center!important;gap:12px!important;margin-left:auto!important}
-html body main,html body .hero,html body section:first-of-type{margin-top:0!important}
-body{padding-top:60px!important}
-html body .stats-row,.stat-row,.stats{display:grid!important;grid-template-columns:repeat(2,1fr)!important;gap:16px!important;max-width:600px!important;margin:0 auto!important}
-@media(min-width:768px){html body .stats-row,.stat-row,.stats{grid-template-columns:repeat(4,1fr)!important}}
-html body .stat-bl{text-align:center}
-html body .pro-stack{display:grid!important;grid-template-columns:repeat(2,1fr)!important;gap:12px!important}
-@media(min-width:992px){html body .pro-stack{grid-template-columns:repeat(4,1fr)!important;gap:16px!important}}
-@media(min-width:1200px){html body .pro-stack{grid-template-columns:repeat(7,1fr)!important}}
-html body .risk-card{background:rgba(255,255,255,.04)!important;border:1px solid rgba(255,255,255,.1)!important;border-radius:16px!important;padding:clamp(20px,3vw,32px)!important}
-</style>
-<script>
-(function(){
-  function go(){
-    var els=document.querySelectorAll('.stat-n, .stats-num, .stat-num, [data-count]');
-    if(!els.length)return;
-    var targets=[
-      {t:6.2,dec:true,s:'<em>M+</em>'},
-      {t:1083,dec:false,s:'<em>+</em>'},
-      {t:800,dec:false,s:'<em>M+</em>'},
-      {t:4.8,dec:true,s:'<em>★</em>'}
-    ];
-    els.forEach(function(el,i){
-      if(el.__cfDone)return;
-      el.__cfDone=true;
-      var cfg=targets[i]||targets[0];
-      var start=performance.now();
-      function step(now){
-        var p=Math.min((now-start)/1800,1);
-        var e=1-Math.pow(1-p,3);
-        var v=cfg.t*e;
-        el.innerHTML=(cfg.dec?v.toFixed(1):Math.floor(v).toLocaleString())+(cfg.s||'');
-        if(p<1)requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    });
-  }
-  setTimeout(go,500);
-  setTimeout(go,2000);
-  setTimeout(go,4000);
-})();
-</script>
-<script src="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/i18n.js" defer></script>
-<script src="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/webflow/webflow-main.js" defer></script>
-<script src="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/webflow/visual-inject.js" defer></script>
-<script>document.documentElement.classList.add('cf-ready');</script>
+<!-- ═════════════════════════════════════════════════════════════════════
+     WEBFLOW PAGE SETTINGS → Custom code → Before </body> tag
+     Paste EVERYTHING below this comment up to the matching end marker.
+     All logic lives in external JS files loaded with defer — no inline
+     script blocks, no event handlers, nothing that can trip the parser.
+     ═════════════════════════════════════════════════════════════════════ -->
+<script defer src="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/webflow/seo-schema.js"></script>
+<script defer src="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/i18n.js"></script>
+<script defer src="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/webflow/webflow-main.js"></script>
+<script defer src="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/webflow/visual-inject.js"></script>
+<script defer src="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/webflow/counters.js"></script>
+<!-- ════════════════════ END OF BODY CUSTOM CODE ════════════════════ -->
