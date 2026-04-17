@@ -314,23 +314,31 @@ setTimeout(_cogniFitReveal,1000);
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll, { passive: true });
 
-    /* Immediate check: if already in viewport, fire now */
+    /* Immediate check */
     setTimeout(onScroll, 50);
-    setTimeout(onScroll, 1500);  /* after i18n */
-    setTimeout(onScroll, 3500);  /* after slow networks */
+    setTimeout(onScroll, 500);
 
-    /* Absolute fallback: after 6s, force-fire any remaining zero counter */
+    /* Force-fire ALL counters after 2s regardless of viewport */
     setTimeout(function(){
       nodes.forEach(function(n){ if (!n.__counterDone) fire(n); });
-    }, 6000);
+    }, 2000);
   }
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else { init(); }
-  /* Re-init after i18n mutations */
-  setTimeout(init, 1500);
-  setTimeout(init, 4000);
+  setTimeout(init, 800);
+  setTimeout(init, 2000);
+  /* Final safety: force-fire anything still at 0 after 4s */
+  setTimeout(function(){
+    var all = document.querySelectorAll('.stat-n, .stats-num, .stat-num, [data-count]');
+    all.forEach(function(el){
+      if (!el.__counterDone) {
+        prep(el);
+        fire(el);
+      }
+    });
+  }, 4000);
 })();
 
 /* ═══════════════════════════════════════════════════════════════════════
