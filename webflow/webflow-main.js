@@ -5,6 +5,10 @@
    Also injects DOM elements Webflow can't create natively
    (canvas, progress bar, scroll-top button, glow ring).
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ── Idempotency guard: abort if already initialised ── */
+if (window.__cfLongevityInit) { /* already ran */ }
+else {
+window.__cfLongevityInit = true;
 (function() {
   /* Class bridge: Webflow → Vercel */
   var bridge = { 'hero-section': 'hero', 'closing-section': 'closing', 'trust-top': 'trust-headline-top', 'trust-number': 'trust-headline-number', 'trust-users': 'trust-headline-users', 'risk-top': 'g2 g2-top', 'risk-left': 'r', 'lead-white': 'lead', 'eyebrow-dim': 'eyebrow' };
@@ -2088,3 +2092,4 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('load', reInitAll);
   }
 })();
+} /* end idempotency guard */
