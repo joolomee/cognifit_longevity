@@ -1317,6 +1317,99 @@ setTimeout(_cogniFitReveal,1000);
     }
   }
 
+  /* ── 5. Discover / Skills Panel ── */
+  if (!document.querySelector('.skills-panel')) {
+    var discoverSec = null;
+    document.querySelectorAll('section .wrap').forEach(function(w){
+      var h = w.querySelector('h2');
+      if (h && /discover|strengths|brain.*skills/i.test(h.textContent)) discoverSec = w;
+    });
+    if (discoverSec) {
+      var sp = document.createElement('div');
+      sp.className = 'skills-panel r d2';
+      sp.innerHTML = '<div class="panel-lbl" data-i18n="discover.panel">Cognitive Skills</div>'
+        + '<div class="sk-row"><div class="sk-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg></div><div style="flex:1"><div class="sk-name" data-i18n="discover.sk1">Contextual Memory</div><div class="sk-score">620 / 800</div><div class="sk-track"><div class="sk-fill" style="width:77.5%"></div></div></div></div>'
+        + '<div class="sk-row"><div class="sk-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M20.188 10.934a8.981 8.981 0 0 1 0 2.132c-1.159 4.015-4.6 6.934-8.188 6.934s-7.029-2.919-8.188-6.934a8.981 8.981 0 0 1 0-2.132C4.971 6.919 8.412 4 12 4s7.029 2.919 8.188 6.934z"/></svg></div><div style="flex:1"><div class="sk-name" data-i18n="discover.sk2">Hand-eye Coordination</div><div class="sk-score">480 / 800</div><div class="sk-track"><div class="sk-fill" style="width:60%"></div></div></div></div>'
+        + '<div class="sk-row"><div class="sk-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div style="flex:1"><div class="sk-name" data-i18n="discover.sk3">Planning</div><div class="sk-score">450 / 800</div><div class="sk-track"><div class="sk-fill" style="width:56%"></div></div></div></div>'
+        + '<div class="sk-row"><div class="sk-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div><div style="flex:1"><div class="sk-name" data-i18n="discover.sk4">Working Memory</div><div class="sk-score">443 / 800</div><div class="sk-track"><div class="sk-fill" style="width:55%"></div></div></div></div>';
+      var discoverCta = discoverSec.querySelector('.btn-center, .btn-secondary');
+      if (discoverCta) discoverSec.insertBefore(sp, discoverCta.closest('.btn-center') || discoverCta);
+      else discoverSec.appendChild(sp);
+    }
+  }
+
+  /* ── 6. Platform / How It Works (4 step-cards) ── */
+  if (!document.querySelector('.steps-grid')) {
+    var platSec = document.querySelector('#platform .wrap') || null;
+    if (!platSec) {
+      document.querySelectorAll('section .wrap').forEach(function(w){
+        var h = w.querySelector('h2');
+        if (h && /platform|how.*works|brain.*training.*platform/i.test(h.textContent)) platSec = w;
+      });
+    }
+    if (platSec) {
+      var sg = document.createElement('div');
+      sg.className = 'steps-grid';
+      sg.innerHTML = '<div class="step-card r"><div class="step-n">01</div><h3 data-i18n="plat.s1.t">Assess Your Brain</h3><p data-i18n="plat.s1.d">Scientifically validated cognitive assessment to establish your baseline.</p><div class="step-checks"><div class="step-chk" data-i18n="plat.s1.c1">Measure attention, memory & executive function</div><div class="step-chk" data-i18n="plat.s1.c2">Get a clear cognitive baseline</div></div></div>'
+        + '<div class="step-card r d1"><div class="step-n">02</div><h3 data-i18n="plat.s2.t">Get a Personalized Program</h3><p data-i18n="plat.s2.d">AI adapts training specifically to your unique brain profile.</p><div class="step-checks"><div class="step-chk" data-i18n="plat.s2.c1">Targets your weakest areas first</div><div class="step-chk" data-i18n="plat.s2.c2">Adjusts difficulty continuously</div><div class="step-chk" data-i18n="plat.s2.c3">Optimizes results over time</div></div></div>'
+        + '<div class="step-card r d2"><div class="step-n">03</div><h3 data-i18n="plat.s3.t">Train What Matters</h3><p data-i18n="plat.s3.d">Short, engaging sessions designed for real-life impact.</p><div class="step-checks"><div class="step-chk" data-i18n="plat.s3.c1">Improve focus & attention</div><div class="step-chk" data-i18n="plat.s3.c2">Strengthen working memory</div><div class="step-chk" data-i18n="plat.s3.c3">Enhance decision-making</div></div></div>'
+        + '<div class="step-card r d3"><div class="step-n">04</div><h3 data-i18n="plat.s4.t">Track Your Cognitive Age</h3><p data-i18n="plat.s4.d">Clear reports showing how your brain evolves over time.</p><div class="step-checks"><div class="step-chk" data-i18n="plat.s4.c1">Monitor progress visually</div><div class="step-chk" data-i18n="plat.s4.c2">Stay motivated with milestones</div><div class="step-chk" data-i18n="plat.s4.c3">Build lasting brain habits</div></div></div>';
+      var platCta = platSec.querySelector('.btn-center, .btn-primary');
+      if (platCta) platSec.insertBefore(sg, platCta.closest('.btn-center,.tc') || platCta);
+      else platSec.appendChild(sg);
+    }
+  }
+
+  /* ── 7. Outcomes section (charts + pills + hi-boxes) ── */
+  if (!document.querySelector('.hi-charts')) {
+    var outSec = null;
+    document.querySelectorAll('section .wrap').forEach(function(w){
+      var h = w.querySelector('h2');
+      if (h && /results|outcomes|delivers|brain.*training.*delivers/i.test(h.textContent)) outSec = w;
+    });
+    if (outSec) {
+      var g2 = outSec.querySelector('.g2');
+      var target = g2 ? g2 : outSec;
+      if (!target.querySelector('.pill-wrap')) {
+        var pills = document.createElement('div');
+        pills.className = 'pill-wrap';
+        pills.innerHTML = '<div class="out-pill" data-i18n="out.p1">Better mental clarity</div><div class="out-pill" data-i18n="out.p2">Faster thinking</div><div class="out-pill" data-i18n="out.p3">Improved focus</div><div class="out-pill" data-i18n="out.p4">Stronger decisions</div><div class="out-pill" data-i18n="out.p5">Greater independence</div>';
+        var outLead = target.querySelector('.lead-drk, .lead, p');
+        if (outLead) outLead.parentElement.insertBefore(pills, outLead.nextSibling);
+        else target.appendChild(pills);
+      }
+      if (!target.querySelector('.hi-charts')) {
+        var charts = document.createElement('div');
+        charts.className = 'r d2';
+        charts.innerHTML = '<div class="hi-charts">'
+          + '<div class="hi-chart"><div class="hi-chart-label" data-i18n="out.chart1">Memory Score</div><svg class="hi-chart-svg" viewBox="0 0 140 96" fill="none" aria-hidden="true"><defs><linearGradient id="mem-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a73e8" stop-opacity=".3"/><stop offset="100%" stop-color="#1a73e8" stop-opacity="0"/></linearGradient></defs><line x1="8" y1="18" x2="132" y2="18" stroke="rgba(0,0,0,.07)" stroke-width="1"/><line x1="8" y1="36" x2="132" y2="36" stroke="rgba(0,0,0,.07)" stroke-width="1"/><line x1="8" y1="54" x2="132" y2="54" stroke="rgba(0,0,0,.07)" stroke-width="1"/><line x1="8" y1="72" x2="132" y2="72" stroke="rgba(0,0,0,.07)" stroke-width="1"/><path d="M8,75 C28,72 48,64 68,52 C88,40 110,28 132,14 L132,82 L8,82 Z" fill="url(#mem-g)"/><path d="M8,75 C28,72 48,64 68,52 C88,40 110,28 132,14" stroke="#1a73e8" stroke-width="2.5" stroke-linecap="round"/><circle cx="8" cy="75" r="3.5" fill="#1a73e8"/><circle cx="39" cy="66" r="3.5" fill="#1a73e8"/><circle cx="70" cy="52" r="3.5" fill="#1a73e8"/><circle cx="101" cy="34" r="3.5" fill="#1a73e8"/><circle cx="132" cy="14" r="3.5" fill="#1a73e8"/><text x="8" y="93" font-family="sans-serif" font-size="8" fill="rgba(0,0,0,.4)" data-i18n="chart.week1">Week 1</text><text x="104" y="93" font-family="sans-serif" font-size="8" fill="rgba(0,0,0,.4)" data-i18n="chart.week8">Week 8</text><rect x="92" y="3" width="38" height="13" rx="6" fill="rgba(26,115,232,.12)"/><text x="111" y="13" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#1a73e8">+24%</text></svg></div>'
+          + '<div class="hi-chart"><div class="hi-chart-label" data-i18n="out.chart2">Attention &amp; Focus</div><svg class="hi-chart-svg" viewBox="0 0 140 96" fill="none" aria-hidden="true"><defs><linearGradient id="att-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#34A853" stop-opacity=".9"/><stop offset="100%" stop-color="#34A853" stop-opacity=".3"/></linearGradient></defs><line x1="8" y1="18" x2="132" y2="18" stroke="rgba(0,0,0,.07)" stroke-width="1"/><line x1="8" y1="36" x2="132" y2="36" stroke="rgba(0,0,0,.07)" stroke-width="1"/><line x1="8" y1="54" x2="132" y2="54" stroke="rgba(0,0,0,.07)" stroke-width="1"/><line x1="8" y1="72" x2="132" y2="72" stroke="rgba(0,0,0,.07)" stroke-width="1"/><rect x="10" y="70" width="17" height="12" rx="3.5" fill="url(#att-g)" opacity=".45"/><rect x="33" y="61" width="17" height="21" rx="3.5" fill="url(#att-g)" opacity=".58"/><rect x="56" y="48" width="17" height="34" rx="3.5" fill="url(#att-g)" opacity=".72"/><rect x="79" y="34" width="17" height="48" rx="3.5" fill="url(#att-g)" opacity=".86"/><rect x="102" y="18" width="17" height="64" rx="3.5" fill="url(#att-g)"/><text x="18" y="93" text-anchor="middle" font-family="sans-serif" font-size="8" fill="rgba(0,0,0,.4)" data-i18n="chart.w1">W1</text><text x="110" y="93" text-anchor="middle" font-family="sans-serif" font-size="8" fill="rgba(0,0,0,.4)" data-i18n="chart.w8">W8</text><rect x="92" y="3" width="38" height="13" rx="6" fill="rgba(52,168,83,.12)"/><text x="111" y="13" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#34A853">+31%</text></svg></div>'
+          + '</div>'
+          + '<div class="hi-box"><h3 data-i18n="out.box1.t">This Isn\'t Just Brain Training. It\'s Cognitive Longevity</h3><div class="hi-it" data-i18n="out.box1.i1">Staying sharp at 50, 60, 70 and beyond</div><div class="hi-it" data-i18n="out.box1.i2">Making better life decisions, every day</div><div class="hi-it" data-i18n="out.box1.i3">Maintaining full autonomy as you age</div><div class="hi-it" data-i18n="out.box1.i4">Reducing your long-term cognitive risk</div><div class="hi-close" data-i18n="out.box1.c" data-i18n-html>It\'s not about adding years to your life.<br><strong>It\'s about adding clarity, control, and independence to those years.</strong></div></div>'
+          + '<div class="hi-box" style="margin-top:clamp(16px,3vw,24px);background:rgba(26,115,232,0.04);border-color:rgba(26,115,232,0.15)"><h3 data-i18n="out.box2.t">When Will You See Results?</h3><div class="hi-it" data-i18n="out.box2.i1" data-i18n-html><strong>Week 1-2:</strong> Baseline assessment complete. You\'ll know exactly where you stand across 20+ cognitive skills</div><div class="hi-it" data-i18n="out.box2.i2" data-i18n-html><strong>Week 2-4:</strong> Most users report feeling sharper, with faster recall, better focus in conversations, and clearer thinking</div><div class="hi-it" data-i18n="out.box2.i3" data-i18n-html><strong>Week 4-8:</strong> Measurable improvement in trained cognitive domains, tracked in your personal dashboard</div><div class="hi-it" data-i18n="out.box2.i4" data-i18n-html><strong>Month 3+:</strong> Compounding gains. The ACTIVE trial found structured training benefits last 5-10 years</div><div class="hi-close" data-i18n="out.box2.c" data-i18n-html>Just 15-20 minutes, 3-4 times per week. <strong>Consistency is the key to cognitive longevity.</strong></div></div>';
+        target.appendChild(charts);
+      }
+    }
+  }
+
+  /* ── 8. Who Benefits (4 who-cards) ── */
+  if (!document.querySelector('.who-grid')) {
+    var whoSec = null;
+    document.querySelectorAll('section .wrap').forEach(function(w){
+      var h = w.querySelector('h2');
+      if (h && /who.*benefits|your.*profile|cognitive.*training.*aging/i.test(h.textContent)) whoSec = w;
+    });
+    if (whoSec) {
+      var wg = document.createElement('div');
+      wg.className = 'who-grid';
+      wg.innerHTML = '<div class="who-card r"><div class="who-icon" aria-hidden="true" style="font-size:2.5rem;display:flex;align-items:center;justify-content:center">\uD83E\uDDD1\u200D\uD83D\uDCBC</div><h3 data-i18n="who.c1.t">Adults 35+</h3><p data-i18n="who.c1.d">Processing speed peaks in your late 20s and begins declining from 35. Early cognitive training builds neural reserves that protect your independence for decades.</p></div>'
+        + '<div class="who-card r d1"><div class="who-icon" aria-hidden="true" style="font-size:2.5rem;display:flex;align-items:center;justify-content:center">\uD83D\uDCBB</div><h3 data-i18n="who.c2.t">Professionals</h3><p data-i18n="who.c2.d">Executive function, working memory, and sustained attention directly impact career performance. CogniFit targets these high-demand cognitive skills.</p></div>'
+        + '<div class="who-card r d2"><div class="who-icon" aria-hidden="true" style="font-size:2.5rem;display:flex;align-items:center;justify-content:center">\uD83E\uDDEC</div><h3 data-i18n="who.c3.t">Prevention-Minded</h3><p data-i18n="who.c3.d">Family history of dementia increases concern. The ACTIVE study showed structured cognitive training can delay cognitive decline by up to 10 years.</p></div>'
+        + '<div class="who-card r d3"><div class="who-icon" aria-hidden="true" style="font-size:2.5rem;display:flex;align-items:center;justify-content:center">\uD83C\uDF31</div><h3 data-i18n="who.c4.t">Longevity Investors</h3><p data-i18n="who.c4.d">You track your VO2 max, sleep quality, and nutrition. Why not your brain? Cognitive Age is the missing metric in your longevity stack.</p></div>';
+      whoSec.appendChild(wg);
+    }
+  }
+
   /* Run on DOMContentLoaded */
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() {
