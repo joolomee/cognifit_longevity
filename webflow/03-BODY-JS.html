@@ -22,18 +22,51 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
 setTimeout(_cogniFitReveal,1000);
 </script>
 
-<!-- ── Inline critical fixes (belt-and-suspenders over CDN) ── -->
+<!-- ── Inline critical fixes (belt-and-suspenders — run even if CDN is cached) ── -->
 <script>
-/* Fix 1: remove Webflow-native duplicate #lang-btn anchor */
-(function removeDupLang(){
+(function cfInlineFixes(){
   function run(){
+    /* Fix 1: remove Webflow-native duplicate #lang-btn anchor */
     var navR=document.querySelector('.nav-r');
-    if(!navR)return;
-    navR.querySelectorAll('a#lang-btn,a.w-button[id="lang-btn"]').forEach(function(el){el.parentNode.removeChild(el);});
-    navR.querySelectorAll('span').forEach(function(s){var t=(s.textContent||'').trim();if(/^[A-Z]{2}(-[A-Z]{2})?$/i.test(t)&&!s.className)s.parentNode.removeChild(s);});
-    if(window.CogniFitI18n&&window.CogniFitI18n.setLang&&window.CogniFitI18n.getLang)window.CogniFitI18n.setLang(window.CogniFitI18n.getLang(),false);
+    if(navR){
+      navR.querySelectorAll('a#lang-btn,a.w-button[id="lang-btn"]').forEach(function(el){el.parentNode.removeChild(el);});
+      navR.querySelectorAll('span').forEach(function(s){var t=(s.textContent||'').trim();if(/^[A-Z]{2}(-[A-Z]{2})?$/i.test(t)&&!s.className)s.parentNode.removeChild(s);});
+      if(window.CogniFitI18n&&window.CogniFitI18n.setLang&&window.CogniFitI18n.getLang)window.CogniFitI18n.setLang(window.CogniFitI18n.getLang(),false);
+    }
+
+    /* Fix 2: restore .phone classes stripped by Webflow renderer */
+    var heroPhones=document.querySelector('.hero-phones');
+    if(heroPhones){
+      var lists=heroPhones.querySelectorAll('.hero-phones-list');
+      if(lists.length>=2){
+        [['phone-train',lists[0]],['phone-stats',lists[1]]].forEach(function(pair){
+          var cls=pair[0],list=pair[1];
+          var phone=list.querySelector('div')||list;
+          if(!phone.classList.contains('phone')){
+            phone.classList.add('phone',cls);
+            var body=phone.querySelector('div');
+            if(body&&!body.classList.contains('ph-body')){
+              body.classList.add('ph-body');
+              var kids=Array.prototype.slice.call(body.children);
+              kids.forEach(function(k,i){
+                if(cls==='phone-train'){
+                  if(i===0)k.classList.add('ph-title');
+                  else if(i>=1&&i<=4){k.classList.add('ph-skill');var sc=k.children;if(sc[0])sc[0].classList.add('ph-skill-name');if(sc[1])sc[1].classList.add('ph-skill-bar');}
+                  else if(i===5){k.classList.add('ph-next');var nc=k.children;if(nc[0])nc[0].classList.add('ph-next-label');if(nc[1])nc[1].classList.add('ph-next-val');}
+                }else{
+                  if(i===0)k.classList.add('ph-title');
+                  else if(i===1){k.classList.add('ph-chart');var cc=k.children;if(cc[0])cc[0].classList.add('ph-chart-label');if(cc[1])cc[1].classList.add('ph-bars');if(cc[2])cc[2].classList.add('ph-goal-pill');}
+                  else if(i===2){k.classList.add('ph-age-card');var ac=k.children;if(ac[0])ac[0].classList.add('ph-age-lbl');if(ac[1])ac[1].classList.add('ph-age-num');if(ac[2])ac[2].classList.add('ph-age-ok');if(ac[3]){ac[3].classList.add('ph-age-bar');var f=ac[3].querySelector('div');if(f)f.classList.add('ph-age-fill');}if(ac[4])ac[4].classList.add('ph-age-real');}
+                }
+              });
+            }
+          }
+        });
+      }
+    }
   }
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}else{run();}
-  setTimeout(run,800);
+  setTimeout(run,600);
+  setTimeout(run,1500);
 })();
 </script>
