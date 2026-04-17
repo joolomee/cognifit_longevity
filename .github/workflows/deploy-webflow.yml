@@ -1,0 +1,105 @@
+name: Deploy to Webflow
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'webflow/**'
+      - 'i18n.js'
+
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    env:
+      SITE_ID: "68187102be717016f4f0f17b"
+      PAGE_ID: "69dca32c1ed507e3d1109d84"
+      REPO: "joolomee/cognifit_longevity"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Read custom code files
+        id: read-code
+        run: |
+          HEAD_CODE=$(cat webflow/01-HEAD-CODE.html)
+          BODY_CODE=$(cat webflow/03-BODY-JS.html)
+
+          # Store as step outputs via environment files
+          {
+            echo "head_code<<CODEEOF"
+            echo "$HEAD_CODE"
+            echo "CODEEOF"
+          } >> "$GITHUB_OUTPUT"
+
+          {
+            echo "body_code<<CODEEOF"
+            echo "$BODY_CODE"
+            echo "CODEEOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Update Webflow page custom code
+        env:
+          WEBFLOW_TOKEN: ${{ secrets.WEBFLOW_TOKEN }}
+        run: |
+          # Build JSON payload with jq to handle escaping
+          PAYLOAD=$(jq -n \
+            --arg head "$(cat webflow/01-HEAD-CODE.html)" \
+            --arg body "$(cat webflow/03-BODY-JS.html)" \
+            '{scripts: [{location: "header", version: "1.0.0", attributes: {}, htmlContent: $head}, {location: "footer", version: "1.0.0", attributes: {}, htmlContent: $body}]}')
+
+          HTTP_CODE=$(curl -sS -o /tmp/wf-response.json -w '%{http_code}' \
+            -X PUT "https://api.webflow.com/v2/pages/${PAGE_ID}/custom_code" \
+            -H "Authorization: Bearer ${WEBFLOW_TOKEN}" \
+            -H "Content-Type: application/json" \
+            -H "accept-version: 2.0.0" \
+            -d "$PAYLOAD")
+
+          echo "Custom code update: HTTP ${HTTP_CODE}"
+          cat /tmp/wf-response.json
+
+          if [[ ! "$HTTP_CODE" =~ ^20 ]]; then
+            echo "::error::Failed to update custom code (HTTP ${HTTP_CODE})"
+            exit 1
+          fi
+
+      - name: Purge jsDelivr CDN cache
+        run: |
+          FILES=(
+            "webflow/02-STYLES.css"
+            "webflow/webflow-main.js"
+            "webflow/03-BODY-JS.html"
+            "webflow/01-HEAD-CODE.html"
+            "i18n.js"
+          )
+
+          for f in "${FILES[@]}"; do
+            HTTP=$(curl -sS -o /dev/null -w '%{http_code}' \
+              "https://purge.jsdelivr.net/gh/${REPO}@main/${f}")
+            echo "Purge ${f}: HTTP ${HTTP}"
+          done
+
+      - name: Publish Webflow site
+        env:
+          WEBFLOW_TOKEN: ${{ secrets.WEBFLOW_TOKEN }}
+        run: |
+          HTTP_CODE=$(curl -sS -o /tmp/wf-publish.json -w '%{http_code}' \
+            -X POST "https://api.webflow.com/v2/sites/${SITE_ID}/publish" \
+            -H "Authorization: Bearer ${WEBFLOW_TOKEN}" \
+            -H "Content-Type: application/json" \
+            -H "accept-version: 2.0.0" \
+            -d '{"customDomains": [], "publishToWebflowSubdomain": true}')
+
+          echo "Publish: HTTP ${HTTP_CODE}"
+          cat /tmp/wf-publish.json
+
+          if [[ ! "$HTTP_CODE" =~ ^20 ]]; then
+            echo "::error::Failed to publish Webflow site (HTTP ${HTTP_CODE})"
+            exit 1
+          fi
+
+          echo "✅ Published to https://cognifit-df2ae7.webflow.io/longevity"
