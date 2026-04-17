@@ -72,8 +72,8 @@ jobs:
           FILES=(
             "webflow/02-STYLES.css"
             "webflow/webflow-main.js"
-            "webflow/03-BODY-JS.html"
-            "webflow/01-HEAD-CODE.html"
+            "webflow/visual-inject.js"
+            "webflow/seo-schema.js"
             "i18n.js"
           )
 
