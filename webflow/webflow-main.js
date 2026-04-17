@@ -1,4 +1,4 @@
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+/* v2026.04.17 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    0. CLASS BRIDGE & DOM INJECTION
    Webflow uses hero-section / closing-section class names;
    all CSS & JS expect .hero / .closing. Bridge immediately.
