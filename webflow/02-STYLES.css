@@ -6288,6 +6288,16 @@ html body .risk-card .rc-title {
    Fixes all broken sections identified in QA audit
 ═════════════════════════════════════════════════════════════════ */
 
+/* ════ Override injected inline-style rules (old Webflow paste has !important grid rules) ════ */
+/* stats-row: injected CSS = repeat(2,1fr) default / repeat(4,1fr) @768px — keep as-is, it's correct */
+/* pro-stack: injected CSS forces repeat(2,1fr) at <992px — override to 1-col at mobile */
+@media(max-width:640px){
+  html body .pro-stack{grid-template-columns:1fr !important;max-width:100% !important}
+}
+@media(max-width:480px){
+  html body .pro-stack{grid-template-columns:1fr !important;gap:10px !important}
+}
+
 /* ════ @media (max-width: 640px) — verified class names ════ */
 @media(max-width:640px){
 
