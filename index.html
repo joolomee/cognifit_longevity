@@ -352,99 +352,111 @@
     .val-btn { font-size: 13px; padding: 10px 18px; }
   }
 
-  /* ── PRO STACK: 7 cards ── */
+  /* ── PRO STACK: 7 cards, comfortable 4-up grid on desktop ── */
 
   /* Base: reset pro-card to be flex column (photo top, text bottom) */
   .pro-stack {
-    grid-template-columns: repeat(4, 1fr) !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
     width: 100% !important;
-    max-width: 100% !important;
-    gap: 14px !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    gap: 20px !important;
     padding: 0 clamp(16px, 3vw, 40px) !important;
   }
   /* Override row layout → column so photo sits on top */
   .pro-card {
     flex-direction: column !important;
-    min-height: 0 !important;
+    min-height: 420px !important;
   }
   .pro-photo {
     order: -1 !important;
-    flex: 0 0 110px !important;
-    min-height: 110px !important;
-    max-height: 110px !important;
+    flex: 0 0 160px !important;
+    min-height: 160px !important;
+    max-height: 160px !important;
     width: 100% !important;
     position: relative !important;
   }
   .pro-text {
     flex: 1 !important;
-    padding: 14px 12px !important;
+    padding: 20px 18px !important;
     display: flex !important;
     flex-direction: column !important;
   }
   .pro-text h3 {
-    font-size: 13px !important;
+    font-size: 16px !important;
     line-height: 1.3 !important;
-    margin-bottom: 6px !important;
+    margin-bottom: 10px !important;
     text-align: center !important;
   }
   .pro-desc {
-    font-size: 11px !important;
+    font-size: 13px !important;
     line-height: 1.55 !important;
     flex: 1 !important;
     text-align: center !important;
   }
   .pro-metrics {
     grid-template-columns: 1fr 1fr !important;
-    gap: 2px 8px !important;
-    padding: 8px 0 !important;
-    margin-bottom: 8px !important;
+    gap: 4px 10px !important;
+    padding: 10px 0 !important;
+    margin-bottom: 12px !important;
   }
-  .pm-num { font-size: 13px !important; }
-  .pm-lbl { font-size: 9px !important; }
+  .pm-num { font-size: 16px !important; }
+  .pm-lbl { font-size: 10px !important; }
   .pro-cta {
     align-self: center !important;
-    width: 100% !important;
+    width: auto !important;
     max-width: 100% !important;
     transform: none !important;
-    margin: 0 !important;
-    font-size: 11px !important;
-    padding: 9px 10px !important;
+    margin: 0 auto !important;
+    font-size: 13px !important;
+    padding: 10px 22px !important;
     justify-content: center !important;
+    text-decoration: none !important;
   }
-  .pro-cta span { display: none !important; }
+  .pro-cta,
+  a.pro-cta,
+  a.pro-cta:link,
+  a.pro-cta:visited,
+  a.pro-cta:hover,
+  a.pro-cta:active,
+  a.pro-cta:focus {
+    text-decoration: none !important;
+    border-bottom: 0 !important;
+  }
+  .pro-cta span { display: inline !important; }
 
-  /* 7 colunas ≥ 1200px */
+  /* 4 colunas ≥ 1200px */
   @media (min-width: 1200px) {
-    .pro-stack { grid-template-columns: repeat(7, minmax(0, 1fr)) !important; gap: 14px !important; }
-    .pro-photo { flex: 0 0 100px !important; min-height: 100px !important; max-height: 100px !important; }
-    .pro-text h3 { font-size: 12px !important; }
-    .pro-desc { font-size: 10.5px !important; }
+    .pro-stack { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; gap: 20px !important; max-width: 1200px !important; }
+    .pro-photo { flex: 0 0 170px !important; min-height: 170px !important; max-height: 170px !important; }
+    .pro-text h3 { font-size: 17px !important; }
+    .pro-desc { font-size: 13px !important; }
   }
 
-  /* 4 colunas 900–1199px */
+  /* 3 colunas 901–1199px */
   @media (max-width: 1199px) and (min-width: 901px) {
-    .pro-stack { grid-template-columns: repeat(4, 1fr) !important; }
+    .pro-stack { grid-template-columns: repeat(3, 1fr) !important; }
   }
 
   /* 2 colunas tablet */
   @media (max-width: 900px) {
     .pro-stack { grid-template-columns: repeat(2, 1fr) !important; }
-    .pro-photo { flex: 0 0 130px !important; min-height: 130px !important; max-height: 130px !important; }
+    .pro-photo { flex: 0 0 140px !important; min-height: 140px !important; max-height: 140px !important; }
     .pro-text h3 { font-size: 15px !important; }
     .pro-desc { font-size: 12px !important; }
-    .pro-cta { font-size: 12px !important; padding: 10px 14px !important; }
+    .pro-cta { font-size: 12px !important; padding: 10px 18px !important; }
     .pro-cta span { display: inline !important; }
   }
 
   /* 2 colunas mobile */
   @media (max-width: 640px) {
-    .pro-stack { grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
-    .pro-photo { flex: 0 0 80px !important; min-height: 80px !important; max-height: 80px !important; }
-    .pro-text h3 { font-size: 11px !important; text-align: center !important; }
-    .pro-desc { font-size: 10px !important; text-align: center !important; }
-    .pro-text { padding: 8px 6px !important; }
-    .pro-cta { font-size: 10px !important; padding: 7px 8px !important; }
-    .pro-cta span { display: none !important; }
+    .pro-stack { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+    .pro-photo { flex: 0 0 100px !important; min-height: 100px !important; max-height: 100px !important; }
+    .pro-text h3 { font-size: 13px !important; text-align: center !important; }
+    .pro-desc { font-size: 11px !important; text-align: center !important; }
+    .pro-text { padding: 10px 8px !important; }
+    .pro-cta { font-size: 11px !important; padding: 8px 14px !important; }
+    .pro-cta span { display: inline !important; }
   }
 
   /* ── TRUST BADGES: manter compactos em todas as resoluções ── */
