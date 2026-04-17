@@ -74,14 +74,21 @@ img{max-width:100%;display:block}
 }
 
 /* Regras para os links Explore da secção PRO */
-a.pro-cta {
-  text-decoration: none;
-  color: inherit;
-  transition: color 0.3s ease;
+a.pro-cta,
+a.pro-cta:link,
+a.pro-cta:visited,
+a.pro-cta:hover,
+a.pro-cta:active,
+a.pro-cta:focus {
+  text-decoration: none !important;
+  border-bottom: 0 !important;
 }
-
+a.pro-cta {
+  color: #fff;
+  transition: color 0.3s ease, gap 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
 a.pro-cta:hover {
-  color: #00E5FF;
+  color: #fff;
 }
 
 /* BOTÃO DE VOLTAR AO TOPO */
@@ -2787,12 +2794,12 @@ html::-webkit-scrollbar-thumb:hover {
 
 /* ── PRO-CARDS responsive grid ── */
 @media(min-width:1200px){
-  .pro-stack{max-width:1400px!important;grid-template-columns:repeat(7,minmax(0,1fr))!important;gap:14px!important}
-  .pro-card{min-height:380px!important}
+  .pro-stack{max-width:1200px!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:20px!important}
+  .pro-card{min-height:420px!important}
 }
 @media(min-width:901px) and (max-width:1199px){
-  .pro-stack{max-width:980px!important;grid-template-columns:repeat(4,1fr)!important;gap:16px!important}
-  .pro-card{min-height:340px!important}
+  .pro-stack{max-width:980px!important;grid-template-columns:repeat(3,1fr)!important;gap:18px!important}
+  .pro-card{min-height:400px!important}
 }
 @media(min-width:641px) and (max-width:900px){
   .pro-stack{grid-template-columns:repeat(2,1fr)!important;gap:14px!important}
@@ -4585,5 +4592,29 @@ a {
 /* -- Reading progress bar -- */
 #reading-progress {
   transition: width 0.1s linear;
+}
+
+/* ── FINAL OVERRIDES (specificity-safe) ───────────────────────── */
+/* Kill any stray underline on the Explore CTA */
+section .pro-card a.pro-cta,
+section .pro-card a.pro-cta:link,
+section .pro-card a.pro-cta:visited,
+section .pro-card a.pro-cta:hover,
+section .pro-card a.pro-cta:active,
+section .pro-card a.pro-cta:focus,
+section .pro-card a.pro-cta span {
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+  border-bottom: 0 !important;
+}
+
+/* Keep PRO cards comfortable (not cramped 7-col) on wide screens */
+@media (min-width: 1200px) {
+  .pro-stack {
+    max-width: 1200px !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 20px !important;
+  }
+  .pro-card { min-height: 420px !important; }
 }
 
