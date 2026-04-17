@@ -1,17 +1,9 @@
+# This robots.txt applies to the VERCEL deployment only.
+# The Vercel mirror is NOT the canonical site — Webflow is.
+# Block ALL crawlers to prevent duplicate content indexing.
+
 User-agent: *
-Allow: /
+Disallow: /
 
-# AI crawlers — welcome
-User-agent: GPTBot
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-Sitemap: https://brain.cognifit.com/longevity/sitemap.xml
+# Sitemap lives on the canonical Webflow domain, not here.
+# Sitemap: https://cognifit-df2ae7.webflow.io/sitemap.xml
