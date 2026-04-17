@@ -6282,3 +6282,258 @@ html body .risk-card .rc-title {
   color: #666 !important;
   font-weight: 600 !important;
 }
+
+/* ═════════════════════════════════════════════════════════════════
+   COMPREHENSIVE MOBILE QA FIX - ≤640px & ≤480px
+   Fixes all broken sections identified in QA audit
+═════════════════════════════════════════════════════════════════ */
+
+/* ════ @media (max-width: 640px) ════ */
+@media(max-width:640px){
+  /* ── Assessment / Skill List ── */
+  .cog-section{padding:32px 16px}
+  .skill-list{display:flex;flex-direction:column;gap:12px}
+  .skill-item{width:100%;padding:14px 16px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);font-size:13px}
+
+  /* ── Swiper/Carousel ── */
+  .swiper{overflow:hidden;width:100%}
+  .swiper-slide{min-width:100%;padding:12px;display:flex;flex-direction:column;gap:12px}
+  .slide-title{font-size:clamp(16px,4vw,20px);font-weight:900;color:#fff;margin-bottom:8px}
+  .slide-desc{font-size:13px;color:rgba(255,255,255,.8);line-height:1.6}
+  .slide-icon{width:48px;height:48px;display:flex;align-items:center;justify-content:center}
+
+  /* ── Risk Pillars & Content ── */
+  .risk-pillar{padding:14px;border-radius:12px;font-size:12px}
+  .rni-title{font-size:15px;font-weight:800;margin-bottom:10px}
+  .rni-desc{font-size:12px;color:rgba(255,255,255,.8);line-height:1.6}
+  .risk-content{padding:16px;border-radius:14px}
+  .risk-col-title{font-size:15px;font-weight:900;margin-bottom:12px}
+
+  /* ── Neuroscience Grid ── */
+  .sci-grid{grid-template-columns:1fr;gap:12px}
+  .sci-card{padding:18px 16px}
+  .sci-instruction{font-size:12px;padding:12px 14px;line-height:1.6}
+
+  /* ── Timeline ── */
+  .timeline-container{padding:0 12px}
+  .timeline-item{padding:14px;margin-bottom:14px;border-radius:12px;border-left:3px solid var(--blue)}
+  .timeline-year{font-size:13px;font-weight:800;color:var(--blue);margin-bottom:6px}
+  .timeline-title{font-size:14px;font-weight:900;color:#fff;margin-bottom:6px}
+  .timeline-desc{font-size:12px;color:rgba(255,255,255,.75);line-height:1.6}
+
+  /* ── Profile/Persona Grid ── */
+  .who-grid{grid-template-columns:1fr;gap:12px}
+
+  /* ── Professionals Stack ── */
+  .pro-stack{grid-template-columns:1fr;gap:12px}
+  .pro-card{min-height:auto;padding:14px}
+  .pro-photo{flex:0 0 80px;order:0;width:80px;height:auto}
+  .pro-text{padding:12px;align-items:flex-start;text-align:left}
+  .pro-text h3{font-size:14px;min-height:0}
+  .pro-metrics{display:grid !important;grid-template-columns:1fr 1fr;gap:8px 10px;width:100%;margin-bottom:10px}
+  .pm-num{font-size:11px !important}
+  .pm-lbl{font-size:9px !important;line-height:1.2}
+
+  /* ── Stats/Trust Row ── */
+  .stats-row{gap:12px;flex-direction:column;margin-bottom:24px}
+  .stat-bl{width:100%;padding:14px;background:rgba(255,255,255,.04);border-radius:10px;border:1px solid rgba(255,255,255,.08)}
+  .stat-n{font-size:clamp(24px,8vw,32px)}
+  .stat-l{font-size:11px;margin-top:6px}
+  .trust-headline{font-size:clamp(20px,5vw,28px)}
+
+  /* ── Press Strip ── */
+  .press-strip{gap:4px;padding:0 8px}
+  .press-logo-card{min-height:36px;padding:6px 8px;flex:0 1 calc(50% - 2px);border-radius:8px}
+  .press-logo-img{max-height:32px !important;height:32px !important}
+
+  /* ── Reviews Grid ── */
+  .reviews-grid{grid-template-columns:1fr}
+  .rev-card{padding:16px;border-radius:12px}
+  .rev-title{font-size:13px}
+  .rev-body{font-size:12px}
+
+  /* ── FAQ List ── */
+  .faq-list{max-width:100%;padding:0 4px}
+  .faq-item{border-bottom:1px solid rgba(255,255,255,.08);padding:0;margin-bottom:0}
+  .faq-q{
+    padding:14px 0;
+    font-size:13px;
+    font-weight:700;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    min-height:44px;
+    cursor:pointer;
+    transition:all .2s ease;
+  }
+  .faq-q:active{color:var(--blue)}
+  .faq-icon{width:18px;height:18px;flex-shrink:0}
+  .faq-chevron{transition:transform .25s ease}
+  .faq-a{
+    max-height:0;
+    overflow:hidden;
+    opacity:0;
+    transition:max-height .3s ease,opacity .3s ease,padding .3s ease;
+    padding:0;
+    font-size:12px;
+  }
+  .faq-item.open .faq-a{
+    max-height:400px;
+    opacity:1;
+    padding:12px 0 14px;
+  }
+  .faq-a p{font-size:12px !important;color:rgba(255,255,255,.75) !important;line-height:1.7}
+
+  /* ── Platform Steps ── */
+  .platform-steps{padding:0 8px}
+  .step-card{padding:16px;margin-bottom:12px}
+  .step-n{font-size:28px;margin-bottom:8px}
+  .step-card h3{font-size:13px}
+  .step-card p{font-size:11px}
+  .step-icon{width:36px;height:36px;margin-bottom:10px}
+
+  /* ── Results/Outcomes ── */
+  .hi-charts{grid-template-columns:1fr}
+  .hi-chart{width:100%}
+  .hi-chart-svg{max-width:100%;margin:0}
+  .hi-box{padding:18px 16px;border-radius:14px}
+  .hi-box h3{font-size:15px;margin-bottom:12px}
+  .hi-it{font-size:12px}
+  .hi-close{font-size:12px;margin-top:12px;padding-top:12px}
+
+  /* ── Closing CTA ── */
+  .closing-quote{font-size:clamp(18px,5vw,24px);margin-bottom:16px}
+  .closing-sub{font-size:13px;margin-bottom:28px}
+
+  /* ── Additional touch-friendly spacing ── */
+  .btn-primary,.btn-secondary,.btn-white{min-height:44px;padding:12px 24px;font-size:13px;border-radius:10px}
+
+  /* ── Ensure no overflow ── */
+  .swiper,.swiper-wrapper,.swiper-slide{overflow:hidden;width:100%}
+  body,html{overflow-x:hidden !important}
+}
+
+/* ════ @media (max-width: 480px) ════ */
+@media(max-width:480px){
+  /* ── More aggressive mobile optimization ── */
+
+  /* ── Navigation ── */
+  nav{padding:0 12px;height:50px;font-size:12px}
+  .btn-login{padding:6px 14px;font-size:11px;height:36px;border-radius:8px}
+
+  /* ── Hero ── */
+  .hero-content{padding:12px 16px 48px;gap:12px}
+  .hero-h1{font-size:clamp(24px,5vw,32px)}
+  .hero-sub{font-size:13px;margin-bottom:16px}
+  .hero-badge{font-size:8px;padding:6px 12px;margin-bottom:16px}
+  .hero-rating{padding:12px;gap:6px}
+  .rating-number{font-size:clamp(16px,4vw,20px) !important}
+  .stars{font-size:14px}
+
+  /* ── Sections ── */
+  .s-black,.s-dark,.s-white,.s-off,.s-blue{padding:40px 0}
+  .wrap{padding:0 12px}
+
+  /* ── Assessment ── */
+  .cog-section{padding:24px 12px}
+  .skill-item{padding:12px 14px;font-size:12px}
+
+  /* ── Swiper (full-width) ── */
+  .swiper-slide{padding:8px;min-width:100%}
+  .slide-title{font-size:clamp(14px,3vw,18px)}
+  .slide-desc{font-size:12px}
+  .slide-icon{width:40px;height:40px}
+
+  /* ── Risk Pillars ── */
+  .risk-pillar{padding:12px;font-size:11px;border-radius:10px}
+  .rni-title{font-size:13px;margin-bottom:8px}
+  .rni-desc{font-size:11px}
+
+  /* ── Neuroscience ── */
+  .sci-card{padding:16px 14px;border-radius:14px}
+  .sci-instruction{font-size:11px;padding:10px 12px}
+
+  /* ── Timeline ── */
+  .timeline-item{padding:12px;margin-bottom:12px;border-radius:10px;font-size:11px}
+  .timeline-year{font-size:12px;margin-bottom:4px}
+  .timeline-title{font-size:13px;margin-bottom:4px}
+  .timeline-desc{font-size:11px}
+
+  /* ── Profile Grid ── */
+  .who-icon{width:40px;height:40px;margin-bottom:10px}
+  .who-card{padding:16px 14px}
+  .who-card h3{font-size:12px;margin-bottom:6px}
+  .who-card p{font-size:11px}
+
+  /* ── Professionals (Single column + compact layout) ── */
+  .pro-stack{grid-template-columns:1fr;gap:10px}
+  .pro-card{display:flex;flex-direction:row;padding:10px;min-height:auto}
+  .pro-photo{flex:0 0 70px;order:0;width:70px;height:auto;border-radius:10px 0 0 10px}
+  .pro-text{padding:10px 12px;align-items:flex-start;text-align:left;flex:1}
+  .pro-text h3{font-size:13px;line-height:1.2;min-height:0}
+  .pro-stats{font-size:8px !important;margin-bottom:6px}
+  .pro-metrics{display:grid !important;grid-template-columns:1fr 1fr;gap:4px 8px !important;width:100%;margin-bottom:6px}
+  .pm-num{font-size:10px !important}
+  .pm-lbl{font-size:8px !important;line-height:1.1}
+  .pro-desc{display:none !important}
+  .pro-cta{padding:8px 14px;font-size:11px;min-width:auto;max-width:140px;align-self:flex-end;margin-top:auto}
+
+  /* ── Stats ── */
+  .stat-bl{padding:12px}
+  .stat-n{font-size:clamp(20px,6vw,28px)}
+  .stat-l{font-size:10px;margin-top:4px}
+  .trust-headline{font-size:clamp(18px,4vw,24px)}
+
+  /* ── Press Strip ── */
+  .press-logo-card{min-height:32px;padding:4px 6px;flex:0 1 calc(50% - 2px);border-radius:6px}
+  .press-logo-img{max-height:28px !important;height:28px !important}
+
+  /* ── Reviews ── */
+  .rev-card{padding:14px;border-radius:10px}
+  .rev-date{font-size:9px}
+  .rev-stars{font-size:13px}
+  .rev-title{font-size:12px}
+  .rev-body{font-size:11px}
+  .rev-author{font-size:10px}
+
+  /* ── FAQ ── */
+  .faq-q{padding:12px 0;font-size:12px;min-height:40px}
+  .faq-icon{width:16px;height:16px}
+  .faq-a{font-size:11px}
+  .faq-a p{font-size:11px !important}
+
+  /* ── Platform Steps ── */
+  .step-card{padding:14px;margin-bottom:10px}
+  .step-n{font-size:24px;margin-bottom:6px}
+  .step-card h3{font-size:12px}
+  .step-card p{font-size:10px}
+  .step-icon{width:32px;height:32px;margin-bottom:8px}
+
+  /* ── Results ── */
+  .hi-box{padding:16px 14px;border-radius:12px}
+  .hi-box h3{font-size:14px;margin-bottom:10px}
+  .hi-it{font-size:11px}
+  .hi-close{font-size:11px;margin-top:10px;padding-top:10px}
+
+  /* ── Closing ── */
+  .closing{padding:40px 12px}
+  .closing-quote{font-size:clamp(16px,4vw,22px);margin-bottom:12px}
+  .closing-sub{font-size:12px;margin-bottom:20px;max-width:100%}
+
+  /* ── Buttons ── */
+  .btn-primary,.btn-secondary,.btn-white{min-height:40px;padding:10px 20px;font-size:12px;border-radius:8px}
+
+  /* ── Footer ── */
+  footer{padding:20px 12px 12px}
+  .footer-col-title{font-size:13px;margin-bottom:6px}
+  .footer-col a{font-size:11px}
+  .footer-disclaimer{font-size:10px;padding:12px 0;margin-top:8px}
+  .footer-copy{font-size:10px}
+
+  /* ── Ensure no horizontal scroll ── */
+  body,html{overflow-x:hidden !important;width:100vw;max-width:100%}
+  *{max-width:100%}
+  .wrap,.container-edge{overflow:hidden}
+}
