@@ -1,31 +1,30 @@
+<!-- ═════════════════════════════════════════════════════════════════════
+     WEBFLOW PAGE SETTINGS → Custom code → Inside <head> tag
+     Paste EVERYTHING below this comment up to the matching end marker.
+     NO inline event handlers, NO <script> blocks here — keeps Webflow's
+     HTML parser happy and avoids JS SyntaxError at page load.
+     ═════════════════════════════════════════════════════════════════════ -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Sistema científico de Longevidade Cerebral CogniFit. Avaliações cognitivas validadas, treino personalizado com IA, e métricas de progresso. +6M utilizadores.">
-<meta name="keywords" content="longevidade cerebral, treino cognitivo, avaliação cognitiva, memória, função executiva, atenção, CogniFit, saúde mental, prevenção demência, neuroplasticidade">
+<meta name="description" content="CogniFit Brain Longevity System. Cognitive assessment, personalized AI brain training, progress tracking. 6M+ users, 1,083+ clinical trials.">
+<meta name="keywords" content="brain longevity, cognitive training, cognitive assessment, memory, executive function, attention, CogniFit, mental health, dementia prevention, neuroplasticity">
 <meta name="author" content="CogniFit">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="googlebot" content="index, follow">
 <link rel="canonical" href="https://cognifit-df2ae7.webflow.io/longevity">
-<link rel="alternate" hreflang="pt" href="https://cognifit-df2ae7.webflow.io/longevity">
-<link rel="alternate" hreflang="en" href="https://cognifit-df2ae7.webflow.io/longevity?lang=en">
-<link rel="alternate" hreflang="es" href="https://cognifit-df2ae7.webflow.io/longevity?lang=es">
-<link rel="alternate" hreflang="fr" href="https://cognifit-df2ae7.webflow.io/longevity?lang=fr">
-<link rel="alternate" hreflang="de" href="https://cognifit-df2ae7.webflow.io/longevity?lang=de">
-<link rel="alternate" hreflang="it" href="https://cognifit-df2ae7.webflow.io/longevity?lang=it">
-<link rel="alternate" hreflang="x-default" href="https://cognifit-df2ae7.webflow.io/longevity">
 <meta property="og:type" content="website">
-<meta property="og:locale" content="pt_PT">
+<meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="CogniFit">
 <meta property="og:url" content="https://cognifit-df2ae7.webflow.io/longevity">
-<meta property="og:title" content="CogniFit — Viva Mais. Pense Melhor. Mantenha a Sua Independência">
-<meta property="og:description" content="Sistema científico de Longevidade Cerebral. Avaliações cognitivas validadas, treino personalizado com IA. +6M utilizadores.">
+<meta property="og:title" content="CogniFit Brain Longevity — Live Longer. Think Better. Stay Independent.">
+<meta property="og:description" content="Scientifically validated brain longevity system. Personalized cognitive training. 6M+ users worldwide.">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@cognifit">
 <meta name="twitter:title" content="CogniFit — Brain Longevity">
-<meta name="twitter:description" content="Sistema científico de Longevidade Cerebral. +6M utilizadores.">
+<meta name="twitter:description" content="Scientifically validated brain longevity system. 6M+ users.">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/og-image.png">
 <meta name="theme-color" content="#1A73E8">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,24 +32,51 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"></noscript>
-<link rel="preload" href="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/webflow/02-STYLES.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/webflow/02-STYLES.css"></noscript>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/webflow/02-STYLES.css">
 <style>
 :root{--blue:#1A73E8;--blue-d:#1256B8;--green:#34A853;--g1:#111;--g2:#1e1e1e;--max:1060px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;overflow-x:hidden;-webkit-text-size-adjust:100%}
 body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;background:#000;color:#fff;overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:18px;line-height:1.6;margin:0;padding:0}
 img{max-width:100%;display:block;height:auto}
-.hero,.hero-section{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding-top:clamp(96px,12vw,160px);padding-bottom:clamp(60px,8vw,120px);background:#000}
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding-top:clamp(96px,12vw,160px);padding-bottom:clamp(60px,8vw,120px);background:#000}
 .hero-content{max-width:var(--max);margin:0 auto;padding:0 clamp(16px,3vw,32px);width:100%;display:grid;grid-template-columns:1fr;gap:clamp(24px,4vw,48px)}
+@media(min-width:981px){.hero-content{grid-template-columns:1fr 420px;gap:48px;max-width:1200px;padding:120px 40px 80px}}
 .hero-h1{font-size:clamp(40px,6vw,72px);line-height:1.05;font-weight:800;letter-spacing:-.02em}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:rgba(26,115,232,.12);border:1px solid rgba(26,115,232,.35);border-radius:999px;color:#bcd2ff;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;width:auto;max-width:fit-content}
 .btn-primary{display:inline-flex;align-items:center;justify-content:center;padding:14px 28px;background:var(--blue);color:#fff;text-decoration:none;border-radius:999px;font-weight:700;font-size:16px;border:0}
 nav{background:rgba(0,0,0,.85);backdrop-filter:blur(12px);position:fixed;top:0;left:0;right:0;z-index:900;min-height:56px}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(16px,3vw,32px)}
-html,body{overflow-y:auto!important;height:auto!important}
+#nav .logo-dark{display:block;height:32px;width:auto;opacity:1;visibility:visible}
+.hero-phones{position:relative;height:560px;min-height:560px;width:100%;display:block}
+.hero-phones .phone{position:absolute;background:#101012;border-radius:36px;border:1.5px solid rgba(255,255,255,.12);box-shadow:0 40px 100px rgba(0,0,0,.9),inset 0 0 0 1px rgba(255,255,255,.04);overflow:hidden;display:block}
+.hero-phones .phone-train{width:220px;height:440px;left:0;bottom:0;transform:rotate(-1deg);z-index:2}
+.hero-phones .phone-stats{width:240px;height:480px;right:0;top:0;transform:rotate(1deg);z-index:3}
+.hero-phones .ph-body{padding:22px 18px}
+.hero-phones .ph-title{font-size:15px;font-weight:800;color:#fff;margin-bottom:14px}
+.hero-phones .ph-skill{background:rgba(255,255,255,.07);border-radius:10px;padding:12px 14px;margin-bottom:8px}
+.hero-phones .ph-skill-name{font-size:11px;font-weight:600;color:rgba(255,255,255,.7);margin-bottom:8px}
+.hero-phones .ph-skill-bar{height:5px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden}
+.hero-phones .ph-skill-fill{height:100%;background:linear-gradient(90deg,#2db67a,#4add9f);border-radius:3px}
+.hero-phones .ph-next{background:rgba(255,255,255,.04);border-radius:10px;padding:12px 14px;margin-top:8px}
+.hero-phones .ph-next-label{font-size:10px;color:rgba(255,255,255,.72);font-weight:600;display:block}
+.hero-phones .ph-next-val{font-size:10px;color:rgba(255,255,255,.65);margin-top:3px;letter-spacing:.03em;display:block}
+.hero-phones .ph-chart{background:linear-gradient(145deg,#1565c0,#0a3488);border-radius:14px;padding:16px;margin-bottom:12px}
+.hero-phones .ph-chart-label{font-size:9px;color:rgba(255,255,255,.75);margin-bottom:10px;font-weight:600;display:block}
+.hero-phones .ph-bars{display:flex;align-items:flex-end;gap:5px;height:70px;margin-bottom:10px}
+.hero-phones .ph-bar{flex:1;border-radius:4px 4px 0 0;background:rgba(255,255,255,.25)}
+.hero-phones .ph-bar.peak{background:#2db67a}
+.hero-phones .ph-goal-pill{display:inline-flex;background:rgba(255,255,255,.15);border-radius:6px;padding:4px 10px;font-size:9px;font-weight:900;color:#fff}
+.hero-phones .ph-age-card{background:#fff;border-radius:14px;padding:14px}
+.hero-phones .ph-age-lbl{font-size:10px;font-weight:800;letter-spacing:.03em;color:#555;margin-bottom:6px;display:block}
+.hero-phones .ph-age-num{font-size:32px;font-weight:900;color:#000;line-height:1;margin-bottom:4px;display:block}
+.hero-phones .ph-age-ok{font-size:11px;color:#2db67a;font-weight:800;margin-bottom:8px;display:block}
+.hero-phones .ph-age-bar{height:5px;background:#ddd;border-radius:3px;overflow:hidden;margin-bottom:5px;display:block}
+.hero-phones .ph-age-fill{height:100%;width:77%;background:#2db67a;border-radius:3px;display:block}
+.hero-phones .ph-age-real{font-size:10px;color:#666;font-weight:600;display:block}
+@media(max-width:980px){.hero-phones{display:none}}
+.w-webflow-badge{display:none!important}
+body{padding-top:60px}
 .r{opacity:1;transform:none}
 </style>
-<script src="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/webflow/seo-schema.js" defer></script>
+<!-- ════════════════════ END OF HEAD CUSTOM CODE ════════════════════ -->
