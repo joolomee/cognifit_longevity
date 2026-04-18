@@ -1,0 +1,78 @@
+<!-- ════════════════════════════════════════════════════════════════════
+     MOBILE QA PATCH — paste at the END of Webflow Site Settings →
+     Custom code → Inside <head> tag (AFTER existing <style> block).
+     Fixes P0-3 (safe-area), P1-1 (viewport), P1-4 (FAQ touch target),
+     P1-5 (tablet gap), P2-2 (aspect-ratio), P2-4 (landscape),
+     P3-3 (backdrop-filter fallback).
+     Size: ~2.2 KB. Total head custom code still under Webflow's 10 KB.
+     ════════════════════════════════════════════════════════════════════ -->
+
+<!-- P1-1: WCAG-compliant viewport (replace any existing viewport meta) -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=yes, maximum-scale=5">
+
+<style>
+/* P0-3: Safe-area insets for notched iPhones */
+@supports (padding: env(safe-area-inset-top)) {
+  nav {
+    padding-top: env(safe-area-inset-top) !important;
+    padding-left: max(20px, env(safe-area-inset-left)) !important;
+    padding-right: max(20px, env(safe-area-inset-right)) !important;
+    min-height: calc(56px + env(safe-area-inset-top)) !important;
+  }
+  body { padding-top: calc(60px + env(safe-area-inset-top)) !important; }
+}
+
+/* P1-4: FAQ trigger min 48px tap target, chevron part of hit area */
+.faq-q {
+  min-height: 48px !important;
+  padding: clamp(18px, 3vw, 24px) 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  width: 100% !important;
+}
+.faq-q .faq-chevron {
+  width: 24px !important;
+  height: 24px !important;
+  flex: 0 0 24px !important;
+}
+
+/* P1-5: Close the tablet gap 901–980px where the desktop 2-col hero leaks */
+@media (max-width: 980px) {
+  .hero-content { grid-template-columns: 1fr !important; }
+  .hero-phones { display: none !important; }
+}
+
+/* P2-2: Declare aspect-ratio so absolute-positioned phone mockups don't flicker */
+.hero-phones .phone-train { aspect-ratio: 220 / 440; }
+.hero-phones .phone-stats { aspect-ratio: 240 / 480; }
+
+/* P2-4: Landscape phones: collapse hero min-height so CTA is visible */
+@media (orientation: landscape) and (max-height: 500px) {
+  .hero {
+    min-height: auto !important;
+    padding-top: 80px !important;
+    padding-bottom: 40px !important;
+  }
+  .hero-scroll-hint { display: none !important; }
+}
+
+/* P3-3: backdrop-filter progressive enhancement */
+nav { background: rgba(0, 0, 0, 0.92); }
+@supports ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
+  nav {
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(28px) saturate(160%);
+    -webkit-backdrop-filter: blur(28px) saturate(160%);
+  }
+}
+
+/* P3-1: Logo swap driven by body class, not by !important on display */
+body:not(.nav-scrolled) #nav .logo-dark { display: block; }
+body:not(.nav-scrolled) #nav .logo-light { display: none; }
+body.nav-scrolled #nav .logo-dark { display: none; }
+body.nav-scrolled #nav .logo-light { display: block; }
+</style>
+
+<!-- P3-1 companion: tiny inline script to toggle body class on scroll
+     (consolidated scroll handler is in the deferred mobile-fixes.js file) -->

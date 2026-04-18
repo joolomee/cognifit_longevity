@@ -1,0 +1,55 @@
+<!-- ════════════════════════════════════════════════════════════════════
+     SEO PATCH — paste at the END of Webflow Page Settings →
+     Custom code → Inside <head> tag (or into the site-wide head code
+     if you want it on every page). Size: ~2.4 KB.
+
+     Adds:
+       P1-A · hreflang alternates (23 languages, matches sitemap)
+       P1-D · bingbot directive
+       P2-D · og:locale alternates
+     ════════════════════════════════════════════════════════════════════ -->
+
+<!-- Bingbot (Google ignores this, Bing reads it) -->
+<meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large">
+
+<!-- hreflang alternates — mirror sitemap.xml -->
+<link rel="alternate" hreflang="x-default" href="https://www.cognifit.com/longevity">
+<link rel="alternate" hreflang="en"       href="https://www.cognifit.com/longevity">
+<link rel="alternate" hreflang="es"       href="https://www.cognifit.com/longevity?lang=es">
+<link rel="alternate" hreflang="fr"       href="https://www.cognifit.com/longevity?lang=fr">
+<link rel="alternate" hreflang="de"       href="https://www.cognifit.com/longevity?lang=de">
+<link rel="alternate" hreflang="it"       href="https://www.cognifit.com/longevity?lang=it">
+<link rel="alternate" hreflang="pt"       href="https://www.cognifit.com/longevity?lang=pt">
+<link rel="alternate" hreflang="nl"       href="https://www.cognifit.com/longevity?lang=nl">
+<link rel="alternate" hreflang="pl"       href="https://www.cognifit.com/longevity?lang=pl">
+<link rel="alternate" hreflang="ru"       href="https://www.cognifit.com/longevity?lang=ru">
+<link rel="alternate" hreflang="ar"       href="https://www.cognifit.com/longevity?lang=ar">
+<link rel="alternate" hreflang="he"       href="https://www.cognifit.com/longevity?lang=he">
+<link rel="alternate" hreflang="zh-CN"    href="https://www.cognifit.com/longevity?lang=zh">
+<link rel="alternate" hreflang="zh-HK"    href="https://www.cognifit.com/longevity?lang=zh-HK">
+<link rel="alternate" hreflang="ja"       href="https://www.cognifit.com/longevity?lang=ja">
+<link rel="alternate" hreflang="ko"       href="https://www.cognifit.com/longevity?lang=ko">
+<link rel="alternate" hreflang="tr"       href="https://www.cognifit.com/longevity?lang=tr">
+<link rel="alternate" hreflang="id"       href="https://www.cognifit.com/longevity?lang=id">
+<link rel="alternate" hreflang="bn"       href="https://www.cognifit.com/longevity?lang=bn">
+<link rel="alternate" hreflang="mn"       href="https://www.cognifit.com/longevity?lang=mn">
+<link rel="alternate" hreflang="ur"       href="https://www.cognifit.com/longevity?lang=ur">
+<link rel="alternate" hreflang="sr"       href="https://www.cognifit.com/longevity?lang=sr">
+
+<!-- og:locale alternates — lets Facebook/LinkedIn pick the right locale -->
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:locale:alternate" content="de_DE">
+<meta property="og:locale:alternate" content="it_IT">
+<meta property="og:locale:alternate" content="pt_PT">
+<meta property="og:locale:alternate" content="nl_NL">
+<meta property="og:locale:alternate" content="pl_PL">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="ar_AR">
+<meta property="og:locale:alternate" content="he_IL">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta property="og:locale:alternate" content="zh_HK">
+<meta property="og:locale:alternate" content="ja_JP">
+<meta property="og:locale:alternate" content="ko_KR">
+<meta property="og:locale:alternate" content="tr_TR">
+<meta property="og:locale:alternate" content="id_ID">
