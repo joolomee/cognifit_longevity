@@ -1,0 +1,9 @@
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "@id": "https://www.cognifit.com/longevity#breadcrumb",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.cognifit.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Brain Longevity", "item": "https://www.cognifit.com/longevity" }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://www.cognifit.com/longevity#faq",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is cognitive longevity, and why should I care?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Think of it this way: we all invest in keeping our bodies healthy, but what about the organ that actually runs our lives? Cognitive longevity means keeping your memory, focus, reasoning, and decision-making sharp for as long as possible. The tricky part? Unlike a sore knee, cognitive decline sneaks up on you. Most people don't notice until it's already affecting their daily life. The good news is that research shows you can actively build \"neural reserves\" through targeted training, just like building muscle. That's exactly what CogniFit is designed to do, and over 6 million people are already doing it. The earlier you start, the stronger your foundation becomes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does brain training actually work, or is it just hype?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It's a fair question, and the answer is yes, when it's done right. The landmark ACTIVE study, published in the Journal of the American Geriatrics Society, tracked thousands of older adults and found that cognitive training benefits lasted up to 10 years. The key difference? It has to be structured, adaptive, and targeted, not just sudoku on your phone. CogniFit's programs have been used in over 1,083 clinical trials because they actually challenge the specific areas where your brain needs it most. It's like having a personal trainer, but for your mind."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which mental abilities start fading first?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Here's what surprises most people: your processing speed, how fast you think, actually starts slowing down in your late 20s. Then in your 40s and 50s, working memory and executive function (planning, juggling tasks, making decisions) begin to dip. By your 60s, recalling specific events and experiences gets harder. But here's the bright side: your vocabulary, wisdom, and accumulated knowledge often keep getting better with age. CogniFit measures all 20+ of these skills individually, so you get a clear picture of exactly where you stand, and where to focus your training before small changes become big ones."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What makes CogniFit different from other brain training apps?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most brain training apps are really just games dressed up as science. CogniFit is different. It was built by neuroscientists in 1999, long before \"brain training\" was trendy. It's been used in 1,083+ clinical trials, trusted by 3,530+ healthcare professionals, and adopted by 6,438+ research institutions around the world. Instead of one-size-fits-all puzzles, CogniFit uses patented technology that adapts in real-time to your performance, so every session targets exactly what you need. You get a real Cognitive Age score, not just a game score. That's why 6 million+ people rate it 4.8 stars."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How quickly will I actually notice a difference?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most people tell us they start feeling sharper within 2-4 weeks, with more focused conversations, faster recall, and clearer thinking. Just 15-20 minutes, 3-4 times a week. Clinical studies show measurable improvements after about 8 weeks, and long-term research (including the famous ACTIVE trial) found that benefits can last 5-10 years. Your CogniFit dashboard tracks everything: your cognitive age, which skills are improving, and how consistent you've been. It's incredibly motivating to watch your own brain get stronger. The secret? Show up consistently. Even short daily sessions create compounding results over time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there real science behind CogniFit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absolutely, and we don't say that lightly. CogniFit is one of the most researched cognitive platforms in the world, with over 1,083 clinical trials and peer-reviewed studies at institutions like Harvard Medical School, the University of Washington, and Tel Aviv University. Our assessments have been validated against gold-standard neuropsychological tests and shown strong correlations with traditional clinical measures. Over 3,530 healthcare professionals use CogniFit for clinical assessment and cognitive rehabilitation. We also hold FDA recognition for certain digital cognitive endpoints. This isn't marketing. It's decades of rigorous science."
+      }
+    }
+  ]
+}

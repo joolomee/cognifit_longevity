@@ -1,0 +1,19 @@
+{
+  "@context": "https://schema.org",
+  "@type": ["WebPage", "MedicalWebPage"],
+  "@id": "https://www.cognifit.com/longevity#webpage",
+  "url": "https://www.cognifit.com/longevity",
+  "name": "Brain Longevity Test & Training",
+  "reviewedBy": {
+    "@type": "Person",
+    "name": "Prof. Jon Andoni Duñabeitia",
+    "jobTitle": "Chief Scientific Officer",
+    "affiliation": [
+      { "@type": "Organization", "name": "CogniFit" },
+      { "@type": "CollegeOrUniversity", "name": "Nebrija University, Madrid" }
+    ],
+    "description": "Full Professor and Director of the Nebrija Research Center on Cognition (CINC). 130+ peer-reviewed publications in cognitive science."
+  },
+  "lastReviewed": "2026-04-18",
+  "mainContentOfPage": { "@type": "WebPageElement", "isAccessibleForFree": true }
+}
