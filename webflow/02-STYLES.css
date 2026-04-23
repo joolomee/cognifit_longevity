@@ -40,3 +40,85 @@ handles scrolling. The iframe must:- Report its full height to parent
   html body h3, html body .card-title { font-size: 20px !important; }
   html body p:not(.hero-read-time) { font-size: 15.5px !important; }
 }
+/* MORE FIXES v1 — larger text, CHAVE→RECOMENDADO, chart labels 2026-04-23 */
+
+/* Increase body text + card text on mobile */
+@media screen and (max-width: 767px) {
+  html body p,
+  html body p:not(.hero-read-time),
+  html body .sci-card p,
+  html body .sci-card li,
+  html body .risk-card p,
+  html body .risk-card-desc,
+  html body .step-card p,
+  html body .step-card li,
+  html body .val-card p,
+  html body .pro-card p,
+  html body ul li,
+  html body ol li,
+  html body .feat-list li,
+  html body [class*="-desc"],
+  html body [class*="-lead"] { font-size: 16.5px !important; line-height: 1.62 !important; }
+  html body h3, html body [class*="card-title"], html body [class*="rc-title"], html body .sci-card h3, html body .risk-card h3 { font-size: 22px !important; line-height: 1.28 !important; }
+  html body h2 { font-size: 30px !important; line-height: 1.18 !important; }
+  html body .eyebrow, html body [class*="eyebrow"] { font-size: 13px !important; letter-spacing: .08em !important; }
+}
+@media screen and (max-width: 479px) {
+  html body p:not(.hero-read-time) { font-size: 16px !important; }
+  html body h2 { font-size: 26px !important; }
+  html body h3 { font-size: 20px !important; }
+  html body .sci-card li, html body .risk-card p { font-size: 15.5px !important; }
+}
+
+/* Replace CHAVE text with RECOMENDADO via CSS content-swap */
+html body .risk-missing-piece .wg-missing-tag,
+html body .wg-missing-tag {
+  position: relative !important;
+  font-size: 0 !important;
+}
+html body .risk-missing-piece .wg-missing-tag::before,
+html body .wg-missing-tag::before {
+  content: "RECOMENDADO" !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  display: inline-block !important;
+  padding: 4px 10px !important;
+  background: rgba(110, 179, 255, 0.15) !important;
+  color: #6EB3FF !important;
+  border: 1px solid rgba(110, 179, 255, 0.4) !important;
+  border-radius: 999px !important;
+}
+@media screen and (max-width: 479px) {
+  html body .wg-missing-tag::before {
+    font-size: 10px !important;
+    padding: 3px 8px !important;
+  }
+}
+
+/* Fix chart labels overflow — "Semana 1" / "Semana 8" cut off */
+@media screen and (max-width: 767px) {
+  html body .hi-chart-label,
+  html body .hi-chart text,
+  html body .hi-chart svg text,
+  html body .hi-chart-svg text { font-size: 11px !important; }
+  
+  /* Force chart container + SVG to not overflow */
+  html body .hi-chart,
+  html body .hi-charts { overflow: visible !important; padding-left: 4px !important; padding-right: 4px !important; }
+  
+  /* Abbreviate long week labels: hide "Semana", show only number */
+  html body .hi-chart-label[data-label*="Semana"],
+  html body .hi-chart-label.label-week-1::after,
+  html body .hi-chart-label.label-week-8::after { font-size: inherit; }
+}
+@media screen and (max-width: 479px) {
+  html body .hi-chart-label { font-size: 10px !important; white-space: nowrap !important; }
+}
+
+/* Generic overflow prevention for charts */
+html body .hi-chart,
+html body .hi-chart-svg,
+html body svg {
+  overflow: visible !important;
+}
