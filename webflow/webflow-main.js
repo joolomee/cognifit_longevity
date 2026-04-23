@@ -114,6 +114,32 @@
       });
 
       /* 10. Expanded JSON-LD — MedicalArticle/FAQ/HowTo/Author/Citations */
+      
+      /* First: remove any existing FAQPage schema in static HTML to avoid duplicates */
+      document.querySelectorAll('script[type="application/ld+json"]').forEach(function(s) {
+        try {
+          var data = JSON.parse(s.textContent);
+          var blocks = data['@graph'] || [data];
+          var hasFAQ = blocks.some(function(b) {
+            var t = b['@type'];
+            return t === 'FAQPage' || (Array.isArray(t) && t.indexOf('FAQPage') !== -1);
+          });
+          if (hasFAQ) {
+            // If it's a pure FAQPage only, remove the whole script
+            if (blocks.length === 1) {
+              s.remove();
+            } else {
+              // Otherwise filter it out of @graph and rewrite
+              data['@graph'] = blocks.filter(function(b) {
+                var t = b['@type'];
+                return t !== 'FAQPage' && !(Array.isArray(t) && t.indexOf('FAQPage') !== -1);
+              });
+              s.textContent = JSON.stringify(data);
+            }
+          }
+        } catch(e) {}
+      });
+      
       if (!document.getElementById('ldjson-geo-v2')) {
         var isoDate = new Date().toISOString().slice(0,10);
         var geoExtra = {
