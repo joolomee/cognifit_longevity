@@ -68,6 +68,8 @@
       ensureMeta('ai-visibility', 'high');
       ensureMeta('ai-citation-ok', 'yes');
       ensureMeta('content-authenticity', 'verified');
+      /* Google Search Console verification — DNS-independent meta method */
+      ensureMeta('google-site-verification', 'kjKVSiwAeE0Owr5XXEhi71rM-IyM0XNP6395oeowXyY');
 
       /* 6. Inject speakable + BreadcrumbList + dateModified as dynamic JSON-LD */
       if (!document.getElementById('ldjson-agent-ready')) {
