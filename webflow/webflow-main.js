@@ -84,13 +84,41 @@ s.id = 'ldjson-agent-ready';
 s.textContent = JSON.stringify(extra);
 document.head.appendChild(s);
 }
-if (!document.querySelector('link[rel="llms"]')) {
+var aiDiscoveryLinks = [
+['llms', 'text/plain', 'https://cognifit-df2ae7.webflow.io/llms.txt'],
+['agents', 'text/markdown', 'https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/agents.md'],
+['mcp-server', 'application/json', 'https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/.well-known/mcp.json'],
+['a2a-agent', 'application/json', 'https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/.well-known/agent.json'],
+['oauth-authorization-server', 'application/json', 'https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/.well-known/oauth-authorization-server']
+];
+aiDiscoveryLinks.forEach(function(pair) {
+if (!document.querySelector('link[rel="' + pair[0] + '"]')) {
 var l = document.createElement('link');
-l.setAttribute('rel', 'llms');
-l.setAttribute('type', 'text/plain');
-l.setAttribute('href', 'https://cognifit-df2ae7.webflow.io/llms.txt');
+l.setAttribute('rel', pair[0]);
+l.setAttribute('type', pair[1]);
+l.setAttribute('href', pair[2]);
 document.head.appendChild(l);
 }
+});
+var mainEl = document.querySelector('main');
+if (mainEl && !mainEl.hasAttribute('role')) mainEl.setAttribute('role', 'main');
+var navEl = document.querySelector('nav, header');
+if (navEl && !navEl.hasAttribute('role')) navEl.setAttribute('role', 'navigation');
+var footerEl = document.querySelector('footer');
+if (footerEl && !footerEl.hasAttribute('role')) footerEl.setAttribute('role', 'contentinfo');
+document.querySelectorAll('section[id]').forEach(function(s) {
+if (!s.hasAttribute('role')) s.setAttribute('role', 'region');
+if (!s.hasAttribute('aria-labelledby') && !s.hasAttribute('aria-label')) {
+var h = s.querySelector('h1, h2, h3');
+if (h && h.id) s.setAttribute('aria-labelledby', h.id);
+}
+});
+document.querySelectorAll('h1, h2, h3').forEach(function(h) {
+if (!h.id) {
+var slug = (h.textContent || '').trim().toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0, 50);
+if (slug) h.id = slug;
+}
+});
 var htmlLang = document.documentElement.getAttribute('lang');
 if (!htmlLang || htmlLang === 'en') {
 document.documentElement.setAttribute('lang', 'pt-PT');
