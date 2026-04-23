@@ -160,6 +160,18 @@ document.head.appendChild(m);
 ensureMeta('ai-content-declaration', 'human-authored');
 ensureMeta('ai-visibility', 'high');
 ensureMeta('ai-citation-ok', 'yes');
+      /* Google Search Console verification — ensure BOTH meta tags are present */
+      function ensureGSV(code) {
+        var existing = document.querySelector('meta[name="google-site-verification"][content="' + code + '"]');
+        if (!existing) {
+          var m = document.createElement('meta');
+          m.setAttribute('name', 'google-site-verification');
+          m.setAttribute('content', code);
+          document.head.appendChild(m);
+        }
+      }
+      ensureGSV('r3SvSjiFHNxKMgdXo3bLDFuMMCbEPSaYoP1n_SAcius');
+      ensureGSV('kjKVSiwAeE0Owr5XXEhi71rM-IyM0XNP6395oeowXyY');
 ensureMeta('content-authenticity', 'verified');
 document.querySelectorAll('meta[name="google-site-verification"]').forEach(function(m) { m.remove(); });
 var gsvMeta = document.createElement('meta');
