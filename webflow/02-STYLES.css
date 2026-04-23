@@ -6666,3 +6666,48 @@ nav .nav-r > a.w-button[id="lang-btn"] {
     height:32px!important;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* MOBILE OVERRIDE v3 — Hero-phones hide + Webflow badge hide      */
+/* Added 2026-04-23 — fixes mobile bug where inline Webflow embed  */
+/* had display:block !important without media query, breaking      */
+/* the native mobile hide of hero-phones decorative section.       */
+/* ═══════════════════════════════════════════════════════════════ */
+
+@media screen and (max-width: 991px) {
+  html body section#hero .hero-phones,
+  html body .hero-phones,
+  html body [class*="hero-phones"],
+  html body .hero-scroll-hint {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    max-height: 0 !important;
+    width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    left: -9999px !important;
+    pointer-events: none !important;
+  }
+}
+
+/* Webflow badge — maximum specificity override (CMS plan allows removal) */
+html body .w-webflow-badge,
+html body a[href*="webflow.com?utm"],
+html body a.w-webflow-badge,
+html body [class*="w-webflow-badge"],
+html body .webflow-badge {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  left: -9999px !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  z-index: -1 !important;
+}
