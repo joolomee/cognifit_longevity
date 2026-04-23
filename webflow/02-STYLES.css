@@ -218,3 +218,102 @@ html body [data-i18n="risk.sol.b"]::before {
   html body section h3 { font-size: 21px !important; }
   html body section h2 { font-size: 27px !important; }
 }
+/* VERCEL-LIKE PHONES v1 - mimics reference design 2026-04-23 */
+/* Hide phones on mobile/tablet — already done in other rules, but reinforce */
+@media (max-width: 991px) {
+  html body section#hero .hero-phones,
+  html body section#hero .phone,
+  html body section#hero .phone-train,
+  html body section#hero .phone-stats {
+    display: none !important;
+  }
+}
+
+/* Desktop: position phones like Vercel — side by side, overlapping, floating */
+@media (min-width: 992px) {
+  html body .hero-phones {
+    position: relative !important;
+    height: 560px !important;
+    width: 100% !important;
+    max-width: 520px !important;
+    display: block !important;
+  }
+  html body .hero-phones-list {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    overflow: visible !important;
+  }
+  html body .hero-phones .phone,
+  html body .hero-phones > div > .phone {
+    position: absolute !important;
+    background: #0d0d10 !important;
+    border-radius: 40px !important;
+    border: 3px solid rgba(26,115,232,.35) !important;
+    box-shadow: 0 0 30px rgba(26,115,232,.15), 0 0 60px rgba(26,115,232,.08), 0 40px 80px rgba(0,0,0,.85), inset 0 0 0 1.5px rgba(255,255,255,.08) !important;
+    overflow: hidden !important;
+    transition: all .4s cubic-bezier(.4,0,.2,1) !important;
+  }
+  html body .hero-phones .phone-train {
+    width: 220px !important;
+    height: 440px !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    top: auto !important;
+    right: auto !important;
+    animation: ph-float-a 7s ease-in-out infinite !important;
+    z-index: 2 !important;
+  }
+  html body .hero-phones .phone-stats {
+    width: 240px !important;
+    height: 480px !important;
+    right: 0 !important;
+    top: 0 !important;
+    left: auto !important;
+    bottom: auto !important;
+    animation: ph-float-b 7s ease-in-out infinite !important;
+    z-index: 3 !important;
+  }
+  html body .hero-phones .phone:hover {
+    transform: translateY(-8px) !important;
+    border-color: rgba(26,115,232,.5) !important;
+    box-shadow: 0 0 40px rgba(26,115,232,.25), 0 60px 100px rgba(0,0,0,.9), inset 0 0 0 1.5px rgba(26,115,232,.15) !important;
+  }
+  html body .hero-phones .phone::after {
+    content: '' !important;
+    position: absolute !important;
+    inset: -4px !important;
+    border-radius: 44px !important;
+    background: radial-gradient(ellipse at 50% 110%, rgba(26,115,232,.35) 0%, rgba(52,168,83,.1) 40%, transparent 70%) !important;
+    pointer-events: none !important;
+    z-index: -1 !important;
+    animation: phone-aura 4s ease-in-out infinite alternate !important;
+  }
+  html body .hero-phones .phone-train::after { animation-delay: 0s !important; }
+  html body .hero-phones .phone-stats::after { animation-delay: -2s !important; }
+  
+  /* Phone inner content */
+  html body .hero-phones .ph-body { padding: 22px 18px !important; }
+  html body .hero-phones .ph-title { font-size: 15px !important; font-weight: 800 !important; color: #fff !important; margin-bottom: 14px !important; }
+  html body .hero-phones .ph-skill { background: rgba(255,255,255,.08) !important; border-radius: 12px !important; border: 1px solid rgba(255,255,255,.05) !important; padding: 12px 14px !important; margin-bottom: 8px !important; }
+  html body .hero-phones .ph-skill-name { font-size: 11px !important; font-weight: 600 !important; color: rgba(255,255,255,.7) !important; margin-bottom: 8px !important; }
+  html body .hero-phones .ph-skill-bar { height: 5px !important; background: rgba(255,255,255,.1) !important; border-radius: 3px !important; overflow: hidden !important; }
+}
+
+/* Float animations */
+@keyframes ph-float-a {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-6px) rotate(-1.5deg); }
+}
+@keyframes ph-float-b {
+  0%, 100% { transform: translateY(0) rotate(1deg); }
+  50% { transform: translateY(-8px) rotate(1.5deg); }
+}
+@keyframes phone-aura {
+  0% { opacity: .5; }
+  100% { opacity: 1; }
+}
