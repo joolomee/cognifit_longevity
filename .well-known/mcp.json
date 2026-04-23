@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schemas.modelcontextprotocol.io/0.1/server-card",
+  "name": "CogniFit Longevity",
+  "description": "Cognitive assessment and brain training platform. 1,083+ clinical trials, 20+ cognitive skills measured.",
+  "organization": {
+    "name": "CogniFit",
+    "url": "https://www.cognifit.com",
+    "foundingDate": "1999"
+  },
+  "endpoints": {
+    "api": "https://api.cognifit.com",
+    "docs": "https://www.cognifit.com/neuroscience"
+  },
+  "capabilities": [
+    "cognitive-assessment",
+    "brain-training",
+    "cognitive-age",
+    "neural-reserves"
+  ],
+  "languages": ["pt-PT","en","es","fr","de","it","nl","pl","ru","ar","he","zh","ja","ko","tr","id","bn","mn","ur","sr","el"],
+  "compliance": ["HIPAA","GDPR"],
+  "contact": "contact@cognifit.com"
+}
