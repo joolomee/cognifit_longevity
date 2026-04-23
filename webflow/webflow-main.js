@@ -1,4 +1,46 @@
 
+/* Google Tag Manager — GTM-TZTMC67P — 2026-04-23 */
+(function gtmInstall() {
+  try {
+    if (window.__gtmInstalled) return;
+    window.__gtmInstalled = true;
+    
+    /* 1. Main GTM script in <head> */
+    (function(w,d,s,l,i){
+      w[l] = w[l] || [];
+      w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+      var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      if (f && f.parentNode) f.parentNode.insertBefore(j, f);
+      else d.head.appendChild(j);
+    })(window, document, 'script', 'dataLayer', 'GTM-TZTMC67P');
+    
+    /* 2. noscript iframe after <body> opening */
+    function addNoscriptIframe() {
+      if (document.getElementById('gtm-noscript-iframe')) return;
+      var ns = document.createElement('noscript');
+      var iframe = document.createElement('iframe');
+      iframe.id = 'gtm-noscript-iframe';
+      iframe.src = 'https://www.googletagmanager.com/ns.html?id=GTM-TZTMC67P';
+      iframe.height = '0';
+      iframe.width = '0';
+      iframe.style.cssText = 'display:none;visibility:hidden';
+      ns.appendChild(iframe);
+      if (document.body && document.body.firstChild) {
+        document.body.insertBefore(ns, document.body.firstChild);
+      } else if (document.body) {
+        document.body.appendChild(ns);
+      }
+    }
+    if (document.body) addNoscriptIframe();
+    else document.addEventListener('DOMContentLoaded', addNoscriptIframe);
+  } catch(e) {}
+})();
+
+
 /* ANTI-DEDUP v1 — counters the cfSeoDedup script in Webflow Custom Code */
 (function antiDedup() {
   try {
