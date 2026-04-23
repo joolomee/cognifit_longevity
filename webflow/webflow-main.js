@@ -1,4 +1,85 @@
 
+/* ANTI-DEDUP v1 — counters the cfSeoDedup script in Webflow Custom Code */
+(function antiDedup() {
+  try {
+    var CORRECT_URL = 'https://www.cognifit.com/longevity';
+    var GSV_CODE = 'kjKVSiwAeE0Owr5XXEhi71rM-IyM0XNP6395oeowXyY';
+    
+    function forceFix() {
+      try {
+        /* Fix canonical URL */
+        var cans = document.querySelectorAll('link[rel="canonical"]');
+        cans.forEach(function(c, i) {
+          if (i === 0) {
+            c.setAttribute('href', CORRECT_URL);
+          } else {
+            c.remove();
+          }
+        });
+        if (cans.length === 0) {
+          var cl = document.createElement('link');
+          cl.rel = 'canonical';
+          cl.href = CORRECT_URL;
+          document.head.appendChild(cl);
+        }
+        
+        /* Fix og:url */
+        var ogUrls = document.querySelectorAll('meta[property="og:url"]');
+        ogUrls.forEach(function(m, i) {
+          if (i === 0) m.setAttribute('content', CORRECT_URL);
+          else m.remove();
+        });
+        
+        /* Ensure self-ref hreflang pt-PT */
+        if (!document.querySelector('link[rel="alternate"][hreflang="pt-PT"]')) {
+          var alt = document.createElement('link');
+          alt.setAttribute('rel', 'alternate');
+          alt.setAttribute('hreflang', 'pt-PT');
+          alt.setAttribute('href', CORRECT_URL);
+          document.head.appendChild(alt);
+        }
+        
+        /* Re-apply Google site verification */
+        var gsv = document.querySelector('meta[name="google-site-verification"][content="' + GSV_CODE + '"]');
+        if (!gsv) {
+          /* Remove any other GSV meta and add ours */
+          document.querySelectorAll('meta[name="google-site-verification"]').forEach(function(m) { m.remove(); });
+          var gsvMeta = document.createElement('meta');
+          gsvMeta.setAttribute('name', 'google-site-verification');
+          gsvMeta.setAttribute('content', GSV_CODE);
+          document.head.appendChild(gsvMeta);
+        }
+      } catch(e) {}
+    }
+    
+    /* Run AFTER the cfSeoDedup 3500ms timeout (which is the last one) */
+    setTimeout(forceFix, 4000);
+    setTimeout(forceFix, 5500);
+    setTimeout(forceFix, 8000);
+    
+    /* Also use MutationObserver to catch any later modifications */
+    if (typeof MutationObserver !== 'undefined') {
+      var observer = new MutationObserver(function(mutations) {
+        for (var i = 0; i < mutations.length; i++) {
+          var m = mutations[i];
+          if (m.type === 'childList' && m.target === document.head) {
+            /* Something changed in head — re-check canonical */
+            var canonical = document.querySelector('link[rel="canonical"]');
+            if (canonical && canonical.getAttribute('href') !== CORRECT_URL) {
+              forceFix();
+              break;
+            }
+          }
+        }
+      });
+      if (document.head) {
+        observer.observe(document.head, { childList: true, subtree: false, attributes: true, attributeFilter: ['href', 'content'] });
+      }
+    }
+  } catch(e) {}
+})();
+
+
 /* CACHE BUSTER */
 (function cacheBuster() {
   try {
