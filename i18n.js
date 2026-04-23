@@ -7161,6 +7161,16 @@
     document.querySelectorAll('[data-i18n]').forEach(function(el) {
       snapshotOriginal(el);
       var key = el.getAttribute('data-i18n');
+      // Special-case: hero.h1 is composed of line1+line2+line3 with <br>s
+      if (key === 'hero.h1') {
+        var l1 = translate(lang, 'hero.h1.line1') || translate('en', 'hero.h1.line1') || '';
+        var l2 = translate(lang, 'hero.h1.line2') || translate('en', 'hero.h1.line2') || '';
+        var l3 = translate(lang, 'hero.h1.line3') || translate('en', 'hero.h1.line3') || '';
+        if (l1 || l2 || l3) {
+          el.innerHTML = '<span>' + l1 + '</span><br><span>' + l2 + '</span><br><span>' + l3 + '</span>';
+          return;
+        }
+      }
       var val = translate(lang, key);
       // If no translation found, restore original English from snapshot.
       // NEVER write the key string to the DOM.
