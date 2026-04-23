@@ -7623,3 +7623,131 @@ html body img[loading="lazy"] { opacity: 1 !important; }
     padding: 48px 16px !important;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════════ */
+/*   PERFORMANCE + CLS FIX v1 — 2026-04-23                                          */
+/*   Addresses: LCP 6.1s, CLS 0.115, FCP 2.6s                                       */
+/* ═══════════════════════════════════════════════════════════════════════════════ */
+
+/* ── REMOVE content-visibility:auto (caused CLS 0.115) ── */
+html body section:not(#hero):not(#platform) {
+  content-visibility: visible !important;
+  contain-intrinsic-size: auto !important;
+}
+
+/* ── Prevent FOUC: hide Hero H1 until i18n tags it ── */
+html body .hero-h1:not([data-i18n]):not([data-i18n-orig]) {
+  visibility: hidden !important;
+}
+/* Show immediately once i18n processed */
+html body .hero-h1[data-i18n-orig] {
+  visibility: visible !important;
+}
+/* Safety fallback after 2s — show anyway */
+@keyframes fallback-show-h1 {
+  to { visibility: visible !important; }
+}
+html body .hero-h1 {
+  animation: fallback-show-h1 0s 2s forwards;
+}
+
+/* ── Reduce paint cost on mobile ── */
+@media screen and (max-width: 767px) {
+  html body nav,
+  html body header {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(0, 0, 0, 0.92) !important;
+  }
+  html body .val-card:hover,
+  html body .risk-card:hover,
+  html body .pro-card:hover,
+  html body .step-card:hover,
+  html body .out-card:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  /* Disable transitions on decorative elements to reduce jank */
+  html body [class*="orb"],
+  html body [class*="traveler"] {
+    animation: none !important;
+    transition: none !important;
+  }
+  /* Remove expensive filters */
+  html body img {
+    filter: none !important;
+  }
+}
+
+/* ── Aspect-ratio on ALL images to prevent CLS ── */
+html body img:not([width]):not([height]) {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+html body img[src*=".svg"],
+html body img.logo,
+html body img[alt*="logo" i] {
+  aspect-ratio: auto !important;
+  object-fit: contain !important;
+}
+
+/* ── Font-display swap on Google Fonts (prevent FOIT) ── */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-display: swap !important;
+}
+
+/* ── Prevent layout shift from animations ── */
+html body [class*="marquee"],
+html body [class*="scroll"][class*="hint"] {
+  contain: layout paint style !important;
+}
+
+/* ── Hero: pre-size H1 slot to prevent shift when i18n loads ── */
+@media screen and (min-width: 992px) {
+  html body .hero-h1 {
+    min-height: 216px !important;
+    contain: layout !important;
+  }
+}
+@media screen and (max-width: 991px) {
+  html body .hero-h1 {
+    min-height: 140px !important;
+    contain: layout !important;
+  }
+}
+@media screen and (max-width: 479px) {
+  html body .hero-h1 {
+    min-height: 120px !important;
+  }
+}
+
+/* ── Sub-paragraph space reserved ── */
+html body .hero-sub {
+  min-height: 96px !important;
+  contain: layout !important;
+}
+
+/* ── Reduce paint complexity ── */
+@media screen and (max-width: 991px) {
+  html body *,
+  html body *::before,
+  html body *::after {
+    will-change: auto !important;
+    transform-style: flat !important;
+  }
+}
+
+/* ── Force lazy-load on below-fold images ── */
+html body img[src*="/press/"],
+html body img[src*="logo-"],
+html body img[loading]:not([loading="eager"]) {
+  content-visibility: auto;
+  contain-intrinsic-size: 120px 60px;
+}
+
+/* ── Eager load Hero logo (LCP improvement) ── */
+html body nav img[alt*="CogniFit" i],
+html body header img[alt*="CogniFit" i] {
+  content-visibility: visible !important;
+}
