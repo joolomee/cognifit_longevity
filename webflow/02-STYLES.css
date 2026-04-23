@@ -6854,3 +6854,131 @@ html body .val-card.val-card-feat .val-card-title {
     font-size: 10px !important;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/*  HERO MOBILE RESPONSIVE v1 — added 2026-04-23                               */
+/*  Aumenta H1, alinha título+descrição+badge+CTA, melhora proporções mobile  */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Tiny (iPhone SE / 479 and below) */
+@media screen and (max-width: 479px) {
+  html body .hero-h1 {
+    font-size: 36px !important;
+    line-height: 1.12 !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.02em !important;
+    margin: 16px 0 20px 0 !important;
+    padding: 0 !important;
+  }
+  html body .hero-sub {
+    font-size: 15.5px !important;
+    line-height: 1.55 !important;
+    margin: 0 0 20px 0 !important;
+    padding: 0 !important;
+  }
+  html body .hero-badge {
+    padding: 8px 14px !important;
+    font-size: 10.5px !important;
+    letter-spacing: 0.05em !important;
+    margin-bottom: 24px !important;
+  }
+  html body .hero-content,
+  html body .hero-inner {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    padding-top: 48px !important;
+    padding-bottom: 56px !important;
+  }
+  html body .hero-content > *,
+  html body .hero-inner > * {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  html body .hero-read-time {
+    font-size: 12px !important;
+    margin: 12px 0 18px 0 !important;
+  }
+  html body .hero-cta-wrap .btn-primary,
+  html body .hero-cta-wrap a.btn-primary {
+    width: 100% !important;
+    display: block !important;
+    text-align: center !important;
+    padding: 16px 20px !important;
+    font-size: 16px !important;
+    margin: 0 !important;
+  }
+  html body .rating-box,
+  html body [class*="rating"][class*="box"] {
+    margin-top: 20px !important;
+    padding: 16px !important;
+  }
+  html body .g-badge {
+    font-size: 12px !important;
+    padding: 8px 14px !important;
+  }
+}
+
+/* Small (480-767, iPhone 12/13/14/15 landscape or Android) */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  html body .hero-h1 {
+    font-size: 42px !important;
+    line-height: 1.1 !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.02em !important;
+    margin: 18px 0 22px 0 !important;
+  }
+  html body .hero-sub {
+    font-size: 16.5px !important;
+    line-height: 1.55 !important;
+  }
+  html body .hero-content,
+  html body .hero-inner {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    padding-top: 56px !important;
+    padding-bottom: 64px !important;
+  }
+}
+
+/* Medium (768-991, iPad) */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  html body .hero-h1 {
+    font-size: 52px !important;
+    line-height: 1.08 !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.02em !important;
+  }
+}
+
+/* Ensure vertical rhythm alignment of all hero elements to same left edge */
+@media screen and (max-width: 991px) {
+  html body .hero-content > *,
+  html body .hero-inner > *,
+  html body section#hero .hero-badge,
+  html body section#hero .hero-h1,
+  html body section#hero .hero-sub,
+  html body section#hero .hero-read-time,
+  html body section#hero .hero-cta-wrap {
+    text-align: left !important;
+  }
+  html body section#hero .hero-cta-wrap {
+    align-self: stretch !important;
+    width: 100% !important;
+  }
+}
+
+/* Prevent horizontal scroll/overflow on mobile viewports */
+@media screen and (max-width: 991px) {
+  html, body { overflow-x: hidden !important; }
+  html body section, html body .s-dark, html body .s-black, html body .s-white {
+    overflow-x: hidden !important;
+  }
+}
+
+/* Make sure sticky-cta doesn't interfere with Hero scroll on mobile */
+@media screen and (max-width: 991px) {
+  html body .sticky-cta {
+    pointer-events: auto !important;
+    touch-action: manipulation !important;
+  }
+}
