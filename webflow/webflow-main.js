@@ -1,3 +1,35 @@
+
+/* CACHE BUSTER */
+(function cacheBuster() {
+  try {
+    var freshCss = document.createElement('link');
+    freshCss.rel = 'stylesheet';
+    freshCss.href = 'https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/webflow/02-STYLES.css?v=' + Date.now();
+    freshCss.setAttribute('data-fresh', '1');
+    document.head.appendChild(freshCss);
+
+    var emergency = document.createElement('style');
+    emergency.id = 'emergency-hero-fix';
+    emergency.textContent =
+      '@media (max-width:991px){' +
+      'html body section#hero .hero-phones,' +
+      'html body section#hero .hero-phones-1,' +
+      'html body section#hero .hero-scroll-hint,' +
+      'html body section#hero .phone,' +
+      'html body section#hero .orb,' +
+      'html body section#hero canvas,' +
+      'html body section#hero .hero-photo-bg,' +
+      'html body section#hero .hero-color-grade,' +
+      'html body section#hero .hero-text-shade,' +
+      'html body section#hero [class*="traveler"]' +
+      '{display:none!important;height:0!important;width:0!important;visibility:hidden!important;position:absolute!important;left:-9999px!important;}' +
+      'html body section#hero{min-height:500px!important;max-height:800px!important;height:auto!important;}' +
+      'html body .w-webflow-badge,html body [class*="webflow-badge"]{display:none!important;}' +
+      '}';
+    document.head.insertBefore(emergency, document.head.firstChild);
+  } catch(e) {}
+})();
+
 (function agentReadyFixes() {
 if (window.__agentReadyApplied) return;
 window.__agentReadyApplied = true;
