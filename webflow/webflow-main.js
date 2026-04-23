@@ -1,3 +1,129 @@
+
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/*  AGENT-READY FIXES v1 — run immediately on script load                      */
+/*  Fixes: canonical URL, og:url, duplicates, speakable, ai-content, schemas  */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+(function agentReadyFixes() {
+  if (window.__agentReadyApplied) return;
+  window.__agentReadyApplied = true;
+
+  var CORRECT_URL = 'https://www.cognifit.com/longevity';
+
+  function run() {
+    try {
+      /* 1. Fix canonical: keep first, remove duplicates, set correct href */
+      var canonicals = document.querySelectorAll('link[rel="canonical"]');
+      for (var i = 1; i < canonicals.length; i++) canonicals[i].remove();
+      if (canonicals[0]) canonicals[0].setAttribute('href', CORRECT_URL);
+
+      /* 2. Fix og:url */
+      var ogUrls = document.querySelectorAll('meta[property="og:url"]');
+      for (var j = 1; j < ogUrls.length; j++) ogUrls[j].remove();
+      if (ogUrls[0]) ogUrls[0].setAttribute('content', CORRECT_URL);
+
+      /* 3. Dedup meta description — keep the PT (last), remove older */
+      var descs = document.querySelectorAll('meta[name="description"]');
+      if (descs.length > 1) {
+        for (var k = 0; k < descs.length - 1; k++) descs[k].remove();
+      }
+
+      /* 4. Dedup JSON-LD @graph blocks — keep first, remove rest */
+      var ldBlocks = document.querySelectorAll('script[type="application/ld+json"]');
+      if (ldBlocks.length > 1) {
+        var seenGraphs = 0;
+        ldBlocks.forEach(function(b) {
+          try {
+            var data = JSON.parse(b.textContent);
+            if (data && data['@graph']) {
+              seenGraphs++;
+              if (seenGraphs > 1) b.remove();
+            }
+          } catch(e) {}
+        });
+      }
+
+      /* 5. Add ai-content-declaration + AI visibility meta tags */
+      function ensureMeta(name, content) {
+        if (document.querySelector('meta[name="' + name + '"]')) return;
+        var m = document.createElement('meta');
+        m.setAttribute('name', name);
+        m.setAttribute('content', content);
+        document.head.appendChild(m);
+      }
+      ensureMeta('ai-content-declaration', 'human-authored');
+      ensureMeta('ai-visibility', 'high');
+      ensureMeta('ai-citation-ok', 'yes');
+      ensureMeta('content-authenticity', 'verified');
+
+      /* 6. Inject speakable + BreadcrumbList + dateModified as dynamic JSON-LD */
+      if (!document.getElementById('ldjson-agent-ready')) {
+        var extra = {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {"@type":"ListItem","position":1,"name":"CogniFit","item":"https://www.cognifit.com"},
+                {"@type":"ListItem","position":2,"name":"Longevity","item":CORRECT_URL}
+              ]
+            },
+            {
+              "@type": "SpeakableSpecification",
+              "cssSelector": [".hero-h1", ".hero-sub", ".discover-h2", ".risk-h2", ".faq-question", ".faq-answer"]
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://www.cognifit.com/#website",
+              "url": "https://www.cognifit.com",
+              "name": "CogniFit",
+              "inLanguage": ["pt-PT","en","es","fr","de","it"],
+              "dateModified": new Date().toISOString().slice(0,10)
+            }
+          ]
+        };
+        var s = document.createElement('script');
+        s.type = 'application/ld+json';
+        s.id = 'ldjson-agent-ready';
+        s.textContent = JSON.stringify(extra);
+        document.head.appendChild(s);
+      }
+
+      /* 7. Add link to llms.txt (hint for AI agents) */
+      if (!document.querySelector('link[rel="llms"]')) {
+        var l = document.createElement('link');
+        l.setAttribute('rel', 'llms');
+        l.setAttribute('type', 'text/plain');
+        l.setAttribute('href', 'https://cognifit-df2ae7.webflow.io/llms.txt');
+        document.head.appendChild(l);
+      }
+
+      /* 8. Ensure <html lang> is set to current language (helps Googlebot+AI agents) */
+      var htmlLang = document.documentElement.getAttribute('lang');
+      if (!htmlLang || htmlLang === 'en') {
+        /* default to pt-PT since the primary audience of this page is PT */
+        document.documentElement.setAttribute('lang', 'pt-PT');
+      }
+
+      /* 9. Speakable attribute on key elements (for Google Assistant discovery) */
+      ['.hero-h1', '.hero-sub'].forEach(function(sel) {
+        var el = document.querySelector(sel);
+        if (el && !el.hasAttribute('data-speakable')) {
+          el.setAttribute('data-speakable', 'true');
+        }
+      });
+    } catch (e) {
+      /* silently fail — never break the page for SEO fixes */
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', run);
+  } else {
+    run();
+  }
+})();
+
 /* v2026.04.17 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    0. CLASS BRIDGE & DOM INJECTION
    Webflow uses hero-section / closing-section class names;
