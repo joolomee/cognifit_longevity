@@ -6711,3 +6711,146 @@ html body .webflow-badge {
   overflow: hidden !important;
   z-index: -1 !important;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/*  MOBILE VISUAL FIXES v1 — added 2026-04-23                                  */
+/*  Fixes from Joana mobile screenshot batch: C2, C3, I1, I2, I3, I4           */
+/*  (C1 Hero H1 PT and Performance dedupe require Webflow Designer access)    */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── C2: Step cards não sobreporem em mobile ── */
+@media screen and (max-width: 991px) {
+  html body .steps-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    position: relative !important;
+  }
+  html body .steps-grid .step-card {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    inset: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    display: block !important;
+  }
+  html body .step-card .step-n {
+    position: static !important;
+    display: inline-block !important;
+  }
+  html body .step-card h3,
+  html body .step-card p,
+  html body .step-card .step-chk {
+    position: static !important;
+    display: block !important;
+    width: auto !important;
+  }
+}
+
+/* ── C3: Platform section — remove zonas pretas vazias ── */
+@media screen and (max-width: 991px) {
+  html body section#platform,
+  html body section.s-black {
+    min-height: auto !important;
+    height: auto !important;
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+  }
+  html body section#platform > *,
+  html body section#platform .platform-visual,
+  html body section#platform [class*="platform"] {
+    min-height: auto !important;
+    height: auto !important;
+    aspect-ratio: auto !important;
+  }
+  /* Professionals section — esconder espaço vazio após cards */
+  html body [class*="professionals"],
+  html body section:has([class*="pro-card"]),
+  html body section:has([class*="professional"]) {
+    min-height: auto !important;
+    padding-bottom: 48px !important;
+  }
+  html body [class*="pro-card"] + *:empty,
+  html body [class*="professional"] + *:empty {
+    display: none !important;
+  }
+}
+
+/* ── I1: Trust title — garantir espaços entre spans ── */
+html body .trust-headline {
+  word-spacing: 0.15em !important;
+}
+html body .trust-headline .trust-headline-top::after {
+  content: "\00a0" !important;
+}
+html body .trust-headline .trust-headline-number::after {
+  content: "\00a0" !important;
+  white-space: pre !important;
+}
+/* Fallback: forçar espaço em todos os spans irmãos */
+html body .trust-headline span + span::before {
+  content: " ";
+  white-space: pre;
+}
+
+/* ── I2: Scientific Advisory Board (val-card-feat) contrast ── */
+html body .val-card.val-card-feat .val-card-desc,
+html body .val-card-feat .val-card-desc {
+  color: rgba(255, 255, 255, 0.92) !important;
+  opacity: 1 !important;
+}
+html body .val-card.val-card-feat .val-card-title {
+  color: #ffffff !important;
+}
+
+/* ── I3: CHAVE / Peça em Falta label position ── */
+@media screen and (max-width: 991px) {
+  html body .wg-missing-tag,
+  html body .risk-missing-piece .wg-missing-tag {
+    position: relative !important;
+    right: auto !important;
+    top: auto !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    align-self: flex-start !important;
+    margin-top: 4px !important;
+    padding: 4px 10px !important;
+    font-size: 10px !important;
+    letter-spacing: 0.05em !important;
+  }
+  html body .wg-item.wg-missing,
+  html body .risk-missing-piece {
+    flex-wrap: wrap !important;
+  }
+}
+
+/* ── I4: Week labels (Semana 1 / Semana 8) cortados ── */
+@media screen and (max-width: 767px) {
+  html body .hi-chart-label {
+    font-size: 11px !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    max-width: none !important;
+  }
+  html body .hi-chart-svg text,
+  html body .hi-chart text {
+    font-size: 10px !important;
+  }
+  html body .hi-chart {
+    overflow: visible !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+  html body .hi-charts {
+    overflow: visible !important;
+  }
+}
+@media screen and (max-width: 479px) {
+  html body .hi-chart-label {
+    font-size: 10px !important;
+  }
+}
