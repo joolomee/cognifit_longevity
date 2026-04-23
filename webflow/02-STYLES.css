@@ -122,3 +122,99 @@ html body .hi-chart-svg,
 html body svg {
   overflow: visible !important;
 }
+/* FINAL FIXES v1 — 2026-04-23 */
+
+/* REMOVE the visibility:hidden on Hero H1 that was hiding it because i18n didn't run */
+html body .hero-h1,
+html body .hero-h1:not([data-i18n]),
+html body .hero-h1:not([data-i18n-orig]) {
+  visibility: visible !important;
+  opacity: 1 !important;
+  animation: none !important;
+}
+
+/* Ensure H1 has text visible no matter what */
+html body .hero-h1 { min-height: auto !important; }
+
+/* Replace the second KEY/CHAVE label (data-i18n="risk.sol.b") */
+html body [data-i18n="risk.sol.b"] {
+  font-size: 0 !important;
+  position: relative !important;
+}
+html body [data-i18n="risk.sol.b"]::before {
+  content: "RECOMENDADO" !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  display: inline-block !important;
+  padding: 4px 10px !important;
+  background: rgba(110, 179, 255, 0.15) !important;
+  color: #6EB3FF !important;
+  border: 1px solid rgba(110, 179, 255, 0.4) !important;
+  border-radius: 999px !important;
+}
+@media screen and (max-width: 479px) {
+  html body [data-i18n="risk.sol.b"]::before {
+    font-size: 10px !important;
+    padding: 3px 8px !important;
+  }
+}
+
+/* Bottom padding body so sticky CTA doesn't cover content */
+@media screen and (max-width: 991px) {
+  html body .cf-body,
+  html body main {
+    padding-bottom: 96px !important;
+  }
+  html body section#closing,
+  html body footer {
+    margin-bottom: 96px !important;
+  }
+}
+
+/* Force larger font with higher specificity */
+@media screen and (max-width: 767px) {
+  html body section p,
+  html body section li,
+  html body section[class] p,
+  html body section[class] li,
+  html body .sci-card p,
+  html body .sci-card li,
+  html body .risk-card p,
+  html body .risk-card-desc,
+  html body .step-card p,
+  html body .step-card li,
+  html body .val-card p,
+  html body .pro-card p,
+  html body .out-card p,
+  html body [class*="-desc"]:not(h1):not(h2):not(h3),
+  html body [class*="-lead"] {
+    font-size: 17px !important;
+    line-height: 1.62 !important;
+  }
+  html body section h3,
+  html body [class*="card"] h3,
+  html body [class*="-title"]:not(h1):not(h2) {
+    font-size: 23px !important;
+    line-height: 1.3 !important;
+  }
+  html body section h2,
+  html body h2[class] {
+    font-size: 31px !important;
+    line-height: 1.18 !important;
+  }
+  html body .wg-label,
+  html body .sci-subsystem,
+  html body .sci-role {
+    font-size: 16px !important;
+  }
+}
+@media screen and (max-width: 479px) {
+  html body section p,
+  html body section li,
+  html body [class*="-desc"] {
+    font-size: 16px !important;
+  }
+  html body section h3 { font-size: 21px !important; }
+  html body section h2 { font-size: 27px !important; }
+}
