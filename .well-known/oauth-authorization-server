@@ -1,0 +1,8 @@
+{
+  "issuer": "https://www.cognifit.com",
+  "authorization_endpoint": "https://api.cognifit.com/oauth/authorize",
+  "token_endpoint": "https://api.cognifit.com/oauth/token",
+  "response_types_supported": ["code"],
+  "grant_types_supported": ["authorization_code","refresh_token"],
+  "code_challenge_methods_supported": ["S256"]
+}
