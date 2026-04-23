@@ -311,14 +311,19 @@ window.__cfLongevityInit = true;
       if (s.textContent.trim() === 'Cognitive Longevity System') s.setAttribute('data-i18n', 'hero.badge');
     });
   }
-  /* Hero H1 — wrap raw text nodes in spans with data-i18n */
+  /* Hero H1 — tag existing spans (or raw text nodes) with data-i18n keys [v2] */
   var heroH1 = document.querySelector('.hero-h1');
-  if (heroH1 && !heroH1.querySelector('[data-i18n]')) {
-    var h1Children = Array.from(heroH1.childNodes);
-    var lineKeys = ['hero.h1.line1', 'hero.h1.line2'];
+  if (heroH1) {
+    /* Remove any stale data-i18n on the H1 itself (non-existent key hero.h1) */
+    if (heroH1.getAttribute('data-i18n') === 'hero.h1') {
+      heroH1.removeAttribute('data-i18n');
+    }
+    var lineKeys = ['hero.h1.line1', 'hero.h1.line2', 'hero.h1.line3'];
     var lineIdx = 0;
+    /* First, try wrapping raw text nodes (original behaviour) */
+    var h1Children = Array.from(heroH1.childNodes);
     h1Children.forEach(function(node) {
-      if (node.nodeType === 3 && node.textContent.trim()) {
+      if (node.nodeType === 3 && node.textContent.trim() && lineIdx < 3) {
         var span = document.createElement('span');
         span.setAttribute('data-i18n', lineKeys[lineIdx] || '');
         span.textContent = node.textContent;
@@ -326,8 +331,24 @@ window.__cfLongevityInit = true;
         lineIdx++;
       }
     });
+    /* Then, handle the current structure where text is already inside spans */
+    if (lineIdx === 0) {
+      var existingSpans = Array.from(heroH1.querySelectorAll('span')).filter(function(s) {
+        return !s.classList.contains('hero-shimmer') &&
+               !s.classList.contains('hero-shimmer-soft') &&
+               s.textContent.trim() &&
+               !s.querySelector('span');
+      });
+      existingSpans.forEach(function(s, i) {
+        if (lineKeys[i] && !s.hasAttribute('data-i18n')) {
+          s.setAttribute('data-i18n', lineKeys[i]);
+        }
+      });
+    }
     var shimmer = heroH1.querySelector('.hero-shimmer, .hero-shimmer-soft');
-    if (shimmer) shimmer.setAttribute('data-i18n', 'hero.h1.line3');
+    if (shimmer && !shimmer.hasAttribute('data-i18n')) {
+      shimmer.setAttribute('data-i18n', 'hero.h1.line3');
+    }
   }
   setI18n('.hero-sub', 'hero.sub'); var hs = document.querySelector('.hero-sub'); if (hs) hs.setAttribute('data-i18n-html', '');
   setI18n('.hero-read-time', 'hero.readtime');
