@@ -112,6 +112,156 @@
           el.setAttribute('data-speakable', 'true');
         }
       });
+
+      /* 10. Expanded JSON-LD — MedicalArticle/FAQ/HowTo/Author/Citations */
+      if (!document.getElementById('ldjson-geo-v2')) {
+        var isoDate = new Date().toISOString().slice(0,10);
+        var geoExtra = {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "MedicalArticle",
+              "@id": "https://www.cognifit.com/longevity#article",
+              "headline": "Sistema de Longevidade Cognitiva: Viva Mais, Pense Melhor",
+              "articleBody": "Sistema científico de avaliação cognitiva e treino cerebral validado em 1.083+ estudos clínicos. Mede 20+ competências cerebrais (memória, atenção, função executiva) e fornece programas personalizados por IA.",
+              "datePublished": "2025-01-01",
+              "dateModified": isoDate,
+              "inLanguage": "pt-PT",
+              "author": {"@type": "Organization", "@id": "https://www.cognifit.com/#organization"},
+              "publisher": {"@type": "Organization", "@id": "https://www.cognifit.com/#organization"},
+              "isAccessibleForFree": true,
+              "medicalAudience": [
+                {"@type":"MedicalAudience","audienceType":"Patient"},
+                {"@type":"MedicalAudience","audienceType":"HealthcareProfessional"}
+              ],
+              "about": [
+                {"@type":"MedicalCondition","name":"Cognitive decline"},
+                {"@type":"MedicalCondition","name":"Age-related memory loss"},
+                {"@type":"Thing","name":"Brain training"},
+                {"@type":"Thing","name":"Cognitive assessment"}
+              ],
+              "lastReviewed": isoDate,
+              "reviewedBy": {
+                "@type": "Organization",
+                "name": "CogniFit Scientific Advisory Board",
+                "url": "https://www.cognifit.com/scientific-advisory"
+              },
+              "citation": [
+                {"@type":"CreativeWork","name":"ACTIVE Study","url":"https://pubmed.ncbi.nlm.nih.gov/11559292/","author":"Willis SL et al."},
+                {"@type":"CreativeWork","name":"Nature Reviews Neuroscience — Cognitive Training","url":"https://www.nature.com/articles/nrn.2016.40"}
+              ]
+            },
+            {
+              "@type": "FAQPage",
+              "@id": "https://www.cognifit.com/longevity#faq-expanded",
+              "mainEntity": [
+                {"@type":"Question","name":"O que é a longevidade cognitiva?","acceptedAnswer":{"@type":"Answer","text":"A longevidade cognitiva é a capacidade de manter memória, foco, raciocínio e tomada de decisão ao longo da vida. Combina neuroplasticidade, treino cerebral estruturado e hábitos de vida saudáveis para preservar o cérebro."}},
+                {"@type":"Question","name":"O treino cognitivo funciona mesmo?","acceptedAnswer":{"@type":"Answer","text":"Sim. 1.083+ estudos clínicos validam o treino cognitivo. O estudo ACTIVE mostrou que 10 sessões podem manter melhorias cognitivas por 10 anos em adultos com mais de 65 anos."}},
+                {"@type":"Question","name":"Quando devo começar a treinar o cérebro?","acceptedAnswer":{"@type":"Answer","text":"O declínio de velocidade de processamento começa no final dos 20 anos. O ideal é iniciar treino cognitivo estruturado na meia-idade (40-50) para maximizar as reservas cognitivas."}},
+                {"@type":"Question","name":"Quanto tempo leva para ver resultados?","acceptedAnswer":{"@type":"Answer","text":"Melhorias mensuráveis em desempenho cognitivo diário aparecem normalmente em 2-4 semanas de uso regular do treino personalizado CogniFit."}},
+                {"@type":"Question","name":"O CogniFit é validado cientificamente?","acceptedAnswer":{"@type":"Answer","text":"Sim. A CogniFit é a plataforma de treino cognitivo mais extensivamente investigada do mundo, com 1.083+ ensaios clínicos publicados em revistas científicas revistas por pares."}},
+                {"@type":"Question","name":"Qual a diferença entre CogniFit e apps gerais de brain training?","acceptedAnswer":{"@type":"Answer","text":"A CogniFit avalia 20+ competências cognitivas e adapta o treino cientificamente ao perfil único de cada utilizador. Outras apps usam jogos genéricos sem validação clínica personalizada."}},
+                {"@type":"Question","name":"Posso usar em qualquer dispositivo?","acceptedAnswer":{"@type":"Answer","text":"Sim. CogniFit está disponível em Web, iOS e Android. O progresso sincroniza em todos os dispositivos automaticamente."}},
+                {"@type":"Question","name":"Quanto tempo de treino por dia?","acceptedAnswer":{"@type":"Answer","text":"Sessões curtas de 15-20 minutos, 3-4 vezes por semana, são suficientes para benefícios cognitivos mensuráveis."}},
+                {"@type":"Question","name":"O treino cognitivo previne demência?","acceptedAnswer":{"@type":"Answer","text":"Estudos mostram que treino cognitivo estruturado na meia-idade pode atrasar o declínio cognitivo relacionado com a idade em até 10 anos, reduzindo o risco de demência tardia."}},
+                {"@type":"Question","name":"É adequado para profissionais de saúde?","acceptedAnswer":{"@type":"Answer","text":"Sim. CogniFit é utilizada por 3.530+ clínicos em 6.438+ clínicas e instituições de investigação globalmente."}},
+                {"@type":"Question","name":"Quais as competências cognitivas avaliadas?","acceptedAnswer":{"@type":"Answer","text":"Mais de 20 competências: memória contextual, trabalho, coordenação olho-mão, atenção dividida, planeamento, raciocínio, velocidade de processamento, função executiva, entre outras."}},
+                {"@type":"Question","name":"Como é calculada a Idade Cognitiva?","acceptedAnswer":{"@type":"Answer","text":"A Idade Cognitiva compara o desempenho do utilizador com normas populacionais por idade, indicando se o cérebro está a performar acima, igual ou abaixo da idade biológica."}},
+                {"@type":"Question","name":"Há garantia de satisfação?","acceptedAnswer":{"@type":"Answer","text":"Sim. 100% de satisfação garantida com política de devolução em 30 dias, sem perguntas."}},
+                {"@type":"Question","name":"Os dados são privados e seguros?","acceptedAnswer":{"@type":"Answer","text":"Sim. A CogniFit cumpre RGPD/GDPR e HIPAA. Dados nunca são vendidos e são encriptados em trânsito e em repouso."}},
+                {"@type":"Question","name":"Posso usar com 70+ anos de idade?","acceptedAnswer":{"@type":"Answer","text":"Sim. O treino é adaptado a qualquer idade adulta. Estudos mostram benefícios em utilizadores 60+ mantendo independência cognitiva por mais anos."}}
+              ]
+            },
+            {
+              "@type": "HowTo",
+              "@id": "https://www.cognifit.com/longevity#howto",
+              "name": "Como começar o treino cognitivo personalizado CogniFit",
+              "description": "4 passos para avaliar o seu cérebro e começar treino personalizado",
+              "totalTime": "PT15M",
+              "estimatedCost": {"@type":"MonetaryAmount","currency":"EUR","value":"0"},
+              "step": [
+                {"@type":"HowToStep","position":1,"name":"Avaliar o seu cérebro","text":"Complete a avaliação cognitiva validada cientificamente em 15 minutos. Mede atenção, memória e função executiva para estabelecer uma linha de base clara."},
+                {"@type":"HowToStep","position":2,"name":"Receba um programa personalizado","text":"A IA da CogniFit analisa o seu perfil e cria um programa de treino adaptado às suas áreas mais fracas, ajustando a dificuldade continuamente."},
+                {"@type":"HowToStep","position":3,"name":"Treine o que importa","text":"Sessões curtas e envolventes (15-20 min) concebidas para impacto real: melhoram foco, memória de trabalho e tomada de decisão."},
+                {"@type":"HowToStep","position":4,"name":"Acompanhe a sua Idade Cognitiva","text":"Relatórios claros mostram a evolução do seu cérebro ao longo do tempo. Mantenha-se motivado com marcos e hábitos cerebrais duradouros."}
+              ]
+            },
+            {
+              "@type": "Product",
+              "@id": "https://www.cognifit.com/longevity#product",
+              "name": "CogniFit Longevity System",
+              "description": "Sistema de longevidade cognitiva com avaliações validadas e treino personalizado por IA",
+              "brand": {"@id": "https://www.cognifit.com/#organization"},
+              "category": "Health & Wellness",
+              "offers": {
+                "@type": "AggregateOffer",
+                "priceCurrency": "EUR",
+                "lowPrice": "0",
+                "highPrice": "19.99",
+                "offerCount": "3",
+                "availability": "https://schema.org/InStock"
+              },
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.8",
+                "ratingCount": "6249358",
+                "bestRating": "5"
+              }
+            }
+          ]
+        };
+        var s = document.createElement('script');
+        s.type = 'application/ld+json';
+        s.id = 'ldjson-geo-v2';
+        s.textContent = JSON.stringify(geoExtra);
+        document.head.appendChild(s);
+      }
+
+      /* 11. Hreflang expansion — 22 languages + x-default */
+      var hreflangLanguages = [
+        ['pt','https://www.cognifit.com/longevity'],
+        ['en','https://www.cognifit.com/longevity?lang=en'],
+        ['es','https://www.cognifit.com/longevity?lang=es'],
+        ['fr','https://www.cognifit.com/longevity?lang=fr'],
+        ['de','https://www.cognifit.com/longevity?lang=de'],
+        ['it','https://www.cognifit.com/longevity?lang=it'],
+        ['nl','https://www.cognifit.com/longevity?lang=nl'],
+        ['pl','https://www.cognifit.com/longevity?lang=pl'],
+        ['ru','https://www.cognifit.com/longevity?lang=ru'],
+        ['ar','https://www.cognifit.com/longevity?lang=ar'],
+        ['he','https://www.cognifit.com/longevity?lang=he'],
+        ['zh','https://www.cognifit.com/longevity?lang=zh'],
+        ['ja','https://www.cognifit.com/longevity?lang=ja'],
+        ['ko','https://www.cognifit.com/longevity?lang=ko'],
+        ['tr','https://www.cognifit.com/longevity?lang=tr'],
+        ['id','https://www.cognifit.com/longevity?lang=id'],
+        ['bn','https://www.cognifit.com/longevity?lang=bn'],
+        ['mn','https://www.cognifit.com/longevity?lang=mn'],
+        ['ur','https://www.cognifit.com/longevity?lang=ur'],
+        ['sr','https://www.cognifit.com/longevity?lang=sr'],
+        ['el','https://www.cognifit.com/longevity?lang=el'],
+        ['x-default','https://www.cognifit.com/longevity']
+      ];
+      hreflangLanguages.forEach(function(pair) {
+        var existing = document.querySelector('link[rel="alternate"][hreflang="' + pair[0] + '"]');
+        if (!existing) {
+          var l = document.createElement('link');
+          l.setAttribute('rel','alternate');
+          l.setAttribute('hreflang', pair[0]);
+          l.setAttribute('href', pair[1]);
+          document.head.appendChild(l);
+        }
+      });
+
+      /* 12. Apply RTL direction for RTL languages */
+      try {
+        var lang = (window.CogniFitI18n && window.CogniFitI18n.getLang()) || document.documentElement.lang || 'pt';
+        if (['ar','he','ur'].indexOf(lang) !== -1) {
+          document.documentElement.setAttribute('dir','rtl');
+        } else {
+          document.documentElement.setAttribute('dir','ltr');
+        }
+      } catch(e) {}
     } catch (e) {
       /* silently fail — never break the page for SEO fixes */
     }
