@@ -7244,3 +7244,231 @@ html[dir="rtl"] body .sticky-cta {
   html body section { padding: 24px 0 !important; page-break-inside: avoid; }
   html body a[href]::after { content: " (" attr(href) ")"; font-size: 0.8em; color: #666; }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════════ */
+/*   UI/UX POLISH v1.0 — Accessibility WCAG 2.1 AA + Micro-interactions             */
+/*   2026-04-23 — focus rings, hover states, contrast, CLS prevention, motion       */
+/* ═══════════════════════════════════════════════════════════════════════════════ */
+
+/* ── A11y: Visible focus rings (keyboard navigation) ── */
+html body *:focus-visible {
+  outline: 2px solid #4a90ff !important;
+  outline-offset: 3px !important;
+  border-radius: 6px !important;
+}
+html body .btn-primary:focus-visible,
+html body .btn-outline:focus-visible,
+html body .btn-login:focus-visible {
+  outline: 3px solid #ffffff !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 5px rgba(74, 144, 255, 0.5) !important;
+}
+/* Skip focus ring on mouse-only interactions */
+html body *:focus:not(:focus-visible) {
+  outline: none !important;
+}
+
+/* ── A11y: Higher contrast for low-contrast text ── */
+html body .hero-sub,
+html body p.discover-lead,
+html body p.risk-lead,
+html body p.plat-lead {
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+html body .hero-read-time,
+html body .g-badge,
+html body .trust-label {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+/* Dark text on light sections */
+html body section.s-white p,
+html body section.s-off p {
+  color: rgba(15, 23, 42, 0.88) !important;
+}
+
+/* ── UI: Button micro-interactions (hover + active states) ── */
+html body .btn-primary,
+html body .btn-outline,
+html body a.btn-primary,
+html body a.btn-outline {
+  transition: transform 150ms ease-out, box-shadow 200ms ease-out, background 200ms ease-out !important;
+  cursor: pointer !important;
+  position: relative !important;
+}
+html body .btn-primary:hover,
+html body a.btn-primary:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 8px 24px rgba(74, 144, 255, 0.45), 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}
+html body .btn-primary:active,
+html body a.btn-primary:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 8px rgba(74, 144, 255, 0.3) !important;
+}
+
+/* ── UI: Card hover elevations ── */
+html body .val-card,
+html body .risk-card,
+html body .pro-card,
+html body .step-card,
+html body .out-card {
+  transition: transform 200ms ease-out, box-shadow 250ms ease-out, border-color 200ms ease-out !important;
+}
+html body .val-card:hover,
+html body .risk-card:hover,
+html body .pro-card:hover,
+html body .step-card:hover,
+html body .out-card:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* ── A11y: Form inputs visible state (future-proof) ── */
+html body input,
+html body textarea,
+html body select {
+  transition: border-color 150ms ease-out, box-shadow 200ms ease-out !important;
+}
+html body input:focus,
+html body textarea:focus,
+html body select:focus {
+  border-color: #4a90ff !important;
+  box-shadow: 0 0 0 3px rgba(74, 144, 255, 0.2) !important;
+  outline: none !important;
+}
+
+/* ── CLS prevention: reserve aspect-ratio on images before load ── */
+html body img[width][height] {
+  height: auto !important;
+  aspect-ratio: attr(width) / attr(height) !important;
+}
+html body img:not([width]):not([height]):not(.logo) {
+  aspect-ratio: 16 / 9 !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* ── Scroll behavior: smooth, not jarring ── */
+html {
+  scroll-behavior: smooth !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+}
+
+/* ── A11y: Selection colors (high contrast) ── */
+html body ::selection {
+  background: #4a90ff !important;
+  color: #ffffff !important;
+}
+
+/* ── Sticky CTA: better placement, safe area support (iOS notch) ── */
+html body .sticky-cta {
+  padding-bottom: max(16px, env(safe-area-inset-bottom)) !important;
+  padding-left: max(16px, env(safe-area-inset-left)) !important;
+  padding-right: max(16px, env(safe-area-inset-right)) !important;
+}
+html body .sticky-cta button,
+html body .sticky-cta a {
+  font-weight: 700 !important;
+}
+
+/* ── UX: Nav smoothing + sticky shadow ── */
+html body nav,
+html body .nav-bar,
+html body header {
+  backdrop-filter: saturate(180%) blur(14px) !important;
+  -webkit-backdrop-filter: saturate(180%) blur(14px) !important;
+}
+
+/* ── UX: FAQ accordion hover feedback ── */
+html body .faq-question,
+html body [class*="faq-item"] {
+  cursor: pointer !important;
+  transition: background 150ms ease-out !important;
+}
+html body .faq-question:hover,
+html body [class*="faq-item"]:hover {
+  background: rgba(255, 255, 255, 0.03) !important;
+}
+
+/* ── UX: Link hover — underline animation ── */
+html body a:not(.btn-primary):not(.btn-outline):not(.btn-login):not(.val-card):not(.nav-link) {
+  text-decoration: none !important;
+  background-image: linear-gradient(currentColor, currentColor) !important;
+  background-size: 0% 1px !important;
+  background-position: 0 calc(100% - 2px) !important;
+  background-repeat: no-repeat !important;
+  transition: background-size 200ms ease-out !important;
+}
+html body a:not(.btn-primary):not(.btn-outline):not(.btn-login):not(.val-card):not(.nav-link):hover {
+  background-size: 100% 1px !important;
+}
+
+/* ── UX: Section transitions (no abrupt black→white breaks) ── */
+html body section.s-white + section.s-black,
+html body section.s-black + section.s-white,
+html body section.s-off + section.s-dark,
+html body section.s-dark + section.s-off {
+  position: relative !important;
+}
+
+/* ── A11y: ARIA hidden but not display:none (preserve screen reader for SR-only) ── */
+html body [aria-hidden="true"][class*="hidden-visually"] {
+  position: absolute !important;
+  left: -10000px !important;
+  width: 1px !important; height: 1px !important;
+  overflow: hidden !important;
+}
+
+/* ── UX: Loading states (skeleton pulse) ── */
+html body [data-loading="true"],
+html body .is-loading {
+  animation: skel-pulse 1.5s ease-in-out infinite !important;
+}
+@keyframes skel-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ── A11y: High contrast mode support ── */
+@media (prefers-contrast: high) {
+  html body {
+    --high-contrast: 1;
+  }
+  html body .hero-sub,
+  html body p {
+    color: #ffffff !important;
+  }
+  html body .btn-outline {
+    border-width: 2px !important;
+    border-color: #ffffff !important;
+  }
+}
+
+/* ── A11y: Dark mode respect (user preference) ── */
+@media (prefers-color-scheme: light) {
+  html body section.s-white,
+  html body section.s-off {
+    background: #fafbfc !important;
+    color: #0f172a !important;
+  }
+}
+
+/* ── Performance: Content-visibility for off-screen sections ── */
+html body section:not(#hero):not(#platform) {
+  content-visibility: auto !important;
+  contain-intrinsic-size: auto 600px !important;
+}
+
+/* ── UX: Image fade-in on load (smoother experience) ── */
+html body img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 400ms ease-out !important;
+}
+html body img[loading="lazy"].loaded,
+html body img[loading="lazy"]:not([src=""]) {
+  opacity: 1;
+}
+
+/* Fallback: ensure images without explicit loaded class still show */
+html body img[loading="lazy"] { opacity: 1 !important; }
