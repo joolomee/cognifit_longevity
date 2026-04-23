@@ -28,16 +28,29 @@
         for (var k = 0; k < descs.length - 1; k++) descs[k].remove();
       }
 
-      /* 4. Dedup JSON-LD @graph blocks — keep first, remove rest */
+      /* 4. Dedup JSON-LD @graph blocks — keep first, remove rest (covers ALL schemas, not just FAQ) */
       var ldBlocks = document.querySelectorAll('script[type="application/ld+json"]');
       if (ldBlocks.length > 1) {
-        var seenGraphs = 0;
-        ldBlocks.forEach(function(b) {
+        /* Track seen @id+@type signatures inside @graph; remove duplicate blocks */
+        var seenSignatures = {};
+        var firstGraphBlock = null;
+        ldBlocks.forEach(function(b, idx) {
           try {
             var data = JSON.parse(b.textContent);
             if (data && data['@graph']) {
-              seenGraphs++;
-              if (seenGraphs > 1) b.remove();
+              /* Create signature from sorted @type+@id list */
+              var sig = data['@graph'].map(function(n) {
+                var t = n['@type'];
+                if (Array.isArray(t)) t = t.sort().join('|');
+                return t + '::' + (n['@id'] || '');
+              }).sort().join('##');
+              if (seenSignatures[sig]) {
+                /* Exact duplicate — remove */
+                b.remove();
+              } else {
+                seenSignatures[sig] = true;
+                if (!firstGraphBlock) firstGraphBlock = b;
+              }
             }
           } catch(e) {}
         });
