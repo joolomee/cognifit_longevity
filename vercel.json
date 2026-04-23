@@ -5,11 +5,11 @@
       "headers": [
         {
           "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
+          "value": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
         },
         {
           "key": "Content-Security-Policy",
-          "value": "frame-ancestors 'self' https://brain.cognifit.com https://*.webflow.io https://*.webflow.com"
+          "value": "frame-ancestors 'self' https://brain.cognifit.com https://*.wixsite.com https://*.wix.com https://*.webflow.io https://*.webflow.com https://cognifit-df2ae7.design.webflow.com"
         },
         {
           "key": "Cache-Control",
