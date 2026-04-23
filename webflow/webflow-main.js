@@ -68,8 +68,12 @@
       ensureMeta('ai-visibility', 'high');
       ensureMeta('ai-citation-ok', 'yes');
       ensureMeta('content-authenticity', 'verified');
-      /* Google Search Console verification — DNS-independent meta method */
-      ensureMeta('google-site-verification', 'kjKVSiwAeE0Owr5XXEhi71rM-IyM0XNP6395oeowXyY');
+      /* Google Search Console verification — Force replace existing (Webflow has old verification we can't override via ensureMeta) */
+      document.querySelectorAll('meta[name="google-site-verification"]').forEach(function(m) { m.remove(); });
+      var gsvMeta = document.createElement('meta');
+      gsvMeta.setAttribute('name', 'google-site-verification');
+      gsvMeta.setAttribute('content', 'kjKVSiwAeE0Owr5XXEhi71rM-IyM0XNP6395oeowXyY');
+      document.head.appendChild(gsvMeta);
 
       /* 6. Inject speakable + BreadcrumbList + dateModified as dynamic JSON-LD */
       if (!document.getElementById('ldjson-agent-ready')) {
