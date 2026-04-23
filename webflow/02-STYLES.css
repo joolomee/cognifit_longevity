@@ -7472,3 +7472,154 @@ html body img[loading="lazy"]:not([src=""]) {
 
 /* Fallback: ensure images without explicit loaded class still show */
 html body img[loading="lazy"] { opacity: 1 !important; }
+
+/* ═══════════════════════════════════════════════════════════════════════════════ */
+/*   MOBILE AUDIT FIX v1.0 — 2026-04-23                                             */
+/*   Identified via runtime DOM audit at 991px viewport:                            */
+/*   - Hero was 4498px tall (should be ~700px) due to visible orbs/canvas/bg        */
+/*   - 58 duplicate .orb elements in DOM wasting layout                            */
+/*   - hero-phones still flex despite earlier display:none (cascade override)       */
+/* ═══════════════════════════════════════════════════════════════════════════════ */
+
+/* ── Hero section: clean mobile layout (no decorative layers, no phones) ── */
+@media screen and (max-width: 991px) {
+  /* Higher-specificity selectors to win cascade over external Webflow CSS */
+  section#hero .hero-phones,
+  section#hero .hero-phones-1,
+  section#hero .hero-scroll-hint,
+  section#hero .hero-scroll-hint-1,
+  section#hero .phone,
+  section#hero .phone-train,
+  section#hero .phone-stats,
+  section#hero .ph-body,
+  section#hero .orb,
+  section#hero .orb.a,
+  section#hero .orb.b,
+  section#hero .orb.c,
+  section#hero [class*="traveler"],
+  section#hero .hero-photo-bg,
+  section#hero .hero-color-grade,
+  section#hero .hero-text-shade,
+  section#hero > canvas,
+  section#hero canvas {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    width: 0 !important;
+    position: absolute !important;
+    left: -9999px !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+  }
+  
+  /* Reset hero section sizing */
+  section#hero {
+    min-height: auto !important;
+    height: auto !important;
+    max-height: none !important;
+    padding-top: 48px !important;
+    padding-bottom: 56px !important;
+    position: relative !important;
+    background: #000 !important;
+  }
+  
+  section#hero .hero-content,
+  section#hero .hero-inner {
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    position: relative !important;
+    z-index: 2 !important;
+  }
+}
+
+/* ── Extra layer cleanup for ALL mobile — kill duplicated decorative divs ── */
+@media screen and (max-width: 767px) {
+  /* If multiple orbs are injected, only show the first (if we want any) — but safer: none on small */
+  section#hero .orb:nth-of-type(n+1) { display: none !important; }
+  
+  /* No canvas animation on small screens (save battery + perf) */
+  section#hero > canvas,
+  section#hero .hero-photo-bg {
+    display: none !important;
+  }
+}
+
+/* ── Platform section: no tall min-heights ── */
+@media screen and (max-width: 991px) {
+  section#platform,
+  section.devices-section,
+  section.s-black.inline-section-0 {
+    min-height: auto !important;
+    height: auto !important;
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+  }
+  section#platform .device-wrap,
+  section#platform [class*="device"],
+  section.devices-section img {
+    max-width: 100% !important;
+    height: auto !important;
+    aspect-ratio: auto !important;
+  }
+}
+
+/* ── Fix section padding for edge-to-edge content on mobile ── */
+@media screen and (max-width: 991px) {
+  section,
+  section.s-white,
+  section.s-dark,
+  section.s-black,
+  section.s-off,
+  section.s-blue {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 991px) {
+  section,
+  section.s-white,
+  section.s-dark,
+  section.s-black,
+  section.s-off,
+  section.s-blue {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+}
+
+/* ── Main container max width on mobile ── */
+@media screen and (max-width: 991px) {
+  main#main-content {
+    max-width: 100vw !important;
+    overflow-x: clip !important;
+  }
+}
+
+/* ── Footer mobile ── */
+@media screen and (max-width: 767px) {
+  footer {
+    padding: 32px 16px !important;
+  }
+  footer .footer-grid,
+  footer [class*="footer"][class*="grid"] {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+}
+
+/* ── Assessment section (blue CTA) ── */
+@media screen and (max-width: 991px) {
+  section#assessment {
+    padding: 48px 16px !important;
+  }
+}
+
+/* ── Closing section ── */
+@media screen and (max-width: 991px) {
+  section#closing {
+    padding: 48px 16px !important;
+  }
+}
