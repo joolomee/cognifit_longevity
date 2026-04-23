@@ -1,0 +1,27 @@
+{
+  "$schema": "https://a2aproject.github.io/A2A/specification/agent-card-schema.json",
+  "name": "CogniFit Longevity",
+  "description": "AI-accessible cognitive assessment and brain training platform for healthy aging",
+  "url": "https://www.cognifit.com/longevity",
+  "provider": {
+    "organization": "CogniFit",
+    "url": "https://www.cognifit.com"
+  },
+  "version": "1.0.0",
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false
+  },
+  "skills": [
+    {
+      "id": "cognitive-assessment",
+      "name": "Cognitive Assessment",
+      "description": "Validated assessment measuring 20+ cognitive skills"
+    },
+    {
+      "id": "brain-training",
+      "name": "Personalized Brain Training",
+      "description": "AI-adaptive cognitive training program"
+    }
+  ]
+}
