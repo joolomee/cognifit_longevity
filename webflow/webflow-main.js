@@ -286,6 +286,16 @@ l.setAttribute('href', pair[1]);
 document.head.appendChild(l);
 }
 });
+
+/* AgentReady badge script */
+if (!document.querySelector('script[src*="agentready.md/badge"]')) {
+var arBadge = document.createElement('script');
+arBadge.src = 'https://agentready.md/badge.js';
+arBadge.setAttribute('data-id', 'ebde809e-11d9-4d82-bc5f-afb98d2f402f');
+arBadge.setAttribute('data-domain', 'www.cognifit.com');
+arBadge.async = true;
+document.body.appendChild(arBadge);
+}
 try {
 var lang = (window.CogniFitI18n && window.CogniFitI18n.getLang()) || document.documentElement.lang || 'pt';
 if (['ar','he','ur'].indexOf(lang) !== -1) {
