@@ -2636,3 +2636,27 @@ document.addEventListener('DOMContentLoaded', function() {
   else fixSkillBars();
   setTimeout(fixSkillBars, 2000);
 })();
+
+/* Auto-detect PT locale — ensures hero H1 not stuck in EN */
+(function(){
+  function forcePT(){
+    try {
+      var host = location.hostname;
+      var path = location.pathname;
+      var langParam = new URLSearchParams(location.search).get('lang');
+      var navLang = (navigator.language || 'pt').split('-')[0];
+      /* If no explicit lang param, domain is cognifit.com and navigator is PT */
+      if (!langParam && (host.indexOf('cognifit') > -1) && /^pt/i.test(navLang)){
+        if (window.CogniFitI18n && typeof window.CogniFitI18n.setLang === 'function'){
+          var current = window.CogniFitI18n.getLang && window.CogniFitI18n.getLang();
+          if (current !== 'pt' && current !== 'pt-PT'){
+            window.CogniFitI18n.setLang('pt');
+          }
+        }
+      }
+    } catch(e){}
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', forcePT);
+  else forcePT();
+  setTimeout(forcePT, 500);
+})();
