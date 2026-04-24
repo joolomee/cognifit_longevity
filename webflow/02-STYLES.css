@@ -11119,3 +11119,222 @@ html body [aria-label*="AgentReady" i]{
     }
   }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ROUND 23 v2026.04.24-r23 — 3 fixes: pro-cards lado-a-lado sem roxo,
+   zero scroll lateral, press logos cor original
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════════════════════════════════
+   1) "DESCUBRA A COGNIFIT" (pro-grid) — todos lado-a-lado, SEM roxo
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* Pro-grid: horizontal scroll em tablet/mobile, grid desktop */
+html body .pro-grid{
+  display:grid !important;
+  grid-template-columns:repeat(4, minmax(0, 1fr)) !important;
+  gap:clamp(12px, 1.5vw, 20px) !important;
+  width:100% !important;
+  max-width:1320px !important;
+  margin:clamp(20px, 3vw, 40px) auto !important;
+  padding:0 clamp(12px, 2vw, 24px) !important;
+  box-sizing:border-box !important;
+}
+/* 7 cards (4 em cima + 3 em baixo em grid) — mantém flow grid */
+@media (min-width:1025px){
+  html body .pro-grid{ grid-template-columns:repeat(4, 1fr) !important }
+}
+@media (min-width:641px) and (max-width:1024px){
+  html body .pro-grid{ grid-template-columns:repeat(2, 1fr) !important; gap:14px !important }
+}
+@media (max-width:640px){
+  html body .pro-grid{ grid-template-columns:1fr 1fr !important; gap:10px !important }  /* 2x2 sempre lado a lado */
+}
+
+/* Pro-card — FORÇA remover fundo roxo (--c só no border top accent) */
+html body .pro-card{
+  --c-safe:var(--c, #1a73e8) !important;
+  background:#0a0b0d !important;
+  background-image:none !important;
+  border:1px solid rgba(255,255,255,.08) !important;
+  border-radius:16px !important;
+  overflow:hidden !important;
+  width:100% !important;
+  min-width:0 !important;
+  max-width:100% !important;
+  box-sizing:border-box !important;
+  padding:0 !important;
+  position:relative !important;
+  display:flex !important;
+  flex-direction:column !important;
+}
+
+/* Top area dos pro-cards — GRADIENT ESCURO (sem roxo!) */
+html body .pro-card > *:first-child,
+html body .pro-card .pro-top,
+html body .pro-card > img:first-child,
+html body .pro-card > div:first-child:not(h3):not(p):not(.pro-stats):not(.pro-cta){
+  width:100% !important;
+  min-height:100px !important;
+  max-height:130px !important;
+  background:linear-gradient(180deg, #14161a 0%, #0a0b0d 100%) !important;
+  background-image:linear-gradient(180deg, #14161a 0%, #0a0b0d 100%) !important;
+  border-bottom:1px solid rgba(255,255,255,.05) !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  padding:18px !important;
+  box-sizing:border-box !important;
+}
+
+/* Remove qualquer background purple herdado */
+html body .pro-card[style*="#7B1FA2"],
+html body .pro-card[style*="#880E4F"],
+html body .pro-card[style*="#4A148C"]{
+  /* a variável --c vive no border-top, não no background */
+  background:#0a0b0d !important;
+}
+html body .pro-card[style*="--c"]::before{
+  /* accent no topo usa a cor, mas o corpo fica escuro */
+  content:'' !important;
+  position:absolute !important;
+  top:0 !important; left:0 !important; right:0 !important;
+  height:3px !important;
+  background:var(--c, #1a73e8) !important;
+  z-index:2 !important;
+}
+
+/* Icons dentro: neutros, brilhosos */
+html body .pro-card img{
+  width:64px !important;
+  height:64px !important;
+  max-width:64px !important;
+  max-height:64px !important;
+  object-fit:contain !important;
+  background:transparent !important;
+  filter:brightness(1.8) contrast(1.1) saturate(.9) !important;
+  mix-blend-mode:screen !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   2) ZERO SCROLL LATERAL — força 100% width em todas as media queries
+   ══════════════════════════════════════════════════════════════════════ */
+
+html, body{
+  overflow-x:hidden !important;
+  max-width:100vw !important;
+  width:100% !important;
+  box-sizing:border-box !important;
+  margin:0 !important;
+  padding:0 !important;
+}
+html body > *{
+  max-width:100vw !important;
+  box-sizing:border-box !important;
+}
+html body section{
+  width:100% !important;
+  max-width:100vw !important;
+  overflow-x:hidden !important;
+  box-sizing:border-box !important;
+  padding-left:0 !important;
+  padding-right:0 !important;
+}
+html body .wrap, html body .container{
+  width:100% !important;
+  max-width:min(1280px, 100vw) !important;
+  box-sizing:border-box !important;
+}
+/* Qualquer elemento interno: never exceed viewport */
+html body img,
+html body video,
+html body iframe,
+html body object,
+html body embed,
+html body canvas,
+html body svg{
+  max-width:100% !important;
+  box-sizing:border-box !important;
+}
+/* Grid containers: prevent content from overflowing */
+html body .pro-grid, html body .risk-row, html body .steps-grid,
+html body .who-grid, html body .val-grid, html body .reviews-grid,
+html body .press-strip, html body .hi-charts, html body .hero-content,
+html body .trust-stats, html body .stats-row{
+  width:100% !important;
+  max-width:100% !important;
+  box-sizing:border-box !important;
+}
+/* Common problem: long text/URLs forcing overflow */
+html body p, html body span, html body a, html body li,
+html body h1, html body h2, html body h3, html body h4{
+  word-wrap:break-word !important;
+  overflow-wrap:break-word !important;
+  max-width:100% !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   3) PRESS LOGOS — cor ORIGINAL, legíveis em fundo preto
+   ══════════════════════════════════════════════════════════════════════ */
+
+html body .press-strip img,
+html body .press-strip .press-logo-img,
+html body .press-strip .pl{
+  /* cor original, nada de grayscale/invert */
+  filter:none !important;
+  -webkit-filter:none !important;
+  opacity:1 !important;
+  mix-blend-mode:normal !important;
+  max-height:32px !important;
+  height:auto !important;
+  width:auto !important;
+  max-width:100% !important;
+  object-fit:contain !important;
+  background:transparent !important;
+}
+
+/* Em secções escuras, logos DARK precisam de fundo branco subtil para legibilidade */
+html body section.s-black .press-strip img,
+html body section.s-dark .press-strip img,
+html body section[class*="black"] .press-strip img{
+  background:rgba(255,255,255,.92) !important;
+  padding:8px 12px !important;
+  border-radius:6px !important;
+  box-shadow:0 2px 8px rgba(0,0,0,.2) !important;
+  max-height:38px !important;
+}
+html body section.s-black .press-strip .press-logo-card,
+html body section.s-dark .press-strip .press-logo-card{
+  background:transparent !important;
+  border:none !important;
+}
+
+/* Em secções claras: logos sem ajustes */
+html body section.s-white .press-strip img,
+html body section.s-off .press-strip img{
+  background:transparent !important;
+  padding:0 !important;
+  box-shadow:none !important;
+  filter:none !important;
+}
+
+/* Hover: ligeira transformação */
+html body .press-strip img{
+  transition:transform .25s !important;
+}
+html body .press-strip img:hover{
+  transform:translateY(-2px) !important;
+}
+
+/* Responsive press logos */
+@media (max-width:768px){
+  html body section.s-black .press-strip img,
+  html body section.s-dark .press-strip img{ max-height:26px !important; padding:6px 10px !important }
+  html body .press-strip img{ max-height:24px !important }
+}
+@media (max-width:480px){
+  html body section.s-black .press-strip img,
+  html body section.s-dark .press-strip img{ max-height:20px !important; padding:5px 8px !important }
+  html body .press-strip img{ max-height:20px !important }
+}
