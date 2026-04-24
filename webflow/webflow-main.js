@@ -2307,3 +2307,112 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('i18n:applied', runAll);
   window.addEventListener('languagechange', runAll);
 })();
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HOTFIX v2026.04.24-r13 — Hero H1 i18n correto + sentence case títulos
+   ═══════════════════════════════════════════════════════════════════════ */
+(function(){
+  'use strict';
+
+  function getLang(){
+    try {
+      if (window.CogniFitI18n && typeof window.CogniFitI18n.getLang === 'function') {
+        return window.CogniFitI18n.getLang();
+      }
+      return (document.documentElement.lang || 'pt').split('-')[0];
+    } catch(e){ return 'pt'; }
+  }
+
+  function reapplyI18n(){
+    try {
+      var lang = getLang();
+      if (window.CogniFitI18n && typeof window.CogniFitI18n.setLang === 'function') {
+        window.CogniFitI18n.setLang(lang);
+      }
+    } catch(e){ console.warn('[i18n reapply]', e); }
+  }
+
+  /* 1. Reparar H1 se tiver texto concatenado/errado */
+  function repairHeroH1(){
+    try {
+      var h1 = document.querySelector('.hero-h1, h1.hero-h1');
+      if (!h1) return false;
+      var txt = h1.textContent.trim();
+      var bad = /sistema de longevidade cognitiva|cognitive longevity system|sistema de longevidad/i.test(txt);
+      var hasProperSpans = h1.querySelectorAll('span[data-i18n^="hero.h1."]').length === 3;
+
+      if (bad || !hasProperSpans) {
+        /* Use hero.h1 aggregate key — i18n.js builds the 3 spans internamente */
+        h1.setAttribute('data-i18n', 'hero.h1');
+        h1.innerHTML = '';
+        /* Trigger re-translation */
+        reapplyI18n();
+        return true;
+      }
+      return false;
+    } catch(e){ console.warn('[h1 repair]', e); }
+    return false;
+  }
+
+  /* 2. Apply sentence-case to headings (respeitando nomes próprios) */
+  var PROPER = new Set([
+    'CogniFit','Harvard','Washington','Aviv','Tel','FDA','IA','AI','ACTIVE',
+    'CBS','CNN','NBC','ABC','NYT','WSJ','MNT','Lifetime','Smart','Money',
+    'Google','Play','App','Store','Apple','Android','iOS','iPad','iPhone',
+    'New','York','Times','Wall','Street','Journal','Medical','News','Today',
+    'Alzheimer','Parkinson','Portugal','Espanha','PT','EN','ES','FR','DE','IT','RU','ZH',
+    'Neuropsychology','Scientific','Advisory','Board','Pipeline','Nature','Reviews','Neuroscience',
+    'Geriatrics','Society','Journal','American','University','Products','Publicações','Científicas',
+    'Q1','Q2','Q3','Q4'
+  ]);
+
+  function toSentence(text){
+    if (!text) return text;
+    var trimmed = text.trim();
+    /* Acronyms all caps, keep */
+    if (/^[A-Z0-9\s\-.,:;!?]+$/.test(trimmed) && trimmed.length <= 4) return text;
+    var parts = text.split(/(\s+|—|–|-(?=\s)|\u00A0)/);
+    var first = true;
+    return parts.map(function(w){
+      if (!/\w/.test(w)) return w;
+      var cleanW = w.replace(/[.,:;!?)\]}]+$/, '');
+      /* Preserve proper nouns */
+      if (PROPER.has(cleanW) || PROPER.has(w)) return w;
+      /* Preserve all-caps acronyms (2+ letters) */
+      if (/^[A-Z]{2,}/.test(cleanW) && cleanW.length <= 6) return w;
+      /* First word: capitalize first letter only */
+      if (first) { first = false; return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase(); }
+      return w.toLowerCase();
+    }).join('');
+  }
+
+  function applySentenceCase(){
+    try {
+      var selectors = ['h1:not(.hero-h1)','h2','h3:not(.footer-col-title)','.section-title'];
+      document.querySelectorAll(selectors.join(',')).forEach(function(el){
+        if (el.dataset.sentenceCased === '1') return;
+        /* Skip if contains nested elements com data-i18n (delegated) */
+        if (el.querySelector('span[data-i18n], br, strong, em')) return;
+        var orig = el.textContent;
+        var fixed = toSentence(orig);
+        if (fixed !== orig && fixed.length) el.textContent = fixed;
+        el.dataset.sentenceCased = '1';
+      });
+    } catch(e){ console.warn('[sentence case]', e); }
+  }
+
+  function runAll(){
+    var repaired = repairHeroH1();
+    if (!repaired) applySentenceCase();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runAll);
+  } else {
+    runAll();
+  }
+  setTimeout(runAll, 400);
+  setTimeout(runAll, 1200);
+  setTimeout(runAll, 3000);
+  window.addEventListener('languagechange', runAll);
+})();
