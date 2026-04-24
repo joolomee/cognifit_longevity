@@ -2660,3 +2660,80 @@ document.addEventListener('DOMContentLoaded', function() {
   else forcePT();
   setTimeout(forcePT, 500);
 })();
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PARTNERS MARQUEE — continuous scroll of university/partner logos
+   Inject into .val-marquee-wrap if empty or missing
+   ═══════════════════════════════════════════════════════════════════════ */
+(function(){
+  'use strict';
+
+  var PARTNERS = [
+    { name:'Harvard University', short:'HARVARD' },
+    { name:'Stanford University', short:'STANFORD' },
+    { name:'MIT', short:'MIT' },
+    { name:'University of Washington', short:'UW' },
+    { name:'Tel Aviv University', short:'TEL AVIV' },
+    { name:'Yale University', short:'YALE' },
+    { name:'Oxford University', short:'OXFORD' },
+    { name:'Cambridge University', short:'CAMBRIDGE' },
+    { name:'Johns Hopkins', short:'JOHNS HOPKINS' },
+    { name:'Columbia University', short:'COLUMBIA' },
+    { name:'UC Berkeley', short:'UC BERKELEY' },
+    { name:'NYU', short:'NYU' },
+    { name:'Mayo Clinic', short:'MAYO CLINIC' },
+    { name:'Cleveland Clinic', short:'CLEVELAND CLINIC' },
+    { name:'NIH', short:'NIH' },
+    { name:'Karolinska Institute', short:'KAROLINSKA' }
+  ];
+
+  function buildMarquee(){
+    try {
+      /* Find val-marquee-wrap or create one in validation section */
+      var wrap = document.querySelector('.val-marquee-wrap, .partners-marquee-wrap');
+      if (!wrap) {
+        /* create if missing, inserting after the ciencia validada card */
+        var valSection = document.querySelector('section.s-off:has(.val-card), section:has([data-i18n*="val.h2"])');
+        if (!valSection) return;
+        wrap = document.createElement('div');
+        wrap.className = 'val-marquee-wrap partners-marquee-wrap';
+        valSection.appendChild(wrap);
+      }
+
+      /* If img-based marquee exists and img fails, replace with text-based */
+      var imgs = wrap.querySelectorAll('img.val-marquee-img');
+      var needsText = imgs.length === 0;
+      if (imgs.length){
+        imgs.forEach(function(img){
+          img.addEventListener('error', function(){
+            needsText = true;
+            buildTextMarquee(wrap);
+          });
+        });
+      }
+      if (needsText) buildTextMarquee(wrap);
+    } catch(e){ console.warn('[partners]', e); }
+  }
+
+  function buildTextMarquee(wrap){
+    if (wrap.dataset.textBuilt) return;
+    wrap.dataset.textBuilt = '1';
+    /* Build 2x list (duplicate for seamless loop) */
+    var items = PARTNERS.concat(PARTNERS);
+    var inner = document.createElement('div');
+    inner.className = 'partners-marquee-inner';
+    items.forEach(function(p){
+      var el = document.createElement('span');
+      el.className = 'partner-name';
+      el.textContent = p.short;
+      el.setAttribute('aria-label', p.name);
+      inner.appendChild(el);
+    });
+    wrap.innerHTML = '';
+    wrap.appendChild(inner);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', buildMarquee);
+  else buildMarquee();
+  setTimeout(buildMarquee, 1500);
+})();
