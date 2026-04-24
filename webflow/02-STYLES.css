@@ -7080,3 +7080,229 @@ html body .hero-phones .phone > * > *{
   opacity:1 !important;
   visibility:visible !important;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SKILL BARS — proporcionais aos scores (FORÇA TOTAL)
+   620/800=77.5% · 480/800=60% · 450/800=56% · 443/800=55%
+   ═══════════════════════════════════════════════════════════════════════ */
+
+html body .sk-track{
+  height:6px !important;
+  background:#e8ecf3 !important;
+  border-radius:3px !important;
+  overflow:hidden !important;
+  position:relative !important;
+  width:100% !important;
+  margin-top:8px !important;
+}
+html body .sk-fill{
+  height:100% !important;
+  background:linear-gradient(90deg, #22c55e 0%, #4ade80 100%) !important;
+  border-radius:3px !important;
+  display:block !important;
+  box-shadow:0 0 8px rgba(34,197,94,.35) !important;
+}
+/* Force widths per skill score (atribute selector) */
+html body .sk-fill[style*="width:77.5"],
+html body .sk-fill[style*="width: 77.5"]{ width:77.5% !important }
+html body .sk-fill[style*="width:60%"],
+html body .sk-fill[style*="width: 60%"]{ width:60% !important }
+html body .sk-fill[style*="width:56%"],
+html body .sk-fill[style*="width: 56%"]{ width:56% !important }
+html body .sk-fill[style*="width:55%"],
+html body .sk-fill[style*="width: 55%"]{ width:55% !important }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MOBILE (≤640) — aplica TODAS as correções do tablet adaptadas
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@media (max-width:640px){
+
+  /* 1) VALIDATION icons coloridos + animados (mesmo que desktop/tablet) */
+  html body .val-card:nth-child(1) .val-icon svg{
+    color:#1a73e8 !important; stroke:#1a73e8 !important; fill:#1a73e8 !important;
+    width:40px !important; height:40px !important;
+    animation:val-icon-bounce 2.5s ease-in-out infinite !important;
+  }
+  html body .val-card:nth-child(2) .val-icon svg,
+  html body .val-card.featured .val-icon svg{
+    color:#8b5cf6 !important; stroke:#8b5cf6 !important; fill:#8b5cf6 !important;
+    width:40px !important; height:40px !important;
+    animation:val-icon-pulse 2.5s ease-in-out infinite !important;
+  }
+  html body .val-card:nth-child(3) .val-icon svg{
+    color:#22c55e !important; stroke:#22c55e !important; fill:#22c55e !important;
+    width:40px !important; height:40px !important;
+    animation:val-icon-rotate 4s ease-in-out infinite !important;
+  }
+  html body .val-card .val-icon{
+    width:56px !important; height:56px !important; border-radius:14px !important;
+  }
+
+  /* 2) TELEMÓVEIS sólidos (sem transparência) — já aplicado universal, reforço mobile */
+  html body .hero-phones .phone{
+    background:#0a0b0d !important;
+    background-image:linear-gradient(180deg, #151619 0%, #0a0b0d 100%) !important;
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+    opacity:1 !important;
+  }
+
+  /* 3) PRESS LOGOS uniforme (preto em fundo claro, branco em escuro) */
+  html body section.s-black .press-strip img,
+  html body section.s-dark .press-strip img{
+    filter:brightness(0) invert(1) !important;
+    opacity:.85 !important;
+    max-height:16px !important;
+  }
+  html body section.s-white .press-strip img,
+  html body section.s-off .press-strip img{
+    filter:brightness(0) !important;
+    opacity:.65 !important;
+    max-height:16px !important;
+  }
+
+  /* 4) FAQ compacto minimizado no mobile */
+  html body .faq-list{ max-width:100% !important; gap:6px !important; padding:0 16px !important }
+  html body .faq-item{
+    border-radius:10px !important;
+    min-height:0 !important;
+    max-height:none !important;
+    overflow:hidden !important;
+  }
+  html body .faq-q, html body .faq-question,
+  html body .faq-item > *:first-child, html body .faq-item summary{
+    padding:11px 14px !important;
+    font-size:13.5px !important;
+    line-height:1.3 !important;
+    min-height:auto !important;
+    height:auto !important;
+    gap:10px !important;
+  }
+  html body .faq-a, html body .faq-answer,
+  html body .faq-item [itemprop="acceptedAnswer"]{
+    padding:0 14px 11px !important;
+    font-size:12.5px !important;
+    line-height:1.5 !important;
+  }
+  html body .faq-q svg, html body .faq-question svg{
+    width:16px !important; height:16px !important;
+  }
+
+  /* 5) SISTEMA cards — ZERO internal scroll */
+  html body .sci-card, html body .sci-card *,
+  html body .triad-wrap, html body .triad-card,
+  html body .sistema-card{
+    overflow-y:visible !important;
+    max-height:none !important;
+    height:auto !important;
+  }
+  html body .sci-card, html body .sistema-card{ overflow:hidden !important }
+
+  /* Red bar broken state contained */
+  html body .sci-card.sci-broken{
+    overflow:hidden !important;
+    border-color:rgba(239,68,68,.5) !important;
+  }
+  html body .sci-card.sci-broken::before{
+    left:0 !important; right:0 !important; width:100% !important;
+    height:3px !important; background:#ef4444 !important;
+  }
+
+  /* 6) PRO-CARDS (Descubra) mobile — sem sobreposição, sem roxo, CTA visível */
+  html body .pro-grid{
+    grid-template-columns:1fr 1fr !important;
+    gap:10px !important;
+    padding:0 14px !important;
+  }
+  html body .pro-card{
+    background:#0a0b0d !important;
+    background-image:none !important;
+    border:1px solid rgba(255,255,255,.1) !important;
+    min-height:300px !important;
+    display:flex !important;
+    flex-direction:column !important;
+    overflow:hidden !important;
+    position:relative !important;
+  }
+  html body .pro-card > *:first-child{
+    background:linear-gradient(180deg, #14161a 0%, #0a0b0d 100%) !important;
+    background-color:#0a0b0d !important;
+    background-image:linear-gradient(180deg, #14161a 0%, #0a0b0d 100%) !important;
+    min-height:80px !important;
+    max-height:100px !important;
+    padding:12px !important;
+  }
+  html body .pro-card img{
+    width:48px !important; height:48px !important;
+    min-width:48px !important; max-width:48px !important;
+    min-height:48px !important; max-height:48px !important;
+    mix-blend-mode:screen !important;
+    filter:brightness(1.7) contrast(1.1) !important;
+  }
+  html body .pro-card h3{
+    font-size:12.5px !important; padding:10px 12px 4px !important;
+    position:static !important; line-height:1.2 !important;
+  }
+  html body .pro-card p{
+    font-size:11px !important; padding:0 12px 10px !important;
+    line-height:1.4 !important; position:static !important;
+    overflow:visible !important; -webkit-line-clamp:unset !important;
+  }
+  html body .pro-card .pro-stats{
+    padding:8px 12px !important; gap:8px !important;
+    border-top:1px solid rgba(255,255,255,.08) !important;
+  }
+  html body .pro-card .pro-stat-num{ font-size:12px !important }
+  html body .pro-card .pro-stat-lbl{ font-size:9px !important }
+  html body .pro-card .pro-cta,
+  html body .pro-card a.pro-cta{
+    display:flex !important;
+    visibility:visible !important;
+    opacity:1 !important;
+    padding:9px 12px !important;
+    margin:4px 10px 10px !important;
+    font-size:11.5px !important;
+    background:var(--c, #1a73e8) !important;
+    color:#fff !important;
+    border-radius:100px !important;
+    box-shadow:0 4px 10px rgba(0,0,0,.2) !important;
+  }
+
+  /* 7) RISK cards icons + setas mobile (já fix, reforço) */
+  html body .risk-card .rc-icon{
+    width:44px !important; height:44px !important;
+    border:1.5px solid rgba(26,115,232,.4) !important;
+    background:linear-gradient(135deg, rgba(26,115,232,.22), rgba(26,115,232,.06)) !important;
+  }
+  html body .risk-card .rc-icon svg{
+    width:22px !important; height:22px !important;
+    stroke:#6eb3ff !important; fill:none !important;
+  }
+  html body .risk-card .rc-hint{
+    width:22px !important; height:22px !important;
+    background:rgba(26,115,232,.18) !important;
+    border:1px solid rgba(26,115,232,.4) !important;
+    border-radius:50% !important;
+  }
+  html body .risk-card .rc-hint path{ stroke:#6eb3ff !important }
+
+  /* 8) DEVICES img — largura adequada mobile (já existia) */
+  html body section.s-off img[alt*="devices" i]{
+    max-width:92vw !important;
+    width:100% !important;
+  }
+
+  /* 9) WG-ITEMS compactos mobile */
+  html body .wg-item{
+    padding:12px 14px !important;
+    gap:12px !important;
+    border-radius:10px !important;
+    overflow:hidden !important;
+  }
+  html body .wg-icon{ font-size:20px !important; width:32px !important; height:32px !important }
+  html body .wg-label{ font-size:13.5px !important }
+  html body .wg-missing-tag{ font-size:10px !important; padding:2px 8px !important }
+  html body .wg-check{ width:22px !important; height:22px !important; font-size:12px !important }
+}
