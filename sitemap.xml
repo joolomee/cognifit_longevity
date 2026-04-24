@@ -1,39 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://brain.cognifit.com/longevity</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://www.cognifit.com/longevity</loc>
+    <lastmod>2026-04-24</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://brain.cognifit.com/longevity"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://brain.cognifit.com/longevity?lang=es"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://brain.cognifit.com/longevity?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://brain.cognifit.com/longevity?lang=de"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://brain.cognifit.com/longevity?lang=it"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://brain.cognifit.com/longevity?lang=pt"/>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://brain.cognifit.com/longevity?lang=nl"/>
-    <xhtml:link rel="alternate" hreflang="pl" href="https://brain.cognifit.com/longevity?lang=pl"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://brain.cognifit.com/longevity?lang=ru"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://brain.cognifit.com/longevity?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="he" href="https://brain.cognifit.com/longevity?lang=he"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://brain.cognifit.com/longevity?lang=zh"/>
-    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://brain.cognifit.com/longevity?lang=zh-HK"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://brain.cognifit.com/longevity?lang=ja"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://brain.cognifit.com/longevity?lang=ko"/>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://brain.cognifit.com/longevity?lang=tr"/>
-    <xhtml:link rel="alternate" hreflang="id" href="https://brain.cognifit.com/longevity?lang=id"/>
-    <xhtml:link rel="alternate" hreflang="bn" href="https://brain.cognifit.com/longevity?lang=bn"/>
-    <xhtml:link rel="alternate" hreflang="mn" href="https://brain.cognifit.com/longevity?lang=mn"/>
-    <xhtml:link rel="alternate" hreflang="ur" href="https://brain.cognifit.com/longevity?lang=ur"/>
-    <xhtml:link rel="alternate" hreflang="sr" href="https://brain.cognifit.com/longevity?lang=sr"/>
-    <xhtml:link rel="alternate" hreflang="el" href="https://brain.cognifit.com/longevity?lang=el"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://brain.cognifit.com/longevity"/>
-    <image:image>
-      <image:loc>https://brain.cognifit.com/longevity/og-image.jpg</image:loc>
-      <image:title>CogniFit Brain Longevity System</image:title>
-      <image:caption>Cognitive training for healthy aging - Brain Longevity System by CogniFit</image:caption>
-    </image:image>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://www.cognifit.com/longevity"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.cognifit.com/longevity?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.cognifit.com/longevity?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.cognifit.com/longevity?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.cognifit.com/longevity?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.cognifit.com/longevity?lang=it"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.cognifit.com/longevity?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.cognifit.com/longevity?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.cognifit.com/longevity"/>
   </url>
 </urlset>

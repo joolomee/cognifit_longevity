@@ -1,9 +1,48 @@
-# This robots.txt applies to the VERCEL deployment only.
-# The Vercel mirror is NOT the canonical site — Webflow is.
-# Block ALL crawlers to prevent duplicate content indexing.
+# robots.txt — CogniFit Longevity
+# Canonical site: https://www.cognifit.com/longevity
 
 User-agent: *
-Disallow: /
+Allow: /
+Disallow: /api/
+Disallow: /admin/
 
-# Sitemap lives on the canonical Webflow domain, not here.
-# Sitemap: https://cognifit-df2ae7.webflow.io/sitemap.xml
+# Search engines
+User-agent: Googlebot
+Allow: /
+User-agent: Bingbot
+Allow: /
+User-agent: DuckDuckBot
+Allow: /
+
+# AI / LLM crawlers — explicitly allowed for citation
+User-agent: GPTBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-Web
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: CCBot
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: cohere-ai
+Allow: /
+
+# Canonical URL
+# All content is mirrored from the canonical domain:
+# https://www.cognifit.com/longevity
+
+# Sitemap
+Sitemap: https://www.cognifit.com/sitemap.xml
+Sitemap: https://www.cognifit.com/longevity/sitemap.xml
+
+# LLMs discovery file
+# https://www.cognifit.com/llms.txt
+
+Host: www.cognifit.com
+
+Crawl-delay: 0
