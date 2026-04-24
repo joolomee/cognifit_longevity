@@ -5052,3 +5052,109 @@ html body .pro-card::before{
   html body .pro-card .pro-stat-lbl{ font-size:8.5px !important }
   html body .pro-card .pro-cta{ padding:8px 10px !important; font-size:10.5px !important; margin:4px 8px 8px !important }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   Fix val-card DESTAQUE: white card como os outros + contraste
+   ═══════════════════════════════════════════════════════════════════════ */
+
+html body .val-card,
+html body .val-card.featured,
+html body .val-card--featured,
+html body .val-card[data-featured],
+html body .validation-card,
+html body .validation-card.featured{
+  background:#fff !important;
+  background-color:#fff !important;
+  background-image:none !important;
+  border:1px solid #e8ecf3 !important;
+  color:#0a0b0d !important;
+  box-shadow:0 10px 30px rgba(0,0,0,.06) !important;
+}
+html body .val-card h3,
+html body .val-card .val-title,
+html body .val-card.featured h3{
+  color:#0a0b0d !important;
+  font-weight:900 !important;
+}
+html body .val-card p,
+html body .val-card .val-desc,
+html body .val-card.featured p{
+  color:#4a4d55 !important;   /* legível em fundo branco */
+}
+html body .val-card a,
+html body .val-card .val-cta,
+html body .val-card.featured a{
+  color:#1a73e8 !important;
+  font-weight:800 !important;
+}
+html body .val-card svg,
+html body .val-card .val-icon svg,
+html body .val-card.featured svg{
+  color:#1a73e8 !important;
+  stroke:#1a73e8 !important;
+  fill:#1a73e8 !important;
+}
+
+/* DESTAQUE pill — azul claro em fundo branco */
+html body .val-card .val-badge,
+html body .val-card[data-featured]::after,
+html body .val-card.featured .val-badge{
+  background:rgba(26,115,232,.12) !important;
+  color:#1a73e8 !important;
+  border:1px solid rgba(26,115,232,.25) !important;
+}
+
+/* Highlight featured com shadow azul em vez de bg escuro */
+html body .val-card.featured,
+html body .val-card[data-featured]{
+  border-color:rgba(26,115,232,.3) !important;
+  box-shadow:0 20px 40px rgba(26,115,232,.15), 0 0 0 1px rgba(26,115,232,.1) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   Nav WHITE context — "Junte-se Agora" button azul com texto branco
+   ═══════════════════════════════════════════════════════════════════════ */
+
+html body nav.nav-light .btn-login,
+html body #nav.nav-light .btn-login,
+html body nav.nav-light #login,
+html body #nav.nav-light #login,
+html body nav.nav-light a[data-i18n="nav.join"]{
+  background:linear-gradient(135deg, #1a73e8 0%, #1256b8 100%) !important;
+  background-color:#1a73e8 !important;
+  color:#fff !important;
+  border:1.5px solid #1a73e8 !important;
+  box-shadow:0 4px 14px rgba(26,115,232,.3) !important;
+  text-decoration:none !important;
+}
+html body nav.nav-light .btn-login:hover,
+html body #nav.nav-light .btn-login:hover{
+  background:linear-gradient(135deg, #1256b8 0%, #0f43ad 100%) !important;
+  background-color:#1256b8 !important;
+  color:#fff !important;
+  border-color:#1256b8 !important;
+  box-shadow:0 6px 20px rgba(26,115,232,.45) !important;
+}
+
+/* Nav light: nav links contraste */
+html body nav.nav-light .nav-link{
+  color:#2a2d33 !important;
+  font-weight:600 !important;
+}
+html body nav.nav-light .nav-link:hover{
+  color:#1a73e8 !important;
+}
+
+/* Nav light: lang button contraste */
+html body nav.nav-light .lang-btn,
+html body #nav.nav-light .lang-btn,
+html body nav.nav-light .nav-r > span{
+  background:rgba(26,115,232,.06) !important;
+  color:#1a73e8 !important;
+  border:1px solid rgba(26,115,232,.25) !important;
+}
+html body nav.nav-light .lang-btn:hover{
+  background:#1a73e8 !important;
+  color:#fff !important;
+}
