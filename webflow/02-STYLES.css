@@ -7838,18 +7838,14 @@ html body img:not([loading]){
   }
 }
 
-/* Small mobile — tighter container, no transform scale */
+/* Mobile (≤640px): hide hero phones — render poorly at phone size,
+   cleaner hero with título + rating + CTA only */
 @media (max-width: 640px){
-  html body .hero-phones{
-    transform:none !important;
-    margin:0 auto !important;
-    max-width:300px !important;
-  }
-}
-
-@media (max-width: 480px){
-  html body .hero-phones{
-    max-width:280px !important;
+  html body .hero-phones,
+  html body .hero-phones .phone,
+  html body .hero-phones .phone.phone-train,
+  html body .hero-phones .phone.phone-stats{
+    display:none !important;
   }
 }
 
