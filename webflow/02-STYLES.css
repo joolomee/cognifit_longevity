@@ -10779,3 +10779,26 @@ html body .val-badge, html body .badge-destaque, html body .ciencia-pill,
 html body .val-science-pill, html body .out-pill{
   text-transform:uppercase !important;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ROUND 20 v2026.04.24-r20 — Hide AgentReady badge + other third-party widgets
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Hide AgentReady badge (agentready.md) — temperatura/score flutuante */
+html body [id*="agentready" i],
+html body [class*="agentready" i],
+html body [data-agentready],
+html body iframe[src*="agentready" i],
+html body div[style*="agentready" i],
+html body #ar-badge, html body .ar-badge, html body #ar-widget,
+html body [aria-label*="AgentReady" i]{
+  display:none !important;
+  visibility:hidden !important;
+  opacity:0 !important;
+  pointer-events:none !important;
+  width:0 !important;
+  height:0 !important;
+  position:absolute !important;
+  left:-9999px !important;
+}
