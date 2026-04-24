@@ -7612,3 +7612,46 @@ html body .nav-link, html body .press-strip img{
 html body a, html body button{
   touch-action:manipulation !important;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FINAL PERFORMANCE — LCP/FCP/CLS/TBT optimizations
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Reserve vertical space for known sections to prevent layout shift */
+html body section.hero{ min-height:100dvh !important; contain:layout style !important }
+html body footer{ min-height:300px !important; contain:layout }
+
+/* Font optimization — fallback metrics match to reduce FOUT shift */
+@font-face{
+  font-family:'Plus Jakarta Sans Fallback';
+  src:local('Helvetica'), local('Arial');
+  ascent-override:95%;
+  descent-override:25%;
+  line-gap-override:0%;
+  size-adjust:100%;
+}
+html body{
+  font-family:'Plus Jakarta Sans','Plus Jakarta Sans Fallback',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif !important;
+}
+
+/* Prevent image layout shift */
+html body img[src]{
+  background-color:rgba(255,255,255,.02);
+  background-size:cover;
+}
+
+/* GPU acceleration for animated elements (avoid TBT from paint) */
+html body .hero-phones .phone,
+html body .val-card .val-icon svg,
+html body .partners-marquee-inner,
+html body .val-marquee{
+  transform:translateZ(0) !important;
+  backface-visibility:hidden !important;
+}
+
+/* Link text descriptive (SEO accessibility) */
+html body a[href]:empty::after{ content:'link' }
+
+/* Container queries fallback */
+html body section{ container-type:inline-size }

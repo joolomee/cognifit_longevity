@@ -1,17 +1,19 @@
-/* CogniFit Longevity — webflow-main.js clean v2026-04-24-FINAL */
-/* Only essential runtime fixes. No fabricated content. */
-
+/* CogniFit Longevity — webflow-main.js v2026-04-24-PERF */
+/* Lightweight, no polling, no fabricated content */
 (function(){
   'use strict';
-  /* Kill Webflow badge persistently */
+
+  /* ── 1. Kill Webflow badge via MutationObserver (no setInterval) ── */
   function killBadge(){
-    document.querySelectorAll('.w-webflow-badge, a[href*="webflow.com"][href*="utm"]').forEach(function(e){ e.remove(); });
+    document.querySelectorAll('.w-webflow-badge, a[href*="webflow.com"][href*="utm_campaign=brandjs"]').forEach(function(e){ e.remove(); });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', killBadge);
   else killBadge();
-  setInterval(killBadge, 2000);
+  if (window.MutationObserver){
+    new MutationObserver(killBadge).observe(document.documentElement, { childList:true, subtree:true });
+  }
 
-  /* Force hero H1 translation */
+  /* ── 2. Force hero H1 translation ── */
   function forceH1(){
     try {
       var h1 = document.querySelector('.hero-h1, h1.hero-h1');
@@ -24,7 +26,7 @@
       if (!l1 || !l2 || !l3) return;
       var curr = h1.textContent;
       if (/sistema de longevidade cognitiva|cognitive longevity system/i.test(curr) || curr.indexOf(l1) === -1){
-        h1.innerHTML = '<span data-i18n="hero.h1.line1">' + l1 + '</span><br><span data-i18n="hero.h1.line2">' + l2 + '</span><br><span class="hero-shimmer-soft" data-i18n="hero.h1.line3">' + l3 + '</span>';
+        h1.innerHTML = '<span data-i18n="hero.h1.line1">'+l1+'</span><br><span data-i18n="hero.h1.line2">'+l2+'</span><br><span class="hero-shimmer-soft" data-i18n="hero.h1.line3">'+l3+'</span>';
       }
     } catch(e){}
   }
@@ -33,62 +35,71 @@
   setTimeout(forceH1, 500);
   setTimeout(forceH1, 1500);
 
-  /* Hide broken dashboard image */
+  /* ── 3. Hide broken dashboard image ── */
   function hideBroken(){
     document.querySelectorAll('img[alt*="dashboard preview" i], img[alt*="dashboard" i]').forEach(function(img){
-      img.addEventListener('error', function(){ img.style.display = 'none'; }, { once:true });
-      if (!img.src || img.complete && img.naturalWidth === 0) img.style.display = 'none';
+      img.addEventListener('error', function(){ img.style.display='none'; }, { once:true });
+      if (img.complete && img.naturalWidth === 0) img.style.display='none';
     });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', hideBroken);
   else hideBroken();
 
-  /* Counter animation for stats */
-  function animateCounters(){
-    var targets = document.querySelectorAll('.trust-stat-num, .stats-row strong, [class*="stat-num"], .hero-rating .rating-n, .hero-rating .rating-number, .pm-num');
-    if (!('IntersectionObserver' in window)){
-      return;
-    }
+  /* ── 4. CLS FIX: Add width/height to images missing dimensions ── */
+  function fixImageDims(){
+    document.querySelectorAll('img:not([width]):not([height])').forEach(function(img){
+      img.loading = img.loading || 'lazy';
+      img.decoding = img.decoding || 'async';
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fixImageDims);
+  else fixImageDims();
+
+  /* ── 5. Counter animation (requestIdleCallback to avoid TBT) ── */
+  function setupCounters(){
+    if (!('IntersectionObserver' in window)) return;
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
         if (!e.isIntersecting || e.target.dataset.counted) return;
         var el = e.target;
         el.dataset.counted = '1';
-        var origText = el.textContent.trim();
-        var match = origText.match(/[\d.,]+/);
-        if (!match) return;
-        var endVal = parseFloat(match[0].replace(/,/g,''));
+        var orig = el.textContent.trim();
+        var m = orig.match(/[\d.,]+/);
+        if (!m) return;
+        var endVal = parseFloat(m[0].replace(/,/g,''));
         if (isNaN(endVal)) return;
-        var duration = 1500;
-        var start = performance.now();
+        var duration = 1200;
+        var start;
         function tick(now){
+          if (!start) start = now;
           var p = Math.min((now-start)/duration, 1);
-          var eased = 1-Math.pow(1-p,3);
+          var eased = 1-Math.pow(1-p, 3);
           var cur = endVal * eased;
-          el.textContent = origText.replace(/[\d.,]+/, 
-            endVal > 1000 ? Math.round(cur).toString().replace(/\B(?=(\d{3})+(?!\d))/g,',') :
-            endVal < 10 ? cur.toFixed(1) : Math.round(cur)
-          );
+          var formatted = endVal > 1000 ? Math.round(cur).toString().replace(/\B(?=(\d{3})+(?!\d))/g,',') : endVal < 10 ? cur.toFixed(1) : Math.round(cur);
+          el.textContent = orig.replace(/[\d.,]+/, formatted);
           if (p < 1) requestAnimationFrame(tick);
-          else el.textContent = origText;
+          else el.textContent = orig;
         }
         requestAnimationFrame(tick);
         io.unobserve(el);
       });
     }, { threshold:.4 });
-    targets.forEach(function(el){ io.observe(el); });
+    document.querySelectorAll('.trust-stat-num, .stats-row strong, [class*="stat-num"], .hero-rating .rating-n, .hero-rating .rating-number, .pm-num').forEach(function(el){ io.observe(el); });
   }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', animateCounters);
-  else animateCounters();
+  if ('requestIdleCallback' in window){
+    requestIdleCallback(setupCounters, { timeout:2000 });
+  } else {
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setupCounters);
+    else setupCounters();
+  }
 
-  /* Skill bars preserve inline widths */
+  /* ── 6. Skill bars preserve ── */
   function fixSkills(){
     document.querySelectorAll('.sk-fill[style*="width"]').forEach(function(el){
       var m = el.getAttribute('style').match(/width\s*:\s*([\d.]+%)/);
-      if (m) setTimeout(function(){ el.style.width = m[1]; }, 150);
+      if (m) requestAnimationFrame(function(){ el.style.width = m[1]; });
     });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fixSkills);
   else fixSkills();
-  setTimeout(fixSkills, 1000);
 })();
