@@ -9909,3 +9909,158 @@ html body .pillar-bar > div{
   html body .rni-solution{ flex-direction:column !important; text-align:center !important; padding:20px 16px !important }
   html body .rni-solution .rni-sol-icon{ margin:0 auto 8px !important }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ROUND 15 v2026.04.24-r15 — ITEM 6: Steps grid (Avalie o seu cérebro)
+   SCOPE: só .steps-grid, .step-card, .step-n, .step-chk
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Container: 4-col desktop, stretch igual, subtítulos alinhados ── */
+html body .steps-grid{
+  display:grid !important;
+  grid-template-columns:repeat(4, minmax(0, 1fr)) !important;
+  gap:clamp(16px, 2vw, 24px) !important;
+  align-items:stretch !important;
+  max-width:1280px !important;
+  margin:0 auto !important;
+  padding:0 clamp(16px, 3vw, 32px) !important;
+}
+
+/* ── Step card: flex column com stretch para mesmo altura ── */
+html body .steps-grid .step-card{
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:flex-start !important;
+  gap:0 !important;
+  background:rgba(255,255,255,.04) !important;
+  border:1px solid rgba(255,255,255,.1) !important;
+  border-radius:18px !important;
+  padding:clamp(24px, 2.5vw, 32px) clamp(20px, 2vw, 26px) !important;
+  position:relative !important;
+  overflow:visible !important;
+  height:100% !important;
+  transition:transform .3s, border-color .3s, box-shadow .3s !important;
+}
+html body .steps-grid .step-card:hover{
+  transform:translateY(-4px) !important;
+  border-color:rgba(26,115,232,.35) !important;
+  box-shadow:0 20px 40px rgba(0,0,0,.3), 0 0 0 1px rgba(26,115,232,.15) !important;
+}
+
+/* ── Step number (01, 02, 03, 04) — bold azul ── */
+html body .steps-grid .step-card .step-n{
+  color:#6eb3ff !important;
+  font-size:clamp(13px, 1.3vw, 15px) !important;
+  font-weight:900 !important;
+  letter-spacing:.08em !important;
+  margin:0 0 clamp(12px, 1.5vw, 18px) !important;
+  display:block !important;
+}
+
+/* ── Título (h3) — altura consistente entre cards ── */
+html body .steps-grid .step-card h3{
+  color:#fff !important;
+  font-size:clamp(17px, 1.5vw, 21px) !important;
+  font-weight:800 !important;
+  line-height:1.2 !important;
+  letter-spacing:-.01em !important;
+  margin:0 0 clamp(10px, 1.2vw, 14px) !important;
+  min-height:clamp(44px, 4vw, 54px) !important;   /* 2 linhas igual altura */
+  text-transform:none !important;
+}
+
+/* ── Subtítulo (p) — ALINHADOS lado-a-lado com min-height ── */
+html body .steps-grid .step-card p{
+  color:rgba(255,255,255,.72) !important;
+  font-size:clamp(13px, 1.2vw, 14.5px) !important;
+  line-height:1.55 !important;
+  margin:0 0 clamp(16px, 2vw, 22px) !important;
+  min-height:clamp(62px, 6vw, 72px) !important;   /* força alinhamento lado-a-lado */
+  display:block !important;
+}
+
+/* ── Step checks (bullet list verde) ── */
+html body .steps-grid .step-card .step-checks{
+  display:flex !important;
+  flex-direction:column !important;
+  gap:8px !important;
+  margin-top:auto !important;
+  padding-top:clamp(12px, 1.5vw, 16px) !important;
+  border-top:1px solid rgba(255,255,255,.08) !important;
+}
+html body .steps-grid .step-card .step-chk{
+  position:relative !important;
+  padding-left:22px !important;
+  font-size:clamp(12px, 1.1vw, 13px) !important;
+  color:rgba(255,255,255,.82) !important;
+  line-height:1.5 !important;
+}
+html body .steps-grid .step-card .step-chk::before{
+  content:'' !important;
+  position:absolute !important;
+  left:0 !important;
+  top:6px !important;
+  width:14px !important;
+  height:14px !important;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2322c55e' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") no-repeat center !important;
+  background-size:contain !important;
+}
+
+/* ────────────────────── RESPONSIVE ────────────────────── */
+
+/* Large desktop ≥1200: 4-col (default) */
+/* Medium desktop/tablet landscape 769-1199: 4-col slightly tighter */
+@media (min-width:769px) and (max-width:1199px){
+  html body .steps-grid{ gap:14px !important }
+  html body .steps-grid .step-card{ padding:22px 18px !important }
+  html body .steps-grid .step-card h3{ font-size:17px !important; min-height:48px !important }
+  html body .steps-grid .step-card p{ font-size:12.5px !important; min-height:66px !important }
+  html body .steps-grid .step-card .step-chk{ font-size:11.5px !important }
+}
+
+/* Tablet portrait & large mobile 561-768: 2-col */
+@media (min-width:561px) and (max-width:768px){
+  html body .steps-grid{ grid-template-columns:repeat(2, 1fr) !important; gap:14px !important }
+  html body .steps-grid .step-card{ padding:22px 20px !important }
+  html body .steps-grid .step-card h3{ min-height:auto !important }
+  html body .steps-grid .step-card p{ min-height:auto !important; margin-bottom:16px !important }
+}
+
+/* Mobile ≤560: 1-col — NUNCA sobrepostos */
+@media (max-width:560px){
+  html body .steps-grid{
+    grid-template-columns:1fr !important;
+    gap:14px !important;
+    padding:0 16px !important;
+  }
+  html body .steps-grid .step-card{
+    padding:20px 18px !important;
+    margin:0 !important;   /* zero margin extra — gap trata do espaçamento */
+    min-height:auto !important;
+    height:auto !important;
+  }
+  html body .steps-grid .step-card .step-n{ font-size:12px !important; margin-bottom:10px !important }
+  html body .steps-grid .step-card h3{
+    font-size:17px !important;
+    min-height:auto !important;
+    margin-bottom:8px !important;
+  }
+  html body .steps-grid .step-card p{
+    font-size:13px !important;
+    min-height:auto !important;
+    margin-bottom:14px !important;
+  }
+  html body .steps-grid .step-card .step-chk{
+    font-size:12px !important;
+    padding-left:20px !important;
+  }
+}
+
+/* Extra small mobile ≤375 */
+@media (max-width:375px){
+  html body .steps-grid{ padding:0 14px !important; gap:12px !important }
+  html body .steps-grid .step-card{ padding:18px 14px !important }
+  html body .steps-grid .step-card h3{ font-size:16px !important }
+  html body .steps-grid .step-card p{ font-size:12.5px !important }
+}
