@@ -1,0 +1,101 @@
+<section class="s-white">
+  <div class="wrap">
+    <div class="tc" style="margin-bottom:clamp(24px,5vw,44px)">
+      <span class="eyebrow r" data-i18n="sci.eyebrow">Neuroscience</span>
+      <h2 class="r d1" style="color:#000" data-i18n="sci.h2">The Science Behind Brain Longevity</h2>
+      <p class="lead-drk r d1" style="max-width:min(820px,100%);margin:0 auto" data-i18n="sci.lead" data-i18n-html>According to research published in <em>Nature Reviews Neuroscience</em>, brain longevity depends on three interconnected cognitive systems that protect your mental health and independence as you age. <a href="https://www.cognifit.com/neuroscience" style="color:var(--blue);text-decoration:none;font-weight:700">Explore the full scientific validation</a>.</p>
+    </div>
+    <div class="sci-grid">
+      <div class="sci-card r" data-system="executive" id="sci-executive"><div class="sci-num" data-i18n="sci.s1.num">System 01</div><h3 data-i18n="sci.s1.t">Executive Function</h3><div class="sci-role" data-i18n="sci.s1.role">Your Brain's CEO</div><div class="sci-attrs"><div class="sci-attr" data-i18n="sci.s1.a1">Decision-making</div><div class="sci-attr" data-i18n="sci.s1.a2">Planning & Strategy</div><div class="sci-attr" data-i18n="sci.s1.a3">Self-control</div><div class="sci-attr" data-i18n="sci.s1.a4">Adaptability</div></div><div class="sci-why" data-i18n="sci.s1.why" data-i18n-html><strong>Why it matters:</strong> Manages life: finances, health, relationships. <strong>When this declines → independence declines.</strong></div></div>
+      <div class="sci-card r d1" data-system="memory" id="sci-memory"><div class="sci-num" data-i18n="sci.s2.num">System 02</div><h3 data-i18n="sci.s2.t">Working Memory</h3><div class="sci-role" data-i18n="sci.s2.role">Your Mental Workspace</div><div class="sci-attrs"><div class="sci-attr" data-i18n="sci.s2.a1">Holding information in mind</div><div class="sci-attr" data-i18n="sci.s2.a2">Following conversations</div><div class="sci-attr" data-i18n="sci.s2.a3">Problem-solving</div><div class="sci-attr" data-i18n="sci.s2.a4">Learning new things</div></div><div class="sci-why" data-i18n="sci.s2.why" data-i18n-html><strong>Why it matters:</strong> Supports reasoning and daily functioning. <strong>When this weakens → confusion increases.</strong></div></div>
+      <div class="sci-card r d2" data-system="attention" id="sci-attention"><div class="sci-num" data-i18n="sci.s3.num">System 03</div><h3 data-i18n="sci.s3.t">Attention</h3><div class="sci-role" data-i18n="sci.s3.role">Your Focus System</div><div class="sci-attrs"><div class="sci-attr" data-i18n="sci.s3.a1">Sustained concentration</div><div class="sci-attr" data-i18n="sci.s3.a2">Filtering distractions</div><div class="sci-attr" data-i18n="sci.s3.a3">Mental clarity</div><div class="sci-attr" data-i18n="sci.s3.a4">Cognitive control</div></div><div class="sci-why" data-i18n="sci.s3.why" data-i18n-html><strong>Why it matters:</strong> Attention is the gateway to everything. <strong>If it drops → everything follows.</strong></div></div>
+    </div>
+    <div class="triad-wrap">
+      <svg id="triad-svg" class="triad-svg" viewBox="0 0 520 310" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <defs>
+          <filter id="td-glow" x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <radialGradient id="grad-ef" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#8b5cf6" stop-opacity=".5"/>
+            <stop offset="100%" stop-color="#8b5cf6" stop-opacity=".04"/>
+          </radialGradient>
+          <radialGradient id="grad-wm" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#06b6d4" stop-opacity=".5"/>
+            <stop offset="100%" stop-color="#06b6d4" stop-opacity=".04"/>
+          </radialGradient>
+          <radialGradient id="grad-at" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#f59e0b" stop-opacity=".5"/>
+            <stop offset="100%" stop-color="#f59e0b" stop-opacity=".04"/>
+          </radialGradient>
+        </defs>
+
+        <!-- Visible edges -->
+        <path class="td-edge" id="tp-01" d="M260,80 L152,235"/>
+        <path class="td-edge" id="tp-02" d="M260,80 L368,235"/>
+        <path class="td-edge" id="tp-12" d="M152,235 L368,235"/>
+
+        <!-- Ghost paths: reverse-direction motion tracks (invisible) -->
+        <path class="td-edge-ghost" id="tp-10" d="M152,235 L260,80"/>
+        <path class="td-edge-ghost" id="tp-20" d="M368,235 L260,80"/>
+        <path class="td-edge-ghost" id="tp-21" d="M368,235 L152,235"/>
+
+        <!-- Blue cell particles: 2 per edge, bidirectional -->
+        <circle class="td-particle" r="4.5" data-src="0" filter="url(#td-glow)">
+          <animateMotion dur="2.6s" repeatCount="indefinite" begin="0s"><mpath href="#tp-01"/></animateMotion>
+        </circle>
+        <circle class="td-particle" r="4.5" data-src="1" filter="url(#td-glow)">
+          <animateMotion dur="2.6s" repeatCount="indefinite" begin="-1.3s"><mpath href="#tp-10"/></animateMotion>
+        </circle>
+        <circle class="td-particle" r="4.5" data-src="0" filter="url(#td-glow)">
+          <animateMotion dur="2.9s" repeatCount="indefinite" begin="-0.4s"><mpath href="#tp-02"/></animateMotion>
+        </circle>
+        <circle class="td-particle" r="4.5" data-src="2" filter="url(#td-glow)">
+          <animateMotion dur="2.9s" repeatCount="indefinite" begin="-1.8s"><mpath href="#tp-20"/></animateMotion>
+        </circle>
+        <circle class="td-particle" r="4.5" data-src="1" filter="url(#td-glow)">
+          <animateMotion dur="3.1s" repeatCount="indefinite" begin="0s"><mpath href="#tp-12"/></animateMotion>
+        </circle>
+        <circle class="td-particle" r="4.5" data-src="2" filter="url(#td-glow)">
+          <animateMotion dur="3.1s" repeatCount="indefinite" begin="-1.55s"><mpath href="#tp-21"/></animateMotion>
+        </circle>
+
+        <!-- NODE 0 — Executive Function (top, purple gradient + crown icon) -->
+        <g class="td-node td-node-ef" id="td-n0" style="--di:0s">
+          <circle class="td-outer" cx="260" cy="80" r="30"/>
+          <circle class="td-inner" cx="260" cy="80" r="21" fill="url(#grad-ef)"/>
+          <path class="td-icon-crown" d="M250,87 L250,76 L255,82 L260,73 L265,82 L270,76 L270,87 Z"/>
+          <text x="260" y="26" class="td-lbl" data-i18n="sci.s1.label.l1">Executive</text>
+          <text x="260" y="41" class="td-lbl" data-i18n="sci.s1.label.l2">Function</text>
+        </g>
+
+        <!-- NODE 1 — Working Memory (bottom-left, cyan + RAM bars icon) -->
+        <g class="td-node td-node-wm" id="td-n1" style="--di:-1s">
+          <circle class="td-outer" cx="152" cy="235" r="30"/>
+          <circle class="td-inner" cx="152" cy="235" r="21" fill="url(#grad-wm)"/>
+          <rect class="td-icon-bar" x="141" y="225" width="22" height="4" rx="1.5"/>
+          <rect class="td-icon-bar" x="141" y="233" width="22" height="4" rx="1.5"/>
+          <rect class="td-icon-bar" x="141" y="241" width="22" height="4" rx="1.5"/>
+          <text x="152" y="283" class="td-lbl" data-i18n="sci.s2.label.l1">Working</text>
+          <text x="152" y="298" class="td-lbl" data-i18n="sci.s2.label.l2">Memory</text>
+        </g>
+
+        <!-- NODE 2 — Attention (bottom-right, amber + eye icon) -->
+        <g class="td-node td-node-at" id="td-n2" style="--di:-2s">
+          <circle class="td-outer" cx="368" cy="235" r="30"/>
+          <circle class="td-inner" cx="368" cy="235" r="21" fill="url(#grad-at)"/>
+          <path class="td-icon-eye-path" d="M358,235 Q368,224 378,235 Q368,246 358,235 Z"/>
+          <circle class="td-icon-iris" cx="368" cy="235" r="5"/>
+          <circle class="td-icon-pupil" cx="368" cy="235" r="2.5"/>
+          <text x="368" y="283" class="td-lbl" data-i18n="sci.s3.label.l1">Attention</text>
+        </g>
+      </svg>
+    </div>
+    <div class="sci-triad-status hidden" id="sci-status"></div>
+    <div class="sci-reset-hint hidden" id="sci-reset" data-i18n="sci.reset">Click anywhere to restore all systems</div>
+    <p class="chain-note r d1" style="margin-top:0" data-i18n="sci.chain" data-i18n-html>Break one, and the whole system weakens.<br><strong>Strengthen all three, and you build cognitive resilience for life.</strong></p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->

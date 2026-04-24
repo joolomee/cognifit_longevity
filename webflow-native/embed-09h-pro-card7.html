@@ -1,0 +1,105 @@
+      <div class="pro-card r d4" style="--c:#4A148C">
+        <div class="pro-text"><h3 data-i18n="pro.c7.t">Athletes</h3><p class="pro-desc" data-i18n="pro.c7.d">Peak cognitive performance for elite sport. Reaction time, focus under pressure, and decision-making training for competitive athletes.</p><div class="pro-metrics"><div class="pro-metric"><span class="pm-num">4</span><span class="pm-lbl" data-i18n="pro.c7.l1">Coaches</span></div><div class="pro-metric"><span class="pm-num">12</span><span class="pm-lbl" data-i18n="pro.c7.l2">Athletes</span></div></div>
+        <a href="https://www.cognifit.com/sports" class="pro-cta" target="_blank" rel="noopener noreferrer" data-i18n="pro.cta" data-i18n-html>Explore <span>→</span></a>
+        </div>
+        <div class="pro-photo" style="background:linear-gradient(135deg,#120026,#080014)"><svg viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;position:absolute;inset:0">
+<defs>
+  <radialGradient id="ath-bg" cx="50%" cy="50%" r="55%">
+    <stop offset="0%" stop-color="rgba(140,60,255,0.3)"/>
+    <stop offset="100%" stop-color="rgba(80,0,160,0)"/>
+  </radialGradient>
+  <filter id="ath-gf" x="-50%" y="-50%" width="200%" height="200%">
+    <feGaussianBlur stdDeviation="3" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</defs>
+
+<!-- Background glow -->
+<ellipse cx="100" cy="90" rx="70" ry="56" fill="url(#ath-bg)">
+  <animate attributeName="rx" values="70;76;70" dur="3.5s" repeatCount="indefinite"/>
+</ellipse>
+
+<!-- Medal (centre) — gold with ribbon -->
+<g transform="translate(100,72)">
+  <!-- Ribbon -->
+  <path d="M-12,-28 L-8,0 L0,-8 L8,0 L12,-28" fill="rgba(180,100,255,0.5)" stroke="rgba(200,140,255,0.6)" stroke-width="1"/>
+  <!-- Medal circle -->
+  <circle cx="0" cy="8" r="22" fill="rgba(255,200,60,0.2)" stroke="rgba(255,210,80,0.7)" stroke-width="2">
+    <animate attributeName="stroke-opacity" values=".5;1;.5" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="0" cy="8" r="16" fill="none" stroke="rgba(255,220,100,0.4)" stroke-width="1"/>
+  <!-- Star inside medal -->
+  <polygon points="0,-8 2.4,-2.4 8.4,-2.4 3.6,1.6 5.2,8 0,4 -5.2,8 -3.6,1.6 -8.4,-2.4 -2.4,-2.4" fill="rgba(255,220,100,0.85)">
+    <animate attributeName="opacity" values=".7;1;.7" dur="2.5s" repeatCount="indefinite"/>
+  </polygon>
+  <!-- Medal glow pulse -->
+  <circle cx="0" cy="8" r="22" fill="none" stroke="rgba(255,210,80,0.25)" stroke-width="1">
+    <animate attributeName="r" values="22;30;22" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values=".4;0;.4" dur="3s" repeatCount="indefinite"/>
+  </circle>
+</g>
+
+<!-- Target/crosshair (top-left) — precision -->
+<g transform="translate(48,42)" opacity="0.8">
+  <animate attributeName="opacity" values=".6;.9;.6" dur="3s" repeatCount="indefinite"/>
+  <circle cx="0" cy="0" r="14" fill="none" stroke="rgba(180,120,255,0.5)" stroke-width="1.5"/>
+  <circle cx="0" cy="0" r="8" fill="none" stroke="rgba(180,120,255,0.35)" stroke-width="1"/>
+  <circle cx="0" cy="0" r="2.5" fill="rgba(200,150,255,0.8)"/>
+  <line x1="-18" y1="0" x2="-10" y2="0" stroke="rgba(180,120,255,0.4)" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="10" y1="0" x2="18" y2="0" stroke="rgba(180,120,255,0.4)" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="0" y1="-18" x2="0" y2="-10" stroke="rgba(180,120,255,0.4)" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="0" y1="10" x2="0" y2="18" stroke="rgba(180,120,255,0.4)" stroke-width="1.2" stroke-linecap="round"/>
+</g>
+
+<!-- Stopwatch (top-right) — reaction time -->
+<g transform="translate(155,38)">
+  <animate attributeName="opacity" values=".6;1;.6" dur="2.5s" repeatCount="indefinite"/>
+  <circle cx="0" cy="0" r="13" fill="rgba(140,60,255,0.15)" stroke="rgba(200,150,255,0.6)" stroke-width="1.5"/>
+  <line x1="0" y1="-13" x2="0" y2="-18" stroke="rgba(200,150,255,0.5)" stroke-width="2" stroke-linecap="round"/>
+  <line x1="-3" y1="-17" x2="3" y2="-17" stroke="rgba(200,150,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Clock hands -->
+  <line x1="0" y1="-1" x2="0" y2="-8" stroke="rgba(255,220,100,0.9)" stroke-width="1.5" stroke-linecap="round">
+    <animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" dur="4s" repeatCount="indefinite"/>
+  </line>
+  <line x1="0" y1="0" x2="5" y2="-3" stroke="rgba(200,160,255,0.7)" stroke-width="1.2" stroke-linecap="round"/>
+  <circle cx="0" cy="0" r="2" fill="rgba(255,220,100,0.8)"/>
+</g>
+
+<!-- EKG/heartbeat line (bottom) — performance monitor -->
+<g transform="translate(0,0)">
+  <rect x="35" y="128" width="130" height="28" rx="5" fill="rgba(0,0,0,0.3)"/>
+  <polyline points="38,142 52,142 58,142 64,132 70,152 76,135 82,146 88,142 100,142 106,142 112,132 118,152 124,135 130,146 136,142 150,142 162,142" stroke="rgba(200,140,255,0.8)" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="140" stroke-dashoffset="140">
+    <animate attributeName="stroke-dashoffset" values="140;-140" dur="3s" repeatCount="indefinite"/>
+  </polyline>
+  <text x="100" y="150" text-anchor="middle" font-family="system-ui,sans-serif" font-size="5.5" font-weight="600" fill="rgba(200,160,255,0.45)" letter-spacing="1.5">PERFORMANCE</text>
+</g>
+
+<!-- Brain icon (bottom-left of medal) — cognitive connection -->
+<g transform="translate(58,110)" opacity="0.7">
+  <path d="M0,0 C-4,-8 -2,-16 4,-16 C8,-16 10,-12 10,-8 C14,-12 18,-10 18,-4 C18,2 14,6 10,8 C6,10 2,8 0,4 Z" fill="rgba(180,130,255,0.25)" stroke="rgba(200,160,255,0.5)" stroke-width="1">
+    <animate attributeName="stroke-opacity" values=".3;.7;.3" dur="3s" repeatCount="indefinite"/>
+  </path>
+</g>
+
+<!-- Lightning bolt (right side) — speed/reaction -->
+<g transform="translate(148,95)">
+  <animate attributeName="opacity" values=".5;1;.5" dur="1.8s" repeatCount="indefinite"/>
+  <polygon points="6,0 2,10 6,10 3,20 12,7 7,7 10,0" fill="rgba(255,220,80,0.85)" stroke="rgba(255,230,120,0.5)" stroke-width="0.5"/>
+</g>
+
+<!-- Floating particles -->
+<circle cx="75" cy="28" r="2" fill="rgba(200,160,255,0.6)" filter="url(#ath-gf)">
+  <animate attributeName="cy" values="28;22;28" dur="2.5s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values=".4;.8;.4" dur="2.5s" repeatCount="indefinite"/>
+</circle>
+<circle cx="130" cy="24" r="1.5" fill="rgba(255,210,100,0.5)">
+  <animate attributeName="cy" values="24;18;24" dur="3s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values=".3;.7;.3" dur="3s" repeatCount="indefinite"/>
+</circle>
+<circle cx="160" cy="110" r="2" fill="rgba(180,120,255,0.5)">
+  <animate attributeName="cy" values="110;104;110" dur="2.8s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values=".3;.6;.3" dur="2.8s" repeatCount="indefinite"/>
+</circle>
+</svg></div>
+      </div>
+    </div>
