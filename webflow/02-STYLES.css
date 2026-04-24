@@ -10064,3 +10064,117 @@ html body .steps-grid .step-card .step-chk::before{
   html body .steps-grid .step-card h3{ font-size:16px !important }
   html body .steps-grid .step-card p{ font-size:12.5px !important }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ROUND 16 v2026.04.24-r16 — ITEM 4: Discover section (skills panel)
+   SCOPE: só secção .discover (Descubra os pontos fortes + skills panel)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Section padding + alignment */
+html body section:has(> .wrap > [data-i18n="discover.eyebrow"]),
+html body section:has(> .wrap > [data-i18n="discover.h2"]){
+  padding:clamp(56px, 8vh, 120px) 0 !important;
+  position:relative !important;
+}
+/* Wrap centered with reasonable width */
+html body section:has([data-i18n="discover.h2"]) > .wrap{
+  max-width:1200px !important;
+  margin:0 auto !important;
+  padding:0 clamp(20px, 3vw, 40px) !important;
+}
+/* Eyebrow */
+html body [data-i18n="discover.eyebrow"]{
+  display:block !important;
+  text-align:center !important;
+  font-size:clamp(11px, 1.1vw, 13px) !important;
+  font-weight:700 !important;
+  letter-spacing:.14em !important;
+  color:var(--blue) !important;
+  text-transform:uppercase !important;
+  margin:0 0 clamp(12px, 1.5vw, 18px) !important;
+}
+/* H2 — reduced size, centered, sentence case */
+html body [data-i18n="discover.h2"]{
+  display:block !important;
+  text-align:center !important;
+  font-size:clamp(28px, 3.8vw, 48px) !important;
+  font-weight:900 !important;
+  line-height:1.1 !important;
+  letter-spacing:-.02em !important;
+  max-width:900px !important;
+  margin:0 auto clamp(16px, 2vw, 24px) !important;
+  text-transform:none !important;
+  color:#0a0b0d !important;
+}
+/* Lead paragraph */
+html body section:has([data-i18n="discover.h2"]) p.lead-drk,
+html body section:has([data-i18n="discover.h2"]) .lead-drk{
+  text-align:center !important;
+  max-width:680px !important;
+  margin:0 auto clamp(32px, 4vw, 56px) !important;
+  font-size:clamp(14px, 1.4vw, 17px) !important;
+  line-height:1.6 !important;
+  color:rgba(0,0,0,.7) !important;
+}
+
+/* Skills panel box — gap compacto */
+html body section:has([data-i18n="discover.h2"]) .sk-panel,
+html body section:has([data-i18n="discover.h2"]) > .wrap > div[class*="panel"]{
+  max-width:720px !important;
+  margin:0 auto clamp(24px, 3vw, 36px) !important;
+  background:#fff !important;
+  border:1px solid #e8ecf3 !important;
+  border-radius:20px !important;
+  padding:clamp(24px, 3vw, 36px) !important;
+  box-shadow:0 20px 50px rgba(0,0,0,.06) !important;
+}
+
+/* CTA button (discover.cta) — force visible on white bg */
+html body a[data-i18n="discover.cta"],
+html body section:has([data-i18n="discover.h2"]) .btn-secondary,
+html body section:has([data-i18n="discover.h2"]) a[class*="btn"]{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:8px !important;
+  padding:clamp(12px, 1.4vw, 16px) clamp(24px, 3vw, 36px) !important;
+  background:var(--blue) !important;
+  color:#fff !important;
+  border:1.5px solid var(--blue) !important;
+  border-radius:100px !important;
+  font-weight:800 !important;
+  font-size:clamp(13px, 1.3vw, 15px) !important;
+  text-decoration:none !important;
+  text-transform:none !important;
+  box-shadow:0 8px 24px rgba(26,115,232,.3) !important;
+  transition:background .2s, transform .2s, box-shadow .2s !important;
+  margin:clamp(16px, 2vw, 24px) auto 0 !important;
+}
+html body a[data-i18n="discover.cta"]:hover{
+  background:var(--blue-d) !important;
+  border-color:var(--blue-d) !important;
+  transform:translateY(-2px) !important;
+  box-shadow:0 12px 32px rgba(26,115,232,.4) !important;
+}
+
+/* Center the CTA */
+html body section:has([data-i18n="discover.h2"]) > .wrap > a[data-i18n="discover.cta"]{
+  display:block !important;
+  width:fit-content !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+
+/* Mobile responsive */
+@media (max-width:768px){
+  html body [data-i18n="discover.h2"]{
+    font-size:clamp(24px, 7vw, 32px) !important;
+    padding:0 8px !important;
+  }
+  html body section:has([data-i18n="discover.h2"]) .lead-drk{ font-size:14px !important }
+}
+@media (max-width:480px){
+  html body [data-i18n="discover.h2"]{ font-size:22px !important }
+  html body section:has([data-i18n="discover.h2"]) .sk-panel{ padding:20px 16px !important }
+}
