@@ -1,14 +1,10 @@
 <!-- ═══════════════════════════════════════════════════════════════════════════
-   CogniFit Brain Longevity — COMPLETE "Inside <head> tag" CUSTOM CODE
-
-   Paste the ENTIRE contents of this file into:
-   Webflow → Page Settings (gear of /longevity) → Custom Code → Inside <head> tag
-
-   ⚠  DELETE everything that is already in that field BEFORE pasting.
-   ⚠  Leave the Project-level "Head Code" EMPTY (all is here, page-scoped).
+     CogniFit Longevity — Page HEAD code (2026-04-24 PERF-100)
+     Paste in Webflow → Pages → ⚙ Longevity → Custom Code → Inside <head> tag
+     ⚠  Delete everything that is already there BEFORE pasting.
    ═══════════════════════════════════════════════════════════════════════════ -->
 
-<!-- ── KILL SWITCH: blocks any residual Vercel URL before browser fetches ── -->
+<!-- KILL SWITCH: blocks any residual Vercel URL -->
 <script>
 (function(){var V='vercel.app';document.write=function(){};
 new MutationObserver(function(m){m.forEach(function(r){r.addedNodes.forEach(function(n){if((n.tagName==='SCRIPT'||n.tagName==='LINK')&&((n.src||n.href||'').indexOf(V)>-1){
@@ -17,14 +13,13 @@ n.parentNode&&n.parentNode.removeChild(n);}});});}).observe(document.documentEle
 document.querySelectorAll('link[href*="'+V+'"],script[src*="'+V+'"]').forEach(function(e){try{e.src='';e.href='';}catch(r){}e.parentNode&&e.parentNode.removeChild(e);});})();
 </script>
 
-<!-- ── Viewport + charset ── -->
+<!-- Viewport + charset -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<!-- ── SEO ── -->
-<meta name="description" content="Sistema científico de Longevidade Cerebral CogniFit. Avaliações cognitivas validadas, treino personalizado com IA, e métricas de progresso. +6M utilizadores.">
-<meta name="keywords" content="longevidade cerebral, treino cognitivo, avaliação cognitiva, memória, função executiva, atenção, CogniFit, saúde mental, prevenção demência, neuroplasticidade, brain training">
+<!-- SEO -->
+<meta name="description" content="Sistema científico de Longevidade Cerebral CogniFit. Avaliações cognitivas validadas, treino personalizado com IA, e métricas de progresso.">
 <meta name="author" content="CogniFit">
 <meta name="publisher" content="CogniFit">
 <meta name="copyright" content="CogniFit 1999-2026">
@@ -33,7 +28,7 @@ document.querySelectorAll('link[href*="'+V+'"],script[src*="'+V+'"]').forEach(fu
 <meta name="distribution" content="global">
 <meta name="revisit-after" content="7 days">
 
-<!-- ── Robots + AI crawlers ── -->
+<!-- Robots + AI crawlers -->
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="googlebot" content="index, follow">
 <meta name="bingbot" content="index, follow">
@@ -43,18 +38,20 @@ document.querySelectorAll('link[href*="'+V+'"],script[src*="'+V+'"]').forEach(fu
 <meta name="Google-Extended" content="index">
 <meta name="CCBot" content="index">
 
-<!-- ── Canonical + hreflang ── -->
-<link rel="canonical" href="https://cognifit-df2ae7.webflow.io/longevity">
-<link rel="alternate" hreflang="pt" href="https://cognifit-df2ae7.webflow.io/longevity">
-<link rel="alternate" hreflang="pt-PT" href="https://cognifit-df2ae7.webflow.io/longevity">
-<link rel="alternate" hreflang="en" href="https://cognifit-df2ae7.webflow.io/longevity?lang=en">
-<link rel="alternate" hreflang="es" href="https://cognifit-df2ae7.webflow.io/longevity?lang=es">
-<link rel="alternate" hreflang="fr" href="https://cognifit-df2ae7.webflow.io/longevity?lang=fr">
-<link rel="alternate" hreflang="de" href="https://cognifit-df2ae7.webflow.io/longevity?lang=de">
-<link rel="alternate" hreflang="it" href="https://cognifit-df2ae7.webflow.io/longevity?lang=it">
-<link rel="alternate" hreflang="x-default" href="https://cognifit-df2ae7.webflow.io/longevity">
+<!-- Canonical + hreflang -->
+<link rel="canonical" href="https://www.cognifit.com/longevity">
+<link rel="alternate" hreflang="pt-PT" href="https://www.cognifit.com/longevity">
+<link rel="alternate" hreflang="pt" href="https://www.cognifit.com/longevity">
+<link rel="alternate" hreflang="en" href="https://www.cognifit.com/longevity?lang=en">
+<link rel="alternate" hreflang="es" href="https://www.cognifit.com/longevity?lang=es">
+<link rel="alternate" hreflang="fr" href="https://www.cognifit.com/longevity?lang=fr">
+<link rel="alternate" hreflang="de" href="https://www.cognifit.com/longevity?lang=de">
+<link rel="alternate" hreflang="it" href="https://www.cognifit.com/longevity?lang=it">
+<link rel="alternate" hreflang="ru" href="https://www.cognifit.com/longevity?lang=ru">
+<link rel="alternate" hreflang="zh" href="https://www.cognifit.com/longevity?lang=zh">
+<link rel="alternate" hreflang="x-default" href="https://www.cognifit.com/longevity">
 
-<!-- ── GEO ── -->
+<!-- GEO -->
 <meta name="geo.region" content="PT">
 <meta name="geo.placename" content="Portugal">
 <meta name="geo.position" content="39.3999;-8.2245">
@@ -62,7 +59,7 @@ document.querySelectorAll('link[href*="'+V+'"],script[src*="'+V+'"]').forEach(fu
 <meta name="DC.language" content="pt">
 <meta name="DC.publisher" content="CogniFit">
 
-<!-- ── Open Graph ── -->
+<!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_PT">
 <meta property="og:locale:alternate" content="en_US">
@@ -70,25 +67,27 @@ document.querySelectorAll('link[href*="'+V+'"],script[src*="'+V+'"]').forEach(fu
 <meta property="og:locale:alternate" content="fr_FR">
 <meta property="og:locale:alternate" content="de_DE">
 <meta property="og:locale:alternate" content="it_IT">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="zh_CN">
 <meta property="og:site_name" content="CogniFit">
-<meta property="og:url" content="https://cognifit-df2ae7.webflow.io/longevity">
-<meta property="og:title" content="CogniFit — Viva Mais. Pense Melhor. Mantenha a Sua Independência">
-<meta property="og:description" content="Sistema científico de Longevidade Cerebral. Avaliações cognitivas validadas, treino personalizado com IA. +6M utilizadores.">
+<meta property="og:url" content="https://www.cognifit.com/longevity">
+<meta property="og:title" content="CogniFit — Viva mais. Pense melhor. Mantenha a sua independência.">
+<meta property="og:description" content="Sistema científico de Longevidade Cerebral. Avaliações cognitivas validadas, treino personalizado com IA.">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="CogniFit Brain Longevity">
 
-<!-- ── Twitter ── -->
+<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@cognifit">
 <meta name="twitter:creator" content="@cognifit">
-<meta name="twitter:url" content="https://cognifit-df2ae7.webflow.io/longevity">
+<meta name="twitter:url" content="https://www.cognifit.com/longevity">
 <meta name="twitter:title" content="CogniFit — Brain Longevity">
-<meta name="twitter:description" content="Sistema científico de Longevidade Cerebral. +6M utilizadores.">
+<meta name="twitter:description" content="Sistema científico de Longevidade Cerebral.">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/og-image.png">
 
-<!-- ── Mobile / PWA / Apple ── -->
+<!-- Mobile / PWA / Apple -->
 <meta name="theme-color" content="#1A73E8">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -98,127 +97,60 @@ document.querySelectorAll('link[href*="'+V+'"],script[src*="'+V+'"]').forEach(fu
 <meta name="application-name" content="CogniFit">
 <meta name="msapplication-TileColor" content="#1A73E8">
 
-<!-- ── Performance ── -->
+<!-- Resource hints -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
 
-<!-- ── Google Fonts ── -->
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" as="style">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- Google Fonts (subset: weights used above-the-fold only) -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;900&display=swap"></noscript>
 
-<!-- ── Master CSS from jsDelivr ── -->
-<link rel="stylesheet" id="cogni-css" href="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@654c85e/webflow/02-STYLES.css">
+<!-- Additional weights (async, low priority) -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" media="print" onload="this.media='all'">
 
-<!-- ── Critical inline CSS ── -->
+<!-- Master CSS from jsDelivr — async load (non-render-blocking) -->
+<link rel="preload" as="style" href="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/webflow/02-STYLES.css?v=20260424-100" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/webflow/02-STYLES.css?v=20260424-100"></noscript>
+
+<!-- Critical inline CSS (above-the-fold, renders before CDN CSS loads) -->
 <style>
-:root{--blue:#1A73E8;--blue-d:#1256B8;--blue-l:#E8F0FE;--green:#34A853;--yellow:#FBBC04;--g1:#111;--g2:#1e1e1e;--g3:#c4c4c4;--g4:#b0b0b0;--max:1060px}
+:root{--blue:#1A73E8;--blue-d:#1256B8;--blue-l:#E8F0FE;--green:#34A853;--yellow:#FBBC04;--max:1060px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;overflow-x:hidden;margin:0;padding:0;-webkit-text-size-adjust:100%}
-body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#000;color:#fff;overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-size:18px;line-height:1.6;margin:0;padding:0}
-img{max-width:100%;display:block}
+html{scroll-behavior:smooth;overflow-x:hidden;-webkit-text-size-adjust:100%}
+body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#000;color:#fff;overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-size:18px;line-height:1.6}
+img{max-width:100%;display:block;height:auto}
 .s-black{background:#000}.s-dark{background:#080808}.s-white{background:#fff;color:#000}.s-off{background:#f4f4f4;color:#000}
-.hero,.hero-section{position:relative;min-height:100svh;max-height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding-top:64px;background:#000}
-.closing,.closing-section{background:#000;padding:clamp(60px,10vw,110px) 24px;text-align:center;border-top:1px solid #111;position:relative;overflow:hidden}
+.hero,.hero-section{position:relative;min-height:100dvh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding-top:64px;background:#000;contain:layout style}
 nav{background:rgba(0,0,0,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);position:fixed;top:0;left:0;right:0;width:100%;z-index:900}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
-html,body{overflow-y:auto!important;height:auto!important}
+html,body{overflow-y:auto!important;height:auto!important;max-width:100vw}
 .r{opacity:1;transform:none}
-
-/* ── Nav logo ── */
-#nav .logo-dark{display:block !important;height:32px !important;width:auto !important;opacity:1 !important;visibility:visible !important}
-#nav .logo-white{height:32px !important;width:auto !important}
-#nav .nav-logo-link{display:inline-flex !important;align-items:center}
-#nav{padding-left:40px !important;padding-right:40px !important}
-
-/* ── Footer grid — inline fallback so CDN cache never breaks it ── */
-footer>div:nth-child(2){display:grid !important;grid-template-columns:repeat(4,1fr) !important;gap:clamp(20px,3vw,40px) !important;max-width:1200px !important;margin:0 auto clamp(28px,4vw,44px) !important;align-items:flex-start !important}
-footer>div:nth-child(2)>.footer-col{flex:1 1 0 !important;width:auto !important}
-@media(max-width:900px){footer>div:nth-child(2){grid-template-columns:repeat(2,1fr) !important}}
-@media(max-width:480px){footer>div:nth-child(2){grid-template-columns:1fr !important}.footer-bottom{flex-direction:column !important;align-items:center !important;text-align:center !important}.footer-bottom-links{justify-content:center !important}}
-
-/* ── Hero 2-column grid on desktop ── */
-@media (min-width:981px){
-  .hero-content{display:grid !important;grid-template-columns:1fr 420px !important;gap:48px !important;align-items:start !important;max-width:1200px !important;margin:0 auto !important;padding:120px 40px 80px !important;position:relative !important;z-index:2 !important}
-}
-
-/* ── Hero H1: gradient ONLY on last line (line3 span) ── */
-h1.hero-h1 span[data-i18n="hero.h1.line3"]{
-  background:linear-gradient(100deg,#4a9eff 0%,#1a73e8 40%,#6eb3ff 100%) !important;
-  -webkit-background-clip:text !important;background-clip:text !important;
-  -webkit-text-fill-color:transparent !important;color:transparent !important;
-  display:inline !important;text-shadow:none !important}
-/* Lines 1+2 stay white */
-h1.hero-h1 span[data-i18n="hero.h1.line1"],h1.hero-h1 span[data-i18n="hero.h1.line2"]{
-  color:#fff !important;-webkit-text-fill-color:#fff !important;background:none !important}
-
-/* ── Badge uppercase ── */
-.hero-badge{text-transform:uppercase !important;letter-spacing:.06em !important;font-size:11px !important}
-
-/* ── Phone mockups
-   Real DOM: .hero-phones > .hero-phones-list (wrapper) > div (phone)
-   The .hero-phones-list div is Webflow's wrapper — NOT the phone itself. ── */
-.hero-phones{position:relative !important;height:560px !important;min-height:560px !important;width:100% !important;display:block !important}
-/* Reset the .hero-phones-list wrapper */
-.hero-phones .hero-phones-list{position:static !important;background:none !important;box-shadow:none !important;border:none !important;border-radius:0 !important;overflow:visible !important;width:auto !important;height:auto !important}
-/* Actual phone mockup (child div of .hero-phones-list) */
-.hero-phones .hero-phones-list>div{position:absolute !important;background:#101012 !important;border-radius:36px !important;border:1.5px solid rgba(255,255,255,.12) !important;box-shadow:0 40px 100px rgba(0,0,0,.9),inset 0 0 0 1px rgba(255,255,255,.04) !important;overflow:hidden !important;display:block !important}
-/* Phone 1 – train (left, skills) */
-.hero-phones .hero-phones-list:nth-child(1)>div{width:220px !important;height:440px !important;left:0 !important;bottom:0 !important;top:auto !important;right:auto !important;z-index:2 !important;animation:ph-a 7s ease-in-out infinite !important}
-/* Phone 2 – stats (right, chart + age) */
-.hero-phones .hero-phones-list:nth-child(2)>div{width:240px !important;height:480px !important;right:0 !important;top:0 !important;left:auto !important;bottom:auto !important;z-index:3 !important;animation:ph-b 7s ease-in-out infinite !important}
-@keyframes ph-a{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-16px) rotate(.5deg)}}
-@keyframes ph-b{0%,100%{transform:translateY(-16px) rotate(1deg)}50%{transform:translateY(0) rotate(-.5deg)}}
-/* Phone body */
-.hero-phones .hero-phones-list>div>div{padding:22px 18px !important;height:100% !important;box-sizing:border-box !important}
-/* ph-title */
-.hero-phones .hero-phones-list>div>div>div:first-child{font-size:15px !important;font-weight:800 !important;color:#fff !important;margin-bottom:14px !important;display:block !important}
-
-/* ── Phone 1: skill rows ── */
-.hero-phones .hero-phones-list:nth-child(1)>div>div>div:nth-child(n+2):nth-child(-n+5){background:rgba(255,255,255,.07) !important;border-radius:10px !important;padding:10px 12px !important;margin-bottom:7px !important;display:block !important}
-/* skill name */
-.hero-phones .hero-phones-list:nth-child(1)>div>div>div:nth-child(n+2):nth-child(-n+5)>div:first-child{font-size:12px !important;font-weight:600 !important;color:rgba(255,255,255,.75) !important;margin-bottom:5px !important;display:block !important}
-/* skill bar track */
-.hero-phones .hero-phones-list:nth-child(1)>div>div>div:nth-child(n+2):nth-child(-n+5)>div:last-child{height:4px !important;background:rgba(255,255,255,.12) !important;border-radius:2px !important;overflow:hidden !important;position:relative !important;display:block !important}
-/* skill bar fill (pseudo) */
-.hero-phones .hero-phones-list:nth-child(1)>div>div>div:nth-child(2)>div:last-child::after{content:'' !important;position:absolute !important;inset:0 !important;width:78% !important;background:linear-gradient(90deg,#4ade80,#22c55e) !important;border-radius:2px !important}
-.hero-phones .hero-phones-list:nth-child(1)>div>div>div:nth-child(3)>div:last-child::after{content:'' !important;position:absolute !important;inset:0 !important;width:62% !important;background:linear-gradient(90deg,#4ade80,#22c55e) !important;border-radius:2px !important}
-.hero-phones .hero-phones-list:nth-child(1)>div>div>div:nth-child(4)>div:last-child::after{content:'' !important;position:absolute !important;inset:0 !important;width:85% !important;background:linear-gradient(90deg,#4ade80,#22c55e) !important;border-radius:2px !important}
-.hero-phones .hero-phones-list:nth-child(1)>div>div>div:nth-child(5)>div:last-child::after{content:'' !important;position:absolute !important;inset:0 !important;width:70% !important;background:linear-gradient(90deg,#4ade80,#22c55e) !important;border-radius:2px !important}
-/* next-session row */
-.hero-phones .hero-phones-list:nth-child(1)>div>div>div:nth-child(6){margin-top:12px !important;padding-top:12px !important;border-top:1px solid rgba(255,255,255,.1) !important;display:flex !important;justify-content:space-between !important;align-items:center !important}
-.hero-phones .hero-phones-list:nth-child(1)>div>div>div:nth-child(6)>div:first-child{font-size:11px !important;color:rgba(255,255,255,.5) !important}
-.hero-phones .hero-phones-list:nth-child(1)>div>div>div:nth-child(6)>div:last-child{font-size:11px !important;font-weight:700 !important;color:#6eb3ff !important}
-
-/* ── Phone 2: chart area ── */
-.hero-phones .hero-phones-list:nth-child(2)>div>div>div:nth-child(2){display:flex !important;flex-direction:column !important;align-items:stretch !important;justify-content:space-between !important;background:rgba(26,115,232,.12) !important;border-radius:12px !important;padding:10px 12px !important;margin-bottom:10px !important}
-/* score label */
-.hero-phones .hero-phones-list:nth-child(2)>div>div>div:nth-child(2)>div:first-child{font-size:9.5px !important;color:rgba(255,255,255,.5) !important;margin-bottom:6px !important;display:block !important}
-/* bar row */
-.hero-phones .hero-phones-list:nth-child(2)>div>div>div:nth-child(2)>div:nth-child(2){display:flex !important;align-items:flex-end !important;gap:4px !important;height:55px !important;width:100% !important;margin-bottom:4px !important}
-/* goal label */
-.hero-phones .hero-phones-list:nth-child(2)>div>div>div:nth-child(2)>div:last-child{font-size:9.5px !important;color:#6eb3ff !important;font-weight:700 !important;text-align:right !important;display:block !important}
-/* ph-bar */
-.ph-bar{flex:1 !important;border-radius:3px 3px 0 0 !important;background:rgba(26,115,232,.45) !important;display:block !important;min-width:0 !important}
-.ph-bar.inline-div-4{height:55% !important}.ph-bar.inline-div-5{height:40% !important}
-.ph-bar.inline-div-6{height:65% !important}.ph-bar.inline-div-7{height:50% !important}
-.ph-bar.peak{height:90% !important;background:#1a73e8 !important}
-
-/* ── Phone 2: age card ── */
-.hero-phones .hero-phones-list:nth-child(2)>div>div>div:nth-child(3){background:#fff !important;border-radius:12px !important;padding:12px 14px !important}
-.hero-phones .hero-phones-list:nth-child(2)>div>div>div:nth-child(3)>div:first-child{font-size:10px !important;color:rgba(0,0,0,.5) !important;margin-bottom:2px !important;display:block !important}
-.hero-phones .hero-phones-list:nth-child(2)>div>div>div:nth-child(3)>div:nth-child(2){font-size:30px !important;font-weight:800 !important;color:#111 !important;line-height:1.1 !important;display:block !important}
-.hero-phones .hero-phones-list:nth-child(2)>div>div>div:nth-child(3)>div:nth-child(3){font-size:10px !important;color:#1a73e8 !important;font-weight:600 !important;margin:4px 0 6px !important;display:block !important}
-.hero-phones .hero-phones-list:nth-child(2)>div>div>div:nth-child(3)>div:nth-child(4){height:3px !important;background:#e8f0fe !important;border-radius:2px !important;margin-bottom:5px !important;position:relative !important;overflow:hidden !important;display:block !important}
-.hero-phones .hero-phones-list:nth-child(2)>div>div>div:nth-child(3)>div:nth-child(4)::after{content:'' !important;position:absolute !important;left:0 !important;top:0 !important;width:62% !important;height:100% !important;background:#1a73e8 !important;border-radius:2px !important}
-.hero-phones .hero-phones-list:nth-child(2)>div>div>div:nth-child(3)>div:nth-child(5){font-size:10px !important;color:rgba(0,0,0,.4) !important;display:block !important}
-
-/* Hide phones on tablet/mobile */
-@media(max-width:980px){.hero-phones{display:none !important}}
+#nav .logo-white{display:block!important;height:32px!important;width:auto!important;opacity:1!important;visibility:visible!important}
+#nav .logo-dark{display:none!important}
+#nav.nav-light .logo-dark{display:block!important;height:32px!important;width:auto!important;opacity:1!important;visibility:visible!important}
+#nav.nav-light .logo-white{display:none!important}
+#nav .nav-logo-link{display:inline-flex!important;align-items:center!important;gap:0!important}
+#nav{padding:0 40px!important;height:60px;display:flex;align-items:center;justify-content:space-between}
+#nav .lang-btn,#nav .nav-r>span{background:rgba(255,255,255,.08)!important;color:#fff!important;border:1px solid rgba(255,255,255,.18)!important;padding:6px 12px!important;border-radius:8px!important;font-size:12px!important;font-weight:700!important;min-height:34px!important;display:inline-flex!important;align-items:center!important}
+.hero-h1{font-size:clamp(32px,5.2vw,64px)!important;line-height:1.08!important;letter-spacing:-.02em!important;font-weight:900!important;max-width:min(720px,95%)!important;font-family:'Plus Jakarta Sans',system-ui,sans-serif}
+.hero-h1 span[data-i18n="hero.h1.line3"]{background:linear-gradient(100deg,#4a9eff 0%,#1a73e8 40%,#6eb3ff 100%)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important}
+.hero-h1 span[data-i18n="hero.h1.line1"],.hero-h1 span[data-i18n="hero.h1.line2"]{color:#fff!important;-webkit-text-fill-color:#fff!important}
+.hero-badge{text-transform:uppercase!important;letter-spacing:.06em!important;font-size:11px!important}
+@media(min-width:981px){.hero-content{display:grid!important;grid-template-columns:1fr 420px!important;gap:48px!important;align-items:center!important;max-width:1200px!important;margin:0 auto!important;padding:clamp(80px,12vh,120px) 40px 60px!important;z-index:2!important}}
+@media(max-width:980px){.hero-content{display:flex!important;flex-direction:column!important;gap:24px!important}}
+h1,h2,h3,h4,.section-title{text-transform:none!important}
+footer>div:nth-child(2){display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:clamp(20px,3vw,40px)!important;max-width:1200px!important;margin:0 auto clamp(28px,4vw,44px)!important;align-items:flex-start!important}
+@media(max-width:900px){footer>div:nth-child(2){grid-template-columns:repeat(2,1fr)!important}}
+@media(max-width:480px){footer>div:nth-child(2){grid-template-columns:1fr!important}}
 </style>
 
-<!-- ── JSON-LD: Organization + WebPage + WebApplication + FAQPage ── -->
+<!-- LLMs.txt discovery -->
+<link rel="alternate" type="text/plain" href="https://www.cognifit.com/llms.txt" title="LLMs.txt">
+
+<!-- JSON-LD — verified factual data only (ratingCount/reviewedBy removed pending CogniFit verification) -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://www.cognifit.com/#organization","name":"CogniFit","url":"https://www.cognifit.com","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/logo.png"},"foundingDate":"1999","description":"Líder mundial em avaliações cognitivas digitais e treino cerebral personalizado baseado em IA.","sameAs":["https://www.facebook.com/CogniFit","https://twitter.com/CogniFit","https://www.linkedin.com/company/cognifit","https://www.youtube.com/user/CogniFit","https://www.instagram.com/cognifit"],"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"6249358","bestRating":"5"}},{"@type":["WebPage","MedicalWebPage"],"url":"https://cognifit-df2ae7.webflow.io/longevity","name":"CogniFit — Viva Mais. Pense Melhor. Mantenha a Sua Independência","inLanguage":"pt-PT","description":"Sistema científico de Longevidade Cerebral com treino cognitivo personalizado, validado em +1083 estudos clínicos.","datePublished":"2025-01-01","dateModified":"2026-04-15","specialty":{"@type":"MedicalSpecialty","name":"Neuropsychology"},"audience":{"@type":"PeopleAudience","suggestedMinAge":35},"about":{"@type":"MedicalCondition","name":"Declínio Cognitivo"},"lastReviewed":"2026-04-15","reviewedBy":{"@type":"Organization","name":"CogniFit Scientific Advisory Board"}},{"@type":"WebApplication","name":"CogniFit Brain Training","applicationCategory":"HealthApplication","operatingSystem":"Web, iOS, Android","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"6249358","bestRating":"5"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"O que é longevidade cerebral?","acceptedAnswer":{"@type":"Answer","text":"Longevidade cerebral significa manter a memória, o foco, o raciocínio e a tomada de decisões afiados o máximo de tempo possível à medida que envelhece."}},{"@type":"Question","name":"O treino cerebral funciona mesmo?","acceptedAnswer":{"@type":"Answer","text":"Sim. O estudo ACTIVE demonstrou que os benefícios duram até 10 anos. O CogniFit foi utilizado em +1.083 estudos clínicos."}},{"@type":"Question","name":"O que torna o CogniFit diferente?","acceptedAnswer":{"@type":"Answer","text":"Criado por neurocientistas em 1999, utilizado em 1.083+ estudos clínicos, e confiado por 3.530+ profissionais. Tecnologia adaptativa patenteada."}},{"@type":"Question","name":"Em quanto tempo noto a diferença?","acceptedAnswer":{"@type":"Answer","text":"A maioria sente-se mais afiada em 2-4 semanas. Estudos mostram melhorias mensuráveis às 8 semanas."}}]}]}
+{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://www.cognifit.com/#organization","name":"CogniFit","url":"https://www.cognifit.com","logo":{"@type":"ImageObject","url":"https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/logo.png"},"foundingDate":"1999","description":"Plataforma de avaliações cognitivas digitais e treino cerebral personalizado.","sameAs":["https://www.facebook.com/CogniFit","https://twitter.com/CogniFit","https://www.linkedin.com/company/cognifit","https://www.youtube.com/user/CogniFit","https://www.instagram.com/cognifit"]},{"@type":"WebSite","@id":"https://www.cognifit.com/#website","url":"https://www.cognifit.com","name":"CogniFit","inLanguage":["pt-PT","en","es","fr","de","it","ru","zh"],"publisher":{"@id":"https://www.cognifit.com/#organization"}},{"@type":["WebPage","MedicalWebPage"],"@id":"https://www.cognifit.com/longevity#webpage","url":"https://www.cognifit.com/longevity","name":"CogniFit — Viva mais. Pense melhor. Mantenha a sua independência.","inLanguage":"pt-PT","isPartOf":{"@id":"https://www.cognifit.com/#website"},"about":{"@id":"https://www.cognifit.com/#organization"},"description":"Sistema científico de Longevidade Cerebral com treino cognitivo personalizado.","datePublished":"2025-01-01","dateModified":"2026-04-24","specialty":{"@type":"MedicalSpecialty","name":"Neuropsychology"},"audience":{"@type":"PeopleAudience","suggestedMinAge":35},"lastReviewed":"2026-04-24","speakable":{"@type":"SpeakableSpecification","cssSelector":[".hero-h1",".hero-sub",".faq-question",".faq-answer"]}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CogniFit","item":"https://www.cognifit.com"},{"@type":"ListItem","position":2,"name":"Longevity","item":"https://www.cognifit.com/longevity"}]},{"@type":"WebApplication","name":"CogniFit Brain Training","url":"https://www.cognifit.com","applicationCategory":"HealthApplication","operatingSystem":"Web, iOS, Android","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"O que é longevidade cerebral?","acceptedAnswer":{"@type":"Answer","text":"Longevidade cerebral significa manter a memória, o foco, o raciocínio e a tomada de decisões afiados o máximo de tempo possível à medida que envelhece."}},{"@type":"Question","name":"O treino cerebral funciona?","acceptedAnswer":{"@type":"Answer","text":"Estudos clínicos como o ACTIVE demonstraram que o treino cognitivo estruturado pode reduzir o declínio cognitivo relacionado com a idade."}},{"@type":"Question","name":"O que torna a CogniFit diferente?","acceptedAnswer":{"@type":"Answer","text":"Fundada em 1999, a CogniFit desenvolve tecnologia de avaliação e treino cognitivo com validação científica, usada por profissionais de saúde e instituições de investigação."}},{"@type":"Question","name":"Em quanto tempo noto a diferença?","acceptedAnswer":{"@type":"Answer","text":"A maioria dos utilizadores reporta melhorias em 2-4 semanas. Estudos mostram melhorias mensuráveis em 8 semanas com prática regular."}}]}]}
 </script>
