@@ -12210,3 +12210,299 @@ html body .hero-h1 span[data-i18n="hero.h1.line2"]{
   background:none !important;
   display:block !important;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ROUND 29 v2026.04.24-r29 — MOBILE FIXES visíveis nos screenshots
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@media (max-width:640px){
+
+  /* ═══ 1) RISK CARDS: ícones NÃO sobrepõem títulos ═══ */
+  html body .risk-row .risk-card{
+    padding:20px 18px !important;
+    display:flex !important;
+    flex-direction:column !important;
+    gap:14px !important;
+    min-height:auto !important;
+    align-items:stretch !important;
+    position:relative !important;
+  }
+  html body .risk-card .rc-front{
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:flex-start !important;
+    gap:14px !important;
+    width:100% !important;
+  }
+  html body .risk-card .rc-icon{
+    position:static !important;   /* NÃO absolute */
+    width:44px !important;
+    height:44px !important;
+    margin:0 !important;
+    flex-shrink:0 !important;
+    align-self:flex-start !important;
+  }
+  html body .risk-card .rc-title{
+    width:100% !important;
+    font-size:16px !important;
+    line-height:1.25 !important;
+    margin:0 !important;
+    padding:0 !important;
+    position:static !important;
+  }
+  html body .risk-card .rc-desc{
+    width:100% !important;
+    font-size:13px !important;
+    line-height:1.5 !important;
+    padding:0 !important;
+    margin:0 !important;
+    color:rgba(255,255,255,.68) !important;
+  }
+  html body .risk-card .rc-hint{
+    position:absolute !important;
+    bottom:14px !important;
+    right:14px !important;
+    width:18px !important;
+    height:18px !important;
+  }
+
+  /* ═══ 2) STEPS GRID: force 1-col (estava 3-col mobile!) ═══ */
+  html body .steps-grid{
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:12px !important;
+    padding:0 16px !important;
+    width:100% !important;
+    max-width:100vw !important;
+  }
+  html body .steps-grid .step-card{
+    width:100% !important;
+    max-width:100% !important;
+    padding:22px 18px !important;
+    min-height:auto !important;
+  }
+  html body .steps-grid .step-card h3{
+    font-size:18px !important;
+    min-height:auto !important;
+    line-height:1.2 !important;
+    word-wrap:break-word !important;
+  }
+  html body .steps-grid .step-card p{
+    font-size:14px !important;
+    min-height:auto !important;
+    line-height:1.55 !important;
+    margin-bottom:14px !important;
+  }
+
+  /* ═══ 3) PRO-GRID section: texto alinhado ao topo, cards em 2x2 ═══ */
+  html body section:has(.pro-grid) .wrap{
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    gap:16px !important;
+  }
+  html body section:has(.pro-grid) .wrap > *:not(.pro-grid){
+    width:100% !important;
+    text-align:center !important;
+    padding:0 16px !important;
+  }
+  html body section:has(.pro-grid) [data-i18n*=".eyebrow"]{
+    display:block !important;
+    text-align:center !important;
+    font-size:11px !important;
+    letter-spacing:.14em !important;
+    color:rgba(255,255,255,.5) !important;
+    margin-bottom:8px !important;
+  }
+  html body section:has(.pro-grid) h2{
+    font-size:28px !important;
+    line-height:1.15 !important;
+    text-align:center !important;
+    margin-bottom:12px !important;
+  }
+  html body section:has(.pro-grid) p.lead,
+  html body section:has(.pro-grid) .lead{
+    font-size:14px !important;
+    line-height:1.55 !important;
+    text-align:center !important;
+    max-width:100% !important;
+    padding:0 16px !important;
+    margin-bottom:20px !important;
+  }
+  html body .pro-grid{
+    display:grid !important;
+    grid-template-columns:1fr 1fr !important;
+    gap:10px !important;
+    padding:0 14px !important;
+    width:100% !important;
+    max-width:100vw !important;
+  }
+  html body .pro-card{
+    width:100% !important;
+    max-width:100% !important;
+    padding:0 !important;
+    min-width:0 !important;
+  }
+  html body .pro-card > *:first-child{
+    min-height:80px !important;
+    max-height:110px !important;
+    padding:14px !important;
+  }
+  html body .pro-card img{
+    width:48px !important;
+    height:48px !important;
+    min-width:48px !important;
+    min-height:48px !important;
+  }
+  html body .pro-card h3{
+    font-size:13px !important;
+    padding:0 14px !important;
+    margin:12px 0 6px !important;
+    line-height:1.2 !important;
+  }
+  html body .pro-card p{
+    font-size:11.5px !important;
+    padding:0 14px !important;
+    line-height:1.4 !important;
+    min-height:auto !important;
+    margin-bottom:10px !important;
+    display:-webkit-box !important;
+    -webkit-line-clamp:4 !important;
+    -webkit-box-orient:vertical !important;
+    overflow:hidden !important;
+  }
+  html body .pro-card .pro-stats{
+    padding:10px 14px !important;
+    gap:10px !important;
+    flex-wrap:wrap !important;
+  }
+  html body .pro-card .pro-stat-num,
+  html body .pro-card .pro-stats strong{
+    font-size:14px !important;
+  }
+  html body .pro-card .pro-stat-lbl{
+    font-size:9px !important;
+  }
+  html body .pro-card .pro-cta{
+    margin:2px 12px 12px !important;
+    padding:10px 14px !important;
+    font-size:12px !important;
+  }
+
+  /* ═══ 4) FAQ: NÃO gigantes verticalmente — padding interno reduzido ═══ */
+  html body .faq-list{
+    padding:0 16px !important;
+    gap:8px !important;
+  }
+  html body .faq-item{
+    border-radius:10px !important;
+    overflow:hidden !important;
+  }
+  html body .faq-q,
+  html body .faq-question,
+  html body .faq-item > *:first-child,
+  html body .faq-item summary,
+  html body .faq-item button{
+    padding:14px 16px !important;
+    font-size:14px !important;
+    line-height:1.3 !important;
+    min-height:auto !important;
+    height:auto !important;
+    gap:10px !important;
+  }
+  html body .faq-a,
+  html body .faq-answer,
+  html body .faq-item [itemprop="acceptedAnswer"]{
+    padding:0 16px 14px !important;
+    font-size:13px !important;
+    line-height:1.55 !important;
+    max-height:none !important;
+    height:auto !important;
+  }
+  html body .faq-item p{
+    font-size:13px !important;
+    line-height:1.55 !important;
+    margin:0 !important;
+    padding:0 !important;
+  }
+  /* Remove PADDING extra vertical que inflava as FAQ boxes */
+  html body .faq-item *{
+    padding-top:0 !important;
+    padding-bottom:0 !important;
+  }
+  html body .faq-item .faq-q,
+  html body .faq-item .faq-question{
+    padding-top:14px !important;
+    padding-bottom:14px !important;
+  }
+  html body .faq-item .faq-a,
+  html body .faq-item .faq-answer{
+    padding-bottom:14px !important;
+  }
+
+  /* ═══ 5) TRUST stats — números NÃO cortados ═══ */
+  html body .trust-stats,
+  html body .stats-row{
+    grid-template-columns:repeat(2, 1fr) !important;
+    gap:20px 14px !important;
+    padding:0 8px !important;
+    max-width:100% !important;
+  }
+  html body .trust-stat,
+  html body .stats-row > div{
+    text-align:center !important;
+    overflow:visible !important;
+    min-width:0 !important;
+  }
+  html body .trust-stat-num,
+  html body .stats-row strong{
+    font-size:26px !important;
+    line-height:1 !important;
+    text-align:center !important;
+    width:100% !important;
+    overflow:visible !important;
+    white-space:nowrap !important;
+  }
+  html body .trust-stat-lbl,
+  html body .stats-row span{
+    font-size:11px !important;
+    line-height:1.3 !important;
+    text-align:center !important;
+    white-space:normal !important;
+    margin-top:4px !important;
+  }
+
+  /* ═══ 6) SCROLL HINT removido no mobile ═══ */
+  html body .hero-scroll-hint{ display:none !important }
+
+  /* ═══ 7) Validação card (Pipeline) — sem overlap com CTA ═══ */
+  html body section:has(.val-card) .val-card,
+  html body .val-card{
+    margin-bottom:14px !important;
+  }
+  html body .val-card:last-child{ margin-bottom:0 !important }
+
+  /* ═══ 8) Junte-se à família — H2 NÃO corta ═══ */
+  html body .trust-headline,
+  html body .trust-section h2{
+    font-size:22px !important;
+    line-height:1.2 !important;
+    padding:0 16px !important;
+    word-wrap:break-word !important;
+  }
+  html body .trust-press{
+    padding:0 20px !important;
+    font-size:12.5px !important;
+    line-height:1.55 !important;
+  }
+  html body .trust-chips{
+    padding:0 16px !important;
+    gap:6px !important;
+    justify-content:center !important;
+  }
+  html body .trust-chip{
+    font-size:11px !important;
+    padding:5px 10px !important;
+  }
+}
