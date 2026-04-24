@@ -2616,3 +2616,23 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   setTimeout(setup, 1000);
 })();
+
+/* Skills panel: preserve inline widths on .sk-fill (bar aligned to score) */
+(function(){
+  function fixSkillBars(){
+    document.querySelectorAll('.sk-fill').forEach(function(el){
+      var w = el.getAttribute('style');
+      if (w && w.indexOf('width') > -1){
+        var match = w.match(/width\s*:\s*([\d.]+%)/);
+        if (match){
+          /* Re-set after any animation override */
+          setTimeout(function(){ el.style.width = match[1]; }, 100);
+          setTimeout(function(){ el.style.width = match[1]; }, 1500);
+        }
+      }
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fixSkillBars);
+  else fixSkillBars();
+  setTimeout(fixSkillBars, 2000);
+})();

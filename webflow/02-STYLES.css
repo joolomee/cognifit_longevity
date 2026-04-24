@@ -5776,3 +5776,31 @@ html body .hero-phones .phone::before{
 @media (max-width:640px){
   html body .hero-phones{ transform:scale(.68) !important; margin:-55px auto -35px !important }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   Skills panel — bars alinhadas à pontuação (inline style wins)
+   620=77.5%, 480=60%, 450=56%, 443=55%
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Reset: NÃO forçar width:0 nem 100% — respeitar inline style */
+html body .sk-fill{
+  width:inherit;   /* allow inline style to drive width */
+  background:linear-gradient(90deg, #22c55e 0%, #4ade80 100%) !important;
+  height:100% !important;
+  border-radius:3px !important;
+  transition:width 1.2s cubic-bezier(.4,0,.2,1) !important;
+  box-shadow:0 0 8px rgba(34,197,94,.35) !important;
+}
+html body .sk-track{
+  height:6px !important;
+  background:#e5e9f0 !important;
+  border-radius:3px !important;
+  overflow:hidden !important;
+  margin-top:8px !important;
+}
+/* Override qualquer regra que force width indevidamente */
+html body .sk-fill[style*="width:77.5"]{ width:77.5% !important }
+html body .sk-fill[style*="width:60%"]{ width:60% !important }
+html body .sk-fill[style*="width:56"]{ width:56% !important }
+html body .sk-fill[style*="width:55"]{ width:55% !important }
