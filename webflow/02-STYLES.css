@@ -6586,3 +6586,249 @@ html body .sci-triad-svg.triad-broken .td-node-at .td-inner{
 html body .sci-triad-svg.triad-broken .td-particle{
   fill:#ef4444 !important;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SISTEMA CARDS — ZERO internal scroll on ALL breakpoints
+   ═══════════════════════════════════════════════════════════════════════ */
+html body .sci-card, html body .sci-card *,
+html body .sci-wrap, html body .sci-grid, html body .sci-detail,
+html body .triad-wrap, html body .triad-card, html body .triad-grid,
+html body .sistema-card, html body .sys-card, html body .sys-detail,
+html body [id="sci-status"], html body #sci-reset,
+html body section:has(.sci-triad-svg), html body section:has(.sci-card),
+html body section[id*="sci"] *{
+  overflow-y:visible !important;
+  overflow-x:visible !important;
+  max-height:none !important;
+  height:auto !important;
+  -webkit-overflow-scrolling:auto !important;
+}
+html body .sci-card, html body .sistema-card{ overflow:hidden !important }  /* só para radius */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   DESCUBRA A COGNIFIT (.pro-grid) TABLET — FINAL FIX
+   Sem sobreposição, sem roxo, botões visíveis
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@media (min-width:641px) and (max-width:1280px){
+
+  /* Section header: stacked vertical centered (nunca ao lado) */
+  html body section:has(.pro-grid){
+    padding:clamp(56px, 7vh, 96px) 0 !important;
+  }
+  html body section:has(.pro-grid) > .wrap,
+  html body section:has(.pro-grid) > div:not(.pro-grid){
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    text-align:center !important;
+    gap:16px !important;
+    max-width:1100px !important;
+    margin:0 auto !important;
+    padding:0 clamp(20px, 3vw, 32px) !important;
+    width:100% !important;
+  }
+  html body section:has(.pro-grid) h2{
+    font-size:clamp(28px, 4.2vw, 40px) !important;
+    font-weight:900 !important;
+    line-height:1.15 !important;
+    color:#fff !important;
+    text-align:center !important;
+    max-width:720px !important;
+    margin:0 auto !important;
+  }
+  html body section:has(.pro-grid) p,
+  html body section:has(.pro-grid) .lead{
+    font-size:15px !important;
+    line-height:1.55 !important;
+    color:rgba(255,255,255,.72) !important;
+    text-align:center !important;
+    max-width:580px !important;
+    margin:0 auto 24px !important;
+  }
+  html body section:has(.pro-grid) .eyebrow,
+  html body section:has(.pro-grid) [data-i18n*="eyebrow"]{
+    font-size:12px !important;
+    letter-spacing:.14em !important;
+    color:rgba(255,255,255,.5) !important;
+    text-transform:uppercase !important;
+    text-align:center !important;
+  }
+
+  /* Pro-grid: 3-col tablet large, 2-col tablet small */
+  html body .pro-grid{
+    display:grid !important;
+    grid-template-columns:repeat(3, 1fr) !important;
+    gap:16px !important;
+    max-width:100% !important;
+    margin:0 auto !important;
+    padding:0 clamp(20px, 3vw, 32px) !important;
+    width:100% !important;
+  }
+  @media (max-width:900px){
+    html body .pro-grid{ grid-template-columns:repeat(2, 1fr) !important }
+  }
+
+  /* Pro-card — DARK definitivo, sem roxo */
+  html body .pro-card{
+    width:100% !important;
+    min-width:0 !important;
+    max-width:100% !important;
+    box-sizing:border-box !important;
+    background:#0a0b0d !important;
+    background-color:#0a0b0d !important;
+    background-image:none !important;
+    border:1px solid rgba(255,255,255,.1) !important;
+    border-radius:16px !important;
+    padding:0 !important;
+    overflow:hidden !important;
+    display:flex !important;
+    flex-direction:column !important;
+    position:relative !important;
+    min-height:360px !important;
+  }
+
+  /* Icon area — fundo escuro (ZERO roxo) */
+  html body .pro-card > *:first-child,
+  html body .pro-card > img:first-child,
+  html body .pro-card > div:first-child:not(h3):not(p):not(.pro-stats):not(.pro-cta){
+    width:100% !important;
+    min-height:110px !important;
+    max-height:130px !important;
+    background:#0f1115 !important;
+    background-color:#0f1115 !important;
+    background-image:linear-gradient(180deg, #14161a 0%, #0a0b0d 100%) !important;
+    border-bottom:1px solid rgba(255,255,255,.06) !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    padding:18px !important;
+    box-sizing:border-box !important;
+  }
+  html body .pro-card img{
+    width:70px !important;
+    height:70px !important;
+    min-width:70px !important;
+    max-width:70px !important;
+    min-height:70px !important;
+    max-height:70px !important;
+    object-fit:contain !important;
+    background:transparent !important;
+    mix-blend-mode:screen !important;
+    filter:brightness(1.7) contrast(1.15) saturate(.85) !important;
+  }
+
+  /* Título — TAMANHO FIXO, sem sobrepor */
+  html body .pro-card h3,
+  html body .pro-card .pro-title{
+    color:#fff !important;
+    font-size:15px !important;
+    font-weight:800 !important;
+    line-height:1.25 !important;
+    padding:14px 16px 6px !important;
+    margin:0 !important;
+    text-transform:none !important;
+    min-height:auto !important;
+    max-height:none !important;
+    display:block !important;
+    position:static !important;
+    width:100% !important;
+    box-sizing:border-box !important;
+    word-wrap:break-word !important;
+  }
+
+  /* Descrição — flow normal, NÃO absolute, NÃO sobrepor */
+  html body .pro-card p,
+  html body .pro-card .pro-desc{
+    color:rgba(255,255,255,.72) !important;
+    font-size:12.5px !important;
+    line-height:1.55 !important;
+    padding:0 16px 12px !important;
+    margin:0 !important;
+    display:block !important;
+    position:static !important;
+    flex:1 !important;
+    min-height:auto !important;
+    max-height:none !important;
+    overflow:visible !important;
+    -webkit-line-clamp:unset !important;
+    width:100% !important;
+    box-sizing:border-box !important;
+    word-wrap:break-word !important;
+  }
+
+  /* Stats */
+  html body .pro-card .pro-stats{
+    display:flex !important;
+    gap:10px !important;
+    padding:10px 16px !important;
+    margin:0 !important;
+    border-top:1px solid rgba(255,255,255,.08) !important;
+    width:100% !important;
+    box-sizing:border-box !important;
+  }
+  html body .pro-card .pro-stat,
+  html body .pro-card .pro-stats > div{
+    flex:1 !important;
+    min-width:0 !important;
+  }
+  html body .pro-card .pro-stat-num,
+  html body .pro-card .pro-stats strong{
+    color:#fff !important;
+    font-size:14px !important;
+    font-weight:900 !important;
+    line-height:1 !important;
+    display:block !important;
+  }
+  html body .pro-card .pro-stat-lbl{
+    color:rgba(255,255,255,.55) !important;
+    font-size:10px !important;
+    margin-top:2px !important;
+    display:block !important;
+  }
+
+  /* CTA — BEM VISÍVEL (não invisível!) */
+  html body .pro-card .pro-cta,
+  html body .pro-card a.pro-cta,
+  html body .pro-card > a[href]{
+    display:flex !important;
+    visibility:visible !important;
+    opacity:1 !important;
+    justify-content:center !important;
+    align-items:center !important;
+    gap:6px !important;
+    padding:11px 14px !important;
+    margin:8px 14px 14px !important;
+    background:var(--c, #1a73e8) !important;
+    background-color:var(--c, #1a73e8) !important;
+    color:#fff !important;
+    border-radius:100px !important;
+    font-weight:800 !important;
+    font-size:12.5px !important;
+    text-decoration:none !important;
+    text-transform:none !important;
+    white-space:nowrap !important;
+    border:none !important;
+    box-shadow:0 4px 12px rgba(0,0,0,.2) !important;
+    transition:filter .2s, transform .2s !important;
+    width:auto !important;
+    box-sizing:border-box !important;
+  }
+  html body .pro-card .pro-cta:hover{
+    filter:brightness(1.12) !important;
+    transform:translateY(-1px) !important;
+  }
+
+  /* Accent top border colored */
+  html body .pro-card::before{
+    content:'' !important;
+    position:absolute !important;
+    top:0 !important; left:0 !important; right:0 !important;
+    height:3px !important;
+    background:var(--c, #1a73e8) !important;
+    z-index:2 !important;
+    display:block !important;
+    pointer-events:none !important;
+  }
+}
