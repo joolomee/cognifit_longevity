@@ -7071,3 +7071,262 @@ nav .nav-r > a.w-button[id="lang-btn"] {
   .s-validation .val-marquee-wrap::before,
   .s-validation .val-marquee-wrap::after{ width:50px; }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HOTFIX v2026.04.24 — Consolidated overrides for Webflow deployment bugs
+   (overrides inline critical CSS via higher specificity `html body ...`)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. TÍTULOS: "Primeira palavra apenas" (sentence-case)
+   Applied via CSS — converts any Title Case content to sentence case visually ── */
+html body h1, html body h2, html body h3, html body h4,
+html body .hero-h1, html body .section-title, html body .eyebrow-title{
+  text-transform:none !important;
+}
+/* Keep the eyebrow/badge uppercase micro-labels as they are */
+html body .eyebrow, html body .hero-badge, html body .badge-dot + span{
+  text-transform:uppercase !important;
+}
+
+/* ── 2. BOTÕES BRANCOS INVISÍVEIS em fundo branco ── */
+html body section.s-white .btn-white,
+html body section.s-off .btn-white,
+html body .s-white a.btn-white,
+html body .s-off a.btn-white{
+  background:var(--blue) !important;
+  color:#fff !important;
+  border:1.5px solid var(--blue) !important;
+  box-shadow:0 4px 14px rgba(26,115,232,.3) !important;
+}
+html body section.s-white .btn-white:hover,
+html body section.s-off .btn-white:hover{
+  background:var(--blue-d) !important;
+  border-color:var(--blue-d) !important;
+  color:#fff !important;
+}
+/* Generic: any button with white bg directly on a white section */
+html body .s-white button[style*="background:#fff"],
+html body .s-white button[style*="background: #fff"]{
+  background:var(--blue) !important;color:#fff !important;
+}
+
+/* ── 3. PRESS LOGOS — tamanho uniforme pequeno lado-a-lado ── */
+html body .press-strip{
+  display:flex !important;
+  flex-wrap:wrap !important;
+  justify-content:center !important;
+  align-items:center !important;
+  gap:clamp(16px,2.5vw,32px) !important;
+  max-width:1200px !important;
+  margin:0 auto !important;
+  padding:0 24px !important;
+}
+html body .press-strip .press-logo-card{
+  flex:0 0 auto !important;
+  padding:8px 12px !important;
+  background:transparent !important;
+  border:none !important;
+  box-shadow:none !important;
+}
+html body .press-strip .press-logo-img,
+html body .press-strip .pl,
+html body .press-strip img{
+  max-height:28px !important;
+  height:28px !important;
+  width:auto !important;
+  max-width:120px !important;
+  object-fit:contain !important;
+  opacity:.7 !important;
+  filter:grayscale(1) brightness(1.2) !important;
+  transition:opacity .2s ease, filter .2s ease !important;
+}
+html body .press-strip .press-logo-card:hover .press-logo-img{
+  opacity:1 !important;
+  filter:grayscale(0) brightness(1) !important;
+}
+@media (max-width:768px){
+  html body .press-strip{ gap:14px !important; padding:0 16px !important; }
+  html body .press-strip .press-logo-img,
+  html body .press-strip img{ max-height:22px !important; height:22px !important; max-width:90px !important; }
+}
+@media (max-width:480px){
+  html body .press-strip .press-logo-img,
+  html body .press-strip img{ max-height:18px !important; height:18px !important; max-width:72px !important; }
+}
+
+/* ── 4. NO INTERNAL SCROLL — tudo visível, só 1 scroll principal ── */
+html body section, html body .section, html body .wrap,
+html body .hero, html body .hero-content,
+html body .who-grid, html body .pro-grid,
+html body .steps-grid, html body .rev-grid,
+html body .faq-wrap, html body .val-wrap{
+  overflow:visible !important;
+  max-height:none !important;
+  height:auto !important;
+}
+/* Hero can have overflow:hidden for animation layers, but body/html must be the only scroll container */
+html, body{
+  overflow-x:hidden !important;
+  overflow-y:auto !important;
+  height:auto !important;
+  -webkit-overflow-scrolling:touch !important;
+}
+
+/* ── 5. "DESCUBRA A COGNIFIT" — grid 2×2 em mobile ── */
+@media (max-width:768px){
+  html body .who-grid,
+  html body section .who-grid{
+    display:grid !important;
+    grid-template-columns:1fr 1fr !important;
+    gap:12px !important;
+    max-width:100% !important;
+    padding:0 16px !important;
+  }
+  html body .who-card{
+    padding:16px 12px !important;
+    font-size:13px !important;
+  }
+  html body .who-card h3, html body .who-card .who-title{
+    font-size:14px !important;
+    line-height:1.3 !important;
+    margin-bottom:6px !important;
+  }
+  html body .who-card p, html body .who-card .who-desc{
+    font-size:12px !important;
+    line-height:1.45 !important;
+  }
+}
+
+/* ── 6. "TREINE EM QUALQUER DISPOSITIVO" — aproximar 3 elementos ── */
+html body .device-stack, html body .devices-row,
+html body section[id*="device"] .wrap > *, html body .devices-wrap > *{
+  margin-top:clamp(8px,1.2vw,16px) !important;
+  margin-bottom:clamp(8px,1.2vw,16px) !important;
+}
+html body .device-stack > * + *{ margin-top:clamp(10px,1.5vw,20px) !important; }
+
+/* ── 7. CÍRCULO DUPLICADO em "Recomendado" badge ── */
+html body .pro-card .recommended-badge::before,
+html body .pro-card .badge-recommended::before,
+html body .pro-card[data-recommended]::before,
+html body .pro-card.recommended::after{
+  display:none !important;
+  content:none !important;
+}
+
+/* ── 8. GRID 4-CARDS (div 3) — não cortar + ícones visíveis ── */
+html body .pillar-grid, html body .health-pillars, html body .risks-grid,
+html body .pro-grid, html body .rni-grid{
+  overflow:visible !important;
+  grid-auto-rows:minmax(auto,1fr) !important;
+  align-items:stretch !important;
+}
+html body .pillar-card, html body .risk-card, html body .pro-card{
+  overflow:visible !important;
+  height:auto !important;
+  min-height:auto !important;
+}
+html body .pillar-card svg, html body .risk-card svg,
+html body .pillar-card .icon, html body .risk-card .icon{
+  opacity:1 !important;
+  visibility:visible !important;
+  display:block !important;
+  width:clamp(32px,4vw,48px) !important;
+  height:auto !important;
+  color:var(--blue) !important;
+  fill:currentColor !important;
+  stroke:currentColor !important;
+}
+
+/* ── 9. "AVALIE O SEU CÉREBRO" — step-card alinhamento subtítulos lado-a-lado ── */
+html body .steps-grid{
+  display:grid !important;
+  grid-template-columns:repeat(4,1fr) !important;
+  gap:clamp(16px,2vw,24px) !important;
+  align-items:stretch !important;
+}
+html body .step-card{
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:flex-start !important;
+  height:100% !important;
+}
+html body .step-card .step-checks{
+  margin-top:auto !important;
+  padding-top:12px !important;
+}
+@media (max-width:980px){
+  html body .steps-grid{ grid-template-columns:1fr 1fr !important; gap:14px !important; }
+}
+@media (max-width:560px){
+  html body .steps-grid{ grid-template-columns:1fr !important; gap:12px !important; }
+  html body .step-card{ padding:16px !important; }
+}
+
+/* ── 10. ANIMAÇÃO PILARES (div 3) — progress bar fill animation ── */
+@keyframes pillar-fill-anim{
+  0%{width:0%}
+  100%{width:var(--pillar-fill,65%)}
+}
+html body .pillar-card .pillar-bar > *,
+html body .pillar-card .pillar-fill{
+  animation:pillar-fill-anim 1.6s cubic-bezier(.4,0,.2,1) forwards !important;
+}
+
+/* ── 11. TABLET DASHBOARD IMAGE — hide if broken, show fallback ── */
+html body img[alt*="dashboard preview" i],
+html body img[src*="dashboard-preview"]{
+  object-fit:contain !important;
+  background:#0a0a0a !important;
+}
+html body img[alt*="dashboard preview" i]:not([src]),
+html body img[alt*="dashboard preview" i][src=""]{
+  display:none !important;
+}
+
+/* ── 12. VALIDAÇÃO — restaurar visibilidade dos ícones e separar pipeline ── */
+html body .s-validation .val-marquee-img,
+html body .s-validation img{
+  opacity:.85 !important;
+  visibility:visible !important;
+  display:inline-block !important;
+}
+html body .s-validation .val-pipeline,
+html body .s-validation .val-advisory{
+  display:block !important;
+  margin-top:clamp(24px,3vw,40px) !important;
+  padding:clamp(20px,3vw,32px) !important;
+  background:rgba(255,255,255,.04) !important;
+  border:1px solid rgba(255,255,255,.1) !important;
+  border-radius:16px !important;
+}
+
+/* ── 13. HERO PHONES mobile — 2 lado-a-lado em vez de esconder ── */
+@media (max-width:980px){
+  html body .hero-phones{
+    display:flex !important;
+    flex-direction:row !important;
+    justify-content:center !important;
+    gap:12px !important;
+    transform:scale(.7) !important;
+    transform-origin:top center !important;
+    margin-top:clamp(20px,4vw,40px) !important;
+  }
+}
+
+/* ── 14. "TREINO CEREBRAL CONSISTENTE" — gráficos mobile não gigantes ── */
+@media (max-width:768px){
+  html body .chart-block, html body .rev-card,
+  html body .consistency-chart{
+    max-width:100% !important;
+    width:100% !important;
+    overflow:hidden !important;
+  }
+  html body .chart-block img, html body .consistency-chart img,
+  html body .rev-card img, html body .rev-card svg{
+    max-width:100% !important;
+    height:auto !important;
+    width:100% !important;
+  }
+}
