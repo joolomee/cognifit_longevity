@@ -9645,3 +9645,267 @@ html body section:has(.trust-headline) > *{
 html body section:has(.trust-headline){
   display:block !important;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ROUND 14 v2026.04.24-r14 — ITEM 5: Risk cards (div 3) — ícones visíveis,
+   sem cortes, animação pilares, círculo duplicado removido
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Risk row: 4-col desktop, responsive ── */
+html body .risk-row{
+  display:grid !important;
+  grid-template-columns:repeat(4, minmax(0, 1fr)) !important;
+  gap:clamp(14px, 1.8vw, 24px) !important;
+  max-width:1280px !important;
+  margin:clamp(32px, 4vw, 56px) auto !important;
+  padding:0 clamp(16px, 3vw, 32px) !important;
+  overflow:visible !important;
+}
+@media (max-width:1024px){
+  html body .risk-row{ grid-template-columns:repeat(2, 1fr) !important }
+}
+@media (max-width:560px){
+  html body .risk-row{ grid-template-columns:1fr !important }
+}
+
+/* ── Risk card — DARK com ícones visíveis, sem cortes ── */
+html body .risk-row .risk-card{
+  background:linear-gradient(180deg, rgba(255,255,255,.04) 0%, rgba(255,255,255,.02) 100%) !important;
+  border:1px solid rgba(255,255,255,.1) !important;
+  border-radius:18px !important;
+  padding:clamp(24px, 2.5vw, 32px) clamp(20px, 2vw, 28px) !important;
+  position:relative !important;
+  overflow:visible !important;
+  display:flex !important;
+  flex-direction:column !important;
+  gap:clamp(14px, 1.5vw, 20px) !important;
+  min-height:220px !important;
+  transition:transform .3s, border-color .3s, box-shadow .3s !important;
+}
+html body .risk-row .risk-card:hover{
+  transform:translateY(-3px) !important;
+  border-color:rgba(26,115,232,.35) !important;
+  box-shadow:0 24px 48px rgba(0,0,0,.3), 0 0 0 1px rgba(26,115,232,.15) !important;
+}
+
+/* ── .rc-front: top section com icon + title + arrow ── */
+html body .risk-card .rc-front{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:flex-start !important;
+  gap:clamp(14px, 1.5vw, 20px) !important;
+  position:relative !important;
+  overflow:visible !important;
+}
+
+/* ── .rc-icon: BOX gradient contendo o SVG — tamanho grande, visível ── */
+html body .risk-card .rc-icon{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:52px !important;
+  height:52px !important;
+  background:linear-gradient(135deg, rgba(26,115,232,.15), rgba(26,115,232,.04)) !important;
+  border:1px solid rgba(26,115,232,.22) !important;
+  border-radius:14px !important;
+  box-shadow:0 0 24px rgba(26,115,232,.12) !important;
+  flex-shrink:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+}
+html body .risk-card .rc-icon svg{
+  width:26px !important;
+  height:26px !important;
+  stroke-width:2.2 !important;
+  filter:drop-shadow(0 2px 8px rgba(0,0,0,.3)) !important;
+}
+
+/* ── Título do risk card — branco, legível, sem cortes ── */
+html body .risk-card .rc-title{
+  color:#fff !important;
+  font-size:clamp(16px, 1.4vw, 19px) !important;
+  font-weight:800 !important;
+  line-height:1.22 !important;
+  letter-spacing:-.01em !important;
+  margin:0 !important;
+  padding:0 !important;
+  text-transform:none !important;
+  /* Primeira palavra maiúscula, resto normal */
+}
+
+/* ── .rc-hint: seta azul bottom-right, visível ── */
+html body .risk-card .rc-hint{
+  position:absolute !important;
+  bottom:clamp(16px, 2vw, 24px) !important;
+  right:clamp(16px, 2vw, 24px) !important;
+  width:22px !important;
+  height:22px !important;
+  opacity:.7 !important;
+  transition:transform .25s, opacity .25s !important;
+}
+html body .risk-card .rc-hint path{
+  stroke:#6eb3ff !important;
+  stroke-width:2 !important;
+}
+html body .risk-card:hover .rc-hint{
+  opacity:1 !important;
+  transform:translateX(4px) !important;
+}
+
+/* ── .rc-desc: descrição sempre visível abaixo do título ── */
+html body .risk-card .rc-desc{
+  color:rgba(255,255,255,.72) !important;
+  font-size:clamp(12px, 1.2vw, 14px) !important;
+  line-height:1.55 !important;
+  margin:0 !important;
+  padding:0 !important;
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  flex:1 !important;
+  padding-right:30px !important;   /* deixa espaço para .rc-hint */
+}
+
+/* ── Remove eventuais círculos duplicados em elementos "recomendado" ── */
+html body .pro-card.recommended::after,
+html body .pro-card[data-recommended]::after,
+html body .pro-card .recommended-ring,
+html body .pro-card .recommended-circle,
+html body [class*="recommended"]::after{
+  display:none !important;
+  content:none !important;
+}
+
+/* ── RNI solution card — layout clean, badge CHAVE/KEY hidden ── */
+html body .rni-solution{
+  display:flex !important;
+  align-items:center !important;
+  gap:clamp(16px, 2vw, 24px) !important;
+  background:linear-gradient(135deg, rgba(26,115,232,.1), rgba(26,115,232,.02)) !important;
+  border:1px solid rgba(26,115,232,.25) !important;
+  border-radius:18px !important;
+  padding:clamp(20px, 2.5vw, 28px) !important;
+  max-width:820px !important;
+  margin:clamp(28px, 3.5vw, 48px) auto !important;
+  position:relative !important;
+  overflow:visible !important;
+}
+html body .rni-solution .rni-sol-icon{
+  flex-shrink:0 !important;
+  width:56px !important;
+  height:56px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  background:linear-gradient(135deg, #1a73e8, #1256b8) !important;
+  border-radius:14px !important;
+  font-size:32px !important;
+  box-shadow:0 8px 24px rgba(26,115,232,.4) !important;
+}
+html body .rni-solution .rni-sol-body{ flex:1 !important; min-width:0 !important }
+html body .rni-solution .rni-sol-title{
+  color:#fff !important;
+  font-size:clamp(17px, 1.7vw, 22px) !important;
+  font-weight:900 !important;
+  margin-bottom:4px !important;
+}
+html body .rni-solution .rni-sol-sub{
+  color:#6eb3ff !important;
+  font-size:clamp(12px, 1.2vw, 14px) !important;
+  font-weight:700 !important;
+  margin-bottom:8px !important;
+}
+html body .rni-solution .rni-sol-desc{
+  color:rgba(255,255,255,.75) !important;
+  font-size:clamp(13px, 1.2vw, 15px) !important;
+  line-height:1.55 !important;
+}
+/* CHAVE/KEY badge — removido */
+html body .rni-solution .rni-sol-badge{
+  display:none !important;
+}
+
+/* ── rp-arrows: triângulos descendentes entre cards e solution ── */
+html body .rp-arrows{
+  display:flex !important;
+  justify-content:center !important;
+  align-items:center !important;
+  gap:12px !important;
+  margin:clamp(16px, 2vw, 24px) auto clamp(8px, 1vw, 14px) !important;
+  max-width:900px !important;
+}
+html body .rp-arrows .rp-arr{
+  width:18px !important;
+  height:24px !important;
+  color:#1a73e8 !important;
+  animation:arrow-pulse 2s ease-in-out infinite !important;
+  filter:drop-shadow(0 4px 8px rgba(26,115,232,.4)) !important;
+}
+html body .rp-arrows .rp-arr:nth-child(2){ animation-delay:.2s !important }
+html body .rp-arrows .rp-arr:nth-child(3){ animation-delay:.4s !important }
+@keyframes arrow-pulse{
+  0%,100%{ transform:translateY(0); opacity:.7 }
+  50%{ transform:translateY(4px); opacity:1 }
+}
+
+/* ── risk-prevent: linha divisória antes das setas ── */
+html body .risk-prevent{
+  display:flex !important;
+  align-items:center !important;
+  gap:clamp(16px, 2vw, 28px) !important;
+  max-width:720px !important;
+  margin:clamp(32px, 4vw, 48px) auto clamp(8px, 1vw, 16px) !important;
+  padding:0 clamp(16px, 3vw, 24px) !important;
+}
+html body .risk-prevent .rp-line{
+  flex:1 !important;
+  height:1px !important;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent) !important;
+}
+html body .risk-prevent .rp-label{
+  color:#1a73e8 !important;
+  font-size:clamp(12px, 1.2vw, 14px) !important;
+  font-weight:800 !important;
+  letter-spacing:.08em !important;
+  text-transform:uppercase !important;
+  white-space:nowrap !important;
+}
+
+/* ── ANIMAÇÃO PILARES (se existir .pillar-card ou similar) ── */
+html body .pillar-card{
+  animation:pillar-reveal .8s ease-out forwards !important;
+  opacity:0 !important;
+  transform:translateY(20px) !important;
+}
+html body .pillar-card:nth-child(1){ animation-delay:.1s !important }
+html body .pillar-card:nth-child(2){ animation-delay:.25s !important }
+html body .pillar-card:nth-child(3){ animation-delay:.4s !important }
+@keyframes pillar-reveal{
+  to{ opacity:1; transform:translateY(0) }
+}
+/* Pillar progress bar animation */
+html body .pillar-card .pillar-fill,
+html body .pillar-card .pillar-bar-fill,
+html body .pillar-bar > span,
+html body .pillar-bar > div{
+  animation:pillar-fill 1.8s cubic-bezier(.4,0,.2,1) forwards !important;
+  animation-delay:.8s !important;
+}
+@keyframes pillar-fill{
+  from{ width:0% }
+}
+
+/* ── Mobile risk cards ── */
+@media (max-width:560px){
+  html body .risk-row .risk-card{
+    min-height:auto !important;
+    padding:20px 16px !important;
+  }
+  html body .risk-card .rc-icon{ width:44px !important; height:44px !important }
+  html body .risk-card .rc-icon svg{ width:22px !important; height:22px !important }
+  html body .risk-card .rc-title{ font-size:16px !important }
+  html body .risk-card .rc-desc{ font-size:13px !important }
+  html body .rni-solution{ flex-direction:column !important; text-align:center !important; padding:20px 16px !important }
+  html body .rni-solution .rni-sol-icon{ margin:0 auto 8px !important }
+}
