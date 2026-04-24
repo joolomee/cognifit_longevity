@@ -6832,3 +6832,187 @@ html body .sci-card, html body .sistema-card{ overflow:hidden !important }  /* s
     pointer-events:none !important;
   }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   4 FIXES: val icons colorful animated, devices bigger tablet, 
+   press uniform, FAQ compact minimized
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ══════════ 1) VALIDATION icons — coloridos + animados ══════════ */
+html body .val-card:nth-child(1) .val-icon svg,
+html body .val-card:nth-child(1) > svg,
+html body .val-card[data-icon="pipeline"] svg{
+  color:#1a73e8 !important;
+  stroke:#1a73e8 !important;
+  fill:#1a73e8 !important;
+  animation:val-icon-bounce 2.5s ease-in-out infinite !important;
+}
+html body .val-card:nth-child(2) .val-icon svg,
+html body .val-card:nth-child(2) > svg,
+html body .val-card.featured svg{
+  color:#8b5cf6 !important;
+  stroke:#8b5cf6 !important;
+  fill:#8b5cf6 !important;
+  animation:val-icon-pulse 2.5s ease-in-out infinite !important;
+}
+html body .val-card:nth-child(3) .val-icon svg,
+html body .val-card:nth-child(3) > svg{
+  color:#22c55e !important;
+  stroke:#22c55e !important;
+  fill:#22c55e !important;
+  animation:val-icon-rotate 4s ease-in-out infinite !important;
+}
+
+/* Featured card mantém accent mas preserva colours */
+html body .val-card.featured .val-icon{
+  background:linear-gradient(135deg, rgba(139,92,246,.22), rgba(139,92,246,.06)) !important;
+  border:1.5px solid rgba(139,92,246,.4) !important;
+}
+html body .val-card:nth-child(1) .val-icon{
+  background:linear-gradient(135deg, rgba(26,115,232,.22), rgba(26,115,232,.06)) !important;
+  border:1.5px solid rgba(26,115,232,.4) !important;
+}
+html body .val-card:nth-child(3) .val-icon{
+  background:linear-gradient(135deg, rgba(34,197,94,.22), rgba(34,197,94,.06)) !important;
+  border:1.5px solid rgba(34,197,94,.4) !important;
+}
+
+@keyframes val-icon-bounce{
+  0%,100%{ transform:translateY(0) scale(1) }
+  50%{ transform:translateY(-6px) scale(1.05) }
+}
+@keyframes val-icon-pulse{
+  0%,100%{ transform:scale(1); filter:drop-shadow(0 4px 12px rgba(139,92,246,.4)) }
+  50%{ transform:scale(1.1); filter:drop-shadow(0 6px 20px rgba(139,92,246,.7)) }
+}
+@keyframes val-icon-rotate{
+  0%,100%{ transform:rotate(0deg) scale(1) }
+  25%{ transform:rotate(-5deg) scale(1.04) }
+  75%{ transform:rotate(5deg) scale(1.04) }
+}
+
+/* Respeita prefers-reduced-motion */
+@media (prefers-reduced-motion:reduce){
+  html body .val-card svg{ animation:none !important }
+}
+
+/* ══════════ 2) Treine em qualquer dispositivo — IMAGEM MAIOR no tablet ══════════ */
+@media (min-width:641px) and (max-width:1280px){
+  html body section.s-off img[alt*="devices" i],
+  html body section.s-off img[alt*="alldevices" i],
+  html body section:has([data-i18n="devices.h2"]) img{
+    max-width:min(940px, 96vw) !important;
+    width:100% !important;
+    height:auto !important;
+    margin:24px auto !important;
+    display:block !important;
+  }
+  html body section:has([data-i18n="devices.h2"]) > .wrap{
+    max-width:100% !important;
+    padding:0 20px !important;
+  }
+}
+
+/* ══════════ 3) PRESS LOGOS — cor uniforme legível ══════════ */
+/* Em fundo escuro: TODOS ficam brancos (uniforme) */
+html body section.s-black .press-strip img,
+html body section.s-dark .press-strip img,
+html body section[class*="black"] .press-strip img{
+  filter:brightness(0) invert(1) !important;
+  -webkit-filter:brightness(0) invert(1) !important;
+  opacity:.85 !important;
+  max-height:24px !important;
+  background:transparent !important;
+  padding:0 !important;
+  box-shadow:none !important;
+}
+html body section.s-black .press-strip img:hover,
+html body section.s-dark .press-strip img:hover{
+  opacity:1 !important;
+}
+
+/* Em fundo claro: TODOS ficam pretos (uniforme) */
+html body section.s-white .press-strip img,
+html body section.s-off .press-strip img{
+  filter:brightness(0) !important;
+  -webkit-filter:brightness(0) !important;
+  opacity:.65 !important;
+  max-height:24px !important;
+}
+html body section.s-white .press-strip img:hover,
+html body section.s-off .press-strip img:hover{
+  opacity:.9 !important;
+}
+
+/* Mobile sizing */
+@media (max-width:768px){
+  html body .press-strip img{ max-height:20px !important }
+}
+@media (max-width:480px){
+  html body .press-strip img{ max-height:16px !important }
+}
+
+/* ══════════ 4) FAQ cards — COMPACTOS quando minimizados (tablet) ══════════ */
+@media (min-width:641px) and (max-width:1280px){
+  html body .faq-list{
+    max-width:760px !important;
+    gap:8px !important;
+    padding:0 24px !important;
+  }
+  html body .faq-item{
+    border-radius:12px !important;
+    overflow:hidden !important;
+    max-height:none !important;
+    transition:all .25s ease !important;
+  }
+  /* Quando NÃO expandido — altura mínima */
+  html body .faq-item:not([open]):not(.open):not(.active):not(.is-open),
+  html body .faq-item[aria-expanded="false"]{
+    min-height:0 !important;
+  }
+  html body .faq-q,
+  html body .faq-question,
+  html body .faq-item > *:first-child,
+  html body .faq-item summary,
+  html body .faq-item button:first-child{
+    padding:13px 18px !important;
+    font-size:14.5px !important;
+    font-weight:700 !important;
+    line-height:1.3 !important;
+    min-height:auto !important;
+    height:auto !important;
+    display:flex !important;
+    align-items:center !important;
+    gap:12px !important;
+  }
+  html body .faq-a,
+  html body .faq-answer,
+  html body .faq-item [itemprop="acceptedAnswer"]{
+    padding:0 18px 13px !important;
+    font-size:13px !important;
+    line-height:1.55 !important;
+  }
+  /* FAQ icon smaller */
+  html body .faq-q svg, html body .faq-question svg,
+  html body .faq-item > *:first-child svg{
+    width:18px !important;
+    height:18px !important;
+    flex-shrink:0 !important;
+  }
+}
+
+@media (max-width:640px){
+  html body .faq-list{ gap:6px !important; padding:0 16px !important }
+  html body .faq-item{ border-radius:10px !important }
+  html body .faq-q, html body .faq-question{
+    padding:11px 14px !important;
+    font-size:13.5px !important;
+    line-height:1.3 !important;
+  }
+  html body .faq-a, html body .faq-answer{
+    padding:0 14px 11px !important;
+    font-size:12.5px !important;
+    line-height:1.5 !important;
+  }
+}
