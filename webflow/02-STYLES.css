@@ -10963,3 +10963,159 @@ html body [aria-label*="AgentReady" i]{
   html body .hero-phones{ transform:scale(.85) !important }
   html body .hi-chart-svg{ max-height:90px !important }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ROUND 22 v2026.04.24-r22 — ZERO internal scrolls em TABLET + iPad
+   Todos os browsers (Safari, Chrome, Firefox, Edge, Brave, DuckDuckGo, Thor)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Universal: body/html always only scroll ── */
+@media (min-width:641px) and (max-width:1280px){
+  html, body{
+    overflow-x:hidden !important;
+    overflow-y:auto !important;
+    height:auto !important;
+    max-height:none !important;
+    -webkit-overflow-scrolling:touch !important;
+    overscroll-behavior:contain !important;
+  }
+
+  /* ZERO internal scroll em TODAS as divs da página */
+  html body section,
+  html body section *,
+  html body article,
+  html body article *,
+  html body main,
+  html body main *,
+  html body .wrap,
+  html body .wrap *,
+  html body div[class*="card"],
+  html body div[class*="grid"],
+  html body div[class*="panel"],
+  html body div[class*="box"],
+  html body div[class*="section"],
+  html body div[class*="container"],
+  html body div[class*="wrap"],
+  html body div[class*="list"],
+  html body div[class*="row"],
+  html body div[class*="col"],
+  html body div[class*="item"]{
+    overflow:visible !important;
+    overflow-x:visible !important;
+    overflow-y:visible !important;
+    max-height:none !important;
+    height:auto !important;
+    -webkit-overflow-scrolling:auto !important;
+  }
+
+  /* Exceções necessárias — componentes onde overflow:hidden FAZ parte do design */
+  html body .hero,
+  html body .hero-section,
+  html body .phone,
+  html body .hero-phones .phone,
+  html body .press-strip,
+  html body .val-marquee-wrap,
+  html body [class*="marquee"],
+  html body svg,
+  html body .ph-skill-bar,
+  html body .ph-age-bar,
+  html body .sk-track,
+  html body .pillar-bar,
+  html body .rc-icon,
+  html body .val-icon{
+    overflow:hidden !important;
+  }
+
+  /* Hero scroll interno interdito */
+  html body section.hero,
+  html body .hero-section{
+    overflow-y:hidden !important;   /* hero só mostra o que cabe, resto é scrolls da página */
+    max-height:none !important;
+  }
+
+  /* Cards: permitir overflow visível para hover transforms não cortarem */
+  html body .risk-card,
+  html body .pro-card,
+  html body .step-card,
+  html body .val-card,
+  html body .validation-card,
+  html body .who-card,
+  html body .rev-card,
+  html body .hi-box,
+  html body .out-box,
+  html body .faq-item,
+  html body .rni-solution,
+  html body .step-checks{
+    overflow:visible !important;
+    max-height:none !important;
+    height:auto !important;
+  }
+
+  /* FAQ answers: não clippar, deixar crescer */
+  html body .faq-a, html body .faq-answer,
+  html body [itemprop="acceptedAnswer"]{
+    overflow:visible !important;
+    max-height:none !important;
+    height:auto !important;
+  }
+}
+
+/* ── iPad específico (portrait + landscape) — mesmos overrides ── */
+@media only screen and (min-device-width:768px) and (max-device-width:1366px){
+  html, body{
+    overflow-x:hidden !important;
+    overflow-y:auto !important;
+    -webkit-overflow-scrolling:touch !important;
+    position:static !important;
+  }
+
+  html body section:not(.hero):not(.hero-section),
+  html body .wrap,
+  html body .risk-card, html body .pro-card, html body .step-card,
+  html body .val-card, html body .who-card, html body .rev-card,
+  html body .hi-box, html body .faq-item, html body .step-checks,
+  html body .steps-grid, html body .risk-row, html body .who-grid,
+  html body .pro-grid, html body .val-grid, html body .reviews-grid{
+    overflow:visible !important;
+    -webkit-overflow-scrolling:auto !important;
+    max-height:none !important;
+    height:auto !important;
+  }
+}
+
+/* ── iPad Pro 11" (834x1194) + iPad Pro 12.9" (1024x1366) ── */
+@media only screen and (min-device-width:834px) and (max-device-width:1366px){
+  html body section, html body .wrap, html body div{
+    overflow-x:visible !important;
+    overflow-y:visible !important;
+  }
+  html body .hero, html body .hero-section{
+    overflow:hidden !important;   /* só esta exceção */
+  }
+}
+
+/* ── Force body scroll as ONLY scroll container no tablet ── */
+@media (min-width:641px) and (max-width:1280px){
+  /* WebKit/Blink/Gecko/Edge unified */
+  html body::-webkit-scrollbar{ display:initial !important }
+  html body > *::-webkit-scrollbar-track{ display:none !important }
+  html body > * > *::-webkit-scrollbar{ display:none !important }
+  html body > * > * > *::-webkit-scrollbar{ display:none !important }
+  /* Firefox */
+  html body > *{ scrollbar-width:none !important }
+  html body > * > *{ scrollbar-width:none !important }
+}
+
+/* ── Safari iOS momentum scrolling unified ── */
+@supports (-webkit-touch-callout:none){
+  @media (min-width:641px) and (max-width:1280px){
+    html, body{
+      -webkit-overflow-scrolling:touch !important;
+      overflow-y:auto !important;
+    }
+    html body *{
+      -webkit-overflow-scrolling:auto !important;
+    }
+  }
+}
