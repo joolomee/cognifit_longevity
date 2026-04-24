@@ -5158,3 +5158,124 @@ html body nav.nav-light .lang-btn:hover{
   background:#1a73e8 !important;
   color:#fff !important;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PRESS LOGOS — MUITO mais pequenos, todos visíveis lado-a-lado
+   ═══════════════════════════════════════════════════════════════════════ */
+
+html body .press-strip,
+html body .press-wrap,
+html body section:has(.press-strip) > .wrap,
+html body div:has(> .press-logo-card){
+  display:grid !important;
+  grid-template-columns:repeat(9, minmax(0, 1fr)) !important;
+  gap:clamp(8px, 1.2vw, 20px) !important;
+  align-items:center !important;
+  justify-items:center !important;
+  max-width:1280px !important;
+  margin:clamp(20px, 3vw, 40px) auto !important;
+  padding:0 clamp(16px, 3vw, 32px) !important;
+  width:100% !important;
+  overflow:visible !important;
+}
+@media (max-width:1024px){
+  html body .press-strip{ grid-template-columns:repeat(5, 1fr) !important; gap:14px !important }
+}
+@media (max-width:768px){
+  html body .press-strip{ grid-template-columns:repeat(4, 1fr) !important; gap:12px !important }
+}
+@media (max-width:560px){
+  html body .press-strip{ grid-template-columns:repeat(3, 1fr) !important; gap:10px !important }
+}
+@media (max-width:375px){
+  html body .press-strip{ grid-template-columns:repeat(2, 1fr) !important; gap:8px !important }
+}
+
+html body .press-strip .press-logo-card,
+html body .press-strip > div,
+html body .press-logo-card{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  background:transparent !important;
+  border:none !important;
+  box-shadow:none !important;
+  padding:4px !important;
+  margin:0 !important;
+  width:100% !important;
+  min-width:0 !important;
+  max-width:100% !important;
+  min-height:32px !important;
+  max-height:40px !important;
+  overflow:hidden !important;
+}
+
+/* IMG pequenos — max 26px altura, cor original */
+html body .press-strip img,
+html body .press-strip .press-logo-img,
+html body .press-strip .pl,
+html body .press-logo-card img{
+  max-width:100% !important;
+  width:auto !important;
+  max-height:26px !important;
+  height:auto !important;
+  object-fit:contain !important;
+  background:transparent !important;
+  filter:none !important;
+  -webkit-filter:none !important;
+  opacity:.85 !important;
+  mix-blend-mode:normal !important;
+  padding:0 !important;
+  margin:0 !important;
+  display:block !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  transition:opacity .2s !important;
+}
+html body .press-strip img:hover{ opacity:1 !important }
+
+/* Em fundo escuro: invert para logos pretos serem legíveis */
+html body section.s-black .press-strip img,
+html body section.s-dark .press-strip img,
+html body section[class*="black"] .press-strip img{
+  filter:invert(1) brightness(1.2) !important;
+  opacity:.75 !important;
+  background:transparent !important;
+  padding:0 !important;
+  box-shadow:none !important;
+  max-height:24px !important;
+}
+html body section.s-black .press-strip img:hover,
+html body section.s-dark .press-strip img:hover{ opacity:1 !important }
+
+/* Em fundo claro: sem invert */
+html body section.s-white .press-strip img,
+html body section.s-off .press-strip img{
+  filter:none !important;
+  opacity:.7 !important;
+  max-height:26px !important;
+}
+
+/* Responsive alturas */
+@media (max-width:768px){
+  html body .press-strip img{ max-height:20px !important }
+  html body section.s-black .press-strip img,
+  html body section.s-dark .press-strip img{ max-height:18px !important }
+}
+@media (max-width:480px){
+  html body .press-strip img{ max-height:18px !important }
+  html body section.s-black .press-strip img,
+  html body section.s-dark .press-strip img{ max-height:16px !important }
+}
+
+/* Reset stray big-image rules */
+html body .press-strip-inner{
+  display:contents !important;
+}
+html body .press-strip img[width],
+html body .press-strip img[height]{
+  max-height:26px !important;
+  width:auto !important;
+  height:auto !important;
+}
