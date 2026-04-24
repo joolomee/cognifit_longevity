@@ -10802,3 +10802,164 @@ html body [aria-label*="AgentReady" i]{
   position:absolute !important;
   left:-9999px !important;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ROUND 21 v2026.04.24-r21 — TABLET media queries consolidados + corrigidos
+   Prioridade alta para vencer conflitos acumulados (!important em cascata)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ────────────────────────────────────────────────────────────────────
+   SMALL TABLET & LARGE PHONE LANDSCAPE (641-768px) — consolidado
+   ──────────────────────────────────────────────────────────────────── */
+@media (min-width:641px) and (max-width:768px){
+  /* Hero */
+  html body section.hero, html body .hero-section{
+    min-height:100dvh !important;
+    max-height:none !important;
+    padding:80px 0 40px !important;
+  }
+  html body .hero-content{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:24px !important;
+    padding:0 32px !important;
+    text-align:center !important;
+    align-items:center !important;
+  }
+  html body .hero-h1{
+    font-size:clamp(32px, 5vw, 42px) !important;
+    max-width:640px !important;
+  }
+  html body .hero-sub{ max-width:520px !important; margin-left:auto !important; margin-right:auto !important }
+  html body .hero-phones{ transform:scale(.75) !important; margin:-40px auto -20px !important }
+  /* Nav */
+  html body #nav .nav-links{ display:none !important }
+  html body #nav{ padding:12px 24px !important }
+  /* Grids — 2-col */
+  html body .risk-row,
+  html body .pro-grid,
+  html body .steps-grid,
+  html body .val-grid,
+  html body .reviews-grid,
+  html body .rev-grid{
+    grid-template-columns:repeat(2, 1fr) !important;
+    gap:16px !important;
+  }
+  html body .who-grid{
+    grid-template-columns:repeat(2, 1fr) !important;
+    gap:14px !important;
+  }
+  /* Press 4-col */
+  html body .press-strip{
+    grid-template-columns:repeat(4, 1fr) !important;
+    gap:16px !important;
+  }
+  html body .press-strip img{ max-height:24px !important }
+  /* Charts stack */
+  html body .hi-charts{ grid-template-columns:1fr 1fr !important; gap:12px !important }
+  html body .hi-chart-svg{ max-height:90px !important }
+  /* Section typography */
+  html body h2, html body .section-title{ font-size:clamp(26px, 4.5vw, 36px) !important }
+  /* Trust stats 2x2 */
+  html body .trust-stats, html body .stats-row{
+    grid-template-columns:repeat(2, 1fr) !important;
+    gap:24px 16px !important;
+  }
+  /* Footer 2-col */
+  html body footer > div:nth-child(2){
+    grid-template-columns:repeat(2, 1fr) !important;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   STANDARD TABLET PORTRAIT (769-1024px) — iPad / Galaxy Tab portrait
+   ──────────────────────────────────────────────────────────────────── */
+@media (min-width:769px) and (max-width:1024px) and (orientation:portrait){
+  /* Nav */
+  html body #nav{ padding:14px 32px !important; height:64px !important }
+  html body #nav .nav-links{ display:flex !important; gap:20px !important }
+  html body #nav .nav-link{ font-size:12px !important }
+  /* Hero */
+  html body section.hero{ min-height:100dvh !important; max-height:none !important; padding:90px 0 40px !important }
+  html body .hero-content{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:28px !important;
+    padding:0 40px !important;
+    text-align:center !important;
+    align-items:center !important;
+    max-width:780px !important;
+    margin:0 auto !important;
+  }
+  html body .hero-h1{ font-size:clamp(38px, 5.5vw, 52px) !important; max-width:720px !important }
+  html body .hero-sub{ max-width:560px !important }
+  html body .hero-phones{ transform:scale(.9) !important; margin:-10px auto 0 !important }
+  /* Grids */
+  html body .risk-row{ grid-template-columns:repeat(2, 1fr) !important; gap:18px !important }
+  html body .pro-grid{ grid-template-columns:repeat(2, 1fr) !important; gap:20px !important }
+  html body .steps-grid{ grid-template-columns:repeat(2, 1fr) !important; gap:20px !important }
+  html body .who-grid{ grid-template-columns:repeat(4, 1fr) !important; gap:14px !important }
+  html body .val-grid{ grid-template-columns:repeat(3, 1fr) !important; gap:18px !important }
+  html body .reviews-grid{ grid-template-columns:repeat(2, 1fr) !important; gap:20px !important }
+  html body .press-strip{ grid-template-columns:repeat(5, 1fr) !important; gap:18px !important }
+  html body .press-strip img{ max-height:26px !important }
+  /* Section typography */
+  html body h2, html body .section-title{ font-size:clamp(30px, 4vw, 42px) !important }
+  /* Charts */
+  html body .hi-charts{ grid-template-columns:1fr 1fr !important; gap:16px !important }
+  html body .hi-chart-svg{ max-height:100px !important }
+  /* Steps — na tablet portrait, min-heights reduzidas */
+  html body .steps-grid .step-card h3{ min-height:auto !important }
+  html body .steps-grid .step-card p{ min-height:auto !important; margin-bottom:16px !important }
+  /* Trust stats 4-col ok */
+  html body .trust-stats, html body .stats-row{ grid-template-columns:repeat(4, 1fr) !important }
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   LANDSCAPE TABLET (769-1280px landscape) — iPad/Galaxy Tab landscape
+   ──────────────────────────────────────────────────────────────────── */
+@media (min-width:769px) and (max-width:1280px) and (orientation:landscape){
+  html body section.hero{
+    min-height:100dvh !important;
+    max-height:100dvh !important;
+    padding:80px 0 40px !important;
+  }
+  html body .hero-content{
+    display:grid !important;
+    grid-template-columns:1fr minmax(340px, 420px) !important;
+    gap:40px !important;
+    align-items:center !important;
+    text-align:left !important;
+    padding:0 48px !important;
+    max-width:1200px !important;
+    margin:0 auto !important;
+  }
+  html body .hero-h1{ font-size:clamp(34px, 4vw, 46px) !important; text-align:left !important; max-width:none !important }
+  html body .hero-sub{ text-align:left !important; margin-left:0 !important; margin-right:0 !important }
+  html body .hero-phones{ transform:scale(.85) !important; margin:0 !important }
+  /* Nav */
+  html body #nav .nav-links{ display:flex !important }
+  /* Grids desktop-like */
+  html body .risk-row, html body .pro-grid, html body .steps-grid{
+    grid-template-columns:repeat(4, 1fr) !important;
+    gap:16px !important;
+  }
+  html body .who-grid{ grid-template-columns:repeat(4, 1fr) !important }
+  html body .val-grid{ grid-template-columns:repeat(3, 1fr) !important }
+  html body .press-strip{ grid-template-columns:repeat(9, 1fr) !important; gap:14px !important }
+  html body .press-strip img{ max-height:24px !important }
+  /* Charts */
+  html body .hi-charts{ grid-template-columns:1fr 1fr !important }
+  /* Steps min-heights */
+  html body .steps-grid .step-card h3{ min-height:48px !important }
+  html body .steps-grid .step-card p{ min-height:68px !important }
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   iPad Mini específico (768x1024 portrait)
+   ──────────────────────────────────────────────────────────────────── */
+@media only screen and (min-device-width:768px) and (max-device-width:1024px) and (orientation:portrait){
+  html body .hero-phones{ transform:scale(.85) !important }
+  html body .hi-chart-svg{ max-height:90px !important }
+}
