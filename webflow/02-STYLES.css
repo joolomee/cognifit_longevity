@@ -8825,3 +8825,220 @@ html body .risk-card p, html body .risk-card .rc-body{
   font-size:clamp(13px, 1.2vw, 15px) !important;
   line-height:1.5 !important;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ROUND 10 v2026.04.24-r10 — RESPONSIVE AUDIT
+   Mobile (320-640) + Tablet (641-1024) + landscape orientations
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ────────────────────────────────────────────────────────────────────
+   VERY SMALL MOBILE (≤375px) — iPhone SE 1st gen, Galaxy Fold closed
+   ──────────────────────────────────────────────────────────────────── */
+@media (max-width:375px){
+  html body{ font-size:15px !important }
+  html body #nav{ padding:12px 16px !important; height:56px !important }
+  html body #nav .logo-white, html body #nav .logo-dark{ height:26px !important }
+  html body #nav .nav-links{ display:none !important }
+  html body #nav .btn-login{ font-size:11px !important; padding:6px 12px !important; min-height:32px !important }
+  html body #nav .lang-btn, html body #nav .nav-r > span{ font-size:10px !important; padding:4px 8px !important; min-height:30px !important }
+  html body section.hero{ min-height:100dvh !important; max-height:none !important; padding:72px 0 32px !important }
+  html body .hero-content{ padding:0 16px !important; gap:16px !important }
+  html body .hero-h1{ font-size:26px !important; line-height:1.08 !important }
+  html body .hero-sub{ font-size:13px !important; line-height:1.5 !important }
+  html body .hero-read-time{ font-size:11px !important }
+  html body .btn-primary{ padding:12px 20px !important; font-size:13px !important; width:100% !important }
+  html body .hero-rating .rating-n{ font-size:22px !important }
+  html body .hero-rating .rating-number{ font-size:14px !important }
+  html body .hero-rating .rating-users{ font-size:10px !important }
+  html body .guarantee-row{ flex-direction:column !important; gap:6px !important; width:100% !important }
+  html body .g-badge{ width:100% !important; text-align:center !important; font-size:10px !important; padding:6px 10px !important }
+  html body .hero-phones{ transform:scale(.5) !important; margin:-60px auto -40px !important; min-height:440px !important }
+  html body .wrap{ padding:0 16px !important }
+  html body h2, html body .section-title{ font-size:24px !important; line-height:1.15 !important }
+  html body h3{ font-size:17px !important }
+  html body .press-strip{ grid-template-columns:repeat(2, 1fr) !important; gap:10px !important }
+  html body .press-strip img{ max-height:18px !important }
+  html body .risk-row{ grid-template-columns:1fr !important; gap:12px !important; padding:0 16px !important }
+  html body .risk-card{ padding:20px 16px !important; min-height:auto !important }
+  html body .risk-card h3{ font-size:18px !important }
+  html body .pro-grid{ grid-template-columns:1fr !important }
+  html body .who-grid{ grid-template-columns:1fr 1fr !important; gap:10px !important }
+  html body .who-card{ padding:14px 10px !important }
+  html body .who-card h3{ font-size:13px !important }
+  html body .who-card p{ font-size:11px !important }
+  html body .steps-grid{ grid-template-columns:1fr !important; gap:12px !important }
+  html body .val-card{ padding:20px !important }
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   SMALL MOBILE (376-480px) — iPhone 12 mini, 13, Pixel 5
+   ──────────────────────────────────────────────────────────────────── */
+@media (min-width:376px) and (max-width:480px){
+  html body{ font-size:15px !important }
+  html body #nav{ padding:12px 20px !important; height:60px !important }
+  html body #nav .logo-white, html body #nav .logo-dark{ height:28px !important }
+  html body #nav .nav-links{ display:none !important }
+  html body section.hero{ padding:80px 0 32px !important; min-height:100dvh !important }
+  html body .hero-content{ padding:0 20px !important }
+  html body .hero-h1{ font-size:clamp(28px, 8vw, 34px) !important }
+  html body .hero-sub{ font-size:14px !important }
+  html body .hero-phones{ transform:scale(.58) !important; margin:-50px auto -30px !important; min-height:440px !important }
+  html body .press-strip{ grid-template-columns:repeat(3, 1fr) !important; gap:12px !important }
+  html body .press-strip img{ max-height:20px !important }
+  html body .risk-row, html body .pro-grid{ grid-template-columns:1fr !important }
+  html body .who-grid{ grid-template-columns:1fr 1fr !important; gap:12px !important }
+  html body .steps-grid{ grid-template-columns:1fr !important; gap:12px !important }
+  html body h2, html body .section-title{ font-size:26px !important }
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   STANDARD MOBILE (481-640px) — iPhone Pro Max, large Androids
+   ──────────────────────────────────────────────────────────────────── */
+@media (min-width:481px) and (max-width:640px){
+  html body #nav{ padding:14px 24px !important }
+  html body #nav .nav-links{ display:none !important }
+  html body .hero-h1{ font-size:clamp(32px, 7vw, 40px) !important }
+  html body .hero-phones{ transform:scale(.65) !important; margin:-40px auto -20px !important }
+  html body .press-strip{ grid-template-columns:repeat(3, 1fr) !important; gap:16px !important }
+  html body .press-strip img{ max-height:22px !important }
+  html body .risk-row{ grid-template-columns:1fr 1fr !important; gap:14px !important }
+  html body .pro-grid{ grid-template-columns:1fr !important }
+  html body .who-grid{ grid-template-columns:1fr 1fr !important; gap:14px !important }
+  html body .steps-grid{ grid-template-columns:1fr 1fr !important; gap:14px !important }
+  html body .rev-grid, html body .val-grid{ grid-template-columns:1fr !important; gap:16px !important }
+  html body h2, html body .section-title{ font-size:28px !important }
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   LARGE MOBILE / SMALL TABLET (641-768px) — Foldables open, small tablets
+   ──────────────────────────────────────────────────────────────────── */
+@media (min-width:641px) and (max-width:768px){
+  html body #nav .nav-links{ display:none !important }
+  html body .hero-content{ padding:0 28px !important }
+  html body .hero-h1{ font-size:clamp(36px, 6vw, 46px) !important }
+  html body .hero-phones{ transform:scale(.7) !important; margin:-30px auto !important }
+  html body .press-strip{ grid-template-columns:repeat(4, 1fr) !important; gap:18px !important }
+  html body .press-strip img{ max-height:24px !important }
+  html body .risk-row{ grid-template-columns:1fr 1fr !important; gap:16px !important }
+  html body .pro-grid{ grid-template-columns:1fr 1fr !important; gap:16px !important }
+  html body .who-grid{ grid-template-columns:repeat(3, 1fr) !important; gap:14px !important }
+  html body .steps-grid{ grid-template-columns:1fr 1fr !important; gap:16px !important }
+  html body .val-grid, html body .rev-grid{ grid-template-columns:1fr 1fr !important; gap:18px !important }
+  html body h2, html body .section-title{ font-size:32px !important }
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   STANDARD TABLET (769-1024px) — iPad portrait, Galaxy Tab portrait
+   ──────────────────────────────────────────────────────────────────── */
+@media (min-width:769px) and (max-width:1024px){
+  html body #nav{ padding:14px 32px !important; height:64px !important }
+  html body #nav .nav-links{ display:flex !important; gap:18px !important }
+  html body #nav .nav-link{ font-size:12px !important }
+  html body section.hero{ min-height:100dvh !important }
+  html body .hero-content{ padding:0 40px !important; display:flex !important; flex-direction:column !important; gap:32px !important; align-items:center !important; text-align:center !important }
+  html body .hero-h1{ font-size:clamp(40px, 5.5vw, 56px) !important; max-width:720px !important }
+  html body .hero-sub{ max-width:560px !important; margin-left:auto !important; margin-right:auto !important }
+  html body .hero-phones{ transform:scale(.85) !important; margin:-20px auto 0 !important }
+  html body .press-strip{ grid-template-columns:repeat(5, 1fr) !important; gap:20px !important }
+  html body .press-strip img{ max-height:26px !important }
+  html body .risk-row{ grid-template-columns:repeat(2, 1fr) !important; gap:18px !important }
+  html body .pro-grid{ grid-template-columns:repeat(2, 1fr) !important; gap:20px !important }
+  html body .who-grid{ grid-template-columns:repeat(3, 1fr) !important; gap:16px !important }
+  html body .steps-grid{ grid-template-columns:repeat(2, 1fr) !important; gap:20px !important }
+  html body .val-grid{ grid-template-columns:repeat(3, 1fr) !important; gap:20px !important }
+  html body .rev-grid{ grid-template-columns:repeat(2, 1fr) !important; gap:20px !important }
+  html body h2, html body .section-title{ font-size:clamp(32px, 4vw, 42px) !important }
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   LANDSCAPE PHONES (short-viewport, ≤500px height)
+   ──────────────────────────────────────────────────────────────────── */
+@media (max-height:500px) and (orientation:landscape){
+  html body section.hero{
+    min-height:auto !important;
+    max-height:none !important;
+    height:auto !important;
+    padding:72px 20px 32px !important;
+  }
+  html body .hero-content{
+    display:grid !important;
+    grid-template-columns:1fr 1fr !important;
+    gap:24px !important;
+    align-items:center !important;
+  }
+  html body .hero-h1{ font-size:clamp(22px, 4vw, 32px) !important }
+  html body .hero-sub{ font-size:12px !important }
+  html body .hero-rating, html body .hero-read-time, html body .guarantee-row{ display:none !important }
+  html body .hero-phones{ transform:scale(.55) !important; margin:0 !important; max-height:280px !important; min-height:auto !important }
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   LANDSCAPE TABLETS (769-1280px landscape)
+   ──────────────────────────────────────────────────────────────────── */
+@media (min-width:769px) and (max-width:1280px) and (orientation:landscape){
+  html body section.hero{ min-height:100dvh !important; max-height:100dvh !important }
+  html body .hero-content{
+    display:grid !important;
+    grid-template-columns:1fr minmax(320px, 400px) !important;
+    gap:32px !important;
+    align-items:center !important;
+    text-align:left !important;
+    padding:0 40px !important;
+  }
+  html body .hero-h1{ font-size:clamp(32px, 4vw, 44px) !important; max-width:none !important }
+  html body .hero-phones{ transform:scale(.75) !important; margin:0 !important }
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   EXTRA-TALL MOBILES (e.g. Galaxy S Ultra) — prevent huge gaps
+   ──────────────────────────────────────────────────────────────────── */
+@media (max-width:480px) and (min-height:900px){
+  html body section.hero{ padding-top:100px !important; padding-bottom:48px !important }
+  html body .hero-content{ gap:28px !important }
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   COMMON MOBILE FIXES (≤768px) — nav, buttons, typography
+   ──────────────────────────────────────────────────────────────────── */
+@media (max-width:768px){
+  /* Scroll-top button size */
+  html body .scroll-top-btn{ width:40px !important; height:40px !important; bottom:16px !important; right:16px !important }
+  /* Force no horizontal scroll */
+  html, body{ overflow-x:hidden !important; width:100% !important; max-width:100vw !important }
+  /* Footer stacking */
+  html body footer{ padding:32px 20px !important }
+  html body .footer-bottom{ flex-direction:column !important; gap:12px !important; text-align:center !important }
+  /* FAQ */
+  html body .faq-wrap, html body .faq-list{ padding:0 16px !important }
+  html body .faq-q, html body .faq-question{ font-size:15px !important; padding:16px 14px !important }
+  html body .faq-a, html body .faq-answer{ font-size:13px !important; padding:0 14px 16px !important; line-height:1.55 !important }
+  /* Closing/CTA */
+  html body section.closing h2, html body .closing h2{ font-size:clamp(24px, 6vw, 32px) !important }
+  html body section.closing p, html body .closing p{ font-size:13px !important }
+  /* Section padding */
+  html body section{ padding-left:0 !important; padding-right:0 !important }
+  html body section .wrap{ padding-left:16px !important; padding-right:16px !important }
+  /* Badge/chip responsive */
+  html body .trust-chip{ font-size:11px !important; padding:6px 12px !important }
+  /* Step cards */
+  html body .step-card{ padding:18px 14px !important }
+  html body .step-n{ font-size:14px !important }
+  html body .step-card h3{ font-size:16px !important }
+  html body .step-chk{ font-size:12px !important }
+  /* Who cards — emoji + text compact */
+  html body .who-card h3{ font-size:14px !important; margin-bottom:4px !important }
+  html body .who-card p{ font-size:11px !important; line-height:1.4 !important }
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   TOUCH DEVICES — remove hover effects to avoid sticky hover states
+   ──────────────────────────────────────────────────────────────────── */
+@media (hover:none) and (pointer:coarse){
+  html body .val-card:hover, html body .pro-card:hover,
+  html body .risk-card:hover, html body .step-card:hover{
+    transform:none !important;
+    border-color:inherit !important;
+  }
+  html body .val-card:hover svg{ transform:none !important }
+}
