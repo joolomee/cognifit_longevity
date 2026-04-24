@@ -12506,3 +12506,120 @@ html body .hero-h1 span[data-i18n="hero.h1.line2"]{
     padding:5px 10px !important;
   }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ROUND 30 v2026.04.24-r30 — FINAL POLISH + Accessibility + Performance
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── ACCESSIBILITY: focus visible, skip link, ARIA ── */
+html body *:focus-visible{
+  outline:2px solid #4a9eff !important;
+  outline-offset:3px !important;
+  border-radius:4px !important;
+}
+html body .skip-link{
+  position:absolute !important;
+  left:-9999px !important;
+  top:0 !important;
+}
+html body .skip-link:focus{
+  left:20px !important;
+  top:20px !important;
+  z-index:10000 !important;
+  padding:12px 20px !important;
+  background:var(--blue) !important;
+  color:#fff !important;
+  text-decoration:none !important;
+  border-radius:8px !important;
+}
+
+/* ── CONTRAST ENHANCEMENT: texto mínimo WCAG AA (4.5:1) ── */
+html body section.s-white p,
+html body section.s-off p{
+  color:#2a2d33 !important;   /* melhor contraste que #4a4d55 */
+}
+html body section.s-black p,
+html body section.s-dark p{
+  color:rgba(255,255,255,.82) !important;  /* subiu de .72 para .82 */
+}
+
+/* ── PERFORMANCE: reduce animations in users who prefer reduced motion ── */
+@media (prefers-reduced-motion:reduce){
+  *, *::before, *::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+    scroll-behavior:auto !important;
+  }
+  html body .hero-phones .phone{ animation:none !important }
+  html body .val-card svg{ animation:none !important }
+  html body .scroll-top-btn{ animation:none !important }
+}
+
+/* ── IMAGES: lazy loading feedback ── */
+html body img[loading="lazy"]{
+  transition:opacity .3s ease !important;
+}
+html body img[loading="lazy"]:not([src]){
+  opacity:0 !important;
+}
+
+/* ── PRINT: clean printable version ── */
+@media print{
+  html body nav, html body footer, html body .scroll-top-btn,
+  html body .hero-scroll-hint, html body .reading-progress{
+    display:none !important;
+  }
+  html body section{ page-break-inside:avoid !important }
+}
+
+/* ── DARK MODE preferred users: ensure no flash of white ── */
+@media (prefers-color-scheme:dark){
+  html{ color-scheme:dark light }
+}
+
+/* ── SELECTION style ── */
+::selection{
+  background:rgba(26,115,232,.3) !important;
+  color:#fff !important;
+}
+
+/* ── FINAL fix: prevent text zoom on iOS Safari rotate ── */
+html{
+  -webkit-text-size-adjust:100% !important;
+  text-size-adjust:100% !important;
+}
+/* iOS Safari: fix 100vh with 100dvh fallback */
+@supports not (height:100dvh){
+  html body section.hero, html body .hero-section{
+    min-height:100vh !important;
+  }
+}
+
+/* ── KEY CTA visibility ensurance ── */
+html body .btn-primary:not(:disabled),
+html body .btn-white:not(:disabled),
+html body .btn-secondary:not(:disabled),
+html body a[class*="btn"]:not(:disabled){
+  cursor:pointer !important;
+  user-select:none !important;
+  -webkit-user-select:none !important;
+}
+
+/* ── Ensure heading hierarchy is semantic ── */
+html body h1{ font-weight:900 !important }
+html body h2{ font-weight:900 !important }
+html body h3{ font-weight:800 !important }
+html body h4{ font-weight:800 !important }
+
+/* ── Link visibility global ── */
+html body a:not([class]){
+  color:var(--blue) !important;
+  text-decoration:underline !important;
+  text-underline-offset:2px !important;
+}
+html body a:not([class]):hover{
+  color:var(--blue-d) !important;
+  text-decoration-thickness:2px !important;
+}
