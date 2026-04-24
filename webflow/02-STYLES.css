@@ -7521,3 +7521,94 @@ html body div[style*="overflow-y:scroll"]{
   overflow-y:visible !important;
   max-height:none !important;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LIGHTHOUSE 100 — CLS, TBT, SEO, A11Y fixes
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* 1) CLS FIX — aspect-ratio em TODAS as imagens (evita layout shift) */
+html body img{
+  aspect-ratio:attr(width) / attr(height) !important;
+  height:auto !important;
+  max-width:100% !important;
+}
+html body img:not([width]):not([height]){
+  aspect-ratio:auto !important;
+}
+/* Hero phones — dimensions reservadas */
+html body .hero-phones{
+  aspect-ratio:auto !important;
+  contain:layout style !important;
+}
+/* Press logos — reserve space */
+html body .press-strip img{
+  aspect-ratio:3/1 !important;
+  object-fit:contain !important;
+}
+/* Val marquee images */
+html body .val-marquee-img{
+  aspect-ratio:8/1 !important;
+  object-fit:contain !important;
+}
+/* Pro-card images */
+html body .pro-card img{
+  aspect-ratio:1/1 !important;
+  object-fit:contain !important;
+}
+/* Device mockup image */
+html body img[alt*="devices" i]{
+  aspect-ratio:16/9 !important;
+  max-width:100% !important;
+}
+/* OG image */
+html body img[alt*="longevity" i]{
+  aspect-ratio:16/9 !important;
+}
+
+/* 2) FONT-DISPLAY swap fix — evita FOIT, aceita brief FOUT */
+@font-face{ font-family:'Plus Jakarta Sans'; font-display:swap }
+
+/* 3) CONTENT-VISIBILITY — acelera render de secções off-screen */
+html body section:not(.hero):not(nav){
+  content-visibility:auto !important;
+  contain-intrinsic-size:auto 800px !important;
+}
+
+/* 4) WILL-CHANGE limitado — só onde animation corre */
+html body .hero-phones .phone{
+  will-change:transform !important;
+}
+html body *:not(.hero-phones):not(.phone):not(.val-icon svg):not(.partners-marquee-inner){
+  will-change:auto !important;
+}
+
+/* 5) ACCESSIBILITY fixes — contraste labels pequenos */
+html body small, html body .footer-bottom, html body .val-more,
+html body .hero-read-time{
+  color:rgba(255,255,255,.7) !important;   /* era .4-.5, sobe para .7 (WCAG AA) */
+}
+html body section.s-white small, html body section.s-off small{
+  color:rgba(0,0,0,.7) !important;
+}
+
+/* 6) FOCUS visible outline — accessible */
+html body a:focus-visible, html body button:focus-visible{
+  outline:3px solid #1a73e8 !important;
+  outline-offset:2px !important;
+  border-radius:4px !important;
+}
+
+/* 7) TAP TARGET size — accessibility mínimo 48x48 */
+html body a[href], html body button{
+  min-height:44px !important;
+  min-width:44px !important;
+}
+html body .nav-link, html body .press-strip img{
+  min-height:auto !important;    /* exceptions: nav links + logos */
+}
+
+/* 8) TOUCH action optimization */
+html body a, html body button{
+  touch-action:manipulation !important;
+}
