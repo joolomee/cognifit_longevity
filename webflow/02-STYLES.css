@@ -9042,3 +9042,231 @@ html body .risk-card p, html body .risk-card .rc-body{
   }
   html body .val-card:hover svg{ transform:none !important }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ROUND 11 v2026.04.24-r11 — REPAIR Pro-cards grid + remove purple images
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Reset & fix pro-grid layout ── */
+html body .pro-grid,
+html body section:has(.pro-card) > .wrap,
+html body section .pro-grid{
+  display:grid !important;
+  grid-template-columns:repeat(4, minmax(0, 1fr)) !important;
+  gap:clamp(16px, 2vw, 24px) !important;
+  width:100% !important;
+  max-width:1280px !important;
+  margin:clamp(20px, 3vw, 40px) auto !important;
+  padding:0 clamp(16px, 3vw, 32px) !important;
+}
+@media (max-width:1200px){
+  html body .pro-grid{ grid-template-columns:repeat(2, 1fr) !important }
+}
+@media (max-width:640px){
+  html body .pro-grid{ grid-template-columns:1fr !important }
+}
+
+/* ── Pro card container — clean dark, proper width ── */
+html body .pro-card{
+  width:100% !important;
+  max-width:none !important;
+  min-width:0 !important;
+  background:#0c0d10 !important;
+  border:1px solid rgba(255,255,255,.08) !important;
+  border-radius:16px !important;
+  padding:0 !important;
+  display:flex !important;
+  flex-direction:column !important;
+  overflow:hidden !important;
+  position:relative !important;
+  box-shadow:0 10px 30px rgba(0,0,0,.3) !important;
+}
+html body .pro-card:hover{
+  border-color:rgba(255,255,255,.2) !important;
+  transform:translateY(-4px) !important;
+}
+
+/* ── Pro card TOP section (icon area) — dark, contained, NO purple ── */
+html body .pro-card > *:first-child,
+html body .pro-card .pro-top,
+html body .pro-card .pro-hero-img,
+html body .pro-card > img:first-child,
+html body .pro-card > div:first-child{
+  width:100% !important;
+  height:auto !important;
+  min-height:120px !important;
+  max-height:140px !important;
+  aspect-ratio:auto !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  padding:24px !important;
+  background:linear-gradient(180deg, #14161a 0%, #0c0d10 100%) !important;
+  border-bottom:1px solid rgba(255,255,255,.06) !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+}
+
+/* ── ICONS inside top area — uniform size, NO purple, high contrast ── */
+html body .pro-card img,
+html body .pro-card .pro-top img,
+html body .pro-card > *:first-child img{
+  width:72px !important;
+  height:72px !important;
+  max-width:72px !important;
+  max-height:72px !important;
+  min-width:72px !important;
+  min-height:72px !important;
+  object-fit:contain !important;
+  /* Remove purple background via blend mode + filter */
+  mix-blend-mode:screen !important;
+  filter:brightness(1.8) contrast(1.15) saturate(1.1) !important;
+  background:transparent !important;
+}
+/* For non-image icon elements (SVG, div) */
+html body .pro-card > *:first-child svg,
+html body .pro-card .pro-icon svg{
+  width:56px !important;
+  height:56px !important;
+  color:var(--c, #1a73e8) !important;
+  stroke:var(--c, #1a73e8) !important;
+  fill:none !important;
+  stroke-width:1.8 !important;
+  filter:drop-shadow(0 4px 12px rgba(26,115,232,.3)) !important;
+  mix-blend-mode:normal !important;
+}
+
+/* ── Colored accent bar top (only ~3px, uses --c var) ── */
+html body .pro-card::before{
+  content:'' !important;
+  position:absolute !important;
+  top:0 !important; left:0 !important; right:0 !important;
+  height:3px !important;
+  background:var(--c, #1a73e8) !important;
+  z-index:3 !important;
+  display:block !important;
+}
+
+/* ── Body content padding ── */
+html body .pro-card > *:not(:first-child){
+  padding-left:20px !important;
+  padding-right:20px !important;
+}
+html body .pro-card h3, html body .pro-card .pro-title{
+  color:#fff !important;
+  font-size:17px !important;
+  font-weight:800 !important;
+  line-height:1.25 !important;
+  margin:18px 0 10px !important;
+  padding:0 20px !important;
+}
+html body .pro-card p, html body .pro-card .pro-desc{
+  color:rgba(255,255,255,.72) !important;
+  font-size:13px !important;
+  line-height:1.55 !important;
+  margin:0 0 16px !important;
+  padding:0 20px !important;
+  min-height:85px !important;
+}
+html body .pro-card .pro-stats{
+  display:flex !important;
+  gap:16px !important;
+  padding:14px 20px !important;
+  margin:0 !important;
+  border-top:1px solid rgba(255,255,255,.08) !important;
+  border-bottom:none !important;
+}
+html body .pro-card .pro-stat, html body .pro-card .pro-stats > div{
+  flex:1 !important;
+}
+html body .pro-card .pro-stat-num, html body .pro-card .pro-stats strong{
+  color:#fff !important;
+  font-size:20px !important;
+  font-weight:900 !important;
+  display:block !important;
+  line-height:1 !important;
+}
+html body .pro-card .pro-stat-lbl, html body .pro-card .pro-stats span{
+  color:rgba(255,255,255,.55) !important;
+  font-size:11px !important;
+  font-weight:500 !important;
+  letter-spacing:.02em !important;
+  text-transform:none !important;
+  display:block !important;
+  margin-top:2px !important;
+}
+
+/* ── CTA button (colored per card) ── */
+html body .pro-card .pro-cta,
+html body .pro-card a.pro-cta{
+  display:flex !important;
+  justify-content:center !important;
+  align-items:center !important;
+  gap:8px !important;
+  padding:12px 20px !important;
+  margin:4px 20px 20px !important;
+  background:var(--c, #1a73e8) !important;
+  color:#fff !important;
+  border-radius:100px !important;
+  font-weight:800 !important;
+  font-size:13px !important;
+  text-decoration:none !important;
+  text-transform:none !important;
+  transition:filter .2s, transform .2s !important;
+  box-shadow:0 6px 16px rgba(0,0,0,.3) !important;
+}
+html body .pro-card .pro-cta:hover{
+  filter:brightness(1.12) !important;
+  transform:translateY(-2px) !important;
+}
+
+/* ── Descubra section — layout em flex centrado ── */
+html body section:has(.pro-grid) .wrap > *:not(.pro-grid){
+  text-align:center !important;
+}
+html body section:has(.pro-grid){
+  padding:clamp(48px, 6vh, 96px) 0 !important;
+}
+html body section:has(.pro-grid) .eyebrow,
+html body section:has(.pro-grid) [class*="eyebrow"]{
+  color:rgba(255,255,255,.5) !important;
+  font-size:12px !important;
+  letter-spacing:.12em !important;
+  text-transform:uppercase !important;
+  margin-bottom:16px !important;
+  display:block !important;
+  text-align:center !important;
+}
+html body section:has(.pro-grid) h2,
+html body section:has(.pro-grid) .section-title{
+  font-size:clamp(32px, 4vw, 48px) !important;
+  font-weight:900 !important;
+  margin-bottom:clamp(16px, 2vw, 24px) !important;
+  text-align:center !important;
+  color:#fff !important;
+  line-height:1.1 !important;
+}
+html body section:has(.pro-grid) .section-sub,
+html body section:has(.pro-grid) p.lead{
+  font-size:clamp(14px, 1.5vw, 17px) !important;
+  line-height:1.6 !important;
+  color:rgba(255,255,255,.7) !important;
+  max-width:640px !important;
+  margin:0 auto clamp(32px, 4vw, 56px) !important;
+  text-align:center !important;
+}
+
+/* Responsive pro-grid on tablet/mobile */
+@media (max-width:1024px){
+  html body .pro-grid{ grid-template-columns:repeat(2, 1fr) !important }
+  html body .pro-card > *:first-child{ min-height:110px !important; padding:20px !important }
+  html body .pro-card img{ width:64px !important; height:64px !important; min-width:64px !important; min-height:64px !important }
+}
+@media (max-width:640px){
+  html body .pro-grid{ grid-template-columns:1fr !important; gap:14px !important }
+  html body .pro-card > *:first-child{ min-height:100px !important; max-height:120px !important }
+  html body .pro-card img{ width:56px !important; height:56px !important; min-width:56px !important; min-height:56px !important }
+  html body .pro-card h3{ font-size:16px !important; margin:14px 0 8px !important }
+  html body .pro-card p{ font-size:12px !important; min-height:auto !important; margin-bottom:12px !important }
+}
