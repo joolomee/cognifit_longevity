@@ -4711,3 +4711,77 @@ html body *:focus-visible{
   background:rgba(26,115,232,.3) !important;
   color:#fff !important;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FINAL HOTFIXES v2026.04.24 — 3 visuais
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── 1) Remove "Made in Webflow" badge ── */
+html body .w-webflow-badge,
+html body a.w-webflow-badge,
+html body [class*="webflow-badge"],
+html body a[href*="webflow.com?utm_campaign=brandjs"],
+html body a[href*="webflow.com/?utm"]{
+  display:none !important;
+  visibility:hidden !important;
+  opacity:0 !important;
+  pointer-events:none !important;
+  width:0 !important;
+  height:0 !important;
+  position:absolute !important;
+  left:-9999px !important;
+}
+
+/* ── 2) Hero H1: tight line-height, SEM gaps entre spans ── */
+html body .hero-h1{
+  line-height:1.05 !important;
+  margin-bottom:18px !important;
+}
+html body .hero-h1 span{
+  display:inline !important;   /* inline — deixa os <br> separar */
+  line-height:1.05 !important;
+  margin:0 !important;
+  padding:0 !important;
+}
+/* Garantir <br> dentro do H1 funciona normal */
+html body .hero-h1 br{
+  display:block !important;
+  content:"" !important;
+  margin:0 !important;
+  line-height:1.05 !important;
+}
+
+/* ── 3) Telemóveis mais pequenos + mais arredondados ── */
+html body .hero-phones .phone{
+  border-radius:52px !important;   /* mais arredondado */
+  border:1.5px solid rgba(255,255,255,.08) !important;
+}
+html body .phone.phone-train{
+  width:190px !important;           /* era 220 */
+  height:390px !important;          /* era 440 */
+}
+html body .phone.phone-stats{
+  width:210px !important;           /* era 240 */
+  height:420px !important;          /* era 480 */
+}
+/* Notch proporcional */
+html body .hero-phones .phone::before{
+  width:70px !important;
+  height:5px !important;
+  top:10px !important;
+}
+/* Container hero-phones ajusta altura */
+html body .hero-phones{
+  height:490px !important;
+  min-height:490px !important;
+  max-width:420px !important;
+}
+/* Mobile scale */
+@media (max-width:980px){
+  html body .hero-phones .phone.phone-train{ width:180px !important; height:370px !important }
+  html body .hero-phones .phone.phone-stats{ width:200px !important; height:400px !important }
+}
+@media (max-width:640px){
+  html body .hero-phones{ transform:scale(.65) !important; margin:-60px auto -40px !important }
+}
