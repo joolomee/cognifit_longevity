@@ -5441,3 +5441,195 @@ html body .pro-card::before{
   background:var(--c, #1a73e8) !important;
   z-index:2 !important;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TRUST section — LINHAS (flex column), não colunas. + stats centered
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Section container — força display:flex column para todo o conteúdo em LINHAS */
+html body section:has(.trust-headline),
+html body section:has([class*="trust"]),
+html body section:has([data-i18n*="trust"]){
+  padding:clamp(56px, 8vh, 100px) 0 !important;
+  display:block !important;
+  width:100% !important;
+}
+
+html body section:has(.trust-headline) > .wrap,
+html body section:has([class*="trust"]) > .wrap,
+html body section:has([data-i18n*="trust"]) > .wrap{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  text-align:center !important;
+  gap:clamp(20px, 3vw, 32px) !important;
+  max-width:1200px !important;
+  margin:0 auto !important;
+  padding:0 clamp(20px, 3vw, 40px) !important;
+  width:100% !important;
+  grid-template-columns:unset !important;
+}
+
+/* Override grid layouts that split trust section */
+html body section:has(.trust-headline) > *,
+html body section:has([class*="trust"]) > *{
+  grid-template-columns:unset !important;
+  display:block !important;
+}
+
+/* Eyebrow */
+html body .trust-eyebrow,
+html body [data-i18n="trust.eyebrow"]{
+  display:block !important;
+  text-align:center !important;
+  color:rgba(255,255,255,.5) !important;
+  font-size:clamp(11px, 1.1vw, 13px) !important;
+  letter-spacing:.14em !important;
+  text-transform:uppercase !important;
+  font-weight:700 !important;
+  margin:0 auto !important;
+  width:100% !important;
+}
+
+/* Headline — full width centered */
+html body .trust-headline,
+html body [data-i18n="trust.h2"],
+html body [data-i18n="trust.headline"]{
+  display:block !important;
+  width:100% !important;
+  font-size:clamp(28px, 4vw, 48px) !important;
+  font-weight:900 !important;
+  line-height:1.12 !important;
+  letter-spacing:-.02em !important;
+  color:#fff !important;
+  text-align:center !important;
+  max-width:900px !important;
+  margin:0 auto !important;
+}
+
+/* Stats row — HORIZONTAL 4-col */
+html body .trust-stats,
+html body .stats-row{
+  display:grid !important;
+  grid-template-columns:repeat(4, 1fr) !important;
+  gap:clamp(16px, 2.5vw, 48px) !important;
+  width:100% !important;
+  max-width:960px !important;
+  margin:clamp(16px, 2vw, 32px) auto !important;
+  padding:0 !important;
+  align-items:start !important;
+}
+@media (max-width:768px){
+  html body .trust-stats, html body .stats-row{
+    grid-template-columns:repeat(2, 1fr) !important;
+    gap:28px 16px !important;
+  }
+}
+
+html body .trust-stat,
+html body .stats-row > div{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  text-align:center !important;
+  gap:6px !important;
+}
+html body .trust-stat-num,
+html body .stats-row strong{
+  font-size:clamp(30px, 3.8vw, 52px) !important;
+  font-weight:900 !important;
+  color:#fff !important;
+  line-height:1 !important;
+  letter-spacing:-.02em !important;
+  font-variant-numeric:tabular-nums !important;
+}
+html body .trust-stat-lbl,
+html body .stats-row span{
+  font-size:clamp(12px, 1.2vw, 14px) !important;
+  color:rgba(255,255,255,.6) !important;
+  font-weight:500 !important;
+  line-height:1.35 !important;
+  text-transform:none !important;
+  letter-spacing:0 !important;
+  margin-top:4px !important;
+}
+
+/* Chips row — HORIZONTAL */
+html body .trust-chips{
+  display:flex !important;
+  flex-direction:row !important;
+  flex-wrap:wrap !important;
+  justify-content:center !important;
+  align-items:center !important;
+  gap:clamp(8px, 1vw, 14px) !important;
+  max-width:900px !important;
+  margin:clamp(8px, 1.5vw, 20px) auto 0 !important;
+  width:100% !important;
+}
+
+/* Press text — full width CENTERED */
+html body .trust-press,
+html body section:has(.trust-headline) p.press-text,
+html body [data-i18n="trust.press"]{
+  display:block !important;
+  width:100% !important;
+  max-width:700px !important;
+  margin:clamp(12px, 2vw, 24px) auto 0 !important;
+  text-align:center !important;
+  color:rgba(255,255,255,.55) !important;
+  font-size:clamp(13px, 1.3vw, 15px) !important;
+  line-height:1.6 !important;
+  padding:0 !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   "Treine em qualquer dispositivo" — reduzir espaçamento vertical
+   ═══════════════════════════════════════════════════════════════════════ */
+
+html body section.s-off:has(img[alt*="devices" i]),
+html body section.s-off:has(img[alt*="alldevices" i]),
+html body section:has([data-i18n="devices.h2"]){
+  padding:clamp(40px, 6vh, 72px) clamp(16px, 3vw, 32px) !important;
+}
+html body section:has([data-i18n="devices.h2"]) > .wrap,
+html body section.s-off:has(img[alt*="devices" i]) > .wrap{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:clamp(12px, 1.5vw, 20px) !important;
+  max-width:1100px !important;
+  margin:0 auto !important;
+}
+html body section:has([data-i18n="devices.h2"]) h2,
+html body section.s-off [data-i18n="devices.h2"]{
+  margin:0 0 clamp(6px, 1vw, 12px) !important;
+  font-size:clamp(28px, 4vw, 42px) !important;
+  font-weight:900 !important;
+  text-transform:none !important;
+}
+html body section:has([data-i18n="devices.h2"]) p,
+html body section.s-off p.lead-drk{
+  margin:0 0 clamp(16px, 2vw, 24px) !important;
+  font-size:clamp(14px, 1.3vw, 16px) !important;
+  line-height:1.55 !important;
+  max-width:580px !important;
+}
+html body section:has(img[alt*="devices" i]) img,
+html body section:has([data-i18n="devices.h2"]) img{
+  max-width:min(860px, 90vw) !important;
+  width:100% !important;
+  height:auto !important;
+  margin:clamp(8px, 1.5vw, 16px) auto !important;
+  display:block !important;
+}
+html body .store-btns, html body .store-badges,
+html body section.s-off .stores{
+  display:flex !important;
+  flex-direction:row !important;
+  justify-content:center !important;
+  gap:clamp(12px, 2vw, 20px) !important;
+  margin:clamp(12px, 2vw, 20px) auto 0 !important;
+  flex-wrap:wrap !important;
+}

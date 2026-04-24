@@ -2530,3 +2530,89 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   setInterval(killWebflowBadge, 1000);   /* persistente: re-remover se voltar */
 })();
+
+/* ═══════════════════════════════════════════════════════════════════════
+   COUNTER ANIMATION — stats numbers count up when they enter viewport
+   ═══════════════════════════════════════════════════════════════════════ */
+(function(){
+  'use strict';
+  function parseNumberText(text){
+    var hasPlus = /\+/.test(text);
+    var hasM = /M/i.test(text);
+    var hasK = /K/i.test(text);
+    var hasStar = /★|⭐/.test(text);
+    var cleaned = text.replace(/[^\d.,]/g, '').replace(/,/g, '');
+    var val = parseFloat(cleaned);
+    if (isNaN(val)) return null;
+    return { value:val, raw:text, hasPlus:hasPlus, hasM:hasM, hasK:hasK, hasStar:hasStar };
+  }
+  function formatNumber(val, parsed){
+    var s;
+    if (parsed.hasM){
+      s = (val < 10 ? val.toFixed(1) : Math.round(val).toString()) + 'M';
+    } else if (parsed.hasK){
+      s = Math.round(val) + 'K';
+    } else if (parsed.hasStar){
+      s = val.toFixed(1);
+    } else {
+      s = Math.round(val).toString();
+      if (val >= 1000) s = s.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+    if (parsed.hasPlus) s += '+';
+    if (parsed.hasStar) s += '★';
+    return s;
+  }
+  function animateNumber(el){
+    if (el.dataset.counted) return;
+    var originalText = el.textContent.trim();
+    var parsed = parseNumberText(originalText);
+    if (!parsed) return;
+    el.dataset.counted = '1';
+    el.dataset.originalText = originalText;
+    var duration = 1800;
+    var start = performance.now();
+    var startVal = 0;
+    function tick(now){
+      var elapsed = now - start;
+      var progress = Math.min(elapsed / duration, 1);
+      /* ease-out cubic */
+      var eased = 1 - Math.pow(1 - progress, 3);
+      var current = startVal + (parsed.value - startVal) * eased;
+      el.textContent = formatNumber(current, parsed);
+      if (progress < 1) requestAnimationFrame(tick);
+      else el.textContent = originalText; /* restore exact original */
+    }
+    requestAnimationFrame(tick);
+  }
+  function setup(){
+    var selectors = [
+      '.trust-stat-num',
+      '.stats-row strong',
+      '[class*="stat-num"]',
+      '.hero-rating .rating-n',
+      '.hero-rating .rating-number',
+      '.pro-stat-num',
+      '.pm-num'
+    ];
+    var targets = document.querySelectorAll(selectors.join(','));
+    if (!('IntersectionObserver' in window)) {
+      targets.forEach(animateNumber);
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){
+          animateNumber(e.target);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold:.4 });
+    targets.forEach(function(el){ io.observe(el); });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setup);
+  } else {
+    setup();
+  }
+  setTimeout(setup, 1000);
+})();
