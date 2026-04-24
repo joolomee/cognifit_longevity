@@ -5739,3 +5739,40 @@ html body .faq-list,
 html body .faq-item{
   overflow:visible !important;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PHONES — um pouco mais largos (mais apresentáveis)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+html body .phone.phone-train{
+  width:230px !important;
+  height:430px !important;
+}
+html body .phone.phone-stats{
+  width:250px !important;
+  height:470px !important;
+}
+html body .hero-phones{
+  height:520px !important;
+  min-height:520px !important;
+  max-width:480px !important;
+}
+html body .hero-phones .phone{
+  border-radius:50px !important;
+  border:1.5px solid rgba(255,255,255,.1) !important;
+}
+/* Notch ajustado à nova largura */
+html body .hero-phones .phone::before{
+  width:78px !important;
+  height:5px !important;
+  top:11px !important;
+}
+
+@media (max-width:980px){
+  html body .hero-phones .phone.phone-train{ width:210px !important; height:400px !important }
+  html body .hero-phones .phone.phone-stats{ width:230px !important; height:430px !important }
+}
+@media (max-width:640px){
+  html body .hero-phones{ transform:scale(.68) !important; margin:-55px auto -35px !important }
+}
