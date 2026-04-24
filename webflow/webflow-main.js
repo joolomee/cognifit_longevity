@@ -51,3 +51,22 @@ function boot(){ kb(); h1(); sk(); bi(); idle(ct); }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
 setTimeout(h1, 600); setTimeout(h1, 1600);
 })();
+
+/* Inject LCP preload hint early (runs before DOM ready) */
+(function(){
+  try {
+    var head = document.head || document.getElementsByTagName('head')[0];
+    if (!head) return;
+
+    /* Preload hero H1 font weight 900 (LCP element font) */
+    if (!document.querySelector('link[rel="preload"][as="font"][href*="Plus+Jakarta"]')) {
+      var f = document.createElement('link');
+      f.rel = 'preload';
+      f.as = 'font';
+      f.type = 'font/woff2';
+      f.crossOrigin = 'anonymous';
+      f.href = 'https://fonts.gstatic.com/s/plusjakartasans/v8/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_qU79.woff2';
+      head.appendChild(f);
+    }
+  } catch(e){}
+})();
