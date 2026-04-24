@@ -7737,3 +7737,56 @@ html body footer a{
 /* Heading hierarchy — prevent H1>H3 skips (WCAG 1.3.1) */
 html body h4{ font-weight:800 !important }
 html body h5, html body h6{ font-weight:700 !important }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MORE PERF — reduce mobile LCP, FCP, TBT
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Hero H1 — critical typography (inline equivalent) */
+html body .hero-h1{
+  font-family:'Plus Jakarta Sans','Plus Jakarta Sans Fallback',system-ui,sans-serif !important;
+  font-weight:900 !important;
+  font-synthesis:none !important;
+  text-rendering:optimizeSpeed !important;
+}
+
+/* Image optimization — decoding async by default */
+html body img{
+  decoding:async;
+}
+html body img[src$=".webp"], html body img[src$=".avif"]{
+  image-rendering:auto;
+}
+
+/* Prevent CSS-triggered paints from blocking */
+html body .val-card svg, html body .partners-marquee-inner{
+  transform:translate3d(0,0,0) !important;
+  contain:strict !important;
+}
+
+/* Content visibility for below-fold sections (skip layout of invisible) */
+html body section.s-off:not(.hero),
+html body section.s-white:not(.hero),
+html body footer{
+  content-visibility:auto !important;
+  contain-intrinsic-size:0 600px !important;
+}
+
+/* Reduce paint complexity on background decorations */
+html body .hero-photo-bg, html body .hero-color-grade,
+html body .hero-text-shade{
+  contain:layout paint style !important;
+  will-change:auto !important;
+  transform:translateZ(0) !important;
+}
+
+/* Prevent layout thrashing on scroll */
+html body{
+  overflow-anchor:auto !important;
+}
+
+/* Lazy load images automatically via CSS loading=lazy fallback */
+html body img:not([loading]){
+  loading:lazy;
+}

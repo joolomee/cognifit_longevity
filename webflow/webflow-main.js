@@ -1,105 +1,53 @@
-/* CogniFit Longevity — webflow-main.js v2026-04-24-PERF */
-/* Lightweight, no polling, no fabricated content */
-(function(){
-  'use strict';
+/* CogniFit — webflow-main.js ultra-light v2026-04-24-100 */
+(function(){"use strict";
+var idle = window.requestIdleCallback || function(f){ return setTimeout(f, 200); };
 
-  /* ── 1. Kill Webflow badge via MutationObserver (no setInterval) ── */
-  function killBadge(){
-    document.querySelectorAll('.w-webflow-badge, a[href*="webflow.com"][href*="utm_campaign=brandjs"]').forEach(function(e){ e.remove(); });
-  }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', killBadge);
-  else killBadge();
-  if (window.MutationObserver){
-    new MutationObserver(killBadge).observe(document.documentElement, { childList:true, subtree:true });
-  }
+/* Essential: webflow badge remover via single MutationObserver */
+function kb(){ document.querySelectorAll('.w-webflow-badge, a[href*="webflow.com"][href*="utm_campaign=brandjs"]').forEach(function(e){e.remove();}); }
+if (window.MutationObserver){ new MutationObserver(kb).observe(document.documentElement, {childList:true, subtree:true}); }
 
-  /* ── 2. Force hero H1 translation ── */
-  function forceH1(){
-    try {
-      var h1 = document.querySelector('.hero-h1, h1.hero-h1');
-      if (!h1) return;
-      var lang = (window.CogniFitI18n && window.CogniFitI18n.getLang) ? window.CogniFitI18n.getLang() : 'pt';
-      if (!window.T || !window.T[lang]) return;
-      var l1 = window.T[lang]['hero.h1.line1'];
-      var l2 = window.T[lang]['hero.h1.line2'];
-      var l3 = window.T[lang]['hero.h1.line3'];
-      if (!l1 || !l2 || !l3) return;
-      var curr = h1.textContent;
-      if (/sistema de longevidade cognitiva|cognitive longevity system/i.test(curr) || curr.indexOf(l1) === -1){
-        h1.innerHTML = '<span data-i18n="hero.h1.line1">'+l1+'</span><br><span data-i18n="hero.h1.line2">'+l2+'</span><br><span class="hero-shimmer-soft" data-i18n="hero.h1.line3">'+l3+'</span>';
-      }
-    } catch(e){}
+/* Essential: hero H1 i18n repair (once DOM ready) */
+function h1(){
+ try{
+  var e = document.querySelector('.hero-h1');
+  if (!e || !window.T) return;
+  var l = (window.CogniFitI18n && window.CogniFitI18n.getLang) ? window.CogniFitI18n.getLang() : 'pt';
+  var d = window.T[l] || window.T.en; if (!d) return;
+  var a=d['hero.h1.line1'], b=d['hero.h1.line2'], c=d['hero.h1.line3'];
+  if (!a||!b||!c) return;
+  var t = e.textContent;
+  if (/sistema de longevidade cognitiva|cognitive longevity system/i.test(t) || t.indexOf(a) < 0){
+   e.innerHTML = '<span data-i18n="hero.h1.line1">'+a+'</span><br><span data-i18n="hero.h1.line2">'+b+'</span><br><span class="hero-shimmer-soft" data-i18n="hero.h1.line3">'+c+'</span>';
   }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', forceH1);
-  else forceH1();
-  setTimeout(forceH1, 500);
-  setTimeout(forceH1, 1500);
+ }catch(x){}
+}
 
-  /* ── 3. Hide broken dashboard image ── */
-  function hideBroken(){
-    document.querySelectorAll('img[alt*="dashboard preview" i], img[alt*="dashboard" i]').forEach(function(img){
-      img.addEventListener('error', function(){ img.style.display='none'; }, { once:true });
-      if (img.complete && img.naturalWidth === 0) img.style.display='none';
-    });
-  }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', hideBroken);
-  else hideBroken();
+/* Essential: skills inline width preserve */
+function sk(){ document.querySelectorAll('.sk-fill[style*="width"]').forEach(function(e){var m=(e.getAttribute('style')||'').match(/width\s*:\s*([\d.]+%)/); if(m) e.style.width=m[1];}); }
 
-  /* ── 4. CLS FIX: Add width/height to images missing dimensions ── */
-  function fixImageDims(){
-    document.querySelectorAll('img:not([width]):not([height])').forEach(function(img){
-      img.loading = img.loading || 'lazy';
-      img.decoding = img.decoding || 'async';
-    });
-  }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fixImageDims);
-  else fixImageDims();
+/* Lazy: counter animation (idle) */
+function ct(){
+ if (!window.IntersectionObserver) return;
+ var io = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+   if (!e.isIntersecting || e.target.dataset.c) return;
+   var el = e.target; el.dataset.c=1;
+   var o = el.textContent.trim(); var m = o.match(/[\d.,]+/); if (!m) return;
+   var v = parseFloat(m[0].replace(/,/g,'')); if (isNaN(v)) return;
+   var s; function t(n){ if(!s)s=n; var p=Math.min((n-s)/1200,1); var f=v*(1-Math.pow(1-p,3));
+    el.textContent = o.replace(/[\d.,]+/, v>1000?Math.round(f).toString().replace(/\B(?=(\d{3})+(?!\d))/g,','):v<10?f.toFixed(1):Math.round(f));
+    if (p<1) requestAnimationFrame(t); else el.textContent=o; }
+   requestAnimationFrame(t); io.unobserve(el);
+  });
+ }, {threshold:.4});
+ document.querySelectorAll('.trust-stat-num,.stats-row strong,[class*="stat-num"],.hero-rating .rating-n,.hero-rating .rating-number,.pm-num').forEach(function(e){io.observe(e);});
+}
 
-  /* ── 5. Counter animation (requestIdleCallback to avoid TBT) ── */
-  function setupCounters(){
-    if (!('IntersectionObserver' in window)) return;
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if (!e.isIntersecting || e.target.dataset.counted) return;
-        var el = e.target;
-        el.dataset.counted = '1';
-        var orig = el.textContent.trim();
-        var m = orig.match(/[\d.,]+/);
-        if (!m) return;
-        var endVal = parseFloat(m[0].replace(/,/g,''));
-        if (isNaN(endVal)) return;
-        var duration = 1200;
-        var start;
-        function tick(now){
-          if (!start) start = now;
-          var p = Math.min((now-start)/duration, 1);
-          var eased = 1-Math.pow(1-p, 3);
-          var cur = endVal * eased;
-          var formatted = endVal > 1000 ? Math.round(cur).toString().replace(/\B(?=(\d{3})+(?!\d))/g,',') : endVal < 10 ? cur.toFixed(1) : Math.round(cur);
-          el.textContent = orig.replace(/[\d.,]+/, formatted);
-          if (p < 1) requestAnimationFrame(tick);
-          else el.textContent = orig;
-        }
-        requestAnimationFrame(tick);
-        io.unobserve(el);
-      });
-    }, { threshold:.4 });
-    document.querySelectorAll('.trust-stat-num, .stats-row strong, [class*="stat-num"], .hero-rating .rating-n, .hero-rating .rating-number, .pm-num').forEach(function(el){ io.observe(el); });
-  }
-  if ('requestIdleCallback' in window){
-    requestIdleCallback(setupCounters, { timeout:2000 });
-  } else {
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setupCounters);
-    else setupCounters();
-  }
+/* Lazy: hide broken imgs */
+function bi(){ document.querySelectorAll('img[alt*="dashboard preview" i]').forEach(function(i){ i.addEventListener('error',function(){i.style.display='none';},{once:true}); if(i.complete&&i.naturalWidth===0)i.style.display='none'; }); }
 
-  /* ── 6. Skill bars preserve ── */
-  function fixSkills(){
-    document.querySelectorAll('.sk-fill[style*="width"]').forEach(function(el){
-      var m = el.getAttribute('style').match(/width\s*:\s*([\d.]+%)/);
-      if (m) requestAnimationFrame(function(){ el.style.width = m[1]; });
-    });
-  }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fixSkills);
-  else fixSkills();
+/* Schedule */
+function boot(){ kb(); h1(); sk(); bi(); idle(ct); }
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+setTimeout(h1, 600); setTimeout(h1, 1600);
 })();
