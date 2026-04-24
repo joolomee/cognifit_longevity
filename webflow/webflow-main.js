@@ -2166,3 +2166,144 @@ document.addEventListener('DOMContentLoaded', function() {
   setTimeout(runFixes, 1000);
   setTimeout(runFixes, 3000);
 })();
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HOTFIX v2026.04.24-r6 — Icon animations + scroll reveals + title case
+   ═══════════════════════════════════════════════════════════════════════ */
+(function(){
+  'use strict';
+
+  /* 1. Title Case → sentence case (preserves proper nouns) */
+  var PROPER_NOUNS = new Set([
+    'CogniFit','Harvard','Washington','Aviv','Tel','FDA','IA','AI','ACTIVE',
+    'CBS','CNN','NBC','ABC','NYT','WSJ','MNT','Lifetime','Smart','Money',
+    'Google','Play','App','Store','Apple','Android','iOS','iPad','iPhone',
+    'New','York','Times','Wall','Street','Journal','Medical','News','Today',
+    'Alzheimer','Parkinson','Longevity','Portugal','Espanha','PT','EN','ES',
+    'FR','DE','IT','RU','ZH','Q1','Q2','Q3','Q4','D.R.','Dr.','Dra.',
+    'Neuropsychology','Scientific','Advisory','Board','Pipeline','Publicações',
+    'Científicas','Products','Researcher','Research'
+  ]);
+
+  function toSentenceCase(text){
+    if (!text) return text;
+    // Keep all-caps words as-is (e.g. "FAQ", "IA", "FDA")
+    if (/^[A-Z0-9\s\-.,:;!?]+$/.test(text) && text.length > 2) return text;
+    var words = text.split(/(\s+|[—–-])/);
+    var firstWord = true;
+    return words.map(function(w){
+      if (!/\w/.test(w)) return w;
+      // If proper noun, keep as-is (preserve original capitalization)
+      if (PROPER_NOUNS.has(w) || PROPER_NOUNS.has(w.replace(/[.,:;!?]$/, ''))) return w;
+      // Acronym (2+ caps): keep
+      if (/^[A-Z]{2,}/.test(w)) return w;
+      if (firstWord) { firstWord = false; return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase(); }
+      return w.toLowerCase();
+    }).join('');
+  }
+
+  function applySentenceCase(){
+    try {
+      var selectors = [
+        'h1:not(.hero-h1)', 'h2', 'h3:not(.footer-col-title)', 'h4',
+        '.section-title', '.val-title', '.pro-title', '.step-title',
+        '.pillar-title', '.risk-title', '.who-title', '.rev-title'
+      ];
+      document.querySelectorAll(selectors.join(',')).forEach(function(el){
+        if (el.dataset.sentenceCased) return;
+        // Don't transform if contains child elements with content (likely hero H1)
+        if (el.querySelector('span[data-i18n], br')) return;
+        var original = el.textContent.trim();
+        var converted = toSentenceCase(original);
+        if (converted !== original && converted.length > 0) {
+          el.textContent = converted;
+        }
+        el.dataset.sentenceCased = '1';
+      });
+    } catch(e) { console.warn('[sentenceCase]', e); }
+  }
+
+  /* 2. Scroll-reveal via IntersectionObserver */
+  function setupReveals(){
+    try {
+      var targets = document.querySelectorAll(
+        '.val-card, .pro-card, .step-card, .pillar-card, .risk-card, .who-card, .rev-card, .reveal'
+      );
+      if (!('IntersectionObserver' in window)) {
+        targets.forEach(function(el){ el.classList.add('is-visible'); });
+        return;
+      }
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if (e.isIntersecting) {
+            e.target.classList.add('is-visible');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold:.15, rootMargin:'0px 0px -50px 0px' });
+      targets.forEach(function(el){ io.observe(el); });
+    } catch(e) { console.warn('[reveals]', e); }
+  }
+
+  /* 3. Enhanced icon interactions — add hover tilt on validation icons */
+  function setupIconInteractions(){
+    try {
+      document.querySelectorAll('.val-card, .validation-card').forEach(function(card){
+        if (card.dataset.iconBound) return;
+        card.dataset.iconBound = '1';
+        var icon = card.querySelector('svg, .val-icon, img[alt*="icon" i]');
+        if (!icon) return;
+        card.addEventListener('mousemove', function(ev){
+          var r = card.getBoundingClientRect();
+          var x = (ev.clientX - r.left - r.width/2) / r.width;
+          var y = (ev.clientY - r.top - r.height/2) / r.height;
+          icon.style.transform = 'scale(1.08) rotate('+(x*-8)+'deg) translate('+(x*6)+'px,'+(y*6)+'px)';
+        });
+        card.addEventListener('mouseleave', function(){
+          icon.style.transform = '';
+        });
+      });
+    } catch(e) { console.warn('[iconInteractions]', e); }
+  }
+
+  /* 4. Stagger animation on value bars (pillars, skills) */
+  function setupBarAnimations(){
+    try {
+      var bars = document.querySelectorAll('.pillar-bar > *, .pillar-fill, .ph-skill-fill, .ph-age-fill');
+      if (!('IntersectionObserver' in window)) return;
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if (e.isIntersecting) {
+            var el = e.target;
+            var targetWidth = el.style.width || getComputedStyle(el).width;
+            el.style.width = '0%';
+            requestAnimationFrame(function(){
+              el.style.transition = 'width 1.6s cubic-bezier(.4,0,.2,1)';
+              el.style.width = targetWidth;
+            });
+            io.unobserve(el);
+          }
+        });
+      }, { threshold:.3 });
+      bars.forEach(function(el){ io.observe(el); });
+    } catch(e) { console.warn('[barAnim]', e); }
+  }
+
+  function runAll(){
+    applySentenceCase();
+    setupReveals();
+    setupIconInteractions();
+    setupBarAnimations();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runAll);
+  } else {
+    runAll();
+  }
+  setTimeout(runAll, 500);
+  setTimeout(runAll, 1500);
+  /* Rerun when language changes (i18n.js dispatches this event) */
+  window.addEventListener('i18n:applied', runAll);
+  window.addEventListener('languagechange', runAll);
+})();

@@ -7973,3 +7973,361 @@ html body .hero-phones .phone.phone-stats .ph-age-card .ph-age-real{
 @media (max-width:480px){
   html body .hero-phones{ transform:scale(.58) !important; margin:-60px auto 0 !important; }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ROUND 5 v2026.04.24-r5 — Spacing, press logos, pro-cards, title case
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. "Treine em qualquer dispositivo" — compactar verticalmente ── */
+html body section.s-off .wrap,
+html body section[id*="devices"] .wrap,
+html body section[id*="train"] .wrap{
+  padding-top:clamp(32px, 5vh, 56px) !important;
+  padding-bottom:clamp(32px, 5vh, 56px) !important;
+}
+html body .devices-stack, html body .devices-hero, html body .devices-wrap,
+html body .train-anywhere, html body .train-anywhere-wrap{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  gap:clamp(16px, 2vw, 28px) !important;
+  margin:0 auto !important;
+}
+html body section.s-off h2,
+html body section.s-off .section-title{
+  margin-bottom:clamp(8px, 1vw, 16px) !important;
+}
+html body section.s-off p,
+html body section.s-off .section-sub{
+  margin-bottom:clamp(20px, 2.5vw, 36px) !important;
+  max-width:min(640px, 90%) !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+html body section.s-off img[alt*="devices" i],
+html body section.s-off img[alt*="alldevices" i],
+html body section.s-off .devices-img{
+  max-width:min(920px, 90vw) !important;
+  width:100% !important;
+  height:auto !important;
+  margin:clamp(0px, 2vw, 20px) auto clamp(20px, 3vw, 32px) !important;
+  display:block !important;
+}
+html body .store-badges, html body .store-btns,
+html body section.s-off .stores,
+html body section.s-off div[class*="store"]{
+  display:flex !important;
+  flex-direction:row !important;
+  justify-content:center !important;
+  align-items:center !important;
+  gap:clamp(12px, 2vw, 24px) !important;
+  margin:clamp(16px, 2vw, 28px) auto 0 !important;
+  flex-wrap:wrap !important;
+}
+
+/* ── 2. PRESS LOGOS — all on single line, uniform, no drop to 2nd row ── */
+html body .press-strip,
+html body .press-wrap,
+html body .press-wrap-row,
+html body section:has(.press-strip) .wrap{
+  display:flex !important;
+  flex-wrap:nowrap !important;
+  justify-content:space-between !important;
+  align-items:center !important;
+  gap:clamp(8px, 1.5vw, 24px) !important;
+  max-width:1200px !important;
+  margin:0 auto !important;
+  padding:0 clamp(16px, 3vw, 40px) !important;
+  overflow:visible !important;
+}
+html body .press-strip .press-logo-card,
+html body .press-strip > div{
+  flex:1 1 0 !important;
+  padding:6px 8px !important;
+  background:transparent !important;
+  border:none !important;
+  box-shadow:none !important;
+  min-width:0 !important;
+  display:flex !important;
+  justify-content:center !important;
+  align-items:center !important;
+}
+html body .press-strip img,
+html body .press-strip .press-logo-img,
+html body .press-strip .pl{
+  max-width:100% !important;
+  max-height:32px !important;
+  height:auto !important;
+  width:auto !important;
+  object-fit:contain !important;
+  opacity:.75 !important;
+  filter:brightness(1.5) contrast(.9) !important;
+  transition:opacity .2s !important;
+}
+/* Invert if background is dark to make white logos visible */
+html body section.s-black .press-strip img,
+html body section.s-dark .press-strip img{
+  filter:brightness(1.8) invert(1) !important;
+  opacity:.8 !important;
+}
+html body .press-strip img:hover{ opacity:1 !important }
+@media (max-width:768px){
+  html body .press-strip{
+    flex-wrap:wrap !important;
+    justify-content:center !important;
+    gap:14px 18px !important;
+  }
+  html body .press-strip .press-logo-card{
+    flex:0 0 calc(33% - 18px) !important;
+  }
+  html body .press-strip img{ max-height:24px !important }
+}
+@media (max-width:480px){
+  html body .press-strip .press-logo-card{
+    flex:0 0 calc(50% - 18px) !important;
+  }
+  html body .press-strip img{ max-height:20px !important }
+}
+
+/* ── 3. PRO-CARDS — clean up icon backgrounds, readable ── */
+html body .pro-grid, html body section:has(.pro-card) .wrap{
+  display:grid !important;
+  grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)) !important;
+  gap:clamp(16px, 2vw, 24px) !important;
+  max-width:1200px !important;
+  margin:0 auto !important;
+  padding:0 clamp(16px, 3vw, 32px) !important;
+}
+html body .pro-card{
+  background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)) !important;
+  border:1px solid rgba(255,255,255,.08) !important;
+  border-radius:16px !important;
+  padding:0 !important;
+  overflow:hidden !important;
+  display:flex !important;
+  flex-direction:column !important;
+  transition:transform .25s, border-color .25s !important;
+}
+html body .pro-card:hover{
+  border-color:rgba(255,255,255,.15) !important;
+  transform:translateY(-3px) !important;
+}
+/* Icon top area */
+html body .pro-card > img:first-child,
+html body .pro-card .pro-icon-wrap,
+html body .pro-card .pro-hero-img,
+html body .pro-card .pro-top{
+  width:100% !important;
+  aspect-ratio:16/9 !important;
+  background:linear-gradient(180deg, rgba(var(--c-rgb, 26,115,232), .12), rgba(var(--c-rgb, 26,115,232), .04)) !important;
+  padding:18px !important;
+  object-fit:contain !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+html body .pro-card img{
+  object-fit:contain !important;
+  filter:brightness(1.15) saturate(.95) !important;
+}
+/* Colored accent border on top */
+html body .pro-card{ position:relative !important }
+html body .pro-card::before{
+  content:'' !important;
+  position:absolute !important;
+  top:0 !important; left:0 !important; right:0 !important;
+  height:3px !important;
+  background:var(--c, #1a73e8) !important;
+  z-index:2 !important;
+}
+/* Body padding */
+html body .pro-card > *:not(:first-child){ padding-left:20px !important; padding-right:20px !important }
+html body .pro-card h3, html body .pro-card .pro-title{
+  color:#fff !important;
+  font-size:16px !important;
+  font-weight:800 !important;
+  margin:18px 0 10px !important;
+  text-transform:none !important;
+}
+html body .pro-card p, html body .pro-card .pro-desc{
+  color:rgba(255,255,255,.7) !important;
+  font-size:13px !important;
+  line-height:1.55 !important;
+  margin-bottom:14px !important;
+}
+/* Stats row */
+html body .pro-card .pro-stats{
+  display:flex !important;
+  gap:16px !important;
+  padding-top:12px !important;
+  margin-top:auto !important;
+  border-top:1px solid rgba(255,255,255,.08) !important;
+}
+html body .pro-card .pro-stat-num, html body .pro-card .pro-stats strong{
+  color:#fff !important;
+  font-size:18px !important;
+  font-weight:900 !important;
+  display:block !important;
+}
+html body .pro-card .pro-stat-lbl{
+  color:rgba(255,255,255,.5) !important;
+  font-size:10px !important;
+  text-transform:uppercase !important;
+  letter-spacing:.06em !important;
+}
+/* CTA button */
+html body .pro-card .pro-cta, html body .pro-card a.pro-cta{
+  display:flex !important;
+  justify-content:center !important;
+  align-items:center !important;
+  gap:6px !important;
+  padding:11px 18px !important;
+  margin:16px 20px 20px !important;
+  background:var(--c, #1a73e8) !important;
+  color:#fff !important;
+  border-radius:100px !important;
+  font-weight:700 !important;
+  font-size:13px !important;
+  text-decoration:none !important;
+  text-transform:none !important;
+  transition:filter .2s, transform .2s !important;
+}
+html body .pro-card .pro-cta:hover{ filter:brightness(1.1) !important; transform:translateY(-1px) !important }
+
+/* ── 4. TITLE CASE — force sentence case on all section titles ── */
+/* Uses JS for accurate sentence-case conversion (see JS hotfix r5) */
+html body h1, html body h2, html body h3, html body h4,
+html body .section-title, html body .hero-h1{
+  text-transform:none !important;
+}
+/* Keep only micro-label eyebrows uppercase */
+html body .eyebrow, html body .hero-badge{
+  text-transform:uppercase !important;
+}
+
+/* ── 5. "Clientes" badge — make it a proper section header ── */
+html body section:has(.pro-grid) > *:first-child,
+html body section:has(.pro-card) h2{
+  text-transform:none !important;
+  font-size:clamp(28px, 4vw, 48px) !important;
+  font-weight:900 !important;
+  margin-bottom:clamp(16px, 2vw, 32px) !important;
+  text-align:center !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ROUND 6 v2026.04.24-r6 — VALIDATION ICONS visibility + animation
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Validation card icons — bigger, punchier, with animated glow */
+html body .val-card, html body .validation-card{
+  position:relative !important;
+  overflow:hidden !important;
+}
+html body .val-card .val-icon,
+html body .val-card-icon,
+html body .validation-card svg,
+html body .val-card svg,
+html body .val-card img[alt*="icon" i]{
+  width:56px !important;
+  height:56px !important;
+  padding:12px !important;
+  background:linear-gradient(135deg, rgba(26,115,232,.18), rgba(26,115,232,.08)) !important;
+  border-radius:14px !important;
+  color:#1a73e8 !important;
+  stroke:#1a73e8 !important;
+  fill:#1a73e8 !important;
+  box-shadow:0 4px 16px rgba(26,115,232,.25), inset 0 0 0 1px rgba(26,115,232,.15) !important;
+  transition:transform .4s cubic-bezier(.4,0,.2,1), box-shadow .4s !important;
+  animation:val-icon-pulse 3s ease-in-out infinite !important;
+}
+html body .val-card:hover .val-icon,
+html body .val-card:hover svg,
+html body .val-card:hover img{
+  transform:scale(1.08) rotate(-3deg) !important;
+  box-shadow:0 8px 32px rgba(26,115,232,.45), inset 0 0 0 1px rgba(26,115,232,.3) !important;
+}
+@keyframes val-icon-pulse{
+  0%,100%{ box-shadow:0 4px 16px rgba(26,115,232,.25), inset 0 0 0 1px rgba(26,115,232,.15) }
+  50%{ box-shadow:0 6px 24px rgba(26,115,232,.4), inset 0 0 0 1px rgba(26,115,232,.3) }
+}
+
+/* Featured card (DESTAQUE) — dark variant */
+html body .val-card.featured, html body .val-card[data-featured],
+html body .val-card--featured, html body .validation-card.featured{
+  background:linear-gradient(180deg, #0d1b2a 0%, #050a14 100%) !important;
+  color:#fff !important;
+  border:1px solid rgba(26,115,232,.25) !important;
+  box-shadow:0 20px 60px rgba(0,0,0,.4), 0 0 0 1px rgba(26,115,232,.12) !important;
+}
+html body .val-card.featured .val-icon{
+  background:linear-gradient(135deg, rgba(110,179,255,.25), rgba(26,115,232,.15)) !important;
+  color:#6eb3ff !important;
+  stroke:#6eb3ff !important;
+}
+html body .val-card.featured h3, html body .val-card.featured .val-title{
+  color:#fff !important;
+}
+html body .val-card.featured p, html body .val-card.featured .val-desc{
+  color:rgba(255,255,255,.75) !important;
+}
+
+/* DESTAQUE pill badge */
+html body .val-card .val-badge, html body .val-card[data-featured]::after{
+  position:absolute !important;
+  top:18px !important;
+  right:18px !important;
+  padding:5px 12px !important;
+  background:rgba(110,179,255,.2) !important;
+  color:#6eb3ff !important;
+  font-size:10px !important;
+  font-weight:900 !important;
+  letter-spacing:.12em !important;
+  border-radius:100px !important;
+  border:1px solid rgba(110,179,255,.3) !important;
+  text-transform:uppercase !important;
+}
+
+/* Val cards titles — sentence case */
+html body .val-card h3, html body .val-card .val-title,
+html body .validation-card h3{
+  text-transform:none !important;
+  font-size:20px !important;
+  font-weight:900 !important;
+  margin:18px 0 10px !important;
+}
+
+/* ── SCROLL-IN ANIMATIONS via IntersectionObserver (JS applies .is-visible) ── */
+html body .reveal, html body .val-card, html body .pro-card,
+html body .step-card, html body .pillar-card, html body .risk-card{
+  opacity:0 !important;
+  transform:translateY(24px) !important;
+  transition:opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1) !important;
+}
+html body .reveal.is-visible, html body .val-card.is-visible,
+html body .pro-card.is-visible, html body .step-card.is-visible,
+html body .pillar-card.is-visible, html body .risk-card.is-visible{
+  opacity:1 !important;
+  transform:translateY(0) !important;
+}
+/* Staggered delays */
+html body .val-card:nth-child(1), html body .pro-card:nth-child(1),
+html body .step-card:nth-child(1){ transition-delay:0s !important }
+html body .val-card:nth-child(2), html body .pro-card:nth-child(2),
+html body .step-card:nth-child(2){ transition-delay:.08s !important }
+html body .val-card:nth-child(3), html body .pro-card:nth-child(3),
+html body .step-card:nth-child(3){ transition-delay:.16s !important }
+html body .val-card:nth-child(4), html body .pro-card:nth-child(4),
+html body .step-card:nth-child(4){ transition-delay:.24s !important }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  html body .reveal, html body .val-card, html body .pro-card,
+  html body .step-card, html body .pillar-card, html body .risk-card{
+    opacity:1 !important;
+    transform:none !important;
+  }
+  html body .val-card svg{ animation:none !important }
+}
