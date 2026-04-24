@@ -9270,3 +9270,378 @@ html body section:has(.pro-grid) p.lead{
   html body .pro-card h3{ font-size:16px !important; margin:14px 0 8px !important }
   html body .pro-card p{ font-size:12px !important; min-height:auto !important; margin-bottom:12px !important }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ROUND 12 v2026.04.24-r12 — Validation icons FLAT (no bg), company logos,
+   middle dark card contrast, icon alignment
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Validation card icons — FLAT sem fundo, máxima visibilidade ── */
+html body .val-card .val-icon,
+html body .val-card-icon,
+html body .val-card > svg:first-of-type,
+html body .val-card img[alt*="icon" i]{
+  width:64px !important;
+  height:64px !important;
+  padding:0 !important;
+  background:none !important;
+  background-color:transparent !important;
+  border:none !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  color:#1a73e8 !important;
+  stroke:#1a73e8 !important;
+  fill:#1a73e8 !important;
+  margin:0 0 24px !important;
+  display:block !important;
+  animation:none !important;
+}
+html body .val-card .val-icon svg,
+html body .val-card > svg{
+  width:100% !important;
+  height:100% !important;
+  stroke-width:2.2 !important;
+  filter:drop-shadow(0 4px 12px rgba(26,115,232,.35)) !important;
+}
+/* Animated pulse SEM background — só o drop-shadow que pulsa */
+@keyframes val-icon-glow{
+  0%,100%{ filter:drop-shadow(0 4px 12px rgba(26,115,232,.35)) }
+  50%{ filter:drop-shadow(0 6px 20px rgba(26,115,232,.6)) }
+}
+html body .val-card .val-icon svg,
+html body .val-card > svg:first-of-type{
+  animation:val-icon-glow 3s ease-in-out infinite !important;
+}
+
+/* ── Val card layout — ícone top-left, texto alinhado ── */
+html body .val-grid, html body .validation-grid{
+  display:grid !important;
+  grid-template-columns:repeat(3, 1fr) !important;
+  gap:clamp(16px, 2vw, 24px) !important;
+  max-width:1200px !important;
+  margin:clamp(32px, 4vw, 56px) auto !important;
+  padding:0 clamp(16px, 3vw, 32px) !important;
+}
+@media (max-width:900px){ html body .val-grid{ grid-template-columns:1fr !important } }
+
+html body .val-card, html body .validation-card{
+  background:#fff !important;
+  border:1px solid #e8ecf3 !important;
+  border-radius:20px !important;
+  padding:32px 28px !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:flex-start !important;
+  text-align:left !important;
+  gap:0 !important;
+  transition:transform .3s, box-shadow .3s !important;
+}
+html body .val-card:hover{
+  transform:translateY(-4px) !important;
+  box-shadow:0 20px 40px rgba(26,115,232,.12) !important;
+}
+/* Dark featured card — high contrast fix */
+html body .val-card.featured,
+html body .val-card--featured,
+html body .val-card[data-featured="true"]{
+  background:linear-gradient(180deg, #0d1b2a 0%, #050a14 100%) !important;
+  border:1px solid rgba(26,115,232,.3) !important;
+  color:#fff !important;
+  box-shadow:0 20px 60px rgba(0,0,0,.25), 0 0 0 1px rgba(26,115,232,.12) !important;
+  position:relative !important;
+}
+html body .val-card.featured .val-icon svg,
+html body .val-card.featured > svg{
+  color:#6eb3ff !important;
+  stroke:#6eb3ff !important;
+  fill:#6eb3ff !important;
+  filter:drop-shadow(0 4px 16px rgba(110,179,255,.5)) !important;
+}
+/* Contraste melhorado para texto no card escuro */
+html body .val-card.featured h3{
+  color:#fff !important;
+  font-size:22px !important;
+  font-weight:900 !important;
+  margin:0 0 14px !important;
+}
+html body .val-card.featured p, html body .val-card.featured .val-desc{
+  color:rgba(255,255,255,.92) !important;   /* subiu de .75 p/ .92 (alto contraste) */
+  font-size:15px !important;
+  line-height:1.65 !important;
+  margin:0 0 28px !important;
+}
+html body .val-card.featured a, html body .val-card.featured .val-cta{
+  color:#6eb3ff !important;
+  font-weight:800 !important;
+  text-decoration:none !important;
+}
+html body .val-card.featured a:hover{ color:#fff !important }
+
+/* White cards */
+html body .val-card:not(.featured) h3{
+  color:#0a0b0d !important;
+  font-size:22px !important;
+  font-weight:900 !important;
+  margin:0 0 14px !important;
+}
+html body .val-card:not(.featured) p{
+  color:#4a4d55 !important;
+  font-size:15px !important;
+  line-height:1.65 !important;
+  margin:0 0 28px !important;
+}
+html body .val-card:not(.featured) a, html body .val-card:not(.featured) .val-cta{
+  color:#1a73e8 !important;
+  font-weight:800 !important;
+  text-decoration:none !important;
+}
+
+/* DESTAQUE pill */
+html body .val-card .val-badge, html body .val-card .badge-destaque{
+  position:absolute !important;
+  top:24px !important;
+  right:24px !important;
+  padding:6px 14px !important;
+  background:rgba(110,179,255,.2) !important;
+  color:#6eb3ff !important;
+  font-size:10px !important;
+  font-weight:900 !important;
+  letter-spacing:.14em !important;
+  border-radius:100px !important;
+  border:1px solid rgba(110,179,255,.35) !important;
+  text-transform:uppercase !important;
+}
+
+/* ── MARQUEE de logos de clínicas/parceiros abaixo dos val-cards ── */
+html body .val-marquee-wrap,
+html body .val-clinics-marquee,
+html body .partner-logos-marquee{
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  margin:clamp(32px, 4vw, 56px) auto 0 !important;
+  max-width:100% !important;
+  overflow:hidden !important;
+  position:relative !important;
+  padding:clamp(20px, 3vw, 40px) 0 !important;
+  -webkit-mask-image:linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%) !important;
+  mask-image:linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%) !important;
+}
+html body .val-marquee, html body .val-marquee-inner,
+html body .partner-logos-track{
+  display:flex !important;
+  align-items:center !important;
+  gap:clamp(40px, 5vw, 80px) !important;
+  animation:logos-scroll 40s linear infinite !important;
+  width:max-content !important;
+}
+html body .val-marquee img, html body .val-marquee-img,
+html body .partner-logos-track img{
+  max-height:44px !important;
+  height:44px !important;
+  width:auto !important;
+  object-fit:contain !important;
+  opacity:.6 !important;
+  filter:grayscale(1) brightness(1.1) !important;
+  transition:opacity .3s, filter .3s !important;
+  flex-shrink:0 !important;
+}
+html body .val-marquee img:hover{
+  opacity:1 !important;
+  filter:grayscale(0) brightness(1) !important;
+}
+@keyframes logos-scroll{
+  0%{ transform:translateX(0) }
+  100%{ transform:translateX(-50%) }
+}
+@media (max-width:768px){
+  html body .val-marquee img{ max-height:32px !important; height:32px !important }
+  html body .val-marquee{ gap:40px !important }
+}
+
+/* ── "e milhares mais" tagline ── */
+html body .val-more, html body .val-marquee-more{
+  display:block !important;
+  text-align:center !important;
+  margin-top:20px !important;
+  color:rgba(0,0,0,.45) !important;
+  font-size:13px !important;
+  font-weight:500 !important;
+  letter-spacing:.02em !important;
+}
+html body section.s-black .val-more, html body section.s-dark .val-more{
+  color:rgba(255,255,255,.45) !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ROUND 13 v2026.04.24-r13 — Surgical fixes only
+   • Scroll-to-top: acima e muito mais visível
+   • "Junte-se à nossa família": restaurar layout (não 4 colunas)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── SCROLL TO TOP BUTTON — mais visível, subir da posição ── */
+html body .scroll-top-btn,
+html body #scroll-top,
+html body .btn-back-top,
+html body button[class*="scroll-top"]{
+  position:fixed !important;
+  bottom:clamp(100px, 14vh, 140px) !important;   /* SUBIU muito */
+  right:clamp(20px, 2.5vw, 32px) !important;
+  width:56px !important;
+  height:56px !important;
+  background:linear-gradient(135deg, #1a73e8 0%, #1256b8 100%) !important;
+  color:#fff !important;
+  border-radius:50% !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  box-shadow:
+    0 12px 32px rgba(26,115,232,.5),
+    0 4px 12px rgba(0,0,0,.3),
+    inset 0 1px 0 rgba(255,255,255,.25),
+    0 0 0 3px rgba(26,115,232,.15) !important;
+  z-index:999 !important;
+  text-decoration:none !important;
+  border:none !important;
+  cursor:pointer !important;
+  transition:transform .3s, box-shadow .3s, opacity .3s !important;
+  opacity:1 !important;
+  visibility:visible !important;
+  pointer-events:auto !important;
+  animation:scroll-top-pulse 2.5s ease-in-out infinite !important;
+}
+html body .scroll-top-btn svg,
+html body #scroll-top svg{
+  width:26px !important;
+  height:26px !important;
+  stroke:#fff !important;
+  fill:none !important;
+  stroke-width:2.5 !important;
+}
+html body .scroll-top-btn:hover{
+  transform:translateY(-4px) scale(1.08) !important;
+  box-shadow:
+    0 16px 40px rgba(26,115,232,.65),
+    0 8px 20px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.3),
+    0 0 0 4px rgba(26,115,232,.2) !important;
+  animation:none !important;
+}
+@keyframes scroll-top-pulse{
+  0%,100%{ box-shadow:0 12px 32px rgba(26,115,232,.5), 0 4px 12px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.25), 0 0 0 3px rgba(26,115,232,.15) }
+  50%{ box-shadow:0 16px 40px rgba(26,115,232,.65), 0 8px 20px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.3), 0 0 0 8px rgba(26,115,232,.08) }
+}
+@media (max-width:640px){
+  html body .scroll-top-btn{ bottom:90px !important; right:16px !important; width:48px !important; height:48px !important }
+  html body .scroll-top-btn svg{ width:22px !important; height:22px !important }
+}
+
+/* ── "Junte-se à nossa família" trust section — layout restaurado ── */
+html body section:has(.trust-headline),
+html body .trust-section,
+html body section[class*="trust"]{
+  padding:clamp(48px, 6vh, 96px) 0 !important;
+}
+html body section:has(.trust-headline) > .wrap,
+html body .trust-section > .wrap,
+html body section:has(.trust-headline) .wrap{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  text-align:center !important;
+  max-width:1200px !important;
+  margin:0 auto !important;
+  padding:0 clamp(16px, 3vw, 32px) !important;
+  gap:clamp(24px, 3vw, 40px) !important;
+}
+/* Eyebrow */
+html body .trust-eyebrow, html body .trust-section .eyebrow{
+  text-transform:uppercase !important;
+  font-size:clamp(11px, 1.1vw, 13px) !important;
+  letter-spacing:.14em !important;
+  color:rgba(255,255,255,.5) !important;
+  font-weight:700 !important;
+  margin:0 !important;
+  text-align:center !important;
+}
+/* Headline */
+html body .trust-headline, html body .trust-section h2{
+  font-size:clamp(28px, 4vw, 48px) !important;
+  font-weight:900 !important;
+  color:#fff !important;
+  text-align:center !important;
+  max-width:900px !important;
+  margin:0 auto !important;
+  line-height:1.15 !important;
+}
+html body .trust-headline span, html body .trust-section h2 span{
+  display:inline !important;
+  white-space:normal !important;
+}
+/* Stats ROW (horizontal!) */
+html body .trust-stats, html body .stats-row, html body .trust-section .stats{
+  display:grid !important;
+  grid-template-columns:repeat(4, 1fr) !important;
+  gap:clamp(16px, 2vw, 32px) !important;
+  width:100% !important;
+  max-width:1000px !important;
+  margin:0 auto !important;
+}
+@media (max-width:768px){
+  html body .trust-stats{ grid-template-columns:repeat(2, 1fr) !important; gap:24px 16px !important }
+}
+html body .trust-stat, html body .stats-row > div{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  text-align:center !important;
+  gap:6px !important;
+}
+html body .trust-stat-num, html body .stats-row strong{
+  font-size:clamp(28px, 3.5vw, 48px) !important;
+  font-weight:900 !important;
+  color:#fff !important;
+  line-height:1 !important;
+  letter-spacing:-.02em !important;
+}
+html body .trust-stat-lbl, html body .stats-row .stat-lbl{
+  font-size:clamp(11px, 1.1vw, 14px) !important;
+  color:rgba(255,255,255,.6) !important;
+  font-weight:500 !important;
+  text-transform:none !important;
+  letter-spacing:0 !important;
+}
+/* Chips ROW (não coluna!) */
+html body .trust-chips, html body .trust-section .chips-row,
+html body section:has(.trust-headline) .chips-row{
+  display:flex !important;
+  flex-direction:row !important;
+  flex-wrap:wrap !important;
+  justify-content:center !important;
+  align-items:center !important;
+  gap:clamp(8px, 1vw, 14px) !important;
+  max-width:900px !important;
+  margin:0 auto !important;
+}
+/* Press tagline FULL WIDTH abaixo das stats/chips */
+html body .trust-press, html body .trust-section .press-text,
+html body section:has(.trust-headline) .press-line{
+  display:block !important;
+  width:100% !important;
+  max-width:700px !important;
+  margin:clamp(16px, 2vw, 24px) auto 0 !important;
+  text-align:center !important;
+  color:rgba(255,255,255,.55) !important;
+  font-size:clamp(13px, 1.3vw, 15px) !important;
+  line-height:1.6 !important;
+}
+
+/* Bloquear grids residuais (de outras regras) que transformavam a secção em 4 colunas */
+html body section:has(.trust-headline) > *{
+  grid-template-columns:unset !important;
+}
+html body section:has(.trust-headline){
+  display:block !important;
+}
