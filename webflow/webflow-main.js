@@ -2416,3 +2416,100 @@ document.addEventListener('DOMContentLoaded', function() {
   setTimeout(runAll, 3000);
   window.addEventListener('languagechange', runAll);
 })();
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HOTFIX v2026.04.24-r28 — Hero H1 traduzido sempre em todos os idiomas
+   em todas as media queries
+   ═══════════════════════════════════════════════════════════════════════ */
+(function(){
+  'use strict';
+
+  function currentLang(){
+    try {
+      if (window.CogniFitI18n && typeof window.CogniFitI18n.getLang === 'function') {
+        return window.CogniFitI18n.getLang();
+      }
+      var saved = localStorage.getItem('cognifit_lang');
+      if (saved) return saved;
+      return (document.documentElement.lang || navigator.language || 'pt').split('-')[0];
+    } catch(e){ return 'pt'; }
+  }
+
+  function getTranslation(lang, key){
+    try {
+      if (window.T && window.T[lang] && window.T[lang][key]) return window.T[lang][key];
+      if (window.T && window.T.en && window.T.en[key]) return window.T.en[key];
+    } catch(e){}
+    return null;
+  }
+
+  function forceHeroH1Translation(){
+    try {
+      var h1 = document.querySelector('.hero-h1, h1.hero-h1');
+      if (!h1) return;
+
+      var lang = currentLang();
+      var l1 = getTranslation(lang, 'hero.h1.line1');
+      var l2 = getTranslation(lang, 'hero.h1.line2');
+      var l3 = getTranslation(lang, 'hero.h1.line3');
+
+      /* Fallback to EN defaults if missing */
+      if (!l1) l1 = 'Live longer.';
+      if (!l2) l2 = 'Think better.';
+      if (!l3) l3 = 'Stay independent.';
+
+      var currentText = h1.textContent.trim();
+      var expectedText = (l1 + ' ' + l2 + ' ' + l3).trim();
+      var hasMangled = /sistema de longevidade cognitiva|cognitive longevity system|sistema de longevidad cognitiva/i.test(currentText);
+
+      /* Rebuild sempre se texto não bate com a tradução esperada */
+      if (hasMangled || currentText.indexOf(l1) === -1 || currentText.indexOf(l3) === -1) {
+        h1.innerHTML =
+          '<span data-i18n="hero.h1.line1">' + l1 + '</span><br>' +
+          '<span data-i18n="hero.h1.line2">' + l2 + '</span><br>' +
+          '<span class="hero-shimmer-soft" data-i18n="hero.h1.line3">' + l3 + '</span>';
+      }
+
+      /* Garantir visibilidade em todas as media queries */
+      h1.style.display = 'block';
+      h1.style.visibility = 'visible';
+      h1.style.opacity = '1';
+    } catch(e){ console.warn('[hero h1 force]', e); }
+  }
+
+  function observeLangChanges(){
+    /* Reapply ao clicar botão de idioma */
+    document.addEventListener('click', function(e){
+      var target = e.target.closest && e.target.closest('[data-lang], .lang-option, .lang-btn, [role="option"]');
+      if (target) setTimeout(forceHeroH1Translation, 300);
+    }, true);
+
+    /* Observer no attribute lang do <html> para detetar mudança */
+    if (window.MutationObserver) {
+      new MutationObserver(function(muts){
+        muts.forEach(function(m){
+          if (m.type === 'attributes' && (m.attributeName === 'lang' || m.attributeName === 'dir')) {
+            forceHeroH1Translation();
+          }
+        });
+      }).observe(document.documentElement, { attributes:true });
+    }
+  }
+
+  /* Initial runs */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function(){
+      forceHeroH1Translation();
+      observeLangChanges();
+    });
+  } else {
+    forceHeroH1Translation();
+    observeLangChanges();
+  }
+  /* Multiple retries to catch late i18n loads */
+  setTimeout(forceHeroH1Translation, 200);
+  setTimeout(forceHeroH1Translation, 600);
+  setTimeout(forceHeroH1Translation, 1500);
+  setTimeout(forceHeroH1Translation, 3000);
+  window.addEventListener('load', forceHeroH1Translation);
+})();

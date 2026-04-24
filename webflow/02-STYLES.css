@@ -12160,3 +12160,53 @@ html, body{
   overflow-x:hidden !important;
   overflow-y:auto !important;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ROUND 28 v2026.04.24-r28 — Hero H1 visível em TODAS media queries
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Universal — hero H1 nunca invisível, nunca display:none */
+html body .hero-h1,
+html body h1.hero-h1,
+html body section.hero h1,
+html body section.hero .hero-h1,
+html body .hero-section .hero-h1{
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  color:#fff !important;
+  word-wrap:break-word !important;
+  overflow-wrap:break-word !important;
+  hyphens:none !important;
+  max-width:100% !important;
+}
+
+/* Spans dentro do H1 sempre visíveis */
+html body .hero-h1 span,
+html body .hero-h1 span[data-i18n^="hero.h1."]{
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  line-height:1.08 !important;
+}
+
+/* Line 3 keeps blue gradient text (em todos os breakpoints) */
+html body .hero-h1 span[data-i18n="hero.h1.line3"],
+html body .hero-h1 span.hero-shimmer-soft{
+  background:linear-gradient(100deg, #4a9eff 0%, #1a73e8 40%, #6eb3ff 100%) !important;
+  -webkit-background-clip:text !important;
+  background-clip:text !important;
+  -webkit-text-fill-color:transparent !important;
+  color:transparent !important;
+  display:block !important;
+}
+
+/* Lines 1+2 white (em todos os breakpoints) */
+html body .hero-h1 span[data-i18n="hero.h1.line1"],
+html body .hero-h1 span[data-i18n="hero.h1.line2"]{
+  color:#fff !important;
+  -webkit-text-fill-color:#fff !important;
+  background:none !important;
+  display:block !important;
+}
