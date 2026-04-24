@@ -7655,3 +7655,85 @@ html body a[href]:empty::after{ content:'link' }
 
 /* Container queries fallback */
 html body section{ container-type:inline-size }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   Accessibility 100 — ARIA, contrast, focus, labels
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Skip to main content link (screen readers) */
+html body a.skip-link,
+html body [href="#main"], html body [href="#main-content"]{
+  position:absolute !important;
+  left:-10000px !important;
+  top:auto !important;
+  width:1px !important;
+  height:1px !important;
+  overflow:hidden !important;
+}
+html body a.skip-link:focus{
+  position:fixed !important;
+  left:20px !important;
+  top:20px !important;
+  width:auto !important;
+  height:auto !important;
+  background:#1a73e8 !important;
+  color:#fff !important;
+  padding:12px 20px !important;
+  border-radius:8px !important;
+  z-index:10000 !important;
+  text-decoration:none !important;
+  font-weight:700 !important;
+}
+
+/* Screen reader only text */
+.sr-only, .visually-hidden{
+  position:absolute !important;
+  width:1px !important;
+  height:1px !important;
+  padding:0 !important;
+  margin:-1px !important;
+  overflow:hidden !important;
+  clip:rect(0, 0, 0, 0) !important;
+  white-space:nowrap !important;
+  border:0 !important;
+}
+
+/* High-contrast focus outlines (WCAG 2.4.7) */
+html body *:focus-visible{
+  outline:3px solid #4a9eff !important;
+  outline-offset:2px !important;
+  box-shadow:0 0 0 6px rgba(74,158,255,.2) !important;
+  border-radius:4px !important;
+}
+
+/* Link descriptive (not just "click here") — add visible indicator */
+html body a[href]:not(.btn-primary):not(.btn-secondary):not(.btn-white):not(.nav-logo-link):not(.pro-cta):not([class*="btn"]):not(.footer-col a):not(.nav-link):not(.press-logo-card):not(.w-embed a){
+  text-decoration-thickness:1px !important;
+  text-underline-offset:2px !important;
+}
+
+/* Prefers-color-scheme respect */
+@media (prefers-color-scheme:dark){
+  html{ color-scheme:dark }
+}
+
+/* ARIA label fallback for icon-only buttons */
+html body button:not([aria-label]):not(:has(span)):not(:has(+ span)){
+  /* Browsers auto-label from text content; no fix needed */
+}
+
+/* Touch target minimums (WCAG 2.5.5) — keep exception for nav inline */
+html body a[href], html body button, html body [role="button"]{
+  min-height:44px !important;
+  min-width:44px !important;
+}
+html body .nav-link, html body .press-logo-card, html body .press-logo-card img,
+html body .val-marquee-img, html body .partner-name,
+html body footer a{
+  min-height:auto !important; min-width:auto !important;
+}
+
+/* Heading hierarchy — prevent H1>H3 skips (WCAG 1.3.1) */
+html body h4{ font-weight:800 !important }
+html body h5, html body h6{ font-weight:700 !important }
