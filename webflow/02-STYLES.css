@@ -7330,3 +7330,364 @@ html body .s-validation .val-advisory{
     width:100% !important;
   }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ROUND 3 v2026.04.24-r3 — Hero/Phone/Nav critical overrides
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── HERO H1 — prevent gigantic text that breaks layout on all viewports ── */
+html body .hero-h1,
+html body section.hero .hero-h1,
+html body h1.hero-h1{
+  font-size:clamp(32px, 5.2vw, 64px) !important;
+  line-height:1.08 !important;
+  letter-spacing:-.02em !important;
+  font-weight:900 !important;
+  max-width:min(720px, 95%) !important;
+  margin-bottom:clamp(16px, 2vw, 24px) !important;
+  word-break:normal !important;
+  hyphens:manual !important;
+  overflow-wrap:break-word !important;
+}
+html body .hero-h1 span[data-i18n="hero.h1.line1"],
+html body .hero-h1 span[data-i18n="hero.h1.line2"],
+html body .hero-h1 span[data-i18n="hero.h1.line3"]{
+  display:inline !important;
+}
+@media (max-width:768px){
+  html body .hero-h1{
+    font-size:clamp(28px, 8vw, 42px) !important;
+    max-width:100% !important;
+    line-height:1.1 !important;
+  }
+}
+
+/* ── HERO section — fits viewport on all sizes, content visible ── */
+html body section.hero,
+html body .hero-section{
+  min-height:100dvh !important;
+  max-height:none !important;
+  height:auto !important;
+  padding-top:clamp(72px, 10vh, 120px) !important;
+  padding-bottom:clamp(40px, 6vh, 80px) !important;
+  overflow:visible !important;
+  display:flex !important;
+  align-items:center !important;
+}
+html body .hero-content{
+  width:100% !important;
+  max-width:1200px !important;
+  margin:0 auto !important;
+  padding:clamp(20px, 4vw, 48px) clamp(16px, 3vw, 40px) !important;
+  box-sizing:border-box !important;
+}
+@media (min-width:981px){
+  html body .hero-content{
+    display:grid !important;
+    grid-template-columns:minmax(0, 1fr) 420px !important;
+    gap:clamp(24px, 3vw, 48px) !important;
+    align-items:center !important;
+  }
+}
+@media (max-width:980px){
+  html body .hero-content{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:clamp(20px, 3vw, 32px) !important;
+  }
+}
+
+/* ── NAV Language button — visible em fundo escuro (navbar preto) ── */
+html body #nav .lang-btn,
+html body nav .lang-btn,
+html body #nav .lang-selector button{
+  background:rgba(255,255,255,.08) !important;
+  color:#fff !important;
+  border:1px solid rgba(255,255,255,.18) !important;
+  padding:6px 12px !important;
+  border-radius:8px !important;
+  font-size:12px !important;
+  font-weight:700 !important;
+  letter-spacing:.04em !important;
+  cursor:pointer !important;
+  min-height:34px !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:6px !important;
+  transition:background .2s, border-color .2s !important;
+}
+html body #nav .lang-btn:hover,
+html body nav .lang-btn:hover{
+  background:rgba(255,255,255,.14) !important;
+  border-color:rgba(255,255,255,.3) !important;
+}
+/* On light section (scrolled) */
+html body nav.nav-light .lang-btn,
+html body #nav.nav-light .lang-btn{
+  background:rgba(0,0,0,.05) !important;
+  color:var(--blue) !important;
+  border:1px solid rgba(26,115,232,.3) !important;
+}
+html body nav.nav-light .lang-btn:hover{
+  background:var(--blue) !important;
+  color:#fff !important;
+}
+/* Fallback for generic PT button/span that shows as empty white pill */
+html body nav span[style*="color:#888"],
+html body nav .nav-r > span{
+  background:rgba(255,255,255,.08) !important;
+  color:#fff !important;
+  padding:6px 12px !important;
+  border-radius:8px !important;
+  border:1px solid rgba(255,255,255,.18) !important;
+}
+
+/* ── DASHBOARD broken image — hide if src fails, show gradient fallback ── */
+html body img[alt*="dashboard preview" i]{
+  background:linear-gradient(135deg, #0a1628 0%, #1a2842 50%, #0a1628 100%) !important;
+  border:1px solid rgba(26,115,232,.2) !important;
+  border-radius:24px !important;
+  min-height:200px !important;
+  object-fit:cover !important;
+  position:relative !important;
+}
+/* If image fails, hide the alt text visual clutter */
+html body img[alt*="dashboard preview" i][src=""],
+html body img[alt*="dashboard preview" i]:not([src]){
+  display:none !important;
+}
+/* Dashboard section wrapping */
+html body section:has(img[alt*="dashboard preview" i]){
+  background:#f4f4f4 !important;
+}
+
+/* ── HERO PHONES — exact Vercel design (bezel, notch, cards) ── */
+html body .hero-phones{
+  position:relative !important;
+  width:100% !important;
+  max-width:480px !important;
+  height:560px !important;
+  margin:0 auto !important;
+  display:block !important;
+}
+html body .hero-phones .phone{
+  position:absolute !important;
+  background:linear-gradient(180deg, #141518 0%, #0b0c0e 100%) !important;
+  border-radius:40px !important;
+  border:2px solid rgba(255,255,255,.08) !important;
+  box-shadow:
+    0 50px 120px rgba(0,0,0,.85),
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 0 0 1px rgba(26,115,232,.15) !important;
+  overflow:hidden !important;
+  padding:18px !important;
+  box-sizing:border-box !important;
+}
+/* Notch simulation */
+html body .hero-phones .phone::before{
+  content:'' !important;
+  position:absolute !important;
+  top:8px !important;
+  left:50% !important;
+  transform:translateX(-50%) !important;
+  width:72px !important;
+  height:6px !important;
+  background:#000 !important;
+  border-radius:6px !important;
+  z-index:10 !important;
+  opacity:.8 !important;
+}
+html body .phone.phone-train{
+  width:220px !important;
+  height:440px !important;
+  left:0 !important;
+  bottom:0 !important;
+  top:auto !important;
+  right:auto !important;
+  z-index:2 !important;
+  animation:ph-a 7s ease-in-out infinite !important;
+}
+html body .phone.phone-stats{
+  width:240px !important;
+  height:480px !important;
+  right:0 !important;
+  top:0 !important;
+  left:auto !important;
+  bottom:auto !important;
+  z-index:3 !important;
+  animation:ph-b 7s ease-in-out infinite !important;
+}
+
+/* Phone 1 content: Treino Cerebral */
+html body .phone.phone-train .ph-title{
+  color:#fff !important;
+  font-size:14px !important;
+  font-weight:800 !important;
+  margin:14px 0 16px !important;
+  padding:0 4px !important;
+}
+html body .phone.phone-train .ph-skill{
+  background:rgba(255,255,255,.06) !important;
+  border-radius:10px !important;
+  padding:9px 11px !important;
+  margin-bottom:7px !important;
+}
+html body .phone.phone-train .ph-skill-name{
+  color:rgba(255,255,255,.88) !important;
+  font-size:11px !important;
+  font-weight:600 !important;
+  margin-bottom:6px !important;
+}
+html body .phone.phone-train .ph-skill-bar{
+  height:4px !important;
+  background:rgba(255,255,255,.1) !important;
+  border-radius:2px !important;
+  overflow:hidden !important;
+  position:relative !important;
+}
+html body .phone.phone-train .ph-skill-fill{
+  height:100% !important;
+  background:linear-gradient(90deg, #22c55e, #4ade80) !important;
+  border-radius:2px !important;
+  box-shadow:0 0 8px rgba(34,197,94,.4) !important;
+}
+html body .phone.phone-train .ph-next{
+  display:flex !important;
+  justify-content:space-between !important;
+  align-items:center !important;
+  margin-top:16px !important;
+  padding-top:12px !important;
+  border-top:1px solid rgba(255,255,255,.08) !important;
+}
+html body .phone.phone-train .ph-next-label{
+  color:rgba(255,255,255,.5) !important;
+  font-size:10px !important;
+  font-weight:500 !important;
+}
+html body .phone.phone-train .ph-next-val{
+  color:#6eb3ff !important;
+  font-size:10px !important;
+  font-weight:700 !important;
+  letter-spacing:.04em !important;
+}
+
+/* Phone 2 content: Saúde Cerebral */
+html body .phone.phone-stats .ph-title{
+  color:#fff !important;
+  font-size:14px !important;
+  font-weight:800 !important;
+  margin:14px 0 14px !important;
+  padding:0 4px !important;
+}
+html body .phone.phone-stats .ph-chart{
+  background:linear-gradient(135deg, rgba(26,115,232,.15), rgba(26,115,232,.05)) !important;
+  border-radius:14px !important;
+  padding:12px !important;
+  margin-bottom:12px !important;
+}
+html body .phone.phone-stats .ph-chart > div:first-child{
+  color:rgba(255,255,255,.55) !important;
+  font-size:9px !important;
+  margin-bottom:8px !important;
+  font-weight:500 !important;
+}
+html body .phone.phone-stats .ph-chart .ph-bars,
+html body .phone.phone-stats .ph-chart > div:nth-child(2){
+  display:flex !important;
+  align-items:flex-end !important;
+  gap:5px !important;
+  height:60px !important;
+  margin-bottom:8px !important;
+}
+html body .phone.phone-stats .ph-bar{
+  flex:1 !important;
+  background:rgba(26,115,232,.5) !important;
+  border-radius:3px 3px 0 0 !important;
+  min-width:0 !important;
+}
+html body .phone.phone-stats .ph-bar.peak,
+html body .phone.phone-stats .ph-bar:last-child{
+  background:linear-gradient(180deg, #4ade80, #22c55e) !important;
+  box-shadow:0 0 12px rgba(34,197,94,.5) !important;
+}
+html body .phone.phone-stats .ph-age-card,
+html body .phone.phone-stats .ph-chart + div{
+  background:#fff !important;
+  border-radius:14px !important;
+  padding:14px !important;
+  color:#111 !important;
+}
+html body .phone.phone-stats .ph-age-card .ph-age-label{
+  color:rgba(0,0,0,.5) !important;
+  font-size:10px !important;
+  font-weight:500 !important;
+}
+html body .phone.phone-stats .ph-age-card .ph-age-val,
+html body .phone.phone-stats .ph-age-card > div:nth-child(2){
+  color:#111 !important;
+  font-size:32px !important;
+  font-weight:900 !important;
+  line-height:1 !important;
+  margin:2px 0 !important;
+}
+html body .phone.phone-stats .ph-age-card .ph-age-ideal,
+html body .phone.phone-stats .ph-age-card > div:nth-child(3){
+  color:#22c55e !important;
+  font-size:10px !important;
+  font-weight:700 !important;
+  margin:4px 0 8px !important;
+}
+html body .phone.phone-stats .ph-age-bar,
+html body .phone.phone-stats .ph-age-card > div:nth-child(4){
+  height:3px !important;
+  background:#e8f0fe !important;
+  border-radius:2px !important;
+  overflow:hidden !important;
+  position:relative !important;
+}
+html body .phone.phone-stats .ph-age-bar::after{
+  content:'' !important;
+  position:absolute !important;
+  left:0 !important;
+  top:0 !important;
+  width:62% !important;
+  height:100% !important;
+  background:#1a73e8 !important;
+  border-radius:2px !important;
+}
+html body .phone.phone-stats .ph-age-card .ph-age-real,
+html body .phone.phone-stats .ph-age-card > div:last-child{
+  color:rgba(0,0,0,.4) !important;
+  font-size:10px !important;
+  margin-top:6px !important;
+}
+
+/* Mobile: phones visible side-by-side, scaled */
+@media (max-width:980px){
+  html body .hero-phones{
+    display:flex !important;
+    flex-direction:row !important;
+    justify-content:center !important;
+    align-items:center !important;
+    gap:8px !important;
+    height:auto !important;
+    max-width:100% !important;
+    transform:scale(.65) !important;
+    transform-origin:center top !important;
+    margin:-30px auto 0 !important;
+    position:static !important;
+  }
+  html body .hero-phones .phone{
+    position:relative !important;
+    left:auto !important;
+    right:auto !important;
+    top:auto !important;
+    bottom:auto !important;
+    margin:0 !important;
+    animation:none !important;
+  }
+}
+@media (max-width:480px){
+  html body .hero-phones{ transform:scale(.55) !important; }
+}
