@@ -12013,3 +12013,150 @@ html body .press-strip img:hover{
   html body .hero-rating, html body .hero-read-time, html body .guarantee-row{ display:none !important }
   html body .hero-h1{ font-size:26px !important }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ROUND 27 v2026.04.24-r27 — KILL all internal scrolls (só body scroll)
+   User faz scroll pela página inteira, NUNCA dentro de divs
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ═══ UNIVERSAL — todas as resoluções, todos os browsers ═══ */
+
+html, body{
+  overflow-x:hidden !important;
+  overflow-y:auto !important;
+  height:auto !important;
+  max-height:none !important;
+  -webkit-overflow-scrolling:touch !important;
+  overscroll-behavior-y:auto !important;
+  overscroll-behavior-x:none !important;
+}
+
+/* ── Sections/containers/cards NEVER scroll internally ── */
+html body section,
+html body article,
+html body main,
+html body aside,
+html body header,
+html body footer,
+html body nav,
+html body .wrap,
+html body .container,
+html body .content,
+html body .row,
+html body .col,
+html body [class*="section"],
+html body [class*="container"],
+html body [class*="wrap"],
+html body [class*="card"],
+html body [class*="grid"],
+html body [class*="box"],
+html body [class*="panel"],
+html body [class*="row"],
+html body [class*="list"]:not(ul):not(ol),
+html body [class*="item"]{
+  overflow-y:visible !important;
+  -webkit-overflow-scrolling:auto !important;
+  max-height:none !important;
+  height:auto !important;
+}
+
+/* ── FAQ items must not be scrollable, use accordion height auto ── */
+html body .faq-item,
+html body .faq-a,
+html body .faq-answer,
+html body .faq-q,
+html body .faq-question,
+html body [itemprop="acceptedAnswer"]{
+  overflow-y:visible !important;
+  max-height:none !important;
+  height:auto !important;
+}
+
+/* ── Risk/Pro/Step/Val/Who/Rev cards must not be scrollable ── */
+html body .risk-card, html body .pro-card, html body .step-card,
+html body .val-card, html body .who-card, html body .rev-card,
+html body .hi-box, html body .rni-solution, html body .step-checks,
+html body .pro-stats, html body .pro-cta, html body .rc-front, html body .rc-desc,
+html body .rev-body, html body .rev-title, html body .who-card p, html body .who-card h3,
+html body .val-desc, html body .val-title, html body .pro-title, html body .pro-desc,
+html body .step-chk, html body .rc-title{
+  overflow:visible !important;
+  max-height:none !important;
+  height:auto !important;
+}
+
+/* ── SCROLLBARS em elementos internos hidden (qualquer browser) ── */
+html body section::-webkit-scrollbar,
+html body .wrap::-webkit-scrollbar,
+html body .container::-webkit-scrollbar,
+html body [class*="card"]::-webkit-scrollbar,
+html body [class*="grid"]::-webkit-scrollbar,
+html body [class*="box"]::-webkit-scrollbar,
+html body [class*="panel"]::-webkit-scrollbar,
+html body [class*="list"]::-webkit-scrollbar{
+  display:none !important;
+  width:0 !important;
+  height:0 !important;
+}
+html body section, html body .wrap, html body .container,
+html body [class*="card"], html body [class*="grid"],
+html body [class*="box"], html body [class*="panel"]{
+  scrollbar-width:none !important;   /* Firefox */
+  -ms-overflow-style:none !important; /* IE/Edge legacy */
+}
+
+/* ── EXCEÇÕES NECESSÁRIAS — onde overflow:hidden faz parte do design ── */
+
+/* Hero: overflow:hidden para neural canvas não sair */
+html body section.hero,
+html body .hero-section{
+  overflow:hidden !important;   /* esconde canvas particles que escapam */
+}
+
+/* Phones mockup: corpo do telemóvel esconde overflow */
+html body .hero-phones .phone,
+html body .phone{
+  overflow:hidden !important;
+}
+
+/* Press logos marquee: scrolling horizontal é INTENDED */
+html body .press-strip,
+html body [class*="marquee"],
+html body .val-marquee,
+html body .val-marquee-wrap{
+  overflow:hidden !important;
+}
+
+/* Progress bars: fill animation needs overflow:hidden no track */
+html body .ph-skill-bar,
+html body .ph-age-bar,
+html body .sk-track,
+html body .pillar-bar,
+html body .hi-chart-svg,
+html body .rc-icon,
+html body .val-icon,
+html body .rni-sol-icon{
+  overflow:hidden !important;
+}
+
+/* SVG sempre hidden */
+html body svg{ overflow:hidden !important }
+
+/* ── FIX any intermediate scroll wrappers that might exist ── */
+html body div[style*="overflow:auto"],
+html body div[style*="overflow: auto"],
+html body div[style*="overflow-y:auto"],
+html body div[style*="overflow-y: auto"],
+html body div[style*="overflow:scroll"],
+html body div[style*="overflow-y:scroll"],
+html body div[style*="max-height"]{
+  overflow-y:visible !important;
+  max-height:none !important;
+}
+
+/* Note: body continua a poder fazer scroll — só ELE */
+html, body{
+  overflow-x:hidden !important;
+  overflow-y:auto !important;
+}
