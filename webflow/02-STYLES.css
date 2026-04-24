@@ -5804,3 +5804,117 @@ html body .sk-fill[style*="width:77.5"]{ width:77.5% !important }
 html body .sk-fill[style*="width:60%"]{ width:60% !important }
 html body .sk-fill[style*="width:56"]{ width:56% !important }
 html body .sk-fill[style*="width:55"]{ width:55% !important }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   Risk cards — ícones MAIS legíveis (dentro do card, visíveis) + setas visíveis
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Card container — padding para icons não escaparem */
+html body .risk-row .risk-card{
+  padding:clamp(28px, 3vw, 36px) clamp(22px, 2.5vw, 28px) clamp(60px, 7vw, 72px) !important;
+  position:relative !important;
+  overflow:visible !important;
+  background:linear-gradient(180deg, rgba(255,255,255,.04) 0%, rgba(255,255,255,.02) 100%) !important;
+  border:1px solid rgba(255,255,255,.1) !important;
+  border-radius:20px !important;
+  display:flex !important;
+  flex-direction:column !important;
+  gap:16px !important;
+}
+
+/* Icon — box contido dentro do card com visual impactante */
+html body .risk-card .rc-icon,
+html body .risk-card .rc-front .rc-icon,
+html body .risk-card > div:first-child > .rc-icon{
+  position:static !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:48px !important;
+  height:48px !important;
+  padding:0 !important;
+  background:linear-gradient(135deg, rgba(26,115,232,.2) 0%, rgba(26,115,232,.06) 100%) !important;
+  border:1.5px solid rgba(26,115,232,.35) !important;
+  border-radius:14px !important;
+  box-shadow:0 0 20px rgba(26,115,232,.15), inset 0 0 0 1px rgba(255,255,255,.04) !important;
+  margin:0 !important;
+  flex-shrink:0 !important;
+}
+
+/* SVG interno — pequeno e branco/azul claro */
+html body .risk-card .rc-icon svg{
+  width:26px !important;
+  height:26px !important;
+  stroke-width:2.2 !important;
+  color:#6eb3ff !important;
+  stroke:#6eb3ff !important;
+  fill:none !important;
+  filter:drop-shadow(0 2px 6px rgba(26,115,232,.4)) !important;
+}
+
+/* Título */
+html body .risk-card .rc-title{
+  color:#fff !important;
+  font-size:clamp(16px, 1.5vw, 19px) !important;
+  font-weight:800 !important;
+  line-height:1.25 !important;
+  letter-spacing:-.01em !important;
+  margin:0 !important;
+  text-transform:none !important;
+}
+
+/* SETAS (rc-hint) — MAIS VISÍVEIS, azul CogniFit, posição bottom-right */
+html body .risk-card .rc-hint{
+  position:absolute !important;
+  bottom:clamp(20px, 2.2vw, 28px) !important;
+  right:clamp(20px, 2.2vw, 28px) !important;
+  width:28px !important;
+  height:28px !important;
+  opacity:1 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  background:rgba(26,115,232,.12) !important;
+  border:1.5px solid rgba(26,115,232,.3) !important;
+  border-radius:50% !important;
+  transition:transform .3s, background .3s, border-color .3s !important;
+}
+html body .risk-card .rc-hint path{
+  stroke:#6eb3ff !important;
+  stroke-width:2.2 !important;
+  opacity:1 !important;
+}
+html body .risk-card:hover .rc-hint{
+  background:rgba(26,115,232,.35) !important;
+  border-color:#1a73e8 !important;
+  transform:translateX(4px) !important;
+}
+html body .risk-card:hover .rc-hint path{
+  stroke:#fff !important;
+}
+
+/* Descrição */
+html body .risk-card .rc-desc{
+  color:rgba(255,255,255,.7) !important;
+  font-size:clamp(13px, 1.2vw, 14.5px) !important;
+  line-height:1.55 !important;
+  padding:0 !important;
+  margin:0 !important;
+  flex:1 !important;
+  padding-right:40px !important;
+}
+
+/* Hover card */
+html body .risk-card:hover{
+  border-color:rgba(26,115,232,.3) !important;
+  transform:translateY(-3px) !important;
+  box-shadow:0 20px 40px rgba(0,0,0,.3), 0 0 0 1px rgba(26,115,232,.12) !important;
+}
+
+@media (max-width:640px){
+  html body .risk-card .rc-icon{ width:44px !important; height:44px !important }
+  html body .risk-card .rc-icon svg{ width:22px !important; height:22px !important }
+  html body .risk-card .rc-hint{ width:24px !important; height:24px !important; bottom:16px !important; right:16px !important }
+  html body .risk-card{ padding:22px 18px 54px !important }
+}
