@@ -4875,3 +4875,180 @@ body > .w-webflow-badge{
   pointer-events:none !important;
   z-index:-1 !important;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PRO-CARDS final: mais pequenos, texto todo visível, SEM roxo
+   ═══════════════════════════════════════════════════════════════════════ */
+
+html body .pro-grid{
+  display:grid !important;
+  grid-template-columns:repeat(7, minmax(0, 1fr)) !important;   /* 7 numa linha */
+  gap:12px !important;
+  max-width:1320px !important;
+  margin:32px auto !important;
+  padding:0 20px !important;
+}
+@media (max-width:1280px){
+  html body .pro-grid{ grid-template-columns:repeat(4, 1fr) !important; gap:12px !important }
+}
+@media (max-width:900px){
+  html body .pro-grid{ grid-template-columns:repeat(3, 1fr) !important; gap:10px !important }
+}
+@media (max-width:640px){
+  html body .pro-grid{ grid-template-columns:repeat(2, 1fr) !important; gap:10px !important; padding:0 14px !important }
+}
+
+/* Card base — compacto */
+html body .pro-card{
+  background:#0c0d10 !important;
+  border:1px solid rgba(255,255,255,.08) !important;
+  border-radius:14px !important;
+  padding:0 !important;
+  overflow:hidden !important;
+  display:flex !important;
+  flex-direction:column !important;
+  position:relative !important;
+  min-width:0 !important;
+}
+
+/* Top area icon — SEM ROXO, fundo escuro neutro */
+html body .pro-card > *:first-child,
+html body .pro-card .pro-top,
+html body .pro-card > img:first-child,
+html body .pro-card > div:first-child:not(h3):not(p){
+  width:100% !important;
+  min-height:90px !important;
+  max-height:100px !important;
+  background:linear-gradient(180deg, #0f1115 0%, #0a0b0d 100%) !important;
+  background-color:#0a0b0d !important;
+  background-image:linear-gradient(180deg, #0f1115 0%, #0a0b0d 100%) !important;
+  border-bottom:1px solid rgba(255,255,255,.05) !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  padding:14px !important;
+  box-sizing:border-box !important;
+}
+
+/* Icon image — remove purple via mix-blend screen */
+html body .pro-card img{
+  width:52px !important;
+  height:52px !important;
+  min-width:52px !important;
+  min-height:52px !important;
+  max-width:52px !important;
+  max-height:52px !important;
+  object-fit:contain !important;
+  background:transparent !important;
+  mix-blend-mode:screen !important;    /* KEY: elimina o roxo dos PNGs */
+  filter:brightness(1.6) contrast(1.1) saturate(.85) !important;
+}
+
+/* Título — compacto mas legível */
+html body .pro-card h3,
+html body .pro-card .pro-title{
+  font-size:13px !important;
+  font-weight:800 !important;
+  line-height:1.2 !important;
+  color:#fff !important;
+  padding:12px 12px 6px !important;
+  margin:0 !important;
+  min-height:auto !important;
+  text-transform:none !important;
+  word-wrap:break-word !important;
+}
+
+/* Descrição — condensada, TODO texto visível (no line-clamp) */
+html body .pro-card p,
+html body .pro-card .pro-desc{
+  font-size:11.5px !important;
+  line-height:1.45 !important;
+  color:rgba(255,255,255,.7) !important;
+  padding:0 12px 10px !important;
+  margin:0 !important;
+  flex:1 !important;
+  min-height:auto !important;
+  max-height:none !important;
+  overflow:visible !important;
+  /* REMOVE line-clamp — todo texto visível */
+  display:block !important;
+  -webkit-line-clamp:unset !important;
+}
+
+/* Stats — compactas */
+html body .pro-card .pro-stats{
+  display:flex !important;
+  gap:8px !important;
+  padding:10px 12px !important;
+  margin:0 !important;
+  border-top:1px solid rgba(255,255,255,.08) !important;
+}
+html body .pro-card .pro-stat,
+html body .pro-card .pro-stats > div{
+  flex:1 !important;
+  min-width:0 !important;
+}
+html body .pro-card .pro-stat-num,
+html body .pro-card .pro-stats strong{
+  color:#fff !important;
+  font-size:13px !important;
+  font-weight:900 !important;
+  display:block !important;
+  line-height:1 !important;
+}
+html body .pro-card .pro-stat-lbl,
+html body .pro-card .pro-stats span{
+  color:rgba(255,255,255,.5) !important;
+  font-size:9px !important;
+  font-weight:500 !important;
+  letter-spacing:.02em !important;
+  line-height:1.3 !important;
+  display:block !important;
+  margin-top:2px !important;
+}
+
+/* CTA button — compacto */
+html body .pro-card .pro-cta,
+html body .pro-card a.pro-cta{
+  display:flex !important;
+  justify-content:center !important;
+  align-items:center !important;
+  gap:4px !important;
+  padding:9px 12px !important;
+  margin:6px 10px 10px !important;
+  background:var(--c, #1a73e8) !important;
+  color:#fff !important;
+  border-radius:100px !important;
+  font-weight:800 !important;
+  font-size:11.5px !important;
+  text-decoration:none !important;
+  text-transform:none !important;
+  white-space:nowrap !important;
+  transition:filter .2s !important;
+}
+html body .pro-card .pro-cta:hover{
+  filter:brightness(1.12) !important;
+}
+
+/* Accent border top (--c) */
+html body .pro-card::before{
+  content:'' !important;
+  position:absolute !important;
+  top:0 !important; left:0 !important; right:0 !important;
+  height:3px !important;
+  background:var(--c, #1a73e8) !important;
+  z-index:2 !important;
+}
+
+/* Mobile adaptations */
+@media (max-width:640px){
+  html body .pro-card > *:first-child{ min-height:70px !important; max-height:80px !important; padding:10px !important }
+  html body .pro-card img{ width:40px !important; height:40px !important; min-width:40px !important; min-height:40px !important; max-width:40px !important; max-height:40px !important }
+  html body .pro-card h3{ font-size:12px !important; padding:10px 10px 4px !important }
+  html body .pro-card p{ font-size:10.5px !important; padding:0 10px 8px !important; line-height:1.4 !important }
+  html body .pro-card .pro-stats{ padding:8px 10px !important; gap:6px !important }
+  html body .pro-card .pro-stat-num{ font-size:12px !important }
+  html body .pro-card .pro-stat-lbl{ font-size:8.5px !important }
+  html body .pro-card .pro-cta{ padding:8px 10px !important; font-size:10.5px !important; margin:4px 8px 8px !important }
+}
