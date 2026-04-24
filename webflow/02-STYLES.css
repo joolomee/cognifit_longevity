@@ -7790,3 +7790,66 @@ html body{
 html body img:not([loading]){
   loading:lazy;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MOBILE MEDIA QUERIES — match Vercel site exactly
+   (loaded LAST so it wins against earlier html body overrides that use
+    fixed px widths + transform:scale which broke the mobile hero)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Tablet & mobile hero phones — release fixed heights, restore responsive
+   percentage widths + rotations that the Vercel site uses */
+@media (max-width: 768px){
+  html body .hero-phones{
+    height:auto !important;
+    min-height:auto !important;
+    max-height:none !important;
+    max-width:340px !important;
+    width:100% !important;
+    margin:0 auto !important;
+    transform:none !important;
+    display:flex !important;
+    position:relative !important;
+    gap:0 !important;
+    justify-content:center !important;
+    align-self:center !important;
+  }
+  html body .hero-phones .phone.phone-train{
+    position:relative !important;
+    width:48% !important;
+    height:auto !important;
+    left:auto !important;
+    bottom:auto !important;
+    transform:rotate(-2deg) !important;
+    animation:ph-mob-a 5s ease-in-out infinite !important;
+    z-index:2 !important;
+    margin-right:-12px !important;
+  }
+  html body .hero-phones .phone.phone-stats{
+    position:relative !important;
+    width:52% !important;
+    height:auto !important;
+    right:auto !important;
+    top:auto !important;
+    transform:rotate(1.5deg) !important;
+    animation:ph-mob-b 5s ease-in-out infinite !important;
+    z-index:1 !important;
+    margin-left:-12px !important;
+  }
+}
+
+/* Mobile (≤640px): hide hero phones — render poorly at phone size,
+   cleaner hero with título + rating + CTA only */
+@media (max-width: 640px){
+  html body .hero-phones,
+  html body .hero-phones .phone,
+  html body .hero-phones .phone.phone-train,
+  html body .hero-phones .phone.phone-stats{
+    display:none !important;
+  }
+}
+
+/* Landscape mobile (very short viewport): hide phones so hero fits */
+@media (max-height: 560px) and (orientation: landscape){
+  html body .hero-phones{ display:none !important; }
+}
