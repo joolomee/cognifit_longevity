@@ -4785,3 +4785,93 @@ html body .hero-phones{
 @media (max-width:640px){
   html body .hero-phones{ transform:scale(.65) !important; margin:-60px auto -40px !important }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LAST FIXES — sistema cards sem scroll, triad clickable, botão centrado
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* 1) Sistema cards (Sistema 01/02/03) — ZERO internal scroll */
+html body .sys-card, html body [class*="sys-card"],
+html body .triad-detail, html body .triad-card,
+html body .sci-detail, html body .sci-card,
+html body .sistema-card, html body .system-card,
+html body .triad-body, html body .triad-content{
+  overflow:visible !important;
+  -webkit-overflow-scrolling:auto !important;
+  max-height:none !important;
+  height:auto !important;
+}
+
+/* Também qualquer card que mostre "Sistema 01/02/03" não deve ter scroll */
+html body div:has(> [class*="Sistema"]),
+html body div[class*="card"]:has(> [data-sys]),
+html body .triad-wrap, html body .triad-grid, html body .sci-wrap{
+  overflow:visible !important;
+  max-height:none !important;
+}
+
+/* 2) Triad SVG nodes — clickable e visíveis */
+html body .td-node,
+html body .sci-triad-svg .td-node,
+html body [class*="triad"] [class*="node"]{
+  cursor:pointer !important;
+  pointer-events:auto !important;
+  transition:transform .3s, filter .3s !important;
+}
+html body .td-node:hover,
+html body .sci-triad-svg .td-node:hover{
+  transform:scale(1.08) !important;
+  filter:drop-shadow(0 0 16px rgba(26,115,232,.8)) !important;
+}
+html body .td-node .td-outer{
+  cursor:pointer !important;
+  pointer-events:auto !important;
+}
+
+/* Triad SVG container — sem scroll */
+html body .sci-triad-svg,
+html body .triad-wrap,
+html body [class*="triad"]{
+  overflow:visible !important;
+  max-height:none !important;
+  height:auto !important;
+}
+
+/* 3) "Veja o Que é Possível" button — CENTRADO */
+html body .btn-center,
+html body .btn-center-left{
+  text-align:center !important;
+  display:flex !important;
+  justify-content:center !important;
+  align-items:center !important;
+  width:100% !important;
+}
+html body a[data-i18n="out.cta"],
+html body .g2-top .btn-secondary{
+  margin-left:auto !important;
+  margin-right:auto !important;
+  display:inline-flex !important;
+}
+
+/* 4) Made in Webflow — removal MAIS agressivo (cobre mais seletores) */
+html body .w-webflow-badge,
+html body a.w-webflow-badge,
+html body [class*="w-webflow-badge"],
+html body a[href*="webflow.com"][href*="utm"],
+html body a[href*="webflow.io"][href*="utm_source"],
+html body div[class*="webflow-badge"],
+html body [data-webflow-badge],
+body > a[href*="webflow.com"],
+body > .w-webflow-badge{
+  display:none !important;
+  visibility:hidden !important;
+  opacity:0 !important;
+  width:0 !important;
+  height:0 !important;
+  position:absolute !important;
+  left:-99999px !important;
+  top:-99999px !important;
+  pointer-events:none !important;
+  z-index:-1 !important;
+}

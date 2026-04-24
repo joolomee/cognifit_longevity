@@ -2513,3 +2513,20 @@ document.addEventListener('DOMContentLoaded', function() {
   setTimeout(forceHeroH1Translation, 3000);
   window.addEventListener('load', forceHeroH1Translation);
 })();
+
+/* Remove "Made in Webflow" badge via JS (it's injected after page load) */
+(function(){
+  function killWebflowBadge(){
+    try {
+      document.querySelectorAll('.w-webflow-badge, a[href*="webflow.com"][href*="utm"], a[href*="webflow.io"][href*="utm_source"]').forEach(function(el){
+        el.remove();
+      });
+    } catch(e){}
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', killWebflowBadge);
+  } else {
+    killWebflowBadge();
+  }
+  setInterval(killWebflowBadge, 1000);   /* persistente: re-remover se voltar */
+})();
