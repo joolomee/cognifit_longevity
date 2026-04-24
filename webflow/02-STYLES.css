@@ -11432,3 +11432,177 @@ html body .press-strip img:hover{
     line-height:1.55 !important;
   }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ROUND 25 v2026.04.24-r25 — Polimento tablet/iPad adicional
+   Hero + Reviews + Trust family + Closing CTA em tablet
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── HERO tablet portrait (769-1024): garantir fit ── */
+@media (min-width:769px) and (max-width:1024px) and (orientation:portrait){
+  html body section.hero{
+    min-height:100dvh !important;
+    max-height:none !important;
+    height:auto !important;
+    padding:100px clamp(24px, 4vw, 48px) 60px !important;
+    overflow:hidden !important;
+  }
+  html body .hero-content{
+    flex-direction:column !important;
+    align-items:center !important;
+    text-align:center !important;
+    gap:32px !important;
+    max-width:780px !important;
+    margin:0 auto !important;
+  }
+  html body .hero-h1{
+    font-size:clamp(34px, 5vw, 48px) !important;
+    max-width:720px !important;
+    line-height:1.1 !important;
+  }
+  html body .hero-h1 span{ display:block !important }
+  html body .hero-sub{
+    max-width:560px !important;
+    margin:0 auto !important;
+    text-align:center !important;
+    font-size:clamp(14px, 1.5vw, 17px) !important;
+  }
+  html body .hero-phones{
+    transform:scale(.85) !important;
+    margin:-10px auto 0 !important;
+    max-width:460px !important;
+  }
+  html body .btn-primary{
+    padding:14px 32px !important;
+    font-size:15px !important;
+  }
+  html body .hero-rating{ justify-content:center !important }
+  html body .guarantee-row{ justify-content:center !important }
+}
+
+/* ── HERO tablet landscape (1025-1280 ratio widescreen) ── */
+@media (min-width:1025px) and (max-width:1280px) and (orientation:landscape){
+  html body section.hero{
+    min-height:100dvh !important;
+    max-height:100dvh !important;
+    padding:100px 32px 60px !important;
+  }
+  html body .hero-content{
+    grid-template-columns:1fr minmax(360px, 440px) !important;
+    gap:40px !important;
+  }
+  html body .hero-h1{ font-size:clamp(38px, 4.5vw, 52px) !important }
+}
+
+/* ── REVIEWS (.reviews-grid) tablet ── */
+@media (min-width:641px) and (max-width:1024px){
+  html body .reviews-grid{
+    grid-template-columns:repeat(2, 1fr) !important;
+    gap:16px !important;
+    max-width:860px !important;
+    padding:0 clamp(16px, 3vw, 24px) !important;
+  }
+  html body .rev-card{
+    padding:20px 22px !important;
+  }
+  html body .rev-card .rev-title{ font-size:16px !important }
+  html body .rev-card .rev-body{ font-size:13.5px !important; line-height:1.55 !important }
+}
+@media (max-width:640px){
+  html body .reviews-grid{
+    grid-template-columns:1fr !important;
+    gap:12px !important;
+    padding:0 16px !important;
+  }
+}
+
+/* ── "JUNTE-SE À NOSSA FAMÍLIA" (trust section) tablet ── */
+@media (min-width:641px) and (max-width:1024px){
+  html body section:has(.trust-headline),
+  html body .trust-section,
+  html body section[class*="trust"]{
+    padding:clamp(48px, 6vh, 80px) 0 !important;
+  }
+  html body .trust-headline,
+  html body .trust-section h2{
+    font-size:clamp(26px, 4vw, 38px) !important;
+    max-width:720px !important;
+  }
+  html body .trust-stats,
+  html body .stats-row{
+    grid-template-columns:repeat(4, 1fr) !important;
+    gap:16px !important;
+    max-width:800px !important;
+  }
+  html body .trust-stat-num, html body .stats-row strong{
+    font-size:clamp(24px, 3.2vw, 36px) !important;
+  }
+  html body .trust-chips{
+    gap:8px !important;
+    max-width:600px !important;
+  }
+  html body .trust-chip{
+    font-size:12px !important;
+    padding:6px 14px !important;
+  }
+  html body .trust-press{
+    max-width:640px !important;
+    font-size:13px !important;
+  }
+}
+@media (max-width:640px){
+  html body .trust-stats, html body .stats-row{
+    grid-template-columns:repeat(2, 1fr) !important;
+    gap:20px 14px !important;
+  }
+  html body .trust-stat-num, html body .stats-row strong{
+    font-size:26px !important;
+  }
+  html body .trust-chip{ font-size:11px !important; padding:5px 12px !important }
+}
+
+/* ── CLOSING section (final CTA) tablet ── */
+@media (min-width:641px) and (max-width:1024px){
+  html body section.closing, html body .closing-section{
+    padding:clamp(56px, 8vh, 96px) clamp(24px, 4vw, 40px) !important;
+  }
+  html body [data-i18n="cta.h2"],
+  html body section.closing h2{
+    font-size:clamp(28px, 4vw, 40px) !important;
+    max-width:760px !important;
+    line-height:1.15 !important;
+  }
+  html body [data-i18n="cta.sub"],
+  html body section.closing p{
+    font-size:clamp(14px, 1.5vw, 16px) !important;
+    max-width:560px !important;
+  }
+  html body a[data-i18n="cta.btn"]{
+    padding:14px 32px !important;
+    font-size:15px !important;
+  }
+}
+
+/* ── FOOTER tablet: 2-col em vez de 4-col ── */
+@media (min-width:641px) and (max-width:1024px){
+  html body footer > div:nth-child(2){
+    grid-template-columns:repeat(2, 1fr) !important;
+    gap:clamp(20px, 3vw, 32px) !important;
+  }
+  html body footer{
+    padding:48px 24px !important;
+  }
+}
+
+/* ── GLOBAL: garantir que nothing tablet exceeds viewport ── */
+@media (min-width:641px) and (max-width:1280px){
+  html body *{
+    max-width:100% !important;
+  }
+  html body .wrap, html body .container{
+    max-width:min(1180px, 100vw) !important;
+    padding-left:clamp(16px, 3vw, 32px) !important;
+    padding-right:clamp(16px, 3vw, 32px) !important;
+  }
+}
