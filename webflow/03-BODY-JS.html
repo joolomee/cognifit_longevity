@@ -9,4 +9,47 @@
    ═══════════════════════════════════════════════════════════════════════════ -->
 
 <!-- Main app bundle (cópia exata do Vercel main.js) — servido por jsDelivr/GitHub -->
-<script src="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/webflow/webflow-main.js?v=20260425-4" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/webflow/webflow-main.js?v=20260425-5" defer></script>
+
+
+<!-- ═════════════════════════════════════════════════════════════════════
+     AUTO-FIX: substitui logos broken do CDN antigo Webflow por jsDelivr
+     ═════════════════════════════════════════════════════════════════════ -->
+<script>
+(function(){
+  var BASE = 'https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/webflow/assets/';
+  var MAP = {
+    'WSJ_Logo.svg.png':'WSJ_Logo.svg.png',
+    'CBS_logo.svg.png':'CBS_logo.svg.png',
+    'CNN.svg.png':'CNN.svg.png',
+    'NBC_logo.svg.png':'NBC_logo.svg.png',
+    'NewYorkTimes.svg.png':'NewYorkTimes.svg.png',
+    'American_Broadcasting_Company_Logo.svg.png':'American_Broadcasting_Company_Logo.svg.png',
+    'Logo_Lifetime_2020.svg.png':'Logo_Lifetime_2020.svg.png',
+    'medicalnewstoday.png':'medicalnewstoday.png',
+    'smart-money-logo-svg-vector.svg':'smart-money-logo-svg-vector.svg'
+  };
+  function fixImg(img){
+    var s = img.getAttribute('src') || '';
+    var fn = s.split('/').pop().split('?')[0];
+    if (MAP[fn]) {
+      img.removeAttribute('srcset');
+      img.removeAttribute('sizes');
+      img.src = BASE + MAP[fn];
+    }
+  }
+  function run(){ document.querySelectorAll('img').forEach(fixImg); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
+  else run();
+  // Watch for late-injected images
+  new MutationObserver(function(muts){
+    muts.forEach(function(m){
+      m.addedNodes.forEach(function(n){
+        if (n.nodeType !== 1) return;
+        if (n.tagName === 'IMG') fixImg(n);
+        else if (n.querySelectorAll) n.querySelectorAll('img').forEach(fixImg);
+      });
+    });
+  }).observe(document.body, {childList:true, subtree:true});
+})();
+</script>
