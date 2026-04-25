@@ -90,6 +90,14 @@
 <!-- Preload critical resources -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- DNS prefetch (perf, helps SEO Core Web Vitals) -->
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
+<link rel="dns-prefetch" href="//api.country.is">
+
+<!-- GEO: LLM-readable summary served via jsDelivr (mirrors GitHub repo) -->
+<link rel="alternate" type="text/markdown" href="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/llms.txt" title="LLM-readable summary (llms.txt)">
+
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" as="style">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/webflow/02-STYLES.css?v=20260425">
@@ -124,7 +132,6 @@
   gtag('config', 'G-XXXXXXXXXX', { 'anonymize_ip': true });
 </script>
 -->
-
 
 <!-- Schema.org JSON-LD — CogniFit Cognitive Longevity Landing Page -->
 <script type="application/ld+json">
