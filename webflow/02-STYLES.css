@@ -5373,3 +5373,84 @@ html.is-iframe .val-marquee-wrap {
     color: #000 !important;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   PRO-STACK — Definitive responsive layout (7 cards, auto-center)
+   v2026.04.26 — overrides every earlier .pro-stack rule
+   ══════════════════════════════════════════════════════════════════ */
+.pro-stack{
+  display:flex !important;
+  flex-wrap:wrap !important;
+  justify-content:center !important;
+  align-items:stretch !important;
+  gap:16px !important;
+  max-width:1400px !important;
+  width:100% !important;
+  margin:0 auto !important;
+  padding:0 clamp(16px, 3vw, 32px) !important;
+  grid-template-columns:none !important;
+}
+.pro-stack > .pro-card{
+  flex:0 0 auto !important;
+  width:calc((100% - 16px * 6) / 7) !important;   /* 7 per row on XL */
+  min-width:0 !important;
+  min-height:380px !important;
+  display:flex !important;
+  flex-direction:column !important;
+  margin:0 !important;
+}
+
+/* Desktop / laptop médio — 4 por linha (3 cards centrados na 2ª linha) */
+@media (max-width: 1279px) and (min-width: 1024px){
+  .pro-stack{ gap:18px !important; max-width:1100px !important; }
+  .pro-stack > .pro-card{
+    width:calc((100% - 18px * 3) / 4) !important;
+    min-height:360px !important;
+  }
+}
+
+/* Tablet — 3 por linha (3+3+1, último centrado) */
+@media (max-width: 1023px) and (min-width: 768px){
+  .pro-stack{ gap:16px !important; max-width:840px !important; }
+  .pro-stack > .pro-card{
+    width:calc((100% - 16px * 2) / 3) !important;
+    min-height:340px !important;
+  }
+}
+
+/* Mobile horizontal / phablet — 2 por linha (último centrado) */
+@media (max-width: 767px) and (min-width: 481px){
+  .pro-stack{ gap:14px !important; max-width:580px !important; padding:0 16px !important; }
+  .pro-stack > .pro-card{
+    width:calc((100% - 14px) / 2) !important;
+    min-height:300px !important;
+  }
+}
+
+/* Mobile vertical — 1 por linha, full width */
+@media (max-width: 480px){
+  .pro-stack{
+    flex-direction:column !important;
+    align-items:stretch !important;
+    gap:14px !important;
+    padding:0 16px !important;
+    max-width:100% !important;
+  }
+  .pro-stack > .pro-card{
+    width:100% !important;
+    min-height:auto !important;
+  }
+  .pro-stack > .pro-card .pro-photo{ flex:0 0 140px !important; }
+  .pro-stack > .pro-card .pro-text{ padding:18px 18px 22px !important; }
+  .pro-stack > .pro-card .pro-desc{ display:block !important; font-size:13px !important; }
+  .pro-stack > .pro-card .pro-metrics{ display:grid !important; grid-template-columns:1fr 1fr !important; gap:10px !important; }
+}
+
+/* Iframe context — força flex layout também dentro de iframes */
+html.is-iframe .pro-stack{
+  display:flex !important;
+  flex-wrap:wrap !important;
+  justify-content:center !important;
+  grid-template-columns:none !important;
+}
+
