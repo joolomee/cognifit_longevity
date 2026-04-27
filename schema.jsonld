@@ -63,8 +63,8 @@
 
     {
       "@type": ["WebPage", "MedicalWebPage"],
-      "@id": "https://brain.cognifit.com/longevity/#webpage",
-      "url": "https://brain.cognifit.com/longevity",
+      "@id": "https://www.cognifit.com/longevity/#webpage",
+      "url": "https://www.cognifit.com/longevity",
       "name": "Brain Longevity Test & Training: Live Longer, Think Better | CogniFit",
       "description": "Measure your brain longevity with a scientifically validated brain longevity test. Assess 20+ cognitive skills, prevent cognitive decline, and stay independent. Backed by 1,083+ clinical trials. Used by 6M+ people.",
       "isPartOf": {
@@ -75,7 +75,7 @@
       },
       "primaryImageOfPage": {
         "@type": "ImageObject",
-        "url": "https://brain.cognifit.com/longevity/og-image.jpg"
+        "url": "https://www.cognifit.com/longevity/og-image.jpg"
       },
       "datePublished": "2025-01-01",
       "dateModified": "2026-04-12",
@@ -90,7 +90,7 @@
       },
       "inLanguage": "en",
       "breadcrumb": {
-        "@id": "https://brain.cognifit.com/longevity/#breadcrumb"
+        "@id": "https://www.cognifit.com/longevity/#breadcrumb"
       },
       "speakable": {
         "@type": "SpeakableSpecification",
@@ -135,7 +135,7 @@
         "Working Memory Training",
         "Attention Training"
       ],
-      "screenshot": "https://brain.cognifit.com/longevity/og-image.jpg"
+      "screenshot": "https://www.cognifit.com/longevity/og-image.jpg"
     },
 
     {
@@ -194,8 +194,8 @@
       "brand": {
         "@id": "https://www.cognifit.com/#organization"
       },
-      "image": "https://brain.cognifit.com/longevity/og-image.jpg",
-      "url": "https://brain.cognifit.com/longevity",
+      "image": "https://www.cognifit.com/longevity/og-image.jpg",
+      "url": "https://www.cognifit.com/longevity",
       "category": "Brain Health & Cognitive Training",
       "aggregateRating": {
         "@type": "AggregateRating",
@@ -241,10 +241,10 @@
 
     {
       "@type": "BreadcrumbList",
-      "@id": "https://brain.cognifit.com/longevity/#breadcrumb",
+      "@id": "https://www.cognifit.com/longevity/#breadcrumb",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "CogniFit", "item": "https://www.cognifit.com" },
-        { "@type": "ListItem", "position": 2, "name": "Brain Health", "item": "https://brain.cognifit.com" },
+        { "@type": "ListItem", "position": 2, "name": "Brain Health", "item": "https://www.cognifit.com" },
         { "@type": "ListItem", "position": 3, "name": "Cognitive Longevity" }
       ]
     },
