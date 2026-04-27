@@ -775,3 +775,250 @@ html.is-iframe .val-marquee-wrap {
     color: #000 !important;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   MOBILE QA — Vercel-grade hero override
+   Final cascade layer. Loaded AFTER every other rule.
+   Goal: kill template tells (gradient text, glow buttons, twin phones,
+   floating scroll-top, dark pill trust block). One accent per viewport.
+   Scope: all phones (≤767px). Tablet/desktop untouched.
+   ══════════════════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+
+  /* ── HERO CONTENT — clear nav, intentional rhythm ─────────────── */
+  .hero { padding-top: 0 !important; padding-bottom: 0 !important; }
+  .hero-content {
+    padding-top: 96px !important;
+    padding-bottom: 48px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    gap: 0 !important;          /* we control spacing per element below */
+  }
+
+  /* ── BADGE — quiet, green dot replaces blue ───────────────────── */
+  .hero-badge {
+    background: rgba(255,255,255,0.06) !important;
+    border: 1px solid rgba(255,255,255,0.12) !important;
+    color: rgba(255,255,255,0.85) !important;
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+    margin-bottom: 24px !important;
+  }
+  .badge-dot {
+    background: #10B981 !important;
+    box-shadow: 0 0 0 3px rgba(16,185,129,0.18) !important;
+  }
+
+  /* ── H1 — lighter weight, no shadow, contained size ───────────── */
+  .hero-h1 {
+    font-size: clamp(30px, 8.5vw, 40px) !important;
+    font-weight: 600 !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.025em !important;
+    text-shadow: none !important;
+    margin-bottom: 16px !important;
+  }
+
+  /* ── KILL the blue gradient on "Stay Independent" ─────────────── */
+  /* Use serif italic accent — Vercel/Anthropic signature */
+  .hero-h1 .hero-shimmer-soft,
+  .hero-shimmer-soft {
+    background: none !important;
+    background-image: none !important;
+    -webkit-background-clip: initial !important;
+            background-clip: initial !important;
+    -webkit-text-fill-color: #ffffff !important;
+    color: #ffffff !important;
+    font-family: "Instrument Serif", "Times New Roman", Georgia, serif !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.01em !important;
+    animation: none !important;
+  }
+
+  /* ── SUB — softer, tighter, no max-width cap ──────────────────── */
+  .hero-sub {
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+    color: rgba(255,255,255,0.78) !important;
+    margin-bottom: 24px !important;
+    max-width: 100% !important;
+  }
+  .hero-sub strong {
+    color: #fff !important;
+    font-weight: 600 !important;
+    letter-spacing: 0 !important;
+  }
+
+  /* ── READ-TIME microcopy — keep, dim it ───────────────────────── */
+  .hero-read-time {
+    font-size: 12px !important;
+    color: rgba(255,255,255,0.5) !important;
+    margin: 0 0 24px 0 !important;
+    padding: 0 !important;
+  }
+
+  /* ── PRIMARY CTA — inverted: white on dark (Vercel pattern) ───── */
+  /* Scope to .hero-content so dark-bg sections elsewhere are safe */
+  .hero-content .btn-primary,
+  .hero-content a.btn-primary {
+    width: 100% !important;
+    height: 52px !important;
+    padding: 0 24px !important;
+    background: #ffffff !important;
+    background-image: none !important;
+    color: #000000 !important;
+    border: 1px solid #ffffff !important;
+    border-radius: 12px !important;
+    box-shadow: none !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.005em !important;
+    transition: background 200ms ease, transform 200ms ease !important;
+  }
+  .hero-content .btn-primary::before { display: none !important; }
+  .hero-content .btn-primary:active {
+    background: rgba(255,255,255,0.92) !important;
+    transform: scale(0.98) !important;
+    box-shadow: none !important;
+  }
+
+  /* ── TRUST STRIP — kill the dark pill, become 1 line of micro ─── */
+  .hero-rating {
+    background: none !important;
+    background-image: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 16px 0 0 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 6px 10px !important;
+  }
+  .hero-rating .rating-c,
+  .hero-rating .rating-row1 {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    flex-wrap: wrap !important;
+    gap: 6px 10px !important;
+  }
+  .hero-rating .stars {
+    font-size: 13px !important;
+    letter-spacing: 1px !important;
+    text-shadow: none !important;
+  }
+  .hero-rating .rating-n {
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: rgba(255,255,255,0.85) !important;
+  }
+  .hero-rating .rating-users {
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    color: rgba(255,255,255,0.55) !important;
+  }
+  .hero-rating .rating-sep { display: none !important; }
+
+  /* ── HIDE the two satisfaction/refund pills entirely ──────────── */
+  .guarantee-row,
+  .hero-content .guarantee-row {
+    display: none !important;
+  }
+
+  /* ── HERO SCROLL HINT — redundant once phone is in view ───────── */
+  .hero-scroll-hint { display: none !important; }
+
+  /* ── PHONES — keep ONE, kill the left mockup ──────────────────── */
+  .hero-phones {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 320px !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 32px auto 0 !important;
+    padding: 0 !important;
+    gap: 0 !important;
+  }
+  .phone-train { display: none !important; }
+  .phone-stats {
+    position: relative !important;
+    inset: auto !important;
+    top: auto !important; right: auto !important;
+    bottom: auto !important; left: auto !important;
+    width: min(280px, 78vw) !important;
+    margin: 0 auto !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  /* ── PH-AGE-CARD — promote to hero visual ─────────────────────── */
+  .ph-age-card {
+    padding: 16px !important;
+    border-radius: 16px !important;
+    box-shadow: 0 24px 48px -16px rgba(0,0,0,0.55),
+                0 1px 0 rgba(255,255,255,0.6) inset !important;
+  }
+  .ph-age-lbl  { font-size: 10px !important; }
+  .ph-age-num  { font-size: 42px !important; line-height: 1 !important; }
+  .ph-age-ok   { font-size: 11px !important; }
+  .ph-age-bar  { height: 5px !important; margin-bottom: 5px !important; }
+  .ph-age-real { font-size: 10px !important; }
+
+  /* ── KILL the floating scroll-to-top blue button ──────────────── */
+  .scroll-top-btn { display: none !important; }
+
+  /* ── NAV — quiet the language pill, soften the CTA ────────────── */
+  .btn-login,
+  .nav .btn-login,
+  nav .btn-login,
+  .nav-r .btn-login {
+    background: rgba(255,255,255,0.04) !important;
+    background-image: none !important;
+    border: 1px solid rgba(255,255,255,0.18) !important;
+    color: rgba(255,255,255,0.92) !important;
+    box-shadow: none !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    padding: 0 14px !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    border-radius: 8px !important;
+    letter-spacing: 0.02em !important;
+  }
+
+  /* Language toggle (PT pill) — ghost */
+  .lang-btn,
+  .nav-r .lang-btn,
+  .nav-r [class*="lang"] {
+    background: transparent !important;
+    background-image: none !important;
+    border: 1px solid rgba(255,255,255,0.15) !important;
+    color: rgba(255,255,255,0.7) !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    padding: 0 12px !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    box-shadow: none !important;
+    border-radius: 8px !important;
+  }
+}
+
+/* Tighten further for very small screens */
+@media (max-width: 380px) {
+  .hero-content { padding-top: 88px !important; }
+  .hero-h1 { font-size: 30px !important; }
+  .ph-age-num { font-size: 38px !important; }
+  .phone-stats { width: 240px !important; }
+}
+
