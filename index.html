@@ -631,11 +631,14 @@
 
 </head>
 <body>
-<!-- Reading Progress Bar -->
-<div class="reading-progress" id="reading-progress"></div>
+<!-- Skip Navigation Link (Accessibility) -->
+<a href="#main-content" class="skip-nav">Skip to main content</a>
 
-<div class="custom-cursor" id="cc"></div>
-<div class="custom-cursor-ring" id="ccr"></div>
+<!-- Reading Progress Bar -->
+<div class="reading-progress" id="reading-progress" aria-hidden="true"></div>
+
+<div class="custom-cursor" id="cc" aria-hidden="true"></div>
+<div class="custom-cursor-ring" id="ccr" aria-hidden="true"></div>
 
 <!-- SVG Gradient Defs -->
 <svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
@@ -678,7 +681,7 @@
   </div>
 </nav>
 
-<main>
+<main id="main-content">
 <!-- HERO -->
 <section class="hero">
   <div class="hero-photo-bg"></div>
@@ -1178,7 +1181,7 @@
           </div>
         </div>
         <div class="hi-box">
-          <h3 data-i18n="out.box1.t">This Isn't Just Brain Training. It's Cognitive Longevity</h3>
+          <h4 data-i18n="out.box1.t">This Isn't Just Brain Training. It's Cognitive Longevity</h4>
           <div class="hi-it" data-i18n="out.box1.i1">Staying sharp at 50, 60, 70 and beyond</div>
           <div class="hi-it" data-i18n="out.box1.i2">Making better life decisions, every day</div>
           <div class="hi-it" data-i18n="out.box1.i3">Maintaining full autonomy as you age</div>
@@ -1186,7 +1189,7 @@
           <div class="hi-close" data-i18n="out.box1.c" data-i18n-html>It's not about adding years to your life.<br><strong>It's about adding clarity, control, and independence to those years.</strong></div>
         </div>
         <div class="hi-box" style="margin-top:clamp(16px,3vw,24px);background:rgba(26,115,232,0.04);border-color:rgba(26,115,232,0.15)">
-          <h3 data-i18n="out.box2.t">When Will You See Results?</h3>
+          <h4 data-i18n="out.box2.t">When Will You See Results?</h4>
           <div class="hi-it" data-i18n="out.box2.i1" data-i18n-html><strong>Week 1-2:</strong> Baseline assessment complete. You'll know exactly where you stand across 20+ cognitive skills</div>
           <div class="hi-it" data-i18n="out.box2.i2" data-i18n-html><strong>Week 2-4:</strong> Most users report feeling sharper, with faster recall, better focus in conversations, and clearer thinking</div>
           <div class="hi-it" data-i18n="out.box2.i3" data-i18n-html><strong>Week 4-8:</strong> Measurable improvement in trained cognitive domains, tracked in your personal dashboard</div>

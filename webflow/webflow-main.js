@@ -573,10 +573,23 @@ function updateNav(){
 window.addEventListener('scroll',updateNav,{passive:true});
 updateNav(); // run once on load
 
-/* Skill bars animate on scroll */
-document.querySelectorAll('.sk-fill').forEach(bar=>{
-  const w=bar.style.width;bar.style.width='0%';
-  new IntersectionObserver(([e],ob)=>{if(e.isIntersecting){bar.style.width=w;ob.unobserve(bar)}},{threshold:.5}).observe(bar);
+/* Skill bars — transform-based animation (FIX 2026-04-26)
+   Why transform: width animation collapsed in iframe shim because
+   width=0% and width=target happened in same frame. Transform scaleX
+   uses a class toggle so initial state paints first. The inline-style
+   width on each bar is kept as the FINAL bar size; scaleX(0→1) animates
+   the visual fill from empty to full. Works in iframe + standalone. */
+document.querySelectorAll('.sk-fill').forEach(bar => {
+  // Force the initial paint (scaleX(0) via CSS) before adding the class
+  // that triggers scaleX(1) — double rAF guarantees a frame in between.
+  new IntersectionObserver(([e], ob) => {
+    if (e.isIntersecting) {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => bar.classList.add('is-visible'));
+      });
+      ob.unobserve(bar);
+    }
+  }, { threshold: 0.2 }).observe(bar);
 });
 
 /* ══════════════════════════════════════════════════════════

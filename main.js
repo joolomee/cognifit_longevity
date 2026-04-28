@@ -580,76 +580,93 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
 });
 
 /* ══════════════════════════════════════════════════════════
-   PARALLAX ENGINE
+   PARALLAX ENGINE (consolidated into single RAF loop)
 ══════════════════════════════════════════════════════════ */
 (function(){
+  /* Respect reduced-motion preference */
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   /* ── 1. HERO CANVAS PARALLAX ── */
   const heroCanvas = document.getElementById('neural-canvas');
-  if(heroCanvas){
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      heroCanvas.style.transform = `translateY(${y * 0.3}px)`;
-    }, {passive: true});
-  }
 
-  /* ── 2. SECTION BACKGROUND PARALLAX ── */
+  /* ── 2. SECTION BACKGROUND PARALLAX (cached DOM query) ── */
   const parallaxSections = document.querySelectorAll('.s-black, .s-dark, .s-blue, .closing');
-  function updateSectionParallax() {
-    const scrollY = window.scrollY;
-    parallaxSections.forEach(sec => {
-      const rect = sec.getBoundingClientRect();
-      const centerOffset = (rect.top + rect.height / 2) - window.innerHeight / 2;
-      const shift = centerOffset * 0.08;
-      sec.style.backgroundPositionY = `calc(50% + ${shift}px)`;
+
+  /* ── 6. HERO TEXT LAYERS PARALLAX (moved here for consolidation) ── */
+  const heroText = document.querySelector('.hero-text');
+
+  /* ── SINGLE SCROLL RAF LOOP ── */
+  var scrollTicking = false;
+  function onScrollFrame() {
+    if (prefersReducedMotion) { scrollTicking = false; return; }
+    var y = window.scrollY;
+
+    /* Hero canvas parallax */
+    if (heroCanvas) {
+      heroCanvas.style.transform = 'translateY(' + (y * 0.3) + 'px)';
+    }
+
+    /* Section background parallax */
+    var winH = window.innerHeight;
+    parallaxSections.forEach(function(sec) {
+      var rect = sec.getBoundingClientRect();
+      var centerOffset = (rect.top + rect.height / 2) - winH / 2;
+      sec.style.backgroundPositionY = 'calc(50% + ' + (centerOffset * 0.08) + 'px)';
+    });
+
+    /* Hero text parallax */
+    if (heroText && y < winH * 1.5) {
+      heroText.style.transform = 'translateY(' + (y * 0.18) + 'px)';
+      heroText.style.opacity = '' + (1 - y / (winH * 0.85));
+    }
+
+    scrollTicking = false;
+  }
+  window.addEventListener('scroll', function() {
+    if (!scrollTicking) {
+      scrollTicking = true;
+      requestAnimationFrame(onScrollFrame);
+    }
+  }, {passive: true});
+  onScrollFrame();
+
+  /* ── 3. CARD TILT (unified helper, desktop only) ── */
+  function addCardTilt(selector, liftY, rotateScale) {
+    if (prefersReducedMotion) return;
+    if (!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+    document.querySelectorAll(selector).forEach(function(card) {
+      card.addEventListener('mousemove', function(e) {
+        var r = card.getBoundingClientRect();
+        var dx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
+        var dy = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
+        card.style.transform = 'translateY(' + liftY + 'px) rotateY(' + (dx * rotateScale) + 'deg) rotateX(' + (-dy * (rotateScale - 1)) + 'deg)';
+        card.style.transition = 'transform 0.08s ease';
+      });
+      card.addEventListener('mouseleave', function() {
+        card.style.transform = '';
+        card.style.transition = 'transform 0.5s cubic-bezier(.4,0,.2,1)';
+      });
     });
   }
-
-  /* ── 3. PRO CARD 3D TILT ON MOUSE ── */
-  document.querySelectorAll('.pro-card').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const r = card.getBoundingClientRect();
-      const cx = r.left + r.width / 2;
-      const cy = r.top + r.height / 2;
-      const dx = (e.clientX - cx) / (r.width / 2);
-      const dy = (e.clientY - cy) / (r.height / 2);
-      card.style.transform = `translateY(-6px) rotateY(${dx * 5}deg) rotateX(${-dy * 4}deg)`;
-      card.style.transition = 'transform 0.08s ease';
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-      card.style.transition = 'transform 0.5s cubic-bezier(.4,0,.2,1)';
-    });
-  });
-
-  /* ── 3b. SITEWIDE CARD TILT ── */
-  document.querySelectorAll('.sci-card, .step-card, .who-card, .rev-card').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const r = card.getBoundingClientRect();
-      const dx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
-      const dy = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
-      card.style.transform = `translateY(-4px) rotateY(${dx * 4}deg) rotateX(${-dy * 3}deg)`;
-      card.style.transition = 'transform 0.08s ease';
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-      card.style.transition = 'transform 0.5s cubic-bezier(.4,0,.2,1)';
-    });
-  });
+  addCardTilt('.pro-card', -6, 5);
+  addCardTilt('.sci-card, .step-card, .who-card, .rev-card', -4, 4);
 
   /* ── 3b-ii. TRUST BADGE TILT ── */
-  document.querySelectorAll('.t-badge').forEach(b => {
-    b.addEventListener('mousemove', e => {
-      const r = b.getBoundingClientRect();
-      const dx = (e.clientX-(r.left+r.width/2))/(r.width/2);
-      const dy = (e.clientY-(r.top+r.height/2))/(r.height/2);
-      b.style.transform=`translateY(-3px) scale(1.04) rotateY(${dx*4}deg) rotateX(${-dy*3}deg)`;
-      b.style.transition='transform 0.08s ease';
+  if (!prefersReducedMotion && window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    document.querySelectorAll('.t-badge').forEach(function(b) {
+      b.addEventListener('mousemove', function(e) {
+        var r = b.getBoundingClientRect();
+        var dx = (e.clientX-(r.left+r.width/2))/(r.width/2);
+        var dy = (e.clientY-(r.top+r.height/2))/(r.height/2);
+        b.style.transform='translateY(-3px) scale(1.04) rotateY('+dx*4+'deg) rotateX('+(-dy*3)+'deg)';
+        b.style.transition='transform 0.08s ease';
+      });
+      b.addEventListener('mouseleave',function(){
+        b.style.transform='';
+        b.style.transition='transform 0.5s cubic-bezier(.4,0,.2,1)';
+      });
     });
-    b.addEventListener('mouseleave',()=>{
-      b.style.transform='';
-      b.style.transition='transform 0.5s cubic-bezier(.4,0,.2,1)';
-    });
-  });
+  }
 
   /* ── 4. STATS COUNT-UP ANIMATION ── */
   function animateCount(textNode, target, isDecimal, duration) {
@@ -691,18 +708,6 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
     statObserver.observe(el);
   });
 
-  /* ── 6. HERO TEXT LAYERS PARALLAX ── */
-  const heroText = document.querySelector('.hero-text');
-  if(heroText){
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      if(y < window.innerHeight * 1.5) {
-        heroText.style.transform = `translateY(${y * 0.18}px)`;
-        heroText.style.opacity = `${1 - y / (window.innerHeight * 0.85)}`;
-      }
-    }, {passive: true});
-  }
-
   /* ── 7. PRO CARD STAGGER ON SCROLL ENTER ── */
   const proCardObserver = new IntersectionObserver(entries => {
     entries.forEach((e, i) => {
@@ -723,46 +728,49 @@ document.querySelectorAll('.sk-fill').forEach(bar=>{
     proCardObserver.observe(card);
   });
 
-  /* ── COMBINED SCROLL HANDLER ── */
-  function onScroll() {
-    updateSectionParallax();
-  }
-  window.addEventListener('scroll', onScroll, {passive: true});
-  onScroll();
 })();
 
 /* ═══════════════════════════════════════════════════
    COGNI:WAVE DYNAMIC LAYER
 ═══════════════════════════════════════════════════ */
 (function(){
-  /* ── 1. CURSOR GLOW ── */
-  const glow = document.createElement('div');
-  glow.className = 'cursor-glow';
-  document.body.appendChild(glow);
-  let glowX = 0, glowY = 0, mouseX = 0, mouseY = 0;
-  document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
-  (function trackGlow(){
-    glowX += (mouseX - glowX) * 0.07;
-    glowY += (mouseY - glowY) * 0.07;
-    glow.style.left = glowX + 'px';
-    glow.style.top  = glowY + 'px';
-    requestAnimationFrame(trackGlow);
-  })();
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ── 2. MAGNETIC BUTTONS ── */
-  document.querySelectorAll('.btn-primary, .btn-white, .btn-secondary').forEach(btn => {
-    btn.addEventListener('mousemove', e => {
-      const r = btn.getBoundingClientRect();
-      const x = ((e.clientX - r.left) / r.width  - 0.5) * 14;
-      const y = ((e.clientY - r.top)  / r.height - 0.5) * 10;
-      btn.style.transition = 'transform 0.1s ease';
-      btn.style.transform  = `translate(${x}px, ${y}px)`;
+  /* ── 1. CURSOR GLOW (desktop only, with cleanup) ── */
+  if (!prefersReducedMotion && window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    const glow = document.createElement('div');
+    glow.className = 'cursor-glow';
+    document.body.appendChild(glow);
+    let glowX = 0, glowY = 0, mouseX = 0, mouseY = 0;
+    let glowRAF;
+    document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
+    (function trackGlow(){
+      glowX += (mouseX - glowX) * 0.07;
+      glowY += (mouseY - glowY) * 0.07;
+      glow.style.left = glowX + 'px';
+      glow.style.top  = glowY + 'px';
+      glowRAF = requestAnimationFrame(trackGlow);
+    })();
+    /* Cleanup on page unload to prevent memory leaks */
+    window.addEventListener('pagehide', function() { cancelAnimationFrame(glowRAF); });
+  }
+
+  /* ── 2. MAGNETIC BUTTONS (desktop only) ── */
+  if (!prefersReducedMotion && window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    document.querySelectorAll('.btn-primary, .btn-white, .btn-secondary').forEach(btn => {
+      btn.addEventListener('mousemove', e => {
+        const r = btn.getBoundingClientRect();
+        const x = ((e.clientX - r.left) / r.width  - 0.5) * 14;
+        const y = ((e.clientY - r.top)  / r.height - 0.5) * 10;
+        btn.style.transition = 'transform 0.1s ease';
+        btn.style.transform  = `translate(${x}px, ${y}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transition = 'transform 0.55s cubic-bezier(.4,0,.2,1)';
+        btn.style.transform  = '';
+      });
     });
-    btn.addEventListener('mouseleave', () => {
-      btn.style.transition = 'transform 0.55s cubic-bezier(.4,0,.2,1)';
-      btn.style.transform  = '';
-    });
-  });
+  }
 
   /* ── 3. SMOOTH GRADIENT TRANSITIONS between sections ── */
   const COLOR_MAP = {
@@ -1044,25 +1052,45 @@ window.triadSetBroken = function(state) {
   }
 };
 
-/* ── FAQ ACCORDION ── */
-document.querySelectorAll('.faq-q').forEach(function(btn) {
-  btn.addEventListener('click', function() {
-    var item = btn.closest('.faq-item');
+/* ── FAQ ACCORDION (accessible: aria-expanded + aria-controls + keyboard) ── */
+document.querySelectorAll('.faq-item').forEach(function(item, index) {
+  var btn = item.querySelector('.faq-q');
+  var answer = item.querySelector('.faq-a');
+  if (!btn || !answer) return;
+
+  /* Set up ARIA linkage */
+  var panelId = 'faq-answer-' + index;
+  answer.id = panelId;
+  btn.setAttribute('aria-controls', panelId);
+  btn.setAttribute('aria-expanded', 'false');
+  answer.setAttribute('role', 'region');
+  answer.setAttribute('aria-labelledby', btn.id || ('faq-btn-' + index));
+  if (!btn.id) btn.id = 'faq-btn-' + index;
+
+  function toggleFaq() {
     var isOpen = item.classList.contains('open');
-    // Close all other items
+    /* Close all other items */
     document.querySelectorAll('.faq-item.open').forEach(function(openItem) {
       openItem.classList.remove('open');
       openItem.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
     });
-    // Toggle this one
+    /* Toggle this one */
     if (!isOpen) {
       item.classList.add('open');
       btn.setAttribute('aria-expanded', 'true');
     }
+  }
+
+  btn.addEventListener('click', toggleFaq);
+
+  /* Keyboard: Enter and Space to toggle */
+  btn.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleFaq();
+    }
   });
 });
-
-// FAQ items start closed by default; users click to expand
 
 /* ── READING PROGRESS BAR ── */
 (function() {

@@ -12,12 +12,16 @@ O site está publicado, DOM 100% limpo, e estruturalmente igual ao Vercel.
 | reading-progress | ✅ | ✅ |
 | scroll-top-btn | ✅ | ✅ |
 | lang-btn (22 línguas) | ✅ | ✅ |
-| lang-dropdown | ✅ | ✅ |
+| lang-dropdown (23 items) | ✅ | ✅ |
 | hero-photo-bg / color-grade / text-shade | ✅ | ✅ |
 | hero-phones | ✅ | ✅ |
 | hero-scroll-hint | ✅ | ✅ |
-| neural-canvas | ✅ | ✅ |
-| 13 sections | ✅ | ✅ |
+| neural-canvas (1178×881px) | ✅ | ✅ |
+| 14 sections (13 + sticky-cta) | ✅ | ✅ |
+| section.hero / section.closing | ✅ | ✅ |
+| 4× .wg-content wrappers (flex, row) | ✅ | ✅ |
+| 4× .rc-front wrappers (flex) | ✅ | ✅ |
+| 18/18 .r.on (scroll reveal) | ✅ | ✅ |
 | nav, footer, sticky-cta | ✅ | ✅ |
 | CSS/JS via jsDelivr (sem Vercel) | ✅ | — |
 
@@ -35,58 +39,34 @@ O site está publicado, DOM 100% limpo, e estruturalmente igual ao Vercel.
 | Total meta em `<head>` | — | **25** |
 | Total link em `<head>` | — | **39** |
 
-### Como foi feito
+### Arquitectura final (como funciona)
 
-1. **Injetei 39 DOM elements SEO no `<body>`** via Webflow Bridge (element_builder + whtml_builder)
-2. **Migration script sem aspas/`<`/`>`** (bypass ao entity-escaping do Webflow) que:
-   - Remove qualquer `<link>`/`<script>` com `vercel.app` no src/href
-   - Deduplica blocos JSON-LD idênticos
-   - Move todos os `<meta>` + `<link>` de `<body>` para `<head>`
-3. **Script usa `String.fromCharCode()`** em vez de strings literais — necessário porque Webflow faz entity-escape de `'`, `"`, `<`, `>` dentro de `<script>` DOM elements
-4. **Publicado via `curl` direto ao v2 API** (scope do MCP designer não incluía publish)
+1. **IO guard** (elemento inline `ff4d48d2-691f-a95d-8229-c70511f8c476`) — script inline no body, corre durante o parsing HTML:
+   - Remove links Vercel do `<head>`
+   - Bloqueia override do `IntersectionObserver`
+   - Injeta CSS jsDelivr se ainda não existe (`id="cogni-css"`)
+   - Ao `DOMContentLoaded` + `window.load`: adiciona `.hero`/`.closing`, cria `.wg-content` wrappers, cria `.rc-front` wrappers, adiciona `.r.on`
+   - Tudo via `String.fromCharCode()` para evitar entity-encoding do Webflow
 
-### Script de migração final (72 linhas, 1072 chars)
+2. **Migration script** (`f6ddfac3-4f31-6d28-838a-c4ff744720ff`) — também inline, remove Vercel refs, deduplica JSON-LD, move `<meta>`/`<link>` do `<body>` para `<head>`
 
-```js
-(function(){
-  var V=String.fromCharCode(118,101,114,99,101,108); // "vercel"
-  var JL=String.fromCharCode(97,112,112,108,105,99,97,116,105,111,110,47,108,100,43,106,115,111,110); // "application/ld+json"
+3. **CSS** — `https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/webflow/02-STYLES.css` (via Page Settings head code com `id="cogni-css"`)
 
-  function clean(root){
-    if(!root)return;
-    Array.prototype.slice.call(root.children).forEach(function(E){
-      var U=E.src||E.href||String.fromCharCode();
-      if(U.indexOf(V)!==-1){E.parentNode.removeChild(E);}
-    });
-  }
+4. **webflow-main.js** — `defer`, via jsDelivr; contém safety net `window.load reInitAll()` (backup caso IO guard falhe)
 
-  function dedupeJL(){
-    var seen={};
-    var all=document.querySelectorAll(String.fromCharCode(115,99,114,105,112,116)); // "script"
-    Array.prototype.slice.call(all).forEach(function(E){
-      if(E.type===JL){
-        var k=E.textContent;
-        if(seen[k]){E.parentNode.removeChild(E);}else{seen[k]=1;}
-      }
-    });
-  }
+5. **i18n.js** — `defer`, via jsDelivr; 22 línguas, lang switcher funcional
 
-  function m(){
-    var H=document.head;if(!H)return;
-    var B=document.body;if(!B)return;
-    clean(H);clean(B);dedupeJL();
-    var L=String.fromCharCode(76,73,78,75); // "LINK"
-    var M=String.fromCharCode(77,69,84,65); // "META"
-    Array.prototype.slice.call(B.children).forEach(function(E){
-      if(E.tagName===L||E.tagName===M){H.appendChild(E);}
-    });
-  }
+### Verificação spot-check CSS (tab fresh, 15 Abril 2026)
 
-  var S=String.fromCharCode(108,111,97,100,105,110,103); // "loading"
-  var V2=String.fromCharCode(68,79,77,67,111,110,116,101,110,116,76,111,97,100,101,100); // "DOMContentLoaded"
-  if(document.readyState===S){document.addEventListener(V2,m);}else{m();}
-})();
-```
+| Elemento | Propriedade | Valor |
+|----------|------------|-------|
+| `section.hero` | min-height | 881px |
+| `section.closing` | background-color | rgb(0,0,0) |
+| `.wg-content` | display / flex-direction | flex / row |
+| `.rc-front` | display | flex |
+| `#neural-canvas` | position / size | absolute / 1178×881px |
+| `#scroll-top-btn` | position | fixed |
+| `#reading-progress` | — | exists |
 
 ---
 
@@ -126,13 +106,22 @@ O DOM renderizado já está perfeito. Mas o HTML estático (fonte) ainda tem 5 r
 
 ## Diagnóstico histórico (resolvido)
 
-### Designer Bridge ✅
-- Bridge MCP conectou após abrir `https://webflow.com/design/cognifit-df2ae7` em foreground.
-- `get_current_page` retornou Longevity (id: 69dca32c1ed507e3d1109d84).
+### IO Guard — problema entity-encoding ✅
+- Webflow encodava `'` e `"` em scripts inline → syntax errors → IO guard não corria
+- Fix: reescrever TODOS os string literals com `String.fromCharCode()`
+- Resultado: script executa correctamente sem entity-encoding
+
+### Deferred scripts ✅ (parcial)
+- `<script defer src="...">` às vezes não executa no Webflow
+- Fix: IO guard como mecanismo primário (inline); webflow-main.js como backup via window.load
+
+### scroll-top-btn sem ID ✅
+- Elemento nativo Webflow `<a class="scroll-top-btn">` sem ID
+- Fix: `element_tool → update_id_attribute` → `id="scroll-top-btn"`
 
 ### Data API ✅ (parcial)
 - Token em `.webflow-token` funcional para:
-  - ✅ `sites:read`, `sites:write` (publish HTTP 202)
+  - ✅ `sites:read`, `sites:write` (publish via curl v1 API)
   - ✅ `pages:read`
   - ✅ Element manipulation via Designer Bridge
 - Token sem scope para:

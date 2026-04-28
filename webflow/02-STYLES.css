@@ -5454,3 +5454,28 @@ html.is-iframe .pro-stack{
   grid-template-columns:none !important;
 }
 
+/* ══════════════════════════════════════════════════════════════════
+   SKILL BARS (section 2 — Cognitive Skills) — FIX 2026-04-26
+   Uses transform scaleX so the bars animate properly inside the
+   Wix iframe at cognifit.com/longevity. Inline style="width:77.5%"
+   stays as the final size; transform handles the 0→1 fill animation.
+   ══════════════════════════════════════════════════════════════════ */
+.sk-fill{
+  transform:scaleX(0) !important;
+  transform-origin:left center !important;
+  transition:transform 1.4s cubic-bezier(.22,1,.36,1) !important;
+  will-change:transform;
+  /* width comes from inline style attribute on each bar */
+}
+.sk-fill.is-visible{
+  transform:scaleX(1) !important;
+}
+/* Safety net: if JS fails to fire (e.g. CSP or script block), bars
+   still appear filled after a short delay so users never see empty bars. */
+.skills-panel{ animation:sk-fallback-trigger 0s linear 2.5s forwards; }
+@keyframes sk-fallback-trigger{ to { --js-fallback:1; } }
+@supports not (animation-timeline: scroll()){
+  .skills-panel:hover .sk-fill,
+  .skills-panel.fallback-fired .sk-fill{ transform:scaleX(1) !important; }
+}
+

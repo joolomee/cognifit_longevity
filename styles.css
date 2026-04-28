@@ -825,7 +825,7 @@ h3{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
 
 /* ── WHO ── */
 .who-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,2vw,16px)}
-.who-card{background:#fff;border:1.5px solid #e5e5e5;border-radius:16px;padding:clamp(20px,3vw,28px) clamp(16px,2.5vw,20px);text-align:center;transition:box-shadow .22s,transform .25s;will-change:transform}
+.who-card{background:#fff;border:1.5px solid #e5e5e5;border-radius:16px;padding:clamp(20px,3vw,28px) clamp(16px,2.5vw,20px);text-align:center;transition:box-shadow .22s,transform .25s}
 @media (hover:hover) and (pointer:fine){
   .who-card:hover{box-shadow:0 10px 32px rgba(0,0,0,.1);transform:translateY(-3px)}
 }
@@ -1359,7 +1359,7 @@ html.js-ready .r.on{opacity:1;transform:none}
     background:linear-gradient(135deg,#e8f0fe,#f0f4ff);
     border:1.5px solid rgba(26,115,232,.2);
   }
-  .hi-box h3{font-size:17px;margin-bottom:16px;color:#000;font-weight:900}
+  .hi-box h3,.hi-box h4{font-size:17px;margin-bottom:16px;color:#000;font-weight:900}
   .hi-it{font-size:13px;gap:12px;margin-bottom:12px;color:#333;font-weight:500}
   .hi-it::before{font-size:16px}
   .hi-close{margin-top:16px;padding-top:16px;font-size:13px;border-top:1px solid rgba(26,115,232,.2);color:#111}
@@ -1531,7 +1531,7 @@ html.js-ready .r.on{opacity:1;transform:none}
     padding:18px 14px;
     border-radius:14px;
   }
-  .hi-box h3{font-size:15px;margin-bottom:12px}
+  .hi-box h3,.hi-box h4{font-size:15px;margin-bottom:12px}
   .hi-it{font-size:12px;margin-bottom:8px;gap:10px}
   .hi-close{font-size:12px;margin-top:12px;padding-top:12px}
   
@@ -1623,10 +1623,13 @@ html.js-ready .r.on{opacity:1;transform:none}
 }
 
 /* ── PARALLAX PERFORMANCE HINTS ── */
-#neural-canvas{will-change:transform}
-.pro-card{will-change:transform;perspective:800px}
-.stat-n{will-change:contents}
-.s-black,.s-dark,.s-blue,.closing{will-change:background-position}
+/* will-change only on interaction to save GPU memory */
+#neural-canvas{contain:strict}
+.pro-card{perspective:800px}
+@media (hover:hover) and (pointer:fine){
+  .pro-card:hover{will-change:transform}
+}
+.stat-n{contain:content}
 
 /* ═══════════════════════════════════════════════════
    COGNI:WAVE VISUAL LAYER
@@ -4585,5 +4588,113 @@ a {
 /* -- Reading progress bar -- */
 #reading-progress {
   transition: width 0.1s linear;
+}
+
+/* ══════════════════════════════════════════════════════
+   SKIP NAVIGATION (Accessibility)
+   ══════════════════════════════════════════════════════ */
+.skip-nav {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  z-index: 10000;
+  padding: 12px 24px;
+  background: var(--blue);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 0 0 8px 8px;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+.skip-nav:focus {
+  top: 0;
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* ══════════════════════════════════════════════════════
+   h4 in hi-box (heading hierarchy fix: h2 > h4)
+   ══════════════════════════════════════════════════════ */
+.hi-box h4 {
+  font-size: clamp(15px, 2.5vw, 18px);
+  color: #000;
+  margin-bottom: clamp(12px, 2.5vw, 18px);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: -.01em;
+}
+
+/* ══════════════════════════════════════════════════════
+   COMPREHENSIVE prefers-reduced-motion
+   Covers ALL animations/transitions site-wide
+   ══════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  /* Global: kill all animations and transitions */
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Neural canvas: hide entirely */
+  #neural-canvas { display: none !important; }
+
+  /* Custom cursor: disable */
+  .custom-cursor, .custom-cursor-ring { display: none !important; }
+
+  /* Reading progress: instant */
+  #reading-progress { transition: none !important; }
+
+  /* Hero parallax: disable */
+  .hero-content { will-change: auto !important; transform: none !important; }
+
+  /* Card tilts: disable */
+  .pro-card, .risk-card, .step-card, .who-card, .sci-card {
+    transform: none !important;
+    will-change: auto !important;
+  }
+
+  /* Parallax sections: disable */
+  .s-black, .s-dark, .s-blue, .closing {
+    background-position: center !important;
+    will-change: auto !important;
+  }
+
+  /* Badge pulse: static */
+  .badge-dot { animation: none !important; opacity: 1 !important; }
+
+  /* Scroll hint: static */
+  .scroll-arrow { animation: none !important; }
+
+  /* Marquee: static, show full width */
+  .val-marquee { animation: none !important; }
+
+  /* Shimmer effect: disable */
+  .hero-h1 .shimmer { animation: none !important; background-size: 100% !important; }
+
+  /* Sticky CTA: instant */
+  .sticky-cta { transition: none !important; }
+
+  /* Scroll-top button: instant */
+  .scroll-top-btn { transition: none !important; }
+
+  /* Button hover effects: disable transforms */
+  .btn-primary, .btn-secondary, .btn-white, .btn-login {
+    transition: none !important;
+  }
+  .btn-primary::before { display: none !important; }
+
+  /* FAQ accordion: instant open/close */
+  .faq-a { transition: none !important; }
+
+  /* SVG animations: pause */
+  svg animate, svg animateTransform, svg animateMotion {
+    dur: 0s;
+  }
 }
 
