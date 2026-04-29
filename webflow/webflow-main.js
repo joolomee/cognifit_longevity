@@ -1251,3 +1251,425 @@ document.querySelectorAll('.faq-q').forEach(function(btn) {
     initScrollTop();
   }
 })();
+
+
+// ────────────────────────────────────────────────────────────
+// FORCE-PT TRANSLATION RUNTIME (added 2026-04-29)
+// Translates hardcoded English text → European Portuguese
+// Uses i18n.js dictionary entries that were never linked via data-i18n
+// ────────────────────────────────────────────────────────────
+(function(){
+  // 1. Force PT in localStorage so i18n.js picks it up
+  try {
+    var stored = localStorage.getItem('cogfit_lang');
+    if (!stored || stored === 'en') {
+      localStorage.setItem('cogfit_lang', 'pt');
+    }
+  } catch(e) {}
+
+  // 2. Translation map
+  var EN2PT = {
+  "* Every CogniFit cognitive assessment is intended as an aid for assessing cognitive wellbeing of an individual. In a clinical setting, the CogniFit results (when interpreted by a qualified healthcare provider), may be used as an aid in determining whether further cognitive evaluation is needed. CogniFit's brain trainings are designed to promote/encourage the general state of cognitive health. CogniFit does not offer any medical diagnosis or treatment of any medical disease or condition. CogniFit products may also be used for research purposes for any range of cognitive related assessments. If used for research purposes, all use of the product must be in compliance with appropriate human subjects' procedures as they exist within the researchers' institution and will be the researcher's obligation. All such human subject protections shall be under the provisions of all applicable sections of the Code of Federal Regulations.": "* Cada avaliação cognitiva da CogniFit foi concebida como um auxílio para avaliar o bem-estar cognitivo de uma pessoa. Num contexto clínico, os resultados da CogniFit (quando interpretados por um profissional de saúde qualificado) podem ser utilizados como apoio para determinar se é necessária uma avaliação cognitiva mais aprofundada. Os treinos cerebrais da CogniFit foram concebidos para promover o estado geral da saúde cognitiva. A CogniFit não oferece qualquer diagnóstico ou tratamento médico de qualquer doença ou condição. Os produtos CogniFit também podem ser utilizados para fins de investigação em qualquer avaliação cognitiva. Quando utilizados para investigação, toda a utilização do produto deve estar em conformidade com os procedimentos apropriados para sujeitos humanos em vigor na instituição do investigador, sendo da responsabilidade do mesmo. Todas essas proteções dos sujeitos humanos devem estar sob as disposições de todas as secções aplicáveis do Code of Federal Regulations.",
+  "Think of it this way: we all invest in keeping our bodies healthy, but what about the organ that actually runs our lives? Cognitive longevity means keeping your memory, focus, reasoning, and decision-making sharp for as long as possible. The tricky part? Unlike a sore knee, cognitive decline sneaks up on you, most people don't notice until it's already affecting their daily life. The good news is that research shows you can actively build \"neural reserves\" through targeted training, just like building muscle. That's exactly what CogniFit is designed to do, and over 6 million people are already doing it. The earlier you start, the stronger your foundation becomes.": "Pense desta forma: todos investimos em manter os nossos corpos saudáveis, mas e o órgão que realmente comanda as nossas vidas? Longevidade cognitiva significa manter a memória, foco, raciocínio e tomada de decisões afiados o máximo de tempo possível. A parte complicada? Ao contrário de um joelho dorido, o declínio cognitivo aproxima-se sorrateiramente, a maioria das pessoas não nota até já estar a afetar a sua vida diária. A boa notícia é que a investigação mostra que pode construir ativamente \"reservas neurais\" através de treino direcionado, tal como se constrói músculo. É exatamente para isso que a CogniFit foi concebida, e mais de 6 milhões de pessoas já o estão a fazer. Quanto mais cedo começar, mais sólida será a sua base.",
+  "Absolutely, and we don't say that lightly. CogniFit is one of the most researched cognitive platforms in the world, with over 1,083 clinical trials and peer-reviewed studies at institutions like Harvard Medical School, the University of Washington, and Tel Aviv University. Our assessments have been validated against gold-standard neuropsychological tests and shown strong correlations with traditional clinical measures. Over 3,530 healthcare professionals use CogniFit for clinical assessment and cognitive rehabilitation. We also hold FDA recognition for certain digital cognitive endpoints. This isn't marketing. It's decades of rigorous science.": "Absolutamente, e não dizemos isso de ânimo leve. A CogniFit é uma das plataformas cognitivas mais investigadas do mundo, com mais de 1.083 ensaios clínicos e estudos revistos por pares em instituições como a Harvard Medical School, University of Washington e Tel Aviv University. As nossas avaliações foram validadas contra testes neuropsicológicos padrão de ouro. Mais de 3.530 profissionais de saúde usam a CogniFit. Também temos reconhecimento da FDA para certos endpoints cognitivos digitais. Isto não é marketing: são décadas de ciência rigorosa.",
+  "Most people tell us they start feeling sharper within 2-4 weeks, with more focused conversations, faster recall, and clearer thinking. Just 15-20 minutes, 3-4 times a week. Clinical studies show measurable improvements after about 8 weeks, and long-term research (including the famous ACTIVE trial) found that benefits can last 5-10 years. Your CogniFit dashboard tracks everything: your cognitive age, which skills are improving, and how consistent you've been. It's incredibly motivating to watch your own brain get stronger. The secret? Show up consistently. Even short daily sessions create compounding results over time.": "A maioria das pessoas diz-nos que começa a sentir-se mais desperta em 2 a 4 semanas, com conversas mais focadas, recordação mais rápida e pensamento mais claro. Apenas 15 a 20 minutos, 3 a 4 vezes por semana. Os estudos clínicos mostram melhorias mensuráveis após cerca de 8 semanas, e a investigação a longo prazo (incluindo o famoso ensaio ACTIVE) descobriu que os benefícios podem durar 5 a 10 anos. O painel da CogniFit regista tudo. O segredo: seja consistente.",
+  "Here's what surprises most people: your processing speed, how fast you think, actually starts slowing down in your late 20s. Then in your 40s and 50s, working memory and executive function (planning, juggling tasks, making decisions) begin to dip. By your 60s, recalling specific events and experiences gets harder. But here's the bright side: your vocabulary, wisdom, and accumulated knowledge often keep getting better with age. CogniFit measures all 20+ of these skills individually, so you get a clear picture of exactly where you stand, and where to focus your training before small changes become big ones.": "Eis o que surpreende a maioria: a sua velocidade de processamento começa a abrandar já no final dos 20 anos. Depois, nos 40 e 50, a memória de trabalho e a função executiva (planeamento, multitarefas, decisões) começam a diminuir. Aos 60, recordar eventos específicos torna-se mais difícil. O lado positivo: o seu vocabulário, sabedoria e conhecimento acumulado muitas vezes continuam a melhorar com a idade. A CogniFit mede mais de 20 destas capacidades individualmente.",
+  "Most brain training apps are really just games dressed up as science. CogniFit is different. It was built by neuroscientists in 1999, long before brain training was trendy. It's been used in 1,083+ clinical trials, trusted by 3,530+ healthcare professionals, and adopted by 6,438+ research institutions around the world. Instead of one-size-fits-all puzzles, CogniFit uses patented technology that adapts in real-time to your performance, so every session targets exactly what you need. You get a real Cognitive Age score, not just a game score. That's why 6 million+ people rate it 4.8 stars.": "A maioria das aplicações de treino cerebral são apenas jogos disfarçados de ciência. A CogniFit é diferente. Foi criada por neurocientistas em 1999, muito antes do treino cerebral estar na moda. Foi usada em mais de 1.083 ensaios clínicos, é confiada por mais de 3.530 profissionais de saúde e adotada por mais de 6.438 instituições de investigação. Em vez de puzzles iguais para todos, a CogniFit usa tecnologia patenteada que se adapta em tempo real ao seu desempenho. Obtenha uma verdadeira pontuação de Idade Cognitiva. Por isso, mais de 6 milhões de pessoas avaliam-na com 4,8 estrelas.",
+  "It's a fair question, and the answer is yes, when it's done right. The landmark ACTIVE study, published in the Journal of the American Geriatrics Society, tracked thousands of older adults and found that cognitive training benefits lasted up to 10 years. The key difference? It has to be structured, adaptive, and targeted, not just sudoku on your phone. CogniFit's programs have been used in over 1,083 clinical trials because they actually challenge the specific areas where your brain needs it most. It's like having a personal trainer, but for your mind.": "É uma pergunta justa, e a resposta é sim, quando é feito corretamente. O estudo de referência ACTIVE, publicado no Journal of the American Geriatrics Society, acompanhou milhares de adultos mais velhos e descobriu que os benefícios do treino cognitivo duraram até 10 anos. A diferença chave: tem de ser estruturado, adaptativo e direcionado, não apenas sudoku no telemóvel. Os programas da CogniFit foram usados em mais de 1.083 ensaios clínicos. É como ter um personal trainer, mas para a sua mente.",
+  "You don't need to wait for cognitive decline to act. The earlier you invest in brain health and cognitive training, the stronger and more resilient your brain becomes over time. Join 6M+ people training for healthy aging.": "Não precisa de esperar pelo declínio cognitivo para agir. Quanto mais cedo investir na saúde cerebral e no treino cognitivo, mais forte e resiliente o seu cérebro se torna com o tempo. Junte-se a mais de 6 milhões de pessoas que treinam para um envelhecimento saudável.",
+  "Family history of dementia or Alzheimer's increases concern, and rightly so. The ACTIVE study showed that structured cognitive training can delay cognitive decline by up to 10 years. Acting early matters most.": "Histórico familiar de demência ou Alzheimer aumenta a preocupação, e com razão. O estudo ACTIVE mostrou que o treino cognitivo estruturado pode atrasar o declínio cognitivo até 10 anos. Agir cedo é o que mais importa.",
+  "Processing speed peaks in your late 20s and begins declining from 35. Early cognitive training builds neural reserves that protect your independence for decades, like saving for a cognitive retirement fund.": "A velocidade de processamento atinge o pico no final dos 20 e começa a declinar a partir dos 35. O treino cognitivo precoce constrói reservas neurais que protegem a sua independência durante décadas, como poupar para uma reforma cognitiva.",
+  "Executive function, working memory, and sustained attention directly impact career performance. CogniFit targets these high-demand cognitive skills with adaptive training that scales to your level.": "Função executiva, memória de trabalho e atenção sustentada têm impacto direto no desempenho profissional. A CogniFit visa estas competências cognitivas exigentes com treino adaptativo ao seu nível.",
+  "Peak cognitive performance for elite sport. Reaction time, focus under pressure, and decision-making training for competitive athletes.": "Desempenho cognitivo de elite para o desporto de alto nível. Tempo de reação, concentração sob pressão e treino de tomada de decisões para atletas competitivos.",
+  "Validated cognitive outcome measures for clinical research. FDA-recognized digital endpoints for neurological and psychiatric trials.": "Medidas de resultados cognitivos validadas para investigação clínica. Endpoints digitais reconhecidos pela FDA para ensaios neurológicos e psiquiátricos.",
+  "Daily scientifically validated exercises that strengthen attention, memory, and executive function, preventing every risk above.": "Exercícios diários cientificamente validados que fortalecem a atenção, a memória e a função executiva, prevenindo cada um dos riscos acima.",
+  "Neuropsychological exploration, stimulation, and cognitive rehabilitation. Clinically proven, reimbursable, reliable.": "Exploração neuropsicológica, estimulação e reabilitação cognitiva. Clinicamente comprovado, reembolsável, fiável.",
+  "Cognitive Assessment Batteries and brain training for experimental studies. Validated tools for brain-based research.": "Baterias de Avaliação Cognitiva e treino cerebral para estudos experimentais. Ferramentas validadas para investigação baseada no cérebro.",
+  "Online mental wellness platform giving everyone the power to improve with simple tools for wellbeing and performance.": "Plataforma online de bem-estar mental que dá a todos o poder de melhorar com ferramentas simples para bem-estar e desempenho.",
+  "Real improvements in focus and memory within weeks. The personalized training adapts to exactly where I need it most.": "Melhorias reais em foco e memória em poucas semanas. O treino personalizado adapta-se exatamente onde mais preciso.",
+  "A personalized cognitive system designed to measure, identify, and train exactly what matters for your independence.": "Um sistema cognitivo personalizado concebido para medir, identificar e treinar exatamente o que importa para a sua independência.",
+  "First time with this type of cognitive evaluation. Eye-opening assessment and the training feels genuinely tailored.": "Primeira vez com este tipo de avaliação cognitiva. Avaliação reveladora e o treino parece genuinamente personalizado.",
+  "Integrate CogniFit's cognitive technology into your own platform. Full SDK, custom branding, and dedicated support.": "Integre a tecnologia cognitiva da CogniFit na sua própria plataforma. SDK completo, branding personalizado e suporte dedicado.",
+  "Neuropsychological evaluation, stimulation, and cognitive tools for your students in and beyond the classroom.": "Avaliação neuropsicológica, estimulação e ferramentas cognitivas para os seus alunos dentro e fora da sala de aula.",
+  "Cognitive inactivity is a leading modifiable risk factor for Alzheimer's and other forms of dementia.": "A inatividade cognitiva é um dos principais fatores de risco modificáveis para o Alzheimer e outras formas de demência.",
+  "Reduced working memory makes it harder to weigh options, follow instructions, or spot health risks.": "Uma memória de trabalho reduzida torna mais difícil ponderar opções, seguir instruções ou detetar riscos para a saúde.",
+  "Mental clarity drives social connection, purpose, and enjoyment, all diminish as cognition fades.": "A clareza mental impulsiona a conexão social, o propósito e o prazer, tudo diminui à medida que a cognição se desvanece.",
+  "Daily decisions, finances, medication, self-care, become increasingly difficult to manage alone.": "As decisões diárias, finanças, medicação, autocuidado, tornam-se cada vez mais difíceis de gerir sozinho.",
+  "Press around the world is talking about our mental training programs and assessments.": "A imprensa de todo o mundo fala sobre os nossos programas e avaliações de treino mental.",
+  "6438+ clinics and research institutions are currently running their studies with us.": "6438+ clínicas e instituições de investigação estão atualmente a realizar os seus estudos connosco.",
+  "Offer our brain health technology to your patients, students, employees or clients": "Ofereça a nossa tecnologia de saúde cerebral aos seus pacientes, alunos, funcionários ou clientes",
+  "Most people cover the basics, but miss the most critical pillar of healthy aging:": "A maioria das pessoas cobre o básico, mas esquece o pilar mais crítico do envelhecimento saudável:",
+  "CogniFit, Your Brain Training Platform for a Better Brain & Cognitive Longevity": "CogniFit, A Sua Plataforma de Treino Cerebral para um Cérebro Melhor e Longevidade Cognitiva",
+  "Start on your computer, continue on your phone. Your progress syncs everywhere.": "Comece no seu computador, continue no seu telemóvel. O seu progresso sincroniza-se em todo o lado.",
+  "Scientifically validated cognitive assessment to establish your baseline.": "Avaliação cognitiva cientificamente validada para estabelecer a sua linha de base.",
+  "Cognitive Longevity & Brain Health Training | CogniFit, 1,083+ Studies": "Longevidade Cognitiva e Treino Cerebral | CogniFit, 1.083+ Estudos",
+  "{names} weakened, the entire cognitive network is compromised.": "{names} enfraquecido, toda a rede cognitiva está comprometida.",
+  "AI adapts training specifically to your unique brain profile.": "A IA adapta o treino especificamente ao seu perfil cerebral único.",
+  "What makes CogniFit different from other brain training apps?": "O que torna a CogniFit diferente de outras aplicações de treino cerebral?",
+  "This Isn't Just Brain Training, It's Cognitive Longevity": "Isto Não é Apenas Treino Cerebral, É Longevidade Cognitiva",
+  "Who Benefits from Cognitive Training for Healthy Aging?": "Quem Beneficia do Treino Cognitivo para um Envelhecimento Saudável?",
+  "Short, engaging sessions designed for real-life impact.": "Sessões curtas e envolventes concebidas para impacto na vida real.",
+  "Clear reports showing how your brain evolves over time.": "Relatórios claros que mostram como o seu cérebro evolui ao longo do tempo.",
+  "Does brain training actually work, or is it just hype?": "O treino cerebral realmente funciona, ou é apenas hype?",
+  "The Real Risk of Aging Isn't Physical, It's Cognitive": "O Verdadeiro Risco do Envelhecimento Não É Físico, É Cognitivo",
+  "The Science Behind Brain Health & Cognitive Longevity": "A Ciência por Trás da Saúde Cerebral e da Longevidade Cognitiva",
+  "What is cognitive longevity, and why should I care?": "O que é a longevidade cognitiva, e porque devo importar-me?",
+  "How quickly will I actually notice a difference?": "Com que rapidez vou notar realmente a diferença?",
+  "Tap any system to see what happens when it fails": "Toca em qualquer sistema para ver o que acontece quando falha",
+  "Discover Your Brain's Strengths and Weaknesses": "Descubra os Pontos Fortes e Fracos do Seu Cérebro",
+  "Measure attention, memory & executive function": "Mede atenção, memória e função executiva",
+  "4 min read · Based on 1,083+ clinical studies": "4 min de leitura · Baseado em 1.083+ estudos clínicos",
+  "Start Your Cognitive Longevity Journey Today": "Comece Hoje a Sua Jornada de Longevidade Cognitiva",
+  "Your Questions About Brain Health, Answered": "As Suas Perguntas Sobre Saúde Cerebral, Respondidas",
+  "Which mental abilities start fading first?": "Quais capacidades mentais começam a falhar primeiro?",
+  "Tap the damaged system to restore balance": "Toca no sistema danificado para restaurar o equilíbrio",
+  "What Consistent Brain Training Delivers": "O Que o Treino Cerebral Consistente Oferece",
+  "Making better life decisions, every day": "Tomar melhores decisões de vida, todos os dias",
+  "Staying sharp at 50, 60, 70 and beyond": "Manter-se afiado aos 50, 60, 70 anos e além",
+  "Reducing your long-term cognitive risk": "Reduzir o seu risco cognitivo a longo prazo",
+  "Is there real science behind CogniFit?": "Existe ciência real por trás da CogniFit?",
+  "Tap disabled abilities to restore them": "Toque nas habilidades desativadas para as restaurar",
+  "Click anywhere to restore all systems": "Clique em qualquer lugar para restaurar todos os sistemas",
+  "Maintaining full autonomy as you age": "Manter total autonomia ao envelhecer",
+  "Take Your Cognitive Assessment Now": "Faça a Sua Avaliação Cognitiva Agora",
+  "Targets your weakest areas first": "Foca primeiro nas suas áreas mais fracas",
+  "Adjusts difficulty continuously": "Ajusta a dificuldade continuamente",
+  "Digital Therapeutics Validation": "Validação de Terapias Digitais",
+  "Get a clear cognitive baseline": "Obtenha uma linha de base cognitiva clara",
+  "Stay motivated with milestones": "Mantenha-se motivado com marcos",
+  "Individualized Training System": "Sistema de Treino Individualizado",
+  "and thousands more worldwide": "e milhares mais em todo o mundo",
+  "100% Satisfaction Guaranteed": "Satisfação 100% Garantida",
+  "Holding information in mind": "Reter informação",
+  "Optimizes results over time": "Otimiza os resultados ao longo do tempo",
+  "Discover your brain profile": "Descubra o seu perfil cerebral",
+  "Cognitive Longevity System": "Sistema de Longevidade Cognitiva",
+  "Get a Personalized Program": "Receba um Programa Personalizado",
+  "When Will You See Results?": "Quando Vai Ver Resultados?",
+  "👍 I recommend this product": "👍 Recomendo este produto",
+  "Frequently Asked Questions": "Perguntas Frequentes",
+  "Build lasting brain habits": "Construa hábitos cerebrais duradouros",
+  "Get your personalized plan": "Receba o seu plano personalizado",
+  "Healthy Older Adults Trial": "Estudo em Adultos Idosos Saudáveis",
+  "What Prevents All of This": "O Que Previne Tudo Isto",
+  "Scientific Advisory Board": "Conselho Consultivo Científico",
+  "Join our global family of": "Junte-se à nossa família global de",
+  "Improve focus & attention": "Melhora foco e atenção",
+  "Strengthen working memory": "Fortalece a memória de trabalho",
+  "Monitor progress visually": "Monitorize o progresso visualmente",
+  "Intellectual Disabilities": "Deficiências Intelectuais",
+  "Senior Cognitive Training": "Treino Cognitivo para Idosos",
+  "Cognitive State in Adults": "Estado Cognitivo em Adultos",
+  "Download on the App Store": "Descarregar na App Store",
+  "Reduced lifespan quality": "Qualidade de vida reduzida",
+  "Track Your Cognitive Age": "Acompanhe a Sua Idade Cognitiva",
+  "Healthcare Professionals": "Profissionais de Saúde",
+  "White Label Partnerships": "Parcerias White Label",
+  "Following conversations": "Seguir conversas",
+  "Sustained concentration": "Concentração sustentada",
+  "Education Professionals": "Profissionais de Educação",
+  "Enhance decision-making": "Melhora a tomada de decisões",
+  "Filtering distractions": "Filtrar distrações",
+  "Clinics & Institutions": "Clínicas e Instituições",
+  "✅ Clinically Validated": "✅ Validado Clinicamente",
+  "Real Age: 47 years old": "Idade Real: 47 anos",
+  "Exercises for Children": "Exercícios para Crianças",
+  "Hand-eye Coordination": "Coordenação Olho-Mão",
+  "Poor health decisions": "Más decisões de saúde",
+  "Delivered by CogniFit": "Fornecido pela CogniFit",
+  "Your Mental Workspace": "O Seu Espaço Mental",
+  "Better mental clarity": "Maior clareza mental",
+  "Cognitive Score 0-800": "Pontuação Cognitiva 0-800",
+  "Ideal cognitive age ✓": "Idade cognitiva ideal ✓",
+  "Start improving today": "Comece a melhorar hoje",
+  "Cognitive Development": "Desenvolvimento Cognitivo",
+  "Free Brain Assessment": "Avaliação Cerebral Grátis",
+  "Get it on Google Play": "Disponível no Google Play",
+  "Cognitive Assessment": "Avaliação Cognitiva",
+  "Loss of independence": "Perda de independência",
+  "Greater independence": "Maior independência",
+  "Discover Your Brain": "Descubra o Seu Cérebro",
+  "Planning & Strategy": "Planeamento e Estratégia",
+  "Learning new things": "Aprender coisas novas",
+  "See What's Possible": "Veja o Que é Possível",
+  "Longevity Investors": "Investidores em Longevidade",
+  "Scientific Research": "Investigação Científica",
+  "Life-changing at 58": "Mudou a minha vida aos 58",
+  "Train on Any Device": "Treine Em Qualquer Dispositivo",
+  "Take the First Step": "Dê o Primeiro Passo",
+  "Executive Functions": "Funções Executivas",
+  "Become an Affiliate": "Torne-se Afiliado",
+  "Protect Your Brain": "Proteja o Seu Cérebro",
+  "Cognitive Training": "Treino Cognitivo",
+  "Executive Function": "Função Executiva",
+  "Train What Matters": "Treine o Que Importa",
+  "Stronger decisions": "Decisões mais fortes",
+  "Employee Wellbeing": "Bem-Estar dos Funcionários",
+  "Your Daily Workout": "O Seu Treino Diário",
+  "Parts of the Brain": "Partes do Cérebro",
+  "Stay Independent.": "Mantenha a sua independência.",
+  "Contextual Memory": "Memória Contextual",
+  "Physical Exercise": "Exercício Físico",
+  "Your Focus System": "O Seu Sistema de Concentração",
+  "Cognitive control": "Controlo cognitivo",
+  "Assess Your Brain": "Avalie o Seu Cérebro",
+  "Attention & Focus": "Atenção e Foco",
+  "Prevention-Minded": "Mente Preventiva",
+  "For Professionals": "Para Profissionais",
+  "Discover CogniFit": "Descubra a CogniFit",
+  "Products Pipeline": "Pipeline de Produtos",
+  "Trusted Worldwide": "Confiável a Nível Mundial",
+  "30 Day Money Back": "30 Dias de Devolução",
+  "Systematic Review": "Revisão Sistemática",
+  "See More Games...": "Ver mais jogos...",
+  "CogniFit Newsroom": "Sala de Imprensa CogniFit",
+  "Become a Reseller": "Torne-se Revendedor",
+  "Cognitive Skills": "Competências Cognitivas",
+  "The Real Problem": "O Verdadeiro Problema",
+  "Diet & Nutrition": "Dieta e Nutrição",
+  "Risk of dementia": "Risco de demência",
+  "Your Brain's CEO": "O CEO do Seu Cérebro",
+  "Brain Plasticity": "Plasticidade Cerebral",
+  "Terms of Service": "Termos de Serviço",
+  "Decision-making": "Tomada de decisões",
+  "Problem-solving": "Resolução de problemas",
+  "Faster thinking": "Pensamento mais rápido",
+  "Clinical Trials": "Ensaios Clínicos",
+  "Users Worldwide": "Utilizadores no Mundo",
+  "The Human Brain": "O Cérebro Humano",
+  "Brain Functions": "Funções Cerebrais",
+  "Senior Wellness": "Bem-estar do Sénior",
+  "Healthy Seniors": "Idosos Saudáveis",
+  "For Researchers": "Para Investigadores",
+  "Mental Exercise": "Exercício Mental",
+  "Management Team": "Equipa de Gestão",
+  "Download on the": "Descarregar na",
+  "Brain Training": "Treino Cerebral",
+  "Working Memory": "Memória de Trabalho",
+  "Mental clarity": "Clareza mental",
+  "Improved focus": "Foco melhorado",
+  "Average Rating": "Classificação Média",
+  "NEXT SESSION →": "PRÓXIMA SESSÃO →",
+  "Brain and Mind": "Cérebro e Mente",
+  "Computer Games": "Jogos de Computador",
+  "Mini Crossword": "Mini Palavras Cruzadas",
+  "For Clinicians": "Para Profissionais",
+  "Brain Exercise": "Exercício Cerebral",
+  "Privacy Policy": "Política de Privacidade",
+  "Think Better.": "Pense melhor.",
+  "Quality Sleep": "Sono de Qualidade",
+  "Missing Piece": "Peça em Falta",
+  "Professionals": "Profissionais",
+  "United States": "Estados Unidos",
+  "Concentration": "Concentração",
+  "Cognitive Age": "Idade Cognitiva",
+  "16 March 2026": "16 de março de 2026",
+  "13 March 2026": "13 de março de 2026",
+  "Brain Science": "Ciência do Cérebro",
+  "Brain Fitness": "Fitness Cerebral",
+  "SG4D Taxonomy": "Taxonomia SG4D",
+  "Live Longer.": "Viva mais.",
+  "Mind Balance": "Equilíbrio Mental",
+  "Neuroscience": "Neurociência",
+  "Self-control": "Autocontrolo",
+  "Adaptability": "Adaptabilidade",
+  "The Platform": "A Plataforma",
+  "Memory Score": "Pontuação de Memória",
+  "Your Profile": "O Seu Perfil",
+  "Participants": "Participantes",
+  "Active Users": "Utilizadores Ativos",
+  "Games Played": "Jogos Jogados",
+  "🏥 Healthcare": "🏥 Saúde",
+  "Coordination": "Coordenação",
+  "Brain Health": "Saúde Cerebral",
+  "Chess Online": "Xadrez Online",
+  "For Families": "Para Famílias",
+  "The Results": "Os Resultados",
+  "Researchers": "Investigadores",
+  "🎓 Education": "🎓 Educação",
+  "Brain Train": "Treino Cerebral",
+  "Get Started": "Comece Agora",
+  "Brain Games": "Jogos Mentais",
+  "Memory Loss": "Perda de Memória",
+  "Navy Pilots": "Pilotos da Marinha",
+  "Back to top": "Voltar ao início",
+  "Adults 35+": "Adultos 35+",
+  "Clinicians": "Clínicos",
+  "Validation": "Validação",
+  "🔬 Research": "🔬 Investigação",
+  "Perception": "Perceção",
+  "Contact Us": "Contacte-nos",
+  "System 01": "Sistema 01",
+  "System 02": "Sistema 02",
+  "System 03": "Sistema 03",
+  "Attention": "Atenção",
+  "Begin Now": "Começar Agora",
+  "Companies": "Empresas",
+  "Employees": "Funcionários",
+  "Reasoning": "Raciocínio",
+  "Executive": "Função",
+  "Cognition": "Cognição",
+  "Solitaire": "Solitário",
+  "Education": "Educação",
+  "Resellers": "Revendedores",
+  "Get it on": "Disponível no",
+  "Platform": "Plataforma",
+  "Planning": "Planeamento",
+  "Patients": "Pacientes",
+  "Students": "Estudantes",
+  "Partners": "Parceiros",
+  "Athletes": "Atletas",
+  "GOAL 670": "META 670",
+  "Join Now": "Junte-se Agora",
+  "Function": "Executiva",
+  "Research": "Investigação",
+  "Science": "Ciência",
+  "Schools": "Escolas",
+  "Coaches": "Treinadores",
+  "Working": "Memória",
+  "Neurons": "Neurónios",
+  "IQ Test": "Teste de QI",
+  "Memory": "Memória",
+  "Scroll": "Deslize",
+  "Patent": "Patente",
+  "Week 1": "Semana 1",
+  "Week 8": "Semana 8",
+  "Users": "Utilizadores",
+  "users": "utilizadores",
+  "Spain": "Espanha",
+  "Tools": "Ferramentas",
+  "Wow!": "Uau!",
+  "Help": "Ajuda",
+  "FAQ": "Perguntas",
+  "KEY": "CHAVE",
+  "W1": "S1",
+  "W8": "S8",
+};
+
+
+  // Sort keys by length DESC so longer phrases match before shorter substrings
+  var EN2PT_KEYS = Object.keys(EN2PT).sort(function(a,b){ return b.length - a.length; });
+
+  // 3. HTML-mixed entries (need innerHTML replacement)
+  var EN2PT_HTML = [
+  { key: "hero.sub", en: "Aging is inevitable. <strong>Cognitive decline doesn't have to be.</strong> Protect the core mental abilities that determine how independently you live as you age.", pt: "Envelhecer é inevitável. <strong>O declínio cognitivo não tem de ser.</strong> Proteja as capacidades mentais essenciais que determinam o quão independentemente vive à medida que envelhece." },
+  { key: "discover.lead", en: "Our <a href=\"https://www.cognifit.com/cognitive-assessment\" style=\"color:var(--blue);text-decoration:none;font-weight:700\">scientifically validated cognitive assessments</a> measure 20+ brain skills across memory, attention, and executive function, giving you a complete picture of your cognitive health and brain wellness.", pt: "As nossas <a href=\"https://www.cognifit.com/cognitive-assessment\" style=\"color:var(--blue);text-decoration:none;font-weight:700\">avaliações cognitivas validadas cientificamente</a> medem mais de 20 competências cerebrais em memória, atenção e função executiva, dando-lhe uma imagem completa da sua saúde cognitiva e bem-estar cerebral." },
+  { key: "risk.miss.text", en: "<strong>Cognitive training is<br><span class=\"rmp-highlight\">the missing piece.</span></strong> <span class=\"risk-line-break\">It completes the system that protects independence and daily decision-making.</span>", pt: "<strong>O treino cognitivo é<br><span class=\"rmp-highlight\">a peça que falta.</span></strong> <span class=\"risk-line-break\">Completa o sistema que protege a independência e a tomada de decisões diária.</span>" },
+  { key: "sci.lead", en: "According to research published in <em>Nature Reviews Neuroscience</em>, long-term brain fitness depends on three interconnected cognitive systems that protect your mental health and independence as you age. <a href=\"https://www.cognifit.com/neuroscience\" style=\"color:var(--blue);text-decoration:none;font-weight:700\">Explore the full scientific validation</a>.", pt: "De acordo com investigação publicada na <em>Nature Reviews Neuroscience</em>, a aptidão cerebral a longo prazo depende de três sistemas cognitivos interligados que protegem a sua saúde mental e independência à medida que envelhece. <a href=\"https://www.cognifit.com/neuroscience\" style=\"color:var(--blue);text-decoration:none;font-weight:700\">Explore a validação científica completa</a>." },
+  { key: "sci.s1.why", en: "<strong>Why it matters:</strong> Manages life, finances, health, relationships. <strong>When this declines → independence declines.</strong>", pt: "<strong>Porque importa:</strong> Gere a vida, finanças, saúde, relações. <strong>Quando isto declina → a independência declina.</strong>" },
+  { key: "sci.s2.why", en: "<strong>Why it matters:</strong> Supports reasoning and daily functioning. <strong>When this weakens → confusion increases.</strong>", pt: "<strong>Porque importa:</strong> Suporta o raciocínio e o funcionamento diário. <strong>Quando enfraquece → a confusão aumenta.</strong>" },
+  { key: "sci.s3.why", en: "<strong>Why it matters:</strong> Attention is the gateway to everything. <strong>If it drops → everything follows.</strong>", pt: "<strong>Porque importa:</strong> A atenção é a porta de entrada para tudo. <strong>Se cair → tudo o resto cai com ela.</strong>" },
+  { key: "sci.chain", en: "Break one, and the whole system weakens.<br><strong>Strengthen all three, and you build cognitive resilience for life.</strong>", pt: "Quebre um, e todo o sistema enfraquece.<br><strong>Fortaleça os três e construa resiliência cognitiva para a vida.</strong>" },
+  { key: "out.lead", en: "With regular use of <a href=\"https://www.cognifit.com/brain-training\" style=\"color:var(--blue);text-decoration:none;font-weight:700\">CogniFit's personalized brain training</a>, users across all age groups experience measurable improvements in daily cognitive performance, typically within 2-4 weeks.", pt: "Com o uso regular do <a href=\"https://www.cognifit.com/brain-training\" style=\"color:var(--blue);text-decoration:none;font-weight:700\">treino cerebral personalizado da CogniFit</a>, utilizadores de todas as idades experimentam melhorias mensuráveis no seu desempenho cognitivo diário, normalmente em 2 a 4 semanas." },
+  { key: "out.box1.c", en: "It's not about adding years to your life.<br><strong>It's about adding clarity, control, and independence to those years.</strong>", pt: "Não se trata de adicionar anos à sua vida.<br><strong>Trata-se de adicionar clareza, controlo e independência a esses anos.</strong>" },
+  { key: "out.box2.i1", en: "<strong>Week 1-2:</strong> Baseline assessment complete, you'll know exactly where you stand across 20+ cognitive skills", pt: "<strong>Semana 1-2:</strong> Avaliação inicial completa, saberá exatamente onde está em mais de 20 competências cognitivas" },
+  { key: "out.box2.i2", en: "<strong>Week 2-4:</strong> Most users report feeling sharper, faster recall, better focus in conversations, clearer thinking", pt: "<strong>Semana 2-4:</strong> A maioria dos utilizadores sente-se mais alerta, recordação mais rápida, melhor foco em conversas, pensamento mais claro" },
+  { key: "out.box2.i3", en: "<strong>Week 4-8:</strong> Measurable improvement in trained cognitive domains, tracked in your personal dashboard", pt: "<strong>Semana 4-8:</strong> Melhoria mensurável nos domínios cognitivos treinados, registada no seu painel pessoal" },
+  { key: "out.box2.i4", en: "<strong>Month 3+:</strong> Compounding gains, the ACTIVE trial found structured training benefits last 5-10 years", pt: "<strong>Mês 3+:</strong> Ganhos cumulativos, o estudo ACTIVE descobriu que os benefícios do treino estruturado duram 5 a 10 anos" },
+  { key: "out.box2.c", en: "Just 15-20 minutes, 3-4 times per week. <strong>Consistency is the key to cognitive longevity.</strong>", pt: "Apenas 15-20 minutos, 3-4 vezes por semana. <strong>A consistência é a chave para a longevidade cognitiva.</strong>" },
+  { key: "who.lead", en: "Whether you're 35 or 75, cognitive training delivers measurable benefits. Research published in <em>Nature Reviews Neuroscience</em> shows that targeted brain exercises improve neural efficiency at any age.", pt: "Quer tenha 35 ou 75 anos, o treino cognitivo oferece benefícios mensuráveis. Investigação publicada na <em>Nature Reviews Neuroscience</em> mostra que exercícios cerebrais direcionados melhoram a eficiência neuronal em qualquer idade." },
+  { key: "who.c4.d", en: "You track your VO2 max, sleep quality, and nutrition. Why not your brain? Cognitive Age is the missing metric in your longevity stack, and <a href=\"https://www.cognifit.com/assessments\" style=\"color:var(--blue);text-decoration:none;font-weight:700\">CogniFit measures it scientifically</a>.", pt: "Acompanha o seu VO2 máximo, qualidade do sono e nutrição. Porque não o seu cérebro? A Idade Cognitiva é a métrica em falta na sua estratégia de longevidade, e a <a href=\"https://www.cognifit.com/assessments\" style=\"color:var(--blue);text-decoration:none;font-weight:700\">CogniFit mede-a cientificamente</a>." },
+  { key: "pro.cta", en: "Explore <span>→</span>", pt: "Explorar <span>→</span>" },
+  { key: "closing.quote", en: "\"Your body may age. But your brain can stay <em>sharp, adaptable, and strong</em>. If you train it.\"", pt: "\"O seu corpo pode envelhecer. Mas o seu cérebro pode manter-se <em>ágil, adaptável e forte</em>. Se o treinar.\"" },
+  { key: "closing.sub", en: "The question isn't whether you'll age.<br>It's how well your mind will age with you.", pt: "A pergunta não é se vai envelhecer.<br>É como a sua mente vai envelhecer consigo." },
+];
+
+
+  // 4. Walk text nodes and replace
+  function translateTextNodes(root) {
+    if (!root) return;
+    if (typeof document.createTreeWalker !== 'function') return;
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(n) {
+        var p = n.parentNode;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var tag = (p.tagName || '').toLowerCase();
+        if (tag === 'script' || tag === 'style' || tag === 'code' || tag === 'pre') return NodeFilter.FILTER_REJECT;
+        if (p.dataset && (p.dataset.ptTranslated === '1')) return NodeFilter.FILTER_REJECT;
+        var t = (n.nodeValue || '').trim();
+        if (t.length < 2) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var nodes = [];
+    var n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    nodes.forEach(function(node){
+      var raw = node.nodeValue;
+      var trimmed = raw.trim();
+      if (!trimmed) return;
+      if (EN2PT[trimmed]) {
+        node.nodeValue = raw.replace(trimmed, EN2PT[trimmed]);
+        if (node.parentNode && node.parentNode.dataset) node.parentNode.dataset.ptTranslated = '1';
+        return;
+      }
+      var stripped = trimmed.replace(/[.,;:!?]+$/, '');
+      if (stripped !== trimmed && EN2PT[stripped]) {
+        var trail = trimmed.slice(stripped.length);
+        node.nodeValue = raw.replace(trimmed, EN2PT[stripped] + trail);
+        if (node.parentNode && node.parentNode.dataset) node.parentNode.dataset.ptTranslated = '1';
+        return;
+      }
+    });
+  }
+
+  // 5. Handle HTML-mixed strings via innerHTML on paragraphs
+  function translateHTMLMixed() {
+    if (!EN2PT_HTML || !EN2PT_HTML.length) return;
+    var candidates = document.querySelectorAll('p, li, span, div, em, strong, h1, h2, h3, h4, h5');
+    EN2PT_HTML.forEach(function(entry){
+      candidates.forEach(function(el){
+        if (el.dataset && el.dataset.ptHtmlTranslated === '1') return;
+        var html = el.innerHTML;
+        if (html && html.indexOf(entry.en) !== -1) {
+          el.innerHTML = html.replace(entry.en, entry.pt);
+          el.dataset.ptHtmlTranslated = '1';
+        }
+      });
+    });
+  }
+
+  // 6. Run translator multiple times (catches dynamic content)
+  function runAll() {
+    try {
+      if (window.CogniFitI18n && typeof window.CogniFitI18n.setLang === 'function') {
+        try { window.CogniFitI18n.setLang('pt', false); } catch(e){}
+      }
+      translateTextNodes(document.body);
+      translateHTMLMixed();
+    } catch(e) {
+      console.warn('[FORCE-PT]', e);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runAll);
+  } else {
+    runAll();
+  }
+  setTimeout(runAll, 500);
+  setTimeout(runAll, 1500);
+  setTimeout(runAll, 3500);
+  setTimeout(runAll, 7000);
+
+  // 7. MutationObserver for any further DOM updates
+  if (typeof MutationObserver === 'function') {
+    var mo = new MutationObserver(function(muts){
+      var any = false;
+      muts.forEach(function(m){
+        if (m.addedNodes && m.addedNodes.length) any = true;
+      });
+      if (any) {
+        clearTimeout(window.__ptTimer);
+        window.__ptTimer = setTimeout(runAll, 200);
+      }
+    });
+    if (document.body) {
+      mo.observe(document.body, { childList: true, subtree: true });
+    } else {
+      document.addEventListener('DOMContentLoaded', function(){
+        mo.observe(document.body, { childList: true, subtree: true });
+      });
+    }
+  }
+})();
