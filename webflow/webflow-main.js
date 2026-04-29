@@ -1550,6 +1550,93 @@ document.querySelectorAll('.faq-q').forEach(function(btn) {
   // Sort keys by length DESC so longer phrases match before shorter substrings
   var EN2PT_KEYS = Object.keys(EN2PT).sort(function(a,b){ return b.length - a.length; });
 
+  // ── KEYWORD-FOCUSED OVERRIDES (added 2026-04-29) ─────────────
+  // Refocus copy on "Longevidade Cognitiva" + "Saúde Cerebral" 
+  // (de-emphasizes "treino cerebral/cognitivo" — separate page targets that)
+  var OVERRIDES_PT = {
+    // Nav
+    "Brain Training": "Programa",
+    // Hero badge
+    "Cognitive Longevity System": "Sistema de Longevidade Cognitiva",
+    // CTA in hero
+    "Start Training": "Começar Agora",
+    // Brain Train widget label (keep short on mobile)
+    "Brain Train": "Cérebro",
+    // Risk section pillar (the 4th pillar)
+    "Cognitive Training": "Saúde Cerebral",
+    // Risk section solution title
+    "What Prevents All of This": "O Que Protege Contra Tudo Isto",
+    // Section 4 — platform headline (was: "CogniFit, Your Brain Training Platform for a Better Brain & Cognitive Longevity")
+    "CogniFit, Your Brain Training Platform for a Better Brain & Cognitive Longevity": "CogniFit, a Plataforma Líder em Longevidade Cognitiva e Saúde Cerebral",
+    // Section 5 — results headline
+    "What Consistent Brain Training Delivers": "O Que a Longevidade Cognitiva Lhe Devolve",
+    // Section 6 — segments headline
+    "Who Benefits from Cognitive Training for Healthy Aging?": "Quem Beneficia de um Programa de Longevidade Cognitiva?",
+    // Section 5 — H3
+    "This Isn't Just Brain Training, It's Cognitive Longevity": "Isto não é só uma app. É Longevidade Cognitiva.",
+    // Sec-deliv H3 (was "Cognitive training is the missing piece.")
+    "Cognitive training is": "A Saúde Cerebral é",
+    "the missing piece.": "a peça que falta.",
+    "It completes the system that protects independence and daily decision-making.": "Completa o sistema que protege a sua independência e a tomada de decisões do dia-a-dia.",
+    // Devices headline
+    "Train on Any Device": "Cuide do Seu Cérebro em Qualquer Dispositivo",
+    "Start on your computer, continue on your phone. Your progress syncs everywhere.": "Comece no computador, continue no telemóvel. O seu progresso sincroniza em todo o lado.",
+    // CTA badge above final form
+    "YOU'VE READ THIS FAR. NOW TRAIN.": "JÁ LEU ATÉ AQUI. AGORA AJA.",
+    // Final CTA H2 — keep cognitive longevity prominent
+    "Start Your Cognitive Longevity Journey Today": "Comece Hoje a Sua Jornada de Longevidade Cognitiva",
+    // Try-CogniFit button
+    "Try CogniFit": "Experimentar CogniFit",
+    // Section eyebrow labels
+    "COGNITIVE TRAINING": "SAÚDE CEREBRAL",
+    "NEUROSCIENCE": "NEUROCIÊNCIA",
+    "The Real Problem": "O Verdadeiro Problema",
+    "The Results": "Os Resultados",
+    "Your Profile": "O Seu Perfil",
+    "TRUSTED WORLDWIDE": "CONFIADO EM TODO O MUNDO",
+    "SCIENTIFIC PARTNERSHIPS": "PARCERIAS CIENTÍFICAS",
+    "For Professionals": "Para Profissionais",
+    // Roadmap
+    "There are 3 stages on this Cognitive Longevity Roadmap. Discover and train, get tested again, and stay sharp for life.": "Três fases no caminho da Longevidade Cognitiva: descubra, atue, reavalie. Mantenha a clareza para a vida.",
+    "Personalized Training": "Plano Personalizado",
+    "Daily 15-minute sessions adapt to your performance, targeting the cognitive systems that need the most support.": "Sessões diárias de 15 minutos adaptam-se ao seu desempenho, focando-se nas áreas que mais precisam de apoio.",
+    "Track Progress": "Acompanhe o Progresso",
+    "Monitor your cognitive age and watch real improvements across memory, attention, and executive function.": "Monitorize a sua idade cognitiva e veja melhorias reais em memória, atenção e função executiva.",
+    "Begin Now": "Começar",
+    // FAQ
+    "Your Questions About Brain Health, Answered": "As Suas Perguntas Sobre Saúde Cerebral, Respondidas",
+    "Does brain training actually work, or is it just hype?": "A Longevidade Cognitiva é validada cientificamente?",
+    "What makes CogniFit different from other brain training apps?": "O que torna a CogniFit diferente?",
+    // Bento  
+    "Adults 35+": "Adultos 35+",
+    "Prevention-Minded": "Foco na Prevenção",
+    "Longevity Investors": "Investidores em Longevidade",
+    "Professionals": "Profissionais",
+    // Hero subhead
+    "Aging is inevitable.": "O envelhecimento é inevitável.",
+    "Cognitive decline doesn't have to be.": "O declínio cognitivo não tem de ser.",
+    "Protect the core mental abilities that determine how independently you live as you age.": "Proteja as capacidades mentais que determinam a sua independência ao envelhecer.",
+    // CTA
+    "Protect Your Brain": "Proteger o Seu Cérebro",
+    "Get Started": "Começar",
+    "Take the First Step": "Dar o Primeiro Passo",
+    "Discover Your Brain": "Descobrir o Seu Cérebro",
+    // Common nav
+    "Platform": "Plataforma",
+    "Science": "Ciência",
+    // Stats labels
+    "Active Users": "Utilizadores Ativos",
+    "Clinics & Institutions": "Clínicas e Instituições",
+    "Games Played": "Jogos Jogados",
+    "Average Rating": "Avaliação Média",
+    "Users Worldwide": "Utilizadores em Todo o Mundo"
+  };
+
+  // Apply overrides — these win over the auto-generated EN2PT entries
+  Object.keys(OVERRIDES_PT).forEach(function(k){ EN2PT[k] = OVERRIDES_PT[k]; });
+  EN2PT_KEYS = Object.keys(EN2PT).sort(function(a,b){ return b.length - a.length; });
+
+
   // 3. HTML-mixed entries (need innerHTML replacement)
   var EN2PT_HTML = [
   { key: "hero.sub", en: "Aging is inevitable. <strong>Cognitive decline doesn't have to be.</strong> Protect the core mental abilities that determine how independently you live as you age.", pt: "Envelhecer é inevitável. <strong>O declínio cognitivo não tem de ser.</strong> Proteja as capacidades mentais essenciais que determinam o quão independentemente vive à medida que envelhece." },
