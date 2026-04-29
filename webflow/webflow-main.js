@@ -1636,6 +1636,137 @@ document.querySelectorAll('.faq-q').forEach(function(btn) {
   Object.keys(OVERRIDES_PT).forEach(function(k){ EN2PT[k] = OVERRIDES_PT[k]; });
   EN2PT_KEYS = Object.keys(EN2PT).sort(function(a,b){ return b.length - a.length; });
 
+  // ── KEYWORD-FOCUSED OVERRIDES FOR EN + ES (added 2026-04-29) ─────
+  // Refocus copy on Cognitive Longevity / Brain Health
+  // (de-emphasize Brain Training — separate landing page targets that)
+
+  var EN_REFOCUS = {
+    "Brain Training": "Cognitive Health",
+    "Cognitive Longevity System": "Cognitive Longevity System",
+    "Start Training": "Get Started",
+    "Brain Train": "Your Mind",
+    "Cognitive Training": "Brain Health",
+    "What Prevents All of This": "What Protects Against All of This",
+    "CogniFit, Your Brain Training Platform for a Better Brain & Cognitive Longevity": "CogniFit, the Leading Platform for Cognitive Longevity & Brain Health",
+    "What Consistent Brain Training Delivers": "What Cognitive Longevity Gives You Back",
+    "Who Benefits from Cognitive Training for Healthy Aging?": "Who Benefits from a Cognitive Longevity Program?",
+    "This Isn't Just Brain Training, It's Cognitive Longevity": "This Isn't Just an App. It's Cognitive Longevity.",
+    "Cognitive training is": "Brain Health is",
+    "the missing piece.": "the missing piece.",
+    "It completes the system that protects independence and daily decision-making.": "It completes the system that protects independence and daily decision-making.",
+    "Train on Any Device": "Care for Your Brain on Any Device",
+    "Start on your computer, continue on your phone. Your progress syncs everywhere.": "Start on your computer, continue on your phone. Your progress syncs everywhere.",
+    "YOU'VE READ THIS FAR. NOW TRAIN.": "YOU'VE READ THIS FAR. NOW ACT.",
+    "Start Your Cognitive Longevity Journey Today": "Start Your Cognitive Longevity Journey Today",
+    "Try CogniFit": "Try CogniFit",
+    "COGNITIVE TRAINING": "BRAIN HEALTH",
+    "NEUROSCIENCE": "NEUROSCIENCE",
+    "There are 3 stages on this Cognitive Longevity Roadmap. Discover and train, get tested again, and stay sharp for life.": "Three stages on the Cognitive Longevity roadmap: discover, act, retest. Stay sharp for life.",
+    "Personalized Training": "Personalized Plan",
+    "Daily 15-minute sessions adapt to your performance, targeting the cognitive systems that need the most support.": "Daily 15-minute sessions adapt to your performance, targeting the cognitive systems that need the most support.",
+    "Track Progress": "Track Progress",
+    "Monitor your cognitive age and watch real improvements across memory, attention, and executive function.": "Monitor your cognitive age and watch real improvements across memory, attention, and executive function.",
+    "Begin Now": "Begin",
+    "Your Questions About Brain Health, Answered": "Your Questions About Brain Health, Answered",
+    "Does brain training actually work, or is it just hype?": "Is Cognitive Longevity scientifically validated?",
+    "What makes CogniFit different from other brain training apps?": "What makes CogniFit different?",
+    "Adults 35+": "Adults 35+",
+    "Prevention-Minded": "Prevention-Minded",
+    "Longevity Investors": "Longevity Investors",
+    "Professionals": "Professionals",
+    "Aging is inevitable.": "Aging is inevitable.",
+    "Cognitive decline doesn't have to be.": "Cognitive decline doesn't have to be.",
+    "Protect the core mental abilities that determine how independently you live as you age.": "Protect the core mental abilities that determine how independently you live as you age.",
+    "Protect Your Brain": "Protect Your Brain",
+    "Get Started": "Get Started",
+    "Take the First Step": "Take the First Step",
+    "Discover Your Brain": "Discover Your Brain",
+    "Platform": "Platform",
+    "Science": "Science"
+  };
+
+  var ES_OVERRIDES = {
+    "Brain Training": "Programa",
+    "Cognitive Longevity System": "Sistema de Longevidad Cognitiva",
+    "Start Training": "Empezar Ahora",
+    "Brain Train": "Cerebro",
+    "Cognitive Training": "Salud Cerebral",
+    "What Prevents All of This": "Lo Que Protege Contra Todo Esto",
+    "CogniFit, Your Brain Training Platform for a Better Brain & Cognitive Longevity": "CogniFit, la Plataforma Líder en Longevidad Cognitiva y Salud Cerebral",
+    "What Consistent Brain Training Delivers": "Lo Que la Longevidad Cognitiva Te Devuelve",
+    "Who Benefits from Cognitive Training for Healthy Aging?": "¿Quién se Beneficia de un Programa de Longevidad Cognitiva?",
+    "This Isn't Just Brain Training, It's Cognitive Longevity": "Esto no es solo una app. Es Longevidad Cognitiva.",
+    "Cognitive training is": "La Salud Cerebral es",
+    "the missing piece.": "la pieza que falta.",
+    "It completes the system that protects independence and daily decision-making.": "Completa el sistema que protege tu independencia y la toma de decisiones diarias.",
+    "Train on Any Device": "Cuida Tu Cerebro en Cualquier Dispositivo",
+    "Start on your computer, continue on your phone. Your progress syncs everywhere.": "Comienza en el ordenador, continúa en el móvil. Tu progreso se sincroniza en todas partes.",
+    "YOU'VE READ THIS FAR. NOW TRAIN.": "HAS LEÍDO HASTA AQUÍ. AHORA ACTÚA.",
+    "Start Your Cognitive Longevity Journey Today": "Comienza Hoy Tu Viaje de Longevidad Cognitiva",
+    "Try CogniFit": "Probar CogniFit",
+    "COGNITIVE TRAINING": "SALUD CEREBRAL",
+    "NEUROSCIENCE": "NEUROCIENCIA",
+    "The Real Problem": "El Verdadero Problema",
+    "The Results": "Los Resultados",
+    "Your Profile": "Tu Perfil",
+    "TRUSTED WORLDWIDE": "CONFIADO EN TODO EL MUNDO",
+    "SCIENTIFIC PARTNERSHIPS": "ALIANZAS CIENTÍFICAS",
+    "For Professionals": "Para Profesionales",
+    "There are 3 stages on this Cognitive Longevity Roadmap. Discover and train, get tested again, and stay sharp for life.": "Tres fases en el camino de la Longevidad Cognitiva: descubre, actúa, reevalúa. Mantén la lucidez para toda la vida.",
+    "Personalized Training": "Plan Personalizado",
+    "Daily 15-minute sessions adapt to your performance, targeting the cognitive systems that need the most support.": "Sesiones diarias de 15 minutos se adaptan a tu rendimiento, enfocándose en las áreas que más apoyo necesitan.",
+    "Track Progress": "Sigue tu Progreso",
+    "Monitor your cognitive age and watch real improvements across memory, attention, and executive function.": "Monitoriza tu edad cognitiva y observa mejoras reales en memoria, atención y función ejecutiva.",
+    "Begin Now": "Comenzar",
+    "Your Questions About Brain Health, Answered": "Tus Preguntas Sobre Salud Cerebral, Respondidas",
+    "Does brain training actually work, or is it just hype?": "¿La Longevidad Cognitiva está validada científicamente?",
+    "What makes CogniFit different from other brain training apps?": "¿Qué hace diferente a CogniFit?",
+    "Adults 35+": "Adultos 35+",
+    "Prevention-Minded": "Mentalidad Preventiva",
+    "Longevity Investors": "Inversores en Longevidad",
+    "Professionals": "Profesionales",
+    "Aging is inevitable.": "Envejecer es inevitable.",
+    "Cognitive decline doesn't have to be.": "El declive cognitivo no tiene por qué serlo.",
+    "Protect the core mental abilities that determine how independently you live as you age.": "Protege las capacidades mentales que determinan tu independencia al envejecer.",
+    "Protect Your Brain": "Protege Tu Cerebro",
+    "Get Started": "Empezar",
+    "Take the First Step": "Da el Primer Paso",
+    "Discover Your Brain": "Descubre Tu Cerebro",
+    "Platform": "Plataforma",
+    "Science": "Ciencia",
+    "Active Users": "Usuarios Activos",
+    "Clinics & Institutions": "Clínicas e Instituciones",
+    "Games Played": "Partidas Jugadas",
+    "Average Rating": "Valoración Media",
+    "Users Worldwide": "Usuarios en Todo el Mundo"
+  };
+
+  // Detect language from <html lang>, localStorage, or URL
+  function detectLang() {
+    try {
+      var qs = (location.search || '').match(/[?&]lang=([a-z-]+)/i);
+      if (qs && qs[1]) return qs[1].toLowerCase();
+      var ls = localStorage.getItem('cogfit_lang');
+      if (ls) return ls.toLowerCase();
+    } catch(e){}
+    var htmlLang = (document.documentElement.lang || '').toLowerCase();
+    if (htmlLang) return htmlLang;
+    return (navigator.language || 'en').slice(0,2).toLowerCase();
+  }
+
+  // Apply per-language overrides on top of EN2PT
+  var __lang = detectLang();
+  if (__lang.indexOf('pt') === 0) {
+    // PT overrides already merged earlier (OVERRIDES_PT)
+  } else if (__lang.indexOf('es') === 0) {
+    Object.keys(ES_OVERRIDES).forEach(function(k){ EN2PT[k] = ES_OVERRIDES[k]; });
+  } else {
+    // Default to English refocus (replace English-old with English-new)
+    Object.keys(EN_REFOCUS).forEach(function(k){ EN2PT[k] = EN_REFOCUS[k]; });
+  }
+  EN2PT_KEYS = Object.keys(EN2PT).sort(function(a,b){ return b.length - a.length; });
+
+
 
   // 3. HTML-mixed entries (need innerHTML replacement)
   var EN2PT_HTML = [
