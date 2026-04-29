@@ -98,8 +98,27 @@
 <link rel="dns-prefetch" href="//fonts.gstatic.com">
 <link rel="dns-prefetch" href="//api.country.is">
 
-<!-- GEO: LLM-readable summary served via jsDelivr (mirrors GitHub repo) -->
+<!-- ═══ AGENT READINESS / GEO ═══════════════════════════════ -->
+<!-- LLM-readable markdown summary -->
 <link rel="alternate" type="text/markdown" href="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/llms.txt" title="LLM-readable summary (llms.txt)">
+
+<!-- Agent Skills Discovery Index (Cloudflare Agent Skills RFC v0.2.0) -->
+<link rel="agent-skills-index" type="application/json" href="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/webflow/.well-known/agent-skills-index.json">
+
+<!-- MCP Server Card (SEP-1649) -->
+<link rel="mcp-server-card" type="application/json" href="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/webflow/.well-known/mcp-server-card.json">
+
+<!-- API Catalog (RFC 9727) -->
+<link rel="api-catalog" type="application/linkset+json" href="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/webflow/.well-known/api-catalog.json">
+
+<!-- OAuth Protected Resource Metadata (RFC 9728) -->
+<link rel="oauth-protected-resource" type="application/json" href="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/webflow/.well-known/oauth-protected-resource.json">
+
+<!-- Web Bot Auth JWKS (informational placeholder) -->
+<link rel="bot-auth-jwks" type="application/jwk-set+json" href="https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/webflow/.well-known/jwks.json">
+
+<!-- Hint para AI agents: este site suporta WebMCP via navigator.modelContext -->
+<meta name="agent-capabilities" content="webmcp,agent-skills,mcp-server-card,api-catalog,oauth-protected-resource">
 
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" as="style">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">

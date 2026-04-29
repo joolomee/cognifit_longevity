@@ -1,0 +1,72 @@
+{
+  "$schema": "https://github.com/cloudflare/agent-skills-discovery-rfc/blob/main/schema/v0.2.0.json",
+  "version": "0.2.0",
+  "name": "CogniFit Brain Longevity",
+  "description": "Cognitive longevity platform with scientifically validated brain training and assessments backed by 1,083+ clinical trials. Used by 6.2M+ people across 22 languages.",
+  "skills": [
+    {
+      "name": "start-cognitive-assessment",
+      "type": "redirect",
+      "description": "Start the free CogniFit cognitive assessment that measures 20+ brain skills (memory, attention, executive function, processing speed) in approximately 15 minutes. No credit card required.",
+      "url": "https://www.cognifit.com/login?intent=assessment",
+      "languages": ["en","es","fr","de","it","pt","nl","pl","ru","ar","he","zh","zh-hk","ja","ko","tr","id","bn","mn","ur","sr","el"]
+    },
+    {
+      "name": "view-clinical-evidence",
+      "type": "content",
+      "description": "Access summary of 1,083+ clinical trials validating CogniFit methodology at Harvard Medical School, University of Washington, Tel Aviv University.",
+      "url": "https://www.cognifit.com/longevity#science"
+    },
+    {
+      "name": "download-mobile-app",
+      "type": "redirect",
+      "description": "Download the CogniFit Brain Training mobile app for iOS or Android. Auto-detects user platform.",
+      "url": "https://www.cognifit.com/longevity",
+      "platforms": {
+        "ios": "https://apps.apple.com/app/cognifit-brain-training/id528285610",
+        "android": "https://play.google.com/store/apps/details?id=com.cognifit.app"
+      }
+    },
+    {
+      "name": "switch-language",
+      "type": "client-action",
+      "description": "Switch the page to one of 22 supported languages. Implemented client-side via window.CogniFitI18n.setLang(code).",
+      "languages_supported": ["en","es","fr","de","it","pt","nl","pl","ru","ar","he","zh","zh-hk","ja","ko","tr","id","bn","mn","ur","sr","el"]
+    },
+    {
+      "name": "get-faq",
+      "type": "structured-data",
+      "description": "Retrieve frequently asked questions about brain training, clinical validation, results timeline, and data privacy.",
+      "url": "https://www.cognifit.com/longevity#faq",
+      "format": "schema.org/FAQPage"
+    },
+    {
+      "name": "get-brand-facts",
+      "type": "structured-data",
+      "description": "Get verified facts about CogniFit for citation: clinical trials count, user count, rating, founding year, methodology, partner institutions.",
+      "url": "https://www.cognifit.com/longevity",
+      "format": "schema.org/Organization+Product"
+    }
+  ],
+  "contact": {
+    "support": "https://support.cognifit.com/",
+    "email": "support@cognifit.com"
+  },
+  "policies": {
+    "ai-training": "not-permitted",
+    "ai-input": "permitted",
+    "search-indexing": "permitted",
+    "attribution-required": true
+  },
+  "canonical_url": "https://www.cognifit.com/longevity",
+  "alternate_formats": [
+    {
+      "type": "text/markdown",
+      "href": "https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/llms.txt"
+    },
+    {
+      "type": "application/ld+json",
+      "href": "https://www.cognifit.com/longevity"
+    }
+  ]
+}

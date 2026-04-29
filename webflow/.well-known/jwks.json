@@ -1,0 +1,4 @@
+{
+  "_note": "PLACEHOLDER. JWKS reais devem ser gerados pela equipa DevOps CogniFit (privately holding the signing keys). Este ficheiro existe APENAS para indicar discovery path às convenções de Web Bot Auth (https://datatracker.ietf.org/wg/webbotauth/). Quando CogniFit tiver bots próprios que crawlem outros sites, gerar par de chaves Ed25519 e publicar JWKS aqui.",
+  "keys": []
+}

@@ -1,0 +1,125 @@
+# ───────────────────────────────────────────────────────────
+# CogniFit Brain Longevity — robots.txt v2
+# Webflow → Project Settings → SEO → robots.txt
+# Inclui: AI crawlers + Content Signals (RFC draft-romm-aipref)
+# ───────────────────────────────────────────────────────────
+
+# ─── Content Signals (declaração de uso AI) ───────────────
+# search    = aparecer em motores de busca: SIM
+# ai-input  = ser usado como contexto em respostas LLM (RAG, grounding): SIM
+# ai-train  = ser usado para treino de modelos AI: NÃO (proteção IP)
+
+User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
+Disallow: /webflow.zip
+Disallow: /*.bundle$
+
+Sitemap: https://www.cognifit.com/sitemap.xml
+Sitemap: https://cognifit-df2ae7.webflow.io/sitemap.xml
+
+# ─── AI / LLM Crawlers (allow para search + ai-input) ─────
+
+# OpenAI ChatGPT (training)
+User-agent: GPTBot
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
+
+User-agent: OAI-SearchBot
+Content-Signal: search=yes, ai-input=yes
+Allow: /
+
+User-agent: ChatGPT-User
+Content-Signal: ai-input=yes
+Allow: /
+
+# Anthropic Claude
+User-agent: Claude-Web
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
+
+User-agent: ClaudeBot
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
+
+User-agent: anthropic-ai
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
+
+# Google Gemini / Bard
+User-agent: Google-Extended
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
+
+User-agent: GoogleOther
+Content-Signal: search=yes, ai-input=yes
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
+
+User-agent: Perplexity-User
+Content-Signal: ai-input=yes
+Allow: /
+
+# Common Crawl (training datasets)
+User-agent: CCBot
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
+
+# Meta AI / Llama
+User-agent: meta-externalagent
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot-Extended
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
+
+# Mistral
+User-agent: MistralAI-User
+Content-Signal: ai-input=yes, ai-train=no
+Allow: /
+
+# ByteDance / Doubao
+User-agent: Bytespider
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
+Content-Signal: ai-input=yes, ai-train=no
+Allow: /
+
+# Diffbot (knowledge graph)
+User-agent: DiffbotBot
+Content-Signal: search=yes, ai-input=yes
+Allow: /
+
+# You.com
+User-agent: YouBot
+Content-Signal: search=yes, ai-input=yes
+Allow: /
+
+# Amazon Alexa / Q
+User-agent: Amazonbot
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
+
+# Web archive
+User-agent: ia_archiver
+Allow: /
+
+# ─── Agent Discovery (workaround Webflow — paths via jsDelivr) ───
+# /.well-known/ paths NÃO suportados por Webflow.
+# Fallbacks via jsDelivr CDN + <link rel> tags no <head>:
+# - Agent Skills index → cdn.jsdelivr.net/.../webflow/.well-known/agent-skills-index.json
+# - MCP Server Card    → cdn.jsdelivr.net/.../webflow/.well-known/mcp-server-card.json
+# - API Catalog        → cdn.jsdelivr.net/.../webflow/.well-known/api-catalog.json
+# - Web Bot Auth JWKS  → cdn.jsdelivr.net/.../webflow/.well-known/jwks.json

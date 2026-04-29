@@ -1,0 +1,55 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://www.cognifit.com/longevity",
+      "service-doc": [
+        {
+          "href": "https://www.cognifit.com/longevity",
+          "type": "text/html",
+          "title": "CogniFit Brain Longevity — main documentation"
+        },
+        {
+          "href": "https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/llms.txt",
+          "type": "text/markdown",
+          "title": "LLM-readable summary"
+        }
+      ],
+      "service-meta": [
+        {
+          "href": "https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/webflow/.well-known/mcp-server-card.json",
+          "type": "application/json",
+          "title": "MCP Server Card"
+        },
+        {
+          "href": "https://cdn.jsdelivr.net/gh/joolomee/cognifit_longevity@main/webflow/.well-known/agent-skills-index.json",
+          "type": "application/json",
+          "title": "Agent Skills Discovery Index"
+        }
+      ]
+    },
+    {
+      "anchor": "https://www.cognifit.com/api",
+      "service-desc": [
+        {
+          "href": "https://api.cognifit.com/openapi.json",
+          "type": "application/openapi+json",
+          "title": "CogniFit Public API (OpenAPI 3.1) — verifica com DevOps CogniFit"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://docs.cognifit.com",
+          "type": "text/html",
+          "title": "CogniFit Developer Documentation"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://status.cognifit.com",
+          "type": "text/html",
+          "title": "API Status & Uptime"
+        }
+      ]
+    }
+  ]
+}

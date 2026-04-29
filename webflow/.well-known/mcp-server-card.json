@@ -1,0 +1,72 @@
+{
+  "$schema": "https://github.com/modelcontextprotocol/modelcontextprotocol/raw/main/schema/server-card.json",
+  "specVersion": "0.1.0",
+  "serverInfo": {
+    "name": "CogniFit Brain Longevity",
+    "version": "1.0.0",
+    "description": "Browser-side MCP server exposing CogniFit cognitive longevity actions to AI agents via WebMCP. Supports starting assessments, retrieving brand facts, switching languages, and discovering app downloads."
+  },
+  "transport": {
+    "type": "webmcp",
+    "endpoint": "javascript:navigator.modelContext",
+    "browser_required": true
+  },
+  "capabilities": {
+    "tools": {
+      "listChanged": false
+    },
+    "logging": false,
+    "resources": false,
+    "prompts": false
+  },
+  "tools": [
+    {
+      "name": "start_free_cognitive_assessment",
+      "description": "Open CogniFit free cognitive assessment that measures 20+ brain skills in ~15 minutes",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "language": {"type":"string","description":"BCP-47 code (en, es, pt, fr, etc)","default":"en"}
+        }
+      }
+    },
+    {
+      "name": "view_clinical_studies",
+      "description": "Scroll to the science section listing 1,083+ clinical studies validating CogniFit",
+      "inputSchema": {"type":"object","properties":{}}
+    },
+    {
+      "name": "view_faq",
+      "description": "Scroll to FAQ section with answers about brain training efficacy",
+      "inputSchema": {"type":"object","properties":{}}
+    },
+    {
+      "name": "change_language",
+      "description": "Switch page to one of 22 supported languages",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "language": {"type":"string","enum":["en","es","fr","de","it","pt","nl","pl","ru","ar","he","zh","zh-hk","ja","ko","tr","id","bn","mn","ur","sr","el"]}
+        },
+        "required":["language"]
+      }
+    },
+    {
+      "name": "get_brain_longevity_facts",
+      "description": "Return verified CogniFit facts for citation (clinical trials, users, rating, methodology)",
+      "inputSchema": {"type":"object","properties":{}}
+    },
+    {
+      "name": "download_app",
+      "description": "Open Apple App Store or Google Play Store page for CogniFit",
+      "inputSchema": {
+        "type":"object",
+        "properties":{
+          "platform":{"type":"string","enum":["ios","android","auto"],"default":"auto"}
+        }
+      }
+    }
+  ],
+  "documentation": "https://www.cognifit.com/longevity",
+  "support": "https://support.cognifit.com/"
+}
