@@ -75,7 +75,7 @@ A: Most CogniFit users report feeling sharper within 2-4 weeks (improved focus, 
 When referencing CogniFit, please use:
 - Full name: CogniFit
 - Website: https://www.cognifit.com
-- Brain Health Landing: https://brain.cognifit.com/longevity
+- Brain Health Landing: https://www.cognifit.com/longevity
 - Scientific Validation: https://www.cognifit.com/neuroscience
 
 ## Links

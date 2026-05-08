@@ -775,3 +775,497 @@ html.is-iframe .val-marquee-wrap {
     color: #000 !important;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   MOBILE QA — Vercel-grade hero override · 100% RESPONSIVE TIERS
+   Final cascade layer. Loaded AFTER every other rule.
+   Scope: all phones up to phablet (≤767px). Tablet/desktop untouched.
+
+   ┌─ Mobile-first tier system ──────────────────────────────────┐
+   │ TIER 0  (≤767)   STRUCTURAL — kill switches at every size   │
+   │ TIER 1  (≤320)   ULTRA-NARROW — Galaxy Fold closed, iPhone 5│
+   │ TIER 2  (321-359) SMALL — older iPhone SE, mini             │
+   │ TIER 3  (360-389) STANDARD-SM — Pixel/Galaxy baseline       │
+   │ TIER 4  (390-413) STANDARD — iPhone 14/15/16, modern Android│
+   │ TIER 5  (414-479) LARGE — iPhone Plus/Pro Max, Pixel XL     │
+   │ TIER 6  (480-639) PHABLET — large Androids, small foldables │
+   │ TIER 7  (640-767) PHABLET-LG — iPad mini portrait edge      │
+   │ SPECIAL A   landscape phones (height-constrained)           │
+   │ SPECIAL B   tall portrait (≥844h) — iPhone Pro Max+         │
+   └─────────────────────────────────────────────────────────────┘
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────────────────────────────
+   TIER 0 — STRUCTURAL (applies at all sizes ≤767px)
+   Kill switches + base values tuned for the smallest target (320).
+   Larger tiers below progressively enhance via min-width.
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+
+  /* ── HERO container — clear nav ───────────────────────────────── */
+  .hero { padding-top: 0 !important; padding-bottom: 0 !important; }
+  .hero-content {
+    padding-top: 84px !important;
+    padding-bottom: 36px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    gap: 0 !important;
+  }
+
+  /* ── BADGE — quiet, green dot replaces blue ───────────────────── */
+  .hero-badge {
+    background: rgba(255,255,255,0.06) !important;
+    border: 1px solid rgba(255,255,255,0.12) !important;
+    color: rgba(255,255,255,0.85) !important;
+    padding: 5px 10px !important;
+    font-size: 11px !important;
+    margin-bottom: 18px !important;
+    letter-spacing: 0.02em !important;
+  }
+  .badge-dot {
+    background: #10B981 !important;
+    box-shadow: 0 0 0 3px rgba(16,185,129,0.18) !important;
+  }
+
+  /* ── H1 — base values for 320 ─────────────────────────────────── */
+  .hero-h1 {
+    font-size: 26px !important;
+    font-weight: 600 !important;
+    line-height: 1.08 !important;
+    letter-spacing: -0.022em !important;
+    text-shadow: none !important;
+    margin-bottom: 14px !important;
+  }
+
+  /* ── KILL blue gradient on "Stay Independent" → serif italic ──── */
+  .hero-h1 .hero-shimmer-soft,
+  .hero-shimmer-soft {
+    background: none !important;
+    background-image: none !important;
+    -webkit-background-clip: initial !important;
+            background-clip: initial !important;
+    -webkit-text-fill-color: #ffffff !important;
+    color: #ffffff !important;
+    font-family: "Instrument Serif", "Times New Roman", Georgia, serif !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.012em !important;
+    animation: none !important;
+  }
+
+  /* ── SUB — base values for 320 ────────────────────────────────── */
+  .hero-sub {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    color: rgba(255,255,255,0.78) !important;
+    margin-bottom: 18px !important;
+    max-width: 100% !important;
+  }
+  .hero-sub strong {
+    color: #fff !important;
+    font-weight: 600 !important;
+    letter-spacing: 0 !important;
+  }
+
+  /* ── READ-TIME microcopy ──────────────────────────────────────── */
+  .hero-read-time {
+    font-size: 11px !important;
+    color: rgba(255,255,255,0.5) !important;
+    margin: 0 0 18px 0 !important;
+    padding: 0 !important;
+  }
+
+  /* ── PRIMARY CTA — inverted white on dark ─────────────────────── */
+  .hero-content .btn-primary,
+  .hero-content a.btn-primary {
+    width: 100% !important;
+    height: 46px !important;
+    padding: 0 20px !important;
+    background: #ffffff !important;
+    background-image: none !important;
+    color: #000000 !important;
+    border: 1px solid #ffffff !important;
+    border-radius: 12px !important;
+    box-shadow: none !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.005em !important;
+    transition: background 200ms ease, transform 200ms ease !important;
+  }
+  .hero-content .btn-primary::before { display: none !important; }
+  .hero-content .btn-primary:active {
+    background: rgba(255,255,255,0.92) !important;
+    transform: scale(0.98) !important;
+    box-shadow: none !important;
+  }
+
+  /* ── TRUST STRIP — strip pill, become single text line ────────── */
+  .hero-rating {
+    background: none !important;
+    background-image: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 14px 0 0 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 4px 8px !important;
+  }
+  .hero-rating .rating-c,
+  .hero-rating .rating-row1 {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    flex-wrap: wrap !important;
+    gap: 4px 8px !important;
+  }
+  .hero-rating .stars {
+    font-size: 12px !important;
+    letter-spacing: 1px !important;
+    text-shadow: none !important;
+  }
+  .hero-rating .rating-n {
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: rgba(255,255,255,0.85) !important;
+  }
+  .hero-rating .rating-users {
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    color: rgba(255,255,255,0.55) !important;
+  }
+  .hero-rating .rating-sep { display: none !important; }
+
+  /* ── HIDE Satisfação 100% / Política Devolução pills ──────────── */
+  .guarantee-row,
+  .hero-content .guarantee-row { display: none !important; }
+
+  /* ── HERO SCROLL HINT — redundant ─────────────────────────────── */
+  .hero-scroll-hint { display: none !important; }
+
+  /* ── PHONES — keep ONE, kill left mockup ──────────────────────── */
+  .hero-phones {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 320px !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 24px auto 0 !important;
+    padding: 0 !important;
+    gap: 0 !important;
+  }
+  .phone-train { display: none !important; }
+  .phone-stats {
+    position: relative !important;
+    inset: auto !important;
+    top: auto !important; right: auto !important;
+    bottom: auto !important; left: auto !important;
+    width: 200px !important;
+    margin: 0 auto !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  /* ── PH-AGE-CARD — promote to hero visual ─────────────────────── */
+  .ph-age-card {
+    padding: 12px !important;
+    border-radius: 14px !important;
+    box-shadow: 0 24px 48px -16px rgba(0,0,0,0.55),
+                0 1px 0 rgba(255,255,255,0.6) inset !important;
+  }
+  .ph-age-lbl  { font-size: 9px !important; }
+  .ph-age-num  { font-size: 28px !important; line-height: 1 !important; }
+  .ph-age-ok   { font-size: 10px !important; }
+  .ph-age-bar  { height: 4px !important; margin-bottom: 4px !important; }
+  .ph-age-real { font-size: 9px !important; }
+
+  /* ── KILL floating scroll-to-top button ───────────────────────── */
+  .scroll-top-btn { display: none !important; }
+
+  /* ── NAV — quiet CTA + ghost lang ─────────────────────────────── */
+  .btn-login,
+  .nav .btn-login,
+  nav .btn-login,
+  .nav-r .btn-login {
+    background: rgba(255,255,255,0.04) !important;
+    background-image: none !important;
+    border: 1px solid rgba(255,255,255,0.18) !important;
+    color: rgba(255,255,255,0.92) !important;
+    box-shadow: none !important;
+    height: 34px !important;
+    min-height: 34px !important;
+    padding: 0 12px !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    border-radius: 8px !important;
+    letter-spacing: 0.02em !important;
+  }
+  .lang-btn,
+  .nav-r .lang-btn,
+  .nav-r [class*="lang"] {
+    background: transparent !important;
+    background-image: none !important;
+    border: 1px solid rgba(255,255,255,0.15) !important;
+    color: rgba(255,255,255,0.7) !important;
+    height: 34px !important;
+    min-height: 34px !important;
+    padding: 0 10px !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    box-shadow: none !important;
+    border-radius: 8px !important;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   TIER 1 — ULTRA-NARROW (≤320px): Galaxy Fold closed, iPhone 5
+   Tightest values to avoid horizontal overflow.
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 320px) {
+  .hero-content { padding-left: 14px !important; padding-right: 14px !important; }
+  .hero-h1     { font-size: 24px !important; line-height: 1.1 !important; }
+  .hero-sub    { font-size: 13px !important; line-height: 1.45 !important; }
+  .hero-badge  { font-size: 10px !important; padding: 4px 9px !important; margin-bottom: 14px !important; }
+  .hero-content .btn-primary { height: 44px !important; font-size: 13px !important; }
+  .phone-stats { width: 180px !important; }
+  .ph-age-num  { font-size: 26px !important; }
+  .hero-rating .rating-n,
+  .hero-rating .rating-users,
+  .hero-rating .stars { font-size: 11px !important; }
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   TIER 2 — SMALL (321-359px): iPhone SE 1st gen edge
+   ────────────────────────────────────────────────────────────────── */
+@media (min-width: 321px) and (max-width: 767px) {
+  .hero-content   { padding-top: 88px !important; }
+  .hero-h1        { font-size: 28px !important; line-height: 1.07 !important; }
+  .hero-sub       { font-size: 14px !important; }
+  .hero-content .btn-primary { height: 48px !important; }
+  .phone-stats    { width: 220px !important; }
+  .ph-age-num     { font-size: 32px !important; }
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   TIER 3 — STANDARD-SM (≥360px): Pixel/Galaxy baseline, OnePlus
+   ────────────────────────────────────────────────────────────────── */
+@media (min-width: 360px) and (max-width: 767px) {
+  .hero-content   { padding-top: 92px !important; padding-bottom: 40px !important;
+                    padding-left: 18px !important; padding-right: 18px !important; }
+  .hero-badge     { font-size: 11px !important; margin-bottom: 20px !important; }
+  .hero-h1        { font-size: 30px !important; letter-spacing: -0.024em !important;
+                    margin-bottom: 16px !important; }
+  .hero-sub       { font-size: 15px !important; margin-bottom: 22px !important; }
+  .hero-read-time { font-size: 12px !important; margin-bottom: 22px !important; }
+  .hero-content .btn-primary { height: 50px !important; font-size: 14px !important; }
+  .hero-rating    { gap: 6px 10px !important; }
+  .hero-rating .stars,
+  .hero-rating .rating-n,
+  .hero-rating .rating-users { font-size: 12px !important; }
+  .hero-phones    { margin-top: 28px !important; max-width: 280px !important; }
+  .phone-stats    { width: 240px !important; }
+  .ph-age-card    { padding: 14px !important; }
+  .ph-age-num     { font-size: 36px !important; }
+  .ph-age-lbl, .ph-age-real { font-size: 10px !important; }
+  .ph-age-ok      { font-size: 11px !important; }
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   TIER 4 — STANDARD (≥390px): iPhone 14/15/16, Galaxy S, Pixel 8
+   This is the most common viewport in 2026.
+   ────────────────────────────────────────────────────────────────── */
+@media (min-width: 390px) and (max-width: 767px) {
+  .hero-content   { padding-top: 96px !important; padding-bottom: 44px !important;
+                    padding-left: 20px !important; padding-right: 20px !important; }
+  .hero-badge     { font-size: 12px !important; padding: 6px 12px !important;
+                    margin-bottom: 24px !important; }
+  .hero-h1        { font-size: 34px !important; line-height: 1.06 !important;
+                    letter-spacing: -0.025em !important; }
+  .hero-sub       { font-size: 16px !important; margin-bottom: 24px !important; }
+  .hero-read-time { margin-bottom: 24px !important; }
+  .hero-content .btn-primary { height: 52px !important; font-size: 15px !important;
+                                padding: 0 24px !important; }
+  .hero-rating    { gap: 6px 12px !important; margin-top: 16px !important; }
+  .hero-rating .stars,
+  .hero-rating .rating-n,
+  .hero-rating .rating-users { font-size: 13px !important; }
+  .hero-phones    { margin-top: 32px !important; max-width: 300px !important; }
+  .phone-stats    { width: 260px !important; }
+  .ph-age-card    { padding: 16px !important; border-radius: 16px !important; }
+  .ph-age-num     { font-size: 40px !important; }
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   TIER 5 — LARGE (≥414px): iPhone Plus, Pro Max, Pixel XL, Note
+   ────────────────────────────────────────────────────────────────── */
+@media (min-width: 414px) and (max-width: 767px) {
+  .hero-content   { padding-top: 100px !important; padding-bottom: 52px !important;
+                    padding-left: 22px !important; padding-right: 22px !important; }
+  .hero-h1        { font-size: 38px !important; }
+  .hero-sub       { margin-bottom: 26px !important; }
+  .hero-content .btn-primary { height: 54px !important; }
+  .hero-phones    { max-width: 320px !important; margin-top: 36px !important; }
+  .phone-stats    { width: 280px !important; }
+  .ph-age-num     { font-size: 44px !important; }
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   TIER 6 — PHABLET (≥480px): large Androids, foldable inner edge
+   ────────────────────────────────────────────────────────────────── */
+@media (min-width: 480px) and (max-width: 767px) {
+  .hero-content   { padding-top: 108px !important; padding-bottom: 60px !important;
+                    padding-left: 28px !important; padding-right: 28px !important; }
+  .hero-badge     { font-size: 13px !important; margin-bottom: 28px !important; }
+  .hero-h1        { font-size: 44px !important; line-height: 1.04 !important;
+                    margin-bottom: 18px !important; }
+  .hero-sub       { font-size: 17px !important; margin-bottom: 28px !important;
+                    max-width: 480px !important; }
+  .hero-read-time { font-size: 13px !important; }
+  .hero-content .btn-primary { width: auto !important; min-width: 280px !important;
+                                height: 56px !important; font-size: 16px !important;
+                                padding: 0 32px !important; }
+  .hero-rating    { gap: 8px 14px !important; margin-top: 20px !important; }
+  .hero-rating .stars,
+  .hero-rating .rating-n,
+  .hero-rating .rating-users { font-size: 14px !important; }
+  .hero-phones    { margin-top: 40px !important; max-width: 360px !important; }
+  .phone-stats    { width: 320px !important; }
+  .ph-age-card    { padding: 18px !important; }
+  .ph-age-lbl, .ph-age-real { font-size: 11px !important; }
+  .ph-age-num     { font-size: 50px !important; }
+  .ph-age-ok      { font-size: 12px !important; }
+
+  /* Nav: a bit roomier */
+  .btn-login,
+  .nav .btn-login { height: 36px !important; min-height: 36px !important;
+                    font-size: 12px !important; padding: 0 14px !important; }
+  .lang-btn,
+  .nav-r [class*="lang"] { height: 36px !important; min-height: 36px !important;
+                           padding: 0 12px !important; font-size: 13px !important; }
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   TIER 7 — PHABLET-LG (≥640px): iPad mini portrait edge, Fold open
+   Approaching tablet — still single-column, but generous breathing.
+   ────────────────────────────────────────────────────────────────── */
+@media (min-width: 640px) and (max-width: 767px) {
+  .hero-content   { padding-top: 116px !important; padding-bottom: 64px !important;
+                    padding-left: 36px !important; padding-right: 36px !important; }
+  .hero-h1        { font-size: 52px !important; line-height: 1.04 !important; }
+  .hero-sub       { font-size: 18px !important; max-width: 540px !important; }
+  .hero-content .btn-primary { min-width: 320px !important; }
+  .hero-phones    { max-width: 400px !important; margin-top: 48px !important; }
+  .phone-stats    { width: 360px !important; }
+  .ph-age-card    { padding: 20px !important; border-radius: 18px !important; }
+  .ph-age-num     { font-size: 58px !important; }
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   SPECIAL A — LANDSCAPE phones (height-constrained)
+   Aggressive compaction: hide visual, keep CTA + trust above fold.
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 767px) and (orientation: landscape) and (max-height: 500px) {
+  .hero-content   { padding-top: 64px !important; padding-bottom: 24px !important; }
+  .hero-badge     { margin-bottom: 12px !important; font-size: 10px !important;
+                    padding: 4px 8px !important; }
+  .hero-h1        { font-size: 22px !important; line-height: 1.1 !important;
+                    margin-bottom: 10px !important; }
+  .hero-sub       { font-size: 13px !important; line-height: 1.4 !important;
+                    margin-bottom: 14px !important; }
+  .hero-read-time { display: none !important; }
+  .hero-content .btn-primary { height: 42px !important; font-size: 13px !important;
+                                width: auto !important; min-width: 220px !important; }
+  .hero-rating    { margin-top: 10px !important; }
+  .hero-rating .stars,
+  .hero-rating .rating-n,
+  .hero-rating .rating-users { font-size: 11px !important; }
+  .hero-phones    { display: none !important; }
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   SPECIAL B — TALL portrait (≥844px height): iPhone Pro Max class
+   Add breathing — these screens have room.
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 767px) and (min-height: 844px) and (orientation: portrait) {
+  .hero-content   { padding-top: 108px !important; padding-bottom: 56px !important; }
+  .hero-h1        { margin-bottom: 20px !important; }
+  .hero-sub       { margin-bottom: 28px !important; }
+  .hero-phones    { margin-top: 40px !important; }
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   PREMIUM TYPE RENDERING — retina antialias
+   Without this, the serif italic on "Stay Independent" looks granular
+   on iOS/Mac retina displays.
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .hero,
+  .hero-content,
+  .hero-h1,
+  .hero-shimmer-soft,
+  .hero-sub,
+  .hero-content .btn-primary,
+  .hero-rating {
+    -webkit-font-smoothing: antialiased !important;
+       -moz-osx-font-smoothing: grayscale !important;
+    text-rendering: optimizeLegibility;
+  }
+  /* Prevent iOS from auto-zooming the page when an input takes focus */
+  .hero input, .hero textarea, .hero select { font-size: 16px !important; }
+  /* Tap-highlight cleanup on every interactive in the hero */
+  .hero-content a, .hero-content button { -webkit-tap-highlight-color: transparent; }
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   SAFE-AREA — re-apply notch/island insets for the new padding-top.
+   Overrides the legacy 120px rule above so it doesn't double-add.
+   ────────────────────────────────────────────────────────────────── */
+@supports (padding-top: env(safe-area-inset-top)) {
+  @media (max-width: 767px) {
+    .hero-content {
+      padding-top: calc(84px + env(safe-area-inset-top)) !important;
+    }
+  }
+  @media (min-width: 360px) and (max-width: 767px) {
+    .hero-content { padding-top: calc(92px + env(safe-area-inset-top)) !important; }
+  }
+  @media (min-width: 390px) and (max-width: 767px) {
+    .hero-content { padding-top: calc(96px + env(safe-area-inset-top)) !important; }
+  }
+  @media (min-width: 414px) and (max-width: 767px) {
+    .hero-content { padding-top: calc(100px + env(safe-area-inset-top)) !important; }
+  }
+  @media (min-width: 480px) and (max-width: 767px) {
+    .hero-content { padding-top: calc(108px + env(safe-area-inset-top)) !important; }
+  }
+  @media (min-width: 640px) and (max-width: 767px) {
+    .hero-content { padding-top: calc(116px + env(safe-area-inset-top)) !important; }
+  }
+
+  /* TALL portrait — apply safe-area on top of the 108 base */
+  @media (max-width: 767px) and (min-height: 844px) and (orientation: portrait) {
+    .hero-content { padding-top: calc(108px + env(safe-area-inset-top)) !important; }
+  }
+
+  /* LANDSCAPE — protect notch on the side (iPhone notch when rotated) */
+  @media (max-width: 767px) and (orientation: landscape) and (max-height: 500px) {
+    .hero-content {
+      padding-top: calc(64px + env(safe-area-inset-top, 0px)) !important;
+      padding-left: calc(20px + env(safe-area-inset-left, 0px)) !important;
+      padding-right: calc(20px + env(safe-area-inset-right, 0px)) !important;
+    }
+  }
+
+  /* Override the legacy `calc(120px + safe-area)` rule defined earlier */
+  .hero { padding-top: 0 !important; }
+}
+
